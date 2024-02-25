@@ -1,0 +1,194 @@
+[
+  {
+    "productName": "Lime",
+    "brandName": "LaCroix",
+    "imageURL": "sampleimageURL",
+    "flavor": "lime",
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Pure",
+    "brandName": "LaCroix",
+    "imageURL": "sampleimageURL",
+    "flavor": "plain",
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Lemon",
+    "brandName": "LaCroix",
+    "imageURL": "sampleimageURL",
+    "flavor": "lemon",
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Berry",
+    "brandName": "LaCroix",
+    "imageURL": "sampleimageURL",
+    "flavor": "berry",
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Razz-Cranberry",
+    "brandName": "LaCroix",
+    "imageURL": "sampleimageURL",
+    "flavor": "raspberry,cranberry",
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Peach-Pear",
+    "brandName": "LaCroix",
+    "imageURL": "sampleimageURL",
+    "flavor": "peach,pear",
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Pomplemousse",
+    "brandName": "LaCroix",
+    "imageURL": "sampleimageURL",
+    "flavor": "grapefruit",
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Coconut",
+    "brandName": "LaCroix",
+    "imageURL": "sampleimageURL",
+    "flavor": "coconut",
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Passionfruit",
+    "brandName": "LaCroix",
+    "imageURL": "sampleimageURL",
+    "flavor": "passionfruit",
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Mango",
+    "brandName": "LaCroix",
+    "imageURL": "sampleimageURL",
+    "flavor": "mango",
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Apricot",
+    "brandName": "LaCroix",
+    "imageURL": "sampleimageURL",
+    "flavor": "apricot",
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Tangerine",
+    "brandName": "LaCroix",
+    "imageURL": "sampleimageURL",
+    "flavor": "Tangerine",
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Key Lime",
+    "brandName": "LaCroix",
+    "imageURL": "sampleimageURL",
+    "flavor": "key lime",
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Hi-Biscus",
+    "brandName": "LaCroix",
+    "imageURL": "sampleimageURL",
+    "flavor": "hibiscus",
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Pastèque",
+    "brandName": "LaCroix",
+    "imageURL": "sampleimageURL",
+    "flavor": "watermelon",
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Limon Cello",
+    "brandName": "LaCroix",
+    "imageURL": "sampleimageURL",
+    "flavor": "limoncello,lemon",
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Black Razzberry",
+    "brandName": "LaCroix",
+    "imageURL": "sampleimageURL",
+    "flavor": "raspberry",
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Guava Sao Paolo",
+    "brandName": "LaCroix",
+    "imageURL": "sampleimageURL",
+    "flavor": "guava",
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Mojito",
+    "brandName": "LaCroix",
+    "imageURL": "sampleimageURL",
+    "flavor": "mojito",
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Cherry Blosson",
+    "brandName": "LaCroix",
+    "imageURL": "sampleimageURL",
+    "flavor": "cherry",
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Beach Plum",
+    "brandName": "LaCroix",
+    "imageURL": "sampleimageURL",
+    "flavor": "plum",
+    "isCaffeinated": false,
+    "hasCBD": false
+  }
+  {
+    "productName": "Blackberry",
+    "brandName": "bubbly",
+    "imageURL": "sampleimageURL",
+    "flavor": "blackberry",
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Lime",
+    "brandName": "bubbly",
+    "imageURL": "sampleimageURL",
+    "flavor": "lime",
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Grapefruit",
+    "brandName": "bubbly",
+    "imageURL": "sampleimageURL",
+    "flavor": "grapefruit",
+    "isCaffeinated": false,
+    "hasCBD": false
+  }
+]
