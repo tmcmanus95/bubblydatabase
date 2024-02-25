@@ -44,3 +44,5 @@ const bubblyWaterSchema = new Schema(
 );
 
 const BubblyWater = model("BubblyWater", bubblyWaterSchema);
+
+module.exports = BubblyWater;
