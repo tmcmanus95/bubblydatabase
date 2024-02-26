@@ -27,8 +27,16 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
-    bubblywaters: async () => {
-      return BubblyWater.find();
+    bubblyWaters: async () => {
+      return BubblyWater.find().populate("ratings");
+    },
+    bubblyWater: async (parent, { bubblyWaterId }) => {
+      return BubblyWater.findOne({ _id: bubblyWaterId })
+        .populate("ratings")
+        .populate("reviews");
+    },
+    rating: async (parent, { ratingId }) => {
+      return Rating.findOne({ _id: ratingId });
     },
 
     flavors: async (parent, { flavor }) => {
@@ -71,94 +79,79 @@ const resolvers = {
         throw new Error("Failed to add rating to water");
       }
     },
-    //   editTopic: async (parent, { topicId, promptText }, context) => {
-    //     try {
-    //       const updatedTopic = await Topic.findByIdAndUpdate(
-    //         topicId,
-    //         { $set: { promptText } },
-    //         { new: true }
-    //       );
+    editRating: async (parent, { ratingId, rating }, context) => {
+      try {
+        const updatedRating = await Rating.findOneAndUpdate(
+          { _id: ratingId },
+          { $set: { rating } },
+          { new: true }
+        );
 
-    //       return updatedTopic;
-    //     } catch (error) {
-    //       console.error(error);
-    //       throw new Error("Failed to edit topic");
-    //     }
-    //   },
-    //   removeTopic: async (parent, { topicId }, context) => {
-    //     return User.findOneAndUpdate(
-    //       { _id: context.user._id },
-    //       { $pull: { savedTopics: { topic: topicId } } },
-    //       { new: true }
-    //     );
-    //   },
-    //   addResponse: async (
-    //     parent,
-    //     { topicId, responseText, imageURL },
-    //     context
-    //   ) => {
-    //     try {
-    //       const newResponse = await Response.create({
-    //         topicId: topicId,
-    //         responseText: responseText,
-    //         imageURL: imageURL,
-    //       });
+        return updatedRating;
+      } catch (error) {
+        console.error(error);
+        throw new Error("Failed to edit topic");
+      }
+    },
+    removeRating: async (parent, { ratingId }, context) => {
+      return Rating.findOneAndDelete({ _id: ratingId });
+    },
+    addReview: async (parent, { bubblyWaterId, reviewText }, context) => {
+      try {
+        const newReview = await Review.create({
+          reviewText: reviewText,
+        });
 
-    //       const updatedTopic = await Topic.findByIdAndUpdate(
-    //         topicId,
-    //         {
-    //           $addToSet: { responses: newResponse._id },
-    //         },
-    //         {
-    //           new: true,
-    //           runValidators: true,
-    //         }
-    //       ).populate("responses");
+        const updatedBubblyWater = await BubblyWater.findByIdAndUpdate(
+          bubblyWaterId,
+          {
+            $addToSet: { reviews: newReview._id },
+          },
+          {
+            new: true,
+            runValidators: true,
+          }
+        ).populate("reviews");
 
-    //       return updatedTopic;
-    //     } catch (error) {
-    //       console.error(error);
-    //       throw new Error("Failed to add response to Topic");
-    //     }
-    //   },
-    //   editResponse: async (parent, { responseId, responseText }, context) => {
-    //     try {
-    //       const updatedResponse = await Response.findByIdAndUpdate(
-    //         responseId,
-    //         { $set: { responseText } },
-    //         { new: true }
-    //       );
+        return updatedBubblyWater;
+      } catch (error) {
+        console.error(error);
+        throw new Error("Failed to add review to bubbly water page");
+      }
+    },
+    editReview: async (parent, { reviewId, reviewText }, context) => {
+      try {
+        const updatedReview = await Review.findByIdAndUpdate(
+          reviewId,
+          { $set: { reviewText } },
+          { new: true }
+        );
 
-    //       return updatedResponse;
-    //     } catch (error) {
-    //       console.error(error);
-    //       throw new Error("Failed to edit response");
-    //     }
-    //   },
-    //   removeResponse: async (parent, { topicId, responseId }, context) => {
-    //     return Topic.findOneAndUpdate(
-    //       { _id: topicId },
-    //       { $pull: { responses: responseId } },
-    //       { new: true }
-    //     );
-    //   },
-    //   login: async (parent, { email, password }) => {
-    //     const user = await User.findOne({ email });
+        return updatedReview;
+      } catch (error) {
+        console.error(error);
+        throw new Error("Failed to edit review");
+      }
+    },
+    removeReview: async (parent, { reviewId }, context) => {
+      return Review.findOneAndDelete({ _id: reviewId });
+    },
+    login: async (parent, { email, password }) => {
+      const user = await User.findOne({ email });
 
-    //     if (!user) {
-    //       throw AuthenticationError;
-    //     }
+      if (!user) {
+        throw AuthenticationError;
+      }
 
-    //     const correctPw = await user.isCorrectPassword(password);
+      const correctPw = await user.isCorrectPassword(password);
 
-    //     if (!correctPw) {
-    //       throw AuthenticationError;
-    //     }
+      if (!correctPw) {
+        throw AuthenticationError;
+      }
 
-    //     const token = signToken(user);
-    //     return { token, user };
-    //   },
-    // },
+      const token = signToken(user);
+      return { token, user };
+    },
   },
 };
 
