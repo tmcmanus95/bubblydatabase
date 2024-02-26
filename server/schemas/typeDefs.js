@@ -45,7 +45,9 @@ const typeDefs = `
     users: [User]
     user(userId: ID!): User
     me: User
-    bubblywaters: [BubblyWater]
+    bubblyWaters: [BubblyWater]
+    bubblyWater(bubblyWaterId: ID): BubblyWater 
+    rating(ratingId: ID): Rating
     flavors(flavor: String): [BubblyWater]
     brand(brandName: String): [BubblyWater]
   }
@@ -55,11 +57,11 @@ const typeDefs = `
     removeUser: User
     login(email: String!, password: String!): Auth
     addRating(bubblyWaterId: ID!, rating: Float!): BubblyWater
-    editRating(bubblyWaterId: ID!, rating: Float!): BubblyWater
-    removeRating(bubblyWaterId: ID!): BubblyWater
-    addReview(bubblyWaterId: ID!, reviewText: Float!): BubblyWater
-    editReview(bubblyWaterId: ID!, reviewText: Float!): BubblyWater
-    removeReview(reviewId: ID!): BubblyWater
+    editRating(ratingId: ID!, rating: Float!): Rating
+    removeRating(ratingId: ID!): Rating
+    addReview(bubblyWaterId: ID!, reviewText: String!): BubblyWater
+    editReview(reviewId: ID!, reviewText: String!): Review
+    removeReview(reviewId: ID!): Review
   }
 `;
 
