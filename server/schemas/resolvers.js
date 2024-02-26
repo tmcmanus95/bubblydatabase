@@ -1,4 +1,4 @@
-const { User, BubblyWaters, Rating, Review } = require("../models");
+const { User, BubblyWater, Rating, Review } = require("../models");
 const { signToken, AuthenticationError } = require("../utils/auth");
 
 const resolvers = {
@@ -28,14 +28,14 @@ const resolvers = {
       throw AuthenticationError;
     },
     bubblywaters: async () => {
-      return BubblyWaters.find();
+      return BubblyWater.find();
     },
 
     flavors: async (parent, { flavor }) => {
-      return BubblyWaters.find({ flavor: flavor }).populate("ratings");
+      return BubblyWater.find({ flavor: flavor }).populate("ratings");
     },
-    brand: async (parent, { brand }) => {
-      return BubblyWaters.find({ brand: brand }).populate("ratings");
+    brand: async (parent, { brandName }) => {
+      return BubblyWater.find({ brandName: brandName }).populate("ratings");
     },
   },
 
@@ -50,119 +50,115 @@ const resolvers = {
       return User.findOneAndDelete({ _id: userId });
     },
 
-    addTopic: async (parent, { userId, topic }, context) => {
+    addRating: async (parent, { userId, bubblyWaterId, rating }, context) => {
       try {
-        const newTopic = await Topic.create({ promptText: topic });
+        const newRating = await Rating.create({ rating: rating });
 
-        const updatedUser = await User.findOneAndUpdate(
-          { _id: userId },
+        const updatedBubblyWater = await BubblyWater.findOneAndUpdate(
+          { _id: bubblyWaterId },
           {
-            $push: {
-              savedTopics: {
-                $each: [{ topic: newTopic._id }],
-                $position: 0,
-              },
-            },
+            $addToSet: { ratings: newRating._id },
           },
           {
             new: true,
-            runValidators: true,
+            runValidators: false,
           }
-        ).populate("savedTopics.topic");
+        ).populate("ratings");
 
-        return updatedUser;
+        return updatedBubblyWater;
       } catch (error) {
         console.error(error);
-        throw new Error("Failed to add topic to user");
+        throw new Error("Failed to add rating to water");
       }
     },
-    editTopic: async (parent, { topicId, promptText }, context) => {
-      try {
-        const updatedTopic = await Topic.findByIdAndUpdate(
-          topicId,
-          { $set: { promptText } },
-          { new: true }
-        );
+    //   editTopic: async (parent, { topicId, promptText }, context) => {
+    //     try {
+    //       const updatedTopic = await Topic.findByIdAndUpdate(
+    //         topicId,
+    //         { $set: { promptText } },
+    //         { new: true }
+    //       );
 
-        return updatedTopic;
-      } catch (error) {
-        console.error(error);
-        throw new Error("Failed to edit topic");
-      }
-    },
-    removeTopic: async (parent, { topicId }, context) => {
-      return User.findOneAndUpdate(
-        { _id: context.user._id },
-        { $pull: { savedTopics: { topic: topicId } } },
-        { new: true }
-      );
-    },
-    addResponse: async (
-      parent,
-      { topicId, responseText, imageURL },
-      context
-    ) => {
-      try {
-        const newResponse = await Response.create({
-          topicId: topicId,
-          responseText: responseText,
-          imageURL: imageURL,
-        });
+    //       return updatedTopic;
+    //     } catch (error) {
+    //       console.error(error);
+    //       throw new Error("Failed to edit topic");
+    //     }
+    //   },
+    //   removeTopic: async (parent, { topicId }, context) => {
+    //     return User.findOneAndUpdate(
+    //       { _id: context.user._id },
+    //       { $pull: { savedTopics: { topic: topicId } } },
+    //       { new: true }
+    //     );
+    //   },
+    //   addResponse: async (
+    //     parent,
+    //     { topicId, responseText, imageURL },
+    //     context
+    //   ) => {
+    //     try {
+    //       const newResponse = await Response.create({
+    //         topicId: topicId,
+    //         responseText: responseText,
+    //         imageURL: imageURL,
+    //       });
 
-        const updatedTopic = await Topic.findByIdAndUpdate(
-          topicId,
-          {
-            $addToSet: { responses: newResponse._id },
-          },
-          {
-            new: true,
-            runValidators: true,
-          }
-        ).populate("responses");
+    //       const updatedTopic = await Topic.findByIdAndUpdate(
+    //         topicId,
+    //         {
+    //           $addToSet: { responses: newResponse._id },
+    //         },
+    //         {
+    //           new: true,
+    //           runValidators: true,
+    //         }
+    //       ).populate("responses");
 
-        return updatedTopic;
-      } catch (error) {
-        console.error(error);
-        throw new Error("Failed to add response to Topic");
-      }
-    },
-    editResponse: async (parent, { responseId, responseText }, context) => {
-      try {
-        const updatedResponse = await Response.findByIdAndUpdate(
-          responseId,
-          { $set: { responseText } },
-          { new: true }
-        );
+    //       return updatedTopic;
+    //     } catch (error) {
+    //       console.error(error);
+    //       throw new Error("Failed to add response to Topic");
+    //     }
+    //   },
+    //   editResponse: async (parent, { responseId, responseText }, context) => {
+    //     try {
+    //       const updatedResponse = await Response.findByIdAndUpdate(
+    //         responseId,
+    //         { $set: { responseText } },
+    //         { new: true }
+    //       );
 
-        return updatedResponse;
-      } catch (error) {
-        console.error(error);
-        throw new Error("Failed to edit response");
-      }
-    },
-    removeResponse: async (parent, { topicId, responseId }, context) => {
-      return Topic.findOneAndUpdate(
-        { _id: topicId },
-        { $pull: { responses: responseId } },
-        { new: true }
-      );
-    },
-    login: async (parent, { email, password }) => {
-      const user = await User.findOne({ email });
+    //       return updatedResponse;
+    //     } catch (error) {
+    //       console.error(error);
+    //       throw new Error("Failed to edit response");
+    //     }
+    //   },
+    //   removeResponse: async (parent, { topicId, responseId }, context) => {
+    //     return Topic.findOneAndUpdate(
+    //       { _id: topicId },
+    //       { $pull: { responses: responseId } },
+    //       { new: true }
+    //     );
+    //   },
+    //   login: async (parent, { email, password }) => {
+    //     const user = await User.findOne({ email });
 
-      if (!user) {
-        throw AuthenticationError;
-      }
+    //     if (!user) {
+    //       throw AuthenticationError;
+    //     }
 
-      const correctPw = await user.isCorrectPassword(password);
+    //     const correctPw = await user.isCorrectPassword(password);
 
-      if (!correctPw) {
-        throw AuthenticationError;
-      }
+    //     if (!correctPw) {
+    //       throw AuthenticationError;
+    //     }
 
-      const token = signToken(user);
-      return { token, user };
-    },
+    //     const token = signToken(user);
+    //     return { token, user };
+    //   },
+    // },
   },
 };
 

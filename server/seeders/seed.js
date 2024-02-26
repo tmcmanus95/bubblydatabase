@@ -7,7 +7,7 @@ const cleanDB = require("./cleanDB");
 db.once("open", async () => {
   try {
     await cleanDB("User", "users");
-    await cleanDB("BubblyWater", "bubblyWaters");
+    await cleanDB("BubblyWater", "bubblywaters");
 
     await User.create(userSeeds);
     await BubblyWater.create(bubblyWaterSeeds);

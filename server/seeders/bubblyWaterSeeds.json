@@ -166,7 +166,7 @@
     "flavor": "plum",
     "isCaffeinated": false,
     "hasCBD": false
-  }
+  },
   {
     "productName": "Blackberry",
     "brandName": "bubbly",
@@ -188,6 +188,38 @@
     "brandName": "bubbly",
     "imageURL": "sampleimageURL",
     "flavor": "grapefruit",
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Blood Orange Grapefruit",
+    "brandName": "bubbly",
+    "imageURL": "sampleimageURL",
+    "flavor": "blood orange,grapefruit",
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Mango",
+    "brandName": "bubbly",
+    "imageURL": "sampleimageURL",
+    "flavor": "mango",
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Peach",
+    "brandName": "bubbly",
+    "imageURL": "sampleimageURL",
+    "flavor": "peach",
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Raspberry",
+    "brandName": "bubbly",
+    "imageURL": "sampleimageURL",
+    "flavor": "raspberry",
     "isCaffeinated": false,
     "hasCBD": false
   }
