@@ -23,7 +23,7 @@ const typeDefs = `
 
   type Rating {
     _id: ID
-    rating: Number
+    rating: Float
     createdAt: String
     user: [User]
   }
@@ -54,12 +54,12 @@ const typeDefs = `
     addUser(username: String!, email: String!, password: String!): Auth
     removeUser: User
     login(email: String!, password: String!): Auth
-    addRating(userId: ID!, rating: Number!): Rating
-    editRating(userID: ID!, rating: Number!): Rating
-    removeRating(ratingId: ID!): Rating
-    addReview(userId: ID!, reviewText: String!): Review
-    editReview(userID: ID!, reviewText: String!): Review
-    removeReview(reviewId: ID!): Review
+    addRating(bubblyWaterId: ID!, rating: Float!): BubblyWater
+    editRating(bubblyWaterId: ID!, rating: Float!): BubblyWater
+    removeRating(bubblyWaterId: ID!): BubblyWater
+    addReview(bubblyWaterId: ID!, reviewText: Float!): BubblyWater
+    editReview(bubblyWaterId: ID!, reviewText: Float!): BubblyWater
+    removeReview(reviewId: ID!): BubblyWater
   }
 `;
 

@@ -9,12 +9,6 @@ const ratingSchema = new Schema(
       type: Date,
       default: Date.now,
     },
-    user: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "User",
-      },
-    ],
   },
   {
     toJSON: {
@@ -24,6 +18,6 @@ const ratingSchema = new Schema(
   }
 );
 
-const Rating = model("Review", ratingSchema);
+const Rating = model("Rating", ratingSchema);
 
 module.exports = Rating;

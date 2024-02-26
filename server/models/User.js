@@ -20,18 +20,18 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
-  ratings: {
-    rating: {
+  ratings: [
+    {
       type: Schema.Types.ObjectId,
       ref: "Rating",
     },
-  },
-  reviews: {
-    review: {
+  ],
+  reviews: [
+    {
       type: Schema.Types.ObjectId,
       ref: "Review",
     },
-  },
+  ],
 });
 
 // set up pre-save middleware to create password

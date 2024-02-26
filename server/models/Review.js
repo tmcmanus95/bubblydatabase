@@ -12,12 +12,6 @@ const reviewSchema = new Schema(
       type: Date,
       default: Date.now,
     },
-    user: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "User",
-      },
-    ],
     rating: [
       {
         type: Schema.Types.ObjectId,

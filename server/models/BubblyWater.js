@@ -22,18 +22,18 @@ const bubblyWaterSchema = new Schema(
     hasCBD: {
       type: Boolean,
     },
-    ratings: {
-      rating: {
+    ratings: [
+      {
         type: Schema.Types.ObjectId,
         ref: "Rating",
       },
-    },
-    reviews: {
-      review: {
+    ],
+    reviews: [
+      {
         type: Schema.Types.ObjectId,
         ref: "Review",
       },
-    },
+    ],
   },
   {
     toJSON: {
@@ -44,3 +44,5 @@ const bubblyWaterSchema = new Schema(
 );
 
 const BubblyWater = model("BubblyWater", bubblyWaterSchema);
+
+module.exports = BubblyWater;
