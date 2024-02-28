@@ -5,7 +5,6 @@ import Profile from "./pages/Profile.jsx";
 import Login from "./pages/Login.jsx";
 import Signup from "./pages/Signup.jsx";
 import BubblyWater from "./pages/BubblyWater.jsx";
-
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -28,7 +27,7 @@ const router = createBrowserRouter([
         element: <Signup />,
       },
       {
-        path: "/:bubblyId",
+        path: "/:bubblyWaterId",
         element: <BubblyWater />,
       },
     ],

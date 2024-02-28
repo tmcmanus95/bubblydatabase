@@ -6,20 +6,21 @@ import BubblyWaterList from "./BubblyWaterList";
 export default function SearchBar() {
   const [searchTerm, setSearchTerm] = useState("");
   const [bubblyWater, setBubblyWater] = useState(null);
-  const { data } = useQuery(QUERY_SINGLE_FLAVOR, {
-    variables: { flavor: searchTerm },
-  });
-  console.log(data);
-  const handleInputChange = (e) => {
-    setSearchTerm(e.target.value);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const inputValue = e.target.elements.searchInput.value;
+    setSearchTerm(inputValue);
     console.log("Search Term:", searchTerm);
   };
 
   return (
     <div>
-      <input onChange={handleInputChange}></input>
-      <button>Search</button>
-      {data ? <BubblyWaterList data={data} /> : <></>}
+      <form onSubmit={handleSubmit}>
+        <input name="searchInput"></input>
+        <button type="submit">Search</button>
+      </form>
+      {searchTerm ? <BubblyWaterList searchTerm={searchTerm} /> : <></>}
     </div>
   );
 }
