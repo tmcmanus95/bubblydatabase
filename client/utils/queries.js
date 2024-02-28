@@ -13,3 +13,30 @@ export const QUERY_SINGLE_FLAVOR = gql`
     }
   }
 `;
+
+export const QUERY_SINGLE_BUBBLYWATER = gql`
+  query Query($bubblyWaterId: ID) {
+    bubblyWater(bubblyWaterId: $bubblyWaterId) {
+      productName
+      brandName
+      imageURL
+      flavor
+      isCaffeinated
+      hasCBD
+      ratings {
+        _id
+        rating
+        user {
+          username
+        }
+      }
+      reviews {
+        _id
+        reviewText
+        user {
+          username
+        }
+      }
+    }
+  }
+`;

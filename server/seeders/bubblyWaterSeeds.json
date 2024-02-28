@@ -2,7 +2,7 @@
   {
     "productName": "Lime",
     "brandName": "LaCroix",
-    "imageURL": "sampleimageURL",
+    "imageURL": "https://media.istockphoto.com/id/916073216/photo/glasses-and-bottles-of-assorted-carbonated-soft-drinks.jpg?s=612x612&w=0&k=20&c=Hmvmc8v0vEdlhzLuYG2Rv_rmbAK2b4SGu4ZnFmiFcnw=",
     "flavor": "lime",
     "isCaffeinated": false,
     "hasCBD": false
@@ -10,7 +10,7 @@
   {
     "productName": "Pure",
     "brandName": "LaCroix",
-    "imageURL": "sampleimageURL",
+    "imageURL": "https://media.istockphoto.com/id/916073216/photo/glasses-and-bottles-of-assorted-carbonated-soft-drinks.jpg?s=612x612&w=0&k=20&c=Hmvmc8v0vEdlhzLuYG2Rv_rmbAK2b4SGu4ZnFmiFcnw=",
     "flavor": "plain",
     "isCaffeinated": false,
     "hasCBD": false
@@ -18,7 +18,7 @@
   {
     "productName": "Lemon",
     "brandName": "LaCroix",
-    "imageURL": "sampleimageURL",
+    "imageURL": "https://media.istockphoto.com/id/916073216/photo/glasses-and-bottles-of-assorted-carbonated-soft-drinks.jpg?s=612x612&w=0&k=20&c=Hmvmc8v0vEdlhzLuYG2Rv_rmbAK2b4SGu4ZnFmiFcnw=",
     "flavor": "lemon",
     "isCaffeinated": false,
     "hasCBD": false
@@ -26,7 +26,7 @@
   {
     "productName": "Berry",
     "brandName": "LaCroix",
-    "imageURL": "sampleimageURL",
+    "imageURL": "https://media.istockphoto.com/id/916073216/photo/glasses-and-bottles-of-assorted-carbonated-soft-drinks.jpg?s=612x612&w=0&k=20&c=Hmvmc8v0vEdlhzLuYG2Rv_rmbAK2b4SGu4ZnFmiFcnw=",
     "flavor": "berry",
     "isCaffeinated": false,
     "hasCBD": false
@@ -34,7 +34,7 @@
   {
     "productName": "Razz-Cranberry",
     "brandName": "LaCroix",
-    "imageURL": "sampleimageURL",
+    "imageURL": "https://media.istockphoto.com/id/916073216/photo/glasses-and-bottles-of-assorted-carbonated-soft-drinks.jpg?s=612x612&w=0&k=20&c=Hmvmc8v0vEdlhzLuYG2Rv_rmbAK2b4SGu4ZnFmiFcnw=",
     "flavor": "raspberry,cranberry",
     "isCaffeinated": false,
     "hasCBD": false
@@ -50,7 +50,7 @@
   {
     "productName": "Pomplemousse",
     "brandName": "LaCroix",
-    "imageURL": "sampleimageURL",
+    "imageURL": "https://m.media-amazon.com/images/I/61kr60W+ITL.jpg",
     "flavor": "grapefruit",
     "isCaffeinated": false,
     "hasCBD": false
@@ -58,7 +58,7 @@
   {
     "productName": "Coconut",
     "brandName": "LaCroix",
-    "imageURL": "sampleimageURL",
+    "imageURL": "https://www.myamericanmarket.com/media/catalog/product/cache/e14a284ad83acfa28068f240695baba3/l/a/la-croix-sparkling-water-coconut-1.jpg",
     "flavor": "coconut",
     "isCaffeinated": false,
     "hasCBD": false
@@ -66,7 +66,7 @@
   {
     "productName": "Passionfruit",
     "brandName": "LaCroix",
-    "imageURL": "sampleimageURL",
+    "imageURL": "https://m.media-amazon.com/images/S/assets.wholefoodsmarket.com/PIE/product/624b7ebf27ac661363102214_dld-0012993441012-glamor-back-2022-02-28t20-59-40-iphone-x-quality-90-1-29-0-user-5984ad42a967f880524de2c4-axxk-550428-1649114812565.jpg",
     "flavor": "passionfruit",
     "isCaffeinated": false,
     "hasCBD": false
