@@ -5,6 +5,10 @@ const ratingSchema = new Schema(
     rating: {
       type: Number,
     },
+    bubblyWater: {
+      type: Schema.Types.ObjectId,
+      ref: "BubblyWater",
+    },
     createdAt: {
       type: Date,
       default: Date.now,
