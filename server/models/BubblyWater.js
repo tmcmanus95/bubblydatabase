@@ -24,6 +24,10 @@ const bubblyWaterSchema = new Schema(
     hasCBD: {
       type: Boolean,
     },
+    averageRating: {
+      type: Number,
+      default: 0,
+    },
     ratings: [
       {
         type: Schema.Types.ObjectId,

@@ -1,5 +1,6 @@
 import BasicRating from "./FiveStarRating";
 import { Link } from "react-router-dom";
+import Rating from "@mui/material/Rating";
 
 export default function BubblyWaterListItem({ bubblyWater }) {
   return (
@@ -9,7 +10,7 @@ export default function BubblyWaterListItem({ bubblyWater }) {
         <h2>{bubblyWater.productName}</h2>
         <h5>{bubblyWater.flavor}</h5>
         <img src={bubblyWater.imageURL}></img>
-        <BasicRating />
+        <Rating readOnly value={bubblyWater.averageRating} />
       </Link>
     </div>
   );

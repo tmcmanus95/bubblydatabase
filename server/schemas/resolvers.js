@@ -74,6 +74,20 @@ const resolvers = {
           }
         ).populate("ratings");
 
+        // Update the average rating
+        const allRatings = await Rating.find({
+          _id: { $in: updatedBubblyWater.ratings },
+        });
+
+        const totalRatings = allRatings.reduce(
+          (acc, curr) => acc + curr.rating,
+          0
+        );
+        const averageRating = totalRatings / allRatings.length;
+
+        updatedBubblyWater.averageRating = averageRating;
+        await updatedBubblyWater.save();
+
         return updatedBubblyWater;
       } catch (error) {
         console.error(error);
