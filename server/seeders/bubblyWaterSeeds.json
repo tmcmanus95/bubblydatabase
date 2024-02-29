@@ -3,7 +3,7 @@
     "productName": "Lime",
     "brandName": "LaCroix",
     "imageURL": "https://media.istockphoto.com/id/916073216/photo/glasses-and-bottles-of-assorted-carbonated-soft-drinks.jpg?s=612x612&w=0&k=20&c=Hmvmc8v0vEdlhzLuYG2Rv_rmbAK2b4SGu4ZnFmiFcnw=",
-    "flavor": "lime",
+    "flavor": ["lime"],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -11,7 +11,7 @@
     "productName": "Pure",
     "brandName": "LaCroix",
     "imageURL": "https://media.istockphoto.com/id/916073216/photo/glasses-and-bottles-of-assorted-carbonated-soft-drinks.jpg?s=612x612&w=0&k=20&c=Hmvmc8v0vEdlhzLuYG2Rv_rmbAK2b4SGu4ZnFmiFcnw=",
-    "flavor": "plain",
+    "flavor": ["plain"],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -19,7 +19,7 @@
     "productName": "Lemon",
     "brandName": "LaCroix",
     "imageURL": "https://media.istockphoto.com/id/916073216/photo/glasses-and-bottles-of-assorted-carbonated-soft-drinks.jpg?s=612x612&w=0&k=20&c=Hmvmc8v0vEdlhzLuYG2Rv_rmbAK2b4SGu4ZnFmiFcnw=",
-    "flavor": "lemon",
+    "flavor": ["lemon"],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -27,7 +27,7 @@
     "productName": "Berry",
     "brandName": "LaCroix",
     "imageURL": "https://media.istockphoto.com/id/916073216/photo/glasses-and-bottles-of-assorted-carbonated-soft-drinks.jpg?s=612x612&w=0&k=20&c=Hmvmc8v0vEdlhzLuYG2Rv_rmbAK2b4SGu4ZnFmiFcnw=",
-    "flavor": "berry",
+    "flavor": ["berry"],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -35,7 +35,7 @@
     "productName": "Razz-Cranberry",
     "brandName": "LaCroix",
     "imageURL": "https://media.istockphoto.com/id/916073216/photo/glasses-and-bottles-of-assorted-carbonated-soft-drinks.jpg?s=612x612&w=0&k=20&c=Hmvmc8v0vEdlhzLuYG2Rv_rmbAK2b4SGu4ZnFmiFcnw=",
-    "flavor": "raspberry,cranberry",
+    "flavor": ["raspberry", "cranberry"],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -43,7 +43,7 @@
     "productName": "Peach-Pear",
     "brandName": "LaCroix",
     "imageURL": "sampleimageURL",
-    "flavor": "peach,pear",
+    "flavor": ["peach", "pear"],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -51,7 +51,7 @@
     "productName": "Pomplemousse",
     "brandName": "LaCroix",
     "imageURL": "https://m.media-amazon.com/images/I/61kr60W+ITL.jpg",
-    "flavor": "grapefruit",
+    "flavor": ["grapefruit"],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -59,7 +59,7 @@
     "productName": "Coconut",
     "brandName": "LaCroix",
     "imageURL": "https://www.myamericanmarket.com/media/catalog/product/cache/e14a284ad83acfa28068f240695baba3/l/a/la-croix-sparkling-water-coconut-1.jpg",
-    "flavor": "coconut",
+    "flavor": ["coconut"],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -67,7 +67,7 @@
     "productName": "Passionfruit",
     "brandName": "LaCroix",
     "imageURL": "https://m.media-amazon.com/images/S/assets.wholefoodsmarket.com/PIE/product/624b7ebf27ac661363102214_dld-0012993441012-glamor-back-2022-02-28t20-59-40-iphone-x-quality-90-1-29-0-user-5984ad42a967f880524de2c4-axxk-550428-1649114812565.jpg",
-    "flavor": "passionfruit",
+    "flavor": ["passionfruit"],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -75,7 +75,7 @@
     "productName": "Mango",
     "brandName": "LaCroix",
     "imageURL": "sampleimageURL",
-    "flavor": "mango",
+    "flavor": ["mango"],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -83,7 +83,7 @@
     "productName": "Apricot",
     "brandName": "LaCroix",
     "imageURL": "sampleimageURL",
-    "flavor": "apricot",
+    "flavor": ["apricot"],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -91,7 +91,7 @@
     "productName": "Tangerine",
     "brandName": "LaCroix",
     "imageURL": "sampleimageURL",
-    "flavor": "Tangerine",
+    "flavor": ["Tangerine"],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -99,7 +99,7 @@
     "productName": "Key Lime",
     "brandName": "LaCroix",
     "imageURL": "sampleimageURL",
-    "flavor": "key lime",
+    "flavor": ["key lime"],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -107,7 +107,7 @@
     "productName": "Hi-Biscus",
     "brandName": "LaCroix",
     "imageURL": "sampleimageURL",
-    "flavor": "hibiscus",
+    "flavor": ["hibiscus"],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -115,7 +115,7 @@
     "productName": "Pastèque",
     "brandName": "LaCroix",
     "imageURL": "sampleimageURL",
-    "flavor": "watermelon",
+    "flavor": ["watermelon"],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -123,7 +123,7 @@
     "productName": "Limon Cello",
     "brandName": "LaCroix",
     "imageURL": "sampleimageURL",
-    "flavor": "limoncello,lemon",
+    "flavor": ["limoncello", "lemon"],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -131,7 +131,7 @@
     "productName": "Black Razzberry",
     "brandName": "LaCroix",
     "imageURL": "sampleimageURL",
-    "flavor": "raspberry",
+    "flavor": ["raspberry"],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -139,7 +139,7 @@
     "productName": "Guava Sao Paolo",
     "brandName": "LaCroix",
     "imageURL": "sampleimageURL",
-    "flavor": "guava",
+    "flavor": ["guava"],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -147,7 +147,7 @@
     "productName": "Mojito",
     "brandName": "LaCroix",
     "imageURL": "sampleimageURL",
-    "flavor": "mojito",
+    "flavor": ["mojito"],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -155,7 +155,7 @@
     "productName": "Cherry Blosson",
     "brandName": "LaCroix",
     "imageURL": "sampleimageURL",
-    "flavor": "cherry",
+    "flavor": ["cherry"],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -163,7 +163,7 @@
     "productName": "Beach Plum",
     "brandName": "LaCroix",
     "imageURL": "sampleimageURL",
-    "flavor": "plum",
+    "flavor": ["plum"],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -171,7 +171,7 @@
     "productName": "Blackberry",
     "brandName": "bubbly",
     "imageURL": "sampleimageURL",
-    "flavor": "blackberry",
+    "flavor": ["blackberry"],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -179,7 +179,7 @@
     "productName": "Lime",
     "brandName": "bubbly",
     "imageURL": "sampleimageURL",
-    "flavor": "lime",
+    "flavor": ["lime"],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -187,7 +187,7 @@
     "productName": "Grapefruit",
     "brandName": "bubbly",
     "imageURL": "sampleimageURL",
-    "flavor": "grapefruit",
+    "flavor": ["grapefruit"],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -195,7 +195,7 @@
     "productName": "Blood Orange Grapefruit",
     "brandName": "bubbly",
     "imageURL": "sampleimageURL",
-    "flavor": "blood orange,grapefruit",
+    "flavor": ["blood orange", "grapefruit"],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -203,7 +203,7 @@
     "productName": "Mango",
     "brandName": "bubbly",
     "imageURL": "sampleimageURL",
-    "flavor": "mango",
+    "flavor": ["mango"],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -211,7 +211,7 @@
     "productName": "Peach",
     "brandName": "bubbly",
     "imageURL": "sampleimageURL",
-    "flavor": "peach",
+    "flavor": ["peach"],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -219,7 +219,7 @@
     "productName": "Raspberry",
     "brandName": "bubbly",
     "imageURL": "sampleimageURL",
-    "flavor": "raspberry",
+    "flavor": ["raspberry"],
     "isCaffeinated": false,
     "hasCBD": false
   }

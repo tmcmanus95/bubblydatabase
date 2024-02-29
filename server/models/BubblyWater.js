@@ -13,9 +13,11 @@ const bubblyWaterSchema = new Schema(
     imageURL: {
       type: String,
     },
-    flavor: {
-      type: String,
-    },
+    flavor: [
+      {
+        type: String,
+      },
+    ],
     isCaffeinated: {
       type: Boolean,
     },

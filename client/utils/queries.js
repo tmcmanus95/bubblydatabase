@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
 export const QUERY_SINGLE_FLAVOR = gql`
-  query Query($flavor: String) {
+  query Query($flavor: [String]) {
     flavors(flavor: $flavor) {
       _id
       productName
@@ -10,6 +10,12 @@ export const QUERY_SINGLE_FLAVOR = gql`
       flavor
       isCaffeinated
       hasCBD
+      ratings {
+        rating
+        user {
+          username
+        }
+      }
     }
   }
 `;
@@ -17,6 +23,7 @@ export const QUERY_SINGLE_FLAVOR = gql`
 export const QUERY_SINGLE_BUBBLYWATER = gql`
   query Query($bubblyWaterId: ID) {
     bubblyWater(bubblyWaterId: $bubblyWaterId) {
+      _id
       productName
       brandName
       imageURL
@@ -24,17 +31,17 @@ export const QUERY_SINGLE_BUBBLYWATER = gql`
       isCaffeinated
       hasCBD
       ratings {
-        _id
         rating
         user {
           username
+          _id
         }
       }
       reviews {
-        _id
         reviewText
         user {
           username
+          _id
         }
       }
     }
