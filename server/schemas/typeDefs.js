@@ -14,7 +14,7 @@ const typeDefs = `
     productName: String
     brandName: String
     imageURL: String
-    flavor: String
+    flavor: [String]
     isCaffeinated: Boolean
     hasCBD: Boolean
     ratings: [Rating]
@@ -48,7 +48,7 @@ const typeDefs = `
     bubblyWaters: [BubblyWater]
     bubblyWater(bubblyWaterId: ID): BubblyWater 
     rating(ratingId: ID): Rating
-    flavors(flavor: String): [BubblyWater]
+    flavors(flavor: [String]): [BubblyWater]
     brand(brandName: String): [BubblyWater]
   }
 
