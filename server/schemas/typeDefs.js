@@ -17,6 +17,7 @@ const typeDefs = `
     flavor: [String]
     isCaffeinated: Boolean
     hasCBD: Boolean
+    averageRating: Float
     ratings: [Rating]
     reviews: [Review]
   }

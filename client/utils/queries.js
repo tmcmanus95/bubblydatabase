@@ -10,6 +10,7 @@ export const QUERY_SINGLE_FLAVOR = gql`
       flavor
       isCaffeinated
       hasCBD
+      averageRating
       ratings {
         rating
         user {
@@ -30,6 +31,7 @@ export const QUERY_SINGLE_BUBBLYWATER = gql`
       flavor
       isCaffeinated
       hasCBD
+      averageRating
       ratings {
         rating
         user {

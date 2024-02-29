@@ -2,6 +2,8 @@ import BasicRating from "../components/FiveStarRating";
 import { QUERY_SINGLE_BUBBLYWATER } from "../../utils/queries";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
+import Rating from "@mui/material/Rating";
+
 export default function BubblyWaterPage() {
   const { bubblyWaterId } = useParams();
   console.log("bublyWaterId ", bubblyWaterId);
@@ -19,7 +21,7 @@ export default function BubblyWaterPage() {
           <h2>{bubblyWater.productName}</h2>
           <h3>Flavors:</h3>
           <h4>{bubblyWater.flavor}</h4>
-          <BasicRating />
+          <Rating precision={0.5} readOnly value={bubblyWater.averageRating} />
         </>
       ) : (
         <h1>Loading...</h1>
