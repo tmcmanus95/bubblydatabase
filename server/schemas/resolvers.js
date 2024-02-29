@@ -9,9 +9,10 @@ const resolvers = {
 
     user: async (parent, { userId }) => {
       return User.findOne({ _id: userId }).populate({
+        path: "ratings",
         populate: {
-          path: "ratings",
-          model: "Rating",
+          path: "bubblyWater",
+          model: "BubblyWater",
         },
       });
     },
@@ -36,7 +37,7 @@ const resolvers = {
         .populate("reviews");
     },
     rating: async (parent, { ratingId }) => {
-      return Rating.findOne({ _id: ratingId });
+      return Rating.findOne({ _id: ratingId }).populate("bubblyWater");
     },
 
     flavors: async (parent, { flavor }) => {
@@ -61,7 +62,10 @@ const resolvers = {
 
     addRating: async (parent, { userId, bubblyWaterId, rating }, context) => {
       try {
-        const newRating = await Rating.create({ rating: rating });
+        const newRating = await Rating.create({
+          rating: rating,
+          bubblyWater: bubblyWaterId,
+        });
 
         const updatedBubblyWater = await BubblyWater.findOneAndUpdate(
           { _id: bubblyWaterId },
@@ -74,7 +78,12 @@ const resolvers = {
           }
         ).populate("ratings");
 
-        // Update the average rating
+        //Save rating to User page
+        const user = await User.findById(userId);
+        user.ratings.push(newRating._id);
+        await user.save();
+
+        // Update the average rating for the Bubbly Water
         const allRatings = await Rating.find({
           _id: { $in: updatedBubblyWater.ratings },
         });

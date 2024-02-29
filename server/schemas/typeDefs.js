@@ -25,6 +25,7 @@ const typeDefs = `
   type Rating {
     _id: ID
     rating: Float
+    bubblyWater: BubblyWater
     createdAt: String
     user: [User]
   }
@@ -57,7 +58,7 @@ const typeDefs = `
     addUser(username: String!, email: String!, password: String!): Auth
     removeUser: User
     login(email: String!, password: String!): Auth
-    addRating(bubblyWaterId: ID!, rating: Float!): BubblyWater
+    addRating(bubblyWaterId: ID!, userId: ID, rating: Float!): BubblyWater
     editRating(ratingId: ID!, rating: Float!): Rating
     removeRating(ratingId: ID!): Rating
     addReview(bubblyWaterId: ID!, reviewText: String!): BubblyWater
