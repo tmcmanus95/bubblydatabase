@@ -27,7 +27,7 @@ const typeDefs = `
     rating: Float
     bubblyWater: BubblyWater
     createdAt: String
-    user: [User]
+    user: User
   }
 
   type Review {
@@ -46,6 +46,7 @@ const typeDefs = `
   type Query {
     users: [User]
     user(userId: ID!): User
+    meId: User
     me: User
     bubblyWaters: [BubblyWater]
     bubblyWater(bubblyWaterId: ID): BubblyWater 

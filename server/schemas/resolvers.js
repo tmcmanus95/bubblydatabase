@@ -16,13 +16,19 @@ const resolvers = {
         },
       });
     },
-
+    meId: async (parent, args, context) => {
+      if (context.user) {
+        return User.findOne({ _id: context.user._id });
+      }
+      throw AuthenticationError;
+    },
     me: async (parent, args, context) => {
       if (context.user) {
         return User.findOne({ _id: context.user._id }).populate({
+          path: "ratings",
           populate: {
-            path: "responses",
-            model: "Response",
+            path: "bubblyWater",
+            model: "BubblyWater",
           },
         });
       }
@@ -33,7 +39,13 @@ const resolvers = {
     },
     bubblyWater: async (parent, { bubblyWaterId }) => {
       return BubblyWater.findOne({ _id: bubblyWaterId })
-        .populate("ratings")
+        .populate({
+          path: "ratings",
+          populate: {
+            path: "user",
+            model: "User",
+          },
+        })
         .populate("reviews");
     },
     rating: async (parent, { ratingId }) => {
@@ -65,6 +77,7 @@ const resolvers = {
         const newRating = await Rating.create({
           rating: rating,
           bubblyWater: bubblyWaterId,
+          user: userId,
         });
 
         const updatedBubblyWater = await BubblyWater.findOneAndUpdate(
@@ -114,7 +127,7 @@ const resolvers = {
         return updatedRating;
       } catch (error) {
         console.error(error);
-        throw new Error("Failed to edit topic");
+        throw new Error("Failed to edit rating");
       }
     },
     removeRating: async (parent, { ratingId }, context) => {

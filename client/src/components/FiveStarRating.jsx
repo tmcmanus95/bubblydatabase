@@ -5,7 +5,6 @@ import Typography from "@mui/material/Typography";
 
 export default function BasicRating() {
   const [value, setValue] = React.useState(0);
-
   return (
     <Box
       sx={{
@@ -17,6 +16,7 @@ export default function BasicRating() {
         value={value}
         onChange={(event, newValue) => {
           setValue(newValue);
+          console.log(value);
         }}
         precision={0.5}
       />

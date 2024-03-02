@@ -11,6 +11,36 @@ export const ADD_USER = gql`
   }
 `;
 
+export const ADD_RATING = gql`
+  mutation Mutation($bubblyWaterId: ID!, $rating: Float!, $userId: ID) {
+    addRating(bubblyWaterId: $bubblyWaterId, rating: $rating, userId: $userId) {
+      _id
+      productName
+      brandName
+      averageRating
+      ratings {
+        _id
+        rating
+        bubblyWater {
+          _id
+        }
+        user {
+          username
+        }
+      }
+    }
+  }
+`;
+
+export const EDIT_RATING = gql`
+  mutation Mutation($ratingId: ID!, $rating: Float!) {
+    editRating(ratingId: $ratingId, rating: $rating) {
+      _id
+      rating
+    }
+  }
+`;
+
 export const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {
     login(email: $email, password: $password) {
