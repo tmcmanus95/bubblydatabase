@@ -74,8 +74,24 @@ export const QUERY_SINGLE_USER = gql`
           _id
           productName
           brandName
+          imageURL
         }
       }
+    }
+  }
+`;
+
+export const QUERY_SINGLE_BRAND = gql`
+  query Query($brandName: String) {
+    brand(brandName: $brandName) {
+      _id
+      productName
+      brandName
+      imageURL
+      flavor
+      isCaffeinated
+      hasCBD
+      averageRating
     }
   }
 `;
@@ -93,6 +109,7 @@ export const QUERY_ME = gql`
           productName
           brandName
           flavor
+          imageURL
         }
       }
     }

@@ -5,6 +5,8 @@ import BubblyWaterList from "./BubblyWaterList";
 
 export default function SearchBar() {
   const [searchTerm, setSearchTerm] = useState("");
+  const [bubblyWater, setBubblyWater] = useState(null);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const inputValue = e.target.elements.searchInput.value;
@@ -28,13 +30,20 @@ export default function SearchBar() {
           <input name="searchInput"></input>
           <button
             type="submit"
-            class="bg-blue-100 hover:bg-blue-200 ml-5 font-bold py-2 px-4 rounded"
+            class="bg-blue-100 hover:bg-blue-200 font-bold py-2 px-4 rounded"
           >
-            Search
+            Button
           </button>
         </form>
       </section>
-      {searchTerm ? <BubblyWaterList searchTerm={searchTerm} /> : <></>}
+      {searchTerm ? (
+        <BubblyWaterList searchTerm={searchTerm} />
+      ) : (
+        <>
+          {" "}
+          <BubblyWaterList />
+        </>
+      )}
     </div>
   );
 }
