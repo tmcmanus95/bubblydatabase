@@ -1,5 +1,7 @@
 import Rating from "@mui/material/Rating";
 import { Link } from "react-router-dom";
+import { formatBrands } from "../../utils/formatBrands";
+
 export default function UsersRatings({ ratings }) {
   console.log(ratings);
   return (
@@ -21,7 +23,9 @@ export default function UsersRatings({ ratings }) {
                 />
                 <h1 className="flex items-center ml-3">
                   <span>{rating.bubblyWater.productName}</span>
-                  <span> {rating.bubblyWater.brandName}</span>
+                  <span className="m-3">
+                    {formatBrands(rating.bubblyWater.brandName)}
+                  </span>
                 </h1>
               </div>
               <span className="text-2xl">

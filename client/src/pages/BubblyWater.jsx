@@ -7,6 +7,7 @@ import Auth from "../../utils/auth";
 import { ADD_RATING, EDIT_RATING } from "../../utils/mutations";
 import { capitalizeFlavors } from "../../utils/capitalizeFlavors";
 import { Link } from "react-router-dom";
+import { formatBrands } from "../../utils/formatBrands";
 export default function BubblyWaterPage() {
   const { bubblyWaterId } = useParams();
   const [value, setValue] = useState(0);
@@ -94,7 +95,7 @@ export default function BubblyWaterPage() {
                 />
                 <div className="lg:text-center">
                   <h1 className="text-3xl font-semibold">
-                    {bubblyWater.brandName}
+                    {formatBrands(bubblyWater.brandName)}
                   </h1>
                   <h2 className="text-xl">{bubblyWater.productName}</h2>
                   <h3 className="text-lg">Flavors:</h3>
@@ -104,6 +105,7 @@ export default function BubblyWaterPage() {
                     <span className="text-gray-500">({ratingsCount})</span>
                   </h3>
                   <Rating
+                    readOnly={!Auth.loggedIn()}
                     value={previouslyRated ? userRating : value}
                     defaultValue={userRating}
                     precision={0.5}
