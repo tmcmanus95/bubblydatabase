@@ -8,12 +8,20 @@ export default function Profile() {
     variables: { userId: userId },
   });
   console.log("user data ", data);
-  const ratings = data?.me?.ratings;
+  let username;
+  let ratings;
+  if (userId) {
+    ratings = data?.user?.ratings;
+    username = data?.user?.username;
+  } else {
+    ratings = data?.me?.ratings;
+    username = data?.me?.username;
+  }
   console.log(ratings);
   return (
     <>
-      <h1>{data?.me?.username}</h1>
-      <UsersRatings ratings={ratings} />
+      <h1 className="text-3xl justify-center flex m-10">{username}</h1>
+      {ratings ? <UsersRatings ratings={ratings} /> : <></>}
     </>
   );
 }

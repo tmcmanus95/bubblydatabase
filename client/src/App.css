@@ -1,204 +1,352 @@
 .Lime {
   border-radius: 5px;
   padding: 5px;
+  margin: 3px;
   background-color: #32cd32;
 }
 
 .Watermelon {
   border-radius: 5px;
   padding: 5px;
+  margin: 3px;
   background-color: pink;
 }
 
 .Citrus {
   border-radius: 5px;
   padding: 5px;
+  margin: 3px;
   background-color: greenyellow;
 }
 
 .Pomegranate {
-  background-color: #c0392b; /* Dark red */
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: white;
+  background-color: #c0392b;
 }
 
 .Green-tea {
-  background-color: #2ecc71; /* Light green */
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #2ecc71;
 }
 
 .Tea {
-  background-color: #d1b280; /* Light brown */
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #d1b280;
 }
 
 .Yuzu {
-  background-color: #f1c40f; /* Yellow */
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #f1c40f;
 }
 
 .Lemon {
-  background-color: #f7dc6f; /* Light yellow */
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #f7dc6f;
 }
 
 .Lemonade {
-  background-color: #f39c12; /* Orange */
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #f39c12;
 }
 
 .Cucumber {
-  background-color: #2ecc71; /* Light green */
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #b4f0cd;
 }
 
 .Mint {
-  background-color: #2ecc71; /* Light green */
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #2ecc71;
 }
 
 .Apple {
-  background-color: #27ae60; /* Green */
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #27ae60;
 }
 
 .Blackberry {
-  background-color: #8e44ad; /* Purple */
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: white;
+  background-color: #37084b;
 }
 
 .Blueberry {
-  background-color: #3498db; /* Blue */
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #3498db;
 }
 
 .Raspberry {
-  background-color: #e74c3c; /* Red */
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #e74c3c;
 }
 
 .Strawberry {
-  background-color: #e74c3c; /* Red */
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: white;
+  background-color: #e74c3c;
 }
 
 .Berry {
-  background-color: #9b59b6; /* Dark purple */
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #9b59b6;
 }
 
 .Grapefruit {
-  background-color: #e67e22; /* Orange */
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #fdb6f0;
 }
 
 .Mango {
-  background-color: #f39c12; /* Orange */
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #f39c12;
 }
 
 .Passionfruit {
-  background-color: #f1c40f; /* Yellow */
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #f1c40f;
 }
 
 .Dragon-fruit {
-  background-color: #d35400; /* Dark orange */
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #d35400;
 }
 
 .Hibiscus {
-  background-color: #e74c3c; /* Red */
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #e74c3c;
 }
 
 .Pomelo {
-  background-color: #f39c12; /* Orange */
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #f39c12;
 }
 
 .Pineapple {
-  background-color: #f1c40f; /* Yellow */
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #f1c40f;
 }
 
 .Fruit-punch {
-  background-color: #e74c3c; /* Red */
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #e74c3c;
 }
 
 .Black-cherry {
-  background-color: #8e44ad; /* Purple */
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #8e44ad;
 }
 
 .Blood-orange {
-  background-color: #e74c3c; /* Red */
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #e74c3c;
 }
 
 .Tangerine {
-  background-color: #f39c12; /* Orange */
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #f39c12;
 }
 
 .Mandarin {
-  background-color: #f39c12; /* Orange */
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #f39c12;
 }
 
 .Guava {
-  background-color: #e74c3c; /* Red */
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #e74c3c;
 }
 
 .Plum {
-  background-color: #8e44ad; /* Purple */
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #8e44ad;
 }
 
 .Kiwi {
-  background-color: #27ae60; /* Green */
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #27ae60;
 }
 
 .Coconut {
-  background-color: #f1c40f; /* Yellow */
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #f1c40f;
 }
 
 .Peach {
-  background-color: #f39c12; /* Orange */
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #f39c12;
 }
 
 .Orange {
-  background-color: #f39c12; /* Orange */
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #f39c12;
 }
 
 .Orange-cream {
-  background-color: #f39c12; /* Orange */
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #f39c12;
 }
 
 .Vanilla {
-  background-color: #f1c40f; /* Yellow */
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #f1c40f;
 }
 
 .Cola {
-  background-color: #2c3e50; /* Dark blue-gray */
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #2c3e50;
 }
 
 .Plain {
-  background-color: #ecf0f1; /* Light gray */
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #ecf0f1;
 }
 
 .Chai {
-  background-color: #d1b280; /* Light brown */
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #d1b280;
 }
 
 .Calamansi {
-  background-color: #f1c40f; /* Yellow */
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #f1c40f;
 }
 
 .Ginger {
-  background-color: #d1b280; /* Light brown */
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #d1b280;
 }
 
 .Lychee {
-  background-color: #9b59b6; /* Dark purple */
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #9b59b6;
 }
 
 .Cranberry {
-  background-color: #e74c3c; /* Red */
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #e74c3c;
 }
 
 .Apple-cider {
-  background-color: #e74c3c; /* Red */
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #e74c3c;
 }
 
 .Cinnamon {
-  background-color: #d1b280; /* Light brown */
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #d1b280;
 }
 
 .Grape {
-  background-color: #8e44ad; /* Purple */
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #8e44ad;
 }
 
-.Pinklemonade {
-  background-color: #f39c12; /* Orange */
+.Pink-lemonade {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #f39c12;
 }
 
 .Clementine {
-  background-color: #f39c12; /* Orange */
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #f39c12;
 }
 .Cherry {
-  background-color: #c0392b;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: white;
+  background-color: #d10202;
 }
