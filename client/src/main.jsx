@@ -6,6 +6,8 @@ import Login from "./pages/Login.jsx";
 import Signup from "./pages/Signup.jsx";
 import BubblyWater from "./pages/BubblyWater.jsx";
 import Brand from "./pages/Brand.jsx";
+import AllBrands from "./pages/AllBrands.jsx";
+import TopByFlavor from "./pages/TopByFlavor.jsx";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -36,8 +38,16 @@ const router = createBrowserRouter([
         element: <BubblyWater />,
       },
       {
-        path: "/:brandName",
+        path: "brands/:brandName",
         element: <Brand />,
+      },
+      {
+        path: "/allBrands",
+        element: <AllBrands />,
+      },
+      {
+        path: "flavors/:flavor",
+        element: <TopByFlavor />,
       },
     ],
   },
