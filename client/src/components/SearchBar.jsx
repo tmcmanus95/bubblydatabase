@@ -15,8 +15,8 @@ export default function SearchBar() {
   };
 
   return (
-    <div>
-      <section className="text-center ">
+    <div className="border-2 border-black">
+      <section className="text-center border-2 border-black p-5">
         <div className="p-5 md:p-10">
           <h2 className="text-3xl md:text-6xl font-medium text-black">Pop.</h2>
           <h3 className="text-xl mt-5 md:text-3xl">
@@ -27,20 +27,19 @@ export default function SearchBar() {
           </p>
         </div>
         <form onSubmit={handleSubmit}>
-          <input name="searchInput"></input>
+          <input className="text-3xl mx-5" name="searchInput"></input>
           <button
             type="submit"
-            class="bg-blue-100 hover:bg-blue-200 font-bold py-2 px-4 rounded"
+            class="bg-blue-100 hover:bg-blue-200 font-bold py-2 px-4 rounded text-3xl"
           >
-            Button
+            Search
           </button>
         </form>
       </section>
       {searchTerm ? (
-        <BubblyWaterList searchTerm={searchTerm} />
+        <BubblyWaterList searchTerm={searchTerm.toLowerCase().trim()} />
       ) : (
         <>
-          {" "}
           <BubblyWaterList />
         </>
       )}

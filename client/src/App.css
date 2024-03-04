@@ -1,3 +1,9 @@
+* {
+  font-family: avenir;
+}
+body {
+  background-color: aliceblue;
+}
 .Lime {
   border-radius: 5px;
   padding: 5px;
@@ -217,7 +223,7 @@
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  background-color: #e74c3c;
+  background-color: #f17a98;
 }
 
 .Plum {

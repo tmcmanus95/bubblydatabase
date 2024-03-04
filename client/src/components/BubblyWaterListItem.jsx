@@ -14,10 +14,10 @@ export default function BubblyWaterListItem({ bubblyWater }) {
           <div className="flex-1 text-center shadow-lg p-10 rounded-xl my-10 bg-white flex items-center">
             <Link to={`/bubblyWater/${bubblyWater._id}`}>
               <img
-                width={100}
-                height={100}
                 src={bubblyWater.imageURL}
                 className="mx-auto lg:mx-0"
+                height={150}
+                width={150}
               />
             </Link>
             <div className="text-left lg:text-center lg:ml-10">
