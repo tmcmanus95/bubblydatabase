@@ -12,8 +12,8 @@ export default function UsersRatings({ ratings }) {
           <Link to={`/bubblyWater/${rating.bubblyWater._id}`}>
             <li
               key={index}
-              className="flex p-5 border-2 border-black items-center justify-between"
-              style={{ width: "400px" }}
+              className="flex  border-2 border-black items-center justify-between bg-gray-100 hover:bg-gray-200"
+              style={{ width: "500px" }}
             >
               <div className="flex items-center">
                 <img
@@ -22,7 +22,7 @@ export default function UsersRatings({ ratings }) {
                   alt={rating.bubblyWater.productName}
                 />
                 <h1 className="flex items-center ml-3">
-                  <span>{rating.bubblyWater.productName}</span>
+                  <span className="w-20">{rating.bubblyWater.productName}</span>
                   <span className="m-3">
                     {formatBrands(rating.bubblyWater.brandName)}
                   </span>

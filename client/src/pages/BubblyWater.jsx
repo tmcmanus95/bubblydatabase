@@ -94,25 +94,44 @@ export default function BubblyWaterPage() {
                   alt={bubblyWater.productName}
                 />
                 <div className="lg:text-center">
-                  <h1 className="text-3xl font-semibold">
+                  <h1 className="text-3xl font-semibold m-5">
                     {formatBrands(bubblyWater.brandName)}
                   </h1>
                   <h2 className="text-xl">{bubblyWater.productName}</h2>
                   <h3 className="text-lg">Flavors:</h3>
-                  <h4 className="text-base">{flavors.join(", ")}</h4>
+                  <h4 className="text-base m-5">
+                    {flavors.map((flavor, index) => (
+                      <Link to={`/flavors/${flavor.toLowerCase()}`}>
+                        <span className={flavor} key={index}>
+                          {flavor}{" "}
+                        </span>
+                      </Link>
+                    ))}
+                  </h4>
                   <h3 className="text-lg">
                     Average Rating: {bubblyWater.averageRating.toFixed(2)}{" "}
                     <span className="text-gray-500">({ratingsCount})</span>
                   </h3>
-                  <Rating
-                    readOnly={!Auth.loggedIn()}
-                    value={previouslyRated ? userRating : value}
-                    defaultValue={userRating}
-                    precision={0.5}
-                    onChange={(e, newValue) => {
-                      handleValueChange(e, newValue);
-                    }}
-                  />
+                  {Auth.loggedIn() ? (
+                    <Rating
+                      value={previouslyRated ? userRating : value}
+                      defaultValue={userRating}
+                      precision={0.5}
+                      onChange={(e, newValue) => {
+                        handleValueChange(e, newValue);
+                      }}
+                    />
+                  ) : (
+                    <Rating
+                      readOnly
+                      value={previouslyRated ? userRating : value}
+                      defaultValue={userRating}
+                      precision={0.5}
+                      onChange={(e, newValue) => {
+                        handleValueChange(e, newValue);
+                      }}
+                    />
+                  )}
                 </div>
               </div>
             </div>
@@ -123,7 +142,7 @@ export default function BubblyWaterPage() {
                     <span className="p-2 text-xl">{rating.user.username}</span>
                   </Link>
                   <span>
-                    <Rating readOnly value={rating.rating} />
+                    <Rating readOnly value={rating.rating} precision={0.5} />
                   </span>
                 </li>
               ))}
