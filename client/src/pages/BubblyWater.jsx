@@ -5,7 +5,7 @@ import Rating from "@mui/material/Rating";
 import { useState, useEffect } from "react";
 import Auth from "../../utils/auth";
 import { ADD_RATING, EDIT_RATING } from "../../utils/mutations";
-
+import { capitalizeFlavors } from "../../utils/capitalizeFlavors";
 export default function BubblyWaterPage() {
   const { bubblyWaterId } = useParams();
   const [value, setValue] = useState(0);
@@ -17,11 +17,12 @@ export default function BubblyWaterPage() {
   const [editRating, { error: editRatingError }] = useMutation(EDIT_RATING);
   const userId = meIdData?.meId?._id;
   const bubblyWater = data?.bubblyWater;
+  const flavors = bubblyWater ? capitalizeFlavors(bubblyWater) : [];
   let previouslyRated = false;
   let userRating = 0;
   let ratingId;
   let ratings = data?.bubblyWater?.ratings;
-
+  let ratingsCount = data?.bubblyWater?.ratings.length;
   // Check if user has already rated bubbly water
   if (ratings && ratings.length > 0) {
     for (let i = 0; i < ratings.length; i++) {
@@ -83,8 +84,11 @@ export default function BubblyWaterPage() {
           <h1>{bubblyWater.brandName}</h1>
           <h2>{bubblyWater.productName}</h2>
           <h3>Flavors:</h3>
-          <h4>{bubblyWater.flavor}</h4>
-          <h3>Average Rating: {bubblyWater.averageRating.toFixed(2)}</h3>
+          <h4>{flavors.join(", ")}</h4>
+          <h3>
+            Average Rating: {bubblyWater.averageRating.toFixed(2)}{" "}
+            <span>({ratingsCount})</span>
+          </h3>
           <Rating
             value={previouslyRated ? userRating : value}
             defaultValue={userRating}

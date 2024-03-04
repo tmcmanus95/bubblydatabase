@@ -19,6 +19,10 @@ const router = createBrowserRouter([
         element: <Profile />,
       },
       {
+        path: "/user/:userId",
+        element: <Profile />,
+      },
+      {
         path: "/login",
         element: <Login />,
       },
@@ -27,7 +31,7 @@ const router = createBrowserRouter([
         element: <Signup />,
       },
       {
-        path: "/:bubblyWaterId",
+        path: "/bubblyWater/:bubblyWaterId",
         element: <BubblyWater />,
       },
     ],

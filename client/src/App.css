@@ -1,42 +1,204 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+.Lime {
+  border-radius: 5px;
+  padding: 5px;
+  background-color: #32cd32;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.Watermelon {
+  border-radius: 5px;
+  padding: 5px;
+  background-color: pink;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.Citrus {
+  border-radius: 5px;
+  padding: 5px;
+  background-color: greenyellow;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.Pomegranate {
+  background-color: #c0392b; /* Dark red */
 }
 
-.card {
-  padding: 2em;
+.Green-tea {
+  background-color: #2ecc71; /* Light green */
 }
 
-.read-the-docs {
-  color: #888;
+.Tea {
+  background-color: #d1b280; /* Light brown */
+}
+
+.Yuzu {
+  background-color: #f1c40f; /* Yellow */
+}
+
+.Lemon {
+  background-color: #f7dc6f; /* Light yellow */
+}
+
+.Lemonade {
+  background-color: #f39c12; /* Orange */
+}
+
+.Cucumber {
+  background-color: #2ecc71; /* Light green */
+}
+
+.Mint {
+  background-color: #2ecc71; /* Light green */
+}
+
+.Apple {
+  background-color: #27ae60; /* Green */
+}
+
+.Blackberry {
+  background-color: #8e44ad; /* Purple */
+}
+
+.Blueberry {
+  background-color: #3498db; /* Blue */
+}
+
+.Raspberry {
+  background-color: #e74c3c; /* Red */
+}
+
+.Strawberry {
+  background-color: #e74c3c; /* Red */
+}
+
+.Berry {
+  background-color: #9b59b6; /* Dark purple */
+}
+
+.Grapefruit {
+  background-color: #e67e22; /* Orange */
+}
+
+.Mango {
+  background-color: #f39c12; /* Orange */
+}
+
+.Passionfruit {
+  background-color: #f1c40f; /* Yellow */
+}
+
+.Dragon-fruit {
+  background-color: #d35400; /* Dark orange */
+}
+
+.Hibiscus {
+  background-color: #e74c3c; /* Red */
+}
+
+.Pomelo {
+  background-color: #f39c12; /* Orange */
+}
+
+.Pineapple {
+  background-color: #f1c40f; /* Yellow */
+}
+
+.Fruit-punch {
+  background-color: #e74c3c; /* Red */
+}
+
+.Black-cherry {
+  background-color: #8e44ad; /* Purple */
+}
+
+.Blood-orange {
+  background-color: #e74c3c; /* Red */
+}
+
+.Tangerine {
+  background-color: #f39c12; /* Orange */
+}
+
+.Mandarin {
+  background-color: #f39c12; /* Orange */
+}
+
+.Guava {
+  background-color: #e74c3c; /* Red */
+}
+
+.Plum {
+  background-color: #8e44ad; /* Purple */
+}
+
+.Kiwi {
+  background-color: #27ae60; /* Green */
+}
+
+.Coconut {
+  background-color: #f1c40f; /* Yellow */
+}
+
+.Peach {
+  background-color: #f39c12; /* Orange */
+}
+
+.Orange {
+  background-color: #f39c12; /* Orange */
+}
+
+.Orange-cream {
+  background-color: #f39c12; /* Orange */
+}
+
+.Vanilla {
+  background-color: #f1c40f; /* Yellow */
+}
+
+.Cola {
+  background-color: #2c3e50; /* Dark blue-gray */
+}
+
+.Plain {
+  background-color: #ecf0f1; /* Light gray */
+}
+
+.Chai {
+  background-color: #d1b280; /* Light brown */
+}
+
+.Calamansi {
+  background-color: #f1c40f; /* Yellow */
+}
+
+.Ginger {
+  background-color: #d1b280; /* Light brown */
+}
+
+.Lychee {
+  background-color: #9b59b6; /* Dark purple */
+}
+
+.Cranberry {
+  background-color: #e74c3c; /* Red */
+}
+
+.Apple-cider {
+  background-color: #e74c3c; /* Red */
+}
+
+.Cinnamon {
+  background-color: #d1b280; /* Light brown */
+}
+
+.Grape {
+  background-color: #8e44ad; /* Purple */
+}
+
+.Pinklemonade {
+  background-color: #f39c12; /* Orange */
+}
+
+.Clementine {
+  background-color: #f39c12; /* Orange */
+}
+.Cherry {
+  background-color: #c0392b;
 }

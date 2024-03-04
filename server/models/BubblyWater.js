@@ -49,6 +49,10 @@ const bubblyWaterSchema = new Schema(
   }
 );
 
+bubblyWaterSchema.virtual("ratingsCount").get(function () {
+  return this.ratings.length;
+});
+
 const BubblyWater = model("BubblyWater", bubblyWaterSchema);
 
 module.exports = BubblyWater;
