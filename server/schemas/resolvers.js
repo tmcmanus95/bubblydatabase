@@ -35,7 +35,10 @@ const resolvers = {
       throw AuthenticationError;
     },
     bubblyWaters: async () => {
-      return BubblyWater.find().populate("ratings");
+      return BubblyWater.find()
+        .populate("ratings")
+        .sort({ averageRating: -1 })
+        .limit(50);
     },
     bubblyWater: async (parent, { bubblyWaterId }) => {
       return BubblyWater.findOne({ _id: bubblyWaterId })
