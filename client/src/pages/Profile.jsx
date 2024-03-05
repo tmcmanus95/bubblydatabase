@@ -2,7 +2,6 @@ import { useQuery } from "@apollo/client";
 import { QUERY_SINGLE_USER, QUERY_ME } from "../../utils/queries";
 import { useParams } from "react-router-dom";
 import UsersRatings from "../components/UsersRatings";
-import { formatBrands } from "../../utils/formatBrands";
 export default function Profile() {
   const { userId } = useParams();
   const { loading, data } = useQuery(userId ? QUERY_SINGLE_USER : QUERY_ME, {
