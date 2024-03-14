@@ -63,17 +63,8 @@ export default function SearchBar() {
   );
 
   return (
-    <div className="border-2 border-black">
-      <section className="text-center border-2 border-black p-5">
-        <div className="p-5 md:p-10">
-          <h2 className="text-3xl md:text-6xl font-medium text-black">Pop.</h2>
-          <h3 className="text-xl mt-5 md:text-3xl">
-            Bubbly Water Rating Database
-          </h3>
-          <p className="text-sm md:text-xl py-5 mt-5 leading-8 text-gray-800 max-w-xl mx-auto">
-            Find the top rated carbonated waters by flavor or brand.
-          </p>
-        </div>
+    <div className=" mt-5">
+      <section className="text-center ">
         <form onSubmit={handleFormSubmit} className="relative">
           <div className="items-center">
             <input

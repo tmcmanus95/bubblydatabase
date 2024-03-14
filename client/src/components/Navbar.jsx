@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import Auth from "../../utils/auth";
+import popIcon from "../../public/bubblesicon.png";
 export default function NavBar() {
   const logout = (event) => {
     event.preventDefault();
@@ -9,10 +10,11 @@ export default function NavBar() {
     <div className="flex justify-between items-center bg-white p-4">
       <div className="flex items-center space-x-4">
         <Link to="/" className="font-semibold text-lg">
-          Home
+          <img className="height-10" src={popIcon}></img>{" "}
         </Link>
         <Link to="/allBrands">Brands</Link>
         <Link to="/allFlavors">Flavors</Link>
+        <Link to="/about">About</Link>
       </div>
 
       {Auth.loggedIn() ? (

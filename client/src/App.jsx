@@ -8,6 +8,7 @@ import {
 import { setContext } from "@apollo/client/link/context";
 import { Outlet } from "react-router-dom";
 import Header from "./components/Header";
+import Logo from "./components/Logo";
 import Footer from "./components/Footer";
 import NavBar from "./components/Navbar";
 
@@ -37,8 +38,9 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <div className="bg-red-100">
+      <div>
         <NavBar />
+        <Logo />
         <Outlet />
 
         <Footer />
