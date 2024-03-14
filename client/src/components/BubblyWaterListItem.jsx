@@ -10,8 +10,8 @@ export default function BubblyWaterListItem({ bubblyWater }) {
   return (
     <div className="bubblyListItem">
       <section className="m-5 flex justify-center">
-        <div className="lg:flex gap-10">
-          <div className="flex-1 text-center shadow-lg p-10 rounded-xl my-10 bg-white flex items-center">
+        <div className="lg:flex gap-10 ">
+          <div className="flex-1 text-center shadow-lg p-10 rounded-xl my-5 bg-white flex items-center">
             <Link to={`/bubblyWater/${bubblyWater._id}`}>
               <img
                 src={bubblyWater.imageURL}

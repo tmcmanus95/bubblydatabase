@@ -1,34 +1,41 @@
 import { Link } from "react-router-dom";
 import Auth from "../../utils/auth";
+import popIcon from "../../public/bubblesicon.png";
 export default function NavBar() {
   const logout = (event) => {
     event.preventDefault();
     Auth.logout();
   };
   return (
-    <>
-      <Link to="/">
-        <h2>Home</h2>
-      </Link>
+    <div className="flex justify-between items-center bg-white p-4">
+      <div className="flex items-center space-x-4">
+        <Link to="/" className="font-semibold text-lg">
+          <img className="height-10" src={popIcon}></img>{" "}
+        </Link>
+        <Link to="/allBrands">Brands</Link>
+        <Link to="/allFlavors">Flavors</Link>
+        <Link to="/about">About</Link>
+      </div>
+
       {Auth.loggedIn() ? (
-        <>
+        <div className="flex space-x-4">
           <Link to="/me">
-            <button class="btn">View My Profile</button>
+            <button className="btn">View My Profile</button>
           </Link>
-          <button onClick={logout} class="btn">
+          <button onClick={logout} className="btn">
             Logout
           </button>
-        </>
+        </div>
       ) : (
-        <>
+        <div className="flex space-x-4">
           <Link to="/login">
             <button className="btn">Login</button>
           </Link>
           <Link to="/signup">
             <button className="btn">Signup</button>
           </Link>
-        </>
+        </div>
       )}
-    </>
+    </div>
   );
 }
