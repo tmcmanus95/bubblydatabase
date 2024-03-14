@@ -1,5 +1,6 @@
 import { useState } from "react";
 import BubblyWaterList from "./BubblyWaterList";
+import Logo from "./Logo";
 
 const flavors = [
   "Apple",
@@ -63,47 +64,50 @@ export default function SearchBar() {
   );
 
   return (
-    <div className=" mt-5">
-      <section className="text-center ">
-        <form onSubmit={handleFormSubmit} className="relative">
-          <div className="items-center">
-            <input
-              className="text-3xl mx-5 border-2 border-gray-400 py-2 px-4 rounded"
-              type="text"
-              placeholder="Search for a flavor..."
-              value={searchTerm}
-              onChange={handleInputChange}
-            />
-            {searchTerm && (
-              <ul
-                className="absolute mt-1 bg-white border border-gray-300 rounded z-10 left-1/2 transform -translate-x-1/2"
-                style={{ width: "20rem" }}
-              >
-                {filteredFlavors.map((flavor) => (
-                  <li
-                    key={flavor}
-                    onClick={() => handleSelectFlavor(flavor)}
-                    className="cursor-pointer py-2 px-4 hover:bg-gray-100"
-                  >
-                    {flavor}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-          <button
-            type="submit"
-            className="bg-blue-100 hover:bg-blue-200 font-bold py-2 px-4 rounded text-3xl mt-2"
-          >
-            Search
-          </button>
-        </form>
-      </section>
-      {selectedFlavor ? (
-        <BubblyWaterList searchTerm={selectedFlavor.toLowerCase()} />
-      ) : (
-        <BubblyWaterList />
-      )}
-    </div>
+    <>
+      <Logo />
+      <div className=" mt-5">
+        <section className="text-center ">
+          <form onSubmit={handleFormSubmit} className="relative">
+            <div className="items-center">
+              <input
+                className="text-3xl mx-5 border-2 border-gray-400 py-2 px-4 rounded"
+                type="text"
+                placeholder="Search for a flavor..."
+                value={searchTerm}
+                onChange={handleInputChange}
+              />
+              {searchTerm && (
+                <ul
+                  className="absolute mt-1 bg-white border border-gray-300 rounded z-10 left-1/2 transform -translate-x-1/2"
+                  style={{ width: "20rem" }}
+                >
+                  {filteredFlavors.map((flavor) => (
+                    <li
+                      key={flavor}
+                      onClick={() => handleSelectFlavor(flavor)}
+                      className={`${flavor} cursor-pointer py-2 px-4 hover:bg-gray-100`}
+                    >
+                      {flavor}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+            <button
+              type="submit"
+              className="bg-blue-100 hover:bg-blue-200 font-bold py-2 px-4 rounded text-3xl mt-2"
+            >
+              Search
+            </button>
+          </form>
+        </section>
+        {selectedFlavor ? (
+          <BubblyWaterList searchTerm={selectedFlavor.toLowerCase()} />
+        ) : (
+          <BubblyWaterList />
+        )}
+      </div>
+    </>
   );
 }
