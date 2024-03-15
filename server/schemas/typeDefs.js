@@ -34,7 +34,7 @@ const typeDefs = `
     _id: ID
     reviewText: String
     createdAt: String
-    user: [User]!
+    user: User
     rating: [Rating]
   }
 
