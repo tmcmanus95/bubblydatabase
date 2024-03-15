@@ -8,13 +8,22 @@ const resolvers = {
     },
 
     user: async (parent, { userId }) => {
-      return User.findOne({ _id: userId }).populate({
-        path: "ratings",
-        populate: {
-          path: "bubblyWater",
-          model: "BubblyWater",
+      return User.findOne({ _id: userId }).populate([
+        {
+          path: "ratings",
+          populate: {
+            path: "bubblyWater",
+            model: "BubblyWater",
+          },
         },
-      });
+        {
+          path: "reviews",
+          populate: {
+            path: "bubblyWater",
+            model: "BubblyWater",
+          },
+        },
+      ]);
     },
     meId: async (parent, args, context) => {
       if (context.user) {
@@ -49,7 +58,10 @@ const resolvers = {
             model: "User",
           },
         })
-        .populate("reviews");
+        .populate({
+          path: "reviews",
+          populate: { path: "user", model: "User" },
+        });
     },
     rating: async (parent, { ratingId }) => {
       return Rating.findOne({ _id: ratingId }).populate("bubblyWater");
@@ -136,14 +148,20 @@ const resolvers = {
     removeRating: async (parent, { ratingId }, context) => {
       return Rating.findOneAndDelete({ _id: ratingId });
     },
-    addReview: async (parent, { bubblyWaterId, reviewText }, context) => {
+    addReview: async (
+      parent,
+      { userId, bubblyWaterId, reviewText },
+      context
+    ) => {
       try {
         const newReview = await Review.create({
           reviewText: reviewText,
+          bubblyWater: bubblyWaterId,
+          user: userId,
         });
 
         const updatedBubblyWater = await BubblyWater.findByIdAndUpdate(
-          bubblyWaterId,
+          { _id: bubblyWaterId },
           {
             $addToSet: { reviews: newReview._id },
           },
@@ -153,6 +171,12 @@ const resolvers = {
           }
         ).populate("reviews");
 
+        //Save review to User page
+        const user = await User.findById(userId);
+        user.reviews.push(newReview._id);
+        await user.save();
+        console.log("ubw", updatedBubblyWater);
+        await updatedBubblyWater.save();
         return updatedBubblyWater;
       } catch (error) {
         console.error(error);

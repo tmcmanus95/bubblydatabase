@@ -62,7 +62,7 @@ const typeDefs = `
     addRating(bubblyWaterId: ID!, userId: ID, rating: Float!): BubblyWater
     editRating(ratingId: ID!, rating: Float!): Rating
     removeRating(ratingId: ID!): Rating
-    addReview(bubblyWaterId: ID!, reviewText: String!): BubblyWater
+    addReview(bubblyWaterId: ID!, userId: ID!, reviewText: String!): BubblyWater
     editReview(reviewId: ID!, reviewText: String!): Review
     removeReview(reviewId: ID!): Review
   }
