@@ -15,6 +15,7 @@ export default function BubblyWaterPage() {
   const { data, error } = useQuery(QUERY_SINGLE_BUBBLYWATER, {
     variables: { bubblyWaterId },
   });
+  console.log("here is my sibngle bubbly data, ", data);
   const { data: meIdData, error: meIdError } = useQuery(QUERY_MEID);
   const [addRating, { error: addRatingError }] = useMutation(ADD_RATING);
   const [editRating, { error: editRatingError }] = useMutation(EDIT_RATING);
@@ -81,6 +82,7 @@ export default function BubblyWaterPage() {
   };
 
   console.log(bubblyWater?.ratings);
+  console.log("bubblyWater?.reviews", bubblyWater?.reviews);
 
   return (
     <>
@@ -163,6 +165,17 @@ export default function BubblyWaterPage() {
 
           <section className="m-5">
             <h2 className="text-2xl font-semibold">Reviews</h2>
+            <ul>
+              {bubblyWater.reviews.map((review, index) => (
+                <li key={index} className="border-solid">
+                  <Link to={`/user/${review.user._id}`}>
+                    <span className="p-2 text-xl">{review.user.username}</span>
+                  </Link>
+                  <span>{review.reviewText}</span>
+                </li>
+              ))}{" "}
+            </ul>
+            ;
           </section>
         </>
       ) : (
