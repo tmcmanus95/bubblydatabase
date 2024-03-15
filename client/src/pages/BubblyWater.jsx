@@ -8,6 +8,7 @@ import { ADD_RATING, EDIT_RATING } from "../../utils/mutations";
 import { capitalizeFlavors } from "../../utils/capitalizeFlavors";
 import { Link } from "react-router-dom";
 import { formatBrands } from "../../utils/formatBrands";
+
 export default function BubblyWaterPage() {
   const { bubblyWaterId } = useParams();
   const [value, setValue] = useState(0);
@@ -85,57 +86,68 @@ export default function BubblyWaterPage() {
     <>
       {bubblyWater ? (
         <>
-          <section className="m-5 flex justify-center">
-            <div className="lg:flex gap-10">
-              <div className="flex flex-col lg:flex-row items-center justify-center gap-4 p-8 bg-yellow shadow-md rounded-lg">
-                <img
-                  className="w-48 h-48 object-cover rounded-full lg:mr-10"
-                  src={bubblyWater.imageURL}
-                  alt={bubblyWater.productName}
-                />
-                <div className="lg:text-center">
-                  <h1 className="text-3xl font-semibold m-5">
-                    {formatBrands(bubblyWater.brandName)}
-                  </h1>
-                  <h2 className="text-xl">{bubblyWater.productName}</h2>
-                  <h3 className="text-lg">Flavors:</h3>
-                  <h4 className="text-base m-5">
-                    {flavors.map((flavor, index) => (
-                      <Link to={`/flavors/${flavor.toLowerCase()}`}>
-                        <span className={flavor} key={index}>
-                          {flavor}{" "}
-                        </span>
-                      </Link>
-                    ))}
-                  </h4>
-                  <h3 className="text-lg">
-                    Average Rating: {bubblyWater.averageRating.toFixed(2)}{" "}
-                    <span className="text-gray-500">({ratingsCount})</span>
-                  </h3>
-                  {Auth.loggedIn() ? (
-                    <Rating
-                      value={previouslyRated ? userRating : value}
-                      defaultValue={userRating}
-                      precision={0.5}
-                      onChange={(e, newValue) => {
-                        handleValueChange(e, newValue);
-                      }}
-                    />
-                  ) : (
-                    <Rating
-                      readOnly
-                      value={previouslyRated ? userRating : value}
-                      defaultValue={userRating}
-                      precision={0.5}
-                      onChange={(e, newValue) => {
-                        handleValueChange(e, newValue);
-                      }}
-                    />
-                  )}
+          <div className="lg:flex gap-10">
+            <section className="m-5 flex justify-center">
+              <div className="lg:flex gap-10">
+                <div className="flex flex-col lg:flex-row items-center justify-center gap-4 p-8 bg-yellow shadow-md rounded-lg">
+                  <img
+                    className="w-48 h-48 object-cover rounded-full lg:mr-10"
+                    src={bubblyWater.imageURL}
+                    alt={bubblyWater.productName}
+                  />
+                  <div className="lg:text-center">
+                    <h1 className="text-3xl font-semibold m-5">
+                      {formatBrands(bubblyWater.brandName)}
+                    </h1>
+                    <h2 className="text-xl">{bubblyWater.productName}</h2>
+                    <h3 className="text-lg">Flavors:</h3>
+                    <h4 className="text-base m-5">
+                      {flavors.map((flavor, index) => (
+                        <Link
+                          to={`/flavors/${flavor.toLowerCase()}`}
+                          key={index}
+                        >
+                          <span className={flavor}>{flavor} </span>
+                        </Link>
+                      ))}
+                    </h4>
+                    <h3 className="text-lg">
+                      Average Rating: {bubblyWater.averageRating.toFixed(2)}{" "}
+                      <span className="text-gray-500">({ratingsCount})</span>
+                    </h3>
+                    {Auth.loggedIn() ? (
+                      <Rating
+                        value={previouslyRated ? userRating : value}
+                        defaultValue={userRating}
+                        precision={0.5}
+                        onChange={(e, newValue) => {
+                          handleValueChange(e, newValue);
+                        }}
+                      />
+                    ) : (
+                      <Rating
+                        readOnly
+                        value={previouslyRated ? userRating : value}
+                        defaultValue={userRating}
+                        precision={0.5}
+                        onChange={(e, newValue) => {
+                          handleValueChange(e, newValue);
+                        }}
+                      />
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
-            <ul className="border-2 border-black p-5">
+            </section>
+            <section>
+              <textarea placeholder="write a review" />
+              <button>Submit</button>
+            </section>
+          </div>
+
+          <section className="m-5 flex">
+            <h2 className="text-2xl font-semibold">Ratings</h2>
+            <ul>
               {bubblyWater.ratings.map((rating, index) => (
                 <li key={index} className="border-solid">
                   <Link to={`/user/${rating.user._id}`}>
@@ -148,7 +160,10 @@ export default function BubblyWaterPage() {
               ))}
             </ul>
           </section>
-          <section>Reviews</section>
+
+          <section className="m-5">
+            <h2 className="text-2xl font-semibold">Reviews</h2>
+          </section>
         </>
       ) : (
         <h1 className="text-2xl">Loading...</h1>

@@ -8,16 +8,22 @@ const reviewSchema = new Schema(
       minLength: 1,
       maxLength: 500,
     },
+    bubblyWater: {
+      type: Schema.Types.ObjectId,
+      ref: "BubblyWater",
+    },
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
+    rating: {
+      type: Schema.Types.ObjectId,
+      ref: "Rating",
+    },
     createdAt: {
       type: Date,
       default: Date.now,
     },
-    rating: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Rating",
-      },
-    ],
   },
   {
     toJSON: {
