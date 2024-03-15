@@ -58,10 +58,17 @@ export const QUERY_SINGLE_BUBBLYWATER = gql`
           username
         }
       }
+      reviews {
+        _id
+        reviewText
+        user {
+          _id
+          username
+        }
+      }
     }
   }
 `;
-
 export const QUERY_SINGLE_USER = gql`
   query Query($userId: ID!) {
     user(userId: $userId) {
