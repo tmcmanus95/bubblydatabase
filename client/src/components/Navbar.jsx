@@ -7,7 +7,7 @@ export default function NavBar() {
     Auth.logout();
   };
   return (
-    <div className="flex justify-between items-center bg-white p-4">
+    <div className="flex justify-between items-center bg-blue-200 p-4">
       <div className="flex items-center space-x-4">
         <Link to="/" className="font-semibold text-lg">
           <img className="height-10" src={popIcon}></img>{" "}

@@ -11,6 +11,28 @@ export const ADD_USER = gql`
   }
 `;
 
+export const ADD_REVIEW = gql`
+  mutation Mutation($bubblyWaterId: ID!, $userId: ID!, $reviewText: String!) {
+    addReview(
+      bubblyWaterId: $bubblyWaterId
+      userId: $userId
+      reviewText: $reviewText
+    ) {
+      _id
+      productName
+      brandName
+      imageURL
+      reviews {
+        _id
+        reviewText
+        user {
+          username
+        }
+      }
+    }
+  }
+`;
+
 export const ADD_RATING = gql`
   mutation Mutation($bubblyWaterId: ID!, $rating: Float!, $userId: ID) {
     addRating(bubblyWaterId: $bubblyWaterId, rating: $rating, userId: $userId) {
