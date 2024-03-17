@@ -13,8 +13,11 @@ const flavors = [
   "Green-tea",
   "Tea",
   "Black-tea",
+  "Black-cherry",
+  "Cherry",
   "Grape",
   "Lemonade",
+  "Pink-lemonade",
   "Lemon-sorbet",
   "Pomelo",
   "Calamansi",
@@ -37,6 +40,7 @@ const flavors = [
   "Hibiscus",
   "Watermelon",
   "Coconut",
+  "Cinammon",
 ];
 
 export default function SearchBar() {

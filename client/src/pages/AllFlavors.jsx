@@ -12,6 +12,8 @@ export default function AllFlavors() {
     "Green-tea",
     "Tea",
     "Black-tea",
+    "Black-cherry",
+    "Cherry",
     "Grape",
     "Lemonade",
     "Pink-lemonade",

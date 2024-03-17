@@ -4,7 +4,7 @@ import { useQuery, useMutation } from "@apollo/client";
 import Rating from "@mui/material/Rating";
 import { useState, useEffect } from "react";
 import Auth from "../../utils/auth";
-import { ADD_RATING, EDIT_RATING } from "../../utils/mutations";
+import { ADD_RATING, EDIT_RATING, ADD_REVIEW } from "../../utils/mutations";
 import { capitalizeFlavors } from "../../utils/capitalizeFlavors";
 import { Link } from "react-router-dom";
 import { formatBrands } from "../../utils/formatBrands";
@@ -19,10 +19,12 @@ export default function BubblyWaterPage() {
   const { data: meIdData, error: meIdError } = useQuery(QUERY_MEID);
   const [addRating, { error: addRatingError }] = useMutation(ADD_RATING);
   const [editRating, { error: editRatingError }] = useMutation(EDIT_RATING);
+  const [addReview, { error: addReviewError }] = useMutation(ADD_REVIEW);
   const userId = meIdData?.meId?._id;
   const bubblyWater = data?.bubblyWater;
   const flavors = bubblyWater ? capitalizeFlavors(bubblyWater) : [];
   let previouslyRated = false;
+  let previouslyReviewed = false;
   let userRating = 0;
   let ratingId;
   let ratings = data?.bubblyWater?.ratings;
@@ -81,14 +83,36 @@ export default function BubblyWaterPage() {
     }
   };
 
-  console.log(bubblyWater?.ratings);
-  console.log("bubblyWater?.reviews", bubblyWater?.reviews);
+  // const handleReviewValueChange = (e, newValue) => {
+  //   setValue(newValue);
+  //   if (previouslyReviewed) {
+  //     console.log("edit review will happen here");
+  //   } else {
+  //     handleAddReview(e, newValue);
+  //   }
+  // };
+
+  const handleAddReview = async (e) => {
+    e && e.preventDefault();
+    try {
+      const reviewText = e.target.reviewText.value;
+      const { data } = await addReview({
+        variables: {
+          bubblyWaterId: bubblyWaterId,
+          userId: userId,
+          reviewText: reviewText,
+        },
+      });
+    } catch (err) {
+      console.log("error adding review", err);
+    }
+  };
 
   return (
     <>
       {bubblyWater ? (
         <>
-          <div className="lg:flex gap-10">
+          <div>
             <section className="m-5 flex justify-center">
               <div className="lg:flex gap-10">
                 <div className="flex flex-col lg:flex-row items-center justify-center gap-4 p-8 bg-yellow shadow-md rounded-lg">
@@ -141,13 +165,9 @@ export default function BubblyWaterPage() {
                 </div>
               </div>
             </section>
-            <section>
-              <textarea placeholder="write a review" />
-              <button>Submit</button>
-            </section>
           </div>
 
-          <section className="m-5 flex">
+          <section className="m-5 text-center">
             <h2 className="text-2xl font-semibold">Ratings</h2>
             <ul>
               {bubblyWater.ratings.map((rating, index) => (
@@ -163,9 +183,28 @@ export default function BubblyWaterPage() {
             </ul>
           </section>
 
-          <section className="m-5">
+          <section className="m-5 text-center">
+            <h2 className="text-2xl font-semibold">Write a Review</h2>
+            <section>
+              <form
+                onSubmit={(e) => handleAddReview(e)}
+                className="mx-auto max-w-md"
+              >
+                <textarea
+                  placeholder="Write a review"
+                  name="reviewText"
+                  className="w-full p-2 mt-4 border rounded"
+                ></textarea>
+                <button
+                  type="submit"
+                  className="block mx-auto mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                >
+                  Submit
+                </button>
+              </form>
+            </section>
             <h2 className="text-2xl font-semibold">Reviews</h2>
-            <ul>
+            <ul className="mt-5">
               {bubblyWater.reviews.map((review, index) => (
                 <li key={index} className="border-solid">
                   <Link to={`/user/${review.user._id}`}>
@@ -173,9 +212,8 @@ export default function BubblyWaterPage() {
                   </Link>
                   <span>{review.reviewText}</span>
                 </li>
-              ))}{" "}
+              ))}
             </ul>
-            ;
           </section>
         </>
       ) : (

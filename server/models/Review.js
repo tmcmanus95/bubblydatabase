@@ -8,6 +8,10 @@ const reviewSchema = new Schema(
       minLength: 1,
       maxLength: 500,
     },
+    votes: {
+      type: Number,
+      default: 0,
+    },
     bubblyWater: {
       type: Schema.Types.ObjectId,
       ref: "BubblyWater",
