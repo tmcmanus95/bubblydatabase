@@ -4,7 +4,12 @@ import { useQuery, useMutation } from "@apollo/client";
 import Rating from "@mui/material/Rating";
 import { useState, useEffect } from "react";
 import Auth from "../../utils/auth";
-import { ADD_RATING, EDIT_RATING, ADD_REVIEW } from "../../utils/mutations";
+import {
+  ADD_RATING,
+  EDIT_RATING,
+  ADD_REVIEW,
+  EDIT_REVIEW,
+} from "../../utils/mutations";
 import { capitalizeFlavors } from "../../utils/capitalizeFlavors";
 import { Link } from "react-router-dom";
 import { formatBrands } from "../../utils/formatBrands";
@@ -20,15 +25,21 @@ export default function BubblyWaterPage() {
   const [addRating, { error: addRatingError }] = useMutation(ADD_RATING);
   const [editRating, { error: editRatingError }] = useMutation(EDIT_RATING);
   const [addReview, { error: addReviewError }] = useMutation(ADD_REVIEW);
+  const [editReview, { error: editReviewError }] = useMutation(EDIT_REVIEW);
   const userId = meIdData?.meId?._id;
   const bubblyWater = data?.bubblyWater;
   const flavors = bubblyWater ? capitalizeFlavors(bubblyWater) : [];
   let previouslyRated = false;
   let previouslyReviewed = false;
   let userRating = 0;
+  let userReview = "";
   let ratingId;
+  let reviewId;
   let ratings = data?.bubblyWater?.ratings;
   let ratingsCount = data?.bubblyWater?.ratings.length;
+  let reviews = data?.bubblyWater?.reviews;
+
+  console.log("reviews", reviews);
   // Check if user has already rated bubbly water
   if (ratings && ratings.length > 0) {
     for (let i = 0; i < ratings.length; i++) {
@@ -36,6 +47,20 @@ export default function BubblyWaterPage() {
         userRating = ratings[i].rating;
         ratingId = ratings[i]._id;
         previouslyRated = true;
+      }
+    }
+  }
+
+  // Check if the user has already reviewed bubbly Water
+  if (reviews && reviews.length > 0) {
+    for (let i = 0; i < reviews.length; i++) {
+      if (reviews[i]?.user?._id === userId) {
+        userReview = reviews[i].reviewText;
+        reviewId = reviews[i]._id;
+        previouslyReviewed = true;
+        console.log("here is the reviewId, ", reviewId);
+        console.log("here is the userReview", userReview);
+        console.log("the previouslyReviewed value is ", previouslyReviewed);
       }
     }
   }
@@ -83,14 +108,13 @@ export default function BubblyWaterPage() {
     }
   };
 
-  // const handleReviewValueChange = (e, newValue) => {
-  //   setValue(newValue);
-  //   if (previouslyReviewed) {
-  //     console.log("edit review will happen here");
-  //   } else {
-  //     handleAddReview(e, newValue);
-  //   }
-  // };
+  const handleReviewValueChange = (e) => {
+    if (previouslyReviewed) {
+      handleEditReview(e);
+    } else {
+      handleAddReview(e);
+    }
+  };
 
   const handleAddReview = async (e) => {
     e && e.preventDefault();
@@ -103,8 +127,28 @@ export default function BubblyWaterPage() {
           reviewText: reviewText,
         },
       });
+
+      previouslyReviewed = true;
     } catch (err) {
       console.log("error adding review", err);
+    }
+  };
+
+  const handleEditReview = async (e) => {
+    e.preventDefault();
+    const reviewText = e.target.reviewText.value;
+    console.log("This is my review text, ", reviewText);
+    try {
+      const { data } = await editReview({
+        variables: {
+          reviewText: reviewText,
+          reviewId: reviewId,
+        },
+      });
+      console.log("edit review data", data);
+      previouslyReviewed = true;
+    } catch (err) {
+      console.error("Error editing review, ", err);
     }
   };
 
@@ -187,11 +231,10 @@ export default function BubblyWaterPage() {
             <h2 className="text-2xl font-semibold">Write a Review</h2>
             <section>
               <form
-                onSubmit={(e) => handleAddReview(e)}
+                onSubmit={(e) => handleReviewValueChange(e)}
                 className="mx-auto max-w-md"
               >
                 <textarea
-                  placeholder="Write a review"
                   name="reviewText"
                   className="w-full p-2 mt-4 border rounded"
                 ></textarea>
@@ -199,7 +242,11 @@ export default function BubblyWaterPage() {
                   type="submit"
                   className="block mx-auto mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
                 >
-                  Submit
+                  {previouslyReviewed ? (
+                    <span>Edit Review</span>
+                  ) : (
+                    <span>Submit</span>
+                  )}
                 </button>
               </form>
             </section>
