@@ -26,8 +26,21 @@ export const ADD_REVIEW = gql`
         _id
         reviewText
         user {
+          _id
           username
         }
+      }
+    }
+  }
+`;
+
+export const EDIT_REVIEW = gql`
+  mutation Mutation($reviewId: ID!, $reviewText: String!) {
+    editReview(reviewId: $reviewId, reviewText: $reviewText) {
+      _id
+      reviewText
+      user {
+        username
       }
     }
   }
