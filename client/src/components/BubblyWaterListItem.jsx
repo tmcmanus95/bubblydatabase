@@ -4,9 +4,12 @@ import Rating from "@mui/material/Rating";
 import { capitalizeFlavors } from "../../utils/capitalizeFlavors";
 import { formatBrands } from "../../utils/formatBrands";
 export default function BubblyWaterListItem({ bubblyWater }) {
-  const ratingCount = bubblyWater.ratings.length;
+  let ratingCount = 0;
+  console.log("I am in the BubblyWaterListItem, here is my data", bubblyWater);
   const capitalizedFlavors = capitalizeFlavors(bubblyWater);
-
+  if (bubblyWater.ratings.length) {
+    ratingCount = bubblyWater?.ratings?.length;
+  }
   return (
     <div class="bubblyListItem">
       <section class="m-2 md:m-5 flex justify-center">
@@ -23,9 +26,11 @@ export default function BubblyWaterListItem({ bubblyWater }) {
               />
             </Link>
             <div class="flex flex-col justify-center">
-              <h3 class="text-lg font-medium pt-2 lg:pt-8 pb-2">
-                {formatBrands(bubblyWater.brandName)}
-              </h3>
+              <Link to={`/brands/${bubblyWater.brandName}`}>
+                <h3 class="text-lg font-medium pt-2 lg:pt-8 pb-2">
+                  {formatBrands(bubblyWater.brandName)}
+                </h3>
+              </Link>
               <p class="py-2 mb-2 lg:mb-5">{bubblyWater.productName}</p>
               <h5 class="mb-2">
                 <span>Flavors: </span>

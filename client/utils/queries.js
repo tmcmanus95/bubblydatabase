@@ -99,6 +99,17 @@ export const QUERY_SINGLE_BRAND = gql`
       isCaffeinated
       hasCBD
       averageRating
+      ratings {
+        _id
+        rating
+      }
+      reviews {
+        _id
+        reviewText
+        user {
+          username
+        }
+      }
     }
   }
 `;

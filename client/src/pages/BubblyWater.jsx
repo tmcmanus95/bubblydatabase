@@ -166,9 +166,11 @@ export default function BubblyWaterPage() {
                     alt={bubblyWater.productName}
                   />
                   <div className="lg:text-center">
-                    <h1 className="text-3xl font-semibold m-5">
-                      {formatBrands(bubblyWater.brandName)}
-                    </h1>
+                    <Link to={`/brands/${bubblyWater.brandName}`}>
+                      <h1 className="text-3xl font-semibold m-5">
+                        {formatBrands(bubblyWater.brandName)}
+                      </h1>
+                    </Link>
                     <h2 className="text-xl">{bubblyWater.productName}</h2>
                     <h3 className="text-lg">Flavors:</h3>
                     <h4 className="text-base m-5">
