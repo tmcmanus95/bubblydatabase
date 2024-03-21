@@ -43,7 +43,7 @@ const flavors = [
   "Cinammon",
 ];
 
-export default function SearchBar() {
+export default function FlavorSearchBar() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedFlavor, setSelectedFlavor] = useState("");
 

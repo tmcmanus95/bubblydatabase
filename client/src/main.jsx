@@ -12,6 +12,7 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AllFlavors from "./pages/AllFlavors.jsx";
 import About from "./pages/About.jsx";
+import SearchResults from "./pages/SearchResults.jsx";
 
 const router = createBrowserRouter([
   {
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
       {
         path: "flavors/:flavor",
         element: <TopByFlavor />,
+      },
+      {
+        path: "search/:searchTerm",
+        element: <SearchResults />,
       },
     ],
   },

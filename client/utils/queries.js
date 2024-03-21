@@ -141,3 +141,18 @@ export const QUERY_MEID = gql`
     }
   }
 `;
+
+export const QUERY_PRODUCT_NAME = gql`
+  query Query($productName: String) {
+    singleProduct(productName: $productName) {
+      _id
+      productName
+      brandName
+      imageURL
+      flavor
+      isCaffeinated
+      hasCBD
+      averageRating
+    }
+  }
+`;

@@ -53,6 +53,7 @@ const typeDefs = `
     rating(ratingId: ID): Rating
     flavors(flavor: [String]): [BubblyWater]
     brand(brandName: String): [BubblyWater]
+    singleProduct(productName: String): BubblyWater
   }
 
   type Mutation {

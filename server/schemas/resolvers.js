@@ -70,9 +70,13 @@ const resolvers = {
     flavors: async (parent, { flavor }) => {
       return BubblyWater.find({ flavor: { $in: flavor } }).populate("ratings");
     },
-
     brand: async (parent, { brandName }) => {
       return BubblyWater.find({ brandName: brandName }).populate("ratings");
+    },
+    singleProduct: async (parent, { productName }) => {
+      return BubblyWater.findOne({
+        productName: { $regex: productName, $options: "i" },
+      });
     },
   },
 
