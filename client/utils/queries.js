@@ -156,3 +156,12 @@ export const QUERY_PRODUCT_NAME = gql`
     }
   }
 `;
+
+export const QUERY_SEARCH_USERS = gql`
+  query Query($username: String) {
+    searchUsers(username: $username) {
+      _id
+      username
+    }
+  }
+`;
