@@ -73,16 +73,43 @@ const resolvers = {
     brand: async (parent, { brandName }) => {
       return BubblyWater.find({ brandName: brandName }).populate("ratings");
     },
-    exactSingleProduct: async (parent, { productName }) => {
-      return BubblyWater.find({ productName: productName });
+    searchFlavors: async (parent, { flavor }) => {
+      return BubblyWater.find({ flavor: { $in: flavor } })
+        .populate("ratings")
+        .sort({ averageRating: -1 })
+        .limit(5);
     },
-    vagueSingleProduct: async (parent, { productName }) => {
+    searchExactProductName: async (parent, { productName }) => {
+      return BubblyWater.find({ productName: productName }).limit("5");
+    },
+    searchVagueProductName: async (parent, { productName }) => {
       return BubblyWater.find({
         productName: { $regex: productName, $options: "i" },
       });
     },
     searchUsers: async (parent, { username }) => {
       return User.findOne({ username: username });
+    },
+    searchTags: async (parent, { searchTerm }) => {
+      return BubblyWater.find({
+        tags: {
+          $elemMatch: {
+            $regex: searchTerm,
+            $options: "i",
+          },
+        },
+      });
+    },
+    searchGeneralBubblyWater: async (_, { searchTerm }) => {
+      try {
+        const results = await BubblyWater.find({
+          $text: { $search: searchTerm },
+        });
+
+        return results;
+      } catch (error) {
+        throw new Error("Failed to search bubbly water.");
+      }
     },
   },
 

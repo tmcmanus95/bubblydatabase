@@ -28,6 +28,11 @@ const bubblyWaterSchema = new Schema(
       type: Number,
       default: 0,
     },
+    tags: [
+      {
+        type: String,
+      },
+    ],
     ratings: [
       {
         type: Schema.Types.ObjectId,
@@ -48,6 +53,12 @@ const bubblyWaterSchema = new Schema(
     id: false,
   }
 );
+
+bubblyWaterSchema.index({
+  productName: "text",
+  brandName: "text",
+  tags: "text",
+});
 
 bubblyWaterSchema.virtual("ratingsCount").get(function () {
   return this.ratings.length;

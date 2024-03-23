@@ -53,9 +53,12 @@ const typeDefs = `
     rating(ratingId: ID): Rating
     flavors(flavor: [String]): [BubblyWater]
     brand(brandName: String): [BubblyWater]
-    exactSingleProduct(productName: String): [BubblyWater]
-    vagueSingleProduct(productName: String): [BubblyWater]
+    searchFlavors(flavor: [String]): [BubblyWater]
+    searchExactProductName(productName: String): [BubblyWater]
+    searchVagueProductName(productName: String): [BubblyWater]
     searchUsers(username: String): User
+    searchTags(searchTerm: String): [BubblyWater]
+    searchGeneralBubblyWater(searchTerm: String): [BubblyWater]
   }
 
   type Mutation {
