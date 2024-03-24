@@ -176,3 +176,15 @@ export const QUERY_SEARCH_FLAVORS = gql`
     }
   }
 `;
+
+export const QUERY_ALL_DATABASE = gql`
+  query Query($searchTerm: String) {
+    searchGeneralBubblyWater(searchTerm: $searchTerm) {
+      _id
+      productName
+      brandName
+      imageURL
+      flavor
+    }
+  }
+`;

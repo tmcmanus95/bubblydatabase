@@ -4,8 +4,10 @@ import {
   QUERY_SINGLE_BRAND,
   QUERY_SEARCH_FLAVORS,
   QUERY_SEARCH_VAGUE_PRODUCT_NAME,
+  QUERY_ALL_DATABASE,
 } from "../../utils/queries";
 import { useQuery } from "@apollo/client";
+import { formatBrands } from "../../utils/formatBrands";
 import BubblyWaterListItem from "../components/BubblyWaterListItem";
 export default function SearchResults() {
   const { searchTerm } = useParams();
@@ -18,6 +20,15 @@ export default function SearchResults() {
   } = useQuery(QUERY_SEARCH_VAGUE_PRODUCT_NAME, {
     variables: { productName: searchTerm },
   });
+  const {
+    data: queryAllData,
+    error: queryAllError,
+    loading: queryAllLoading,
+  } = useQuery(QUERY_ALL_DATABASE, {
+    variables: { searchTerm: searchTerm },
+  });
+  console.log("queryAllData", queryAllData);
+
   const {
     data: brandData,
     error: brandError,
@@ -45,10 +56,41 @@ export default function SearchResults() {
   console.log("Results from brand search", brandData);
   console.log("Results from flavor search", flavorData);
   console.log("Results from user search", userData);
-
+  const searchResults = queryAllData?.searchGeneralBubblyWater;
+  console.log("searchResults", searchResults);
   return (
     <>
-      <div>
+      <section>
+        <div>
+          {queryAllLoading ? (
+            <h1>Searching products...</h1>
+          ) : (
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+              {searchResults.map((result, index) => (
+                <div key={index} className="p-4 border rounded">
+                  <img
+                    src={result.imageURL}
+                    alt={result.brandName}
+                    width={150}
+                    height={150}
+                    style={{
+                      width: "100px",
+                      height: "100px",
+                      objectFit: "cover",
+                    }}
+                    className="w-full h-auto mb-2"
+                  />
+                  <h1 className="text-lg font-semibold">
+                    {result.productName}
+                  </h1>
+                  <p className="text-sm text-gray-600 line-clamp-3"></p>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+      {/* <div>
         {productLoading ? (
           <h1>Searching products...</h1>
         ) : (
@@ -108,7 +150,7 @@ export default function SearchResults() {
             )}
           </>
         )}
-      </div>
+      </div> */}
       <div>
         {userLoading ? (
           <h1>Searching users...</h1>
