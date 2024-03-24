@@ -157,8 +157,8 @@ export default function BubblyWaterPage() {
       {bubblyWater ? (
         <>
           <div>
-            <section className="m-5 flex justify-center">
-              <div className="lg:flex gap-10">
+            <div className="flex justify-center">
+              <section className="m-5 flex gap-10">
                 <div className="flex flex-col lg:flex-row items-center justify-center gap-4 p-8 bg-yellow shadow-md rounded-lg">
                   <img
                     className="w-48 h-48 object-cover rounded-full lg:mr-10"
@@ -209,60 +209,88 @@ export default function BubblyWaterPage() {
                     )}
                   </div>
                 </div>
-              </div>
-            </section>
+              </section>
+              <section className="m-5 mx-20 mt-10 text-center">
+                <h2 className="text-2xl font-semibold mb-4">Write a Review</h2>
+                <section className="mx-auto max-w-md">
+                  <form onSubmit={(e) => handleReviewValueChange(e)}>
+                    <textarea
+                      name="reviewText"
+                      className="w-full p-4 border rounded-md focus:outline-none focus:ring focus:border-blue-500"
+                      placeholder="Write your review here..."
+                      rows="4"
+                    ></textarea>
+                    <button
+                      type="submit"
+                      className="block w-full mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-500"
+                    >
+                      {previouslyReviewed ? "Edit Review" : "Submit"}
+                    </button>
+                  </form>
+                </section>
+              </section>
+            </div>
           </div>
-
-          <section className="m-5 text-center">
-            <h2 className="text-2xl font-semibold">Ratings</h2>
-            <ul>
-              {bubblyWater.ratings.map((rating, index) => (
-                <li key={index} className="border-solid">
-                  <Link to={`/user/${rating.user._id}`}>
-                    <span className="p-2 text-xl">{rating.user.username}</span>
-                  </Link>
-                  <span>
-                    <Rating readOnly value={rating.rating} precision={0.5} />
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </section>
-
-          <section className="m-5 text-center">
-            <h2 className="text-2xl font-semibold">Write a Review</h2>
-            <section>
-              <form
-                onSubmit={(e) => handleReviewValueChange(e)}
-                className="mx-auto max-w-md"
-              >
-                <textarea
-                  name="reviewText"
-                  className="w-full p-2 mt-4 border rounded"
-                ></textarea>
-                <button
-                  type="submit"
-                  className="block mx-auto mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-                >
-                  {previouslyReviewed ? (
-                    <span>Edit Review</span>
-                  ) : (
-                    <span>Submit</span>
-                  )}
-                </button>
-              </form>
+          <section className="m-5 text-center flex justify-center">
+            <section className="mr-10">
+              <h2 className="text-2xl font-semibold">Ratings</h2>
+              <section>
+                <ul className="p-5 flex-col flex items-center">
+                  {bubblyWater.ratings?.map((rating, index) => (
+                    <li
+                      key={index}
+                      className="flex  border-2 border-black items-center justify-between bg-gray-100 hover:bg-gray-200"
+                      style={{ width: "500px" }}
+                    >
+                      <div className="flex items-center">
+                        <Link to={`/user/${rating.user._id}`}>
+                          <h1>{rating.user.username}</h1>
+                        </Link>
+                      </div>
+                      <span className="text-2xl">
+                        <Rating
+                          readOnly
+                          size="small"
+                          value={rating.rating}
+                          precision={0.5}
+                        />
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </section>
             </section>
-            <h2 className="text-2xl font-semibold">Reviews</h2>
-            <ul className="mt-5">
-              {bubblyWater.reviews.map((review, index) => (
-                <li key={index} className="border-solid">
-                  <Link to={`/user/${review.user._id}`}>
-                    <span className="p-2 text-xl">{review.user.username}</span>
-                  </Link>
-                  <span>{review.reviewText}</span>
-                </li>
-              ))}
-            </ul>
+            <section>
+              <h2 className="text-2xl font-semibold">Reviews</h2>
+              <ul className="p-5 flex-col flex items-center ">
+                {bubblyWater.reviews?.map((review, index) => (
+                  <li
+                    key={index}
+                    style={{ width: "500px" }}
+                    className="border-2 border-black"
+                  >
+                    <div class="bg-gray-200 rounded-t-lg p-2 flex items-center justify-between">
+                      <span class="text-gray-800 font-semibold">
+                        {review.user.username}
+                      </span>
+                      <div class="text-yellow-400">
+                        <Rating
+                          readOnly
+                          size="small"
+                          value={review.rating}
+                          precision={0.5}
+                        />
+                      </div>
+                    </div>
+                    <div class="mt-4">
+                      <p class="text-gray-700 ml-2 text-left">
+                        {review.reviewText}
+                      </p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </section>
           </section>
         </>
       ) : (
