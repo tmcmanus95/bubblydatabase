@@ -5,14 +5,22 @@
     "imageURL": "https://www.gourmondoco.com/product/image/medium/2058_01-18-23-LowRes-124.jpg",
     "flavor": ["lime"],
     "isCaffeinated": false,
-    "hasCBD": false
+    "hasCBD": false,
+    "tags": ["lime", "la croix", "lime la croix", "lime lacroix"]
   },
   {
     "productName": "Pure",
     "brandName": "la-croix",
     "imageURL": "https://dydza6t6xitx6.cloudfront.net/ci-lacroix-sparkling-pure-cc97894644ba7567.png",
     "isCaffeinated": false,
-    "hasCBD": false
+    "hasCBD": false,
+    "tags": [
+      "pure",
+      "plain la croix",
+      "plain lacroix",
+      "lacroix plain",
+      "la croix plain"
+    ]
   },
   {
     "productName": "Lemon",

@@ -142,9 +142,9 @@ export const QUERY_MEID = gql`
   }
 `;
 
-export const QUERY_PRODUCT_NAME = gql`
+export const QUERY_SEARCH_VAGUE_PRODUCT_NAME = gql`
   query Query($productName: String) {
-    singleProduct(productName: $productName) {
+    searchVagueProductName(productName: $productName) {
       _id
       productName
       brandName
@@ -162,6 +162,17 @@ export const QUERY_SEARCH_USERS = gql`
     searchUsers(username: $username) {
       _id
       username
+    }
+  }
+`;
+
+export const QUERY_SEARCH_FLAVORS = gql`
+  query Query($flavor: [String]) {
+    searchFlavors(flavor: $flavor) {
+      _id
+      productName
+      brandName
+      imageURL
     }
   }
 `;

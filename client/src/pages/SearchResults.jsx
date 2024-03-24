@@ -1,9 +1,9 @@
 import { Link, useParams } from "react-router-dom";
 import {
-  QUERY_PRODUCT_NAME,
   QUERY_SEARCH_USERS,
   QUERY_SINGLE_BRAND,
-  QUERY_SINGLE_FLAVOR,
+  QUERY_SEARCH_FLAVORS,
+  QUERY_SEARCH_VAGUE_PRODUCT_NAME,
 } from "../../utils/queries";
 import { useQuery } from "@apollo/client";
 import BubblyWaterListItem from "../components/BubblyWaterListItem";
@@ -15,7 +15,7 @@ export default function SearchResults() {
     data: productData,
     error: productError,
     loading: productLoading,
-  } = useQuery(QUERY_PRODUCT_NAME, {
+  } = useQuery(QUERY_SEARCH_VAGUE_PRODUCT_NAME, {
     variables: { productName: searchTerm },
   });
   const {
@@ -29,7 +29,7 @@ export default function SearchResults() {
     data: flavorData,
     error: flavorError,
     loading: flavorLoading,
-  } = useQuery(QUERY_SINGLE_FLAVOR, {
+  } = useQuery(QUERY_SEARCH_FLAVORS, {
     variables: { flavor: searchTerm },
   });
   const {
@@ -53,21 +53,28 @@ export default function SearchResults() {
           <h1>Searching products...</h1>
         ) : (
           <>
-            <h1 className="text-2xl w-full ">Products</h1>
-            {productData?.singleProduct ? (
-              <div>
-                <Link to={`/bubblyWater/${productData?.singleProduct._id}`}>
-                  <h2>{productData?.singleProduct.productName}</h2>
-                  <h2>{productData?.singleProduct.brandName}</h2>
-                  <img
-                    width={150}
-                    height={150}
-                    src={productData?.singleProduct.imageURL}
-                  />
-                </Link>
-              </div>
+            <h1 className="text-2xl w-full">Products</h1>
+            {productData?.searchVagueProductName ? (
+              <>
+                {productData.searchVagueProductName.map(
+                  (bubblyWater, index) => (
+                    <div key={index}>
+                      <Link to={`/bubblyWater/${bubblyWater._id}`}>
+                        <h2>{bubblyWater.productName}</h2>
+                        <h2>{bubblyWater.brandName}</h2>
+                        <img
+                          width={150}
+                          height={150}
+                          src={bubblyWater.imageURL}
+                          alt={`${bubblyWater.brandName} - ${bubblyWater.productName}`}
+                        />
+                      </Link>
+                    </div>
+                  )
+                )}
+              </>
             ) : (
-              <h2>no products named {searchTerm} found</h2>
+              <h2>No products named {searchTerm} found</h2>
             )}
           </>
         )}
