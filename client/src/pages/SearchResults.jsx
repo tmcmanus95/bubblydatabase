@@ -65,28 +65,38 @@ export default function SearchResults() {
           {queryAllLoading ? (
             <h1>Searching products...</h1>
           ) : (
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-              {searchResults.map((result, index) => (
-                <div key={index} className="p-4 border rounded">
-                  <img
-                    src={result.imageURL}
-                    alt={result.brandName}
-                    width={150}
-                    height={150}
-                    style={{
-                      width: "100px",
-                      height: "100px",
-                      objectFit: "cover",
-                    }}
-                    className="w-full h-auto mb-2"
-                  />
-                  <h1 className="text-lg font-semibold">
-                    {result.productName}
-                  </h1>
-                  <p className="text-sm text-gray-600 line-clamp-3"></p>
-                </div>
-              ))}
-            </div>
+            <>
+              <h1 className="text-4xl w-full ">Products</h1>
+              <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+                {searchResults.map((result, index) => (
+                  <Link to={`/bubblyWater/${result._id}`} key={index}>
+                    <div className="p-4 border rounded bg-gray-100 flex">
+                      <img
+                        src={result.imageURL}
+                        alt={result.brandName}
+                        width={150}
+                        height={150}
+                        style={{
+                          width: "100px",
+                          height: "100px",
+                          objectFit: "cover",
+                        }}
+                        className="w-full h-auto mb-2"
+                      />
+                      <div className="ml-4 flex flex-col justify-center">
+                        <h1 className="text-lg font-semibold">
+                          {result.productName}
+                        </h1>
+                        <h1 className="text-lg font-semibold">
+                          {formatBrands(result.brandName)}
+                        </h1>
+                        <p className="text-sm text-gray-600 line-clamp-3"></p>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </>
           )}
         </div>
       </section>

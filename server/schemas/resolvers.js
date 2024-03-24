@@ -80,7 +80,7 @@ const resolvers = {
         .limit(5);
     },
     searchExactProductName: async (parent, { productName }) => {
-      return BubblyWater.find({ productName: productName }).limit("5");
+      return BubblyWater.find({ productName: productName }).limit(5);
     },
     searchVagueProductName: async (parent, { productName }) => {
       return BubblyWater.find({
@@ -104,7 +104,7 @@ const resolvers = {
       try {
         const results = await BubblyWater.find({
           $text: { $search: searchTerm },
-        });
+        }).limit(10);
 
         return results;
       } catch (error) {
