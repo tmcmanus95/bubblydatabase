@@ -5,7 +5,7 @@ export default function AllBrands() {
       <div>
         <h3 className="text-4xl py-1 flex justify-center">All Brands</h3>
       </div>
-      <div className="lg:flex gap-10 flex-wrap">
+      <div className="lg:flex gap-10 flex-wrap justify-center">
         <Link to="/brands/la-croix">
           <div className="flex-1 text-center shadow-lg p-10 rounded-xl my-10 bg-white">
             <img
