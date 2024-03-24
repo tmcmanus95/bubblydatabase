@@ -2,6 +2,7 @@ import { useQuery } from "@apollo/client";
 import { QUERY_ALL_BUBBLYS, QUERY_SINGLE_FLAVOR } from "../../utils/queries";
 import BubblyWaterListItem from "./BubblyWaterListItem";
 import { formatBrands } from "../../utils/formatBrands";
+import { capitalizeSingleFlavor } from "../../utils/capitalizeSingleFlavor";
 export default function BubblyWaterList({ searchTerm }) {
   const { error, data } = searchTerm
     ? useQuery(QUERY_SINGLE_FLAVOR, { variables: { flavor: searchTerm } })
@@ -29,7 +30,7 @@ export default function BubblyWaterList({ searchTerm }) {
               {searchTerm ? (
                 <div>
                   Top Rated{" "}
-                  <span className={formatBrands(searchTerm)}>
+                  <span className={capitalizeSingleFlavor(searchTerm)}>
                     {formatBrands(searchTerm)}
                   </span>{" "}
                   Bubbly Waters

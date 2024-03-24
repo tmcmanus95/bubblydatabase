@@ -109,7 +109,7 @@ body {
   padding: 5px;
   margin: 3px;
   color: white;
-  background-color: #e74c3c;
+  background-color: #e30b5c;
 }
 
 .Strawberry {
@@ -196,6 +196,14 @@ body {
   margin: 3px;
   color: white;
   background-color: #8e44ad;
+}
+
+.Black-tea {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: white;
+  background-color: #463333;
 }
 
 .Blood-orange {
@@ -351,7 +359,7 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  background-color: #f39c12;
+  background-color: #efd3d2;
 }
 
 .Clementine {

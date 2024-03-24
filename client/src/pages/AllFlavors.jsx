@@ -7,6 +7,7 @@ export default function AllFlavors() {
     "Lime",
     "Grapefruit",
     "Orange",
+    "Cinnamon",
     "Honey",
     "Blood-orange",
     "Green-tea",
