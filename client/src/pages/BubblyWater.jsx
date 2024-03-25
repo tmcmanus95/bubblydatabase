@@ -269,7 +269,7 @@ export default function BubblyWaterPage() {
                     style={{ width: "500px" }}
                     className="border-2 border-black"
                   >
-                    <div class="bg-gray-200 rounded-t-lg p-2 flex items-center justify-between">
+                    <div className="bg-gray-200 rounded-t-lg p-2 flex items-center justify-between">
                       <span class="text-gray-800 font-semibold">
                         {review.user.username}
                       </span>
