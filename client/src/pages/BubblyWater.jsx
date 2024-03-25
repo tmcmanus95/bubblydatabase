@@ -161,7 +161,7 @@ export default function BubblyWaterPage() {
               <section className="m-5 flex gap-10">
                 <div className="flex flex-col lg:flex-row items-center justify-center gap-4 p-8 bg-yellow shadow-md rounded-lg">
                   <img
-                    className="w-48 h-48 object-cover rounded-full lg:mr-10"
+                    className="w-70 h-70 object-cover  lg:mr-10"
                     src={bubblyWater.imageURL}
                     alt={bubblyWater.productName}
                   />
@@ -264,30 +264,32 @@ export default function BubblyWaterPage() {
               <h2 className="text-2xl font-semibold">Reviews</h2>
               <ul className="p-5 flex-col flex items-center ">
                 {bubblyWater.reviews?.map((review, index) => (
-                  <li
-                    key={index}
-                    style={{ width: "500px" }}
-                    className="border-2 border-black"
-                  >
-                    <div className="bg-gray-200 rounded-t-lg p-2 flex items-center justify-between">
-                      <span class="text-gray-800 font-semibold">
-                        {review.user.username}
-                      </span>
-                      <div class="text-yellow-400">
-                        <Rating
-                          readOnly
-                          size="small"
-                          value={review.rating}
-                          precision={0.5}
-                        />
+                  <Link to={`/user/${review.user._id}`}>
+                    <li
+                      key={index}
+                      style={{ width: "500px" }}
+                      className="bg-white rounded-lg mb-5"
+                    >
+                      <div className="bg-blue-200 rounded-t-lg p-2 flex items-center justify-between">
+                        <span class="text-gray-800 font-semibold">
+                          {review.user.username}
+                        </span>
+                        <div class="text-yellow-400">
+                          <Rating
+                            readOnly
+                            size="small"
+                            value={review.rating}
+                            precision={0.5}
+                          />
+                        </div>
                       </div>
-                    </div>
-                    <div class="mt-4">
-                      <p class="text-gray-700 ml-2 text-left">
-                        {review.reviewText}
-                      </p>
-                    </div>
-                  </li>
+                      <div class="mt-4">
+                        <p class="text-gray-700 ml-2 text-left">
+                          {review.reviewText}
+                        </p>
+                      </div>
+                    </li>
+                  </Link>
                 ))}
               </ul>
             </section>

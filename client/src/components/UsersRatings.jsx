@@ -7,7 +7,7 @@ export default function UsersRatings({ ratings }) {
   return (
     <section>
       <h3 className="m-5 flex justify-center">Recent Ratings</h3>
-      <ul className="border-2 border-black p-5 flex-col flex items-center">
+      <ul className=" p-5 flex-col flex items-center">
         {ratings?.map((rating, index) => (
           <Link to={`/bubblyWater/${rating.bubblyWater._id}`}>
             <li
