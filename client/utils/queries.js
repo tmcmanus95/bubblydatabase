@@ -84,6 +84,16 @@ export const QUERY_SINGLE_USER = gql`
           imageURL
         }
       }
+      reviews {
+        _id
+        reviewText
+        bubblyWater {
+          _id
+          productName
+          brandName
+          imageURL
+        }
+      }
     }
   }
 `;

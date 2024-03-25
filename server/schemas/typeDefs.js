@@ -34,6 +34,7 @@ const typeDefs = `
     _id: ID
     reviewText: String
     createdAt: String
+    bubblyWater: BubblyWater
     user: User
     rating: [Rating]
   }
