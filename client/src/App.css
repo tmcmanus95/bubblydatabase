@@ -404,6 +404,23 @@ body {
   animation-timing-function: ease;
 }
 
+.bigCircle {
+  display: flex;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+}
+.littleCircle {
+  display: flex;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+}
+
 @keyframes animate-pop {
   0% {
     opacity: 0;

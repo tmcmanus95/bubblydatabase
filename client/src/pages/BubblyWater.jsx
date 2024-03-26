@@ -161,7 +161,8 @@ export default function BubblyWaterPage() {
               <section className="m-5 flex gap-10">
                 <div className="flex flex-col lg:flex-row items-center justify-center gap-4 p-8 bg-yellow shadow-md rounded-lg">
                   <img
-                    className="w-70 h-70 object-cover  lg:mr-10"
+                    className="object-cover rounded-full lg:mr-10"
+                    style={{ width: "350px", height: "350px" }}
                     src={bubblyWater.imageURL}
                     alt={bubblyWater.productName}
                   />
@@ -243,6 +244,11 @@ export default function BubblyWaterPage() {
                       style={{ width: "500px" }}
                     >
                       <div className="flex items-center">
+                        <div className="rounded-full justify-center align-center bg-red-300 littleCircle mr-3">
+                          <Link to={`/user/${rating.user._id}`}>
+                            <span>{rating.user.username[0]}</span>
+                          </Link>
+                        </div>
                         <Link to={`/user/${rating.user._id}`}>
                           <h1>{rating.user.username}</h1>
                         </Link>
@@ -284,7 +290,7 @@ export default function BubblyWaterPage() {
                         </div>
                       </div>
                       <div class="mt-4">
-                        <p class="text-gray-700 ml-2 text-left">
+                        <p class="text-gray-700 ml-2 text-left pb-2">
                           {review.reviewText}
                         </p>
                       </div>

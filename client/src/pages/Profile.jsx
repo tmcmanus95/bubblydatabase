@@ -24,11 +24,23 @@ export default function Profile() {
   console.log(ratings);
   return (
     <>
-      <h1>{username}</h1>
-      <div className="flex flex-wrap justify-center">
-        {ratings && <UsersRatings ratings={ratings} />}
-        {reviews && <UsersReviews reviews={reviews} />}
-      </div>
+      {loading ? (
+        <h1>Loading...</h1>
+      ) : (
+        <>
+          <div>
+            <div className="rounded-full justify-center align-center bg-red-300 bigCircle">
+              <span>{username[0]}</span>
+            </div>
+
+            <h1>{username}</h1>
+          </div>
+          <div className="flex flex-wrap justify-center">
+            {ratings && <UsersRatings ratings={ratings} />}
+            {reviews && <UsersReviews reviews={reviews} />}
+          </div>
+        </>
+      )}
     </>
   );
 }
