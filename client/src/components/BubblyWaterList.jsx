@@ -26,15 +26,15 @@ export default function BubblyWaterList({ searchTerm }) {
       {data ? (
         <div>
           <div>
-            <h3 className="text-5xl text-center py-2 mt-5 font-bold">
+            <h3 className="lg:text-5xl text-xl text-center py-2 mt-5 font-bold">
               {searchTerm ? (
-                <div>
+                <span>
                   Top Rated{" "}
                   <span className={capitalizeSingleFlavor(searchTerm)}>
                     {formatBrands(searchTerm)}
                   </span>{" "}
                   Bubbly Waters
-                </div>
+                </span>
               ) : (
                 <div>Top Rated Bubbly Waters of All Time</div>
               )}

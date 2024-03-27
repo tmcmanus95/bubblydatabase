@@ -30,7 +30,7 @@ export default function Profile() {
         <>
           <div>
             <div className="rounded-full justify-center align-center bg-red-300 bigCircle">
-              <span>{username[0]}</span>
+              <span>{username[0].toUpperCase()}</span>
             </div>
 
             <h1>{username}</h1>

@@ -40,6 +40,7 @@ export const EDIT_REVIEW = gql`
       _id
       reviewText
       user {
+        _id
         username
       }
     }
