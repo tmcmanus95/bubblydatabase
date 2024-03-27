@@ -60,123 +60,69 @@ export default function SearchResults() {
   console.log("searchResults", searchResults);
   return (
     <>
-      <section>
-        <div>
-          {queryAllLoading ? (
-            <h1>Searching products...</h1>
-          ) : (
-            <>
-              <h1 className="text-4xl w-full ">Products</h1>
-              <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-                {searchResults.map((result, index) => (
-                  <Link to={`/bubblyWater/${result._id}`} key={index}>
-                    <div className="p-4 border rounded bg-gray-100 flex">
-                      <img
-                        src={result.imageURL}
-                        alt={result.brandName}
-                        width={150}
-                        height={150}
-                        style={{
-                          width: "100px",
-                          height: "100px",
-                          objectFit: "cover",
-                        }}
-                        className="w-full h-auto mb-2"
-                      />
-                      <div className="ml-4 flex flex-col justify-center">
-                        <h1 className="text-lg font-semibold">
-                          {result.productName}
-                        </h1>
-                        <h1 className="text-lg font-semibold">
-                          {formatBrands(result.brandName)}
-                        </h1>
-                        <p className="text-sm text-gray-600 line-clamp-3"></p>
-                      </div>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </>
-          )}
-        </div>
-      </section>
-      {/* <div>
-        {productLoading ? (
+      <div className="mt-10 mb-5">
+        {queryAllLoading ? (
           <h1>Searching products...</h1>
         ) : (
           <>
-            <h1 className="text-2xl w-full">Products</h1>
-            {productData?.searchVagueProductName ? (
+            <h1 className="text-4xl w-full mb-5 ml-5">Products</h1>
+
+            {searchResults.length > 0 ? (
               <>
-                {productData.searchVagueProductName.map(
-                  (bubblyWater, index) => (
-                    <div key={index}>
-                      <Link to={`/bubblyWater/${bubblyWater._id}`}>
-                        <h2>{bubblyWater.productName}</h2>
-                        <h2>{bubblyWater.brandName}</h2>
+                <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+                  {searchResults.map((result, index) => (
+                    <Link to={`/bubblyWater/${result._id}`} key={index}>
+                      <div className="p-4 border rounded bg-gray-100 flex">
                         <img
+                          src={result.imageURL}
+                          alt={result.brandName}
                           width={150}
                           height={150}
-                          src={bubblyWater.imageURL}
-                          alt={`${bubblyWater.brandName} - ${bubblyWater.productName}`}
+                          style={{
+                            width: "100px",
+                            height: "100px",
+                            objectFit: "cover",
+                          }}
+                          className="w-full h-auto mb-2"
                         />
-                      </Link>
-                    </div>
-                  )
-                )}
+                        <div className="ml-4 flex flex-col justify-center">
+                          <h1 className="text-lg font-semibold">
+                            {result.productName}
+                          </h1>
+                          <h1 className="text-lg font-semibold">
+                            {formatBrands(result.brandName)}
+                          </h1>
+                          <p className="text-sm text-gray-600 line-clamp-3"></p>
+                        </div>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
               </>
             ) : (
-              <h2>No products named {searchTerm} found</h2>
+              <h1 className="ml-5 text-xl mb-5">
+                No search results with term "{searchTerm}" found.
+              </h1>
             )}
           </>
         )}
       </div>
-      <div>
-        {brandLoading ? (
-          <h1>Searching brands...</h1>
-        ) : (
-          <>
-            <h1 className="text-2xl w-full ">Brands</h1>
-            <Link>brand Results</Link>
-            {brandData?.brand?.length > 0 ? (
-              <h2>brand data found</h2>
-            ) : (
-              <h2>no brands named {searchTerm} found</h2>
-            )}
-          </>
-        )}
-      </div>
-      <div>
-        {flavorLoading ? (
-          <h1>Searching flavors...</h1>
-        ) : (
-          <>
-            <h1 className="text-2xl w-full ">Flavors</h1>
-            <Link>Flavor Results</Link>
-            {flavorData?.flavors?.length > 0 ? (
-              <h2>Flavor data found</h2>
-            ) : (
-              <h2>No flavors named {searchTerm} found</h2>
-            )}
-          </>
-        )}
-      </div> */}
       <div>
         {userLoading ? (
           <h1>Searching users...</h1>
         ) : (
           <>
-            <h1 className="text-2xl w-full ">Users</h1>
-            <Link>User Results</Link>
+            <h1 className="text-4xl w-full mb-5 ml-5">Users</h1>
             {userData.searchUsers ? (
-              <div>
-                Username:{" "}
+              <div className="bg-white text-2xl mr-10">
                 <Link to={`/user/${userData?.searchUsers?._id}`}>
                   <span>{userData?.searchUsers?.username}</span>
                 </Link>
               </div>
             ) : (
-              <h2>no users named {searchTerm} found</h2>
+              <h2 className="ml-5 text-xl mb-5">
+                no users named {searchTerm} found
+              </h2>
             )}
           </>
         )}

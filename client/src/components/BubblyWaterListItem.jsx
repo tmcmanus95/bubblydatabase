@@ -21,8 +21,7 @@ export default function BubblyWaterListItem({ bubblyWater }) {
             >
               <img
                 src={bubblyWater.imageURL}
-                class="mx-auto lg:mx-0 lg:mb-0"
-                style={{ width: "150px", height: "200px", objectFit: "cover" }}
+                class="mx-auto lg:mx-0 lg:mb-0 object-cover w-40 h-52"
               />
             </Link>
             <div class="flex flex-col justify-center">

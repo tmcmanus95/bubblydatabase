@@ -157,15 +157,15 @@ export default function BubblyWaterPage() {
       {bubblyWater ? (
         <>
           <div>
-            <div className="flex justify-center">
-              <section className="m-5 flex gap-10">
+            <div className="flex justify-center flex-col lg:flex-row">
+              <section className="m-5 flex flex-col items-center sm:flex-row sm:justify-center gap-10">
                 <div className="flex flex-col lg:flex-row items-center justify-center gap-4 p-8 bg-yellow shadow-md rounded-lg">
                   <img
-                    className="w-48 h-48 object-cover rounded-full lg:mr-10"
+                    className="object-cover rounded-full lg:mr-10 w-48 md:w-96 lg:w-96"
                     src={bubblyWater.imageURL}
                     alt={bubblyWater.productName}
                   />
-                  <div className="lg:text-center">
+                  <div className="text-center">
                     <Link to={`/brands/${bubblyWater.brandName}`}>
                       <h1 className="text-3xl font-semibold m-5">
                         {formatBrands(bubblyWater.brandName)}
@@ -231,7 +231,7 @@ export default function BubblyWaterPage() {
               </section>
             </div>
           </div>
-          <section className="m-5 text-center flex justify-center">
+          <section className="m-5 text-center flex justify-center flex-col lg:flex-row">
             <section className="mr-10">
               <h2 className="text-2xl font-semibold">Ratings</h2>
               <section>
@@ -239,10 +239,14 @@ export default function BubblyWaterPage() {
                   {bubblyWater.ratings?.map((rating, index) => (
                     <li
                       key={index}
-                      className="flex  border-2 border-black items-center justify-between bg-gray-100 hover:bg-gray-200"
-                      style={{ width: "500px" }}
+                      className="flex border-2 border-black items-center justify-between w-64 md:w-96 lg:w-96 bg-gray-100 hover:bg-gray-200"
                     >
-                      <div className="flex items-center">
+                      <div className="flex  items-center">
+                        <div className="rounded-full justify-center align-center bg-red-300 littleCircle mr-3 ">
+                          <Link to={`/user/${rating.user._id}`}>
+                            {/* <span>{rating.user.username[0].toUpperCase()}</span> */}
+                          </Link>
+                        </div>
                         <Link to={`/user/${rating.user._id}`}>
                           <h1>{rating.user.username}</h1>
                         </Link>
@@ -264,30 +268,31 @@ export default function BubblyWaterPage() {
               <h2 className="text-2xl font-semibold">Reviews</h2>
               <ul className="p-5 flex-col flex items-center ">
                 {bubblyWater.reviews?.map((review, index) => (
-                  <li
-                    key={index}
-                    style={{ width: "500px" }}
-                    className="border-2 border-black"
-                  >
-                    <div className="bg-gray-200 rounded-t-lg p-2 flex items-center justify-between">
-                      <span class="text-gray-800 font-semibold">
-                        {review.user.username}
-                      </span>
-                      <div class="text-yellow-400">
-                        <Rating
-                          readOnly
-                          size="small"
-                          value={review.rating}
-                          precision={0.5}
-                        />
+                  <Link to={`/user/${review.user._id}`}>
+                    <li
+                      key={index}
+                      className="bg-white w-64 md:w-96 lg:w-96 rounded-lg mb-5"
+                    >
+                      <div className="bg-blue-200 rounded-t-lg p-2 flex items-center justify-between">
+                        <span class="text-gray-800 font-semibold">
+                          {review.user.username}
+                        </span>
+                        <div class="text-yellow-400">
+                          <Rating
+                            readOnly
+                            size="small"
+                            value={review.rating}
+                            precision={0.5}
+                          />
+                        </div>
                       </div>
-                    </div>
-                    <div class="mt-4">
-                      <p class="text-gray-700 ml-2 text-left">
-                        {review.reviewText}
-                      </p>
-                    </div>
-                  </li>
+                      <div class="mt-4 px-2">
+                        <p class="text-gray-700 ml-2 text-left pb-2">
+                          {review.reviewText}
+                        </p>
+                      </div>
+                    </li>
+                  </Link>
                 ))}
               </ul>
             </section>
