@@ -161,7 +161,7 @@ export default function BubblyWaterPage() {
               <section className="m-5 flex flex-col items-center sm:flex-row sm:justify-center gap-10">
                 <div className="flex flex-col lg:flex-row items-center justify-center gap-4 p-8 bg-yellow shadow-md rounded-lg">
                   <img
-                    className="object-cover rounded-full lg:mr-10 w-48 md:w-96 lg:w-96"
+                    className="object-cover rounded-full lg:mr-10 w-48 md:w-96 lg:w-96 lg:h-96 md:h-96"
                     src={bubblyWater.imageURL}
                     alt={bubblyWater.productName}
                   />

@@ -28,12 +28,13 @@ export default function Profile() {
         <h1>Loading...</h1>
       ) : (
         <>
-          <div>
-            <div className="rounded-full justify-center align-center bg-red-300 bigCircle">
-              <span>{username[0].toUpperCase()}</span>
+          <div className="justify-center align-center text-center">
+            <div className="flex justify-center items-center bg-red-300 w-32 h-32 rounded-full">
+              <span className="text-xl font-bold">
+                {username[0].toUpperCase()}
+              </span>
             </div>
-
-            <h1>{username}</h1>
+            <h1 className="mt-2">{username}</h1>
           </div>
           <div className="flex flex-wrap justify-center">
             {ratings && <UsersRatings ratings={ratings} />}
