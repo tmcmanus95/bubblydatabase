@@ -237,7 +237,7 @@ export default function BubblyWaterPage() {
               </section>
             </div>
           </div>
-          <section className="m-5 text-center flex justify-center flex-col lg:flex-row">
+          <section className="mx-5 text-center flex justify-center flex-col lg:flex-row">
             <section>
               <h2 className="text-2xl font-semibold">Ratings</h2>
               <section>
@@ -271,7 +271,7 @@ export default function BubblyWaterPage() {
               </section>
             </section>
             <section>
-              <h2 className="text-2xl font-semibold">Reviews</h2>
+              <h2 className="text-2xl mx-5 font-semibold">Reviews</h2>
               <ul className="p-5 flex-col flex items-center ">
                 {bubblyWater.reviews?.map((review, index) => (
                   <Link to={`/user/${review.user._id}`}>

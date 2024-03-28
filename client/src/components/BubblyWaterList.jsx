@@ -44,10 +44,18 @@ export default function BubblyWaterList({ searchTerm }) {
           </div>
           {sortedBubblyWaters.length > 0
             ? sortedBubblyWaters.map((bubblyWater, index) => (
-                <BubblyWaterListItem key={index} bubblyWater={bubblyWater} />
+                <BubblyWaterListItem
+                  key={index}
+                  bubblyWater={bubblyWater}
+                  ranking={index}
+                />
               ))
             : data.bubblyWaters.map((bubblyWater, index) => (
-                <BubblyWaterListItem key={index} bubblyWater={bubblyWater} />
+                <BubblyWaterListItem
+                  key={index}
+                  bubblyWater={bubblyWater}
+                  ranking={index}
+                />
               ))}
         </div>
       ) : (
