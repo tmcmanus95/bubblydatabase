@@ -8,7 +8,7 @@ export default function GeneralSearchBar() {
   };
 
   return (
-    <form className="mx-auto w-56 lg:w-96">
+    <form className="mx-auto w-48 lg:w-96">
       <label
         for="default-search"
         className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
