@@ -16,7 +16,7 @@ export default function NavBar() {
     Auth.logout();
   };
   return (
-    <nav className="container mx-auto px-4 md:flex items-center bg-blue-300 gap-6 relative">
+    <nav className=" mx-auto px-4 md:flex items-center bg-gray-100 gap-6 relative">
       <div className="flex w-full items-center">
         <Link to="/">
           <img className="h-5 lg:h-10 mr-5" src={popIcon}></img>{" "}
@@ -25,40 +25,70 @@ export default function NavBar() {
           <GiHamburgerMenu onClick={toggleMenu} />
         </div>
         <div className="hidden md:gap-5  md:flex md:flex-row">
-          <Link to="/allBrands">Brands</Link>
-          <Link to="/allFlavors">Flavors</Link>
-          <Link to="/about">About</Link>
+          <Link to="/allBrands" className="hover:bg-blue-300 lg:p-2 rounded-lg">
+            Brands
+          </Link>
+          <Link
+            to="/allFlavors"
+            className="hover:bg-blue-300 lg:p-2 rounded-lg"
+          >
+            Flavors
+          </Link>
+          <Link to="/about" className="hover:bg-blue-300 lg:p-2 rounded-lg">
+            About
+          </Link>
         </div>
         <div className="mx-5 flex justify-center align-center items-center">
           <GeneralSearchBar />
         </div>
 
         {menuOpen && (
-          <div className="absolute inset-x-0 md:relative top-full md:top-auto md:left-auto md:flex flex-col items-center space-x-1 pb-3 md:pb-0 bg-red-500">
-            <Link to="/allBrands" className="py-2 px-3 block w-full">
+          <div className="absolute inset-x-0 md:relative top-full md:top-auto md:left-auto md:flex flex-col items-center space-x-1 pb-3 md:pb-0 bg-blue-100">
+            <Link
+              to="/allBrands"
+              className="py-2 px-3 block w-full hover:bg-blue-300"
+            >
               Brands
             </Link>
-            <Link to="/allFlavors" className="py-2 px-3 block w-full">
+            <Link
+              to="/allFlavors"
+              className="py-2 px-3 block w-full hover:bg-blue-300"
+            >
               Flavors
             </Link>
-            <Link to="/about" className="py-2 px-3 block w-full">
+            <Link
+              to="/about"
+              className="py-2 px-3 block w-full hover:bg-blue-300"
+            >
               About
             </Link>
             {Auth.loggedIn() ? (
               <>
-                <Link to="/me" className="py-2 px-3 block w-full">
+                <Link
+                  to="/me"
+                  className="py-2 px-3 block w-full hover:bg-blue-300 "
+                >
                   View My Profile
                 </Link>
-                <button onClick={logout} className="btn py-2 px-3 block w-full">
+                <button
+                  onClick={logout}
+                  className="btn text-left py-2 px-3 block w-full hover:bg-blue-300 "
+                >
                   Logout
                 </button>
               </>
             ) : (
               <>
-                <Link to="/login" className="py-2 px-3 block w-full">
+                <Link
+                  to="/login"
+                  className="py-2 px-3 block w-full hover:bg-blue-300 "
+                >
                   Login
                 </Link>
-                <Link to="/signup" className="py-2 px-3 block w-full">
+                <Link
+                  to="/signup"
+                  className="py-2 px-3 block w-full hover:bg-blue-300 "
+                >
                   Signup
                 </Link>
               </>
@@ -71,19 +101,28 @@ export default function NavBar() {
         {Auth.loggedIn() ? (
           <>
             <Link to="/me">
-              <button className="btn">View My Profile</button>
+              <button className="hover:bg-blue-300 p-2 rounded-lg">
+                Profile
+              </button>
             </Link>
-            <button onClick={logout} className="btn">
+            <button
+              onClick={logout}
+              className="hover:bg-blue-300 p-2 rounded-lg"
+            >
               Logout
             </button>
           </>
         ) : (
           <>
             <Link to="/login">
-              <button className="btn">Login</button>
+              <button className="hover:bg-blue-300 p-2 rounded-lg">
+                Login
+              </button>
             </Link>
             <Link to="/signup">
-              <button className="btn">Signup</button>
+              <button className="hover:bg-blue-300 p-2 rounded-lg">
+                Signup
+              </button>
             </Link>
           </>
         )}

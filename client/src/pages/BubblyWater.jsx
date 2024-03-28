@@ -13,6 +13,7 @@ import {
 import { capitalizeFlavors } from "../../utils/capitalizeFlavors";
 import { Link } from "react-router-dom";
 import { formatBrands } from "../../utils/formatBrands";
+import Loading from "../components/Loading";
 
 export default function BubblyWaterPage() {
   const { bubblyWaterId } = useParams();
@@ -299,7 +300,7 @@ export default function BubblyWaterPage() {
           </section>
         </>
       ) : (
-        <h1 className="text-2xl">Loading...</h1>
+        <Loading />
       )}
     </>
   );
