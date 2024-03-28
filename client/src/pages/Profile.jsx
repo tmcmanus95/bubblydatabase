@@ -37,6 +37,11 @@ export default function Profile() {
             </div>
             <h1 className="mt-2">{username}</h1>
           </div>
+          {/* <div className="flex justify-center items-center mt-10 gap-10 h-full">
+            <h5>Total Ratings: {ratings?.length}</h5>
+            <h5>Total Reviews: {reviews?.length}</h5>
+          </div> */}
+
           <div className="flex flex-wrap justify-center">
             {ratings && <UsersRatings ratings={ratings} />}
             {reviews && <UsersReviews reviews={reviews} />}

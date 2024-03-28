@@ -40,10 +40,9 @@ export default function Brand() {
     "good-&-gather":
       "https://images.squarespace-cdn.com/content/v1/5ef4b9a14215590dac8d9e26/f23f9c78-7993-47a1-9eaf-5c2aac767587/Untitled-2-01.jpg",
     kimino: "https://m.media-amazon.com/images/I/61QAISgfH9L.jpg",
+    spindrift:
+      "https://www.soulfirefarm.org/wp-content/uploads/2023/04/spindrift-logo-vector.png",
   };
-  console.log("sorted bubbly waters, ", sortedBubblyWaters);
-  console.log("brandname", brandName);
-  console.log("brandLogoLinks[brandName]", brandLogoLinks[brandName]);
   return (
     <>
       <div className="flex flex-col mt-5 items-center justify-center rounded-lg text-2xl border-2 border-black">

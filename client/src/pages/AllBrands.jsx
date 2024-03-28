@@ -41,6 +41,17 @@ export default function AllBrands() {
             <h3 className="text-lg font-medium pt-8 pb-2">Sparkling Ice</h3>
           </div>
         </Link>
+        <Link to="/brands/spindrift">
+          <div className="flex-1 text-center shadow-lg p-10 rounded-xl my-10  bg-white">
+            <img
+              src="https://www.soulfirefarm.org/wp-content/uploads/2023/04/spindrift-logo-vector.png"
+              width={100}
+              height={100}
+              className="mx-auto"
+            />
+            <h3 className="text-lg font-medium pt-8 pb-2">Spindrift</h3>
+          </div>
+        </Link>
 
         <Link to="/brands/san-pellegrino">
           <div>

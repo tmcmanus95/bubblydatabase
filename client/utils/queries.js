@@ -136,8 +136,19 @@ export const QUERY_ME = gql`
           _id
           productName
           brandName
-          flavor
           imageURL
+          flavor
+        }
+      }
+      reviews {
+        _id
+        reviewText
+        bubblyWater {
+          _id
+          productName
+          brandName
+          imageURL
+          flavor
         }
       }
     }
@@ -148,6 +159,7 @@ export const QUERY_MEID = gql`
   query Query {
     meId {
       _id
+      username
     }
   }
 `;
