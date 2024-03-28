@@ -228,7 +228,7 @@ export default function BubblyWaterPage() {
                     ></textarea>
                     <button
                       type="submit"
-                      className="block w-full mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-500"
+                      className={`${flavors[0]}-brushings block w-full mt-4 px-4 py-2  text-white rounded-md  focus:outline-none focus:ring`}
                     >
                       {previouslyReviewed ? "Edit Review" : "Submit"}
                     </button>
@@ -279,7 +279,9 @@ export default function BubblyWaterPage() {
                       key={index}
                       className="bg-white w-64 md:w-96 lg:w-96 rounded-lg mb-5"
                     >
-                      <div className="bg-blue-200 rounded-t-lg p-2 flex items-center justify-between">
+                      <div
+                        className={`${flavors[0]}-brushings rounded-t-lg p-2 flex items-center justify-between`}
+                      >
                         <span class="text-gray-800 font-semibold">
                           {review.user.username}
                         </span>
