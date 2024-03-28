@@ -2,6 +2,7 @@ import { useQuery } from "@apollo/client";
 import { QUERY_ALL_BUBBLYS, QUERY_SINGLE_FLAVOR } from "../../utils/queries";
 import BubblyWaterListItem from "./BubblyWaterListItem";
 import { formatBrands } from "../../utils/formatBrands";
+import Loading from "./Loading";
 import { capitalizeSingleFlavor } from "../../utils/capitalizeSingleFlavor";
 export default function BubblyWaterList({ searchTerm }) {
   const { error, data } = searchTerm
@@ -50,7 +51,7 @@ export default function BubblyWaterList({ searchTerm }) {
               ))}
         </div>
       ) : (
-        <h1>Loading</h1>
+        <Loading />
       )}
     </>
   );

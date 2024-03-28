@@ -244,7 +244,7 @@ export default function BubblyWaterPage() {
                       <div className="flex  items-center">
                         <div className="rounded-full justify-center align-center bg-red-300 littleCircle mr-3 ">
                           <Link to={`/user/${rating.user._id}`}>
-                            {/* <span>{rating.user.username[0].toUpperCase()}</span> */}
+                            <span>{rating.user.username[0].toUpperCase()}</span>
                           </Link>
                         </div>
                         <Link to={`/user/${rating.user._id}`}>

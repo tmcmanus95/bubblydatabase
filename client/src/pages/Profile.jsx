@@ -3,6 +3,7 @@ import { QUERY_SINGLE_USER, QUERY_ME } from "../../utils/queries";
 import { useParams } from "react-router-dom";
 import UsersRatings from "../components/UsersRatings";
 import UsersReviews from "../components/UsersReviews";
+import Loading from "../components/Loading";
 export default function Profile() {
   const { userId } = useParams();
   const { loading, data } = useQuery(userId ? QUERY_SINGLE_USER : QUERY_ME, {
@@ -25,7 +26,7 @@ export default function Profile() {
   return (
     <>
       {loading ? (
-        <h1>Loading...</h1>
+        <Loading />
       ) : (
         <>
           <div className="flex justify-center items-center h-full">
