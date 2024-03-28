@@ -412,6 +412,9 @@ body {
   justify-content: center;
   align-items: center;
 }
+.userRatingElement {
+  font-size: 20px;
+}
 
 @keyframes animate-pop {
   0% {
@@ -424,5 +427,11 @@ body {
     opacity: 1;
     filter: brightness(1) saturate(1);
     transform: scale(1, 1);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .userRatingElement {
+    font-size: 10px;
   }
 }

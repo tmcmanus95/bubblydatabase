@@ -232,7 +232,7 @@ export default function BubblyWaterPage() {
             </div>
           </div>
           <section className="m-5 text-center flex justify-center flex-col lg:flex-row">
-            <section className="mr-10">
+            <section>
               <h2 className="text-2xl font-semibold">Ratings</h2>
               <section>
                 <ul className="p-5 flex-col flex items-center">

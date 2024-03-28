@@ -12,7 +12,7 @@ export default function UsersRatings({ ratings }) {
           <Link to={`/bubblyWater/${rating.bubblyWater._id}`}>
             <li
               key={index}
-              className="flex w-64 lg:w-96 border-2 border-black items-center justify-between bg-gray-100 hover:bg-gray-200"
+              className="flex w-64 md:w-96 border-2 border-black items-center justify-between bg-gray-100 hover:bg-gray-200 lg:text-md text-xs"
             >
               <div className="flex items-center">
                 <img
@@ -20,16 +20,19 @@ export default function UsersRatings({ ratings }) {
                   src={rating.bubblyWater.imageURL}
                   alt={rating.bubblyWater.productName}
                 />
-                <h1 className="flex items-center ml-3">
+                <h1 className="flex items-center ml-3 overflow-hidden">
                   <span className="w-20">{rating.bubblyWater.productName}</span>
                   <span className="m-3">
                     {formatBrands(rating.bubblyWater.brandName)}
                   </span>
                 </h1>
               </div>
-              <span className="text-md lg:text-2xl">
-                <Rating readOnly size="small" value={rating.rating} />
-              </span>
+              <Rating
+                readOnly
+                size="small"
+                value={rating.rating}
+                className="userRatingElement"
+              />
             </li>
           </Link>
         ))}
