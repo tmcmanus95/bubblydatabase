@@ -44,14 +44,16 @@ export default function AllFlavors() {
   flavors.sort();
 
   return (
-    <div className="mt-20 flex justify-center lg:flex gap-10 flex-wrap">
+    <div className="mt-10 justify-center flex flex-wrap gap-4 md:gap-6 lg:gap-10">
       {flavors.map((flavor, index) => (
         <Link key={index} to={`/flavors/${flavor.toLowerCase()}`}>
           <div
-            className={`w-64 ${flavor} text-center hover:bg-blue-300 hover:text-black`}
+            className={`${flavor} w-28 md:w-36 lg:w-48 h-20 md:h-24 lg:h-32 rounded-md text-center hover:bg-blue-300 hover:text-black`}
           >
-            <div className="p-5">
-              <h3 className="text-lg font-medium">{flavor}</h3>
+            <div className="flex items-center justify-center h-full p-2 md:p-3 lg:p-4">
+              <h3 className="text-sm md:text-base lg:text-lg font-medium">
+                {flavor}
+              </h3>
             </div>
           </div>
         </Link>

@@ -3,6 +3,7 @@ import { QUERY_SINGLE_USER, QUERY_ME } from "../../utils/queries";
 import { useParams } from "react-router-dom";
 import UsersRatings from "../components/UsersRatings";
 import UsersReviews from "../components/UsersReviews";
+import Loading from "../components/Loading";
 export default function Profile() {
   const { userId } = useParams();
   const { loading, data } = useQuery(userId ? QUERY_SINGLE_USER : QUERY_ME, {
@@ -25,15 +26,16 @@ export default function Profile() {
   return (
     <>
       {loading ? (
-        <h1>Loading...</h1>
+        <Loading />
       ) : (
         <>
-          <div>
-            <div className="rounded-full justify-center align-center bg-red-300 bigCircle">
-              <span>{username[0].toUpperCase()}</span>
+          <div className="flex justify-center items-center h-full">
+            <div className="flex justify-center items-center bg-red-300 w-16 h-16 lg:w-32 lg:h-32 rounded-full">
+              <span className="text-xl font-bold">
+                {username[0].toUpperCase()}
+              </span>
             </div>
-
-            <h1>{username}</h1>
+            <h1 className="mt-2">{username}</h1>
           </div>
           <div className="flex flex-wrap justify-center">
             {ratings && <UsersRatings ratings={ratings} />}

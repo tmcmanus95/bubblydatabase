@@ -161,7 +161,7 @@ export default function BubblyWaterPage() {
               <section className="m-5 flex flex-col items-center sm:flex-row sm:justify-center gap-10">
                 <div className="flex flex-col lg:flex-row items-center justify-center gap-4 p-8 bg-yellow shadow-md rounded-lg">
                   <img
-                    className="object-cover rounded-full lg:mr-10 w-48 md:w-96 lg:w-96"
+                    className="object-cover rounded-full lg:mr-10 w-48 md:w-96 lg:w-96 lg:h-96 md:h-96"
                     src={bubblyWater.imageURL}
                     alt={bubblyWater.productName}
                   />
@@ -232,7 +232,7 @@ export default function BubblyWaterPage() {
             </div>
           </div>
           <section className="m-5 text-center flex justify-center flex-col lg:flex-row">
-            <section className="mr-10">
+            <section>
               <h2 className="text-2xl font-semibold">Ratings</h2>
               <section>
                 <ul className="p-5 flex-col flex items-center">
@@ -244,7 +244,7 @@ export default function BubblyWaterPage() {
                       <div className="flex  items-center">
                         <div className="rounded-full justify-center align-center bg-red-300 littleCircle mr-3 ">
                           <Link to={`/user/${rating.user._id}`}>
-                            {/* <span>{rating.user.username[0].toUpperCase()}</span> */}
+                            <span>{rating.user.username[0].toUpperCase()}</span>
                           </Link>
                         </div>
                         <Link to={`/user/${rating.user._id}`}>

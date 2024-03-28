@@ -404,14 +404,6 @@ body {
   animation-timing-function: ease;
 }
 
-.bigCircle {
-  display: flex;
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  justify-content: center;
-  align-items: center;
-}
 .littleCircle {
   display: flex;
   width: 30px;
@@ -419,6 +411,9 @@ body {
   border-radius: 50%;
   justify-content: center;
   align-items: center;
+}
+.userRatingElement {
+  font-size: 20px;
 }
 
 @keyframes animate-pop {
@@ -432,5 +427,11 @@ body {
     opacity: 1;
     filter: brightness(1) saturate(1);
     transform: scale(1, 1);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .userRatingElement {
+    font-size: 10px;
   }
 }

@@ -7,29 +7,25 @@ export default function UsersReviews({ reviews }) {
       <section>
         <h3 className="m-5 flex justify-center">Recent Reviews</h3>
         <section>
-          <ul className="p-5 flex-col flex items-center ">
+          <ul className="p-5 flex-col flex items-center">
             {reviews?.map((review, index) => (
-              <Link>
-                <li
-                  key={index}
-                  style={{ width: "500px" }}
-                  className="border-2 bg-white mb-3 rounded-lg"
-                >
-                  <div className="rounded-t-lg p-2 bg-blue-300 flex items-center justify-between">
-                    <Link to={`/bubblyWater/${review.bubblyWater._id}`}>
-                      <img
-                        className="w-10 h-20 object-cover rounded-full"
-                        src={review.bubblyWater.imageURL}
-                        alt={review.bubblyWater.productName}
-                      />
-                    </Link>
-                    <Link to={`/bubblyWater/${review.bubblyWater._id}`}>
-                      <span>{review.bubblyWater.productName}</span>
-                    </Link>
-                    <Link to={`/brands/${review.bubblyWater.brandName}`}>
-                      <span>{formatBrands(review.bubblyWater.brandName)}</span>
-                    </Link>
-                    <div class="text-yellow-400">
+              <Link to={`/bubblyWater/${review.bubblyWater._id}`} key={index}>
+                <li className="border-2 w-64 md:w-96 bg-white mb-3 rounded-lg lg:text-l text-sm overflow-hidden">
+                  <div className="rounded-t-lg p-2 bg-blue-300 flex gap-3 items-center justify-between">
+                    <img
+                      className="w-10 h-20 object-cover rounded-full flex-shrink-0"
+                      src={review.bubblyWater.imageURL}
+                      alt={review.bubblyWater.productName}
+                    />
+                    <div className="flex flex-col flex-grow">
+                      <span className="overflow-hidden overflow-ellipsis">
+                        {review.bubblyWater.productName}
+                      </span>
+                      <span className="overflow-hidden overflow-ellipsis">
+                        {formatBrands(review.bubblyWater.brandName)}
+                      </span>
+                    </div>
+                    <div>
                       <Rating
                         readOnly
                         size="small"
@@ -38,13 +34,11 @@ export default function UsersReviews({ reviews }) {
                       />
                     </div>
                   </div>
-                  <Link to={`/bubblyWater/${review.bubblyWater._id}`}>
-                    <div class="mt-4">
-                      <p class="text-gray-700 ml-2 text-left">
-                        {review.reviewText}
-                      </p>
-                    </div>
-                  </Link>
+                  <div className="mt-4">
+                    <p className="text-gray-700 ml-2 text-left overflow-hidden overflow-ellipsis">
+                      {review.reviewText}
+                    </p>
+                  </div>
                 </li>
               </Link>
             ))}
