@@ -534,7 +534,7 @@ body {
 .Orange-background {
   background-color: #ffd7b5;
 }
-.Peach-brushings {
+.Orange-brushings {
   background-color: #ffa500 !important;
 }
 
@@ -642,7 +642,7 @@ body {
 }
 .Lychee-brushings {
   background-color: #f3e2ea !important;
-  color: black;
+  color: black !important;
 }
 
 .Cranberry {
@@ -727,7 +727,7 @@ body {
   background-color: #ffe4ed;
 }
 .Cherry-brushings {
-  background-color: #d10202;
+  background-color: #d10202 !important;
 }
 
 .bubblyListItem {

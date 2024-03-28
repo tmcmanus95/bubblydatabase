@@ -22,7 +22,6 @@ export default function BubblyWaterPage() {
   const { data, error } = useQuery(QUERY_SINGLE_BUBBLYWATER, {
     variables: { bubblyWaterId },
   });
-  console.log("here is my sibngle bubbly data, ", data);
   const { data: meIdData, error: meIdError } = useQuery(QUERY_MEID);
   const [addRating, { error: addRatingError }] = useMutation(ADD_RATING);
   const [editRating, { error: editRatingError }] = useMutation(EDIT_RATING);
@@ -40,8 +39,10 @@ export default function BubblyWaterPage() {
   let ratings = data?.bubblyWater?.ratings;
   let ratingsCount = data?.bubblyWater?.ratings.length;
   let reviews = data?.bubblyWater?.reviews;
+  console.log("meIdData", meIdData);
+  console.log("reviews data", reviews);
+  console.log("ratings data", ratings);
 
-  console.log("reviews", reviews);
   // Check if user has already rated bubbly water
   if (ratings && ratings.length > 0) {
     for (let i = 0; i < ratings.length; i++) {
@@ -60,14 +61,9 @@ export default function BubblyWaterPage() {
         userReview = reviews[i].reviewText;
         reviewId = reviews[i]._id;
         previouslyReviewed = true;
-        console.log("here is the reviewId, ", reviewId);
-        console.log("here is the userReview", userReview);
-        console.log("the previouslyReviewed value is ", previouslyReviewed);
       }
     }
   }
-
-  useEffect(() => {}, [value, previouslyRated]);
 
   const handleValueChange = (e, newValue) => {
     setValue(newValue);
@@ -103,8 +99,8 @@ export default function BubblyWaterPage() {
           bubblyWaterId: bubblyWaterId,
         },
       });
+      console.log("addrating data", data);
       previouslyRated = true;
-      console.log(previouslyRated);
     } catch (err) {
       console.error(err);
     }
@@ -120,8 +116,9 @@ export default function BubblyWaterPage() {
 
   const handleAddReview = async (e) => {
     e && e.preventDefault();
+    let reviewText = e.target.reviewText.value;
+
     try {
-      const reviewText = e.target.reviewText.value;
       const { data } = await addReview({
         variables: {
           bubblyWaterId: bubblyWaterId,
@@ -129,7 +126,7 @@ export default function BubblyWaterPage() {
           reviewText: reviewText,
         },
       });
-
+      console.log("add review data", data);
       previouslyReviewed = true;
     } catch (err) {
       console.log("error adding review", err);
@@ -138,7 +135,7 @@ export default function BubblyWaterPage() {
 
   const handleEditReview = async (e) => {
     e.preventDefault();
-    const reviewText = e.target.reviewText.value;
+    let reviewText = e.target.reviewText.value;
     console.log("This is my review text, ", reviewText);
     try {
       const { data } = await editReview({
@@ -250,12 +247,24 @@ export default function BubblyWaterPage() {
                       <div className="flex  items-center">
                         <div className="rounded-full justify-center align-center bg-red-300 littleCircle mr-3 ">
                           <Link to={`/user/${rating.user._id}`}>
-                            <span>{rating.user.username[0].toUpperCase()}</span>
+                            {rating.user.username ? (
+                              <span>
+                                {rating.user.username[0].toUpperCase()}
+                              </span>
+                            ) : (
+                              <></>
+                            )}
                           </Link>
                         </div>
-                        <Link to={`/user/${rating.user._id}`}>
-                          <h1>{rating.user.username}</h1>
-                        </Link>
+                        {rating.user.username ? (
+                          <span className="text-gray-800 font-semibold">
+                            {rating.user.username}
+                          </span>
+                        ) : (
+                          <span className="text-gray-800 font-semibold">
+                            me
+                          </span>
+                        )}
                       </div>
                       <span className="text-2xl">
                         <Rating
@@ -282,10 +291,16 @@ export default function BubblyWaterPage() {
                       <div
                         className={`${flavors[0]}-brushings rounded-t-lg p-2 flex items-center justify-between`}
                       >
-                        <span class="text-gray-800 font-semibold">
-                          {review.user.username}
-                        </span>
-                        <div class="text-yellow-400">
+                        {review.user.username ? (
+                          <span className="text-gray-800 font-semibold">
+                            {review.user.username}
+                          </span>
+                        ) : (
+                          <span className="text-gray-800 font-semibold">
+                            me
+                          </span>
+                        )}
+                        <div>
                           <Rating
                             readOnly
                             size="small"
@@ -294,8 +309,8 @@ export default function BubblyWaterPage() {
                           />
                         </div>
                       </div>
-                      <div class="mt-4 px-2">
-                        <p class="text-gray-700 ml-2 text-left pb-2">
+                      <div className="mt-4 px-2">
+                        <p className="text-gray-700 ml-2 text-left pb-2">
                           {review.reviewText}
                         </p>
                       </div>
