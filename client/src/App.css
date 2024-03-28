@@ -416,6 +416,28 @@ body {
   font-size: 20px;
 }
 
+.Plain-background {
+  background-color: grey;
+}
+.Raspberry-background {
+  background-color: #ffe4ed;
+}
+.Grapefruit-background {
+  background-color: #ffe4ed;
+}
+.Lime-background {
+  background-color: #f9fff7;
+}
+.Lemon-background {
+  background-color: #ffffed;
+}
+.Black-cherry-background {
+  background-color: #cbc3e3;
+}
+.Cherry-background {
+  background-color: #ff8488;
+}
+
 @keyframes animate-pop {
   0% {
     opacity: 0;
