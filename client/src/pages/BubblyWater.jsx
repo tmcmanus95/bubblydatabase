@@ -11,6 +11,7 @@ import {
   EDIT_REVIEW,
 } from "../../utils/mutations";
 import { capitalizeFlavors } from "../../utils/capitalizeFlavors";
+import { capitalizeSingleFlavor } from "../../utils/capitalizeSingleFlavor";
 import { Link } from "react-router-dom";
 import { formatBrands } from "../../utils/formatBrands";
 import Loading from "../components/Loading";
@@ -156,10 +157,14 @@ export default function BubblyWaterPage() {
   return (
     <>
       {bubblyWater ? (
-        <>
+        <div
+          className={`${capitalizeSingleFlavor(
+            bubblyWater.flavor[0]
+          )}-background`}
+        >
           <div>
             <div className="flex justify-center flex-col lg:flex-row">
-              <section className="m-5 flex flex-col items-center sm:flex-row sm:justify-center gap-10">
+              <section className="m-5 flex flex-col items-center sm:flex-row sm:justify-center gap-10 bg-white rounded-lg">
                 <div className="flex flex-col lg:flex-row items-center justify-center gap-4 p-8 bg-yellow shadow-md rounded-lg">
                   <img
                     className="object-cover rounded-full lg:mr-10 w-48 md:w-96 lg:w-96 lg:h-96 md:h-96"
@@ -298,7 +303,7 @@ export default function BubblyWaterPage() {
               </ul>
             </section>
           </section>
-        </>
+        </div>
       ) : (
         <Loading />
       )}

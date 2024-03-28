@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <div className="flex justify-center text-xl mb-5 h-10">
+    <div className="flex justify-center text-xl mb-5 h-10 bg-gray-100">
       <a
         href="https://github.com/tmcmanus95"
         target="_blank"
