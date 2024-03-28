@@ -12,8 +12,7 @@ export default function UsersReviews({ reviews }) {
               <Link>
                 <li
                   key={index}
-                  style={{ width: "500px" }}
-                  className="border-2 bg-white mb-3 rounded-lg"
+                  className="border-2 w-64 md:w-96  bg-white mb-3 rounded-lg"
                 >
                   <div className="rounded-t-lg p-2 bg-blue-300 flex items-center justify-between">
                     <Link to={`/bubblyWater/${review.bubblyWater._id}`}>

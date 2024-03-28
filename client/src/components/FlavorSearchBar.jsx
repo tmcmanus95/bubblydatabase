@@ -70,22 +70,19 @@ export default function FlavorSearchBar() {
   return (
     <>
       <Logo />
-      <div className=" mt-5">
+      <div className="mt-5 px-2">
         <section className="text-center ">
           <form onSubmit={handleFormSubmit} className="relative">
             <div className="items-center">
               <input
-                className="text-3xl mx-5 border-2 border-gray-400 py-2 px-4 rounded"
+                className="text-xl md:text-3xl mx-2 md:mx-5 border-2 border-gray-400 py-2 px-4 rounded"
                 type="text"
                 placeholder="Search for a flavor..."
                 value={searchTerm}
                 onChange={handleInputChange}
               />
               {searchTerm && (
-                <ul
-                  className="absolute mt-1 bg-white border border-gray-300 rounded z-10 left-1/2 transform -translate-x-1/2"
-                  style={{ width: "20rem" }}
-                >
+                <ul className="absolute mt-1 bg-white border border-gray-300 rounded z-10 left-1/2 transform -translate-x-1/2 w-full md:w-80">
                   {filteredFlavors.map((flavor) => (
                     <li
                       key={flavor}
@@ -100,7 +97,7 @@ export default function FlavorSearchBar() {
             </div>
             <button
               type="submit"
-              className="bg-blue-100 hover:bg-blue-200 font-bold py-2 px-4 rounded text-3xl mt-2"
+              className="bg-blue-100 hover:bg-blue-200 font-bold py-2 px-4 rounded text-xl md:text-3xl mt-2"
             >
               Search
             </button>

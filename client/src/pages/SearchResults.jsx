@@ -60,16 +60,16 @@ export default function SearchResults() {
   console.log("searchResults", searchResults);
   return (
     <>
-      <div className="mt-10 mb-5">
+      <div className="mt-10 mb-5 px-2">
         {queryAllLoading ? (
-          <h1>Searching products...</h1>
+          <h1 className="text-xl md:text-4xl">Searching products...</h1>
         ) : (
           <>
-            <h1 className="text-4xl w-full mb-5 ml-5">Products</h1>
+            <h1 className="text-4xl mb-5 ml-2 md:ml-5">Products</h1>
 
             {searchResults.length > 0 ? (
               <>
-                <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
                   {searchResults.map((result, index) => (
                     <Link to={`/bubblyWater/${result._id}`} key={index}>
                       <div className="p-4 border rounded bg-gray-100 flex">
@@ -100,7 +100,7 @@ export default function SearchResults() {
                 </div>
               </>
             ) : (
-              <h1 className="ml-5 text-xl mb-5">
+              <h1 className="ml-2 md:ml-5 text-lg md:text-xl mb-5">
                 No search results with term "{searchTerm}" found.
               </h1>
             )}
@@ -109,18 +109,18 @@ export default function SearchResults() {
       </div>
       <div>
         {userLoading ? (
-          <h1>Searching users...</h1>
+          <h1 className="text-xl md:text-4xl">Searching users...</h1>
         ) : (
           <>
-            <h1 className="text-4xl w-full mb-5 ml-5">Users</h1>
+            <h1 className="text-4xl mb-5 ml-2 md:ml-5">Users</h1>
             {userData.searchUsers ? (
-              <div className="bg-white text-2xl mr-10">
+              <div className="bg-white text-xl md:text-2xl mr-2 md:mr-10">
                 <Link to={`/user/${userData?.searchUsers?._id}`}>
                   <span>{userData?.searchUsers?.username}</span>
                 </Link>
               </div>
             ) : (
-              <h2 className="ml-5 text-xl mb-5">
+              <h2 className="ml-2 md:ml-5 text-lg md:text-xl mb-5">
                 no users named {searchTerm} found
               </h2>
             )}

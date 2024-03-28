@@ -16,13 +16,21 @@ export default function NavBar() {
     Auth.logout();
   };
   return (
-    <nav className="container mx-auto px-4 md:flex items-center gap-6 relative">
-      <div className="flex items-center w-full">
+    <nav className="container mx-auto px-4 md:flex items-center bg-blue-300 gap-6 relative">
+      <div className="flex w-full items-center">
         <Link to="/">
-          <img className="height-10" src={popIcon}></img>{" "}
+          <img className="h-5 lg:h-10 mr-5" src={popIcon}></img>{" "}
         </Link>
-        <div className="md:hidden flex items-center absolute top-0 right-0">
+        <div className="md:hidden flex items-center absolute top-4 right-4">
           <GiHamburgerMenu onClick={toggleMenu} />
+        </div>
+        <div className="hidden md:gap-5  md:flex md:flex-row">
+          <Link to="/allBrands">Brands</Link>
+          <Link to="/allFlavors">Flavors</Link>
+          <Link to="/about">About</Link>
+        </div>
+        <div className="mx-5 flex justify-center align-center items-center">
+          <GeneralSearchBar />
         </div>
 
         {menuOpen && (

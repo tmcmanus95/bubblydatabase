@@ -28,8 +28,8 @@ export default function Profile() {
         <h1>Loading...</h1>
       ) : (
         <>
-          <div className="justify-center align-center text-center">
-            <div className="flex justify-center items-center bg-red-300 w-32 h-32 rounded-full">
+          <div className="justify-center align-center text-center ">
+            <div className="flex justify-center items-center bg-red-300 w-16 h-16 lg;w-32 lg:h-32 rounded-full">
               <span className="text-xl font-bold">
                 {username[0].toUpperCase()}
               </span>
