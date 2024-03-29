@@ -74,6 +74,19 @@ export default function AllBrands() {
             <h3 className="text-lg font-medium pt-8 pb-2">Liquid Death</h3>
           </div>
         </Link>
+        <Link to="/brands/topo-chico">
+          <div>
+            <div className="flex-1 text-center shadow-lg p-10 rounded-xl my-10  bg-white">
+              <img
+                src="https://www.topochico.com/content/dam/nagbrands/us/topochico/en/topo-chico-logo-2023.png"
+                width={100}
+                height={100}
+                className="mx-auto"
+              />
+              <h3 className="text-lg font-medium pt-8 pb-2">Topo Chico</h3>
+            </div>
+          </div>
+        </Link>
 
         <Link to="/brands/san-pellegrino">
           <div>

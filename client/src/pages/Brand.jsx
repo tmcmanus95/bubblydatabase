@@ -45,6 +45,8 @@ export default function Brand() {
     "liquid-death":
       "https://upload.wikimedia.org/wikipedia/commons/e/e3/Liquid-Death-Logo.png",
     aha: "https://www.coca-colacompany.com/content/dam/company/us/en/articles/aha-1.jpeg",
+    "topo-chico":
+      "https://www.topochico.com/content/dam/nagbrands/us/topochico/en/topo-chico-logo-2023.png",
   };
   return (
     <>
