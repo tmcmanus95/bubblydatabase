@@ -24,7 +24,7 @@ export default function NavBar() {
         <div className="md:hidden flex items-center absolute top-4 right-4">
           <GiHamburgerMenu onClick={toggleMenu} />
         </div>
-        <div className="hidden md:gap-5  md:flex md:flex-row">
+        <div className="hidden md:gap-5  md:flex md:flex-row ">
           <Link to="/allBrands" className="hover:bg-blue-300 lg:p-2 rounded-lg">
             Brands
           </Link>
@@ -45,18 +45,21 @@ export default function NavBar() {
         {menuOpen && (
           <div className="absolute inset-x-0 md:relative top-full md:top-auto md:left-auto md:flex flex-col items-center space-x-1 pb-3 md:pb-0 bg-blue-100">
             <Link
+              onClick={toggleMenu}
               to="/allBrands"
               className="py-2 px-3 block w-full hover:bg-blue-300"
             >
               Brands
             </Link>
             <Link
+              onClick={toggleMenu}
               to="/allFlavors"
               className="py-2 px-3 block w-full hover:bg-blue-300"
             >
               Flavors
             </Link>
             <Link
+              onClick={toggleMenu}
               to="/about"
               className="py-2 px-3 block w-full hover:bg-blue-300"
             >
@@ -65,6 +68,7 @@ export default function NavBar() {
             {Auth.loggedIn() ? (
               <>
                 <Link
+                  onClick={toggleMenu}
                   to="/me"
                   className="py-2 px-3 block w-full hover:bg-blue-300 "
                 >
