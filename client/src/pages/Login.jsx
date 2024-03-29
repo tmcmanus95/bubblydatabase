@@ -51,7 +51,7 @@ const Login = (props) => {
           </p>
         ) : (
           <form onSubmit={handleFormSubmit} id="loginForm">
-            <div className="mb-4">
+            <div className="mb-5 border-2 border-solid px-1 border-sky-300">
               <input
                 className="form-input w-full"
                 placeholder="Your email"
@@ -62,9 +62,9 @@ const Login = (props) => {
               />
             </div>
 
-            <div className="mb-4">
+            <div className="mb-5 border-2 border-solid px-1 border-sky-300">
               <input
-                className="form-input w-full"
+                className="form-input w-full "
                 placeholder="******"
                 name="password"
                 type="password"
@@ -75,10 +75,10 @@ const Login = (props) => {
 
             <div className="text-center">
               <button
-                className="btn btn-block btn-info"
-                style={{ cursor: "pointer" }}
+                className="bg-transparent hover:bg-blue-300 text-blue-500 font-semibold hover:text-white py-2 px-4 border border-blue-300 hover:border-transparent rounded"
                 type="submit"
               >
+                {" "}
                 Submit
               </button>
             </div>

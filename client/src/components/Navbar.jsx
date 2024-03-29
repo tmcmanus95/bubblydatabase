@@ -21,10 +21,13 @@ export default function NavBar() {
         <Link to="/">
           <img className="h-5 lg:h-10 mr-5" src={popIcon}></img>{" "}
         </Link>
-        <div className="md:hidden flex items-center absolute top-4 right-4">
-          <GiHamburgerMenu onClick={toggleMenu} style={{ fontSize: "24px" }} />
+        <div className="md:hidden flex items-center text-right">
+          <GiHamburgerMenu
+            onClick={toggleMenu}
+            style={{ fontSize: "24px", cursor: "pointer" }}
+          />
         </div>
-        <div className="hidden md:gap-5  md:flex md:flex-row ">
+        <div className="hidden md:gap-5 md:flex md:flex-row ">
           <Link to="/allBrands" className="hover:bg-blue-300 lg:p-2 rounded-lg">
             Brands
           </Link>
@@ -43,7 +46,7 @@ export default function NavBar() {
         </div>
 
         {menuOpen && (
-          <div className="absolute inset-x-0 md:relative top-full md:top-auto md:left-auto md:flex flex-col items-center space-x-1 pb-3 md:pb-0 bg-blue-100">
+          <div className="absolute inset-x-0 md:relative top-full md:top-auto md:left-auto md:flex flex-col items-center space-x-1 pb-3 md:pb-0 bg-gray-200">
             <Link
               onClick={toggleMenu}
               to="/allBrands"
@@ -86,12 +89,14 @@ export default function NavBar() {
                 <Link
                   to="/login"
                   className="py-2 px-3 block w-full hover:bg-blue-300 "
+                  onClick={toggleMenu}
                 >
                   Login
                 </Link>
                 <Link
                   to="/signup"
                   className="py-2 px-3 block w-full hover:bg-blue-300 "
+                  onClick={toggleMenu}
                 >
                   Signup
                 </Link>

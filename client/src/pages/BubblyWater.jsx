@@ -161,10 +161,10 @@ export default function BubblyWaterPage() {
         >
           <div>
             <div className="flex justify-center flex-col lg:flex-row">
-              <section className="m-5 flex flex-col items-center sm:flex-row sm:justify-center gap-10 bg-white rounded-lg">
-                <div className="flex flex-col lg:flex-row items-center justify-center gap-4 p-8 bg-yellow shadow-md rounded-lg">
+              <section className="m-5 flex flex-col items-center sm:flex-row sm:justify-center gap-10  rounded-lg">
+                <div className="flex flex-col lg:flex-row items-center bg-white justify-center gap-4 p-8 bg-yellow shadow-md rounded-lg">
                   <img
-                    className="object-cover rounded-full lg:mr-10 w-48 md:w-96 lg:w-96 lg:h-96 md:h-96"
+                    className="object-cover rounded-full lg:mr-10 w-48 h-48 md:w-96 lg:w-96 lg:h-96 md:h-96"
                     src={bubblyWater.imageURL}
                     alt={bubblyWater.productName}
                   />
@@ -245,7 +245,7 @@ export default function BubblyWaterPage() {
                       className="flex border-2 border-black items-center justify-between w-72 md:w-96 lg:w-96 bg-gray-100 hover:bg-gray-200"
                     >
                       <div className="flex  items-center">
-                        <div className="rounded-full justify-center align-center bg-red-300 littleCircle mr-3 text-xs md:text-md">
+                        <div className="rounded-full justify-center align-center bg-red-300 littleCircle mr-3 ">
                           <Link to={`/user/${rating.user._id}`}>
                             {rating.user.username ? (
                               <span>
@@ -257,7 +257,7 @@ export default function BubblyWaterPage() {
                           </Link>
                         </div>
                         {rating.user.username ? (
-                          <span className="text-gray-800 font-semibold">
+                          <span className="text-gray-800 font-semibold text-xs md:text-md">
                             {rating.user.username}
                           </span>
                         ) : (
