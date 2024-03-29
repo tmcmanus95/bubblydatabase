@@ -42,6 +42,9 @@ export default function Brand() {
     kimino: "https://m.media-amazon.com/images/I/61QAISgfH9L.jpg",
     spindrift:
       "https://www.soulfirefarm.org/wp-content/uploads/2023/04/spindrift-logo-vector.png",
+    "liquid-death":
+      "https://upload.wikimedia.org/wikipedia/commons/e/e3/Liquid-Death-Logo.png",
+    aha: "https://www.coca-colacompany.com/content/dam/company/us/en/articles/aha-1.jpeg",
   };
   return (
     <>

@@ -29,6 +29,17 @@ export default function AllBrands() {
             <h3 className="text-lg font-medium pt-8 pb-2">bubly</h3>
           </div>
         </Link>
+        <Link to="/brands/aha">
+          <div className="flex-1 text-center shadow-lg p-10 rounded-xl my-10  bg-white">
+            <img
+              src="https://www.coca-colacompany.com/content/dam/company/us/en/articles/aha-1.jpeg"
+              width={100}
+              height={100}
+              className="mx-auto"
+            />
+            <h3 className="text-lg font-medium pt-8 pb-2">Aha</h3>
+          </div>
+        </Link>
 
         <Link to="/brands/sparkling-ice">
           <div className="flex-1 text-center shadow-lg p-10 rounded-xl my-10  bg-white">
@@ -50,6 +61,17 @@ export default function AllBrands() {
               className="mx-auto"
             />
             <h3 className="text-lg font-medium pt-8 pb-2">Spindrift</h3>
+          </div>
+        </Link>
+        <Link to="/brands/liquid-death">
+          <div className="flex-1 text-center shadow-lg p-10 rounded-xl my-10  bg-white">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/e/e3/Liquid-Death-Logo.png"
+              width={100}
+              height={100}
+              className="mx-auto"
+            />
+            <h3 className="text-lg font-medium pt-8 pb-2">Liquid Death</h3>
           </div>
         </Link>
 
