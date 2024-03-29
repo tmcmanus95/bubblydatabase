@@ -20,7 +20,7 @@ export default function Logo() {
             <h3 className="text-xl mt-5 md:text-3xl">
               Bubbly Water Rating Database
             </h3>
-            <p className="text-sm md:text-xl py-5 mt-5 leading-8 text-gray-800 max-w-xl mx-auto">
+            <p className="text-sm md:text-xl  mt-5 leading-8 text-gray-800 max-w-xl mx-auto">
               Find the top rated carbonated waters by flavor or brand.
             </p>
           </div>

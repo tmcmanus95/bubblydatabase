@@ -19,15 +19,16 @@ export default function BubblyWaterList({ searchTerm }) {
     }
   }
 
-  console.log("I am in the BubblyWaterList. Here is my data, ", data);
-  console.log("sorted bubbly waters", sortedBubblyWaters);
-
   return (
     <>
       {data ? (
-        <div>
+        <div
+          className={
+            searchTerm ? `${capitalizeSingleFlavor(searchTerm)}-background` : ""
+          }
+        >
           <div>
-            <h3 className="lg:text-5xl text-xl text-center py-2 mt-5 font-bold">
+            <h3 className="lg:text-5xl text-xl text-center pt-10 font-bold">
               {searchTerm ? (
                 <span>
                   Top Rated{" "}
