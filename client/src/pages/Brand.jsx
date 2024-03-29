@@ -79,7 +79,7 @@ export default function Brand() {
               ))}
             </>
           ) : (
-            <h1>No bubbly waters found</h1>
+            <Loading />
           )}
         </div>
       )}
