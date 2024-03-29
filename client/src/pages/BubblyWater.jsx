@@ -242,10 +242,10 @@ export default function BubblyWaterPage() {
                   {bubblyWater.ratings?.map((rating, index) => (
                     <li
                       key={index}
-                      className="flex border-2 border-black items-center justify-between w-64 md:w-96 lg:w-96 bg-gray-100 hover:bg-gray-200"
+                      className="flex border-2 border-black items-center justify-between w-72 md:w-96 lg:w-96 bg-gray-100 hover:bg-gray-200"
                     >
                       <div className="flex  items-center">
-                        <div className="rounded-full justify-center align-center bg-red-300 littleCircle mr-3 ">
+                        <div className="rounded-full justify-center align-center bg-red-300 littleCircle mr-3 text-xs md:text-md">
                           <Link to={`/user/${rating.user._id}`}>
                             {rating.user.username ? (
                               <span>
@@ -286,7 +286,7 @@ export default function BubblyWaterPage() {
                   <Link to={`/user/${review.user._id}`}>
                     <li
                       key={index}
-                      className="bg-white w-64 md:w-96 lg:w-96 rounded-lg mb-5"
+                      className="bg-white w-72 md:w-96 lg:w-96 rounded-lg mb-5"
                     >
                       <div
                         className={`${flavors[0]}-brushings rounded-t-lg p-2 flex items-center justify-between`}

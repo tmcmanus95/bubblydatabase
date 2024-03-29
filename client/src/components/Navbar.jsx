@@ -22,7 +22,7 @@ export default function NavBar() {
           <img className="h-5 lg:h-10 mr-5" src={popIcon}></img>{" "}
         </Link>
         <div className="md:hidden flex items-center absolute top-4 right-4">
-          <GiHamburgerMenu onClick={toggleMenu} />
+          <GiHamburgerMenu onClick={toggleMenu} style={{ fontSize: "24px" }} />
         </div>
         <div className="hidden md:gap-5  md:flex md:flex-row ">
           <Link to="/allBrands" className="hover:bg-blue-300 lg:p-2 rounded-lg">
