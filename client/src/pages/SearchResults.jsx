@@ -107,7 +107,7 @@ export default function SearchResults() {
           </>
         )}
       </div>
-      <div>
+      <div className="px-2">
         {userLoading ? (
           <h1 className="text-xl md:text-4xl">Searching users...</h1>
         ) : (
