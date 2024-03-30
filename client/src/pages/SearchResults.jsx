@@ -12,7 +12,6 @@ import BubblyWaterListItem from "../components/BubblyWaterListItem";
 export default function SearchResults() {
   const { searchTerm } = useParams();
   let brandSearchTerm = searchTerm.toLowerCase().replace(/ /g, "-");
-  console.log("search terh: ", searchTerm);
   const {
     data: productData,
     error: productError,
@@ -27,7 +26,6 @@ export default function SearchResults() {
   } = useQuery(QUERY_ALL_DATABASE, {
     variables: { searchTerm: searchTerm },
   });
-  console.log("queryAllData", queryAllData);
 
   const {
     data: brandData,
@@ -51,13 +49,7 @@ export default function SearchResults() {
     variables: { username: searchTerm },
   });
 
-  console.log("brand search term", brandSearchTerm);
-  console.log("Results from product search", productData);
-  console.log("Results from brand search", brandData);
-  console.log("Results from flavor search", flavorData);
-  console.log("Results from user search", userData);
   const searchResults = queryAllData?.searchGeneralBubblyWater;
-  console.log("searchResults", searchResults);
   return (
     <>
       <div className="mt-10 mb-5 px-2">
