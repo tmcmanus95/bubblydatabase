@@ -197,13 +197,14 @@ body {
   padding: 5px;
   margin: 3px;
   background-color: #27ae60;
+  color: white;
 }
 .Apple-background {
   background-color: #f9fff7;
 }
 .Apple-brushings {
   background-color: #27ae60 !important;
-  color: black !important;
+  color: white !important;
 }
 
 .Blackberry {
@@ -281,12 +282,14 @@ body {
   padding: 5px;
   margin: 3px;
   background-color: #9b59b6;
+  color: white;
 }
 .Berry-background {
   background-color: #f2e4fd;
 }
 .Berry-brushings {
   background-color: #9b59b6 !important;
+  color: white !important;
 }
 
 .Grapefruit {
@@ -710,6 +713,12 @@ body {
   padding: 5px;
   margin: 3px;
   background-color: #e74c3c;
+}
+.Apple-cider-background {
+  background-color: #ffe4ed;
+}
+.Apple-cider-brushings {
+  background-color: #e74c3c !important;
 }
 
 .Cinnamon {

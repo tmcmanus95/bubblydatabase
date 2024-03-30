@@ -27,6 +27,7 @@ export default function BubblyWaterPage() {
   const [editRating, { error: editRatingError }] = useMutation(EDIT_RATING);
   const [addReview, { error: addReviewError }] = useMutation(ADD_REVIEW);
   const [editReview, { error: editReviewError }] = useMutation(EDIT_REVIEW);
+  const [reviewText, setReviewText] = useState("");
   const userId = meIdData?.meId?._id;
   const bubblyWater = data?.bubblyWater;
   const flavors = bubblyWater ? capitalizeFlavors(bubblyWater) : [];
@@ -39,9 +40,6 @@ export default function BubblyWaterPage() {
   let ratings = data?.bubblyWater?.ratings;
   let ratingsCount = data?.bubblyWater?.ratings.length;
   let reviews = data?.bubblyWater?.reviews;
-  console.log("meIdData", meIdData);
-  console.log("reviews data", reviews);
-  console.log("ratings data", ratings);
 
   // Check if user has already rated bubbly water
   if (ratings && ratings.length > 0) {
@@ -112,6 +110,7 @@ export default function BubblyWaterPage() {
     } else {
       handleAddReview(e);
     }
+    setReviewText("");
   };
 
   const handleAddReview = async (e) => {
@@ -127,12 +126,12 @@ export default function BubblyWaterPage() {
         },
       });
       console.log("add review data", data);
+
       previouslyReviewed = true;
     } catch (err) {
       console.log("error adding review", err);
     }
   };
-
   const handleEditReview = async (e) => {
     e.preventDefault();
     let reviewText = e.target.reviewText.value;
@@ -222,6 +221,8 @@ export default function BubblyWaterPage() {
                       className="w-full p-4 border rounded-md focus:outline-none focus:ring focus:border-blue-500"
                       placeholder="Write your review here..."
                       rows="4"
+                      value={reviewText}
+                      onChange={(e) => setReviewText(e.target.value)}
                     ></textarea>
                     <button
                       type="submit"

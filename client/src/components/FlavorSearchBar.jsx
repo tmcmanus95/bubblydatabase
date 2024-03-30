@@ -12,7 +12,7 @@ const flavors = [
   "Calamansi",
   "Chai",
   "Cherry",
-  "Cinammon",
+  "Cinnamon",
   "Citrus",
   "Coconut",
   "Cola",
@@ -64,7 +64,7 @@ export default function FlavorSearchBar() {
 
   const handleSelectFlavor = (flavor) => {
     setSelectedFlavor(flavor);
-    setSearchTerm(flavor);
+    setSearchTerm("");
   };
 
   const handleFormSubmit = (e) => {
