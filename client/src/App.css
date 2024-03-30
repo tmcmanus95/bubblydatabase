@@ -164,6 +164,19 @@ body {
   background-color: #b4f0cd !important;
   color: black !important;
 }
+.Melon {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #fdbcb4;
+}
+.Melon-background {
+  background-color: #b4f0cd;
+}
+.Melon-brushings {
+  background-color: #b4f0cd !important;
+  color: black !important;
+}
 
 .Mint {
   border-radius: 5px;
@@ -212,6 +225,11 @@ body {
   padding: 5px;
   margin: 3px;
   background-color: #3498db;
+  color: white;
+}
+.Blueberry-brushings {
+  background-color: #3498db !important;
+  color: white !important;
 }
 
 .Raspberry {
@@ -305,12 +323,14 @@ body {
   padding: 5px;
   margin: 3px;
   background-color: #81072c;
+  color: white;
 }
 .Passionfruit-background {
   background-color: #f2e4fd;
 }
 .Passionfruit-brushings {
   background-color: #81072c !important;
+  color: white !important;
 }
 .Dragon-fruit {
   border-radius: 5px;
@@ -524,6 +544,18 @@ body {
 .Peach-brushings {
   background-color: #f39c12 !important;
 }
+.Nectarine {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #eca93d;
+}
+.Nectarine-background {
+  background-color: #ffd7b5;
+}
+.Nectarine-brushings {
+  background-color: #eca93d !important;
+}
 
 .Orange {
   border-radius: 5px;
@@ -568,13 +600,14 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  background-color: #2c3e50;
+  background-color: #422801;
+  color: white;
 }
 .Cola-background {
   background-color: #e6d9cb;
 }
 .Cola-brushings {
-  background-color: #2c3e50 !important;
+  background-color: #422801 !important;
   color: white;
 }
 
@@ -650,12 +683,26 @@ body {
   padding: 5px;
   margin: 3px;
   background-color: #e74c3c;
+  color: white;
 }
 .Cranberry-background {
   background-color: #ffe4ed;
 }
 .Cranberry-brushings {
   background-color: #e74c3c !important;
+}
+.Rose {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #ff007f;
+  color: white;
+}
+.Rose-background {
+  background-color: #ffe4ed;
+}
+.Rose-brushings {
+  background-color: #ff007f !important;
 }
 
 .Apple-cider {
@@ -683,6 +730,7 @@ body {
   padding: 5px;
   margin: 3px;
   background-color: #8e44ad;
+  color: white;
 }
 .Grape-background {
   background-color: #f2e4fd;

@@ -292,13 +292,11 @@ export default function BubblyWaterPage() {
                         className={`${flavors[0]}-brushings rounded-t-lg p-2 flex items-center justify-between`}
                       >
                         {review.user.username ? (
-                          <span className="text-gray-800 font-semibold">
+                          <span className=" font-semibold">
                             {review.user.username}
                           </span>
                         ) : (
-                          <span className="text-gray-800 font-semibold">
-                            me
-                          </span>
+                          <span className=" font-semibold">me</span>
                         )}
                         <div>
                           <Rating
