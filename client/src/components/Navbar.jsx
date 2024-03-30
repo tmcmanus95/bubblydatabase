@@ -9,7 +9,6 @@ export default function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
-    console.log("clicked, menuOpen is now:", menuOpen);
   };
   const logout = (event) => {
     event.preventDefault();
@@ -19,9 +18,9 @@ export default function NavBar() {
     <nav className=" mx-auto px-4 md:flex items-center bg-gray-100 gap-6 relative">
       <div className="flex w-full items-center">
         <Link to="/">
-          <img className="h-5 lg:h-10 mr-5" src={popIcon}></img>{" "}
+          <img className="h-5 lg:h-10  mr-5" src={popIcon}></img>{" "}
         </Link>
-        <div className="md:hidden flex items-center text-right">
+        <div className="md:hidden flex items-center ml-5 text-right">
           <GiHamburgerMenu
             onClick={toggleMenu}
             style={{ fontSize: "24px", cursor: "pointer" }}
