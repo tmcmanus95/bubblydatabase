@@ -190,6 +190,8 @@ export default function BubblyWaterPage() {
                         value={previouslyRated ? userRating : value}
                         defaultValue={userRating}
                         precision={0.5}
+                        size="large"
+                        className="mt-3"
                         onChange={(e, newValue) => {
                           handleValueChange(e, newValue);
                         }}
