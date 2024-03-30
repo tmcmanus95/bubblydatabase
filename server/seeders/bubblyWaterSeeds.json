@@ -161,7 +161,7 @@
   {
     "productName": "Cherry Blosson",
     "brandName": "la-croix",
-    "imageURL": "https://m.media-amazon.com/images/I/41c1iKgsOzL._AC_UF894,1000_QL80_.jpg",
+    "imageURL": "https://bestlifeonline.com/wp-content/uploads/sites/3/2023/04/Cherry-Blossom-La-Croix.png?w=500",
     "flavor": ["cherry"],
     "isCaffeinated": false,
     "hasCBD": false
@@ -209,8 +209,8 @@
   {
     "productName": "Cúrate - Pomme Bayá",
     "brandName": "la-croix",
-    "imageURL": "https://m.media-amazon.com/images/I/71-KfMTjpwL._AC_UF350,350_QL80_.jpg",
-    "flavor": ["pineapple", "strawberry"],
+    "imageURL": "https://ip.prod.freshop.retail.ncrcloud.com/resize?url=https://images.freshop.ncrcloud.com/00073360771019/d0db00fd9529454df1faccae50c8bcbe_large.png&width=512&type=webp&quality=90",
+    "flavor": ["apple", "berry"],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -515,7 +515,7 @@
     "productName": "Island Punch",
     "brandName": "spindrift",
     "imageURL": "https://drinkspindrift.com/cdn/shop/files/Spindrift_IslandPunch_Can-flatlay.png?v=1707762478&width=317",
-    "flavor": ["passionfruit", "guava", "orange"],
+    "flavor": ["passionfruit", "guava", "orange", "fruit-punch"],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -523,7 +523,7 @@
     "productName": "Grapeade",
     "brandName": "spindrift",
     "imageURL": "https://drinkspindrift.com/cdn/shop/files/Spindrift_Grapeade_Can-flatlay.png?v=1707762470&width=317",
-    "flavor": ["grape", "grapeade"],
+    "flavor": ["grape"],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1239,7 +1239,7 @@
     "productName": "Black Cherry",
     "brandName": "sparkling-ice",
     "imageURL": "https://www.sparklingice.com/wp-content/uploads/2021/06/SI_US_BC_CORE_72DPI_0620.png",
-    "flavor": ["blackcherry"],
+    "flavor": ["black-cherry"],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1271,7 +1271,7 @@
     "productName": "Cherry Limeade",
     "brandName": "sparkling-ice",
     "imageURL": "https://www.sparklingice.com/wp-content/uploads/2021/06/SI_US_ChL_CORE_72DPI_0620.png",
-    "flavor": ["cherry", "limeade"],
+    "flavor": ["cherry", "lime"],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1397,7 +1397,7 @@
   },
   {
     "productName": "+ Energy - Berry Blast",
-    "brandName": "Sparkling Ice",
+    "brandName": "sparkling-ice",
     "imageURL": "https://www.sparklingice.com/wp-content/uploads/2023/07/Sparkling-Ice-Plus-Energy-Berry-Blast-12-oz-can-Website.png",
     "flavor": ["berry"],
     "isCaffeinated": true,
@@ -1405,7 +1405,7 @@
   },
   {
     "productName": "+ Energy - Power Punch",
-    "brandName": "Sparkling Ice",
+    "brandName": "sparkling-ice",
     "imageURL": "https://www.sparklingice.com/wp-content/uploads/2023/07/Sparkling-Ice-Plus-Energy-Power-Punch-12-oz-can-Website.png",
     "flavor": ["fruit-punch", "orange", "cherry"],
     "isCaffeinated": true,
