@@ -7,8 +7,6 @@ import { formatBrands } from "../../utils/formatBrands";
 export default function BubblyWaterListItem({ bubblyWater, ranking }) {
   let ratingCount = 0;
   ranking = ranking + 1;
-  console.log("I am in the BubblyWaterListItem, here is my data", bubblyWater);
-  console.log("here is my ranking,", ranking);
   const capitalizedFlavors = capitalizeFlavors(bubblyWater);
   if (bubblyWater.ratings.length) {
     ratingCount = bubblyWater?.ratings?.length;

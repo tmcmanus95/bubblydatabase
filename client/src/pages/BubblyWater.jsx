@@ -83,7 +83,7 @@ export default function BubblyWaterPage() {
       });
       previouslyRated = true;
     } catch (err) {
-      console.error(err);
+      console.error("Error editing review, ", err);
     }
   };
   const handleAddRating = async (e, newValue) => {
@@ -97,10 +97,9 @@ export default function BubblyWaterPage() {
           bubblyWaterId: bubblyWaterId,
         },
       });
-      console.log("addrating data", data);
       previouslyRated = true;
     } catch (err) {
-      console.error(err);
+      console.error("Error adding rating, ", err);
     }
   };
 
@@ -125,17 +124,15 @@ export default function BubblyWaterPage() {
           reviewText: reviewText,
         },
       });
-      console.log("add review data", data);
 
       previouslyReviewed = true;
     } catch (err) {
-      console.log("error adding review", err);
+      console.log("Error adding review", err);
     }
   };
   const handleEditReview = async (e) => {
     e.preventDefault();
     let reviewText = e.target.reviewText.value;
-    console.log("This is my review text, ", reviewText);
     try {
       const { data } = await editReview({
         variables: {
@@ -143,7 +140,6 @@ export default function BubblyWaterPage() {
           reviewId: reviewId,
         },
       });
-      console.log("edit review data", data);
       previouslyReviewed = true;
     } catch (err) {
       console.error("Error editing review, ", err);
