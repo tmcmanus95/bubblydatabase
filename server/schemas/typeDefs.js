@@ -4,6 +4,7 @@ const typeDefs = `
     username: String
     email: String
     password: String
+    color: String
     ratings: [Rating]
     reviews: [Review]
 
@@ -65,6 +66,7 @@ const typeDefs = `
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     removeUser: User
+    editUserColor(userId: ID!, color: String): User
     login(email: String!, password: String!): Auth
     addRating(bubblyWaterId: ID!, userId: ID, rating: Float!): BubblyWater
     editRating(ratingId: ID!, rating: Float!): Rating

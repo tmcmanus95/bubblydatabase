@@ -56,6 +56,7 @@ export const QUERY_SINGLE_BUBBLYWATER = gql`
         user {
           _id
           username
+          color
         }
       }
       reviews {
@@ -64,6 +65,7 @@ export const QUERY_SINGLE_BUBBLYWATER = gql`
         user {
           _id
           username
+          color
         }
       }
     }
@@ -74,6 +76,7 @@ export const QUERY_SINGLE_USER = gql`
     user(userId: $userId) {
       _id
       username
+      color
       ratings {
         _id
         rating
@@ -131,6 +134,7 @@ export const QUERY_ME = gql`
     me {
       _id
       username
+      color
       ratings {
         _id
         rating

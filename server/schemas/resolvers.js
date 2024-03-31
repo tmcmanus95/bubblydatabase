@@ -137,6 +137,21 @@ const resolvers = {
       return User.findOneAndDelete({ _id: userId });
     },
 
+    editUserColor: async (parent, { userId, color }, context) => {
+      try {
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: userId },
+          { $set: { color } },
+          { new: true }
+        );
+
+        return updatedUser;
+      } catch (error) {
+        console.error(error);
+        throw new Error("Failed to edit color");
+      }
+    },
+
     addRating: async (parent, { userId, bubblyWaterId, rating }, context) => {
       try {
         const newRating = await Rating.create({
@@ -225,7 +240,6 @@ const resolvers = {
         const user = await User.findById(userId);
         user.reviews.push(newReview._id);
         await user.save();
-        console.log("ubw", updatedBubblyWater);
         await updatedBubblyWater.save();
         return updatedBubblyWater;
       } catch (error) {

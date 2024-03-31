@@ -10,6 +10,15 @@ export const ADD_USER = gql`
     }
   }
 `;
+export const EDIT_USER_COLOR = gql`
+  mutation Mutation($userId: ID!, $color: String) {
+    editUserColor(userId: $userId, color: $color) {
+      _id
+      username
+      color
+    }
+  }
+`;
 
 export const ADD_REVIEW = gql`
   mutation Mutation($bubblyWaterId: ID!, $userId: ID!, $reviewText: String!) {

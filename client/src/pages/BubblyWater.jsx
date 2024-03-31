@@ -150,6 +150,7 @@ export default function BubblyWaterPage() {
     setLoginReminder(!loginReminder);
     console.log("login reminder is now ", loginReminder);
   };
+  console.log("bubbly water data, ", data);
 
   return (
     <>
@@ -251,8 +252,14 @@ export default function BubblyWaterPage() {
                       key={index}
                       className="flex border-2 border-black items-center justify-between w-72 md:w-96 lg:w-96 bg-gray-100 hover:bg-gray-200"
                     >
-                      <div className="flex  items-center">
-                        <div className="rounded-full justify-center align-center bg-red-300 littleCircle mr-3 ">
+                      <div className="flex items-center">
+                        <div
+                          className={`rounded-full justify-center align-center littleCircle mr-3 ${
+                            rating.user.color
+                              ? `${rating.user.color}`
+                              : "bg-red-300"
+                          }`}
+                        >
                           <Link to={`/user/${rating.user._id}`}>
                             {rating.user.username ? (
                               <span>

@@ -844,6 +844,60 @@
 .userRatingElement {
   font-size: 20px;
 }
+.user-teal {
+  background-color: rgb(94 234 212);
+}
+.user-cyan {
+  background-color: rgb(103 232 249);
+}
+.user-sky {
+  background-color: rgb(56 189 248);
+}
+.user-blue {
+  background-color: rgb(96 165 250);
+}
+.user-lime {
+  background-color: rgb(163 230 53);
+}
+.user-green {
+  background-color: rgb(74 222 128);
+}
+.user-emerald {
+  background-color: rgb(52 211 153);
+}
+.user-yellow {
+  background-color: rgb(253 224 71);
+}
+.user-blue {
+  background-color: rgb(96 165 250);
+}
+.user-red {
+  background-color: rgb(248 113 113);
+}
+.user-purple {
+  background-color: rgb(167 139 250);
+}
+.user-indigo {
+  background-color: rgb(165 180 252);
+}
+.user-violet {
+  background-color: rgb(167 139 250);
+}
+.user-fuchsia {
+  background-color: rgb(232 121 249);
+}
+.user-orange {
+  background-color: rgb(251 146 60);
+}
+.user-amber {
+  background-color: rgb(251 191 36);
+}
+.user-pink {
+  background-color: rgb(249 168 212);
+}
+.user-rose {
+  background-color: rgb(251 113 133);
+}
 
 @keyframes animate-pop {
   0% {
