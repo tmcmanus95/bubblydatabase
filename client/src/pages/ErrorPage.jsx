@@ -4,7 +4,7 @@ import popIcon from "../../public/bubblesicon.png";
 
 export default function ErrorPage() {
   return (
-    <div className="flex flex-col items-center justify-center h-96 text-2xl">
+    <div className="flex flex-col items-center justify-center h-96 text-2xl border-2 border-blue-300 mt-16">
       <Link to="/">
         <img
           className="flex justify-center text-center align-center mb-2"
