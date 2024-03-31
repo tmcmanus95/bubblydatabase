@@ -19,7 +19,7 @@ export default function BubblyWaterListItem({ bubblyWater, ranking }) {
             #{ranking}
           </div>
 
-          <div className="shadow-lg p-5 rounded-xl my-5 text-center bg-white lg:flex lg:items-start w-4/5">
+          <div className="shadow-lg p-5 rounded-xl my-5 text-center justify-center bg-white lg:flex lg:items-start">
             <Link
               to={`/bubblyWater/${bubblyWater._id}`}
               className="flex justify-center lg:mr-5"
@@ -29,13 +29,15 @@ export default function BubblyWaterListItem({ bubblyWater, ranking }) {
                 className="mx-auto lg:mx-0 lg:mb-0 object-cover w-40 h-52"
               />
             </Link>
-            <div className="flex flex-col justify-center">
+            <div className="flex flex-col justify-center mx-auto">
+              {" "}
+              {/* Adjusted alignment here */}
               <Link to={`/brands/${bubblyWater.brandName}`}>
-                <h3 className="text-lg font-medium pt-2 lg:pt-8 pb-2">
+                <h3 className="text-lg font-medium pt-2 lg:pt-8 ">
                   {formatBrands(bubblyWater.brandName)}
                 </h3>
               </Link>
-              <p className="py-2 mb-2 lg:mb-5">{bubblyWater.productName}</p>
+              <p className=" mb-2 lg:mb-5">{bubblyWater.productName}</p>
               <h5 className="flex items-center text-center justify-center">
                 <span className="font-bold mr-2">Flavors</span>
                 <div className="flex flex-wrap max-w-[14rem] justify-center gap-y-3">

@@ -160,7 +160,7 @@ export default function BubblyWaterPage() {
           )}-background`}
         >
           <div>
-            <div className="flex justify-center flex-col lg:flex-row mt-14">
+            <div className="flex justify-center flex-col lg:flex-row mt-14 mb-10">
               <section className="m-5 flex flex-col items-center sm:flex-row sm:justify-center gap-10  rounded-lg">
                 <div className="flex flex-col lg:flex-row items-center bg-white justify-center gap-4 p-8 bg-yellow shadow-md rounded-lg">
                   <img
