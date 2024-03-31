@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 export default function AllBrands() {
   return (
-    <section className="m-5">
+    <section className="m-5 mt-20">
       <div>
         <h3 className="text-4xl py-1 flex justify-center">All Brands</h3>
       </div>

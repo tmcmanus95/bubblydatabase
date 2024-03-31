@@ -26,8 +26,8 @@ export default function Profile() {
       {loading ? (
         <Loading />
       ) : (
-        <>
-          <div className="flex justify-center items-center mt-10 h-full">
+        <div className="mb-10">
+          <div className="flex justify-center items-center mt-20 h-full">
             <div className="flex justify-center items-center mx-5 bg-red-300 w-16 h-16 lg:w-32 lg:h-32 rounded-full">
               <span className="text-xl font-bold">
                 {username[0].toUpperCase()}
@@ -52,7 +52,7 @@ export default function Profile() {
             {ratings && <UsersRatings ratings={ratings} />}
             {reviews && <UsersReviews reviews={reviews} />}
           </div>
-        </>
+        </div>
       )}
     </>
   );

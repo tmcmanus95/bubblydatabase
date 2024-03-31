@@ -1,9 +1,6 @@
 * {
   font-family: avenir;
 }
-body {
-  background-color: #f0f8ff;
-}
 .Lime {
   border-radius: 5px;
   padding: 5px;
@@ -16,6 +13,19 @@ body {
 .Lime-brushings {
   background-color: #32cd32 !important;
 }
+.Key-lime {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #9eeb9e;
+}
+.Key-lime-background {
+  background-color: #f9fff7;
+}
+.Key-lime-brushings {
+  background-color: #9eeb9e !important;
+}
+
 .Limoncello {
   border-radius: 5px;
   padding: 5px;
@@ -80,6 +90,7 @@ body {
 }
 .Pomegranate-brushings {
   background-color: #c0392b !important;
+  color: white !important;
 }
 
 .Green-tea {

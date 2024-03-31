@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 export default function Logo() {
   const backgroundStyle = {
     backgroundImage:
-      "url('https://live.staticflickr.com/4049/4562026127_e86daef00e_b.jpg')",
+      "url(https://live.staticflickr.com/4049/4562026127_e86daef00e_b.jpg)",
     backgroundSize: "cover",
     backgroundPosition: "center",
   };
@@ -10,7 +10,7 @@ export default function Logo() {
   return (
     <>
       <div style={backgroundStyle}>
-        <section className="text-center">
+        <section className="text-center mt-16">
           <div className="p-5 md:p-10 bg-white ">
             <Link to="/">
               <h2 className="text-3xl md:text-6xl font-medium text-black">

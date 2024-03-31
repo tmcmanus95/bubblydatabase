@@ -14,7 +14,7 @@ export default function UsersRatings({ ratings }) {
               key={index}
               className={`${capitalizeSingleFlavor(
                 rating.bubblyWater.flavor[0]
-              )}-background flex w-64 md:w-96 border-2 border-black items-center justify-between bg-gray-100 hover:bg-gray-200 lg:text-md text-xs`}
+              )}-background flex w-64 md:w-96 border-2 border-black items-center justify-between hover:bg-gray-200 lg:text-md text-xs`}
             >
               <div className="flex items-center">
                 <img

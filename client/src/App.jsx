@@ -36,7 +36,7 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <div style={{ maxWidth: "100%", overflowX: "hidden" }}>
+      <div style={{ maxWidth: "100%", overflowX: "hidden", height: "100%" }}>
         <NavBar />
         <Outlet />
 

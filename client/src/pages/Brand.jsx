@@ -50,7 +50,7 @@ export default function Brand() {
   };
   return (
     <>
-      <div className="flex flex-col mt-5 items-center justify-center rounded-lg text-2xl border-2 border-black">
+      <div className="flex flex-col mt-16 items-center justify-center rounded-lg text-2xl border-2 border-black">
         <img
           src={brandLogoLinks[brandName]}
           width={400}

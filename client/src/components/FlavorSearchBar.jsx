@@ -27,6 +27,7 @@ const flavors = [
   "Guava",
   "Hibiscus",
   "Honey",
+  "Key-lime",
   "Kiwi",
   "Lemon",
   "Lemonade",
@@ -83,7 +84,7 @@ export default function FlavorSearchBar() {
   return (
     <>
       <Logo />
-      <div className="px-2 mt-2">
+      <div className="px-2 mt-2 ">
         <section className="text-center ">
           <form onSubmit={handleFormSubmit} className="relative">
             <div className="items-center">
@@ -100,7 +101,7 @@ export default function FlavorSearchBar() {
                     <li
                       key={flavor}
                       onClick={() => handleSelectFlavor(flavor)}
-                      className={`${flavor} cursor-pointer py-2 px-4 hover:bg-gray-100`}
+                      className={`${flavor} cursor-pointer py-2 px-4 hover:bg-blue-300 hover:text-black`}
                     >
                       {flavor}
                     </li>
