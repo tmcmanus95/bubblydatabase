@@ -25,6 +25,7 @@ export default function AllFlavors() {
     "Guava",
     "Hibiscus",
     "Honey",
+    "Key-lime",
     "Kiwi",
     "Lemon",
     "Lemonade",
@@ -55,7 +56,7 @@ export default function AllFlavors() {
   ];
 
   return (
-    <div className="mt-10 justify-center flex flex-wrap gap-4 md:gap-6 lg:gap-10">
+    <div className="mt-20 mb-14 justify-center flex flex-wrap gap-4 md:gap-6 lg:gap-10">
       {flavors.map((flavor, index) => (
         <Link key={index} to={`/flavors/${flavor.toLowerCase()}`}>
           <div

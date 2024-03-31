@@ -19,7 +19,7 @@ export default function BubblyWaterListItem({ bubblyWater, ranking }) {
             #{ranking}
           </div>
 
-          <div className="shadow-lg p-5 rounded-xl my-5 text-center bg-white lg:flex lg:items-start">
+          <div className="shadow-lg p-5 rounded-xl my-5 text-center bg-white lg:flex lg:items-start w-4/5">
             <Link
               to={`/bubblyWater/${bubblyWater._id}`}
               className="flex justify-center lg:mr-5"

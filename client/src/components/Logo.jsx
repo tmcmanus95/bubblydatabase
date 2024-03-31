@@ -10,7 +10,7 @@ export default function Logo() {
   return (
     <>
       <div style={backgroundStyle}>
-        <section className="text-center">
+        <section className="text-center mt-16">
           <div className="p-5 md:p-10 bg-white ">
             <Link to="/">
               <h2 className="text-3xl md:text-6xl font-medium text-black">
