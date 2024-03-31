@@ -20,6 +20,10 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
+  color: {
+    type: String,
+    default: "user-red",
+  },
   ratings: [
     {
       type: Schema.Types.ObjectId,
