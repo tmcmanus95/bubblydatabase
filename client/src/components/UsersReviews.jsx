@@ -11,7 +11,7 @@ export default function UsersReviews({ reviews }) {
           <ul className="p-5 flex-col flex items-center">
             {reviews?.map((review, index) => (
               <Link to={`/bubblyWater/${review.bubblyWater._id}`} key={index}>
-                <li className="border-2 w-64 md:w-96 bg-white mb-3 rounded-lg lg:text-l text-sm overflow-hidden">
+                <li className="border-2 w-64 md:w-96 mb-3 rounded-lg lg:text-l text-sm overflow-hidden">
                   <div
                     className={`${
                       review?.bubblyWater?.flavor[0]
@@ -44,7 +44,7 @@ export default function UsersReviews({ reviews }) {
                     </div>
                   </div>
                   <div className="mt-4">
-                    <p className="text-gray-700 ml-2 text-left overflow-hidden overflow-ellipsis">
+                    <p className="text-gray-700 ml-2 text-left overflow-hidden overflow-ellipsis mb-2">
                       {review.reviewText}
                     </p>
                   </div>

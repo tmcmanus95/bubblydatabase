@@ -160,7 +160,7 @@ export default function BubblyWaterPage() {
           )}-background`}
         >
           <div>
-            <div className="flex justify-center flex-col lg:flex-row mt-14 mb-10">
+            <div className="flex justify-center flex-col lg:flex-row mt-14 ">
               <section className="m-5 flex flex-col items-center sm:flex-row sm:justify-center gap-10  rounded-lg">
                 <div className="flex flex-col lg:flex-row items-center bg-white justify-center gap-4 p-8 bg-yellow shadow-md rounded-lg">
                   <img
@@ -286,7 +286,7 @@ export default function BubblyWaterPage() {
                 </ul>
               </section>
             </section>
-            <section>
+            <section className="mb-5">
               {bubblyWater?.reviews && bubblyWater?.reviews.length > 0 ? (
                 <h2 className="text-2xl font-semibold text-decoration-line: underline underline-offset-8">
                   Reviews
