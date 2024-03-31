@@ -99,7 +99,7 @@ export default function SearchResults() {
           </>
         )}
       </div>
-      <div className="px-2">
+      <div className="px-2 mb-20">
         {userLoading ? (
           <h1 className="text-xl md:text-4xl">Searching users...</h1>
         ) : (
