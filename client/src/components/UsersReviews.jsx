@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { formatBrands } from "../../utils/formatBrands";
 import { Rating } from "@mui/material";
+import { capitalizeSingleFlavor } from "../../utils/capitalizeSingleFlavor";
 export default function UsersReviews({ reviews }) {
   return (
     <>
@@ -11,7 +12,15 @@ export default function UsersReviews({ reviews }) {
             {reviews?.map((review, index) => (
               <Link to={`/bubblyWater/${review.bubblyWater._id}`} key={index}>
                 <li className="border-2 w-64 md:w-96 bg-white mb-3 rounded-lg lg:text-l text-sm overflow-hidden">
-                  <div className="rounded-t-lg p-2 flex gap-3 items-center justify-between">
+                  <div
+                    className={`${
+                      review?.bubblyWater?.flavor[0]
+                        ? `${capitalizeSingleFlavor(
+                            review.bubblyWater.flavor[0]
+                          )}-brushings rounded-t-lg p-2 flex gap-3 items-center justify-between`
+                        : ""
+                    }`}
+                  >
                     <img
                       className="w-10 h-20 object-cover rounded-full flex-shrink-0"
                       src={review.bubblyWater.imageURL}

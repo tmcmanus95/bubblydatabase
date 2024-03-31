@@ -82,6 +82,7 @@ export const QUERY_SINGLE_USER = gql`
           productName
           brandName
           imageURL
+          flavor
         }
       }
       reviews {
@@ -92,6 +93,7 @@ export const QUERY_SINGLE_USER = gql`
           productName
           brandName
           imageURL
+          flavor
         }
       }
     }

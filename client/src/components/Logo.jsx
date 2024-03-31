@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 export default function Logo() {
   const backgroundStyle = {
     backgroundImage:
-      "url('https://media.self.com/photos/5ca6731e7184015a1cb71d59/4:3/w_2560%2Cc_limit/GettyImages-688558956_RT.jpg')",
+      "url('https://live.staticflickr.com/4049/4562026127_e86daef00e_b.jpg')",
     backgroundSize: "cover",
     backgroundPosition: "center",
   };

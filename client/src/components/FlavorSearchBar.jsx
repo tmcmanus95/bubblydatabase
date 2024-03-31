@@ -5,6 +5,7 @@ import Logo from "./Logo";
 const flavors = [
   "Apple",
   "Apple-cider",
+  "Apricot",
   "Berry",
   "Black-tea",
   "Blackberry",
@@ -37,6 +38,7 @@ const flavors = [
   "Mango",
   "Melon",
   "Mint",
+  "Mojito",
   "Nectarine",
   "Orange",
   "Orange-cream",
@@ -81,7 +83,7 @@ export default function FlavorSearchBar() {
   return (
     <>
       <Logo />
-      <div className="px-2">
+      <div className="px-2 mt-2">
         <section className="text-center ">
           <form onSubmit={handleFormSubmit} className="relative">
             <div className="items-center">
@@ -106,12 +108,6 @@ export default function FlavorSearchBar() {
                 </ul>
               )}
             </div>
-            <button
-              type="submit"
-              className="bg-blue-100 hover:bg-blue-200 font-bold py-2 px-4 rounded text-xl md:text-3xl mt-2"
-            >
-              Search
-            </button>
           </form>
         </section>
         {selectedFlavor ? (
