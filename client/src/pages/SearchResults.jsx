@@ -52,7 +52,7 @@ export default function SearchResults() {
   const searchResults = queryAllData?.searchGeneralBubblyWater;
   return (
     <>
-      <div className="mt-10 mb-5 px-2">
+      <div className="mt-20 mb-5 px-2">
         {queryAllLoading ? (
           <h1 className="text-xl md:text-4xl">Searching products...</h1>
         ) : (
@@ -99,7 +99,7 @@ export default function SearchResults() {
           </>
         )}
       </div>
-      <div className="px-2">
+      <div className="px-2 mb-20">
         {userLoading ? (
           <h1 className="text-xl md:text-4xl">Searching users...</h1>
         ) : (
