@@ -27,6 +27,7 @@ export default function BubblyWaterPage() {
   const [editRating, { error: editRatingError }] = useMutation(EDIT_RATING);
   const [addReview, { error: addReviewError }] = useMutation(ADD_REVIEW);
   const [editReview, { error: editReviewError }] = useMutation(EDIT_REVIEW);
+  const [loginReminder, setLoginReminder] = useState(false);
   const [reviewText, setReviewText] = useState("");
   const userId = meIdData?.meId?._id;
   const bubblyWater = data?.bubblyWater;
@@ -145,6 +146,10 @@ export default function BubblyWaterPage() {
       console.error("Error editing review, ", err);
     }
   };
+  const toggleLoginReminder = () => {
+    setLoginReminder(!loginReminder);
+    console.log("login reminder is now ", loginReminder);
+  };
 
   return (
     <>
@@ -170,7 +175,7 @@ export default function BubblyWaterPage() {
                       </h1>
                     </Link>
                     <h2 className="text-xl">{bubblyWater.productName}</h2>
-                    <h3 className="text-lg">Flavors:</h3>
+                    <h3 className="text-lg font-bold mt-3">Flavors</h3>
                     <h4 className="text-base m-5">
                       {flavors.map((flavor, index) => (
                         <Link
@@ -200,11 +205,8 @@ export default function BubblyWaterPage() {
                       <Rating
                         readOnly
                         value={previouslyRated ? userRating : value}
-                        defaultValue={userRating}
                         precision={0.5}
-                        onChange={(e, newValue) => {
-                          handleValueChange(e, newValue);
-                        }}
+                        onClick={toggleLoginReminder}
                       />
                     )}
                   </div>
@@ -235,7 +237,13 @@ export default function BubblyWaterPage() {
           </div>
           <section className="mx-5 text-center flex justify-center flex-col lg:flex-row">
             <section>
-              <h2 className="text-2xl font-semibold">Ratings</h2>
+              {bubblyWater?.ratings && bubblyWater?.ratings.length > 0 ? (
+                <h2 className="text-2xl font-semibold text-decoration-line: underline underline-offset-8">
+                  Ratings
+                </h2>
+              ) : (
+                <></>
+              )}
               <section>
                 <ul className="p-5 flex-col flex items-center">
                   {bubblyWater.ratings?.map((rating, index) => (
@@ -279,7 +287,13 @@ export default function BubblyWaterPage() {
               </section>
             </section>
             <section>
-              <h2 className="text-2xl mx-5 font-semibold">Reviews</h2>
+              {bubblyWater?.reviews && bubblyWater?.reviews.length > 0 ? (
+                <h2 className="text-2xl font-semibold text-decoration-line: underline underline-offset-8">
+                  Reviews
+                </h2>
+              ) : (
+                <></>
+              )}
               <ul className="p-5 flex-col flex items-center ">
                 {bubblyWater.reviews?.map((review, index) => (
                   <Link to={`/user/${review.user._id}`}>

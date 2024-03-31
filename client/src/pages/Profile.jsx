@@ -9,7 +9,6 @@ export default function Profile() {
   const { loading, data } = useQuery(userId ? QUERY_SINGLE_USER : QUERY_ME, {
     variables: { userId: userId },
   });
-  console.log("user data ", data);
   let username;
   let ratings;
   let reviews;
@@ -22,7 +21,6 @@ export default function Profile() {
     reviews = data?.me?.reviews;
     username = data?.me?.username;
   }
-  console.log(ratings);
   return (
     <>
       {loading ? (
@@ -37,10 +35,18 @@ export default function Profile() {
             </div>
             <h1 className="mt-2">{username}</h1>
           </div>
-          {/* <div className="flex justify-center items-center mt-10 gap-10 h-full">
-            <h5>Total Ratings: {ratings?.length}</h5>
-            <h5>Total Reviews: {reviews?.length}</h5>
-          </div> */}
+          <div className="flex justify-center items-center mt-10 gap-10 h-full">
+            {ratings.length > 0 ? (
+              <h5>Total Ratings: {ratings?.length}</h5>
+            ) : (
+              <></>
+            )}
+            {reviews.length > 0 ? (
+              <h5>Total Reviews: {reviews?.length}</h5>
+            ) : (
+              <></>
+            )}
+          </div>
 
           <div className="flex flex-wrap justify-center">
             {ratings && <UsersRatings ratings={ratings} />}

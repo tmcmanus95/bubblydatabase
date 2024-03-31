@@ -1,9 +1,9 @@
 import Rating from "@mui/material/Rating";
 import { Link } from "react-router-dom";
 import { formatBrands } from "../../utils/formatBrands";
+import { capitalizeSingleFlavor } from "../../utils/capitalizeSingleFlavor";
 
 export default function UsersRatings({ ratings }) {
-  console.log(ratings);
   return (
     <section className="">
       <h3 className="m-5 flex justify-center">Recent Ratings</h3>
@@ -12,7 +12,9 @@ export default function UsersRatings({ ratings }) {
           <Link to={`/bubblyWater/${rating.bubblyWater._id}`}>
             <li
               key={index}
-              className="flex w-64 md:w-96 border-2 border-black items-center justify-between bg-gray-100 hover:bg-gray-200 lg:text-md text-xs"
+              className={`${capitalizeSingleFlavor(
+                rating.bubblyWater.flavor[0]
+              )}-background flex w-64 md:w-96 border-2 border-black items-center justify-between bg-gray-100 hover:bg-gray-200 lg:text-md text-xs`}
             >
               <div className="flex items-center">
                 <img
@@ -27,12 +29,14 @@ export default function UsersRatings({ ratings }) {
                   </span>
                 </h1>
               </div>
-              <Rating
-                readOnly
-                size="small"
-                value={rating.rating}
-                className="userRatingElement"
-              />
+              <div className="overflow-hidden">
+                <Rating
+                  readOnly
+                  size="small"
+                  value={rating.rating}
+                  className="userRatingElement"
+                />
+              </div>
             </li>
           </Link>
         ))}

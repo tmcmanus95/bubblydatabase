@@ -191,6 +191,19 @@ body {
   background-color: #2ecc71 !important;
   color: black !important;
 }
+.Mojito {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #7fdfa7;
+}
+.Mojito-background {
+  background-color: #f9fff7;
+}
+.Mojito-brushings {
+  background-color: #2ecc71 !important;
+  color: black !important;
+}
 
 .Apple {
   border-radius: 5px;
@@ -224,7 +237,7 @@ body {
 .Blueberry {
   border-radius: 5px;
   padding: 5px;
-  margin: 3px;
+  margin: 5px;
   background-color: #3498db;
   color: white;
 }
@@ -396,12 +409,14 @@ body {
   padding: 5px;
   margin: 3px;
   background-color: #e74c3c;
+  color: white;
 }
 .Fruit-punch-background {
   background-color: #ffe4ed;
 }
 .Fruit-punch-brushings {
   background-color: #e74c3c !important;
+  color: white !important;
 }
 
 .Black-cherry {
@@ -521,6 +536,7 @@ body {
 }
 .Coconut-brushings {
   background-color: #583e00 !important;
+  color: white !important;
 }
 .Honey {
   border-radius: 5px;
@@ -559,6 +575,18 @@ body {
 }
 .Nectarine-brushings {
   background-color: #eca93d !important;
+}
+.Apricot {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #f3c06e;
+}
+.Apricot-background {
+  background-color: #ffd7b5;
+}
+.Apricot-brushings {
+  background-color: #f3c06e !important;
 }
 
 .Orange {

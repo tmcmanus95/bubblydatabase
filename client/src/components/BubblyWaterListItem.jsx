@@ -12,14 +12,14 @@ export default function BubblyWaterListItem({ bubblyWater, ranking }) {
     ratingCount = bubblyWater?.ratings?.length;
   }
   return (
-    <div className="bubblyListItem">
+    <div className="bubblyListItem justify-center">
       <section className="m-2 md:m-5 flex justify-center">
         <div className="lg:flex lg:items-start lg:flex-row gap-5">
           <div className="shadow-lg lg:p-5 rounded-xl my-5 font-bold bg-white lg:flex lg:flex-row lg:items-center flex-col items-center text-center lg:w-auto w-10 justify-center mr-3">
             #{ranking}
           </div>
 
-          <div className="shadow-lg p-5 rounded-xl my-5 bg-white lg:flex lg:items-start">
+          <div className="shadow-lg p-5 rounded-xl my-5 text-center bg-white lg:flex lg:items-start">
             <Link
               to={`/bubblyWater/${bubblyWater._id}`}
               className="flex justify-center lg:mr-5"
@@ -36,15 +36,22 @@ export default function BubblyWaterListItem({ bubblyWater, ranking }) {
                 </h3>
               </Link>
               <p className="py-2 mb-2 lg:mb-5">{bubblyWater.productName}</p>
-              <h5 className="mb-2">
-                <span>Flavors: </span>
-                {capitalizedFlavors.map((flavor, index) => (
-                  <Link to={`/flavors/${flavor.toLowerCase()}`} key={index}>
-                    <span className={flavor}>{flavor.replace(/-/g, " ")}</span>
-                  </Link>
-                ))}
+              <h5 className="flex items-center text-center justify-center">
+                <span className="font-bold mr-2">Flavors</span>
+                <div className="flex flex-wrap max-w-[14rem] justify-center gap-y-3">
+                  {" "}
+                  {capitalizedFlavors.map((flavor, index) => (
+                    <Link to={`/flavors/${flavor.toLowerCase()}`} key={index}>
+                      <span
+                        className={`${flavor} whitespace-nowrap text-center`}
+                      >
+                        {flavor.replace(/-/g, " ")}
+                      </span>
+                    </Link>
+                  ))}
+                </div>
               </h5>
-              <h5 className="mb-2 py-2">
+              <h5 className="mb-2 py-2 text-center">
                 Average rating: {bubblyWater.averageRating.toFixed(2)} / 5.0
               </h5>
               <Link to={`/bubblyWater/${bubblyWater._id}`}>

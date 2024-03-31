@@ -28,9 +28,9 @@ export default function BubblyWaterList({ searchTerm }) {
           }
         >
           <div>
-            <h3 className="lg:text-5xl text-3xl text-center pt-10 font-bold mb-6 relative">
+            <h3 className="md:text-5xl text-xl text-center pt-10 font-bold mb-6 relative">
               {searchTerm ? (
-                <span className="p-10">
+                <span>
                   Top Rated{" "}
                   <span className={capitalizeSingleFlavor(searchTerm)}>
                     {formatBrands(searchTerm)}
@@ -38,7 +38,7 @@ export default function BubblyWaterList({ searchTerm }) {
                   Bubbly Waters
                 </span>
               ) : (
-                <div className="lg:text-5xl text-3xl text-center pt-10 font-bold">
+                <div className="md:text-5xl text-3xl text-center pt-10 font-bold">
                   Top Rated Bubbly Waters of All Time
                 </div>
               )}
