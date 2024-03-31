@@ -145,6 +145,9 @@ export default function BubblyWaterPage() {
       console.error("Error editing review, ", err);
     }
   };
+  const loginReminder = () => {
+    console.log("Sign up or login to rate or review waters");
+  };
 
   return (
     <>
@@ -200,11 +203,8 @@ export default function BubblyWaterPage() {
                       <Rating
                         readOnly
                         value={previouslyRated ? userRating : value}
-                        defaultValue={userRating}
                         precision={0.5}
-                        onChange={(e, newValue) => {
-                          handleValueChange(e, newValue);
-                        }}
+                        onClick={loginReminder}
                       />
                     )}
                   </div>
@@ -235,7 +235,11 @@ export default function BubblyWaterPage() {
           </div>
           <section className="mx-5 text-center flex justify-center flex-col lg:flex-row">
             <section>
-              <h2 className="text-2xl font-semibold">Ratings</h2>
+              {bubblyWater.ratings && bubblyWater.ratings > 0 ? (
+                <h2 className="text-2xl font-semibold">Ratings</h2>
+              ) : (
+                <></>
+              )}
               <section>
                 <ul className="p-5 flex-col flex items-center">
                   {bubblyWater.ratings?.map((rating, index) => (
@@ -279,7 +283,11 @@ export default function BubblyWaterPage() {
               </section>
             </section>
             <section>
-              <h2 className="text-2xl mx-5 font-semibold">Reviews</h2>
+              {bubblyWater.reviews && bubblyWater.reviews > 0 ? (
+                <h2 className="text-2xl font-semibold">Ratings</h2>
+              ) : (
+                <></>
+              )}
               <ul className="p-5 flex-col flex items-center ">
                 {bubblyWater.reviews?.map((review, index) => (
                   <Link to={`/user/${review.user._id}`}>
