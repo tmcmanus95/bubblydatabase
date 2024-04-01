@@ -47,6 +47,8 @@ export default function Brand() {
     aha: "https://www.coca-colacompany.com/content/dam/company/us/en/articles/aha-1.jpeg",
     "topo-chico":
       "https://www.topochico.com/content/dam/nagbrands/us/topochico/en/topo-chico-logo-2023.png",
+    waterloo:
+      "https://www.drinkwaterloo.com/wp-content/uploads/2023/05/brand-logo.png",
   };
   return (
     <>

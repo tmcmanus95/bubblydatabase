@@ -115,7 +115,19 @@ export default function AllBrands() {
             </div>
           </div>
         </Link>
-
+        <Link to="/brands/waterloo">
+          <div>
+            <div className="flex-1 text-center shadow-lg p-10 rounded-xl my-10  bg-white">
+              <img
+                src="https://www.drinkwaterloo.com/wp-content/uploads/2023/05/brand-logo.png"
+                width={100}
+                height={100}
+                className="mx-auto"
+              />
+              <h3 className="text-lg font-medium pt-8 pb-2">Waterloo</h3>
+            </div>
+          </div>
+        </Link>
         <Link to="/brands/recess">
           <div>
             <div className="flex-1 text-center shadow-lg p-10 rounded-xl my-10  bg-white">
