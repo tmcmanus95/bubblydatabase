@@ -44,6 +44,7 @@ const flavors = [
   "Orange",
   "Orange-cream",
   "Passionfruit",
+  "Peach",
   "Pear",
   "Pineapple",
   "Pink-lemonade",

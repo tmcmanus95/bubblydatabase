@@ -42,6 +42,7 @@ export default function AllFlavors() {
     "Orange",
     "Orange-cream",
     "Passionfruit",
+    "Peach",
     "Pear",
     "Pineapple",
     "Pink-lemonade",
