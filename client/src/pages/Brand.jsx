@@ -39,14 +39,22 @@ export default function Brand() {
       "https://images.squarespace-cdn.com/content/v1/570c0ddb22482e2a4ab0f2d8/1544147928643-LBME68USKJM5RUQN4Z9J/header_3a.jpg",
     "good-&-gather":
       "https://images.squarespace-cdn.com/content/v1/5ef4b9a14215590dac8d9e26/f23f9c78-7993-47a1-9eaf-5c2aac767587/Untitled-2-01.jpg",
+    "ice-mountain":
+      "https://photos.prnewswire.com/prnfull/20110601/NE11725LOGO",
     kimino: "https://m.media-amazon.com/images/I/61QAISgfH9L.jpg",
+    origin:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCVbTXVHxUvx7xrE-dD4_fxunxVuO-U95fYuwysOugMQ&s",
     spindrift:
       "https://www.soulfirefarm.org/wp-content/uploads/2023/04/spindrift-logo-vector.png",
+    "splash-fizz":
+      "https://drinksplash.com/cdn/shop/files/splash-blast-fizz-logo-lockup_54e9897f-f98a-49d1-bffe-86b5c8921e9d_512x360.jpg?v=1681161380",
     "liquid-death":
       "https://upload.wikimedia.org/wikipedia/commons/e/e3/Liquid-Death-Logo.png",
     aha: "https://www.coca-colacompany.com/content/dam/company/us/en/articles/aha-1.jpeg",
     "topo-chico":
       "https://www.topochico.com/content/dam/nagbrands/us/topochico/en/topo-chico-logo-2023.png",
+    "untitled-art":
+      "https://www.drinkuntitled.com/wp-content/uploads/2023/02/logo_full_short.png",
     waterloo:
       "https://www.drinkwaterloo.com/wp-content/uploads/2023/05/brand-logo.png",
   };

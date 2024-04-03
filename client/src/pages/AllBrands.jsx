@@ -39,6 +39,18 @@ export default function AllBrands() {
             <h3 className="text-lg font-medium pt-8 pb-2">Good & Gather</h3>
           </div>
         </Link>
+        <Link to="/brands/ice-mountain">
+          <div className="flex-1 text-center shadow-lg p-10 rounded-xl my-10  bg-white">
+            <img
+              src="https://photos.prnewswire.com/prnfull/20110601/NE11725LOGO"
+              width={100}
+              height={100}
+              className="mx-auto"
+            />
+            <h3 className="text-lg font-medium pt-8 pb-2">Ice Mountain</h3>
+          </div>
+        </Link>
+
         <Link to="/brands/icelandic-glacial">
           <div className="flex-1 text-center shadow-lg p-10 rounded-xl my-10  bg-white">
             <img
@@ -82,6 +94,17 @@ export default function AllBrands() {
               className="mx-auto"
             />
             <h3 className="text-lg font-medium pt-8 pb-2">Liquid Death</h3>
+          </div>
+        </Link>
+        <Link to="/brands/origin">
+          <div className="flex-1 text-center shadow-lg p-10 rounded-xl my-10  bg-white">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCVbTXVHxUvx7xrE-dD4_fxunxVuO-U95fYuwysOugMQ&s"
+              width={100}
+              height={100}
+              className="mx-auto"
+            />
+            <h3 className="text-lg font-medium pt-8 pb-2">Origin</h3>
           </div>
         </Link>
         <Link to="/brands/perrier">
@@ -139,6 +162,18 @@ export default function AllBrands() {
             <h3 className="text-lg font-medium pt-8 pb-2">Sanzo</h3>
           </div>
         </Link>
+        <Link to="/brands/splash-fizz">
+          <div className="flex-1 text-center shadow-lg p-10 rounded-xl my-10  bg-white">
+            <img
+              src="https://drinksplash.com/cdn/shop/files/splash-blast-fizz-logo-lockup_54e9897f-f98a-49d1-bffe-86b5c8921e9d_512x360.jpg?v=1681161380"
+              width={100}
+              height={100}
+              className="mx-auto"
+            />
+            <h3 className="text-lg font-medium pt-8 pb-2">Splash Fizz</h3>
+          </div>
+        </Link>
+
         <Link to="/brands/sparkling-ice">
           <div className="flex-1 text-center shadow-lg p-10 rounded-xl my-10  bg-white">
             <img
@@ -170,6 +205,17 @@ export default function AllBrands() {
               className="mx-auto"
             />
             <h3 className="text-lg font-medium pt-8 pb-2">Topo Chico</h3>
+          </div>
+        </Link>
+        <Link to="/brands/untitled-art">
+          <div className="flex-1 text-center shadow-lg p-10 rounded-xl my-10  bg-white">
+            <img
+              src="https://www.drinkuntitled.com/wp-content/uploads/2023/02/logo_full_short.png"
+              width={100}
+              height={100}
+              className="mx-auto"
+            />
+            <h3 className="text-lg font-medium pt-8 pb-2">Untitled Art</h3>
           </div>
         </Link>
         <Link to="/brands/waterloo">
