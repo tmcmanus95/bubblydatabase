@@ -1812,5 +1812,333 @@
     "flavor": ["black-cherry"],
     "isCaffeinated": false,
     "hasCBD": false
+  },
+  {
+    "productName": "Cardamom & Black Tea",
+    "brandName": "dram",
+    "imageURL": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBm9P0hA_onWJRh8UhtyDdd50oD4DZYNyda-Qof2N5BQ&s",
+    "flavor": ["cardamom", "black-tea"],
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Lavender & Lemon Balm",
+    "brandName": "dram",
+    "imageURL": "https://m.media-amazon.com/images/S/assets.wholefoodsmarket.com/PIE/product/5f16313821f331de1e98fbd9_00854826008012-glamor-frontpackageglamor-2020-07-15t14-29-39-iphone-x-quality-90-1-21-1-user-5984ad42a967f880524de2c4-3yj9-145345.jpg",
+    "flavor": ["lavender", "lemon"],
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Holy Basil & Lemon",
+    "brandName": "dram",
+    "imageURL": "https://www.dramapothecary.com/wp-content/uploads/2022/05/DRAM-Holy-Basil-sparkling-water-1.jpg",
+    "flavor": ["basil", "lemon"],
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Adaptogenic Mushroom Cola",
+    "brandName": "dram",
+    "imageURL": "https://www.dramapothecary.com/wp-content/uploads/2022/05/dram-mushroom-cola-good-food.jpg",
+    "flavor": ["mushroom", "cola"],
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Sweetgrass Adaptogenic",
+    "brandName": "dram",
+    "imageURL": "https://www.obstinatetastes.com/cdn/shop/files/DRAMSweetgrass.png?v=1704926438",
+    "flavor": ["sweetgrass"],
+    "isCaffeinated": false,
+    "hasCBD": true
+  },
+  {
+    "productName": "Gingergrass Adaptogenic",
+    "brandName": "dram",
+    "imageURL": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUHlnYdPItZhjhOq1Y3NKN8EZEMtfoVtWN1hRTUmUimA&s",
+    "flavor": ["ginger"],
+    "isCaffeinated": false,
+    "hasCBD": true
+  },
+  {
+    "productName": "Rose Beauty Bubbles Adaptogenic",
+    "brandName": "dram",
+    "imageURL": "https://www.dramapothecary.com/wp-content/uploads/2019/07/Beauty-Bubbles-grey-bg-CBD-1536x1536.jpg",
+    "flavor": ["rose"],
+    "isCaffeinated": false,
+    "hasCBD": true
+  },
+  {
+    "productName": "Lemongrass Adaptogenic",
+    "brandName": "dram",
+    "imageURL": "https://www.dramapothecary.com/wp-content/uploads/2019/07/Lemongrass-grey-bg-CBD.jpg",
+    "flavor": ["lemongrass"],
+    "isCaffeinated": false,
+    "hasCBD": true
+  },
+  {
+    "productName": "Citrus & Blossoms",
+    "brandName": "dram",
+    "imageURL": "https://m.media-amazon.com/images/S/assets.wholefoodsmarket.com/PIE/product/5f163137331e03ddf08b2892_00854826008005-glamor-frontpackageglamor-2020-07-15t14-30-59-iphone-x-quality-90-1-21-1-user-5984ad42a967f880524de2c4-apu4-024548.jpg",
+    "flavor": ["citrus"],
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Cherry + Lime",
+    "brandName": "aprch",
+    "imageURL": "https://drinkaprch.com/cdn/shop/products/Cherry_Lime_CBD_beverages.png?v=1706074388",
+    "flavor": ["cherry", "lime"],
+    "isCaffeinated": false,
+    "hasCBD": true
+  },
+  {
+    "productName": "Blackberry",
+    "brandName": "aprch",
+    "imageURL": "https://drinkaprch.com/cdn/shop/products/Blackberry_CBD_beverages.png?v=1706074404",
+    "flavor": ["blackberry"],
+    "isCaffeinated": false,
+    "hasCBD": true
+  },
+  {
+    "productName": "Black Cherry",
+    "brandName": "aprch",
+    "imageURL": "https://drinkaprch.com/cdn/shop/files/Black_Cherry_CBD_Drinks_6a049eb6-10fa-4e7f-9869-08d87c6f87c1.png?v=1709665937",
+    "flavor": ["black-cherry"],
+    "isCaffeinated": false,
+    "hasCBD": true
+  },
+  {
+    "productName": "Watermelon",
+    "brandName": "aprch",
+    "imageURL": "https://drinkaprch.com/cdn/shop/products/Watermelon_CBD_beverages.png?v=1706074345",
+    "flavor": ["watermelon"],
+    "isCaffeinated": false,
+    "hasCBD": true
+  },
+  {
+    "productName": "Fruit Punch",
+    "brandName": "aprch",
+    "imageURL": "https://drinkaprch.com/cdn/shop/products/FruitPunch-CBD_Drink.png?v=1706071346",
+    "flavor": ["fruit-punch"],
+    "isCaffeinated": false,
+    "hasCBD": true
+  },
+  {
+    "productName": "Mint + Cucumber",
+    "brandName": "aprch",
+    "imageURL": "https://drinkaprch.com/cdn/shop/products/Mint_Cucumber_CBD_beverages.png?v=1706074369",
+    "flavor": ["mint", "cucumber"],
+    "isCaffeinated": false,
+    "hasCBD": true
+  },
+  {
+    "productName": "Huckleberry",
+    "brandName": "aprch",
+    "imageURL": "https://drinkaprch.com/cdn/shop/products/Huckleberry_CBD_seltzers.png?v=1706073273",
+    "flavor": ["huckleberry"],
+    "isCaffeinated": false,
+    "hasCBD": true
+  },
+  {
+    "productName": "Natural",
+    "brandName": "present",
+    "imageURL": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvPjKQIPPfjVCoSTE7DCvX2MEUuW5rf6cWolj4dMfn6Q&s",
+    "flavor": ["plain"],
+    "isCaffeinated": false,
+    "hasCBD": true
+  },
+  {
+    "productName": "Lemon + Lime",
+    "brandName": "present",
+    "imageURL": "https://d2iiahg0ip5afn.cloudfront.net/media/present/images/753056390.present-16oz-sparklingwater-cbd-lemonlime-front.jpg",
+    "flavor": ["lemon", "lime"],
+    "isCaffeinated": false,
+    "hasCBD": true
+  },
+  {
+    "productName": "Blood Orange",
+    "brandName": "present",
+    "imageURL": "https://d2iiahg0ip5afn.cloudfront.net/media/present/images/36489921.present-16oz-sparklingwater-cbd-bloodorange-front.jpg",
+    "flavor": ["blood-orange"],
+    "isCaffeinated": false,
+    "hasCBD": true
+  },
+  {
+    "productName": "Lemon & Ginger",
+    "brandName": "baloo",
+    "imageURL": "https://s7d5.scene7.com/is/image/CentralMarket/010292026-1",
+    "flavor": ["lemon", "ginger"],
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Blood Orange & Basil",
+    "brandName": "baloo",
+    "imageURL": "https://m.media-amazon.com/images/I/61N1jVS-PAL._AC_UF350,350_QL80_.jpg",
+    "flavor": ["blood-orange", "basil"],
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Grapefruit & Mint",
+    "brandName": "baloo",
+    "imageURL": "https://s7d5.scene7.com/is/image/CentralMarket/010295508-1?hei=124&wid=124&$large$",
+    "flavor": ["grapefruit", "mint"],
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "tropical dream'r",
+    "brandName": "bubbl'r",
+    "imageURL": "https://www.drinkbubblr.com/wp-content/uploads/2022/04/WP-BUBBLR-Website-Flavr-tropicaldreamr.png",
+    "flavor": ["pineapple", "mango", "apple", "lime"],
+    "isCaffeinated": true,
+    "hasCBD": false
+  },
+  {
+    "productName": "triple berry breez'r",
+    "brandName": "bubbl'r",
+    "imageURL": "https://www.drinkbubblr.com/wp-content/uploads/2022/04/WP-BUBBLR-Website-Flavr-tropicaldreamr.png",
+    "flavor": ["berry", "raspberry", "blackberry", "blueberry"],
+    "isCaffeinated": true,
+    "hasCBD": false
+  },
+  {
+    "productName": "twisted elix'r",
+    "brandName": "bubbl'r",
+    "imageURL": "https://www.drinkbubblr.com/wp-content/uploads/2022/01/WP-BUBBLR-Website-Flavr-twistedelixr.png",
+    "flavor": ["raspberry", "lime", "citrus"],
+    "isCaffeinated": true,
+    "hasCBD": false
+  },
+  {
+    "productName": "lemon lime twist'r",
+    "brandName": "bubbl'r",
+    "imageURL": "https://www.drinkbubblr.com/wp-content/uploads/2022/01/WP-BUBBLR-Website-Flavr-lemonlimetwistr.png",
+    "flavor": ["lemon", "lime"],
+    "isCaffeinated": true,
+    "hasCBD": false
+  },
+  {
+    "productName": "pitaya berry nect'r",
+    "brandName": "bubbl'r",
+    "imageURL": "https://www.drinkbubblr.com/wp-content/uploads/2022/01/WP-BUBBLR-Website-Flavr-pitayaberrynectr.png",
+    "flavor": ["dragon-fruit", "strawberry"],
+    "isCaffeinated": true,
+    "hasCBD": false
+  },
+  {
+    "productName": "pitaya berry nect'r",
+    "brandName": "bubbl'r",
+    "imageURL": "https://www.drinkbubblr.com/wp-content/uploads/2022/01/WP-BUBBLR-Website-Flavr-pitayaberrynectr.png",
+    "flavor": ["dragon-fruit", "strawberry"],
+    "isCaffeinated": true,
+    "hasCBD": false
+  },
+  {
+    "productName": "blood orange mango mingl'r",
+    "brandName": "bubbl'r",
+    "imageURL": "https://www.drinkbubblr.com/wp-content/uploads/2022/01/WP-BUBBLR-Website-Flavr-bloodorangemangominglr.png",
+    "flavor": ["blood-orange", "mango"],
+    "isCaffeinated": true,
+    "hasCBD": false
+  },
+  {
+    "productName": "passion fruit wond'r",
+    "brandName": "bubbl'r",
+    "imageURL": "https://www.drinkbubblr.com/wp-content/uploads/2022/01/WP-BUBBLR-Website-Flavr-passionfruitwondr.png",
+    "flavor": ["passionfruit"],
+    "isCaffeinated": true,
+    "hasCBD": false
+  },
+  {
+    "productName": "pomegranate acai refresh'r",
+    "brandName": "bubbl'r",
+    "imageURL": "https://www.drinkbubblr.com/wp-content/uploads/2022/01/WP-BUBBLR-Website-Flavr-pomegranateacairefreshr.png",
+    "flavor": ["pomegranate", "acai"],
+    "isCaffeinated": true,
+    "hasCBD": false
+  },
+  {
+    "productName": "cranberry grapefruit sparkl'r",
+    "brandName": "bubbl'r",
+    "imageURL": "https://www.drinkbubblr.com/wp-content/uploads/2022/01/WP-BUBBLR-Website-Flavr-cranberrygrapefruitsparklr.png",
+    "flavor": ["cranberry", "grapefruit"],
+    "isCaffeinated": true,
+    "hasCBD": false
+  },
+  {
+    "productName": "wild cherry chill'r",
+    "brandName": "bubbl'r",
+    "imageURL": "https://www.drinkbubblr.com/wp-content/uploads/2023/11/WP-BUBBLR-Website-Flavr-wildcherrychillr-v2.png",
+    "flavor": ["cherry"],
+    "isCaffeinated": true,
+    "hasCBD": false
+  },
+  {
+    "productName": "grapefruit",
+    "brandName": "hi-ball-energy",
+    "imageURL": "https://m.media-amazon.com/images/I/41w5bJ2hapL._SX300_SY300_QL70_FMwebp_.jpg",
+    "flavor": ["grapefruit"],
+    "isCaffeinated": true,
+    "hasCBD": false
+  },
+  {
+    "productName": "blood orange",
+    "brandName": "hi-ball-energy",
+    "imageURL": "https://m.media-amazon.com/images/S/assets.wholefoodsmarket.com/PIE/product/62d09db5d707891144dad965_0853585008417-glamor-back-left-2022-06-08t19-17-36-iphone-x-quality-90-1-29-0-user-5984ad42a967f880524de2c4-812w-694975.jpg",
+    "flavor": ["blood-orange"],
+    "isCaffeinated": true,
+    "hasCBD": false
+  },
+  {
+    "productName": "peach",
+    "brandName": "hi-ball-energy",
+    "imageURL": "https://www.kroger.com/product/images/large/front/0089735100082",
+    "flavor": ["peach"],
+    "isCaffeinated": true,
+    "hasCBD": false
+  },
+  {
+    "productName": "vanilla",
+    "brandName": "hi-ball-energy",
+    "imageURL": "https://storage.googleapis.com/images-fol-prd-83dd8b8.fol.prd.v8.commerce.mi9cloud.com/product-images/detail/89735100052.jpg",
+    "flavor": ["vanilla"],
+    "isCaffeinated": true,
+    "hasCBD": false
+  },
+  {
+    "productName": "wild berry",
+    "brandName": "hi-ball-energy",
+    "imageURL": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxjFyiOdQkVpTyVF_9DkwAsXN2pBHGWJZKt6ZDAQKWCg&s",
+    "flavor": ["berry"],
+    "isCaffeinated": true,
+    "hasCBD": false
+  },
+  {
+    "productName": "blackberry",
+    "brandName": "hi-ball-energy",
+    "imageURL": "https://www.kroger.com/product/images/large/front/0085358500840",
+    "flavor": ["blackberry"],
+    "isCaffeinated": true,
+    "hasCBD": false
+  },
+  {
+    "productName": "lemon lime",
+    "brandName": "hi-ball-energy",
+    "imageURL": "https://www.kroger.com/product/images/large/front/0089735100032",
+    "flavor": ["lemon", "lime"],
+    "isCaffeinated": true,
+    "hasCBD": false
+  },
+  {
+    "productName": "watermelon mint",
+    "brandName": "hi-ball-energy",
+    "imageURL": "https://storage.googleapis.com/images-fol-prd-83dd8b8.fol.prd.v8.commerce.mi9cloud.com/product-images/detail/85358500842-1.jpg",
+    "flavor": ["watermelon", "mint"],
+    "isCaffeinated": true,
+    "hasCBD": false
   }
 ]
