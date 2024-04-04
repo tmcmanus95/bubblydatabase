@@ -9,6 +9,14 @@
     "link": "https://sgbonline.com/wp-content/uploads/2020/04/Aprch-logo-1024x354.jpg"
   },
   {
+    "name": "ardor",
+    "link": "https://uspto.report/TM/90332560/mark.png"
+  },
+  {
+    "name": "aura-bora",
+    "link": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNb8eS8floKu_p1k8RU99wJO50f4Hj_ou0Cn0SLiSuHA&s"
+  },
+  {
     "name": "bubbl'r",
     "link": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzrkWpsY4YYYcXGlqU58GYgeEbI4nEuESiL8LYmj2TNw&s"
   },
@@ -27,6 +35,10 @@
   {
     "name": "good-&-gather",
     "link": "https://images.squarespace-cdn.com/content/v1/5ef4b9a14215590dac8d9e26/f23f9c78-7993-47a1-9eaf-5c2aac767587/Untitled-2-01.jpg"
+  },
+  {
+    "name": "good-idea",
+    "link": "https://d2iiahg0ip5afn.cloudfront.net/logos/3673/458890203.good.idea.logo.black.png"
   },
   {
     "name": "ice-mountain",
@@ -58,8 +70,20 @@
     "link": "https://1000logos.net/wp-content/uploads/2020/07/Perrier-Logo.png"
   },
   {
+    "name": "phocus",
+    "link": "https://drinkphocus.com/cdn/shop/files/Phocus_Logo_NCSW-01_600x600.png?v=1694541462"
+  },
+  {
+    "name": "polar-seltzer",
+    "link": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Polar_Logo_2012.png/1200px-Polar_Logo_2012.png"
+  },
+  {
     "name": "present",
     "link": "https://www.drinkpresent.com/img/present-logo.png"
+  },
+  {
+    "name": "puraqua",
+    "link": "https://testaqua.com/wp-content/uploads/2019/07/puraqua-logo.png"
   },
   {
     "name": "recess",
@@ -72,6 +96,10 @@
   {
     "name": "sanzo",
     "link": "https://pbs.twimg.com/media/FmN8T28WIBkEt4o.png"
+  },
+  {
+    "name": "soleil",
+    "link": "https://images.albertsons-media.com/is/image/ABS/soleil-own-brands-banner?$mod-unified-tab-view$"
   },
   {
     "name": "sparkling-ice",
@@ -90,6 +118,10 @@
     "link": "https://www.topochico.com/content/dam/nagbrands/us/topochico/en/topo-chico-logo-2023.png"
   },
   {
+    "name": "tru",
+    "link": "https://m.media-amazon.com/images/S/aplus-media-library-service-media/2c29102d-af2d-4e06-825c-9cf13350df74.__CR332,0,800,600_PT0_SX600_V1___.jpg"
+  },
+  {
     "name": "untitled-art",
     "link": "https://www.drinkuntitled.com/wp-content/uploads/2023/02/logo_full_short.png"
   },
@@ -98,7 +130,7 @@
     "link": "https://www.drinkwaterloo.com/wp-content/uploads/2023/05/brand-logo.png"
   },
   {
-    "name": "polar-seltzer",
-    "link": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Polar_Logo_2012.png/1200px-Polar_Logo_2012.png"
+    "name": "wildwonder",
+    "link": "https://res.cloudinary.com/mable/image/upload/q_auto,c_limit,w_500,h_500/f_auto/v1635609708/marketplace/tj78emkxwbd4ptkiouwk.jpg"
   }
 ]
