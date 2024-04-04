@@ -25,6 +25,126 @@
 .Key-lime-brushings {
   background-color: #9eeb9e !important;
 }
+.Acai {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #46295a;
+  color: white;
+}
+.Acai-background {
+  background-color: #f2e4fd;
+}
+.Acai-brushings {
+  background-color: #46295a !important;
+  color: white !important;
+}
+.Banana {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #ffe135;
+}
+.Banana-background {
+  background-color: #ffffed;
+}
+.Banana-brushings {
+  background-color: #ffe135 !important;
+}
+.Basil {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #82c87e;
+}
+.Basil-background {
+  background-color: #f9fff7;
+}
+.Basil-brushings {
+  background-color: #82c87e !important;
+}
+.Cactus {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #5c755e;
+  color: white;
+}
+.Cactus-background {
+  background-color: #f9fff7;
+}
+.Cactus-brushings {
+  background-color: #5c755e !important;
+  color: white !important;
+}
+.Cardamom {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #757331;
+  color: white;
+}
+.Cardamom-background {
+  background-color: #f9fff7;
+}
+.Cardamom-brushings {
+  background-color: #757331 !important;
+  color: white !important;
+}
+.Chili {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #e32227;
+  color: white;
+}
+.Chili-background {
+  background-color: #ffe4ed;
+}
+.Chili-brushings {
+  background-color: #e32227 !important;
+  color: white !important;
+}
+.Currant {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #3d3242;
+  color: white;
+}
+.Currant-background {
+  background-color: #e6d9cb;
+}
+.Currant-brushings {
+  background-color: #3d3242 !important;
+  color: white !important;
+}
+.Elderflower {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #fbf9e8;
+}
+.Elderflower-background {
+  background-color: #e6d9cb;
+}
+.Elderflower-brushings {
+  background-color: #fbf9e8 !important;
+}
+.Honeysuckle {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #e50068;
+  color: white;
+}
+.Honeysuckle-background {
+  background-color: #ffe4ed;
+}
+.Honeysuckle-brushings {
+  background-color: #e50068 !important;
+  color: white !important;
+}
 
 .Limoncello {
   border-radius: 5px;
@@ -52,6 +172,19 @@
   background-color: #ffe27e !important;
   color: black !important;
 }
+.Turmeric {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #ccb647;
+}
+.Turmeric-background {
+  background-color: #ffffed;
+}
+.Turmeric-brushings {
+  background-color: #ccb647 !important;
+  color: black !important;
+}
 .Watermelon {
   border-radius: 5px;
   padding: 5px;
@@ -76,6 +209,33 @@
 .Citrus-brushings {
   background-color: greenyellow !important;
   color: black !important;
+}
+.Sweetgrass {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #e7ffa4;
+}
+.Sweetgrass-background {
+  background-color: #f9fff7;
+}
+.Sweetgrass-brushings {
+  background-color: #e7ffa4 !important;
+  color: black !important;
+}
+.Lemongrass {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #969580;
+  color: white;
+}
+.Lemongrass-background {
+  background-color: #f9fff7;
+}
+.Lemongrass-brushings {
+  background-color: 969580 !important;
+  color: white !important;
 }
 
 .Pomegranate {
@@ -444,6 +604,18 @@
   background-color: #52253a !important;
   color: white !important;
 }
+.Lavender {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #e6e6fa;
+}
+.Lavender-background {
+  background-color: #f2e4fd;
+}
+.Lavender-brushings {
+  background-color: #e6e6fa !important;
+}
 
 .Black-tea {
   border-radius: 5px;
@@ -704,6 +876,19 @@
 }
 .Ginger-brushings {
   background-color: #d1b280 !important;
+  color: black;
+}
+.Mushroom {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #d6ccc2;
+}
+.Mushroom-background {
+  background-color: #e6d9cb;
+}
+.Mushroom-brushings {
+  background-color: #d6ccc2 !important;
   color: black;
 }
 
