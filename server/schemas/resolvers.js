@@ -11,6 +11,7 @@ const resolvers = {
       return User.findOne({ _id: userId }).populate([
         {
           path: "ratings",
+          options: { limit: 10, sort: { createdAt: -1 } },
           populate: {
             path: "bubblyWater",
             model: "BubblyWater",
@@ -18,6 +19,7 @@ const resolvers = {
         },
         {
           path: "reviews",
+          options: { limit: 10, sort: { createdAt: -1 } },
           populate: {
             path: "bubblyWater",
             model: "BubblyWater",
@@ -33,13 +35,24 @@ const resolvers = {
     },
     me: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate({
-          path: "ratings",
-          populate: {
-            path: "bubblyWater",
-            model: "BubblyWater",
+        return User.findOne({ _id: context.user._id }).populate([
+          {
+            path: "ratings",
+            options: { limit: 10, sort: { createdAt: -1 } },
+            populate: {
+              path: "bubblyWater",
+              model: "BubblyWater",
+            },
           },
-        });
+          {
+            path: "reviews",
+            options: { limit: 10, sort: { createdAt: -1 } },
+            populate: {
+              path: "bubblyWater",
+              model: "BubblyWater",
+            },
+          },
+        ]);
       }
       throw AuthenticationError;
     },
