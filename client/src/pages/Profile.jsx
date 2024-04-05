@@ -7,6 +7,7 @@ import { EDIT_USER_COLOR } from "../../utils/mutations";
 import UsersRatings from "../components/UsersRatings";
 import UsersReviews from "../components/UsersReviews";
 import Loading from "../components/Loading";
+import RatingsBreakdown from "../components/RatingsBreakdown";
 export default function Profile() {
   const { userId } = useParams();
   const { loading, data } = useQuery(userId ? QUERY_SINGLE_USER : QUERY_ME, {
@@ -247,7 +248,7 @@ export default function Profile() {
               <></>
             )}
           </div>
-
+          <RatingsBreakdown ratings={ratings} />
           <div className="flex flex-wrap justify-center">
             {ratings && <UsersRatings ratings={ratings} />}
             {reviews && <UsersReviews reviews={reviews} />}
