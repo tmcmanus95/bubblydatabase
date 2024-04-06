@@ -103,6 +103,17 @@ const resolvers = {
         productName: { $regex: productName, $options: "i" },
       });
     },
+    searchGeneralBubblyWater: async (_, { searchTerm }) => {
+      try {
+        const results = await BubblyWater.find({
+          $text: { $search: searchTerm },
+        }).limit(10);
+
+        return results;
+      } catch (error) {
+        throw new Error("Failed to search bubbly water.");
+      }
+    },
     searchUsers: async (parent, { username }) => {
       return User.findOne({ username: username });
     },
