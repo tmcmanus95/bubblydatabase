@@ -161,6 +161,18 @@ export const QUERY_ME = gql`
   }
 `;
 
+export const QUERY_SIMPLE_RATINGS = gql`
+  query SimpleRatings($userId: ID!) {
+    simpleRatings(userId: $userId) {
+      _id
+      username
+      ratings {
+        rating
+      }
+    }
+  }
+`;
+
 export const QUERY_MEID = gql`
   query Query {
     meId {

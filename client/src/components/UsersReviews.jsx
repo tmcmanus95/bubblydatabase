@@ -10,7 +10,7 @@ export default function UsersReviews({ reviews }) {
         <section>
           <ul className="p-5 flex-col flex items-center">
             {reviews?.map((review, index) => (
-              <Link to={`/bubblyWater/${review.bubblyWater._id}`} key={index}>
+              <Link to={`/bubblyWater/${review?.bubblyWater._id}`} key={index}>
                 <li className="border-2 w-64 md:w-96 mb-3 rounded-lg lg:text-l text-sm overflow-hidden">
                   <div
                     className={`${

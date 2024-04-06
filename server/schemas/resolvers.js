@@ -11,7 +11,7 @@ const resolvers = {
       return User.findOne({ _id: userId }).populate([
         {
           path: "ratings",
-          options: { limit: 10, sort: { createdAt: -1 } },
+          // options: { limit: 10, sort: { createdAt: -1 } },
           populate: {
             path: "bubblyWater",
             model: "BubblyWater",
@@ -19,13 +19,16 @@ const resolvers = {
         },
         {
           path: "reviews",
-          options: { limit: 10, sort: { createdAt: -1 } },
+          // options: { limit: 10, sort: { createdAt: -1 } },
           populate: {
             path: "bubblyWater",
             model: "BubblyWater",
           },
         },
       ]);
+    },
+    simpleRatings: async (parent, { userId }) => {
+      return User.findOne({ _id: userId });
     },
     meId: async (parent, args, context) => {
       if (context.user) {
@@ -93,7 +96,7 @@ const resolvers = {
         .limit(5);
     },
     searchExactProductName: async (parent, { productName }) => {
-      return BubblyWater.find({ productName: productName }).limit(5);
+      return BubblyWater.find({ productName: productName }).limit("5");
     },
     searchVagueProductName: async (parent, { productName }) => {
       return BubblyWater.find({
@@ -102,27 +105,6 @@ const resolvers = {
     },
     searchUsers: async (parent, { username }) => {
       return User.findOne({ username: username });
-    },
-    searchTags: async (parent, { searchTerm }) => {
-      return BubblyWater.find({
-        tags: {
-          $elemMatch: {
-            $regex: searchTerm,
-            $options: "i",
-          },
-        },
-      });
-    },
-    searchGeneralBubblyWater: async (_, { searchTerm }) => {
-      try {
-        const results = await BubblyWater.find({
-          $text: { $search: searchTerm },
-        }).limit(10);
-
-        return results;
-      } catch (error) {
-        throw new Error("Failed to search bubbly water.");
-      }
     },
   },
 
@@ -133,10 +115,6 @@ const resolvers = {
 
       return { token, user };
     },
-    removeUser: async (parent, { userId }) => {
-      return User.findOneAndDelete({ _id: userId });
-    },
-
     editUserColor: async (parent, { userId, color }, context) => {
       try {
         const updatedUser = await User.findOneAndUpdate(
@@ -150,6 +128,9 @@ const resolvers = {
         console.error(error);
         throw new Error("Failed to edit color");
       }
+    },
+    removeUser: async (parent, { userId }) => {
+      return User.findOneAndDelete({ _id: userId });
     },
 
     addRating: async (parent, { userId, bubblyWaterId, rating }, context) => {
@@ -240,6 +221,7 @@ const resolvers = {
         const user = await User.findById(userId);
         user.reviews.push(newReview._id);
         await user.save();
+        console.log("ubw", updatedBubblyWater);
         await updatedBubblyWater.save();
         return updatedBubblyWater;
       } catch (error) {
