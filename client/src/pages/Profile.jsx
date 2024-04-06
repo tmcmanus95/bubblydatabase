@@ -12,6 +12,7 @@ import UsersRatings from "../components/UsersRatings";
 import UsersReviews from "../components/UsersReviews";
 import Loading from "../components/Loading";
 import RatingsBreakdown from "../components/RatingsBreakdown";
+import { Rating } from "@mui/material";
 export default function Profile() {
   const { userId } = useParams();
   const { loading, data } = useQuery(userId ? QUERY_SINGLE_USER : QUERY_ME, {
@@ -253,6 +254,9 @@ export default function Profile() {
             ) : (
               <></>
             )}
+          </div>
+          <div className="flex flex-wrap justify-center">
+            <RatingsBreakdown ratings={ratings} />
           </div>
           <div className="flex flex-wrap justify-center">
             {ratings && <UsersRatings ratings={ratings} />}
