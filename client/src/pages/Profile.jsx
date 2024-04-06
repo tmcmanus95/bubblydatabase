@@ -1,5 +1,9 @@
 import { useQuery } from "@apollo/client";
-import { QUERY_SINGLE_USER, QUERY_ME } from "../../utils/queries";
+import {
+  QUERY_SINGLE_USER,
+  QUERY_ME,
+  QUERY_SIMPLE_RATINGS,
+} from "../../utils/queries";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
@@ -13,6 +17,7 @@ export default function Profile() {
   const { loading, data } = useQuery(userId ? QUERY_SINGLE_USER : QUERY_ME, {
     variables: { userId: userId },
   });
+
   const [colorSelect, setColorSelect] = useState(false);
   const [editUserColor, { error: editUserColorError }] =
     useMutation(EDIT_USER_COLOR);
@@ -35,6 +40,7 @@ export default function Profile() {
           color: selectedColor,
         },
       });
+      console.log("changing to ", selectedColor);
       setColorSelect(!colorSelect);
     } catch (err) {
       console.error("Error editing review, ", err);
@@ -248,7 +254,6 @@ export default function Profile() {
               <></>
             )}
           </div>
-          <RatingsBreakdown ratings={ratings} />
           <div className="flex flex-wrap justify-center">
             {ratings && <UsersRatings ratings={ratings} />}
             {reviews && <UsersReviews reviews={reviews} />}

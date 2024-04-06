@@ -11,7 +11,7 @@ const resolvers = {
       return User.findOne({ _id: userId }).populate([
         {
           path: "ratings",
-          options: { limit: 10, sort: { createdAt: -1 } },
+          // options: { limit: 10, sort: { createdAt: -1 } },
           populate: {
             path: "bubblyWater",
             model: "BubblyWater",
@@ -19,13 +19,16 @@ const resolvers = {
         },
         {
           path: "reviews",
-          options: { limit: 10, sort: { createdAt: -1 } },
+          // options: { limit: 10, sort: { createdAt: -1 } },
           populate: {
             path: "bubblyWater",
             model: "BubblyWater",
           },
         },
       ]);
+    },
+    simpleRatings: async (parent, { userId }) => {
+      return User.findOne({ _id: userId });
     },
     meId: async (parent, args, context) => {
       if (context.user) {
@@ -111,6 +114,20 @@ const resolvers = {
       const token = signToken(user);
 
       return { token, user };
+    },
+    editUserColor: async (parent, { userId, color }, context) => {
+      try {
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: userId },
+          { $set: { color } },
+          { new: true }
+        );
+
+        return updatedUser;
+      } catch (error) {
+        console.error(error);
+        throw new Error("Failed to edit color");
+      }
     },
     removeUser: async (parent, { userId }) => {
       return User.findOneAndDelete({ _id: userId });

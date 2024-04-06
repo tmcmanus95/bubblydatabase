@@ -48,6 +48,7 @@ const typeDefs = `
   type Query {
     users: [User]
     user(userId: ID!): User
+    simpleRatings(userId: ID!): User
     meId: User
     me: User
     bubblyWaters: [BubblyWater]
