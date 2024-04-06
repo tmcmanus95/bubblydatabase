@@ -54,6 +54,7 @@ const flavors = [
   "Passionfruit",
   "Peach",
   "Pear",
+  "Peppermint",
   "Pineapple",
   "Pink-lemonade",
   "Plain",
@@ -61,12 +62,14 @@ const flavors = [
   "Pomelo",
   "Raspberry",
   "Rose",
+  "Sea-berry",
   "Strawberry",
   "Sweetgrass",
   "Tangerine",
   "Tea",
   "Turmeric",
   "Watermelon",
+  "Wildflower",
 ];
 
 export default flavors;

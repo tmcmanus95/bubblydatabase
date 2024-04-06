@@ -504,6 +504,45 @@
   background-color: #f4bb44 !important;
   color: black !important;
 }
+.Wildflower {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+
+  background-color: #7d7dbd;
+  color: white;
+}
+.Wildflower-background {
+  background-color: #f2e4fd;
+}
+.Wildflower-brushings {
+  background-color: #7d7dbd;
+  color: white !important;
+}
+.Sea-berry {
+  background-color: #f09447;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+}
+.Sea-berry-background {
+  background-color: #ffd7b5;
+}
+.Sea-berry-brushings {
+  background-color: #f09447;
+}
+.Peppermint {
+  background-color: #c5eada;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+}
+.Peppermint-background {
+  background-color: #f9fff7;
+}
+.Peppermint-brushings {
+  background-color: #c5eada;
+}
 
 .Passionfruit {
   border-radius: 5px;
