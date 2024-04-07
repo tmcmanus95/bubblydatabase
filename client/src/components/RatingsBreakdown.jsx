@@ -22,6 +22,7 @@ export default function RatingsBreakdown({ ratings }) {
 
   return (
     <div className="flex-col flex items-center ">
+      <h3 className="mb-2">Ratings Breakdown</h3>
       <h2 className="flex w-64 md:w-96 border-2 border-black items-center  justify-between lg:text-md text-xs">
         <span className="align-left">5 Stars: {fiveRatings.length}</span>
         <span>{fivePercent} %</span>

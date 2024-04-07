@@ -255,8 +255,10 @@ export default function Profile() {
               <></>
             )}
           </div>
-          <div className="flex flex-wrap justify-center">
-            <RatingsBreakdown ratings={ratings} />
+          <div className="flex flex-wrap justify-center mt-2">
+            <div className="flex justify-center">
+              <RatingsBreakdown ratings={ratings} />
+            </div>
           </div>
           <div className="flex flex-wrap justify-center">
             {ratings && <UsersRatings ratings={ratings} />}

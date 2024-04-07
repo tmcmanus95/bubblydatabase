@@ -416,6 +416,9 @@
   background-color: #3498db !important;
   color: white !important;
 }
+.Blueberry-background {
+  background-color: #e8f4f8;
+}
 
 .Raspberry {
   border-radius: 5px;
@@ -542,6 +545,19 @@
 }
 .Peppermint-brushings {
   background-color: #c5eada;
+}
+.Huckleberry {
+  background-color: #353770;
+  color: white;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+}
+.Huckleberry-background {
+  background-color: #e8f4f8;
+}
+.Huckleberry-brushings {
+  background-color: #353770;
 }
 
 .Passionfruit {

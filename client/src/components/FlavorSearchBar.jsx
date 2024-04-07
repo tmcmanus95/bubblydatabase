@@ -6,6 +6,8 @@ import flavors from "../assets/flavors";
 export default function FlavorSearchBar() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedFlavor, setSelectedFlavor] = useState("");
+  const [caffeineSearch, setCaffeineSearch] = useState(false);
+  const [CBDSearch, setCBDSearch] = useState(false);
 
   const handleInputChange = (e) => {
     setSearchTerm(e.target.value);
@@ -21,6 +23,22 @@ export default function FlavorSearchBar() {
     if (filteredFlavors.length > 0) {
       handleSelectFlavor(filteredFlavors[0]);
     }
+  };
+  const toggleCBDSearch = () => {
+    if (caffeineSearch == true) {
+      setCaffeineSearch(false);
+      console.log("no longer searching caffeine");
+    }
+    setCBDSearch(true);
+    console.log("Searching cbd");
+  };
+  const toggleCaffeineSearch = () => {
+    if (CBDSearch == true) {
+      setCBDSearch(false);
+      console.log("no longer searching cbd");
+    }
+    setCaffeineSearch(true);
+    console.log("Searching caffeine.");
   };
 
   const filteredFlavors = flavors.filter((flavor) =>
@@ -41,6 +59,43 @@ export default function FlavorSearchBar() {
                 value={searchTerm}
                 onChange={handleInputChange}
               />
+              <div className="flex flex-col items-center">
+                {" "}
+                {/* Container for radio buttons */}
+                <div className="flex items-center mb-4">
+                  <input
+                    id="default-radio-1"
+                    type="radio"
+                    value=""
+                    name="default-radio"
+                    onClick={toggleCaffeineSearch}
+                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                  />
+                  <label
+                    htmlFor="default-radio-1"
+                    className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                  >
+                    Caffeine
+                  </label>
+                </div>
+                <div className="flex items-center">
+                  <input
+                    id="default-radio-2"
+                    type="radio"
+                    value=""
+                    onClick={toggleCBDSearch}
+                    name="default-radio"
+                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                  />
+                  <label
+                    htmlFor="default-radio-2"
+                    className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                  >
+                    CBD
+                  </label>
+                </div>
+              </div>
+
               {searchTerm && (
                 <ul className="absolute mt-1 bg-white border border-gray-300 rounded z-10 left-1/2 transform -translate-x-1/2 w-full md:w-80">
                   {filteredFlavors.map((flavor) => (
@@ -58,7 +113,11 @@ export default function FlavorSearchBar() {
           </form>
         </section>
         {selectedFlavor ? (
-          <BubblyWaterList searchTerm={selectedFlavor.toLowerCase()} />
+          <BubblyWaterList
+            searchTerm={selectedFlavor.toLowerCase()}
+            caffeineSearch={caffeineSearch}
+            CBDSearch={CBDSearch}
+          />
         ) : (
           <BubblyWaterList />
         )}
