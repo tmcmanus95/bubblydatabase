@@ -18,7 +18,7 @@ export default function BubblyWaterList({
   let caffeinatedBubblies;
   let hasCaffeinatedBubbly = false;
   let hasCBDBubbly = false;
-
+  console.log("data for general search", data?.bubblyWaters);
   // We only need to sort the single flavor query, as the QUERY_ALL_BUBBLYS resolver already returns the bubbly waters sorted by average rating
   if (searchTerm) {
     if (data && data.flavors) {
@@ -30,14 +30,14 @@ export default function BubblyWaterList({
       caffeinatedBubblies = data?.flavors.filter(
         (bubbly) => bubbly?.isCaffeinated === true
       );
-    } else {
-      cbdBubblies = data?.bubblyWater.filter(
-        (bubbly) => bubbly?.hasCBD === true
-      );
-      caffeinatedBubblies = data?.bubblyWater.filter(
-        (bubbly) => bubbly?.isCaffeinated === true
-      );
     }
+  } else {
+    cbdBubblies = data?.bubblyWaters.filter(
+      (bubbly) => bubbly?.hasCBD === true
+    );
+    caffeinatedBubblies = data?.bubblyWaters.filter(
+      (bubbly) => bubbly?.isCaffeinated === true
+    );
   }
 
   if (CBDSearch) {
@@ -45,10 +45,17 @@ export default function BubblyWaterList({
       sortedBubblyWaters = cbdBubblies;
       hasCBDBubbly = true;
     } else {
-      sortedBubblyWaters = data?.flavors
-        .slice()
-        .sort((a, b) => b.averageRating - a.averageRating);
-      hasCBDBubbly = false;
+      if (searchTerm) {
+        sortedBubblyWaters = data?.flavors
+          .slice()
+          .sort((a, b) => b.averageRating - a.averageRating);
+        hasCBDBubbly = false;
+      } else {
+        sortedBubblyWaters = data.bubblyWaters
+          .slice()
+          .sort((a, b) => a.averageRating - b.averageRating);
+        hasCBDBubbly = false;
+      }
     }
   }
   if (caffeineSearch) {

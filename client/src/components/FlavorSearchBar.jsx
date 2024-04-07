@@ -28,28 +28,22 @@ export default function FlavorSearchBar() {
   const toggleCBDSearch = () => {
     if (caffeineSearch == true) {
       setCaffeineSearch(false);
-      console.log("no longer searching caffeine");
     }
     setCBDSearch(true);
-    console.log("Searching cbd");
   };
   const toggleCaffeineSearch = () => {
     if (CBDSearch == true) {
       setCBDSearch(false);
-      console.log("no longer searching cbd");
     }
     setCaffeineSearch(true);
-    console.log("Searching caffeine.");
   };
   const toggleSearchAll = () => {
     if (CBDSearch == true) {
       setCBDSearch(false);
-      console.log("no longer searching cbd");
     } else if (caffeineSearch == true) {
       setCaffeineSearch(false);
     }
     setSearchAll(true);
-    console.log("Searching caffeine.");
   };
 
   const filteredFlavors = flavors.filter((flavor) =>
@@ -146,7 +140,10 @@ export default function FlavorSearchBar() {
             CBDSearch={CBDSearch}
           />
         ) : (
-          <BubblyWaterList />
+          <BubblyWaterList
+            caffeineSearch={caffeineSearch}
+            CBDSearch={CBDSearch}
+          />
         )}
       </div>
     </>
