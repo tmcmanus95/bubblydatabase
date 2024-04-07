@@ -16,8 +16,8 @@ export default function BubblyWaterList({
   let sortedBubblyWaters = [];
   let cbdBubblies;
   let caffeinatedBubblies;
-  let hasCaffeinatedBubbly = true;
-  let hasCBDBubbly = true;
+  let hasCaffeinatedBubbly = false;
+  let hasCBDBubbly = false;
 
   // We only need to sort the single flavor query, as the QUERY_ALL_BUBBLYS resolver already returns the bubbly waters sorted by average rating
   if (searchTerm) {
@@ -43,6 +43,7 @@ export default function BubblyWaterList({
   if (CBDSearch) {
     if (cbdBubblies?.length > 0) {
       sortedBubblyWaters = cbdBubblies;
+      hasCBDBubbly = true;
     } else {
       sortedBubblyWaters = data?.flavors
         .slice()
@@ -53,6 +54,7 @@ export default function BubblyWaterList({
   if (caffeineSearch) {
     if (caffeinatedBubblies?.length > 0) {
       sortedBubblyWaters = caffeinatedBubblies;
+      hasCaffeinatedBubbly = true;
     } else {
       sortedBubblyWaters = data?.flavors
         .slice()
@@ -71,20 +73,30 @@ export default function BubblyWaterList({
           }
         >
           <div className="text-center pt-5">
-            {hasCaffeinatedBubbly ? (
-              <></>
+            {caffeineSearch ? (
+              hasCaffeinatedBubbly ? (
+                <></>
+              ) : (
+                <h6>
+                  No Caffeinated {capitalizeSingleFlavor(searchTerm)} Waters
+                  Found
+                </h6>
+              )
             ) : (
-              <h6>
-                No Caffeinated {capitalizeSingleFlavor(searchTerm)} Waters Found
-              </h6>
+              <></>
             )}
-            {hasCBDBubbly ? (
-              <></>
+
+            {CBDSearch ? (
+              hasCBDBubbly ? (
+                <></>
+              ) : (
+                <h6>
+                  No {capitalizeSingleFlavor(searchTerm)} Flavored Waters with
+                  CBD Found
+                </h6>
+              )
             ) : (
-              <h6>
-                No {capitalizeSingleFlavor(searchTerm)} Flavored Waters with CBD
-                Found
-              </h6>
+              <></>
             )}
 
             <h3 className="md:text-5xl text-xl text-center pt-10 font-bold mb-6 relative">
@@ -101,6 +113,17 @@ export default function BubblyWaterList({
                   Top Rated Bubbly Waters of All Time
                 </div>
               )}
+              {hasCaffeinatedBubbly ? (
+                <h3 className="mt-4 text-xl">with Caffeine</h3>
+              ) : (
+                <></>
+              )}
+              {hasCBDBubbly ? (
+                <h3 className="mt-4 text-xl">with CBD</h3>
+              ) : (
+                <></>
+              )}
+
               <div className="absolute  left-1/2 transform -translate-x-1/2 mt-5 ">
                 <div className="bg-black h-px w-56 lg:w-96"></div>
               </div>

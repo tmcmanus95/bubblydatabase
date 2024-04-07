@@ -6,6 +6,7 @@ import flavors from "../assets/flavors";
 export default function FlavorSearchBar() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedFlavor, setSelectedFlavor] = useState("");
+  const [searchAll, setSearchAll] = useState(false);
   const [caffeineSearch, setCaffeineSearch] = useState(false);
   const [CBDSearch, setCBDSearch] = useState(false);
 
@@ -40,6 +41,16 @@ export default function FlavorSearchBar() {
     setCaffeineSearch(true);
     console.log("Searching caffeine.");
   };
+  const toggleSearchAll = () => {
+    if (CBDSearch == true) {
+      setCBDSearch(false);
+      console.log("no longer searching cbd");
+    } else if (caffeineSearch == true) {
+      setCaffeineSearch(false);
+    }
+    setSearchAll(true);
+    console.log("Searching caffeine.");
+  };
 
   const filteredFlavors = flavors.filter((flavor) =>
     flavor.toLowerCase().includes(searchTerm.toLowerCase())
@@ -61,25 +72,23 @@ export default function FlavorSearchBar() {
               />
               <div className="flex justify-center">
                 <div className="flex items-center py-3">
-                  {" "}
-                  {/* Container for radio buttons */}
                   <div className="flex items-center mr-2">
                     <input
                       id="default-radio-1"
                       type="radio"
                       value=""
+                      onClick={toggleSearchAll}
                       name="default-radio"
-                      onClick={toggleCaffeineSearch}
                       className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                     />
                     <label
                       htmlFor="default-radio-1"
                       className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                     >
-                      Caffeine
+                      All
                     </label>
                   </div>
-                  <div className="flex items-center">
+                  <div className="flex items-center mr-2">
                     <input
                       id="default-radio-2"
                       type="radio"
@@ -93,6 +102,22 @@ export default function FlavorSearchBar() {
                       className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                     >
                       CBD
+                    </label>
+                  </div>
+                  <div className="flex items-center">
+                    <input
+                      id="default-radio-3"
+                      type="radio"
+                      value=""
+                      onClick={toggleCaffeineSearch}
+                      name="default-radio"
+                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    />
+                    <label
+                      htmlFor="default-radio-2"
+                      className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                    >
+                      Caffeine
                     </label>
                   </div>
                 </div>
