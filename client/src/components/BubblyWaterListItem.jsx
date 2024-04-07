@@ -1,16 +1,33 @@
 import BasicRating from "./FiveStarRating";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import Rating from "@mui/material/Rating";
+import { PiFeatherBold } from "react-icons/pi";
+import { BiSolidCoffeeBean } from "react-icons/bi";
+
 import { capitalizeFlavors } from "../../utils/capitalizeFlavors";
 import { formatBrands } from "../../utils/formatBrands";
 
 export default function BubblyWaterListItem({ bubblyWater, ranking }) {
   let ratingCount = 0;
+  let hasCBD = false;
+  let hasCaffeine = false;
   ranking = ranking + 1;
   const capitalizedFlavors = capitalizeFlavors(bubblyWater);
   if (bubblyWater.ratings.length) {
     ratingCount = bubblyWater?.ratings?.length;
   }
+  if (bubblyWater.hasCBD == true) {
+    hasCBD = true;
+    console.log(`${bubblyWater.productName} ${bubblyWater.brandName} has cbd`);
+  }
+  if (bubblyWater.isCaffeinated == true) {
+    hasCaffeine = true;
+    console.log(
+      `${bubblyWater.productName} ${bubblyWater.brandName} has caffeine`
+    );
+  }
+
   return (
     <div className="bubblyListItem justify-center">
       <section className="m-2 md:m-5 flex justify-center">
@@ -19,7 +36,7 @@ export default function BubblyWaterListItem({ bubblyWater, ranking }) {
             #{ranking}
           </div>
 
-          <div className="shadow-lg p-5 rounded-xl my-5 text-center justify-center bg-white lg:flex lg:items-start">
+          <div className="shadow-lg p-5 rounded-xl my-5 text-center justify-center bg-white lg:flex lg:items-start lg:flex-grow">
             <Link
               to={`/bubblyWater/${bubblyWater._id}`}
               className="flex justify-center lg:mr-5"
@@ -29,19 +46,31 @@ export default function BubblyWaterListItem({ bubblyWater, ranking }) {
                 className="mx-auto lg:mx-0 lg:mb-0 object-cover w-40 h-52"
               />
             </Link>
-            <div className="flex flex-col justify-center mx-auto">
-              {" "}
-              {/* Adjusted alignment here */}
+            <div className="flex flex-col justify-center mx-auto lg:w-3/5">
+              <div className=" flex items-right">
+                {hasCBD && (
+                  <>
+                    <PiFeatherBold />
+                    <h5 className="ml-1">CBD</h5>
+                  </>
+                )}
+                {hasCaffeine && (
+                  <>
+                    <BiSolidCoffeeBean />
+                    <h5 className="ml-1 text-xs">Caffeine</h5>
+                  </>
+                )}
+              </div>
+
               <Link to={`/brands/${bubblyWater.brandName}`}>
                 <h3 className="text-lg font-medium pt-2 lg:pt-8 ">
                   {formatBrands(bubblyWater.brandName)}
                 </h3>
               </Link>
-              <p className=" mb-2 lg:mb-5">{bubblyWater.productName}</p>
+              <p className="mb-2 lg:mb-5">{bubblyWater.productName}</p>
               <h5 className="flex items-center text-center justify-center">
                 <span className="font-bold mr-2">Flavors</span>
                 <div className="flex flex-wrap max-w-[14rem] justify-center gap-y-3">
-                  {" "}
                   {capitalizedFlavors.map((flavor, index) => (
                     <Link to={`/flavors/${flavor.toLowerCase()}`} key={index}>
                       <span
