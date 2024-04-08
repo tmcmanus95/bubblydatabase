@@ -5,6 +5,7 @@ import Loading from "../components/Loading";
 import { formatBrands } from "../../utils/formatBrands";
 import brandLogos from "../assets/brandLogos.json";
 import BubblyWaterListItem from "../components/BubblyWaterListItem";
+import { Link } from "react-router-dom";
 export default function Brand() {
   const { brandName } = useParams();
   console.log(brandName);
@@ -57,6 +58,20 @@ export default function Brand() {
           )}
         </div>
       )}
+      <div>
+        <p className="ml-10">
+          Don't see a bubbly water? Submit a missing product using the contact
+          method below.
+        </p>
+        <div className="my-3">
+          <Link
+            to="/contact"
+            className="ml-10  p-3 rounded-lg bg-blue-100 hover:bg-blue-300"
+          >
+            Contact
+          </Link>
+        </div>
+      </div>
     </>
   );
 }

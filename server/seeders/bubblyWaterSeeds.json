@@ -2,7 +2,7 @@
   {
     "productName": "Lime",
     "brandName": "la-croix",
-    "imageURL": "https://www.gourmondoco.com/product/image/medium/2058_01-18-23-LowRes-124.jpg",
+    "imageURL": "https://www.lacroixwater.com/wp-content/uploads/2019/01/LIME-1.png",
     "flavor": ["lime"],
     "isCaffeinated": false,
     "hasCBD": false,
@@ -11,7 +11,7 @@
   {
     "productName": "Pure",
     "brandName": "la-croix",
-    "imageURL": "https://dydza6t6xitx6.cloudfront.net/ci-lacroix-sparkling-pure-cc97894644ba7567.png",
+    "imageURL": "https://www.lacroixwater.com/wp-content/uploads/2019/01/PURE-2-2022.png",
     "flavor": ["plain"],
     "isCaffeinated": false,
     "hasCBD": false,
@@ -26,7 +26,7 @@
   {
     "productName": "Lemon",
     "brandName": "la-croix",
-    "imageURL": "https://m.media-amazon.com/images/I/61Ubx2GpMoL._AC_UF350,350_QL80_.jpg",
+    "imageURL": "https://www.lacroixwater.com/wp-content/uploads/2019/01/LEMON-2.png",
     "flavor": ["lemon"],
     "isCaffeinated": false,
     "hasCBD": false
@@ -34,7 +34,7 @@
   {
     "productName": "Berry",
     "brandName": "la-croix",
-    "imageURL": "https://m.media-amazon.com/images/I/61uguPXB+HL.jpg",
+    "imageURL": "https://www.lacroixwater.com/wp-content/uploads/2019/01/BERRY-1.png",
     "flavor": ["berry"],
     "isCaffeinated": false,
     "hasCBD": false
@@ -42,23 +42,31 @@
   {
     "productName": "Razz-Cranberry",
     "brandName": "la-croix",
-    "imageURL": "https://m.media-amazon.com/images/I/61rs3a0SgrL.jpg",
+    "imageURL": "https://www.lacroixwater.com/wp-content/uploads/2019/01/RAZZ-CRANBERRY.png",
     "flavor": ["raspberry", "cranberry"],
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Orange",
+    "brandName": "la-croix",
+    "imageURL": "https://www.lacroixwater.com/wp-content/uploads/2019/01/ORANGE.png",
+    "flavor": ["orange"],
     "isCaffeinated": false,
     "hasCBD": false
   },
   {
     "productName": "Peach-Pear",
     "brandName": "la-croix",
-    "imageURL": "https://m.media-amazon.com/images/I/614S2fr2-HL.jpg",
+    "imageURL": "https://www.lacroixwater.com/wp-content/uploads/2019/01/PEACH-PEAR.png",
     "flavor": ["peach", "pear"],
     "isCaffeinated": false,
     "hasCBD": false
   },
   {
-    "productName": "Pomplemousse",
+    "productName": "Pamplemousse",
     "brandName": "la-croix",
-    "imageURL": "https://m.media-amazon.com/images/I/61kr60W+ITL.jpg",
+    "imageURL": "https://www.lacroixwater.com/wp-content/uploads/2019/01/PAMPLEMOUSSE-1.png",
     "flavor": ["grapefruit"],
     "isCaffeinated": false,
     "hasCBD": false
@@ -66,7 +74,7 @@
   {
     "productName": "Coconut",
     "brandName": "la-croix",
-    "imageURL": "https://m.media-amazon.com/images/I/61Z2o+e1BIL._AC_UF894,1000_QL80_.jpg",
+    "imageURL": "https://www.lacroixwater.com/wp-content/uploads/2019/01/COCONUT.png",
     "flavor": ["coconut"],
     "isCaffeinated": false,
     "hasCBD": false
@@ -74,7 +82,7 @@
   {
     "productName": "Passionfruit",
     "brandName": "la-croix",
-    "imageURL": "https://m.media-amazon.com/images/S/assets.wholefoodsmarket.com/PIE/product/624b7ebf27ac661363102214_dld-0012993441012-glamor-back-2022-02-28t20-59-40-iphone-x-quality-90-1-29-0-user-5984ad42a967f880524de2c4-axxk-550428-1649114812565.jpg",
+    "imageURL": "https://www.lacroixwater.com/wp-content/uploads/2019/01/PASSIONFRUIT.png",
     "flavor": ["passionfruit"],
     "isCaffeinated": false,
     "hasCBD": false
@@ -82,7 +90,7 @@
   {
     "productName": "Mango",
     "brandName": "la-croix",
-    "imageURL": "https://m.media-amazon.com/images/I/6126MgyXCJL.jpg",
+    "imageURL": "https://www.lacroixwater.com/wp-content/uploads/2019/01/MANGO.png",
     "flavor": ["mango"],
     "isCaffeinated": false,
     "hasCBD": false
@@ -90,7 +98,7 @@
   {
     "productName": "Apricot",
     "brandName": "la-croix",
-    "imageURL": "https://m.media-amazon.com/images/I/61tthLLnB1L.jpg",
+    "imageURL": "https://www.lacroixwater.com/wp-content/uploads/2019/01/APRICOT-3.png",
     "flavor": ["apricot"],
     "isCaffeinated": false,
     "hasCBD": false
@@ -98,7 +106,7 @@
   {
     "productName": "Tangerine",
     "brandName": "la-croix",
-    "imageURL": "https://m.media-amazon.com/images/I/61DVDjaBGKL.jpg",
+    "imageURL": "https://www.lacroixwater.com/wp-content/uploads/2021/03/IMG-Tangerine-821.png",
     "flavor": ["tangerine"],
     "isCaffeinated": false,
     "hasCBD": false
@@ -106,7 +114,7 @@
   {
     "productName": "Key Lime",
     "brandName": "la-croix",
-    "imageURL": "https://m.media-amazon.com/images/I/61cuBczVszL.jpg",
+    "imageURL": "https://www.lacroixwater.com/wp-content/uploads/2021/03/IMG-Keylime-821.png",
     "flavor": ["key-lime"],
     "isCaffeinated": false,
     "hasCBD": false
@@ -114,7 +122,7 @@
   {
     "productName": "Hi-Biscus",
     "brandName": "la-croix",
-    "imageURL": "https://i5.walmartimages.com/asr/c883efae-e8f8-4549-86a0-140ce350c02d.e37c5429aa86f498f147a919f2b2258d.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF",
+    "imageURL": "https://www.lacroixwater.com/wp-content/uploads/2021/03/IMG-Hi-Biscus-821.png",
     "flavor": ["hibiscus"],
     "isCaffeinated": false,
     "hasCBD": false
@@ -122,7 +130,7 @@
   {
     "productName": "Pastèque",
     "brandName": "la-croix",
-    "imageURL": "https://m.media-amazon.com/images/I/61UTPGKbPpL.jpg",
+    "imageURL": "https://www.lacroixwater.com/wp-content/uploads/2020/01/PASTEQUE.png",
     "flavor": ["watermelon"],
     "isCaffeinated": false,
     "hasCBD": false
@@ -130,7 +138,7 @@
   {
     "productName": "Limon Cello",
     "brandName": "la-croix",
-    "imageURL": "https://m.media-amazon.com/images/I/51b5SjKDzJL.jpg",
+    "imageURL": "https://www.lacroixwater.com/wp-content/uploads/2020/01/LIMONCELLO.png",
     "flavor": ["limoncello", "lemon"],
     "isCaffeinated": false,
     "hasCBD": false
@@ -138,7 +146,7 @@
   {
     "productName": "Black Razzberry",
     "brandName": "la-croix",
-    "imageURL": "https://i5.walmartimages.com/asr/2aef416d-31ee-47c2-8469-a2fd79636033.c2253826a05ce12e8fc7ed984980fb1f.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF",
+    "imageURL": "https://www.lacroixwater.com/wp-content/uploads/2021/03/18_LAC_12oz-Can_Black-Razzberry.png",
     "flavor": ["raspberry"],
     "isCaffeinated": false,
     "hasCBD": false
@@ -146,7 +154,7 @@
   {
     "productName": "Guava São Paulo",
     "brandName": "la-croix",
-    "imageURL": "https://i5.walmartimages.com/asr/d3e34f7f-542e-4ab5-9770-5afd4b2cc65d.caab0b1c4aa70c6aa3dd901bfa2febc2.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF",
+    "imageURL": "https://www.lacroixwater.com/wp-content/uploads/2021/03/19_LAC_12oz-Can_Guava-Sao-Paulo.png",
     "flavor": ["guava"],
     "isCaffeinated": false,
     "hasCBD": false
@@ -162,7 +170,7 @@
   {
     "productName": "Cherry Blosson",
     "brandName": "la-croix",
-    "imageURL": "https://bestlifeonline.com/wp-content/uploads/sites/3/2023/04/Cherry-Blossom-La-Croix.png?w=500",
+    "imageURL": "https://www.lacroixwater.com/wp-content/uploads/2022/02/21_LAC_PSD_Mock-Can_Cherry-Blossom.png",
     "flavor": ["cherry"],
     "isCaffeinated": false,
     "hasCBD": false
@@ -170,7 +178,7 @@
   {
     "productName": "Beach Plum",
     "brandName": "la-croix",
-    "imageURL": "https://m.media-amazon.com/images/I/41B7oZGRb6L.jpg",
+    "imageURL": "https://www.lacroixwater.com/wp-content/uploads/2021/03/IMG-Beach-Plum-821.png",
     "flavor": ["plum"],
     "isCaffeinated": false,
     "hasCBD": false
@@ -194,7 +202,7 @@
   {
     "productName": "Cúrate - Cerise Limón",
     "brandName": "la-croix",
-    "imageURL": "https://i5.walmartimages.com/asr/cd4b451e-03c5-44ac-be2f-1846507d0e1f.6847d5132e36007454513b1e70e6a858.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF",
+    "imageURL": "https://www.lacroixwater.com/wp-content/uploads/2019/01/CERISE-LIMON-1.png",
     "flavor": ["cherry", "lime"],
     "isCaffeinated": false,
     "hasCBD": false
@@ -202,8 +210,16 @@
   {
     "productName": "Cúrate - Piña Fraise",
     "brandName": "la-croix",
-    "imageURL": "https://m.media-amazon.com/images/I/71-KfMTjpwL._AC_UF350,350_QL80_.jpg",
+    "imageURL": "https://www.lacroixwater.com/wp-content/uploads/2019/01/PINA-FRAISE.png",
     "flavor": ["pineapple", "strawberry"],
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "NiCola",
+    "brandName": "la-croix",
+    "imageURL": "https://www.lacroixwater.com/wp-content/uploads/2019/01/LaCOLA-1.png",
+    "flavor": ["cola"],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -385,8 +401,8 @@
   },
   {
     "productName": "Pineapple Passionfruit",
-    "brandName": "Aha",
-    "imageURL": "https://m.media-amazon.com/images/I/51PYNwBtRNL.jpg",
+    "brandName": "aha",
+    "imageURL": "https://www.coca-cola.com/content/dam/onexp/us/en/brands/aha/AHA-Desktop-PineapplePassionfruit-750x750.png/width2674.png",
     "flavor": ["pineapple", "passionfruit"],
     "isCaffeinated": false,
     "hasCBD": false
@@ -394,7 +410,7 @@
   {
     "productName": "Blueberry Pomegranate",
     "brandName": "aha",
-    "imageURL": "https://louisianapantry.com/cdn/shop/products/blueberry-pomegranate-pdp.png?v=1672845723",
+    "imageURL": "https://www.coca-cola.com/content/dam/onexp/us/en/brands/aha/AHA-Desktop-BlueberryPomegranate-750x750.png/width2674.png",
     "flavor": ["blueberry", "pomegranate"],
     "isCaffeinated": false,
     "hasCBD": false
@@ -402,7 +418,7 @@
   {
     "productName": "Orange Grapefruit",
     "brandName": "aha",
-    "imageURL": "https://d2iiahg0ip5afn.cloudfront.net/media/aha/images/53698872.aha-12oz-2020-sparklingwater-orangegrape-front.jpg",
+    "imageURL": "https://www.coca-cola.com/content/dam/onexp/us/en/brands/aha/AHA-Desktop-OrangeGrapefruit-750x750.png/width2674.png",
     "flavor": ["orange", "grapefruit"],
     "isCaffeinated": false,
     "hasCBD": false
@@ -410,7 +426,7 @@
   {
     "productName": "Peach Honey",
     "brandName": "aha",
-    "imageURL": "https://www.drinks2order.com/wp-content/uploads/2021/08/aha_pchhon.jpg",
+    "imageURL": "https://www.coca-cola.com/content/dam/onexp/us/en/brands/aha/AHA-Desktop-PeachHoney-750x750.png/width2674.png",
     "flavor": ["peach", "honey"],
     "isCaffeinated": false,
     "hasCBD": false
@@ -418,7 +434,7 @@
   {
     "productName": "Lime Watermelon",
     "brandName": "aha",
-    "imageURL": "https://louisianapantry.com/cdn/shop/products/lime-watermelon-pdp.png?v=1672847012",
+    "imageURL": "https://www.coca-cola.com/content/dam/onexp/us/en/brands/aha/AHA-Desktop-LimeWatermelon-750x750.png/width2674.png",
     "flavor": ["lime", "watermelon"],
     "isCaffeinated": false,
     "hasCBD": false
@@ -426,7 +442,7 @@
   {
     "productName": "Blackberry Lemon",
     "brandName": "aha",
-    "imageURL": "https://m.media-amazon.com/images/I/51GyiZ8E5hL.jpg",
+    "imageURL": "https://www.coca-cola.com/content/dam/onexp/us/en/brands/aha/AHA-Desktop-BlackberryLemon-750x750.png/width2674.png",
     "flavor": ["blackberry", "lemon"],
     "isCaffeinated": false,
     "hasCBD": false
