@@ -39,6 +39,9 @@ export default function NavBar() {
           <Link to="/about" className="hover:bg-blue-300 lg:p-2 rounded-lg">
             About
           </Link>
+          <Link to="/contact" className="hover:bg-blue-300 lg:p-2 rounded-lg">
+            Contact
+          </Link>
         </div>
         <div className="mx-5 flex justify-center align-center items-center">
           <GeneralSearchBar />
@@ -67,6 +70,14 @@ export default function NavBar() {
             >
               About
             </Link>
+            <Link
+              onClick={toggleMenu}
+              to="/contact"
+              className="py-2 px-3 block w-full hover:bg-blue-300"
+            >
+              Contact
+            </Link>
+
             {Auth.loggedIn() ? (
               <>
                 <Link
