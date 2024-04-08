@@ -8,6 +8,7 @@ import BubblyWater from "./pages/BubblyWater.jsx";
 import Brand from "./pages/Brand.jsx";
 import AllBrands from "./pages/AllBrands.jsx";
 import TopByFlavor from "./pages/TopByFlavor.jsx";
+import Contact from "./pages/Contact.jsx";
 import ErrorPage from "./pages/ErrorPage.jsx";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
       {
         path: "search/:searchTerm",
         element: <SearchResults />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
       },
       {
         path: "*",

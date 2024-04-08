@@ -13,6 +13,7 @@
     "@apollo/client": "^3.8.8",
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
+    "@formspree/react": "^2.5.1",
     "@headlessui/react": "^1.7.18",
     "@heroicons/react": "^2.1.1",
     "@mui/material": "^5.15.11",
