@@ -19,13 +19,9 @@ export default function BubblyWaterListItem({ bubblyWater, ranking }) {
   }
   if (bubblyWater.hasCBD == true) {
     hasCBD = true;
-    console.log(`${bubblyWater.productName} ${bubblyWater.brandName} has cbd`);
   }
   if (bubblyWater.isCaffeinated == true) {
     hasCaffeine = true;
-    console.log(
-      `${bubblyWater.productName} ${bubblyWater.brandName} has caffeine`
-    );
   }
 
   return (
@@ -47,7 +43,7 @@ export default function BubblyWaterListItem({ bubblyWater, ranking }) {
               />
             </Link>
             <div className="flex flex-col justify-center mx-auto lg:w-3/5">
-              <div className=" flex items-right">
+              <div className=" flex items-right md:mt-0 mt-3">
                 {hasCBD && (
                   <>
                     <PiFeatherBold />

@@ -14,7 +14,7 @@ export default function Contact() {
   return (
     <div className="max-w-2xl mx-auto my-8 p-6 bg-white rounded-md shadow-md mt-20">
       <h2 className="text-3xl text-center mb-6 font-bold">Contact Me</h2>
-      <h1>
+      <h1 className="my-3">
         If submitting a missing brand or product, please include a source in
         your message.{" "}
       </h1>
@@ -58,7 +58,7 @@ export default function Contact() {
           <button
             type="submit"
             disabled={state.submitting}
-            className="mt-3 bg-blue-100  px-4 py-2 rounded-md  focus:outline-none"
+            className="mt-3 bg-blue-100  px-4 py-2 rounded-md  focus:outline-none hover:bg-blue-300"
           >
             Submit
           </button>

@@ -29,7 +29,14 @@ export default function AllBrands() {
           Don't see a brand? Submit a missing brand using the contact method
           below.
         </p>
-        <Link to="/contact">Contact</Link>
+        <div className="my-3">
+          <Link
+            to="/contact"
+            className="ml-10  p-3 rounded-lg bg-blue-100 hover:bg-blue-300"
+          >
+            Contact
+          </Link>
+        </div>
       </div>
     </>
   );
