@@ -1,0 +1,26 @@
+[
+  {
+    "productName": "Ingenious Apple",
+    "brandName": "sovany",
+    "imageURL": "https://sovany.com/cdn/shop/files/Can_with_fruit_and_glass_Green_Apple.png?v=1703180764&width=533",
+    "flavor": ["apple"],
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Remarkable Raspberry",
+    "brandName": "sovany",
+    "imageURL": "https://sovany.com/cdn/shop/files/Can_with_fruit_and_glass_Raspberry.png?v=1703180950&width=720",
+    "flavor": ["raspberry"],
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Pomegranate Hibiscus",
+    "brandName": "sovany",
+    "imageURL": "https://sovany.com/cdn/shop/files/Can_with_fruit_and_glass_Tangerine3.png?v=1703180725&width=720",
+    "flavor": ["tangerine"],
+    "isCaffeinated": false,
+    "hasCBD": false
+  }
+]
