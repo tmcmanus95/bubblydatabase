@@ -116,8 +116,8 @@ export default function BubblyWaterList({
                   Bubbly Waters
                 </span>
               ) : (
-                <div className="md:text-5xl text-3xl text-center pt-10 font-bold">
-                  Top Rated Bubbly Waters of All Time
+                <div className="md:text-5xl text-3xl text-center  font-bold">
+                  Top 50 Bubbly Waters of All Time
                 </div>
               )}
               {hasCaffeinatedBubbly ? (
