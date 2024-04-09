@@ -1,8 +1,4 @@
 import { Link } from "react-router-dom";
-import carbonatedBackground from "../assets/carbonatedbackground.jpeg";
-import water2 from "../assets/water2.webp";
-import polkadots from "../assets/polkadots.jpg";
-import whiteBubbles from "../assets/whitebubbles.jpg";
 import blackBubbles from "../assets/blackbubbles.jpg";
 
 export default function Logo() {
