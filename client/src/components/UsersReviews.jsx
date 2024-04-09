@@ -35,12 +35,12 @@ export default function UsersReviews({ reviews }) {
                       </span>
                     </div>
                     <div>
-                      <Rating
+                      {/* <Rating
                         readOnly
                         size="small"
                         value={review.rating}
                         precision={0.5}
-                      />
+                      /> */}
                     </div>
                   </div>
                   <div className="mt-4">
