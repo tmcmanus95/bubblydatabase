@@ -203,12 +203,15 @@ export default function BubblyWaterPage() {
                         }}
                       />
                     ) : (
-                      <Rating
-                        readOnly
-                        value={previouslyRated ? userRating : value}
-                        precision={0.5}
-                        onClick={toggleLoginReminder}
-                      />
+                      <>
+                        <Rating
+                          readOnly
+                          value={previouslyRated ? userRating : value}
+                          precision={0.5}
+                          onClick={toggleLoginReminder}
+                        />
+                        <p>Login to rate this water!</p>
+                      </>
                     )}
                   </div>
                 </div>
@@ -225,12 +228,16 @@ export default function BubblyWaterPage() {
                       value={reviewText}
                       onChange={(e) => setReviewText(e.target.value)}
                     ></textarea>
-                    <button
-                      type="submit"
-                      className={`${flavors[0]}-brushings block w-full mt-4 px-4 py-2  text-white rounded-md  focus:outline-none focus:ring`}
-                    >
-                      {previouslyReviewed ? "Edit Review" : "Submit"}
-                    </button>
+                    {Auth.loggedIn() ? (
+                      <button
+                        type="submit"
+                        className={`${flavors[0]}-brushings block w-full mt-4 px-4 py-2  text-white rounded-md  focus:outline-none focus:ring`}
+                      >
+                        {previouslyReviewed ? "Edit Review" : "Submit"}
+                      </button>
+                    ) : (
+                      <p>Login to review this water!</p>
+                    )}
                   </form>
                 </section>
               </section>
