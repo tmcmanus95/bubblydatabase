@@ -25,12 +25,20 @@
     "link": "https://upload.wikimedia.org/wikipedia/commons/7/7b/Bubly_logo_2018.png"
   },
   {
+    "name": "daypack-athletic-brewing",
+    "link": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRERK2UCjPDXcTgJlmlsNUi4DsLbp5iV8jGml7aVpodig&s"
+  },
+  {
     "name": "dram",
     "link": "https://mma.prnewswire.com/media/985436/Dram_Logo.jpg"
   },
   {
     "name": "hi-ball-energy",
     "link": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvgewZY0GQqkopi8UA4-Hr_YXSwV3t6yYc2SeI3b9TRA&s"
+  },
+  {
+    "name": "gerolsteiner",
+    "link": "https://upload.wikimedia.org/wikipedia/en/thumb/4/49/Gerolsteiner-Logo.svg/1200px-Gerolsteiner-Logo.svg.png"
   },
   {
     "name": "good-&-gather",
@@ -98,8 +106,16 @@
     "link": "https://pbs.twimg.com/media/FmN8T28WIBkEt4o.png"
   },
   {
+    "name": "saratoga",
+    "link": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-EfSR1bKmmKT55f_dTI2HLgV4ebVRyc3g3qcrVV_RKQ&s"
+  },
+  {
     "name": "soleil",
     "link": "https://images.albertsons-media.com/is/image/ABS/soleil-own-brands-banner?$mod-unified-tab-view$"
+  },
+  {
+    "name": "sovany",
+    "link": "https://m.media-amazon.com/images/S/aplus-media-library-service-media/acfd3cc3-a991-4602-aa54-4f53105befd1.__CR0,0,970,300_PT0_SX970_V1___.png"
   },
   {
     "name": "sparkling-ice",
