@@ -53,19 +53,19 @@ export default function FlavorSearchBar() {
   return (
     <>
       <Logo />
-      <div className="px-2 mt-2 ">
+      <div className="px-2 mt-2">
         <section className="text-center ">
           <form onSubmit={handleFormSubmit} className="relative">
             <div className="items-center">
               <input
-                className="text-xl md:text-3xl mx-2 md:mx-5 border-2 border-gray-400 py-2 px-4 rounded"
+                className="text-xl md:text-3xl mx-2 md:mx-5 border-2 border-gray-400 pt-2 px-4 rounded"
                 type="text"
                 placeholder="Search for a flavor..."
                 value={searchTerm}
                 onChange={handleInputChange}
               />
               <div className="flex justify-center">
-                <div className="flex items-center py-3">
+                <div className="flex items-center pt-3">
                   <div className="flex items-center mr-2">
                     <input
                       id="default-radio-1"
@@ -123,7 +123,7 @@ export default function FlavorSearchBar() {
                     <li
                       key={flavor}
                       onClick={() => handleSelectFlavor(flavor)}
-                      className={`${flavor} cursor-pointer py-2 px-4 hover:bg-blue-300 hover:text-black`}
+                      className={`${flavor} cursor-pointer  px-4 hover:bg-blue-300 hover:text-black`}
                     >
                       {flavor}
                     </li>
