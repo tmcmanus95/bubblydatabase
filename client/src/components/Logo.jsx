@@ -20,12 +20,12 @@ export default function Logo() {
               </h2>
             </Link>
             <div className="flex justify-center">
-              <h3 className="text-xl mt-5 md:text-3xl bg-white rounded-lg border-2 border-black">
+              <h3 className="text-xl mt-3 md:text-3xl bg-white rounded-lg border-2 border-black">
                 Bubbly Water Rating Database
               </h3>
             </div>
             <div className="flex justify-center">
-              <p className="text-sm md:text-xl  mt-5 leading-8 mx-auto bg-white p-2 rounded-lg border-2 border-black">
+              <p className="text-xs md:text-xl  mt-3 leading-8 mx-auto bg-white p-2 rounded-lg border-2 border-black">
                 Find the top rated carbonated waters by flavor or brand.
               </p>
             </div>
