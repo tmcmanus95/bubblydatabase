@@ -63,7 +63,7 @@ const resolvers = {
       return BubblyWater.find()
         .populate("ratings")
         .sort({ averageRating: -1 })
-        .limit(200);
+        .limit(100);
     },
     bubblyWater: async (parent, { bubblyWaterId }) => {
       return BubblyWater.findOne({ _id: bubblyWaterId })
