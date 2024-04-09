@@ -79,12 +79,12 @@ export default function BubblyWaterList({
               : "mb-20"
           }
         >
-          <div className="text-center pt-5">
+          <div className="text-center pt-10">
             {caffeineSearch ? (
               hasCaffeinatedBubbly ? (
                 <></>
               ) : (
-                <h6>
+                <h6 className="pb-6">
                   No Caffeinated {capitalizeSingleFlavor(searchTerm)} Waters
                   Found
                 </h6>
@@ -97,7 +97,7 @@ export default function BubblyWaterList({
               hasCBDBubbly ? (
                 <></>
               ) : (
-                <h6>
+                <h6 className="pb-6">
                   No {capitalizeSingleFlavor(searchTerm)} Flavored Waters with
                   CBD Found
                 </h6>
@@ -106,7 +106,7 @@ export default function BubblyWaterList({
               <></>
             )}
 
-            <h3 className="md:text-5xl text-xl text-center pt-10 font-bold mb-6 relative">
+            <h3 className="md:text-5xl text-xl text-center font-bold mb-6 relative">
               {searchTerm ? (
                 <span>
                   Top Rated{" "}
