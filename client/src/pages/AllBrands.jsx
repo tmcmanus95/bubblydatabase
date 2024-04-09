@@ -8,21 +8,23 @@ export default function AllBrands() {
         <div>
           <h3 className="text-4xl py-1 flex justify-center">All Brands</h3>
         </div>
-        {brandLogos.map((brand, index) => (
-          <Link to={`/brands/${brand.name}`}>
-            <div className="flex-1 text-center shadow-lg p-10 rounded-xl my-10  bg-white">
-              <img
-                src={`${brand.link}`}
-                width={100}
-                height={100}
-                className="mx-auto"
-              />
-              <h3 className="text-lg font-medium pt-8 pb-2">
-                {formatBrands(brand.name)}
-              </h3>
-            </div>
-          </Link>
-        ))}
+        <div className="mt-20 mb-14 justify-center flex flex-wrap gap-4 md:gap-6 lg:gap-10">
+          {brandLogos.map((brand, index) => (
+            <Link to={`/brands/${brand.name}`}>
+              <div className="flex-1 text-center shadow-lg p-10 rounded-xl my-10  bg-white">
+                <img
+                  src={`${brand.link}`}
+                  width={100}
+                  height={100}
+                  className="mx-auto"
+                />
+                <h3 className="text-lg font-medium pt-8 pb-2">
+                  {formatBrands(brand.name)}
+                </h3>
+              </div>
+            </Link>
+          ))}
+        </div>
       </section>
       <div>
         <p className="ml-10">
