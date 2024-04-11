@@ -210,7 +210,12 @@ export default function BubblyWaterPage() {
                           precision={0.5}
                           onClick={toggleLoginReminder}
                         />
-                        <p>Login to rate this water!</p>
+                        <p>
+                          <Link to="/login" className="text-blue-500">
+                            Login
+                          </Link>{" "}
+                          to rate this water!
+                        </p>
                       </>
                     )}
                   </div>
@@ -236,7 +241,12 @@ export default function BubblyWaterPage() {
                         {previouslyReviewed ? "Edit Review" : "Submit"}
                       </button>
                     ) : (
-                      <p>Login to review this water!</p>
+                      <p>
+                        <Link to="/login" className="text-blue-500">
+                          Login
+                        </Link>{" "}
+                        to review this water!
+                      </p>
                     )}
                   </form>
                 </section>
