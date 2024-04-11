@@ -5,20 +5,41 @@ import { useState } from "react";
 import { formatBrands } from "../../utils/formatBrands";
 import Loading from "./Loading";
 import { capitalizeSingleFlavor } from "../../utils/capitalizeSingleFlavor";
-export default function BubblyWaterList({
-  searchTerm,
-  CBDSearch,
-  caffeineSearch,
-}) {
+export default function BubblyWaterList({ searchTerm }) {
   const { error, data } = searchTerm
     ? useQuery(QUERY_SINGLE_FLAVOR, { variables: { flavor: searchTerm } })
     : useQuery(QUERY_ALL_BUBBLYS);
+  const [searchAll, setSearchAll] = useState(false);
+  const [caffeineSearch, setCaffeineSearch] = useState(false);
+  const [CBDSearch, setCBDSearch] = useState(false);
+
   let sortedBubblyWaters = [];
   let cbdBubblies;
   let caffeinatedBubblies;
   let hasCaffeinatedBubbly = false;
   let hasCBDBubbly = false;
   console.log("data for general search", data?.bubblyWaters);
+  const toggleCBDSearch = () => {
+    if (caffeineSearch == true) {
+      setCaffeineSearch(false);
+    }
+    setCBDSearch(true);
+  };
+  const toggleCaffeineSearch = () => {
+    if (CBDSearch == true) {
+      setCBDSearch(false);
+    }
+    setCaffeineSearch(true);
+  };
+  const toggleSearchAll = () => {
+    if (CBDSearch == true) {
+      setCBDSearch(false);
+    } else if (caffeineSearch == true) {
+      setCaffeineSearch(false);
+    }
+    setSearchAll(true);
+  };
+
   // We only need to sort the single flavor query, as the QUERY_ALL_BUBBLYS resolver already returns the bubbly waters sorted by average rating
   if (searchTerm) {
     if (data && data.flavors) {
@@ -71,6 +92,58 @@ export default function BubblyWaterList({
   }
   return (
     <>
+      <div className="flex justify-center">
+        <div className="flex items-center pt-3">
+          <div className="flex items-center mr-2">
+            <input
+              id="default-radio-1"
+              type="radio"
+              value=""
+              onClick={toggleSearchAll}
+              name="default-radio"
+              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+            />
+            <label
+              htmlFor="default-radio-1"
+              className="ms-1 text-sm font-medium text-gray-900 "
+            >
+              All
+            </label>
+          </div>
+          <div className="flex items-center mr-2">
+            <input
+              id="default-radio-2"
+              type="radio"
+              value=""
+              onClick={toggleCBDSearch}
+              name="default-radio"
+              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+            />
+            <label
+              htmlFor="default-radio-2"
+              className="ms-1 text-sm font-medium text-gray-900 "
+            >
+              CBD
+            </label>
+          </div>
+          <div className="flex items-center">
+            <input
+              id="default-radio-3"
+              type="radio"
+              value=""
+              onClick={toggleCaffeineSearch}
+              name="default-radio"
+              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+            />
+            <label
+              htmlFor="default-radio-2"
+              className="ms-1 text-sm font-medium text-gray-900 "
+            >
+              Caffeine
+            </label>
+          </div>
+        </div>
+      </div>
       {data ? (
         <div
           className={
