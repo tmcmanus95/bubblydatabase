@@ -15,8 +15,8 @@ export default function Logo() {
         <section className="text-center flex flex-col mt-14">
           <div className="p-5 md:p-10">
             <Link to="/" className="flex justify-center">
-              <h2 className="text-3xl md:text-6xl font-medium items-center bg-white border-2 border-black rounded-lg justify-center p-3 lg:w:96 w-36 ">
-                Pop.
+              <h2 className="text-3xl md:text-6xl font-medium items-center bg-white border-2 border-black rounded-lg justify-center p-3 lg:w:96 w-64 ">
+                Bubbles.
               </h2>
             </Link>
             <div className="flex justify-center">
