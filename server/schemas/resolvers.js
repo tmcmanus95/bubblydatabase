@@ -122,6 +122,10 @@ const resolvers = {
         const user = await User.findOne({ _id: userId }).populate({
           path: "ratings",
           match: { rating: rating },
+          populate: {
+            path: "bubblyWater",
+            model: "BubblyWater",
+          },
         });
         return user;
       } catch (error) {

@@ -56,51 +56,69 @@ export default function RatingsBreakdown({ ratings }) {
           <Rating readOnly size="small" value={5} />
         </h2>
       </Link>
-      <h2 className="flex w-64 md:w-96 border-2 border-black  justify-between lg:text-md text-xs">
-        <span>4.5 Stars: {fourPointFiveRatings.length}</span>
-        <span>{fourPointFivePercent} %</span>
-        <Rating readOnly size="small" value={4.5} precision={0.5} />
-      </h2>
-      <h2 className="flex w-64 md:w-96 border-2 border-black  justify-between lg:text-md text-xs">
-        <span>4 Stars: {fourRatings.length}</span>
-        <span>{fourPercent} %</span>
-        <Rating readOnly size="small" value={4} precision={0.5} />
-      </h2>
-      <h2 className="flex w-64 md:w-96 border-2 border-black  justify-between lg:text-md text-xs">
-        <span>3.5 Stars: {threePointFiveRatings.length}</span>
-        <span>{threePointFivePercent} %</span>
-        <Rating readOnly size="small" value={3.5} precision={0.5} />
-      </h2>
-      <h2 className="flex w-64 md:w-96 border-2 border-black  justify-between lg:text-md text-xs">
-        <span>3 Stars: {threeRatings.length}</span>
-        <span>{threePercent} %</span>
-        <Rating readOnly size="small" value={3} precision={0.5} />
-      </h2>
-      <h2 className="flex w-64 md:w-96 border-2 border-black  justify-between lg:text-md text-xs">
-        <span>2.5 Stars: {twoPointFiveRatings.length}</span>
-        <span>{twoPointFivePercent} %</span>
-        <Rating readOnly size="small" value={2.5} precision={0.5} />
-      </h2>
-      <h2 className="flex w-64 md:w-96 border-2 border-black  justify-between lg:text-md text-xs">
-        <span>2 Stars: {twoRatings.length}</span>
-        <span>{twoPercent} %</span>
-        <Rating readOnly size="small" value={2} precision={0.5} />
-      </h2>
-      <h2 className="flex w-64 md:w-96 border-2 border-black  justify-between lg:text-md text-xs">
-        <span>1.5 Stars: {onePointFiveRatings.length}</span>
-        <span>{onePointFivePercent} %</span>
-        <Rating readOnly size="small" value={1.5} precision={0.5} />
-      </h2>
-      <h2 className="flex w-64 md:w-96 border-2 border-black  justify-between lg:text-md text-xs">
-        <span>1 Stars: {oneRatings.length}</span>
-        <span>{onePercent} %</span>
-        <Rating readOnly size="small" value={1} precision={0.5} />
-      </h2>
-      <h2 className="flex w-64 md:w-96 border-2 border-black  justify-between lg:text-md text-xs">
-        <span>.5 Stars: {pointFiveRatings.length}</span>
-        <span>{pointFivePercent} %</span>
-        <Rating readOnly size="small" value={0.5} precision={0.5} />
-      </h2>
+      <Link to={`/user/${userId.userId}/ratings/4.5`}>
+        <h2 className="flex w-64 md:w-96 border-2 border-black  justify-between lg:text-md text-xs">
+          <span>4.5 Stars: {fourPointFiveRatings.length}</span>
+          <span>{fourPointFivePercent} %</span>
+          <Rating readOnly size="small" value={4.5} precision={0.5} />
+        </h2>
+      </Link>
+      <Link to={`/user/${userId.userId}/ratings/4`}>
+        <h2 className="flex w-64 md:w-96 border-2 border-black  justify-between lg:text-md text-xs">
+          <span>4 Stars: {fourRatings.length}</span>
+          <span>{fourPercent} %</span>
+          <Rating readOnly size="small" value={4} precision={0.5} />
+        </h2>
+      </Link>
+      <Link to={`/user/${userId.userId}/ratings/3.5`}>
+        <h2 className="flex w-64 md:w-96 border-2 border-black  justify-between lg:text-md text-xs">
+          <span>3.5 Stars: {threePointFiveRatings.length}</span>
+          <span>{threePointFivePercent} %</span>
+          <Rating readOnly size="small" value={3.5} precision={0.5} />
+        </h2>
+      </Link>
+      <Link to={`/user/${userId.userId}/ratings/3`}>
+        <h2 className="flex w-64 md:w-96 border-2 border-black  justify-between lg:text-md text-xs">
+          <span>3 Stars: {threeRatings.length}</span>
+          <span>{threePercent} %</span>
+          <Rating readOnly size="small" value={3} precision={0.5} />
+        </h2>
+      </Link>
+      <Link to={`/user/${userId.userId}/ratings/2.5`}>
+        <h2 className="flex w-64 md:w-96 border-2 border-black  justify-between lg:text-md text-xs">
+          <span>2.5 Stars: {twoPointFiveRatings.length}</span>
+          <span>{twoPointFivePercent} %</span>
+          <Rating readOnly size="small" value={2.5} precision={0.5} />
+        </h2>
+      </Link>
+      <Link to={`/user/${userId.userId}/ratings/2`}>
+        <h2 className="flex w-64 md:w-96 border-2 border-black  justify-between lg:text-md text-xs">
+          <span>2 Stars: {twoRatings.length}</span>
+          <span>{twoPercent} %</span>
+          <Rating readOnly size="small" value={2} precision={0.5} />
+        </h2>
+      </Link>
+      <Link to={`/user/${userId.userId}/ratings/1.5`}>
+        <h2 className="flex w-64 md:w-96 border-2 border-black  justify-between lg:text-md text-xs">
+          <span>1.5 Stars: {onePointFiveRatings.length}</span>
+          <span>{onePointFivePercent} %</span>
+          <Rating readOnly size="small" value={1.5} precision={0.5} />
+        </h2>
+      </Link>
+      <Link to={`/user/${userId.userId}/ratings/1`}>
+        <h2 className="flex w-64 md:w-96 border-2 border-black  justify-between lg:text-md text-xs">
+          <span>1 Stars: {oneRatings.length}</span>
+          <span>{onePercent} %</span>
+          <Rating readOnly size="small" value={1} precision={0.5} />
+        </h2>
+      </Link>
+      <Link to={`/user/${userId.userId}/ratings/.5`}>
+        <h2 className="flex w-64 md:w-96 border-2 border-black  justify-between lg:text-md text-xs">
+          <span>.5 Stars: {pointFiveRatings.length}</span>
+          <span>{pointFivePercent} %</span>
+          <Rating readOnly size="small" value={0.5} precision={0.5} />
+        </h2>
+      </Link>
     </div>
   );
 }

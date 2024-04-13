@@ -35,6 +35,7 @@ export default function UsersRatings({ ratings }) {
                   size="small"
                   value={rating.rating}
                   className="userRatingElement"
+                  precision={0.5}
                 />
               </div>
             </li>

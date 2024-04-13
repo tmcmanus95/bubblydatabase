@@ -237,6 +237,7 @@ export const QUERY_SPECIFIC_USER_RATINGS = gql`
       ratings {
         rating
         bubblyWater {
+          _id
           productName
           brandName
           imageURL

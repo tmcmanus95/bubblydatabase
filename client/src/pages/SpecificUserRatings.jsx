@@ -1,5 +1,7 @@
 import { useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
+import UsersRatings from "../components/UsersRatings";
+import Loading from "../components/Loading";
 import { QUERY_SPECIFIC_USER_RATINGS } from "../../utils/queries";
 export default function SpecificUserRatings() {
   const params = useParams();
@@ -8,12 +10,21 @@ export default function SpecificUserRatings() {
   console.log("userid, " + userId + " rating, " + rating);
 
   const { loading, error, data } = useQuery(QUERY_SPECIFIC_USER_RATINGS, {
-    variables: { userId: userId, rating: parseInt(rating) },
+    variables: { userId: userId, rating: parseFloat(rating) },
   });
 
-  console.log(data);
-  if (loading) return <p className="mt-20">Loading...</p>;
-  if (error) return <p className="mt-20">Error fetching data</p>;
+  const ratings = data?.queryUserRatingsOfGivenNumber.ratings;
+  console.log("ratings", ratings);
 
-  return <p className="mt-20">data found</p>;
+  return (
+    <>
+      <div className="mt-20"></div>
+      <div className="flex items-center justify-center">
+        <div className="flex text-center justify-center">
+          {rating} Star Ratings
+        </div>
+      </div>
+      {data && ratings ? <UsersRatings ratings={ratings} /> : <Loading />}
+    </>
+  );
 }
