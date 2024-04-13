@@ -933,6 +933,20 @@
   background-color: #d1b280 !important;
   color: black;
 }
+.Root-beer {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #8c6a33;
+  color: white;
+}
+.Root-beer-background {
+  background-color: #e6d9cb;
+}
+.Root-beer-brushings {
+  background-color: #8c6a33 !important;
+  color: white !important;
+}
 .Mushroom {
   border-radius: 5px;
   padding: 5px;
@@ -995,7 +1009,7 @@
   background-color: #e74c3c;
 }
 .Apple-cider-background {
-  background-color: #ffe4ed;
+  background-color: #e6d9cb;
 }
 .Apple-cider-brushings {
   background-color: #e74c3c !important;
