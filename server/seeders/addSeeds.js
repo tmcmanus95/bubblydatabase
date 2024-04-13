@@ -1,4 +1,4 @@
-const db = require("../config/connection");
+const db = require("../config/onRenderConnection");
 const { BubblyWater } = require("../models");
 const newSeeds = require("./newSeeds.json");
 

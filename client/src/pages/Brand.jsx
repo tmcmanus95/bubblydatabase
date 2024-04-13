@@ -16,6 +16,7 @@ export default function Brand() {
   console.log("here is my brand data", data);
   let bubblyWaters = [];
   let logoLink = "";
+  let officialSite = "";
   if (data) {
     bubblyWaters = data.brand || [];
     sortedBubblyWaters = bubblyWaters
@@ -27,11 +28,28 @@ export default function Brand() {
       logoLink = brandLogos[i].link;
     }
   }
+  for (let i = 0; i < brandLogos.length; i++) {
+    if (brandLogos[i].name == brandName) {
+      officialSite = brandLogos[i].site;
+    }
+  }
 
   return (
     <>
       <div className="flex flex-col mt-16 items-center justify-center rounded-lg text-2xl border-2 border-black">
-        <img src={logoLink} width={400} height={200} className="rounded-lg" />
+        <Link to={officialSite}>
+          <img src={logoLink} width={400} height={200} className="rounded-lg" />
+        </Link>
+        <h3 className="lg:text-sm text-s text-center py-2 mt-5 font-bold">
+          Bubbles. is not affiliated with {formatBrands(brandName)}. Visit their
+          official site here:
+          <Link
+            to={officialSite}
+            onClick={() => handleOpenInNewTab(officialSite)}
+          >
+            <span className="text-blue-400"> {formatBrands(brandName)}</span>
+          </Link>
+        </h3>
         <h3 className="lg:text-5xl text-xl text-center py-2 mt-5 font-bold">
           <span>
             Top Rated <span>{formatBrands(brandName)}</span> Bubbly Waters
