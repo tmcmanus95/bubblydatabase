@@ -1,33 +1,9 @@
 [
   {
-    "productName": "Sparkling",
+    "productName": "bellini bliss",
     "brandName": "path",
-    "imageURL": "https://drinkpathwater.com/cdn/shop/files/sparkling-20oz-aluminum-water-bottle_ad5b1dea-7cc0-4f0e-8c37-26250e2e5c71.png?v=1699579815&width=1426",
-    "flavor": ["plain"],
-    "isCaffeinated": false,
-    "hasCBD": false
-  },
-  {
-    "productName": "Sparkling Lemon Lime",
-    "brandName": "path",
-    "imageURL": "https://drinkpathwater.com/cdn/shop/files/sparkling-lemon-lime-20oz-aluminum-water-bottle_a38e075e-c525-4bb6-8d15-a837c895dda4.png?v=1699579871&width=1426",
-    "flavor": ["lemon", "lime"],
-    "isCaffeinated": false,
-    "hasCBD": false
-  },
-  {
-    "productName": "Sparkling Grapefruit Mango",
-    "brandName": "path",
-    "imageURL": "https://drinkpathwater.com/cdn/shop/files/sparkling-grapefruit-mango-20oz-aluminum-water-bottle_4f6b6d09-2d04-47e7-a57f-4ae14a4d925d.png?v=1699579871&width=1426",
-    "flavor": ["grapefruit", "mango"],
-    "isCaffeinated": false,
-    "hasCBD": false
-  },
-  {
-    "productName": "Sparkling Raspberry Orange",
-    "brandName": "path",
-    "imageURL": "https://drinkpathwater.com/cdn/shop/files/sparkling-raspberry-orange-20oz-aluminum-water-bottle_2691f915-9243-40f7-86fb-f5f01ddce21d.png?v=1699579871&width=1426",
-    "flavor": ["raspberry", "orange"],
+    "imageURL": "https://www.kroger.com/product/images/large/right/0001200021430",
+    "flavor": ["peach", "pineapple", "mango"],
     "isCaffeinated": false,
     "hasCBD": false
   }

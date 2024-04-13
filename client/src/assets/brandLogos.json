@@ -1,117 +1,144 @@
 [
   {
     "name": "aha",
-    "link": "https://www.coca-colacompany.com/content/dam/company/us/en/articles/aha-1.jpeg"
+    "link": "https://www.coca-colacompany.com/content/dam/company/us/en/articles/aha-1.jpeg",
+    "site": "https://www.coca-cola.com/us/en/brands/aha"
   },
 
   {
     "name": "aprch",
-    "link": "https://sgbonline.com/wp-content/uploads/2020/04/Aprch-logo-1024x354.jpg"
+    "link": "https://sgbonline.com/wp-content/uploads/2020/04/Aprch-logo-1024x354.jpg",
+    "site": "https://drinkaprch.com/pages/shop-cbddrinks?tw_source=google&tw_adid=&tw_campaign=20535498421&gad_source=1&gclid=Cj0KCQjw2uiwBhCXARIsACMvIU2Sw7XIfiH4YocnIQPQXyfDUqQ7z-5Dej7Sg4TWrIRhmvUrYh9wMt8aAsN2EALw_wcB"
   },
   {
     "name": "ardor",
-    "link": "https://uspto.report/TM/90332560/mark.png"
+    "link": "https://uspto.report/TM/90332560/mark.png",
+    "site": "https://www.ardororganic.com/"
   },
   {
     "name": "aura-bora",
-    "link": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNb8eS8floKu_p1k8RU99wJO50f4Hj_ou0Cn0SLiSuHA&s"
+    "link": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNb8eS8floKu_p1k8RU99wJO50f4Hj_ou0Cn0SLiSuHA&s",
+    "site": "https://aurabora.com/"
   },
   {
     "name": "bubbl'r",
-    "link": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzrkWpsY4YYYcXGlqU58GYgeEbI4nEuESiL8LYmj2TNw&s"
+    "link": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzrkWpsY4YYYcXGlqU58GYgeEbI4nEuESiL8LYmj2TNw&s",
+    "site": "https://www.drinkbubblr.com/"
   },
   {
     "name": "bubly",
-    "link": "https://upload.wikimedia.org/wikipedia/commons/7/7b/Bubly_logo_2018.png"
+    "link": "https://upload.wikimedia.org/wikipedia/commons/7/7b/Bubly_logo_2018.png",
+    "site": "https://www.bubly.com/#/"
   },
   {
     "name": "daypack-athletic-brewing",
-    "link": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRERK2UCjPDXcTgJlmlsNUi4DsLbp5iV8jGml7aVpodig&s"
+    "link": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRERK2UCjPDXcTgJlmlsNUi4DsLbp5iV8jGml7aVpodig&s",
+    "site": "https://athleticbrewing.com/collections/daypack?tw_source=google&tw_adid=626206271733&tw_campaign=6514605298&gad_source=1&gclid=Cj0KCQjw2uiwBhCXARIsACMvIU0cJNS6MYOZUcei0IK2HP3HtxIiA_rzGNbmQcavvG8U1DzVGVvZW1saAofUEALw_wcB"
   },
   {
     "name": "dram",
-    "link": "https://mma.prnewswire.com/media/985436/Dram_Logo.jpg"
+    "link": "https://mma.prnewswire.com/media/985436/Dram_Logo.jpg",
+    "site": "https://www.dramapothecary.com/product-category/all-natural-sparkling-water/?v=7516fd43adaa"
   },
   {
     "name": "hi-ball-energy",
-    "link": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvgewZY0GQqkopi8UA4-Hr_YXSwV3t6yYc2SeI3b9TRA&s"
+    "link": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvgewZY0GQqkopi8UA4-Hr_YXSwV3t6yYc2SeI3b9TRA&s",
+    "site": "https://www.hiball.com/"
   },
   {
     "name": "gerolsteiner",
-    "link": "https://upload.wikimedia.org/wikipedia/en/thumb/4/49/Gerolsteiner-Logo.svg/1200px-Gerolsteiner-Logo.svg.png"
+    "link": "https://upload.wikimedia.org/wikipedia/en/thumb/4/49/Gerolsteiner-Logo.svg/1200px-Gerolsteiner-Logo.svg.png",
+    "site": "https://www.gerolsteiner.de/en/home/"
   },
   {
     "name": "good-&-gather",
-    "link": "https://images.squarespace-cdn.com/content/v1/5ef4b9a14215590dac8d9e26/f23f9c78-7993-47a1-9eaf-5c2aac767587/Untitled-2-01.jpg"
+    "link": "https://images.squarespace-cdn.com/content/v1/5ef4b9a14215590dac8d9e26/f23f9c78-7993-47a1-9eaf-5c2aac767587/Untitled-2-01.jpg",
+    "site": "https://www.target.com/c/water-beverages-grocery/good-gather/-/N-5xt0kZyfqzk"
   },
   {
     "name": "good-idea",
-    "link": "https://d2iiahg0ip5afn.cloudfront.net/logos/3673/458890203.good.idea.logo.black.png"
+    "link": "https://d2iiahg0ip5afn.cloudfront.net/logos/3673/458890203.good.idea.logo.black.png",
+    "site": "https://www.goodidea.us/"
   },
   {
     "name": "ice-mountain",
-    "link": "https://photos.prnewswire.com/prnfull/20110601/NE11725LOGO"
+    "link": "https://photos.prnewswire.com/prnfull/20110601/NE11725LOGO",
+    "site": "https://www.icemountainwater.com/products/sparkling-water"
   },
   {
     "name": "icelandic-glacial",
-    "link": "https://images.squarespace-cdn.com/content/v1/570c0ddb22482e2a4ab0f2d8/1544147928643-LBME68USKJM5RUQN4Z9J/header_3a.jpg"
+    "link": "https://images.squarespace-cdn.com/content/v1/570c0ddb22482e2a4ab0f2d8/1544147928643-LBME68USKJM5RUQN4Z9J/header_3a.jpg",
+    "site": "https://icelandicglacial.com/"
   },
-
   {
     "name": "kimino",
-    "link": "https://m.media-amazon.com/images/I/61QAISgfH9L.jpg"
+    "link": "https://m.media-amazon.com/images/I/61QAISgfH9L.jpg",
+    "site": "https://us.kimino.com/"
   },
   {
     "name": "la-croix",
-    "link": "https://upload.wikimedia.org/wikipedia/en/thumb/3/3a/La_croix_%28logo%29.svg/800px-La_croix_%28logo%29.svg.png"
+    "link": "https://upload.wikimedia.org/wikipedia/en/thumb/3/3a/La_croix_%28logo%29.svg/800px-La_croix_%28logo%29.svg.png",
+    "site": "https://www.lacroixwater.com/"
   },
   {
     "name": "liquid-death",
-    "link": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Liquid-Death-Logo.png"
+    "link": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Liquid-Death-Logo.png",
+    "site": "https://liquiddeath.com/"
   },
   {
     "name": "origin",
-    "link": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCVbTXVHxUvx7xrE-dD4_fxunxVuO-U95fYuwysOugMQ&s"
+    "link": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCVbTXVHxUvx7xrE-dD4_fxunxVuO-U95fYuwysOugMQ&s",
+    "site": "https://www.drinkoriginwater.com/collections/sparkling"
   },
   {
     "name": "path",
-    "link": "https://mma.prnewswire.com/media/816408/PATHWATER_Logo.jpg?p=facebook"
+    "link": "https://mma.prnewswire.com/media/816408/PATHWATER_Logo.jpg?p=facebook",
+    "site": "https://drinkpathwater.com/collections?gad_source=1&gclid=Cj0KCQjw2uiwBhCXARIsACMvIU3vuY8KHFj0aYkFOhPsJsVx5VXFpzHMdtaVVwW6eo3WMXNMaOho0GkaAvBCEALw_wcB"
   },
   {
     "name": "perrier",
-    "link": "https://1000logos.net/wp-content/uploads/2020/07/Perrier-Logo.png"
+    "link": "https://1000logos.net/wp-content/uploads/2020/07/Perrier-Logo.png",
+    "site": "https://www.perrier.com/"
   },
   {
     "name": "phocus",
-    "link": "https://drinkphocus.com/cdn/shop/files/Phocus_Logo_NCSW-01_600x600.png?v=1694541462"
+    "link": "https://drinkphocus.com/cdn/shop/files/Phocus_Logo_NCSW-01_600x600.png?v=1694541462",
+    "site": "https://drinkphocus.com/"
   },
   {
     "name": "polar-seltzer",
-    "link": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Polar_Logo_2012.png/1200px-Polar_Logo_2012.png"
+    "link": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Polar_Logo_2012.png/1200px-Polar_Logo_2012.png",
+    "site": "https://polarseltzer.com/"
   },
   {
     "name": "present",
-    "link": "https://www.drinkpresent.com/img/present-logo.png"
+    "link": "https://www.drinkpresent.com/img/present-logo.png",
+    "site": "https://www.drinkpresent.com/buy/"
   },
   {
     "name": "puraqua",
-    "link": "https://testaqua.com/wp-content/uploads/2019/07/puraqua-logo.png"
+    "link": "https://testaqua.com/wp-content/uploads/2019/07/puraqua-logo.png",
+    "site": "https://www.aldi.us/"
   },
   {
     "name": "recess",
-    "link": "https://m.media-amazon.com/images/S/stores-image-uploads-na-prod/f/AmazonStores/ATVPDKIKX0DER/ee9aa8e178b8abfef64270b13637863d.w1920.h1080.png"
+    "link": "https://m.media-amazon.com/images/S/stores-image-uploads-na-prod/f/AmazonStores/ATVPDKIKX0DER/ee9aa8e178b8abfef64270b13637863d.w1920.h1080.png",
+    "site": "https://takearecess.com/"
   },
   {
     "name": "san-pellegrino",
-    "link": "https://1000logos.net/wp-content/uploads/2020/09/S.-Pellegrino-Logo.jpg"
+    "link": "https://1000logos.net/wp-content/uploads/2020/09/S.-Pellegrino-Logo.jpg",
+    "site": "https://www.sanpellegrino.com/us/s.pellegrino-water?gad_source=1&gclid=Cj0KCQjw2uiwBhCXARIsACMvIU1dm-DmRzPY6wi_UxkLsWAL68Osfj8LnM_9ZslhGI0WtVvNhI6EAOwaAndMEALw_wcB&gclsrc=aw.ds"
   },
   {
     "name": "sanzo",
-    "link": "https://pbs.twimg.com/media/FmN8T28WIBkEt4o.png"
+    "link": "https://pbs.twimg.com/media/FmN8T28WIBkEt4o.png",
+    "site": "https://drinksanzo.com/"
   },
   {
     "name": "saratoga",
-    "link": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-EfSR1bKmmKT55f_dTI2HLgV4ebVRyc3g3qcrVV_RKQ&s"
+    "link": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-EfSR1bKmmKT55f_dTI2HLgV4ebVRyc3g3qcrVV_RKQ&s",
+    "site": "https://www.saratogawater.com/collections/all/?gad_source=1&gclid=Cj0KCQjw2uiwBhCXARIsACMvIU22_1opoSkeMMN7y1wyM7Tc5vfIsJNMIsaG3-fLrOOymO6sxWWivWkaAhW4EALw_wcB&gclsrc=aw.ds"
   },
   {
     "name": "soleil",
@@ -119,38 +146,47 @@
   },
   {
     "name": "sovany",
-    "link": "https://m.media-amazon.com/images/S/aplus-media-library-service-media/acfd3cc3-a991-4602-aa54-4f53105befd1.__CR0,0,970,300_PT0_SX970_V1___.png"
+    "link": "https://m.media-amazon.com/images/S/aplus-media-library-service-media/acfd3cc3-a991-4602-aa54-4f53105befd1.__CR0,0,970,300_PT0_SX970_V1___.png",
+    "site": "https://www.safeway.com/lp/soleil.html"
   },
   {
     "name": "sparkling-ice",
-    "link": "https://upload.wikimedia.org/wikipedia/commons/6/6c/SI_Logo_Purple_Soild_Bubbles.png"
+    "link": "https://upload.wikimedia.org/wikipedia/commons/6/6c/SI_Logo_Purple_Soild_Bubbles.png",
+    "site": "https://www.sparklingice.com/?utm_source=google&utm_medium=paidsearch&utm_campaign=2023SEM_NY&utm_content=TKR_23_US_23SEM_CO_KW_PA_na_na_GOO_NA_NA_NA_RSA_NA_na_NA_MRM&gad_source=1&gclid=Cj0KCQjw2uiwBhCXARIsACMvIU1vyVWEKQjyKjzjNSgXp-0HPM39PNutwKMucV5J1_Czhj48euzywCIaAiXyEALw_wcB&gclsrc=aw.ds"
   },
   {
     "name": "spindrift",
-    "link": "https://www.soulfirefarm.org/wp-content/uploads/2023/04/spindrift-logo-vector.png"
+    "link": "https://www.soulfirefarm.org/wp-content/uploads/2023/04/spindrift-logo-vector.png",
+    "site": "https://drinkspindrift.com/?utm_id=16441236462--134869428438--spindrift--638180023417&utm_source=google&utm_medium=paid&utm_campaign=WP_G_SRCH_BRAND_AMT_SPARKLING--16441236462&utm_content=--134869428438&utm_term=--638180023417--spindrift&gad_source=1&gclid=Cj0KCQjw2uiwBhCXARIsACMvIU1sugw7Oivpxyo4hJgi9RBSyS2e-c04rTHY7qlb9idTpKycNwhxJWEaArkjEALw_wcB"
   },
   {
     "name": "splash-fizz",
-    "link": "https://drinksplash.com/cdn/shop/files/splash-blast-fizz-logo-lockup_54e9897f-f98a-49d1-bffe-86b5c8921e9d_512x360.jpg?v=1681161380"
+    "link": "https://drinksplash.com/cdn/shop/files/splash-blast-fizz-logo-lockup_54e9897f-f98a-49d1-bffe-86b5c8921e9d_512x360.jpg?v=1681161380",
+    "site": "https://www.splashrefresher.com/"
   },
   {
     "name": "topo-chico",
-    "link": "https://www.topochico.com/content/dam/nagbrands/us/topochico/en/topo-chico-logo-2023.png"
+    "link": "https://www.topochico.com/content/dam/nagbrands/us/topochico/en/topo-chico-logo-2023.png",
+    "site": "https://www.coca-cola.com/us/en/brands/topo-chico"
   },
   {
     "name": "tru",
-    "link": "https://m.media-amazon.com/images/S/aplus-media-library-service-media/2c29102d-af2d-4e06-825c-9cf13350df74.__CR332,0,800,600_PT0_SX600_V1___.jpg"
+    "link": "https://m.media-amazon.com/images/S/aplus-media-library-service-media/2c29102d-af2d-4e06-825c-9cf13350df74.__CR332,0,800,600_PT0_SX600_V1___.jpg",
+    "site": "https://drinktru.com/?gad_source=1&gclid=Cj0KCQjw2uiwBhCXARIsACMvIU2aDy3-ykCnKVZKcuqHb0HET1_-AJZMIAhoDNFeGBzkqlq_QR1hDrIaAme6EALw_wcB"
   },
   {
     "name": "untitled-art",
-    "link": "https://www.drinkuntitled.com/wp-content/uploads/2023/02/logo_full_short.png"
+    "link": "https://www.drinkuntitled.com/wp-content/uploads/2023/02/logo_full_short.png",
+    "site": "https://www.drinkuntitled.com/product-category/cbd-sparkling-water/"
   },
   {
     "name": "waterloo",
-    "link": "https://www.drinkwaterloo.com/wp-content/uploads/2023/05/brand-logo.png"
+    "link": "https://www.drinkwaterloo.com/wp-content/uploads/2023/05/brand-logo.png",
+    "site": "https://www.drinkwaterloo.com/"
   },
   {
     "name": "wild-wonder",
-    "link": "https://res.cloudinary.com/mable/image/upload/q_auto,c_limit,w_500,h_500/f_auto/v1635609708/marketplace/tj78emkxwbd4ptkiouwk.jpg"
+    "link": "https://res.cloudinary.com/mable/image/upload/q_auto,c_limit,w_500,h_500/f_auto/v1635609708/marketplace/tj78emkxwbd4ptkiouwk.jpg",
+    "site": "https://drinkwildwonder.com/"
   }
 ]
