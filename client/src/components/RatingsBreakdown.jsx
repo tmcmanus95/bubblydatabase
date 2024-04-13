@@ -1,5 +1,9 @@
 import { Rating } from "@mui/material";
+import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 export default function RatingsBreakdown({ ratings }) {
+  const userId = useParams();
+  console.log(userId.userId);
   const fiveRatings = ratings.filter((rating) => rating.rating === 5);
   const fourPointFiveRatings = ratings.filter(
     (rating) => rating.rating === 4.5
@@ -45,11 +49,13 @@ export default function RatingsBreakdown({ ratings }) {
   return (
     <div className="flex-col flex items-center ">
       <h3 className="mb-2">Ratings Breakdown</h3>
-      <h2 className="flex w-64 md:w-96 border-2 border-black   justify-between lg:text-md text-xs">
-        <span className="align-left">5 Stars: {fiveRatings.length}</span>
-        <span>{fivePercent} %</span>
-        <Rating readOnly size="small" value={5} />
-      </h2>
+      <Link to={`/user/${userId.userId}/ratings/5`}>
+        <h2 className="flex w-64 md:w-96 border-2 border-black   justify-between lg:text-md text-xs">
+          <span className="align-left">5 Stars: {fiveRatings.length}</span>
+          <span>{fivePercent} %</span>
+          <Rating readOnly size="small" value={5} />
+        </h2>
+      </Link>
       <h2 className="flex w-64 md:w-96 border-2 border-black  justify-between lg:text-md text-xs">
         <span>4.5 Stars: {fourPointFiveRatings.length}</span>
         <span>{fourPointFivePercent} %</span>

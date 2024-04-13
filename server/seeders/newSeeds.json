@@ -1,49 +1,33 @@
 [
   {
-    "productName": "burst - watermelon lime",
-    "brandName": "bubly",
-    "imageURL": "https://www.pepsicoproductfacts.com/content/image/products/4606a4bc76a66c20_00012000230639_C1N1.png?r=20240408",
-    "flavor": ["watermelon", "lime"],
+    "productName": "Sparkling",
+    "brandName": "path",
+    "imageURL": "https://drinkpathwater.com/cdn/shop/files/sparkling-20oz-aluminum-water-bottle_ad5b1dea-7cc0-4f0e-8c37-26250e2e5c71.png?v=1699579815&width=1426",
+    "flavor": ["plain"],
     "isCaffeinated": false,
     "hasCBD": false
   },
   {
-    "productName": "burst - cherry lemonade",
-    "brandName": "bubly",
-    "imageURL": "https://www.pepsicoproductfacts.com/content/image/products/58d935f685f81325_00012000230592_C1N1.png?r=20240408",
-    "flavor": ["cherry", "lemonade", "lemon"],
+    "productName": "Sparkling Lemon Lime",
+    "brandName": "path",
+    "imageURL": "https://drinkpathwater.com/cdn/shop/files/sparkling-lemon-lime-20oz-aluminum-water-bottle_a38e075e-c525-4bb6-8d15-a837c895dda4.png?v=1699579871&width=1426",
+    "flavor": ["lemon", "lime"],
     "isCaffeinated": false,
     "hasCBD": false
   },
   {
-    "productName": "burst - pineapple tangerine",
-    "brandName": "bubly",
-    "imageURL": "https://www.pepsicoproductfacts.com/content/image/products/60c7d350915dc32d_00012000230691_C1N1.png?r=20240408",
-    "flavor": ["pineapple", "tangerine"],
+    "productName": "Sparkling Grapefruit Mango",
+    "brandName": "path",
+    "imageURL": "https://drinkpathwater.com/cdn/shop/files/sparkling-grapefruit-mango-20oz-aluminum-water-bottle_4f6b6d09-2d04-47e7-a57f-4ae14a4d925d.png?v=1699579871&width=1426",
+    "flavor": ["grapefruit", "mango"],
     "isCaffeinated": false,
     "hasCBD": false
   },
   {
-    "productName": "burst - peach mango",
-    "brandName": "bubly",
-    "imageURL": "https://www.pepsicoproductfacts.com/content/image/products/5b37db1d30514364_00012000230615_C1N1.png?r=20240408",
-    "flavor": ["peach", "mango"],
-    "isCaffeinated": false,
-    "hasCBD": false
-  },
-  {
-    "productName": "burst - tropical punch",
-    "brandName": "bubly",
-    "imageURL": "https://www.pepsicoproductfacts.com/content/image/products/4407d43e1d3e8e4a_00012000230677_C1N1.png?r=20240408",
-    "flavor": ["fruit-punch", "peach"],
-    "isCaffeinated": false,
-    "hasCBD": false
-  },
-  {
-    "productName": "burst - triple berry",
-    "brandName": "bubly",
-    "imageURL": "https://www.pepsicoproductfacts.com/content/image/products/797ae41bdfc60947_00012000230653_C1N1.png?r=20240408",
-    "flavor": ["berry"],
+    "productName": "Sparkling Raspberry Orange",
+    "brandName": "path",
+    "imageURL": "https://drinkpathwater.com/cdn/shop/files/sparkling-raspberry-orange-20oz-aluminum-water-bottle_2691f915-9243-40f7-86fb-f5f01ddce21d.png?v=1699579871&width=1426",
+    "flavor": ["raspberry", "orange"],
     "isCaffeinated": false,
     "hasCBD": false
   }

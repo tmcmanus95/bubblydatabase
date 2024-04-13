@@ -6,9 +6,6 @@ import flavors from "../assets/flavors";
 export default function FlavorSearchBar() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedFlavor, setSelectedFlavor] = useState("");
-  const [searchAll, setSearchAll] = useState(false);
-  const [caffeineSearch, setCaffeineSearch] = useState(false);
-  const [CBDSearch, setCBDSearch] = useState(false);
 
   const handleInputChange = (e) => {
     setSearchTerm(e.target.value);
@@ -64,10 +61,7 @@ export default function FlavorSearchBar() {
         {selectedFlavor ? (
           <BubblyWaterList searchTerm={selectedFlavor.toLowerCase()} />
         ) : (
-          <BubblyWaterList
-            caffeineSearch={caffeineSearch}
-            CBDSearch={CBDSearch}
-          />
+          <BubblyWaterList />
         )}
       </div>
     </>

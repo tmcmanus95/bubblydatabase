@@ -15,6 +15,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AllFlavors from "./pages/AllFlavors.jsx";
 import About from "./pages/About.jsx";
 import SearchResults from "./pages/SearchResults.jsx";
+import SpecificUserRatings from "./pages/SpecificUserRatings.jsx";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: "/user/:userId",
         element: <Profile />,
+      },
+      {
+        path: "/user/:userId/ratings/:rating",
+        element: <SpecificUserRatings />,
       },
       {
         path: "/login",
