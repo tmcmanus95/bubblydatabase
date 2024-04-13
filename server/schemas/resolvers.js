@@ -117,6 +117,17 @@ const resolvers = {
     searchUsers: async (parent, { username }) => {
       return User.findOne({ username: username });
     },
+    queryUserRatingsOfGivenNumber: async (parent, { userId, rating }) => {
+      try {
+        const user = await User.findOne({ _id: userId }).populate({
+          path: "ratings",
+          match: { rating: rating },
+        });
+        return user;
+      } catch (error) {
+        throw new Error("Error returning users ratings of a specific number");
+      }
+    },
   },
 
   Mutation: {

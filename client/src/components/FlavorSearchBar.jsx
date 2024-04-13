@@ -61,10 +61,7 @@ export default function FlavorSearchBar() {
         {selectedFlavor ? (
           <BubblyWaterList searchTerm={selectedFlavor.toLowerCase()} />
         ) : (
-          <BubblyWaterList
-            caffeineSearch={caffeineSearch}
-            CBDSearch={CBDSearch}
-          />
+          <BubblyWaterList />
         )}
       </div>
     </>

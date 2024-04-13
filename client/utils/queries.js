@@ -228,3 +228,21 @@ export const QUERY_ALL_DATABASE = gql`
     }
   }
 `;
+
+export const QUERY_SPECIFIC_USER_RATINGS = gql`
+  query ($userId: ID!, $rating: Float) {
+    queryUserRatingsOfGivenNumber(userId: $userId, rating: $rating) {
+      _id
+      username
+      ratings {
+        rating
+        bubblyWater {
+          productName
+          brandName
+          imageURL
+          flavor
+        }
+      }
+    }
+  }
+`;
