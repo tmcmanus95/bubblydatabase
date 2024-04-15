@@ -148,9 +148,7 @@ export default function BubblyWaterPage() {
   };
   const toggleLoginReminder = () => {
     setLoginReminder(!loginReminder);
-    console.log("login reminder is now ", loginReminder);
   };
-  console.log("bubbly water data, ", data);
 
   return (
     <>
