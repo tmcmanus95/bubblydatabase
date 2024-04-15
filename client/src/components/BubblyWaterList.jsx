@@ -1,6 +1,7 @@
 import { useQuery } from "@apollo/client";
 import { QUERY_ALL_BUBBLYS, QUERY_SINGLE_FLAVOR } from "../../utils/queries";
 import BubblyWaterListItem from "./BubblyWaterListItem";
+import { averageRatingWeighting } from "../../utils/averageRatingWeighting";
 import { useState } from "react";
 import { formatBrands } from "../../utils/formatBrands";
 import Loading from "./Loading";
@@ -18,7 +19,7 @@ export default function BubblyWaterList({ searchTerm }) {
   let caffeinatedBubblies;
   let hasCaffeinatedBubbly = false;
   let hasCBDBubbly = false;
-  console.log("data for general search", data?.bubblyWaters);
+  let generalWaters = [];
   const toggleCBDSearch = () => {
     if (caffeineSearch == true) {
       setCaffeineSearch(false);
@@ -46,19 +47,25 @@ export default function BubblyWaterList({ searchTerm }) {
       sortedBubblyWaters = data.flavors
         .slice()
         .sort((a, b) => b.averageRating - a.averageRating);
-
+      averageRatingWeighting(sortedBubblyWaters);
       cbdBubblies = data?.flavors.filter((bubbly) => bubbly?.hasCBD === true);
       caffeinatedBubblies = data?.flavors.filter(
         (bubbly) => bubbly?.isCaffeinated === true
       );
     }
   } else {
+    if (data && data.bubblyWaters) {
+      generalWaters = data.bubblyWaters
+        .slice()
+        .sort((a, b) => b.averageRating - a.averageRating);
+    }
     cbdBubblies = data?.bubblyWaters.filter(
       (bubbly) => bubbly?.hasCBD === true
     );
     caffeinatedBubblies = data?.bubblyWaters.filter(
       (bubbly) => bubbly?.isCaffeinated === true
     );
+    averageRatingWeighting(generalWaters);
   }
 
   if (CBDSearch) {
@@ -210,21 +217,25 @@ export default function BubblyWaterList({ searchTerm }) {
             </h3>
             <p className="text-md  leading-8 text-gray-800"></p>
           </div>
-          {sortedBubblyWaters.length > 0
-            ? sortedBubblyWaters.map((bubblyWater, index) => (
-                <BubblyWaterListItem
-                  key={index}
-                  bubblyWater={bubblyWater}
-                  ranking={index}
-                />
-              ))
-            : data.bubblyWaters.map((bubblyWater, index) => (
-                <BubblyWaterListItem
-                  key={index}
-                  bubblyWater={bubblyWater}
-                  ranking={index}
-                />
-              ))}
+          {sortedBubblyWaters.length > 0 ? (
+            sortedBubblyWaters.map((bubblyWater, index) => (
+              <BubblyWaterListItem
+                key={index}
+                bubblyWater={bubblyWater}
+                ranking={index}
+              />
+            ))
+          ) : generalWaters.length > 0 ? (
+            generalWaters.map((bubblyWater, index) => (
+              <BubblyWaterListItem
+                key={index}
+                bubblyWater={bubblyWater}
+                ranking={index}
+              />
+            ))
+          ) : (
+            <Loading />
+          )}
         </div>
       ) : (
         <Loading />
