@@ -155,9 +155,7 @@ export default function BubblyWaterList({ searchTerm }) {
         <div
           className={
             searchTerm
-              ? `${capitalizeSingleFlavor(
-                  searchTerm
-                )}-background mb-20 border-2 border-black`
+              ? `${capitalizeSingleFlavor(searchTerm)}-background  `
               : "mb-20"
           }
         >
