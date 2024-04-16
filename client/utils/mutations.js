@@ -78,8 +78,12 @@ export const ADD_RATING = gql`
 `;
 
 export const EDIT_RATING = gql`
-  mutation Mutation($ratingId: ID!, $rating: Float!) {
-    editRating(ratingId: $ratingId, rating: $rating) {
+  mutation Mutation($ratingId: ID!, $rating: Float!, $bubblyWaterId: ID) {
+    editRating(
+      ratingId: $ratingId
+      rating: $rating
+      bubblyWaterId: $bubblyWaterId
+    ) {
       _id
       rating
     }

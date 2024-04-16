@@ -1,7 +1,5 @@
 export function averageRatingWeighting(waters) {
-  console.log("ar", waters);
   if (waters) {
-    console.log(waters.length);
     let swapped;
     do {
       swapped = false;

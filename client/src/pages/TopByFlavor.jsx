@@ -6,7 +6,7 @@ export default function TopByFlavor() {
   const { flavor } = useParams();
   return (
     <>
-      <Logo />
+      {/* <Logo /> */}
       <BubblyWaterList searchTerm={flavor} />;
     </>
   );
