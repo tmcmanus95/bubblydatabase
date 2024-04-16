@@ -80,6 +80,7 @@ export default function BubblyWaterPage() {
         variables: {
           rating: newValue,
           ratingId: ratingId,
+          bubblyWaterId: bubblyWaterId,
         },
       });
       previouslyRated = true;
@@ -89,6 +90,7 @@ export default function BubblyWaterPage() {
   };
   const handleAddRating = async (e, newValue) => {
     e && e.preventDefault();
+    console.log("add rating bubbly water id", bubblyWaterId);
 
     try {
       const { data } = await addRating({

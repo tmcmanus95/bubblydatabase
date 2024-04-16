@@ -71,7 +71,7 @@ const typeDefs = `
     editUserColor(userId: ID!, color: String): User
     login(email: String!, password: String!): Auth
     addRating(bubblyWaterId: ID!, userId: ID, rating: Float!): BubblyWater
-    editRating(ratingId: ID!, rating: Float!): Rating
+    editRating(ratingId: ID!, rating: Float!, bubblyWaterId: ID): Rating
     removeRating(ratingId: ID!): Rating
     addReview(bubblyWaterId: ID!, userId: ID!, reviewText: String!): BubblyWater
     editReview(reviewId: ID!, reviewText: String!): Review

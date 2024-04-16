@@ -166,7 +166,6 @@ const resolvers = {
           bubblyWater: bubblyWaterId,
           user: userId,
         });
-
         const updatedBubblyWater = await BubblyWater.findOneAndUpdate(
           { _id: bubblyWaterId },
           {
@@ -203,13 +202,38 @@ const resolvers = {
         throw new Error("Failed to add rating to water");
       }
     },
-    editRating: async (parent, { ratingId, rating }, context) => {
+    editRating: async (
+      parent,
+      { ratingId, rating, bubblyWaterId },
+      context
+    ) => {
+      console.log("Received parameters:", { ratingId, rating, bubblyWaterId });
+
       try {
         const updatedRating = await Rating.findOneAndUpdate(
           { _id: ratingId },
           { $set: { rating } },
           { new: true }
         );
+        const updatedBubblyWater = await BubblyWater.findOne({
+          _id: bubblyWaterId,
+        }).populate("ratings");
+        console.log("bubbly water id", bubblyWaterId);
+
+        console.log("updated bubb", updatedBubblyWater);
+        // Update the average rating for the Bubbly Water
+        const allRatings = await Rating.find({
+          _id: { $in: updatedBubblyWater.ratings },
+        });
+
+        const totalRatings = allRatings.reduce(
+          (acc, curr) => acc + curr.rating,
+          0
+        );
+        const averageRating = totalRatings / allRatings.length;
+
+        updatedBubblyWater.averageRating = averageRating;
+        await updatedBubblyWater.save();
 
         return updatedRating;
       } catch (error) {
