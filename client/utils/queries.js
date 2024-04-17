@@ -65,7 +65,9 @@ export const QUERY_SINGLE_BUBBLYWATER = gql`
         user {
           _id
           username
-          color
+        }
+        rating {
+          rating
         }
       }
     }
@@ -97,6 +99,9 @@ export const QUERY_SINGLE_USER = gql`
           brandName
           imageURL
           flavor
+        }
+        rating {
+          rating
         }
       }
     }

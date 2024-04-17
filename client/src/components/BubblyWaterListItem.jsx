@@ -4,11 +4,26 @@ import { useState } from "react";
 import Rating from "@mui/material/Rating";
 import { PiFeatherBold } from "react-icons/pi";
 import { BiSolidCoffeeBean } from "react-icons/bi";
-
+import { styled } from "@mui/material/styles";
+import { materialUIStylings } from "../../utils/materialUIStylings";
+import StarIcon from "@mui/icons-material/Star";
 import { capitalizeFlavors } from "../../utils/capitalizeFlavors";
+import { capitalizeSingleFlavor } from "../../utils/capitalizeSingleFlavor";
 import { formatBrands } from "../../utils/formatBrands";
 
 export default function BubblyWaterListItem({ bubblyWater, ranking }) {
+  console.log("bubblyWater.flavor[0]", bubblyWater.flavor[0]);
+  const filledInColor = materialUIStylings(bubblyWater.flavor[0]);
+  const StyledRating = styled(Rating)({
+    "& .MuiRating-iconFilled": {
+      color: materialUIStylings(capitalizeSingleFlavor(bubblyWater.flavor[0])),
+    },
+    "& .MuiRating-iconHover": {
+      color: materialUIStylings(capitalizeSingleFlavor(bubblyWater.flavor[0])),
+    },
+  });
+  console.log("filled in color", filledInColor);
+
   let ratingCount = 0;
   let hasCBD = false;
   let hasCaffeine = false;
@@ -87,9 +102,20 @@ export default function BubblyWaterListItem({ bubblyWater, ranking }) {
                   value={bubblyWater.averageRating}
                   precision={0.1}
                 />
+
                 <span>({ratingCount})</span>
               </Link>
             </div>
+            {/* <StyledRating
+              name="customized-color"
+              getLabelText={(value) =>
+                `${value} Heart${value !== 1 ? "s" : ""}`
+              }
+              defaultValue={4}
+              precision={0.5}
+              icon={<StarIcon fontSize="inherit" />}
+              emptyIcon={<StarIcon fontSize="inherit" />}
+            /> */}
           </div>
         </div>
       </section>

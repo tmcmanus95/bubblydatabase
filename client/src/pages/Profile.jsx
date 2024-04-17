@@ -47,6 +47,12 @@ export default function Profile() {
       console.error("Error editing review, ", err);
     }
   };
+  if (ratings) {
+    for (let i = 0; i < ratings.length; i++) {
+      console.log(ratings[i].bubblyWater._id);
+    }
+  }
+  console.log("reviews,", reviews);
   return (
     <>
       {loading ? (

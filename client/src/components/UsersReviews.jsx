@@ -3,6 +3,7 @@ import { formatBrands } from "../../utils/formatBrands";
 import { Rating } from "@mui/material";
 import { capitalizeSingleFlavor } from "../../utils/capitalizeSingleFlavor";
 export default function UsersReviews({ reviews }) {
+  console.log("reviews", reviews);
   return (
     <>
       <section>
@@ -35,12 +36,16 @@ export default function UsersReviews({ reviews }) {
                       </span>
                     </div>
                     <div>
-                      {/* <Rating
-                        readOnly
-                        size="small"
-                        value={review.rating}
-                        precision={0.5}
-                      /> */}
+                      {review.rating ? (
+                        <Rating
+                          readOnly
+                          size="small"
+                          value={review.rating.rating}
+                          precision={0.5}
+                        />
+                      ) : (
+                        <></>
+                      )}
                     </div>
                   </div>
                   <div className="mt-4">

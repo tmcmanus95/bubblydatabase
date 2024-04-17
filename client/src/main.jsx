@@ -16,6 +16,7 @@ import AllFlavors from "./pages/AllFlavors.jsx";
 import About from "./pages/About.jsx";
 import SearchResults from "./pages/SearchResults.jsx";
 import SpecificUserRatings from "./pages/SpecificUserRatings.jsx";
+import BasicRating from "./components/FiveStarRating.jsx";
 
 const router = createBrowserRouter([
   {
@@ -74,6 +75,10 @@ const router = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact />,
+      },
+      {
+        path: "/testingRatingComponent",
+        element: <BasicRating />,
       },
       {
         path: "*",

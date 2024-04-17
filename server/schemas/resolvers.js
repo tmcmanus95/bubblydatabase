@@ -20,10 +20,13 @@ const resolvers = {
         {
           path: "reviews",
           options: { sort: { createdAt: -1 } },
-          populate: {
-            path: "bubblyWater",
-            model: "BubblyWater",
-          },
+          populate: [
+            {
+              path: "bubblyWater",
+              model: "BubblyWater",
+            },
+            { path: "rating", model: "Rating" },
+          ],
         },
       ]);
     },
@@ -50,10 +53,13 @@ const resolvers = {
           {
             path: "reviews",
             options: { sort: { createdAt: -1 } },
-            populate: {
-              path: "bubblyWater",
-              model: "BubblyWater",
-            },
+            populate: [
+              {
+                path: "bubblyWater",
+                model: "BubblyWater",
+              },
+              { path: "rating", model: "Rating" },
+            ],
           },
         ]);
       }
@@ -76,7 +82,10 @@ const resolvers = {
         })
         .populate({
           path: "reviews",
-          populate: { path: "user", model: "User" },
+          populate: [
+            { path: "user", model: "User" },
+            { path: "rating", model: "Rating" },
+          ],
         });
     },
     rating: async (parent, { ratingId }) => {
@@ -250,12 +259,24 @@ const resolvers = {
       context
     ) => {
       try {
-        const newReview = await Review.create({
-          reviewText: reviewText,
-          bubblyWater: bubblyWaterId,
+        const existingRating = await Rating.findOne({
           user: userId,
+          bubblyWater: bubblyWaterId,
         });
 
+        let rating = null;
+        if (existingRating) {
+          rating = existingRating._id;
+        }
+
+        // Create the new review with the attached rating (if exists)
+        const newReview = await Review.create({
+          reviewText,
+          bubblyWater: bubblyWaterId,
+          user: userId,
+          rating,
+        });
+        console.log("new review", newReview);
         const updatedBubblyWater = await BubblyWater.findByIdAndUpdate(
           { _id: bubblyWaterId },
           {
