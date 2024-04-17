@@ -336,12 +336,16 @@ export default function BubblyWaterPage() {
                           <span className=" font-semibold">me</span>
                         )}
                         <div>
-                          <Rating
-                            readOnly
-                            size="small"
-                            value={review.rating}
-                            precision={0.5}
-                          />
+                          {review.rating ? (
+                            <Rating
+                              readOnly
+                              size="small"
+                              value={review.rating.rating}
+                              precision={0.5}
+                            />
+                          ) : (
+                            <></>
+                          )}
                         </div>
                       </div>
                       <div className="mt-4 px-2">

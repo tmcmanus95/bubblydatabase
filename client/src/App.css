@@ -1,30 +1,6 @@
 * {
   font-family: avenir;
 }
-.Lime {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  background-color: #32cd32;
-}
-.Lime-background {
-  background-color: #f9fff7;
-}
-.Lime-brushings {
-  background-color: #32cd32 !important;
-}
-.Key-lime {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  background-color: #9eeb9e;
-}
-.Key-lime-background {
-  background-color: #f9fff7;
-}
-.Key-lime-brushings {
-  background-color: #9eeb9e !important;
-}
 .Acai {
   border-radius: 5px;
   padding: 5px;
@@ -38,6 +14,44 @@
 .Acai-brushings {
   background-color: #46295a !important;
   color: white !important;
+}
+.Apple {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #27ae60;
+  color: white;
+}
+.Apple-background {
+  background-color: #f9fff7;
+}
+.Apple-brushings {
+  background-color: #27ae60 !important;
+  color: white !important;
+}
+.Apple-cider {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #e74c3c;
+}
+.Apple-cider-background {
+  background-color: #e6d9cb;
+}
+.Apple-cider-brushings {
+  background-color: #e74c3c !important;
+}
+.Apricot {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #f3c06e;
+}
+.Apricot-background {
+  background-color: #ffd7b5;
+}
+.Apricot-brushings {
+  background-color: #f3c06e !important;
 }
 .Banana {
   border-radius: 5px;
@@ -63,6 +77,62 @@
 .Basil-brushings {
   background-color: #82c87e !important;
 }
+.Berry {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #9b59b6;
+  color: white;
+}
+.Berry-background {
+  background-color: #f2e4fd;
+}
+.Berry-brushings {
+  background-color: #9b59b6 !important;
+  color: white !important;
+}
+.Blackberry {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: white;
+  background-color: #37084b;
+}
+.Blackberry-background {
+  background-color: #f2e4fd;
+}
+.Blackberry-brushings {
+  background-color: #37084b !important;
+  color: white !important;
+}
+.Black-cherry {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: white;
+  background-color: #52253a;
+}
+.Black-cherry-background {
+  background-color: #f2e4fd;
+}
+.Black-cherry-brushings {
+  background-color: #52253a !important;
+  color: white !important;
+}
+.Blueberry {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px;
+  background-color: #3498db;
+  color: white;
+}
+.Blueberry-brushings {
+  background-color: #3498db !important;
+  color: white !important;
+}
+.Blueberry-background {
+  background-color: #e8f4f8;
+}
 .Cactus {
   border-radius: 5px;
   padding: 5px;
@@ -76,6 +146,18 @@
 .Cactus-brushings {
   background-color: #5c755e !important;
   color: white !important;
+}
+.Calamansi {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #f1c40f;
+}
+.Calamansi-background {
+  background-color: #ffd7b5;
+}
+.Calamansi-brushings {
+  background-color: #f1c40f !important;
 }
 .Cardamom {
   border-radius: 5px;
@@ -105,45 +187,137 @@
   background-color: #e32227 !important;
   color: white !important;
 }
-.Currant {
+.Chai {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  background-color: #3d3242;
-  color: white;
+  background-color: #d1b280;
 }
-.Currant-background {
+.Chai-background {
   background-color: #e6d9cb;
 }
-.Currant-brushings {
-  background-color: #3d3242 !important;
-  color: white !important;
+.Chai-brushings {
+  background-color: #d1b280 !important;
 }
-.Elderflower {
+.Cherry {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  background-color: #fbf9e8;
-}
-.Elderflower-background {
-  background-color: #e6d9cb;
-}
-.Elderflower-brushings {
-  background-color: #fbf9e8 !important;
-}
-.Honeysuckle {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  background-color: #e50068;
   color: white;
+  background-color: #d10202;
 }
-.Honeysuckle-background {
+.Cherry-background {
   background-color: #ffe4ed;
 }
-.Honeysuckle-brushings {
-  background-color: #e50068 !important;
+.Cherry-brushings {
+  background-color: #d10202 !important;
+}
+.Cinnamon {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #d1b280;
+}
+.Cinnamon-background {
+  background-color: #e6d9cb;
+}
+.Citrus {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: greenyellow;
+}
+.Citrus-background {
+  background-color: #f9fff7;
+}
+.Citrus-brushings {
+  background-color: greenyellow !important;
+  color: black !important;
+}
+.Clementine {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #f39c12;
+}
+.Clementine-background {
+  background-color: #ffd7b5;
+}
+.Clementine-brushings {
+  background-color: #f39c12;
+}
+.Coconut {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: white;
+  background-color: #583e00;
+}
+.Coconut-background {
+  background-color: #e6d9cb;
+}
+.Coconut-brushings {
+  background-color: #583e00 !important;
   color: white !important;
+}
+.Cola {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #422801;
+  color: white;
+}
+.Cola-background {
+  background-color: #e6d9cb;
+}
+.Cola-brushings {
+  background-color: #422801 !important;
+  color: white;
+}
+
+.Cranberry {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #e74c3c;
+  color: white;
+}
+.Cranberry-background {
+  background-color: #ffe4ed;
+}
+.Cranberry-brushings {
+  background-color: #e74c3c !important;
+}
+
+.testing {
+  color: black;
+}
+.Lime {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #32cd32;
+}
+.MuiRating-iconFilled {
+  color: "black";
+}
+.Lime-background {
+  background-color: #f9fff7;
+}
+.Lime-brushings {
+  background-color: #32cd32 !important;
+}
+.Key-lime {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #9eeb9e;
+}
+.Key-lime-background {
+  background-color: #f9fff7;
+}
+.Key-lime-brushings {
+  background-color: #9eeb9e !important;
 }
 
 .Limoncello {
@@ -197,19 +371,6 @@
 .Watermelon-brushings {
   background-color: pink !important;
 }
-.Citrus {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  background-color: greenyellow;
-}
-.Citrus-background {
-  background-color: #f9fff7;
-}
-.Citrus-brushings {
-  background-color: greenyellow !important;
-  color: black !important;
-}
 .Sweetgrass {
   border-radius: 5px;
   padding: 5px;
@@ -251,20 +412,6 @@
 .Pomegranate-brushings {
   background-color: #c0392b !important;
   color: white !important;
-}
-
-.Green-tea {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  background-color: #2ecc71;
-}
-.Green-tea-background {
-  background-color: #f9fff7;
-}
-.Green-tea-brushings {
-  background-color: #2ecc71 !important;
-  color: black !important;
 }
 
 .Tea {
@@ -322,19 +469,6 @@
   color: black !important;
 }
 
-.Cucumber {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  background-color: #b4f0cd;
-}
-.Cucumber-background {
-  background-color: #f9fff7;
-}
-.Cucumber-brushings {
-  background-color: #b4f0cd !important;
-  color: black !important;
-}
 .Melon {
   border-radius: 5px;
   padding: 5px;
@@ -376,21 +510,6 @@
   color: black !important;
 }
 
-.Apple {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  background-color: #27ae60;
-  color: white;
-}
-.Apple-background {
-  background-color: #f9fff7;
-}
-.Apple-brushings {
-  background-color: #27ae60 !important;
-  color: white !important;
-}
-
 .Blackberry {
   border-radius: 5px;
   padding: 5px;
@@ -419,6 +538,20 @@
 }
 .Blueberry-background {
   background-color: #e8f4f8;
+}
+.Cactus {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #5c755e;
+  color: white;
+}
+.Cactus-background {
+  background-color: #f9fff7;
+}
+.Cactus-brushings {
+  background-color: #5c755e !important;
+  color: white !important;
 }
 
 .Raspberry {
@@ -462,36 +595,6 @@
 }
 .Pear-brushings {
   background-color: #5af881 !important;
-  color: black !important;
-}
-
-.Berry {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  background-color: #9b59b6;
-  color: white;
-}
-.Berry-background {
-  background-color: #f2e4fd;
-}
-.Berry-brushings {
-  background-color: #9b59b6 !important;
-  color: white !important;
-}
-
-.Grapefruit {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  background-color: #fdb6f0;
-}
-.Grapefruit-background {
-  background-color: #ffe4ed;
-}
-
-.Grapefruit-brushings {
-  background-color: #fdb6f0 !important;
   color: black !important;
 }
 
@@ -575,33 +678,6 @@
   background-color: #81072c !important;
   color: white !important;
 }
-.Dragon-fruit {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  background-color: #f35d8b;
-}
-.Dragon-fruit-background {
-  background-color: #ffe4ed;
-}
-.Dragon-fruit-brushings {
-  background-color: #f35d8b !important;
-  color: black !important;
-}
-
-.Hibiscus {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  color: white;
-  background-color: #e74c3c;
-}
-.Hibiscus-background {
-  background-color: #ffe4ed;
-}
-.Hibiscus-brushings {
-  background-color: #e74c3c !important;
-}
 
 .Pomelo {
   border-radius: 5px;
@@ -631,35 +707,6 @@
   color: black !important;
 }
 
-.Fruit-punch {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  background-color: #e74c3c;
-  color: white;
-}
-.Fruit-punch-background {
-  background-color: #ffe4ed;
-}
-.Fruit-punch-brushings {
-  background-color: #e74c3c !important;
-  color: white !important;
-}
-
-.Black-cherry {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  color: white;
-  background-color: #52253a;
-}
-.Black-cherry-background {
-  background-color: #f2e4fd;
-}
-.Black-cherry-brushings {
-  background-color: #52253a !important;
-  color: white !important;
-}
 .Lavender {
   border-radius: 5px;
   padding: 5px;
@@ -723,19 +770,6 @@
   color: black !important;
 }
 
-.Guava {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  background-color: #f17a98;
-}
-.Guava-background {
-  background-color: #ffe4ed;
-}
-.Guava-brushings {
-  background-color: #f17a98;
-}
-
 .Plum {
   border-radius: 5px;
   padding: 5px;
@@ -763,34 +797,6 @@
   background-color: #a9c77e !important;
 }
 
-.Coconut {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  color: white;
-  background-color: #583e00;
-}
-.Coconut-background {
-  background-color: #e6d9cb;
-}
-.Coconut-brushings {
-  background-color: #583e00 !important;
-  color: white !important;
-}
-.Honey {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  color: white;
-  background-color: #e79a3f;
-}
-.Honey-background {
-  background-color: #e6d9cb;
-}
-.Honey-brushings {
-  background-color: #e79a3f !important;
-}
-
 .Peach {
   border-radius: 5px;
   padding: 5px;
@@ -814,18 +820,6 @@
 }
 .Nectarine-brushings {
   background-color: #eca93d !important;
-}
-.Apricot {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  background-color: #f3c06e;
-}
-.Apricot-background {
-  background-color: #ffd7b5;
-}
-.Apricot-brushings {
-  background-color: #f3c06e !important;
 }
 
 .Orange {
@@ -867,21 +861,6 @@
   background-color: #f39c12 !important;
 }
 
-.Cola {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  background-color: #422801;
-  color: white;
-}
-.Cola-background {
-  background-color: #e6d9cb;
-}
-.Cola-brushings {
-  background-color: #422801 !important;
-  color: white;
-}
-
 .Plain {
   border-radius: 5px;
   padding: 5px;
@@ -895,45 +874,6 @@
   background-color: #a2a5a5 !important;
 }
 
-.Chai {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  background-color: #d1b280;
-}
-.Chai-background {
-  background-color: #e6d9cb;
-}
-.Chai-brushings {
-  background-color: #d1b280 !important;
-}
-
-.Calamansi {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  background-color: #f1c40f;
-}
-.Calamansi-background {
-  background-color: #ffd7b5;
-}
-.Calamansi-brushings {
-  background-color: #f1c40f !important;
-}
-
-.Ginger {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  background-color: #d1b280;
-}
-.Ginger-background {
-  background-color: #e6d9cb;
-}
-.Ginger-brushings {
-  background-color: #d1b280 !important;
-  color: black;
-}
 .Root-beer {
   border-radius: 5px;
   padding: 5px;
@@ -989,6 +929,178 @@
 .Cranberry-brushings {
   background-color: #e74c3c !important;
 }
+.Cucumber {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #b4f0cd;
+}
+.Cucumber-background {
+  background-color: #f9fff7;
+}
+.Cucumber-brushings {
+  background-color: #b4f0cd !important;
+  color: black !important;
+}
+.Currant {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #3d3242;
+  color: white;
+}
+.Currant-background {
+  background-color: #e6d9cb;
+}
+.Currant-brushings {
+  background-color: #3d3242 !important;
+  color: white !important;
+}
+.Dragon-fruit {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #f35d8b;
+}
+.Dragon-fruit-background {
+  background-color: #ffe4ed;
+}
+.Dragon-fruit-brushings {
+  background-color: #f35d8b !important;
+  color: black !important;
+}
+.Elderflower {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #fbf9e8;
+}
+.Elderflower-background {
+  background-color: #e6d9cb;
+}
+.Elderflower-brushings {
+  background-color: #fbf9e8 !important;
+}
+.Fruit-punch {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #e74c3c;
+  color: white;
+}
+.Fruit-punch-background {
+  background-color: #ffe4ed;
+}
+.Fruit-punch-brushings {
+  background-color: #e74c3c !important;
+  color: white !important;
+}
+.Ginger {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #d1b280;
+}
+.Ginger-background {
+  background-color: #e6d9cb;
+}
+.Ginger-brushings {
+  background-color: #d1b280 !important;
+  color: black;
+}
+.Grape {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #8e44ad;
+  color: white;
+}
+.Grape-background {
+  background-color: #f2e4fd;
+}
+.Grape-brushings {
+  background-color: #8e44ad !important;
+}
+.Grapefruit {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #fdb6f0;
+}
+.Grapefruit-background {
+  background-color: #ffe4ed;
+}
+
+.Grapefruit-brushings {
+  background-color: #fdb6f0 !important;
+  color: black !important;
+}
+.Green-tea {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #2ecc71;
+}
+.Green-tea-background {
+  background-color: #f9fff7;
+}
+.Green-tea-brushings {
+  background-color: #2ecc71 !important;
+  color: black !important;
+}
+.Guava {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #f17a98;
+}
+.Guava-background {
+  background-color: #ffe4ed;
+}
+.Guava-brushings {
+  background-color: #f17a98;
+}
+.Hibiscus {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: white;
+  background-color: #e74c3c;
+}
+.Hibiscus-background {
+  background-color: #ffe4ed;
+}
+.Hibiscus-brushings {
+  background-color: #e74c3c !important;
+}
+.Honey {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: white;
+  background-color: #e79a3f;
+}
+.Honey-background {
+  background-color: #e6d9cb;
+}
+.Honey-brushings {
+  background-color: #e79a3f !important;
+}
+.Honeysuckle {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #e50068;
+  color: white;
+}
+.Honeysuckle-background {
+  background-color: #ffe4ed;
+}
+.Honeysuckle-brushings {
+  background-color: #e50068 !important;
+  color: white !important;
+}
+
 .Rose {
   border-radius: 5px;
   padding: 5px;
@@ -1003,44 +1115,8 @@
   background-color: #ff007f !important;
 }
 
-.Apple-cider {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  background-color: #e74c3c;
-}
-.Apple-cider-background {
-  background-color: #e6d9cb;
-}
-.Apple-cider-brushings {
-  background-color: #e74c3c !important;
-}
-
-.Cinnamon {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  background-color: #d1b280;
-}
-.Cinnamon-background {
-  background-color: #e6d9cb;
-}
 .Cranberry-brushings {
   background-color: #d1b280 !important;
-}
-
-.Grape {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  background-color: #8e44ad;
-  color: white;
-}
-.Grape-background {
-  background-color: #f2e4fd;
-}
-.Grape-brushings {
-  background-color: #8e44ad !important;
 }
 
 .Pink-lemonade {
@@ -1054,32 +1130,6 @@
 }
 .Pink-lemonade-brushings {
   background-color: #efd3d2;
-}
-
-.Clementine {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  background-color: #f39c12;
-}
-.Clementine-background {
-  background-color: #ffd7b5;
-}
-.Clementine-brushings {
-  background-color: #f39c12;
-}
-.Cherry {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  color: white;
-  background-color: #d10202;
-}
-.Cherry-background {
-  background-color: #ffe4ed;
-}
-.Cherry-brushings {
-  background-color: #d10202 !important;
 }
 
 .bubblyListItem {

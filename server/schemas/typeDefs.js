@@ -37,7 +37,7 @@ const typeDefs = `
     createdAt: String
     bubblyWater: BubblyWater
     user: User
-    rating: [Rating]
+    rating: Rating
   }
 
   type Auth {

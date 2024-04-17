@@ -4,7 +4,6 @@ export function averageRatingWeighting(waters) {
     do {
       swapped = false;
       for (let i = 0; i < waters.length - 1; i++) {
-        console.log(waters[i].ratings.length);
         if (
           waters[i].averageRating === waters[i + 1].averageRating &&
           waters[i + 1].ratings.length > waters[i].ratings.length
