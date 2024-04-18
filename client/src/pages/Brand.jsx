@@ -40,7 +40,7 @@ export default function Brand() {
         <Link to={officialSite}>
           <img src={logoLink} width={400} height={200} className="rounded-lg" />
         </Link>
-        <h3 className="lg:text-sm text-s text-center py-2 mt-5 font-bold">
+        <h3 className="md:text-m text-xs text-center py-2 mt-5 font-bold">
           Bubbles. is not affiliated with {formatBrands(brandName)}. Visit their
           official site here:
           <Link
