@@ -2,6 +2,7 @@ import { useState } from "react";
 import BubblyWaterList from "./BubblyWaterList";
 import Logo from "./Logo";
 import flavors from "../assets/flavors";
+import { formatBrands } from "../../utils/formatBrands";
 
 export default function FlavorSearchBar() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -50,7 +51,7 @@ export default function FlavorSearchBar() {
                       onClick={() => handleSelectFlavor(flavor)}
                       className={`${flavor} cursor-pointer  px-4 hover:bg-blue-300 hover:text-black`}
                     >
-                      {flavor}
+                      {formatBrands(flavor)}
                     </li>
                   ))}
                 </ul>
