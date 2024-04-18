@@ -99,58 +99,6 @@ export default function BubblyWaterList({ searchTerm }) {
   }
   return (
     <>
-      <div className="flex justify-center">
-        <div className="flex items-center pt-3">
-          <div className="flex items-center mr-2">
-            <input
-              id="default-radio-1"
-              type="radio"
-              value=""
-              onClick={toggleSearchAll}
-              name="default-radio"
-              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-            />
-            <label
-              htmlFor="default-radio-1"
-              className="ms-1 text-sm font-medium text-gray-900 "
-            >
-              All
-            </label>
-          </div>
-          <div className="flex items-center mr-2">
-            <input
-              id="default-radio-2"
-              type="radio"
-              value=""
-              onClick={toggleCBDSearch}
-              name="default-radio"
-              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-            />
-            <label
-              htmlFor="default-radio-2"
-              className="ms-1 text-sm font-medium text-gray-900 "
-            >
-              CBD
-            </label>
-          </div>
-          <div className="flex items-center">
-            <input
-              id="default-radio-3"
-              type="radio"
-              value=""
-              onClick={toggleCaffeineSearch}
-              name="default-radio"
-              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-            />
-            <label
-              htmlFor="default-radio-2"
-              className="ms-1 text-sm font-medium text-gray-900 "
-            >
-              Caffeine
-            </label>
-          </div>
-        </div>
-      </div>
       {data ? (
         <div
           className={
@@ -160,32 +108,6 @@ export default function BubblyWaterList({ searchTerm }) {
           }
         >
           <div className="text-center pt-10">
-            {caffeineSearch ? (
-              hasCaffeinatedBubbly ? (
-                <></>
-              ) : (
-                <h6 className="pb-6">
-                  No Caffeinated {capitalizeSingleFlavor(searchTerm)} Waters
-                  Found
-                </h6>
-              )
-            ) : (
-              <></>
-            )}
-
-            {CBDSearch ? (
-              hasCBDBubbly ? (
-                <></>
-              ) : (
-                <h6 className="pb-6">
-                  No {capitalizeSingleFlavor(searchTerm)} Flavored Waters with
-                  CBD Found
-                </h6>
-              )
-            ) : (
-              <></>
-            )}
-
             <h3 className="md:text-5xl text-xl text-center font-bold mb-6 relative">
               {searchTerm ? (
                 <span>
@@ -200,21 +122,93 @@ export default function BubblyWaterList({ searchTerm }) {
                   Top 50 Bubbly Waters of All Time
                 </div>
               )}
-              {hasCaffeinatedBubbly ? (
-                <h3 className="mt-4 text-xl">with Caffeine</h3>
-              ) : (
-                <></>
-              )}
-              {hasCBDBubbly ? (
-                <h3 className="mt-4 text-xl">with CBD</h3>
-              ) : (
-                <></>
-              )}
-
-              <div className="absolute  left-1/2 transform -translate-x-1/2 mt-5 ">
-                <div className="bg-black h-px w-56 lg:w-96"></div>
-              </div>
             </h3>
+            {hasCaffeinatedBubbly ? (
+              <h3 className="mt-4 text-xl">with Caffeine</h3>
+            ) : (
+              <></>
+            )}
+            {hasCBDBubbly ? <h3 className="mt-4 text-xl">with CBD</h3> : <></>}
+            {caffeineSearch ? (
+              hasCaffeinatedBubbly ? (
+                <></>
+              ) : (
+                <h6 className="md:text-m text-sm">
+                  No Caffeinated {formatBrands(searchTerm)} Waters Found
+                </h6>
+              )
+            ) : (
+              <></>
+            )}
+
+            {CBDSearch ? (
+              hasCBDBubbly ? (
+                <></>
+              ) : (
+                <h6 className="md:text-m text-sm">
+                  No {formatBrands(searchTerm)} Flavored Waters with CBD Found
+                </h6>
+              )
+            ) : (
+              <></>
+            )}
+            <div className="flex justify-center mt-5">
+              <div className="flex items-center pt-3">
+                <div className="flex items-center mr-2">
+                  <input
+                    id="default-radio-1"
+                    type="radio"
+                    value=""
+                    onClick={toggleSearchAll}
+                    name="default-radio"
+                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                  />
+                  <label
+                    htmlFor="default-radio-1"
+                    className="ms-1 text-sm font-medium text-gray-900 "
+                  >
+                    All
+                  </label>
+                </div>
+                <div className="flex items-center mr-2">
+                  <input
+                    id="default-radio-2"
+                    type="radio"
+                    value=""
+                    onClick={toggleCBDSearch}
+                    name="default-radio"
+                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                  />
+                  <label
+                    htmlFor="default-radio-2"
+                    className="ms-1 text-sm font-medium text-gray-900 "
+                  >
+                    CBD
+                  </label>
+                </div>
+                <div className="flex items-center">
+                  <input
+                    id="default-radio-3"
+                    type="radio"
+                    value=""
+                    onClick={toggleCaffeineSearch}
+                    name="default-radio"
+                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                  />
+                  <label
+                    htmlFor="default-radio-2"
+                    className="ms-1 text-sm font-medium text-gray-900 "
+                  >
+                    Caffeine
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div className="absolute  left-1/2 transform -translate-x-1/2 mt-5 ">
+              <div className="bg-black h-px w-56 lg:w-96"></div>
+            </div>
+
             <p className="text-md  leading-8 text-gray-800"></p>
           </div>
           {sortedBubblyWaters.length > 0 ? (
