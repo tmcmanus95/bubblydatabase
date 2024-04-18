@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { formatBrands } from "../../utils/formatBrands";
 import { Rating } from "@mui/material";
 import { capitalizeSingleFlavor } from "../../utils/capitalizeSingleFlavor";
+import CustomColorRating from "./CustomColorRating";
 export default function UsersReviews({ reviews }) {
   console.log("reviews", reviews);
   return (
@@ -18,7 +19,7 @@ export default function UsersReviews({ reviews }) {
                       review?.bubblyWater?.flavor[0]
                         ? `${capitalizeSingleFlavor(
                             review.bubblyWater.flavor[0]
-                          )}-brushings rounded-t-lg p-2 flex gap-3 items-center justify-between`
+                          )}-background rounded-t-lg p-2 flex gap-3 items-center justify-between`
                         : ""
                     }`}
                   >
@@ -37,11 +38,14 @@ export default function UsersReviews({ reviews }) {
                     </div>
                     <div>
                       {review.rating ? (
-                        <Rating
-                          readOnly
-                          size="small"
-                          value={review.rating.rating}
-                          precision={0.5}
+                        // <Rating
+                        //   readOnly
+                        //   size="small"
+                        //   value={review.rating.rating}
+                        //   precision={0.5}
+                        // />
+                        <CustomColorRating
+                          flavor={review.bubblyWater.flavor[0]}
                         />
                       ) : (
                         <></>

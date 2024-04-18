@@ -15,7 +15,7 @@ import { capitalizeSingleFlavor } from "../../utils/capitalizeSingleFlavor";
 import { Link } from "react-router-dom";
 import { formatBrands } from "../../utils/formatBrands";
 import Loading from "../components/Loading";
-
+import CustomColorRating from "../components/CustomColorRating";
 export default function BubblyWaterPage() {
   const { bubblyWaterId } = useParams();
   const [value, setValue] = useState(0);
@@ -208,7 +208,6 @@ export default function BubblyWaterPage() {
                           readOnly
                           value={previouslyRated ? userRating : value}
                           precision={0.5}
-                          onClick={toggleLoginReminder}
                         />
                         <p>
                           <Link to="/login" className="text-blue-500">

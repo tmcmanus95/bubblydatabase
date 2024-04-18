@@ -10,19 +10,10 @@ import StarIcon from "@mui/icons-material/Star";
 import { capitalizeFlavors } from "../../utils/capitalizeFlavors";
 import { capitalizeSingleFlavor } from "../../utils/capitalizeSingleFlavor";
 import { formatBrands } from "../../utils/formatBrands";
+import CustomColorRating from "./CustomColorRating";
 
 export default function BubblyWaterListItem({ bubblyWater, ranking }) {
   console.log("bubblyWater.flavor[0]", bubblyWater.flavor[0]);
-  const filledInColor = materialUIStylings(bubblyWater.flavor[0]);
-  const StyledRating = styled(Rating)({
-    "& .MuiRating-iconFilled": {
-      color: materialUIStylings(capitalizeSingleFlavor(bubblyWater.flavor[0])),
-    },
-    "& .MuiRating-iconHover": {
-      color: materialUIStylings(capitalizeSingleFlavor(bubblyWater.flavor[0])),
-    },
-  });
-  console.log("filled in color", filledInColor);
 
   let ratingCount = 0;
   let hasCBD = false;
@@ -97,25 +88,19 @@ export default function BubblyWaterListItem({ bubblyWater, ranking }) {
                 Average rating: {bubblyWater.averageRating.toFixed(2)} / 5.0
               </h5>
               <Link to={`/bubblyWater/${bubblyWater._id}`}>
-                <Rating
+                {/* <Rating
                   readOnly
                   value={bubblyWater.averageRating}
                   precision={0.1}
+                /> */}
+                <CustomColorRating
+                  flavor={capitalizedFlavors[0]}
+                  rating={bubblyWater.averageRating}
                 />
 
                 <span>({ratingCount})</span>
               </Link>
             </div>
-            {/* <StyledRating
-              name="customized-color"
-              getLabelText={(value) =>
-                `${value} Heart${value !== 1 ? "s" : ""}`
-              }
-              defaultValue={4}
-              precision={0.5}
-              icon={<StarIcon fontSize="inherit" />}
-              emptyIcon={<StarIcon fontSize="inherit" />}
-            /> */}
           </div>
         </div>
       </section>
