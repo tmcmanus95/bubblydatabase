@@ -119,6 +119,34 @@
   background-color: #52253a !important;
   color: white !important;
 }
+.Black-tea {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: white;
+  background-color: #463333;
+}
+.Black-tea-background {
+  background-color: #907c7c;
+}
+.Black-tea-brushings {
+  background-color: #463333;
+}
+
+.Blood-orange {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: white;
+  background-color: #e74c3c;
+}
+.Blood-orange-background {
+  background-color: #ffd7b5;
+}
+.Blood-orange-brushings {
+  background-color: #e74c3c !important;
+}
+
 .Blueberry {
   border-radius: 5px;
   padding: 5px;
@@ -273,647 +301,6 @@
 .Cola-brushings {
   background-color: #422801 !important;
   color: white;
-}
-
-.Cranberry {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  background-color: #e74c3c;
-  color: white;
-}
-.Cranberry-background {
-  background-color: #ffe4ed;
-}
-.Cranberry-brushings {
-  background-color: #e74c3c !important;
-}
-
-.testing {
-  color: black;
-}
-.Lime {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  background-color: #32cd32;
-}
-.MuiRating-iconFilled {
-  color: "black";
-}
-.Lime-background {
-  background-color: #f9fff7;
-}
-.Lime-brushings {
-  background-color: #32cd32 !important;
-}
-.Key-lime {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  background-color: #9eeb9e;
-}
-.Key-lime-background {
-  background-color: #f9fff7;
-}
-.Key-lime-brushings {
-  background-color: #9eeb9e !important;
-}
-
-.Limoncello {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  background-color: #f8e597;
-}
-.Limoncello-background {
-  background-color: #ffffed;
-}
-.Limoncello-brushings {
-  background-color: #f8e597 !important;
-  color: black !important;
-}
-.Lemon-sorbet {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  background-color: #ffe27e;
-}
-.Lemon-sorbet-background {
-  background-color: #ffffed;
-}
-.Lemon-sorbet-brushings {
-  background-color: #ffe27e !important;
-  color: black !important;
-}
-.Turmeric {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  background-color: #ccb647;
-}
-.Turmeric-background {
-  background-color: #ffffed;
-}
-.Turmeric-brushings {
-  background-color: #ccb647 !important;
-  color: black !important;
-}
-.Watermelon {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  background-color: pink;
-}
-.Watermelon-background {
-  background-color: #ffe4ed;
-}
-.Watermelon-brushings {
-  background-color: pink !important;
-}
-.Sweetgrass {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  background-color: #e7ffa4;
-}
-.Sweetgrass-background {
-  background-color: #f9fff7;
-}
-.Sweetgrass-brushings {
-  background-color: #e7ffa4 !important;
-  color: black !important;
-}
-.Lemongrass {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  background-color: #969580;
-  color: white;
-}
-.Lemongrass-background {
-  background-color: #f9fff7;
-}
-.Lemongrass-brushings {
-  background-color: 969580 !important;
-  color: white !important;
-}
-
-.Pomegranate {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  color: white;
-  background-color: #c0392b;
-}
-.Pomegranate-background {
-  background-color: #ffe4ed;
-}
-.Pomegranate-brushings {
-  background-color: #c0392b !important;
-  color: white !important;
-}
-
-.Tea {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  background-color: #d1b280;
-}
-.Tea-background {
-  background-color: #e6d9cb;
-}
-.Tea-brushings {
-  background-color: #d1b280 !important;
-  color: black !important;
-}
-.Yuzu {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  background-color: #f1c40f;
-}
-.Yuzu-background {
-  background-color: #ffffed !important;
-}
-.Yuzu-brushings {
-  background-color: #f1c40f !important;
-  color: black !important;
-}
-
-.Lemon {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  background-color: #fff700;
-}
-.Lemon-background {
-  background-color: #ffffed !important;
-}
-.Lemon-brushings {
-  background-color: #fff700 !important;
-  color: black !important;
-}
-
-.Lemonade {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  background-color: #fffa8b;
-}
-.Lemonade-background {
-  background-color: #ffffed !important;
-}
-.Lemonade-brushings {
-  background-color: #fffa8b !important;
-  color: black !important;
-}
-
-.Melon {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  background-color: #fdbcb4;
-}
-.Melon-background {
-  background-color: #b4f0cd;
-}
-.Melon-brushings {
-  background-color: #b4f0cd !important;
-  color: black !important;
-}
-
-.Mint {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  background-color: #2ecc71;
-}
-.Mint-background {
-  background-color: #f9fff7;
-}
-.Mint-brushings {
-  background-color: #2ecc71 !important;
-  color: black !important;
-}
-.Mojito {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  background-color: #7fdfa7;
-}
-.Mojito-background {
-  background-color: #f9fff7;
-}
-.Mojito-brushings {
-  background-color: #2ecc71 !important;
-  color: black !important;
-}
-
-.Blackberry {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  color: white;
-  background-color: #37084b;
-}
-.Blackberry-background {
-  background-color: #f2e4fd;
-}
-.Blackberry-brushings {
-  background-color: #37084b !important;
-  color: white !important;
-}
-
-.Blueberry {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 5px;
-  background-color: #3498db;
-  color: white;
-}
-.Blueberry-brushings {
-  background-color: #3498db !important;
-  color: white !important;
-}
-.Blueberry-background {
-  background-color: #e8f4f8;
-}
-.Cactus {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  background-color: #5c755e;
-  color: white;
-}
-.Cactus-background {
-  background-color: #f9fff7;
-}
-.Cactus-brushings {
-  background-color: #5c755e !important;
-  color: white !important;
-}
-
-.Raspberry {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  color: white;
-  background-color: #e30b5c;
-}
-.Raspberry-background {
-  background-color: #ffe4ed;
-}
-.Raspberry-brushings {
-  background-color: #e30b5c !important;
-  color: black !important;
-}
-
-.Strawberry {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  color: white;
-  background-color: #e74c3c;
-}
-.Strawberry-background {
-  background-color: #ffe4ed;
-}
-.Strawberry-brushings {
-  background-color: #e74c3c !important;
-  color: black !important;
-}
-
-.Pear {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  background-color: #5af881;
-}
-.Pear-background {
-  background-color: #f9fff7;
-}
-.Pear-brushings {
-  background-color: #5af881 !important;
-  color: black !important;
-}
-
-.Mango {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  background-color: #f4bb44;
-}
-.Mango-background {
-  background-color: #ffd7b5;
-}
-.Mango-brushings {
-  background-color: #f4bb44 !important;
-  color: black !important;
-}
-.Wildflower {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-
-  background-color: #7d7dbd;
-  color: white;
-}
-.Wildflower-background {
-  background-color: #f2e4fd;
-}
-.Wildflower-brushings {
-  background-color: #7d7dbd;
-  color: white !important;
-}
-.Sea-berry {
-  background-color: #f09447;
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-}
-.Sea-berry-background {
-  background-color: #ffd7b5;
-}
-.Sea-berry-brushings {
-  background-color: #f09447;
-}
-.Peppermint {
-  background-color: #c5eada;
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-}
-.Peppermint-background {
-  background-color: #f9fff7;
-}
-.Peppermint-brushings {
-  background-color: #c5eada;
-}
-.Huckleberry {
-  background-color: #353770;
-  color: white;
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-}
-.Huckleberry-background {
-  background-color: #e8f4f8;
-}
-.Huckleberry-brushings {
-  background-color: #353770;
-}
-
-.Passionfruit {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  background-color: #81072c;
-  color: white;
-}
-.Passionfruit-background {
-  background-color: #f2e4fd;
-}
-.Passionfruit-brushings {
-  background-color: #81072c !important;
-  color: white !important;
-}
-
-.Pomelo {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  background-color: #f39c12;
-}
-.Pomelo-background {
-  background-color: #ffd7b5;
-}
-.Pomelo-brushings {
-  background-color: #f39c12 !important;
-  color: black !important;
-}
-
-.Pineapple {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  background-color: #f1c40f;
-}
-.Pineapple-background {
-  background-color: #ffffed !important;
-}
-.Pineapple-brushings {
-  background-color: #f1c40f !important;
-  color: black !important;
-}
-
-.Lavender {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  background-color: #e6e6fa;
-}
-.Lavender-background {
-  background-color: #f2e4fd;
-}
-.Lavender-brushings {
-  background-color: #e6e6fa !important;
-}
-
-.Black-tea {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  color: white;
-  background-color: #463333;
-}
-
-.Blood-orange {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  color: white;
-  background-color: #e74c3c;
-}
-.Blood-orange-background {
-  background-color: #ffd7b5;
-}
-.Blood-orange-brushings {
-  background-color: #e74c3c !important;
-}
-
-.Tangerine {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  background-color: #f39c12;
-}
-.Tangerine-background {
-  background-color: #ffd7b5;
-}
-.Tangerine-brushings {
-  background-color: #f39c12 !important;
-  color: black !important;
-}
-
-.Mandarin {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  background-color: #f39c12;
-}
-.Mandarin-background {
-  background-color: #ffd7b5;
-}
-.Mandarin-brushings {
-  background-color: #f39c12 !important;
-  color: black !important;
-}
-
-.Plum {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  color: white;
-  background-color: #673147;
-}
-.Plum-background {
-  background-color: #f2e4fd;
-}
-.Plum-brushings {
-  background-color: #673147 !important;
-}
-
-.Kiwi {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  background-color: #a9c77e;
-}
-.Kiwi-background {
-  background-color: #f9fff7;
-}
-.Kiwi-brushings {
-  background-color: #a9c77e !important;
-}
-
-.Peach {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  background-color: #f39c12;
-}
-.Peach-background {
-  background-color: #ffd7b5;
-}
-.Peach-brushings {
-  background-color: #f39c12 !important;
-}
-.Nectarine {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  background-color: #eca93d;
-}
-.Nectarine-background {
-  background-color: #ffd7b5;
-}
-.Nectarine-brushings {
-  background-color: #eca93d !important;
-}
-
-.Orange {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  background-color: #ffa500;
-}
-.Orange-background {
-  background-color: #ffd7b5;
-}
-.Orange-brushings {
-  background-color: #ffa500 !important;
-}
-
-.Orange-cream {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  background-color: #f39c12;
-}
-.Orange-cream-background {
-  background-color: #ffd7b5;
-}
-.Orange-cream-brushings {
-  background-color: #f39c12 !important;
-}
-
-.Vanilla {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  background-color: #f1c40f;
-}
-.Vanilla-background {
-  background-color: #ffffed !important;
-}
-.Vanilla-brushings {
-  background-color: #f39c12 !important;
-}
-
-.Plain {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  background-color: #ecf0f1;
-}
-.Plain-background {
-  background-color: #ecf0f1;
-}
-.Plain-brushings {
-  background-color: #a2a5a5 !important;
-}
-
-.Root-beer {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  background-color: #8c6a33;
-  color: white;
-}
-.Root-beer-background {
-  background-color: #e6d9cb;
-}
-.Root-beer-brushings {
-  background-color: #8c6a33 !important;
-  color: white !important;
-}
-.Mushroom {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  background-color: #d6ccc2;
-}
-.Mushroom-background {
-  background-color: #e6d9cb;
-}
-.Mushroom-brushings {
-  background-color: #d6ccc2 !important;
-  color: black;
-}
-
-.Lychee {
-  border-radius: 5px;
-  padding: 5px;
-  margin: 3px;
-  background-color: #f3e2ea;
-}
-.Lychee-background {
-  background-color: #f2e4fd;
-}
-.Lychee-brushings {
-  background-color: #f3e2ea !important;
-  color: black !important;
 }
 
 .Cranberry {
@@ -1100,6 +487,418 @@
   background-color: #e50068 !important;
   color: white !important;
 }
+.Huckleberry {
+  background-color: #353770;
+  color: white;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+}
+.Huckleberry-background {
+  background-color: #e8f4f8;
+}
+.Huckleberry-brushings {
+  background-color: #353770;
+}
+.Key-lime {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #9eeb9e;
+}
+.Key-lime-background {
+  background-color: #f9fff7;
+}
+.Key-lime-brushings {
+  background-color: #9eeb9e !important;
+}
+.Kiwi {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #a9c77e;
+}
+.Kiwi-background {
+  background-color: #f9fff7;
+}
+.Kiwi-brushings {
+  background-color: #a9c77e !important;
+}
+.Lavender {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #e6e6fa;
+}
+.Lavender-background {
+  background-color: #f2e4fd;
+}
+.Lavender-brushings {
+  background-color: #e6e6fa !important;
+}
+.Lemon {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #fff700;
+}
+.Lemon-background {
+  background-color: #ffffed !important;
+}
+.Lemon-brushings {
+  background-color: #fff700 !important;
+  color: black !important;
+}
+.Lemonade {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #fffa8b;
+}
+.Lemonade-background {
+  background-color: #ffffed !important;
+}
+.Lemonade-brushings {
+  background-color: #fffa8b !important;
+  color: black !important;
+}
+.Lemongrass {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #969580;
+  color: white;
+}
+.Lemongrass-background {
+  background-color: #f9fff7;
+}
+.Lemongrass-brushings {
+  background-color: 969580 !important;
+  color: white !important;
+}
+.Lemon-sorbet {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #ffe27e;
+}
+.Lemon-sorbet-background {
+  background-color: #ffffed;
+}
+.Lemon-sorbet-brushings {
+  background-color: #ffe27e !important;
+  color: black !important;
+}
+.Limoncello {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #f8e597;
+}
+.Limoncello-background {
+  background-color: #ffffed;
+}
+.Limoncello-brushings {
+  background-color: #f8e597 !important;
+  color: black !important;
+}
+.Lime {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #32cd32;
+}
+
+.Lime-background {
+  background-color: #f9fff7;
+}
+.Lime-brushings {
+  background-color: #32cd32 !important;
+}
+.Lychee {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #f3e2ea;
+}
+.Lychee-background {
+  background-color: #f2e4fd;
+}
+.Lychee-brushings {
+  background-color: #f3e2ea !important;
+  color: black !important;
+}
+.Mandarin {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #f39c12;
+}
+.Mandarin-background {
+  background-color: #ffd7b5;
+}
+.Mandarin-brushings {
+  background-color: #f39c12 !important;
+  color: black !important;
+}
+.Mango {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #f4bb44;
+}
+.Mango-background {
+  background-color: #ffd7b5;
+}
+.Mango-brushings {
+  background-color: #f4bb44 !important;
+  color: black !important;
+}
+.Melon {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #fdbcb4;
+}
+.Melon-background {
+  background-color: #b4f0cd;
+}
+.Melon-brushings {
+  background-color: #b4f0cd !important;
+  color: black !important;
+}
+.Mint {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #2ecc71;
+}
+.Mint-background {
+  background-color: #f9fff7;
+}
+.Mint-brushings {
+  background-color: #2ecc71 !important;
+  color: black !important;
+}
+.Mojito {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #7fdfa7;
+}
+.Mojito-background {
+  background-color: #f9fff7;
+}
+.Mojito-brushings {
+  background-color: #2ecc71 !important;
+  color: black !important;
+}
+.Mushroom {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #d6ccc2;
+}
+.Mushroom-background {
+  background-color: #e6d9cb;
+}
+.Mushroom-brushings {
+  background-color: #d6ccc2 !important;
+  color: black;
+}
+.Nectarine {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #eca93d;
+}
+.Nectarine-background {
+  background-color: #ffd7b5;
+}
+.Nectarine-brushings {
+  background-color: #eca93d !important;
+}
+.Orange {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #ffa500;
+}
+.Orange-background {
+  background-color: #ffd7b5;
+}
+.Orange-brushings {
+  background-color: #ffa500 !important;
+}
+
+.Orange-cream {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #f39c12;
+}
+.Orange-cream-background {
+  background-color: #ffd7b5;
+}
+.Orange-cream-brushings {
+  background-color: #f39c12 !important;
+}
+.Passionfruit {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #81072c;
+  color: white;
+}
+.Passionfruit-background {
+  background-color: #f2e4fd;
+}
+.Passionfruit-brushings {
+  background-color: #81072c !important;
+  color: white !important;
+}
+.Peach {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #f39c12;
+}
+.Peach-background {
+  background-color: #ffd7b5;
+}
+.Peach-brushings {
+  background-color: #f39c12 !important;
+}
+.Pear {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #5af881;
+}
+.Pear-background {
+  background-color: #f9fff7;
+}
+.Pear-brushings {
+  background-color: #5af881 !important;
+  color: black !important;
+}
+.Peppermint {
+  background-color: #c5eada;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+}
+.Peppermint-background {
+  background-color: #f9fff7;
+}
+.Peppermint-brushings {
+  background-color: #c5eada;
+}
+.Pineapple {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #f1c40f;
+}
+.Pineapple-background {
+  background-color: #ffffed !important;
+}
+.Pineapple-brushings {
+  background-color: #f1c40f !important;
+  color: black !important;
+}
+.Pink-lemonade {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #efd3d2;
+}
+.Pink-lemonade-background {
+  background-color: #ffe4ed;
+}
+.Pink-lemonade-brushings {
+  background-color: #efd3d2;
+}
+.Plain {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #ecf0f1;
+}
+.Plain-background {
+  background-color: #ecf0f1;
+}
+.Plain-brushings {
+  background-color: #a2a5a5 !important;
+}
+.Plum {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: white;
+  background-color: #673147;
+}
+.Plum-background {
+  background-color: #f2e4fd;
+}
+.Plum-brushings {
+  background-color: #673147 !important;
+}
+.Pomelo {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #f39c12;
+}
+.Pomelo-background {
+  background-color: #ffd7b5;
+}
+.Pomelo-brushings {
+  background-color: #f39c12 !important;
+  color: black !important;
+}
+.Pomegranate {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: white;
+  background-color: #c0392b;
+}
+.Pomegranate-background {
+  background-color: #ffe4ed;
+}
+.Pomegranate-brushings {
+  background-color: #c0392b !important;
+  color: white !important;
+}
+.Raspberry {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: white;
+  background-color: #e30b5c;
+}
+.Raspberry-background {
+  background-color: #ffe4ed;
+}
+.Raspberry-brushings {
+  background-color: #e30b5c !important;
+  color: black !important;
+}
+.Root-beer {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #8c6a33;
+  color: white;
+}
+.Root-beer-background {
+  background-color: #e6d9cb;
+}
+.Root-beer-brushings {
+  background-color: #8c6a33 !important;
+  color: white !important;
+}
 
 .Rose {
   border-radius: 5px;
@@ -1114,22 +913,138 @@
 .Rose-brushings {
   background-color: #ff007f !important;
 }
-
-.Cranberry-brushings {
-  background-color: #d1b280 !important;
-}
-
-.Pink-lemonade {
+.Sea-berry {
+  background-color: #f09447;
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  background-color: #efd3d2;
 }
-.Pink-lemonade-background {
+.Sea-berry-background {
+  background-color: #ffd7b5;
+}
+.Sea-berry-brushings {
+  background-color: #f09447;
+}
+.Strawberry {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: white;
+  background-color: #e74c3c;
+}
+.Strawberry-background {
   background-color: #ffe4ed;
 }
-.Pink-lemonade-brushings {
-  background-color: #efd3d2;
+.Strawberry-brushings {
+  background-color: #e74c3c !important;
+  color: black !important;
+}
+.Sweetgrass {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #e7ffa4;
+}
+.Sweetgrass-background {
+  background-color: #f9fff7;
+}
+.Sweetgrass-brushings {
+  background-color: #e7ffa4 !important;
+  color: black !important;
+}
+.Tangerine {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #f39c12;
+}
+.Tangerine-background {
+  background-color: #ffd7b5;
+}
+.Tangerine-brushings {
+  background-color: #f39c12 !important;
+  color: black !important;
+}
+.Tea {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #d1b280;
+}
+.Tea-background {
+  background-color: #e6d9cb;
+}
+.Tea-brushings {
+  background-color: #d1b280 !important;
+  color: black !important;
+}
+
+.Turmeric {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #ccb647;
+}
+.Turmeric-background {
+  background-color: #ffffed;
+}
+.Turmeric-brushings {
+  background-color: #ccb647 !important;
+  color: black !important;
+}
+.Vanilla {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #f1c40f;
+}
+.Vanilla-background {
+  background-color: #ffffed !important;
+}
+.Vanilla-brushings {
+  background-color: #f39c12 !important;
+}
+
+.Watermelon {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: pink;
+}
+.Watermelon-background {
+  background-color: #ffe4ed;
+}
+.Watermelon-brushings {
+  background-color: pink !important;
+}
+.Wildflower {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+
+  background-color: #7d7dbd;
+  color: white;
+}
+.Wildflower-background {
+  background-color: #f2e4fd;
+}
+.Wildflower-brushings {
+  background-color: #7d7dbd;
+  color: white !important;
+}
+
+.Yuzu {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #f1c40f;
+}
+.Yuzu-background {
+  background-color: #ffffed !important;
+}
+.Yuzu-brushings {
+  background-color: #f1c40f !important;
+  color: black !important;
 }
 
 .bubblyListItem {

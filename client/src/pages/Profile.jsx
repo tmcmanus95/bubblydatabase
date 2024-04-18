@@ -65,9 +65,13 @@ export default function Profile() {
                 color ? `${color}` : "bg-red-300"
               }`}
             >
-              <span className="text-xl font-bold">
-                {username[0].toUpperCase()}
-              </span>
+              {username ? (
+                <span className="text-xl font-bold">
+                  {username[0].toUpperCase()}
+                </span>
+              ) : (
+                <></>
+              )}
             </div>
             {!userId ? (
               <svg
@@ -248,28 +252,33 @@ export default function Profile() {
           ) : (
             <></>
           )}
-
-          <div className="flex justify-center items-center mt-10 gap-10 h-full">
-            {ratings.length > 0 ? (
-              <h5>Total Ratings: {ratings?.length}</h5>
-            ) : (
-              <></>
-            )}
-            {reviews.length > 0 ? (
-              <h5>Total Reviews: {reviews?.length}</h5>
-            ) : (
-              <></>
-            )}
-          </div>
-          <div className="flex flex-wrap justify-center mt-2">
-            <div className="flex justify-center">
-              <RatingsBreakdown ratings={ratings} />
+          {ratings && reviews ? (
+            <div>
+              <div className="flex justify-center items-center mt-10 gap-10 h-full">
+                {ratings.length > 0 ? (
+                  <h5>Total Ratings: {ratings?.length}</h5>
+                ) : (
+                  <></>
+                )}
+                {reviews.length > 0 ? (
+                  <h5>Total Reviews: {reviews?.length}</h5>
+                ) : (
+                  <></>
+                )}
+              </div>
+              <div className="flex flex-wrap justify-center mt-2">
+                <div className="flex justify-center">
+                  <RatingsBreakdown ratings={ratings} />
+                </div>
+              </div>
+              <div className="flex flex-wrap justify-center">
+                {ratings && <UsersRatings ratings={ratings} />}
+                {reviews && <UsersReviews reviews={reviews} />}
+              </div>
             </div>
-          </div>
-          <div className="flex flex-wrap justify-center">
-            {ratings && <UsersRatings ratings={ratings} />}
-            {reviews && <UsersReviews reviews={reviews} />}
-          </div>
+          ) : (
+            <></>
+          )}
         </div>
       )}
     </>

@@ -9,6 +9,7 @@ const flavors = [
   "Black-tea",
   "Blackberry",
   "Black-cherry",
+  "Blood-orange",
   "Blueberry",
   "Cactus",
   "Calamansi",
@@ -74,8 +75,10 @@ const flavors = [
   "Tangerine",
   "Tea",
   "Turmeric",
+  "Vanilla",
   "Watermelon",
   "Wildflower",
+  "Yuzu",
 ];
 
 export default flavors;

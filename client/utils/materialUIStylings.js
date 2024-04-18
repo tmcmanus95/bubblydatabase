@@ -20,6 +20,8 @@ export function materialUIStylings(flavor) {
       return "#37084b";
     case "Black-cherry":
       return "#52253a";
+    case "Blood-orange":
+      return "#e74c3c";
     case "Blueberry":
       return "#3498db";
     case "Cactus":
@@ -73,87 +75,93 @@ export function materialUIStylings(flavor) {
     case "Honeysuckle":
       return "#e50068";
     case "Huckleberry":
-      return "#4a4843";
+      return "#353770";
     case "Key-lime":
-      return "#e8f48c";
+      return "#9eeb9e";
     case "Kiwi":
-      return "#8ee53f";
+      return "#a9c77e";
     case "Lavender":
       return "#e6e6fa";
     case "Lemon":
-      return "#fff700";
+      return "#EDD012";
     case "Lemonade":
-      return "#fff44f";
+      return "#EDD012";
     case "Lemongrass":
-      return "#9bc01c";
+      return "#969580";
     case "Lemon-sorbet":
-      return "#fff44f";
+      return "#EDD012";
     case "Limoncello":
-      return "#f8e71c";
+      return "#EDD012";
     case "Lime":
-      return "#bfff00";
+      return "#32cd32";
     case "Lychee":
       return "#ffbfcd";
     case "Mandarin":
-      return "#ff9f1c";
+      return "#f39c12";
     case "Mango":
-      return "#fdb462";
+      return "#f4bb44";
     case "Melon":
-      return "#f69c9f";
+      return "#fdbcb4";
     case "Mint":
-      return "#3eb489";
+      return "#2ecc71";
     case "Mojito":
-      return "#73c2fb";
+      return "#7fdfa7";
     case "Mushroom":
-      return "#e0c69e";
+      return "#d6ccc2";
     case "Nectarine":
-      return "#ff4500";
+      return "#eca93d";
     case "Orange":
-      return "#ff7f00";
+      return "#ffa500";
     case "Orange-cream":
-      return "#ffcc99";
+      return "#f39c12";
     case "Passionfruit":
-      return "#ff6f61";
+      return "#81072c";
     case "Peach":
-      return "#ffe5b4";
+      return "#f39c12";
     case "Pear":
-      return "#d1e231";
+      return "#5af881";
     case "Peppermint":
-      return "#3eb489";
+      return "#c5eada";
     case "Pineapple":
-      return "#ffcc00";
+      return "#f1c40f";
     case "Pink-lemonade":
-      return "#ff6f52";
+      return "#efd3d2";
     case "Plain":
-      return "#f8f7fc";
+      return "#3b3b3b";
     case "Plum":
-      return "#dda0dd";
+      return "#673147";
     case "Pomelo":
-      return "#fcd12a";
+      return "#f39c12";
     case "Pomegranate":
       return "#c0392b";
     case "Raspberry":
-      return "#e30b5d";
+      return "#e30b5c";
     case "Root-beer":
-      return "#301934";
+      return "#8c6a33";
     case "Rose":
       return "#ff007f";
     case "Sea-berry":
-      return "#ed5e93";
+      return "#f09447";
     case "Strawberry":
-      return "#ff0066";
+      return "#e74c3c";
     case "Sweetgrass":
-      return "#d4bb87";
+      return "#e7ffa4";
     case "Tangerine":
-      return "#f28500";
+      return "#f39c12";
     case "Tea":
       return "#d0f0c0";
     case "Turmeric":
       return "#e1a95f";
+    case "Vanilla":
+      return "#f1c40f";
+
     case "Watermelon":
-      return "#fc6c85";
+      return "pink";
     case "Wildflower":
       return "#dcdcdc";
+    case "Yuzu":
+      return "#f1c40f";
+
     default:
       return "";
   }

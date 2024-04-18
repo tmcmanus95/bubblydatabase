@@ -2,7 +2,7 @@ import Rating from "@mui/material/Rating";
 import { Link } from "react-router-dom";
 import { formatBrands } from "../../utils/formatBrands";
 import { capitalizeSingleFlavor } from "../../utils/capitalizeSingleFlavor";
-
+import CustomColorRating from "./CustomColorRating";
 export default function UsersRatings({ ratings }) {
   return (
     <section className="">
@@ -30,12 +30,17 @@ export default function UsersRatings({ ratings }) {
                 </h1>
               </div>
               <div className="overflow-hidden">
-                <Rating
+                {/* <Rating
                   readOnly
                   size="small"
                   value={rating.rating}
                   className="userRatingElement"
                   precision={0.5}
+                /> */}
+                <CustomColorRating
+                  flavor={rating.bubblyWater.flavor[0]}
+                  rating={rating.rating}
+                  size={"small"}
                 />
               </div>
             </li>
