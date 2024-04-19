@@ -96,6 +96,7 @@ export default function BubblyWaterPage() {
       console.log("Already submitting a review. Please wait.");
       return;
     }
+    isSubmitting = true;
     try {
       const { data } = await addRating({
         variables: {
