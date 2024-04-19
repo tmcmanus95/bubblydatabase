@@ -88,6 +88,13 @@ const resolvers = {
           ],
         });
     },
+    caffeinatedBubblys: async () => {
+      return BubblyWater.find({ isCaffeinated: true });
+    },
+    cbdBubblys: async () => {
+      return BubblyWater.find({ hasCBD: true });
+    },
+
     rating: async (parent, { ratingId }) => {
       return Rating.findOne({ _id: ratingId }).populate("bubblyWater");
     },
