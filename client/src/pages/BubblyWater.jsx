@@ -32,6 +32,7 @@ export default function BubblyWaterPage() {
   const userId = meIdData?.meId?._id;
   const bubblyWater = data?.bubblyWater;
   const flavors = bubblyWater ? capitalizeFlavors(bubblyWater) : [];
+  let isSubmitting = false;
   let previouslyRated = false;
   let previouslyReviewed = false;
   let userRating = 0;
@@ -91,7 +92,10 @@ export default function BubblyWaterPage() {
   const handleAddRating = async (e, newValue) => {
     e && e.preventDefault();
     console.log("add rating bubbly water id", bubblyWaterId);
-
+    if (isSubmitting) {
+      console.log("Already submitting a review. Please wait.");
+      return;
+    }
     try {
       const { data } = await addRating({
         variables: {
@@ -103,6 +107,8 @@ export default function BubblyWaterPage() {
       previouslyRated = true;
     } catch (err) {
       console.error("Error adding rating, ", err);
+    } finally {
+      isSubmitting = false;
     }
   };
 
