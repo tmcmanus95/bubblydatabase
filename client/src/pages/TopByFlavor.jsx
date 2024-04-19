@@ -5,9 +5,9 @@ import FlavorSearchBar from "../components/FlavorSearchBar";
 export default function TopByFlavor() {
   const { flavor } = useParams();
   return (
-    <>
-      <Logo />
+    <div className="mt-14">
+      {/* <Logo /> */}
       <BubblyWaterList searchTerm={flavor} />;
-    </>
+    </div>
   );
 }
