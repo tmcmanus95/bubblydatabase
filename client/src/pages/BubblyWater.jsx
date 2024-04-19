@@ -28,11 +28,11 @@ export default function BubblyWaterPage() {
   const [addReview, { error: addReviewError }] = useMutation(ADD_REVIEW);
   const [editReview, { error: editReviewError }] = useMutation(EDIT_REVIEW);
   const [loginReminder, setLoginReminder] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [reviewText, setReviewText] = useState("");
   const userId = meIdData?.meId?._id;
   const bubblyWater = data?.bubblyWater;
   const flavors = bubblyWater ? capitalizeFlavors(bubblyWater) : [];
-  let isSubmitting = false;
   let previouslyRated = false;
   let previouslyReviewed = false;
   let userRating = 0;
@@ -92,11 +92,7 @@ export default function BubblyWaterPage() {
   const handleAddRating = async (e, newValue) => {
     e && e.preventDefault();
     console.log("add rating bubbly water id", bubblyWaterId);
-    if (isSubmitting) {
-      console.log("Already submitting a review. Please wait.");
-      return;
-    }
-    isSubmitting = true;
+    setIsSubmitting(true);
     try {
       const { data } = await addRating({
         variables: {
@@ -109,7 +105,7 @@ export default function BubblyWaterPage() {
     } catch (err) {
       console.error("Error adding rating, ", err);
     } finally {
-      isSubmitting = false;
+      setIsSubmitting(false);
     }
   };
 
@@ -205,6 +201,7 @@ export default function BubblyWaterPage() {
                         precision={0.5}
                         size="large"
                         className="mt-3"
+                        disabled={isSubmitting}
                         onChange={(e, newValue) => {
                           handleValueChange(e, newValue);
                         }}

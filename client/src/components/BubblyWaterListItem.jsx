@@ -34,13 +34,11 @@ export default function BubblyWaterListItem({ bubblyWater, ranking }) {
     <div className="justify-center">
       <section className="m-2 md:m-5 flex justify-center">
         <div className="lg:flex lg:items-start lg:flex-row gap-5">
-          <div className="shadow-lg lg:p-5 rounded-xl my-5 font-bold  lg:flex lg:flex-row lg:items-center flex-col items-center text-center lg:w-auto w-10 justify-center mr-3">
+          <div className="shadow-lg bg-white lg:p-5 rounded-xl my-5 font-bold  lg:flex lg:flex-row lg:items-center flex-col items-center text-center lg:w-auto w-10 justify-center mr-3">
             #{ranking}
           </div>
 
-          <div
-            className={`shadow-lg p-5 rounded-xl my-5 text-center justify-center lg:flex lg:items-start lg:flex-grow`}
-          >
+          <div className="bg-white shadow-lg p-5 rounded-xl my-5 text-center justify-center lg:flex lg:items-start lg:flex-grow">
             <Link
               to={`/bubblyWater/${bubblyWater._id}`}
               className="flex justify-center lg:mr-5"
