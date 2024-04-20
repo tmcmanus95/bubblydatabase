@@ -1,5 +1,10 @@
 import { useQuery } from "@apollo/client";
-import { QUERY_ALL_BUBBLYS, QUERY_SINGLE_FLAVOR } from "../../utils/queries";
+import {
+  QUERY_ALL_BUBBLYS,
+  QUERY_SINGLE_FLAVOR,
+  QUERY_All_CAFFEINATED_BUBBLYS,
+  QUERY_ALL_CBD_BUBBLYS,
+} from "../../utils/queries";
 import BubblyWaterListItem from "./BubblyWaterListItem";
 import { averageRatingWeighting } from "../../utils/averageRatingWeighting";
 import { useState } from "react";
@@ -7,19 +12,41 @@ import { formatBrands } from "../../utils/formatBrands";
 import Loading from "./Loading";
 import { capitalizeSingleFlavor } from "../../utils/capitalizeSingleFlavor";
 export default function BubblyWaterList({ searchTerm }) {
-  const { error, data } = searchTerm
-    ? useQuery(QUERY_SINGLE_FLAVOR, { variables: { flavor: searchTerm } })
-    : useQuery(QUERY_ALL_BUBBLYS);
-  const [searchAll, setSearchAll] = useState(false);
-  const [caffeineSearch, setCaffeineSearch] = useState(false);
-  const [CBDSearch, setCBDSearch] = useState(false);
-
   let sortedBubblyWaters = [];
   let cbdBubblies;
   let caffeinatedBubblies;
   let hasCaffeinatedBubbly = false;
   let hasCBDBubbly = false;
   let generalWaters = [];
+
+  if (searchTerm == "caffeine") {
+    const { error: caffeineError, data: caffeineData } = useQuery(
+      QUERY_All_CAFFEINATED_BUBBLYS
+    );
+    console.log("caffeine data", caffeineData);
+    if (caffeineData && caffeineData.caffeinatedBubblys)
+      sortedBubblyWaters = caffeineData.caffeinatedBubblys
+        .slice()
+        .sort((a, b) => b.averageRating - a.averageRating);
+    console.log("sorted bubblys", sortedBubblyWaters);
+  }
+  if (searchTerm == "cbd") {
+    const { error: cbdError, data: cbdData } = useQuery(QUERY_ALL_CBD_BUBBLYS);
+    console.log("cbdData", cbdData);
+    if (cbdData && cbdData.cbdBubblys)
+      sortedBubblyWaters = cbdData.cbdBubblys
+        .slice()
+        .sort((a, b) => b.averageRating - a.averageRating);
+    console.log("sorted bubblys", sortedBubblyWaters);
+  }
+  const { error, data } =
+    searchTerm && searchTerm != "caffeine" && searchTerm != "cbd"
+      ? useQuery(QUERY_SINGLE_FLAVOR, { variables: { flavor: searchTerm } })
+      : useQuery(QUERY_ALL_BUBBLYS);
+  const [searchAll, setSearchAll] = useState(false);
+  const [caffeineSearch, setCaffeineSearch] = useState(false);
+  const [CBDSearch, setCBDSearch] = useState(false);
+
   const toggleCBDSearch = () => {
     if (caffeineSearch == true) {
       setCaffeineSearch(false);
@@ -97,6 +124,7 @@ export default function BubblyWaterList({ searchTerm }) {
       hasCaffeinatedBubbly = false;
     }
   }
+  console.log("sorted bubblys", sortedBubblyWaters);
   return (
     <>
       {data ? (

@@ -15,7 +15,7 @@ export default function NavBar() {
     Auth.logout();
   };
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 mx-auto px-4 md:flex items-center bg-gray-100 gap-6 py-1">
+    <nav className="fixed top-0 left-0 right-0 z-50 mx-auto px-4 md:flex items-center bg-slate-200 gap-6 py-1">
       <div className="flex w-full items-center">
         <Link to="/">
           <img className="h-5 lg:h-10  mr-5" src={popIcon}></img>{" "}

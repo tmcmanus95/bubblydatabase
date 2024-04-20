@@ -3,3 +3,4 @@ node_modules
 ./env
 onRenderConnection.js
 editEntry.js
+deleteRating.js
