@@ -17,6 +17,8 @@ import About from "./pages/About.jsx";
 import SearchResults from "./pages/SearchResults.jsx";
 import SpecificUserRatings from "./pages/SpecificUserRatings.jsx";
 import BasicRating from "./components/FiveStarRating.jsx";
+import AllCaffeinated from "./pages/AllCaffeinated.jsx";
+import AllCBD from "./pages/AllCBD.jsx";
 
 const router = createBrowserRouter([
   {
@@ -61,6 +63,14 @@ const router = createBrowserRouter([
         element: <AllFlavors />,
       },
       {
+        path: "/allCaffeinated",
+        element: <AllCaffeinated />,
+      },
+      {
+        path: "/allCBD",
+        element: <AllCBD />,
+      },
+      {
         path: "/about",
         element: <About />,
       },
@@ -76,6 +86,7 @@ const router = createBrowserRouter([
         path: "/contact",
         element: <Contact />,
       },
+
       {
         path: "/testingRatingComponent",
         element: <BasicRating />,

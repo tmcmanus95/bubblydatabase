@@ -31,7 +31,7 @@ export default function FlavorSearchBar() {
   return (
     <>
       <Logo />
-      <div className="px-2 mt-2">
+      <div className="px-2 mt-2 ">
         <section className="text-center ">
           <form onSubmit={handleFormSubmit} className="relative">
             <div className="items-center">

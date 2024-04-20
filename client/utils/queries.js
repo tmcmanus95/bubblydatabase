@@ -18,6 +18,41 @@ export const QUERY_ALL_BUBBLYS = gql`
   }
 `;
 
+export const QUERY_All_CAFFEINATED_BUBBLYS = gql`
+  query Query {
+    caffeinatedBubblys {
+      _id
+      productName
+      brandName
+      imageURL
+      flavor
+      isCaffeinated
+      averageRating
+      ratings {
+        rating
+      }
+    }
+  }
+`;
+
+export const QUERY_ALL_CBD_BUBBLYS = gql`
+  query Query {
+    cbdBubblys {
+      _id
+      productName
+      brandName
+      imageURL
+      flavor
+      isCaffeinated
+      hasCBD
+      averageRating
+      ratings {
+        rating
+      }
+    }
+  }
+`;
+
 export const QUERY_SINGLE_FLAVOR = gql`
   query Query($flavor: [String]) {
     flavors(flavor: $flavor) {
