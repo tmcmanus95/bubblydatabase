@@ -1,4 +1,6 @@
 import ReactDOM from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import "./index.css";
 import App from "./App.jsx";
 import Home from "./pages/Home.jsx";
 import Profile from "./pages/Profile.jsx";
@@ -10,8 +12,6 @@ import AllBrands from "./pages/AllBrands.jsx";
 import TopByFlavor from "./pages/TopByFlavor.jsx";
 import Contact from "./pages/Contact.jsx";
 import ErrorPage from "./pages/ErrorPage.jsx";
-import "./index.css";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AllFlavors from "./pages/AllFlavors.jsx";
 import About from "./pages/About.jsx";
 import SearchResults from "./pages/SearchResults.jsx";
