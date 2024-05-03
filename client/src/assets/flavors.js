@@ -1,5 +1,6 @@
 const flavors = [
   "Acai",
+  "Agave",
   "Apple",
   "Apple-cider",
   "Apricot",
@@ -69,6 +70,7 @@ const flavors = [
   "Raspberry",
   "Root-beer",
   "Rose",
+  "Rosé",
   "Sea-berry",
   "Strawberry",
   "Sweetgrass",

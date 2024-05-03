@@ -30,6 +30,18 @@ body {
   background-color: #46295a !important;
   color: white !important;
 }
+.Agave {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #7a9a9a;
+}
+.Agave-background {
+  background-color: var(--lightOrangeBackground);
+}
+.Agave-brushings {
+  background-color: #7a9a9a;
+}
 .Apple {
   border-radius: 5px;
   padding: 5px;
@@ -927,6 +939,19 @@ body {
 }
 .Rose-brushings {
   background-color: #ff007f !important;
+}
+.Rosé {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #f77cb9;
+  color: white;
+}
+.Rosé-background {
+  background-color: var(--lightRedBackground);
+}
+.Rosé-brushings {
+  background-color: #f77cb9 !important;
 }
 .Sea-berry {
   background-color: #f09447;
