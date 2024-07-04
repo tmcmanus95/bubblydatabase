@@ -2,6 +2,9 @@ import { gql } from "@apollo/client";
 
 export const QUERY_ALL_BUBBLYS = gql`
   query Query {
+    me {
+      _id
+    }
     bubblyWaters {
       _id
       productName
@@ -20,6 +23,9 @@ export const QUERY_ALL_BUBBLYS = gql`
 
 export const QUERY_All_CAFFEINATED_BUBBLYS = gql`
   query Query {
+    me {
+      _id
+    }
     caffeinatedBubblys {
       _id
       productName
@@ -37,6 +43,9 @@ export const QUERY_All_CAFFEINATED_BUBBLYS = gql`
 
 export const QUERY_ALL_CBD_BUBBLYS = gql`
   query Query {
+    me {
+      _id
+    }
     cbdBubblys {
       _id
       productName
@@ -55,6 +64,9 @@ export const QUERY_ALL_CBD_BUBBLYS = gql`
 
 export const QUERY_SINGLE_FLAVOR = gql`
   query Query($flavor: [String]) {
+    me {
+      _id
+    }
     flavors(flavor: $flavor) {
       _id
       productName

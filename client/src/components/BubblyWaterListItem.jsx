@@ -1,18 +1,11 @@
-import BasicRating from "./FiveStarRating";
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import Rating from "@mui/material/Rating";
 import { PiFeatherBold } from "react-icons/pi";
 import { BiSolidCoffeeBean } from "react-icons/bi";
-import { styled } from "@mui/material/styles";
-import { materialUIStylings } from "../../utils/materialUIStylings";
-import StarIcon from "@mui/icons-material/Star";
 import { capitalizeFlavors } from "../../utils/capitalizeFlavors";
-import { capitalizeSingleFlavor } from "../../utils/capitalizeSingleFlavor";
 import { formatBrands } from "../../utils/formatBrands";
 import CustomColorRating from "./CustomColorRating";
 
-export default function BubblyWaterListItem({ bubblyWater, ranking }) {
+export default function BubblyWaterListItem({ bubblyWater, userId, ranking }) {
   let ratingCount = 0;
   let hasCBD = false;
   let hasCaffeine = false;
@@ -85,7 +78,7 @@ export default function BubblyWaterListItem({ bubblyWater, ranking }) {
               <h5 className="mb-2 py-2 text-center">
                 Average rating: {bubblyWater.averageRating.toFixed(2)} / 5.0
               </h5>
-              <Link to={`/bubblyWater/${bubblyWater._id}`}>
+              <div>
                 {/* <Rating
                   readOnly
                   value={bubblyWater.averageRating}
@@ -94,10 +87,12 @@ export default function BubblyWaterListItem({ bubblyWater, ranking }) {
                 <CustomColorRating
                   flavor={capitalizedFlavors[0]}
                   rating={bubblyWater.averageRating}
+                  bubblyWaterId={bubblyWater._id}
+                  userId={userId}
                 />
 
                 <span>({ratingCount})</span>
-              </Link>
+              </div>
             </div>
           </div>
         </div>
