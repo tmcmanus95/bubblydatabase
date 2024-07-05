@@ -2,6 +2,7 @@ import { styled } from "@mui/material/styles";
 import { materialUIStylings } from "../../utils/materialUIStylings";
 import StarIcon from "@mui/icons-material/Star";
 import { useMutation, useQuery } from "@apollo/client";
+import Auth from "../../utils/auth";
 import { useState } from "react";
 import Rating from "@mui/material/Rating";
 import {
@@ -99,23 +100,39 @@ export default function CustomColorRating({
   });
   return (
     <div className="flex flex-col items-center">
-      <div className="flex items-center">
-        <span>Your Rating: </span>
-        <StyledRating
-          name="customized-color"
-          getLabelText={(value) => `${value} Heart${value !== 1 ? "s" : ""}`}
-          precision={0.5}
-          value={userRating}
-          size={size}
-          onChange={(e, newValue) => {
-            handleValueChange(e, newValue);
-          }}
-          icon={<StarIcon fontSize="inherit" />}
-          readOnly={isSubmitting ? true : false}
-          emptyIcon={<StarIcon fontSize="inherit" />}
-          className="flex justify-center"
-        />
-      </div>
+      {Auth.loggedIn() ? (
+        <div className="flex items-center">
+          <span>Your Rating: </span>
+          <StyledRating
+            name="customized-color"
+            getLabelText={(value) => `${value} Heart${value !== 1 ? "s" : ""}`}
+            precision={0.5}
+            value={userRating}
+            size={size}
+            onChange={(e, newValue) => {
+              handleValueChange(e, newValue);
+            }}
+            icon={<StarIcon fontSize="inherit" />}
+            readOnly={isSubmitting ? true : false}
+            emptyIcon={<StarIcon fontSize="inherit" />}
+            className="flex justify-center"
+          />
+        </div>
+      ) : (
+        <div className="flex items-center">
+          <StyledRating
+            name="customized-color"
+            getLabelText={(value) => `${value} Heart${value !== 1 ? "s" : ""}`}
+            precision={0.5}
+            value={rating}
+            size={size}
+            readOnly
+            icon={<StarIcon fontSize="inherit" />}
+            emptyIcon={<StarIcon fontSize="inherit" />}
+            className="flex justify-center"
+          />
+        </div>
+      )}
     </div>
   );
 }

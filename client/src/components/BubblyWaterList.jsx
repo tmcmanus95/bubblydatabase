@@ -4,6 +4,7 @@ import {
   QUERY_SINGLE_FLAVOR,
   QUERY_All_CAFFEINATED_BUBBLYS,
   QUERY_ALL_CBD_BUBBLYS,
+  QUERY_MEID,
 } from "../../utils/queries";
 import BubblyWaterListItem from "./BubblyWaterListItem";
 import { averageRatingWeighting } from "../../utils/averageRatingWeighting";
@@ -19,6 +20,13 @@ export default function BubblyWaterList({ searchTerm }) {
   let hasCaffeinatedBubbly = false;
   let hasCBDBubbly = false;
   let generalWaters = [];
+  let userId;
+
+  const { data: meIdData, error: meIdError } = useQuery(QUERY_MEID);
+  if (meIdData) {
+    console.log("howdy", meIdData);
+    userId = meIdData.meId._id;
+  }
   if (searchTerm == "caffeine") {
     const { error: caffeineError, data: caffeineData } = useQuery(
       QUERY_All_CAFFEINATED_BUBBLYS
@@ -46,10 +54,6 @@ export default function BubblyWaterList({ searchTerm }) {
   const [searchAll, setSearchAll] = useState(false);
   const [caffeineSearch, setCaffeineSearch] = useState(false);
   const [CBDSearch, setCBDSearch] = useState(false);
-  let userId;
-  if (data) {
-    userId = data?.me?._id;
-  }
   const toggleCBDSearch = () => {
     if (caffeineSearch == true) {
       setCaffeineSearch(false);
