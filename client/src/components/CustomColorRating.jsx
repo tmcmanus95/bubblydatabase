@@ -27,7 +27,6 @@ export default function CustomColorRating({
   const [addRating, { error: addRatingError }] = useMutation(ADD_RATING);
   const [editRating, { error: editRatingError }] = useMutation(EDIT_RATING);
   const [value, setValue] = useState(0);
-
   const { data, error } = useQuery(QUERY_RATING_BY_USER, {
     variables: { userId: userId, bubblyWaterId: bubblyWaterId },
   });
@@ -35,11 +34,9 @@ export default function CustomColorRating({
   let userRating;
   let ratingId;
   if (data) {
-    console.log("data from rating component", data);
     previouslyRated = true;
     userRating = data.findUsersRating.rating;
     ratingId = data.findUsersRating._id;
-    console.log("new rating, ", rating);
   }
   const handleValueChange = (e, newValue) => {
     setValue(newValue);

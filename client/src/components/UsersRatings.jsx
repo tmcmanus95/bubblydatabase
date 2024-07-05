@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import { formatBrands } from "../../utils/formatBrands";
 import { capitalizeSingleFlavor } from "../../utils/capitalizeSingleFlavor";
 import CustomColorRating from "./CustomColorRating";
-export default function UsersRatings({ ratings }) {
+
+export default function UsersRatings({ ratings, userId }) {
   return (
     <section className="">
       <h3 className="m-5 flex justify-center">Recent Ratings</h3>
@@ -39,8 +40,9 @@ export default function UsersRatings({ ratings }) {
                 /> */}
                 <CustomColorRating
                   flavor={rating.bubblyWater.flavor[0]}
-                  rating={rating.rating}
                   size={"small"}
+                  bubblyWaterId={rating.bubblyWater._id}
+                  userId={userId}
                 />
               </div>
             </li>

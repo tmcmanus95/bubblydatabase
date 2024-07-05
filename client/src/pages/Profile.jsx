@@ -29,7 +29,6 @@ export default function Profile() {
   const meId = userId ? "nada" : data?.me?._id;
   const toggleColorMenu = () => {
     setColorSelect(!colorSelect);
-    console.log("color select menu is ", colorSelect);
   };
 
   const handleEditUserColor = async (e, selectedColor) => {
@@ -41,18 +40,11 @@ export default function Profile() {
           color: selectedColor,
         },
       });
-      console.log("changing to ", selectedColor);
       setColorSelect(!colorSelect);
     } catch (err) {
       console.error("Error editing review, ", err);
     }
   };
-  if (ratings) {
-    for (let i = 0; i < ratings.length; i++) {
-      console.log(ratings[i].bubblyWater._id);
-    }
-  }
-  console.log("reviews,", reviews);
   return (
     <>
       {loading ? (
@@ -272,7 +264,7 @@ export default function Profile() {
                 </div>
               </div>
               <div className="flex flex-wrap justify-center">
-                {ratings && <UsersRatings ratings={ratings} />}
+                {ratings && <UsersRatings ratings={ratings} userId={meId} />}
                 {reviews && <UsersReviews reviews={reviews} />}
               </div>
             </div>

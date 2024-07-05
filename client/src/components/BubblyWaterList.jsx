@@ -24,28 +24,23 @@ export default function BubblyWaterList({ searchTerm }) {
 
   const { data: meIdData, error: meIdError } = useQuery(QUERY_MEID);
   if (meIdData) {
-    console.log("howdy", meIdData);
     userId = meIdData.meId._id;
   }
   if (searchTerm == "caffeine") {
     const { error: caffeineError, data: caffeineData } = useQuery(
       QUERY_All_CAFFEINATED_BUBBLYS
     );
-    console.log("caffeine data", caffeineData);
     if (caffeineData && caffeineData.caffeinatedBubblys)
       sortedBubblyWaters = caffeineData.caffeinatedBubblys
         .slice()
         .sort((a, b) => b.averageRating - a.averageRating);
-    console.log("sorted bubblys", sortedBubblyWaters);
   }
   if (searchTerm == "cbd") {
     const { error: cbdError, data: cbdData } = useQuery(QUERY_ALL_CBD_BUBBLYS);
-    console.log("cbdData", cbdData);
     if (cbdData && cbdData.cbdBubblys)
       sortedBubblyWaters = cbdData.cbdBubblys
         .slice()
         .sort((a, b) => b.averageRating - a.averageRating);
-    console.log("sorted bubblys", sortedBubblyWaters);
   }
   const { error, data } =
     searchTerm && searchTerm != "caffeine" && searchTerm != "cbd"
