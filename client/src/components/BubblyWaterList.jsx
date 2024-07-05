@@ -48,7 +48,7 @@ export default function BubblyWaterList({ searchTerm }) {
   const [CBDSearch, setCBDSearch] = useState(false);
   let userId;
   if (data) {
-    userId = data.me._id;
+    userId = data?.me?._id;
   }
   const toggleCBDSearch = () => {
     if (caffeineSearch == true) {

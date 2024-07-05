@@ -25,15 +25,19 @@ export default function CustomColorRating({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [addRating, { error: addRatingError }] = useMutation(ADD_RATING);
   const [editRating, { error: editRatingError }] = useMutation(EDIT_RATING);
+  const [value, setValue] = useState(0);
+
   const { data, error } = useQuery(QUERY_RATING_BY_USER, {
     variables: { userId: userId, bubblyWaterId: bubblyWaterId },
   });
   let previouslyRated = false;
   let userRating;
+  let ratingId;
   if (data) {
     console.log("data from rating component", data);
     previouslyRated = true;
-    rating = data.findUsersRating.rating;
+    userRating = data.findUsersRating.rating;
+    ratingId = data.findUsersRating._id;
     console.log("new rating, ", rating);
   }
   const handleValueChange = (e, newValue) => {
@@ -94,18 +98,24 @@ export default function CustomColorRating({
     },
   });
   return (
-    <>
-      <StyledRating
-        name="customized-color"
-        getLabelText={(value) => `${value} Heart${value !== 1 ? "s" : ""}`}
-        value={rating}
-        precision={0.5}
-        size={size}
-        icon={<StarIcon fontSize="inherit" />}
-        readOnly={isSubmitting ? true : false}
-        style={ratedWater}
-        emptyIcon={<StarIcon fontSize="inherit" />}
-      />
-    </>
+    <div className="flex flex-col items-center">
+      <div className="flex items-center">
+        <span>Your Rating: </span>
+        <StyledRating
+          name="customized-color"
+          getLabelText={(value) => `${value} Heart${value !== 1 ? "s" : ""}`}
+          precision={0.5}
+          value={userRating}
+          size={size}
+          onChange={(e, newValue) => {
+            handleValueChange(e, newValue);
+          }}
+          icon={<StarIcon fontSize="inherit" />}
+          readOnly={isSubmitting ? true : false}
+          emptyIcon={<StarIcon fontSize="inherit" />}
+          className="flex justify-center"
+        />
+      </div>
+    </div>
   );
 }
