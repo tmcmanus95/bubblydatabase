@@ -65,6 +65,7 @@ const typeDefs = `
     searchTags(searchTerm: String): [BubblyWater]
     searchGeneralBubblyWater(searchTerm: String): [BubblyWater]
     queryUserRatingsOfGivenNumber(userId: ID!, rating: Float): User
+    findUsersRating(userId: ID!, bubblyWaterId: ID!): Rating
   }
 
   type Mutation {

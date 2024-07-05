@@ -299,3 +299,12 @@ export const QUERY_SPECIFIC_USER_RATINGS = gql`
     }
   }
 `;
+
+export const QUERY_RATING_BY_USER = gql`
+  query Query($userId: ID!, $bubblyWaterId: ID!) {
+    findUsersRating(userId: $userId, bubblyWaterId: $bubblyWaterId) {
+      _id
+      rating
+    }
+  }
+`;

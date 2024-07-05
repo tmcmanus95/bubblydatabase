@@ -1,7 +1,7 @@
 import { styled } from "@mui/material/styles";
 import { materialUIStylings } from "../../utils/materialUIStylings";
 import StarIcon from "@mui/icons-material/Star";
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { useState } from "react";
 import Rating from "@mui/material/Rating";
 import {
@@ -10,6 +10,7 @@ import {
   ADD_REVIEW,
   EDIT_REVIEW,
 } from "../../utils/mutations";
+import { QUERY_RATING_BY_USER } from "../../utils/queries";
 
 import { capitalizeSingleFlavor } from "../../utils/capitalizeSingleFlavor";
 
@@ -21,12 +22,20 @@ export default function CustomColorRating({
   bubblyWaterId,
   readability,
 }) {
-  console.log(
-    `Custom Rating Component: User: ${userId} | Bubbly Water: ${bubblyWaterId}`
-  );
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [addRating, { error: addRatingError }] = useMutation(ADD_RATING);
   const [editRating, { error: editRatingError }] = useMutation(EDIT_RATING);
+  const { data, error } = useQuery(QUERY_RATING_BY_USER, {
+    variables: { userId: userId, bubblyWaterId: bubblyWaterId },
+  });
+  let previouslyRated = false;
+  let userRating;
+  if (data) {
+    console.log("data from rating component", data);
+    previouslyRated = true;
+    rating = data.findUsersRating.rating;
+    console.log("new rating, ", rating);
+  }
   const handleValueChange = (e, newValue) => {
     setValue(newValue);
     if (previouslyRated) {
@@ -71,6 +80,10 @@ export default function CustomColorRating({
     }
   };
 
+  const ratedWater = previouslyRated
+    ? { border: "2px solid green", borderRadius: "25px" }
+    : {};
+
   const capitalFlavor = capitalizeSingleFlavor(flavor);
   const StyledRating = styled(Rating)({
     "& .MuiRating-iconFilled": {
@@ -81,15 +94,18 @@ export default function CustomColorRating({
     },
   });
   return (
-    <StyledRating
-      name="customized-color"
-      getLabelText={(value) => `${value} Heart${value !== 1 ? "s" : ""}`}
-      value={rating}
-      precision={0.5}
-      size={size}
-      icon={<StarIcon fontSize="inherit" />}
-      readOnly
-      emptyIcon={<StarIcon fontSize="inherit" />}
-    />
+    <>
+      <StyledRating
+        name="customized-color"
+        getLabelText={(value) => `${value} Heart${value !== 1 ? "s" : ""}`}
+        value={rating}
+        precision={0.5}
+        size={size}
+        icon={<StarIcon fontSize="inherit" />}
+        readOnly={isSubmitting ? true : false}
+        style={ratedWater}
+        emptyIcon={<StarIcon fontSize="inherit" />}
+      />
+    </>
   );
 }

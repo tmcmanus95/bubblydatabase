@@ -76,22 +76,16 @@ export default function BubblyWaterListItem({ bubblyWater, userId, ranking }) {
                 </div>
               </h5>
               <h5 className="mb-2 py-2 text-center">
-                Average rating: {bubblyWater.averageRating.toFixed(2)} / 5.0
+                Average rating: {bubblyWater.averageRating.toFixed(2)} / 5.0{" "}
+                <span>({ratingCount})</span>
               </h5>
               <div>
-                {/* <Rating
-                  readOnly
-                  value={bubblyWater.averageRating}
-                  precision={0.1}
-                /> */}
                 <CustomColorRating
                   flavor={capitalizedFlavors[0]}
                   rating={bubblyWater.averageRating}
                   bubblyWaterId={bubblyWater._id}
                   userId={userId}
                 />
-
-                <span>({ratingCount})</span>
               </div>
             </div>
           </div>
