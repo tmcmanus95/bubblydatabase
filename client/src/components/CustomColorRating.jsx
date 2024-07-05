@@ -4,6 +4,7 @@ import StarIcon from "@mui/icons-material/Star";
 import { useMutation, useQuery } from "@apollo/client";
 import Auth from "../../utils/auth";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import Rating from "@mui/material/Rating";
 import {
   ADD_RATING,
@@ -64,7 +65,6 @@ export default function CustomColorRating({
   };
   const handleAddRating = async (e, newValue) => {
     e && e.preventDefault();
-    console.log("add rating bubbly water id", bubblyWaterId);
     setIsSubmitting(true);
     try {
       const { data } = await addRating({
@@ -116,19 +116,23 @@ export default function CustomColorRating({
           />
         </div>
       ) : (
-        <div className="flex items-center">
-          <StyledRating
-            name="customized-color"
-            getLabelText={(value) => `${value} Heart${value !== 1 ? "s" : ""}`}
-            precision={0.5}
-            value={rating}
-            size={size}
-            readOnly
-            icon={<StarIcon fontSize="inherit" />}
-            emptyIcon={<StarIcon fontSize="inherit" />}
-            className="flex justify-center"
-          />
-        </div>
+        <Link to={`/bubblyWater/${bubblyWaterId}`}>
+          <div className="flex items-center">
+            <StyledRating
+              name="customized-color"
+              getLabelText={(value) =>
+                `${value} Heart${value !== 1 ? "s" : ""}`
+              }
+              precision={0.5}
+              value={rating}
+              size={size}
+              readOnly
+              icon={<StarIcon fontSize="inherit" />}
+              emptyIcon={<StarIcon fontSize="inherit" />}
+              className="flex justify-center"
+            />
+          </div>
+        </Link>
       )}
     </div>
   );

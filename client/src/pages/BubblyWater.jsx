@@ -275,22 +275,22 @@ export default function BubblyWaterPage() {
                       <div className="flex items-center">
                         <div
                           className={`rounded-full justify-center align-center littleCircle mr-3 ${
-                            rating.user.color
+                            rating?.user?.color
                               ? `${rating.user.color}`
                               : "bg-red-300"
                           }`}
                         >
-                          <Link to={`/user/${rating.user._id}`}>
-                            {rating.user.username ? (
+                          <Link to={`/user/${rating?.user?._id}`}>
+                            {rating?.user?.username ? (
                               <span>
-                                {rating.user.username[0].toUpperCase()}
+                                {rating?.user?.username[0].toUpperCase()}
                               </span>
                             ) : (
                               <></>
                             )}
                           </Link>
                         </div>
-                        {rating.user.username ? (
+                        {rating?.user?.username ? (
                           <span className="text-gray-800 font-semibold text-xs md:text-md">
                             {rating.user.username}
                           </span>
