@@ -147,6 +147,27 @@ const resolvers = {
         throw new Error("Error returning users ratings of a specific number");
       }
     },
+    findUsersRating: async (_, { userId, bubblyWaterId }, context) => {
+      // Check if the user is authenticated
+
+      try {
+        const rating = await Rating.findOne({
+          user: userId,
+          bubblyWater: bubblyWaterId,
+        })
+          .populate("user")
+          .populate("bubblyWater");
+
+        if (!rating) {
+          throw new Error("Rating not found");
+        }
+
+        return rating;
+      } catch (error) {
+        console.error(error);
+        throw new Error("Failed to fetch the rating");
+      }
+    },
   },
 
   Mutation: {
