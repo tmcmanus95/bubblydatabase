@@ -3,6 +3,7 @@ import { PiFeatherBold } from "react-icons/pi";
 import { BiSolidCoffeeBean } from "react-icons/bi";
 import { capitalizeFlavors } from "../../utils/capitalizeFlavors";
 import { formatBrands } from "../../utils/formatBrands";
+import Auth from "../../utils/auth";
 import CustomColorRating from "./CustomColorRating";
 
 export default function BubblyWaterListItem({ bubblyWater, userId, ranking }) {
@@ -80,6 +81,7 @@ export default function BubblyWaterListItem({ bubblyWater, userId, ranking }) {
                 <span>({ratingCount})</span>
               </h5>
               <div>
+                {Auth.loggedIn() ? <span>Your Rating: </span> : <></>}
                 <CustomColorRating
                   flavor={capitalizedFlavors[0]}
                   rating={bubblyWater.averageRating}

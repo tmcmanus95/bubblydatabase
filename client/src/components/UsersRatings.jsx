@@ -5,6 +5,7 @@ import { capitalizeSingleFlavor } from "../../utils/capitalizeSingleFlavor";
 import CustomColorRating from "./CustomColorRating";
 
 export default function UsersRatings({ ratings, userId }) {
+  console.log("ratings hi", ratings);
   return (
     <section className="">
       <h3 className="m-5 flex justify-center">Recent Ratings</h3>
@@ -23,9 +24,9 @@ export default function UsersRatings({ ratings, userId }) {
                   src={rating.bubblyWater.imageURL}
                   alt={rating.bubblyWater.productName}
                 />
-                <h1 className="flex items-center ml-3 overflow-hidden">
-                  <span className="w-20">{rating.bubblyWater.productName}</span>
-                  <span className="m-3">
+                <h1 className="flex flex-col ml-3 overflow-hidden justi">
+                  <span className="">{rating.bubblyWater.productName}</span>
+                  <span className="">
                     {formatBrands(rating.bubblyWater.brandName)}
                   </span>
                 </h1>
@@ -41,6 +42,7 @@ export default function UsersRatings({ ratings, userId }) {
                 <CustomColorRating
                   flavor={rating.bubblyWater.flavor[0]}
                   size={"small"}
+                  rating={rating.rating}
                   bubblyWaterId={rating.bubblyWater._id}
                   userId={userId}
                 />

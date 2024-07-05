@@ -24,6 +24,7 @@ export default function CustomColorRating({
   bubblyWaterId,
   readability,
 }) {
+  console.log("heres my rating", rating);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [addRating, { error: addRatingError }] = useMutation(ADD_RATING);
   const [editRating, { error: editRatingError }] = useMutation(EDIT_RATING);
@@ -99,7 +100,6 @@ export default function CustomColorRating({
     <div className="flex flex-col items-center">
       {Auth.loggedIn() ? (
         <div className="flex items-center">
-          <span>Your Rating: </span>
           <StyledRating
             name="customized-color"
             getLabelText={(value) => `${value} Heart${value !== 1 ? "s" : ""}`}
