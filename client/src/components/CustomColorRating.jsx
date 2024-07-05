@@ -2,6 +2,7 @@ import { styled } from "@mui/material/styles";
 import { materialUIStylings } from "../../utils/materialUIStylings";
 import StarIcon from "@mui/icons-material/Star";
 import { useMutation, useQuery } from "@apollo/client";
+import Auth from "../../utils/auth";
 import { useState } from "react";
 import Rating from "@mui/material/Rating";
 import {
@@ -26,7 +27,6 @@ export default function CustomColorRating({
   const [addRating, { error: addRatingError }] = useMutation(ADD_RATING);
   const [editRating, { error: editRatingError }] = useMutation(EDIT_RATING);
   const [value, setValue] = useState(0);
-
   const { data, error } = useQuery(QUERY_RATING_BY_USER, {
     variables: { userId: userId, bubblyWaterId: bubblyWaterId },
   });
@@ -34,11 +34,9 @@ export default function CustomColorRating({
   let userRating;
   let ratingId;
   if (data) {
-    console.log("data from rating component", data);
     previouslyRated = true;
     userRating = data.findUsersRating.rating;
     ratingId = data.findUsersRating._id;
-    console.log("new rating, ", rating);
   }
   const handleValueChange = (e, newValue) => {
     setValue(newValue);
@@ -99,23 +97,39 @@ export default function CustomColorRating({
   });
   return (
     <div className="flex flex-col items-center">
-      <div className="flex items-center">
-        <span>Your Rating: </span>
-        <StyledRating
-          name="customized-color"
-          getLabelText={(value) => `${value} Heart${value !== 1 ? "s" : ""}`}
-          precision={0.5}
-          value={userRating}
-          size={size}
-          onChange={(e, newValue) => {
-            handleValueChange(e, newValue);
-          }}
-          icon={<StarIcon fontSize="inherit" />}
-          readOnly={isSubmitting ? true : false}
-          emptyIcon={<StarIcon fontSize="inherit" />}
-          className="flex justify-center"
-        />
-      </div>
+      {Auth.loggedIn() ? (
+        <div className="flex items-center">
+          <span>Your Rating: </span>
+          <StyledRating
+            name="customized-color"
+            getLabelText={(value) => `${value} Heart${value !== 1 ? "s" : ""}`}
+            precision={0.5}
+            value={userRating}
+            size={size}
+            onChange={(e, newValue) => {
+              handleValueChange(e, newValue);
+            }}
+            icon={<StarIcon fontSize="inherit" />}
+            readOnly={isSubmitting ? true : false}
+            emptyIcon={<StarIcon fontSize="inherit" />}
+            className="flex justify-center"
+          />
+        </div>
+      ) : (
+        <div className="flex items-center">
+          <StyledRating
+            name="customized-color"
+            getLabelText={(value) => `${value} Heart${value !== 1 ? "s" : ""}`}
+            precision={0.5}
+            value={rating}
+            size={size}
+            readOnly
+            icon={<StarIcon fontSize="inherit" />}
+            emptyIcon={<StarIcon fontSize="inherit" />}
+            className="flex justify-center"
+          />
+        </div>
+      )}
     </div>
   );
 }
