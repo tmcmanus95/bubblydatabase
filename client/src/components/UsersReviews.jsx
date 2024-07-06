@@ -52,7 +52,7 @@ export default function UsersReviews({ reviews }) {
                     </div>
                   </div>
                   <div className="mt-4">
-                    <p className="text-gray-700 ml-2 text-left overflow-hidden overflow-ellipsis mb-2">
+                    <p className=" ml-2 text-left overflow-hidden overflow-ellipsis mb-2">
                       {review.reviewText}
                     </p>
                   </div>

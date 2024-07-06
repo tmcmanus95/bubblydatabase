@@ -3,6 +3,7 @@ import { PiFeatherBold } from "react-icons/pi";
 import { BiSolidCoffeeBean } from "react-icons/bi";
 import { capitalizeFlavors } from "../../utils/capitalizeFlavors";
 import { formatBrands } from "../../utils/formatBrands";
+import Auth from "../../utils/auth";
 import CustomColorRating from "./CustomColorRating";
 
 export default function BubblyWaterListItem({ bubblyWater, userId, ranking }) {
@@ -25,18 +26,18 @@ export default function BubblyWaterListItem({ bubblyWater, userId, ranking }) {
     <div className="justify-center">
       <section className="m-2 md:m-5 flex justify-center">
         <div className="lg:flex lg:items-start lg:flex-row gap-5">
-          <div className=" lg:p-5 rounded-xl my-5 font-bold bg-white lg:flex lg:flex-row lg:items-center flex-col items-center text-center lg:w-auto w-10 justify-center mr-3">
+          <div className=" lg:p-5 rounded-xl my-5 font-bold  lg:flex lg:flex-row lg:items-center flex-col items-center text-center lg:w-auto w-10 justify-center mr-3">
             #{ranking}
           </div>
 
-          <div className="bg-white  p-5 rounded-xl my-5 text-center justify-center lg:flex lg:items-start lg:flex-grow">
+          <div className=" p-5 rounded-xl my-5 text-center justify-center lg:flex lg:items-start lg:flex-grow">
             <Link
               to={`/bubblyWater/${bubblyWater._id}`}
               className="flex justify-center lg:mr-5"
             >
               <img
                 src={bubblyWater.imageURL}
-                className="mx-auto lg:mx-0 lg:mb-0 object-cover w-40 h-52"
+                className="mx-auto lg:mx-0 lg:mb-0 object-cover w-40 h-52 dark:rounded-lg"
               />
             </Link>
             <div className="flex flex-col justify-center mx-auto lg:w-3/5">
@@ -80,6 +81,7 @@ export default function BubblyWaterListItem({ bubblyWater, userId, ranking }) {
                 <span>({ratingCount})</span>
               </h5>
               <div>
+                {Auth.loggedIn() ? <span>Your Rating: </span> : <></>}
                 <CustomColorRating
                   flavor={capitalizedFlavors[0]}
                   rating={bubblyWater.averageRating}

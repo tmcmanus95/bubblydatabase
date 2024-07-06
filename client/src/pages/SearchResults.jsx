@@ -64,7 +64,7 @@ export default function SearchResults() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
                   {searchResults.map((result, index) => (
                     <Link to={`/bubblyWater/${result._id}`} key={index}>
-                      <div className="p-4 border rounded bg-gray-100 flex hover:bg-blue-100">
+                      <div className="p-4 border rounded bg-gray-100 dark:bg-gray-800 flex hover:bg-blue-100 dark:hover:bg-gray-900">
                         <img
                           src={result.imageURL}
                           alt={result.brandName}

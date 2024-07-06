@@ -36,7 +36,7 @@ export default function GeneralSearchBar() {
         <input
           type="search"
           id="default-search"
-          className="block w-64 md:w-96 lg:w-96 p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
+          className="block w-64 md:w-96 lg:w-96 p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg dark:text-white bg-gray-50 dark:bg-gray-800 focus:ring-blue-500 focus:border-blue-500"
           required
           placeholder="Search products, brands, users..."
           onChange={handleInputChange}

@@ -26,7 +26,7 @@ export default function Profile() {
   const ratings = userId ? data?.user?.ratings : data?.me?.ratings;
   const reviews = userId ? data?.user?.reviews : data?.me?.reviews;
   const color = userId ? data?.user?.color : data?.me?.color;
-  const meId = userId ? "nada" : data?.me?._id;
+  const meId = userId ? "" : data?.me?._id;
   const toggleColorMenu = () => {
     setColorSelect(!colorSelect);
   };
@@ -264,7 +264,12 @@ export default function Profile() {
                 </div>
               </div>
               <div className="flex flex-wrap justify-center">
-                {ratings && <UsersRatings ratings={ratings} userId={meId} />}
+                {ratings && (
+                  <UsersRatings
+                    ratings={ratings}
+                    userId={userId ? userId : meId}
+                  />
+                )}
                 {reviews && <UsersReviews reviews={reviews} />}
               </div>
             </div>

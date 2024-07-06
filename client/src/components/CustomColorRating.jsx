@@ -34,6 +34,14 @@ export default function CustomColorRating({
   let previouslyRated = false;
   let userRating;
   let ratingId;
+  let emptyStar;
+  if (
+    window.matchMedia &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches
+  ) {
+    emptyStar = "gray";
+  }
+
   if (data) {
     previouslyRated = true;
     userRating = data.findUsersRating.rating;
@@ -99,7 +107,6 @@ export default function CustomColorRating({
     <div className="flex flex-col items-center">
       {Auth.loggedIn() ? (
         <div className="flex items-center">
-          <span>Your Rating: </span>
           <StyledRating
             name="customized-color"
             getLabelText={(value) => `${value} Heart${value !== 1 ? "s" : ""}`}
@@ -128,7 +135,9 @@ export default function CustomColorRating({
               size={size}
               readOnly
               icon={<StarIcon fontSize="inherit" />}
-              emptyIcon={<StarIcon fontSize="inherit" />}
+              emptyIcon={
+                <StarIcon fontSize="inherit" style={{ color: emptyStar }} />
+              }
               className="flex justify-center"
             />
           </div>

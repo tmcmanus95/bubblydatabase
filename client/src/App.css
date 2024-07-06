@@ -7,6 +7,16 @@
   --lightBlueBackground: #e8f4f8;
   --lightPurpleBackground: #fbf7fe;
   --lightBrownBackground: #e6d9cb;
+  --lightGreyBackground: #e6d9cb;
+
+  --darkRedBackground: #4e0105;
+  --darkOrangeBackground: #6e1a00;
+  --darkYellowBackground: #0a0030;
+  --darkGreenBackground: #0c4a13;
+  --darkBlueBackground: #0d1f4a;
+  --darkPurpleBackground: #0e0135;
+  --darkBrownBackground: #4a3e2c;
+  --darkGreyBackground: #232323;
 }
 body {
   font-family: avenir;
@@ -28,19 +38,21 @@ body {
 }
 .Acai-brushings {
   background-color: #46295a !important;
-  color: white !important;
+  color: black !important;
 }
 .Agave {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
   background-color: #7a9a9a;
+  color: black !important;
 }
 .Agave-background {
   background-color: var(--lightOrangeBackground);
 }
 .Agave-brushings {
   background-color: #7a9a9a;
+  color: black !important;
 }
 .Apple {
   border-radius: 5px;
@@ -67,24 +79,28 @@ body {
 }
 .Apple-cider-brushings {
   background-color: #e74c3c !important;
+  color: black !important;
 }
 .Apricot {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
   background-color: #f3c06e;
+  color: black !important;
 }
 .Apricot-background {
   background-color: var(--lightOrangeBackground);
 }
 .Apricot-brushings {
   background-color: #f3c06e !important;
+  color: black !important;
 }
 .Banana {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
   background-color: #ffe135;
+  color: black !important;
 }
 .Banana-background {
   background-color: var(--lightYellowBackground);
@@ -97,6 +113,7 @@ body {
   padding: 5px;
   margin: 3px;
   background-color: #82c87e;
+  color: black !important;
 }
 .Basil-background {
   background-color: var(--lightGreenBackground);
@@ -207,6 +224,7 @@ body {
   padding: 5px;
   margin: 3px;
   background-color: #f1c40f;
+  color: black !important;
 }
 .Calamansi-background {
   background-color: var(--lightOrangeBackground);
@@ -247,6 +265,7 @@ body {
   padding: 5px;
   margin: 3px;
   background-color: #d1b280;
+  color: black !important;
 }
 .Chai-background {
   background-color: var(--lightBrownBackground);
@@ -272,6 +291,7 @@ body {
   padding: 5px;
   margin: 3px;
   background-color: #d1b280;
+  color: black !important;
 }
 .Cinnamon-background {
   background-color: var(--lightBrownBackground);
@@ -281,6 +301,7 @@ body {
   padding: 5px;
   margin: 3px;
   background-color: greenyellow;
+  color: black !important;
 }
 .Citrus-background {
   background-color: var(--lightGreenBackground);
@@ -294,6 +315,7 @@ body {
   padding: 5px;
   margin: 3px;
   background-color: #f39c12;
+  color: black !important;
 }
 .Clementine-background {
   background-color: var(--lightOrangeBackground);
@@ -348,6 +370,7 @@ body {
   padding: 5px;
   margin: 3px;
   background-color: #b4f0cd;
+  color: black !important;
 }
 .Cucumber-background {
   background-color: var(--lightGreenBackground);
@@ -388,6 +411,7 @@ body {
   padding: 5px;
   margin: 3px;
   background-color: #fbf9e8;
+  color: black !important;
 }
 .Elderflower-background {
   background-color: var(--lightBrownBackground);
@@ -414,6 +438,7 @@ body {
   padding: 5px;
   margin: 3px;
   background-color: #d1b280;
+  color: black !important;
 }
 .Ginger-background {
   background-color: var(--lightBrownBackground);
@@ -440,6 +465,7 @@ body {
   padding: 5px;
   margin: 3px;
   background-color: #fdb6f0;
+  color: black !important;
 }
 .Grapefruit-background {
   background-color: var(--lightRedBackground);
@@ -454,6 +480,7 @@ body {
   padding: 5px;
   margin: 3px;
   background-color: #2ecc71;
+  color: black !important;
 }
 .Green-tea-background {
   background-color: var(--lightGreenBackground);
@@ -467,6 +494,7 @@ body {
   padding: 5px;
   margin: 3px;
   background-color: #f17a98;
+  color: black !important;
 }
 .Guava-background {
   background-color: var(--lightRedBackground);
@@ -532,6 +560,7 @@ body {
   padding: 5px;
   margin: 3px;
   background-color: #9eeb9e;
+  color: black !important;
 }
 .Key-lime-background {
   background-color: var(--lightGreenBackground);
@@ -544,9 +573,10 @@ body {
   padding: 5px;
   margin: 3px;
   background-color: #a9c77e;
+  color: black !important;
 }
 .Kiwi-background {
-  background-color: #var(--lightGreenBackground);
+  background-color: var(--lightGreenBackground);
 }
 .Kiwi-brushings {
   background-color: #a9c77e !important;
@@ -556,6 +586,7 @@ body {
   padding: 5px;
   margin: 3px;
   background-color: #e6e6fa;
+  color: black !important;
 }
 .Lavender-background {
   background-color: #f2e4fd;
@@ -568,6 +599,7 @@ body {
   padding: 5px;
   margin: 3px;
   background-color: #fff700;
+  color: black !important;
 }
 .Lemon-background {
   background-color: var(--lightYellowBackground) !important;
@@ -581,6 +613,7 @@ body {
   padding: 5px;
   margin: 3px;
   background-color: #fffa8b;
+  color: black !important;
 }
 .Lemonade-background {
   background-color: var(--lightYellowBackground) !important;
@@ -608,6 +641,7 @@ body {
   padding: 5px;
   margin: 3px;
   background-color: #ffe27e;
+  color: black !important;
 }
 .Lemon-sorbet-background {
   background-color: var(--lightYellowBackground);
@@ -621,6 +655,7 @@ body {
   padding: 5px;
   margin: 3px;
   background-color: #f8e597;
+  color: black !important;
 }
 .Limoncello-background {
   background-color: var(--lightYellowBackground);
@@ -634,6 +669,7 @@ body {
   padding: 5px;
   margin: 3px;
   background-color: #32cd32;
+  color: black !important;
 }
 
 .Lime-background {
@@ -647,6 +683,7 @@ body {
   padding: 5px;
   margin: 3px;
   background-color: #f3e2ea;
+  color: black !important;
 }
 .Lychee-background {
   background-color: var(--lightPurpleBackground);
@@ -660,6 +697,7 @@ body {
   padding: 5px;
   margin: 3px;
   background-color: #f39c12;
+  color: black !important;
 }
 .Mandarin-background {
   background-color: var(--lightOrangeBackground);
@@ -673,6 +711,7 @@ body {
   padding: 5px;
   margin: 3px;
   background-color: #f4bb44;
+  color: black !important;
 }
 .Mango-background {
   background-color: var(--lightOrangeBackground);
@@ -686,6 +725,7 @@ body {
   padding: 5px;
   margin: 3px;
   background-color: #fdbcb4;
+  color: black !important;
 }
 .Melon-background {
   background-color: #b4f0cd;
@@ -699,6 +739,7 @@ body {
   padding: 5px;
   margin: 3px;
   background-color: #2ecc71;
+  color: black !important;
 }
 .Mint-background {
   background-color: var(--lightGreenBackground);
@@ -712,9 +753,10 @@ body {
   padding: 5px;
   margin: 3px;
   background-color: #7fdfa7;
+  color: black !important;
 }
 .Mojito-background {
-  background-color: #var(--lightGreenBackground);
+  background-color: var(--lightGreenBackground);
 }
 .Mojito-brushings {
   background-color: #2ecc71 !important;
@@ -725,6 +767,7 @@ body {
   padding: 5px;
   margin: 3px;
   background-color: #d6ccc2;
+  color: black !important;
 }
 .Mushroom-background {
   background-color: var(--lightBrownBackground);
@@ -738,6 +781,7 @@ body {
   padding: 5px;
   margin: 3px;
   background-color: #eca93d;
+  color: black !important;
 }
 .Nectarine-background {
   background-color: var(--lightOrangeBackground);
@@ -750,6 +794,7 @@ body {
   padding: 5px;
   margin: 3px;
   background-color: #ffa500;
+  color: black !important;
 }
 .Orange-background {
   background-color: var(--lightOrangeBackground);
@@ -763,6 +808,7 @@ body {
   padding: 5px;
   margin: 3px;
   background-color: #f39c12;
+  color: black !important;
 }
 .Orange-cream-background {
   background-color: var(--lightOrangeBackground);
@@ -789,18 +835,21 @@ body {
   padding: 5px;
   margin: 3px;
   background-color: #f39c12;
+  color: black !important;
 }
 .Peach-background {
   background-color: var(--lightOrangeBackground);
 }
 .Peach-brushings {
   background-color: #f39c12 !important;
+  color: black !important;
 }
 .Pear {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
   background-color: #5af881;
+  color: black !important;
 }
 .Pear-background {
   background-color: var(--lightGreenBackground);
@@ -826,6 +875,7 @@ body {
   padding: 5px;
   margin: 3px;
   background-color: #f1c40f;
+  color: black !important;
 }
 .Pineapple-background {
   background-color: var(--lightYellowBackground) !important;
@@ -839,6 +889,7 @@ body {
   padding: 5px;
   margin: 3px;
   background-color: #efd3d2;
+  color: black !important;
 }
 .Pink-lemonade-background {
   background-color: var(--lightRedBackground);
@@ -851,9 +902,10 @@ body {
   padding: 5px;
   margin: 3px;
   background-color: #ecf0f1;
+  color: black !important;
 }
 .Plain-background {
-  background-color: #ecf0f1;
+  background-color: var(--lightGreyBackground);
 }
 .Plain-brushings {
   background-color: #a2a5a5 !important;
@@ -875,6 +927,8 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
+  color: black !important;
+
   background-color: #f39c12;
 }
 .Pomelo-background {
@@ -964,6 +1018,7 @@ body {
 }
 .Sea-berry-brushings {
   background-color: #f09447;
+  color: black !important;
 }
 .Strawberry {
   border-radius: 5px;
@@ -997,6 +1052,7 @@ body {
   padding: 5px;
   margin: 3px;
   background-color: #f39c12;
+  color: black !important;
 }
 .Tangerine-background {
   background-color: var(--lightOrangeBackground);
@@ -1010,6 +1066,7 @@ body {
   padding: 5px;
   margin: 3px;
   background-color: #d1b280;
+  color: black !important;
 }
 .Tea-background {
   background-color: var(--lightBrownBackground);
@@ -1024,6 +1081,7 @@ body {
   padding: 5px;
   margin: 3px;
   background-color: #ccb647;
+  color: black !important;
 }
 .Turmeric-background {
   background-color: var(--lightYellowBackground);
@@ -1037,6 +1095,7 @@ body {
   padding: 5px;
   margin: 3px;
   background-color: #f1c40f;
+  color: black !important;
 }
 .Vanilla-background {
   background-color: var(--lightYellowBackground) !important;
@@ -1050,6 +1109,7 @@ body {
   padding: 5px;
   margin: 3px;
   background-color: pink;
+  color: black !important;
 }
 .Watermelon-background {
   background-color: var(--lightGreenBackground);
@@ -1077,6 +1137,8 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
+  color: black !important;
+
   background-color: #f1c40f;
 }
 .Yuzu-background {
@@ -1176,5 +1238,18 @@ body {
 @media screen and (max-width: 600px) {
   .userRatingElement {
     font-size: 10px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --lightRedBackground: var(--darkRedBackground);
+    --lightOrangeBackground: var(--darkOrangeBackground);
+    --lightYellowBackground: var(--darkYellowBackground);
+    --lightGreenBackground: var(--darkGreenBackground);
+    --lightBlueBackground: var(--darkBlueBackground);
+    --lightPurpleBackground: var(--darkPurpleBackground);
+    --lightBrownBackground: var(--darkBrownBackground);
+    --lightGreyBackground: var(--darkGreyBackground);
   }
 }
