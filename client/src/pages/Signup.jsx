@@ -50,7 +50,7 @@ const Signup = () => {
           <form onSubmit={handleFormSubmit}>
             <div className="mb-4 border-2 border-solid px-1 border-sky-300">
               <input
-                className="form-input w-full"
+                className="form-input w-full text-black"
                 placeholder="Your username"
                 name="username"
                 type="text"
@@ -61,7 +61,7 @@ const Signup = () => {
 
             <div className="mb-4 border-2 border-solid px-1 border-sky-300">
               <input
-                className="form-input w-full"
+                className="form-input w-full text-black"
                 placeholder="Your email"
                 name="email"
                 type="email"
@@ -72,7 +72,7 @@ const Signup = () => {
 
             <div className="mb-4 border-2 border-solid px-1 border-sky-300">
               <input
-                className="form-input w-full"
+                className="form-input w-full text-black"
                 placeholder="******"
                 name="password"
                 type="password"
