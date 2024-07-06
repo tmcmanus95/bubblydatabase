@@ -92,7 +92,7 @@ export default function Brand() {
         <div className="my-3">
           <Link
             to="/contact"
-            className="ml-10  p-3 rounded-lg bg-blue-100 hover:bg-blue-300"
+            className="ml-10  p-3 rounded-lg bg-blue-100 hover:bg-blue-300 text-black"
           >
             Contact
           </Link>
