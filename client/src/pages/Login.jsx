@@ -53,7 +53,7 @@ const Login = (props) => {
           <form onSubmit={handleFormSubmit} id="loginForm">
             <div className="mb-5 border-2 border-solid px-1 border-sky-300">
               <input
-                className="form-input w-full"
+                className="form-input w-full text-black"
                 placeholder="Your email"
                 name="email"
                 type="email"
@@ -64,7 +64,7 @@ const Login = (props) => {
 
             <div className="mb-5 border-2 border-solid px-1 border-sky-300">
               <input
-                className="form-input w-full "
+                className="form-input w-full text-black"
                 placeholder="******"
                 name="password"
                 type="password"
