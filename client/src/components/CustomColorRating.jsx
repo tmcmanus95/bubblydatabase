@@ -4,7 +4,7 @@ import StarIcon from "@mui/icons-material/Star";
 import { useMutation, useQuery } from "@apollo/client";
 import Auth from "../../utils/auth";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Rating from "@mui/material/Rating";
 import {
   ADD_RATING,
@@ -24,6 +24,7 @@ export default function CustomColorRating({
   bubblyWaterId,
   readability,
 }) {
+  const location = useLocation();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [addRating, { error: addRatingError }] = useMutation(ADD_RATING);
   const [editRating, { error: editRatingError }] = useMutation(EDIT_RATING);
@@ -105,7 +106,9 @@ export default function CustomColorRating({
   });
   return (
     <div className="flex flex-col items-center">
-      {Auth.loggedIn() ? (
+      {Auth.loggedIn() &&
+      location.pathname !== `/user/${userId}` &&
+      location.pathname !== "/me" ? (
         <div className="flex items-center">
           <StyledRating
             name="customized-color"
