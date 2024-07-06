@@ -166,7 +166,7 @@ export default function BubblyWaterPage() {
           <div>
             <div className="flex justify-center flex-col lg:flex-row mt-14 ">
               <section className="m-5 flex flex-col items-center sm:flex-row sm:justify-center gap-10  rounded-lg">
-                <div className="flex flex-col lg:flex-row items-center bg-white justify-center gap-4 p-8 bg-yellow shadow-md rounded-lg">
+                <div className="flex flex-col lg:flex-row items-center  justify-center gap-4 p-8 bg-yellow shadow-md rounded-lg">
                   <img
                     className="object-cover rounded-full lg:mr-10 w-48 h-48 md:w-96 lg:w-96 lg:h-96 md:h-96"
                     src={bubblyWater.imageURL}
@@ -268,47 +268,49 @@ export default function BubblyWaterPage() {
               <section>
                 <ul className="p-5 flex-col flex items-center">
                   {bubblyWater.ratings?.map((rating, index) => (
-                    <li
-                      key={index}
-                      className="flex border-2 border-black items-center justify-between w-72 md:w-96 lg:w-96 bg-gray-100 hover:bg-gray-200"
-                    >
-                      <div className="flex items-center">
-                        <div
-                          className={`rounded-full justify-center align-center littleCircle mr-3 ${
-                            rating?.user?.color
-                              ? `${rating.user.color}`
-                              : "bg-red-300"
-                          }`}
-                        >
-                          <Link to={`/user/${rating?.user?._id}`}>
-                            {rating?.user?.username ? (
-                              <span>
-                                {rating?.user?.username[0].toUpperCase()}
-                              </span>
-                            ) : (
-                              <></>
-                            )}
-                          </Link>
+                    <Link to={`/user/${rating?.user?._id}`}>
+                      <li
+                        key={index}
+                        className="flex border-2 border-black items-center justify-between w-72 md:w-96 lg:w-96 bg-gray-100 dark:bg-gray-900 hover:bg-gray-200 dark:hover:bg-gray-950"
+                      >
+                        <div className="flex items-center">
+                          <div
+                            className={`rounded-full justify-center align-center littleCircle mr-3 text-black ${
+                              rating?.user?.color
+                                ? `${rating.user.color}`
+                                : "bg-red-300"
+                            }`}
+                          >
+                            <Link to={`/user/${rating?.user?._id}`}>
+                              {rating?.user?.username ? (
+                                <span>
+                                  {rating?.user?.username[0].toUpperCase()}
+                                </span>
+                              ) : (
+                                <></>
+                              )}
+                            </Link>
+                          </div>
+                          {rating?.user?.username ? (
+                            <span className="text-gray-800 dark:text-white font-semibold text-xs md:text-md">
+                              {rating.user.username}
+                            </span>
+                          ) : (
+                            <span className="text-gray-800 dark:text-white font-semibold">
+                              me
+                            </span>
+                          )}
                         </div>
-                        {rating?.user?.username ? (
-                          <span className="text-gray-800 font-semibold text-xs md:text-md">
-                            {rating.user.username}
-                          </span>
-                        ) : (
-                          <span className="text-gray-800 font-semibold">
-                            me
-                          </span>
-                        )}
-                      </div>
-                      <span className="text-2xl">
-                        <Rating
-                          readOnly
-                          size="small"
-                          value={rating.rating}
-                          precision={0.5}
-                        />
-                      </span>
-                    </li>
+                        <span className="text-2xl">
+                          <Rating
+                            readOnly
+                            size="small"
+                            value={rating.rating}
+                            precision={0.5}
+                          />
+                        </span>
+                      </li>
+                    </Link>
                   ))}
                 </ul>
               </section>
@@ -326,7 +328,7 @@ export default function BubblyWaterPage() {
                   <Link to={`/user/${review.user._id}`}>
                     <li
                       key={index}
-                      className="bg-white w-72 md:w-96 lg:w-96 rounded-lg mb-5"
+                      className="dark:bg-slate-900 w-72 md:w-96 lg:w-96 rounded-lg mb-5"
                     >
                       <div
                         className={`${flavors[0]}-brushings rounded-t-lg p-2 flex items-center justify-between`}
@@ -352,7 +354,7 @@ export default function BubblyWaterPage() {
                         </div>
                       </div>
                       <div className="mt-4 px-2">
-                        <p className="text-gray-700 ml-2 text-left pb-2">
+                        <p className="text-gray-700 ml-2 text-left pb-2 dark:text-white">
                           {review.reviewText}
                         </p>
                       </div>

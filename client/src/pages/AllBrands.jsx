@@ -15,7 +15,7 @@ export default function AllBrands() {
           {brandLogos.map((brand, index) => (
             <div>
               <Link to={`/brands/${brand.name}`}>
-                <div className="flex-1 text-center shadow-lg p-10 rounded-xl my-10  bg-white">
+                <div className="flex-1 text-center shadow-lg p-10 rounded-xl my-10  bg-white text-black">
                   <img
                     src={`${brand.link}`}
                     width={100}
@@ -39,7 +39,7 @@ export default function AllBrands() {
         <div className="my-3">
           <Link
             to="/contact"
-            className="ml-10  p-3 rounded-lg bg-blue-100 hover:bg-blue-300"
+            className="ml-10  p-3 rounded-lg bg-blue-100 hover:bg-blue-300 text-black"
           >
             Contact
           </Link>

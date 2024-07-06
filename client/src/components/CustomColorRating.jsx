@@ -24,7 +24,6 @@ export default function CustomColorRating({
   bubblyWaterId,
   readability,
 }) {
-  console.log("heres my rating", rating);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [addRating, { error: addRatingError }] = useMutation(ADD_RATING);
   const [editRating, { error: editRatingError }] = useMutation(EDIT_RATING);
@@ -35,6 +34,14 @@ export default function CustomColorRating({
   let previouslyRated = false;
   let userRating;
   let ratingId;
+  let emptyStar;
+  if (
+    window.matchMedia &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches
+  ) {
+    emptyStar = "gray";
+  }
+
   if (data) {
     previouslyRated = true;
     userRating = data.findUsersRating.rating;
@@ -128,7 +135,9 @@ export default function CustomColorRating({
               size={size}
               readOnly
               icon={<StarIcon fontSize="inherit" />}
-              emptyIcon={<StarIcon fontSize="inherit" />}
+              emptyIcon={
+                <StarIcon fontSize="inherit" style={{ color: emptyStar }} />
+              }
               className="flex justify-center"
             />
           </div>

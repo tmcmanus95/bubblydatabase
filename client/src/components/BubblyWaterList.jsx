@@ -198,7 +198,7 @@ export default function BubblyWaterList({ searchTerm }) {
                       />
                       <label
                         htmlFor="default-radio-1"
-                        className="ms-1 text-sm font-medium text-gray-900 "
+                        className="ms-1 text-sm font-medium  "
                       >
                         All
                       </label>
@@ -214,7 +214,7 @@ export default function BubblyWaterList({ searchTerm }) {
                       />
                       <label
                         htmlFor="default-radio-2"
-                        className="ms-1 text-sm font-medium text-gray-900 "
+                        className="ms-1 text-sm font-medium  "
                       >
                         CBD
                       </label>
@@ -230,7 +230,7 @@ export default function BubblyWaterList({ searchTerm }) {
                       />
                       <label
                         htmlFor="default-radio-2"
-                        className="ms-1 text-sm font-medium text-gray-900 "
+                        className="ms-1 text-sm font-medium  "
                       >
                         Caffeine
                       </label>

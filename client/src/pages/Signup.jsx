@@ -40,7 +40,7 @@ const Signup = () => {
   return (
     <div className="flex justify-center items-center h-screen">
       <div className="max-w-md w-full p-8 bg-white rounded-lg shadow-lg">
-        <h1 className="text-3xl text-center mb-6">Sign Up</h1>
+        <h1 className="text-3xl text-center mb-6 text-black">Sign Up</h1>
 
         {data ? (
           <p className="text-center mb-6">

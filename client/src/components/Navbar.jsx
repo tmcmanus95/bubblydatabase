@@ -15,7 +15,7 @@ export default function NavBar() {
     Auth.logout();
   };
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 mx-auto px-4 md:flex items-center bg-slate-200 gap-6 py-1">
+    <nav className="fixed top-0 left-0 right-0 z-50 mx-auto px-4 md:flex items-center bg-slate-200 dark:bg-slate-900 gap-6 py-1">
       <div className="flex w-full items-center">
         <Link to="/">
           <img className="h-5 lg:h-10  mr-5" src={popIcon}></img>{" "}
@@ -27,19 +27,28 @@ export default function NavBar() {
           />
         </div>
         <div className="hidden md:gap-5 md:flex md:flex-row ">
-          <Link to="/allBrands" className="hover:bg-blue-300 lg:p-2 rounded-lg">
+          <Link
+            to="/allBrands"
+            className="hover:bg-blue-300 dark:hover:bg-slate-600 lg:p-2 rounded-lg"
+          >
             Brands
           </Link>
           <Link
             to="/allFlavors"
-            className="hover:bg-blue-300 lg:p-2 rounded-lg"
+            className="hover:bg-blue-300 dark:hover:bg-slate-600 lg:p-2 rounded-lg"
           >
             Flavors
           </Link>
-          <Link to="/about" className="hover:bg-blue-300 lg:p-2 rounded-lg">
+          <Link
+            to="/about"
+            className="hover:bg-blue-300 dark:hover:bg-slate-600 lg:p-2 rounded-lg"
+          >
             About
           </Link>
-          <Link to="/contact" className="hover:bg-blue-300 lg:p-2 rounded-lg">
+          <Link
+            to="/contact"
+            className="hover:bg-blue-300 dark:hover:bg-slate-600 lg:p-2 rounded-lg"
+          >
             Contact
           </Link>
         </div>
@@ -48,32 +57,32 @@ export default function NavBar() {
         </div>
 
         {menuOpen && (
-          <div className="absolute inset-x-0 md:relative top-full md:top-auto md:left-auto md:flex flex-col items-center space-x-1 pb-3 md:pb-0 bg-gray-200">
+          <div className="absolute inset-x-0 md:relative top-full md:top-auto md:left-auto md:flex flex-col items-center space-x-1 pb-3 md:pb-0 dark:bg-slate-900">
             <Link
               onClick={toggleMenu}
               to="/allBrands"
-              className="py-2 px-3 block w-full hover:bg-blue-300"
+              className="py-2 px-3 block w-full hover:bg-blue-300 dark:hover:bg-slate-600"
             >
               Brands
             </Link>
             <Link
               onClick={toggleMenu}
               to="/allFlavors"
-              className="py-2 px-3 block w-full hover:bg-blue-300"
+              className="py-2 px-3 block w-full hover:bg-blue-300 dark:hover:bg-slate-600"
             >
               Flavors
             </Link>
             <Link
               onClick={toggleMenu}
               to="/about"
-              className="py-2 px-3 block w-full hover:bg-blue-300"
+              className="py-2 px-3 block w-full hover:bg-blue-300 dark:hover:bg-slate-600"
             >
               About
             </Link>
             <Link
               onClick={toggleMenu}
               to="/contact"
-              className="py-2 px-3 block w-full hover:bg-blue-300"
+              className="py-2 px-3 block w-full hover:bg-blue-300 dark:hover:bg-slate-600"
             >
               Contact
             </Link>
@@ -83,13 +92,13 @@ export default function NavBar() {
                 <Link
                   onClick={toggleMenu}
                   to="/me"
-                  className="py-2 px-3 block w-full hover:bg-blue-300 "
+                  className="py-2 px-3 block w-full hover:bg-blue-300 dark:hover:bg-slate-600 "
                 >
                   View My Profile
                 </Link>
                 <button
                   onClick={logout}
-                  className="btn text-left py-2 px-3 block w-full hover:bg-blue-300 "
+                  className="btn text-left py-2 px-3 block w-full hover:bg-blue-300 dark:hover:bg-slate-600"
                 >
                   Logout
                 </button>
@@ -98,14 +107,14 @@ export default function NavBar() {
               <>
                 <Link
                   to="/login"
-                  className="py-2 px-3 block w-full hover:bg-blue-300 "
+                  className="py-2 px-3 block w-full hover:bg-blue-300 dark:hover:bg-slate-600"
                   onClick={toggleMenu}
                 >
                   Login
                 </Link>
                 <Link
                   to="/signup"
-                  className="py-2 px-3 block w-full hover:bg-blue-300 "
+                  className="py-2 px-3 block w-full hover:bg-blue-300 dark:hover:bg-slate-600"
                   onClick={toggleMenu}
                 >
                   Signup
@@ -120,13 +129,13 @@ export default function NavBar() {
         {Auth.loggedIn() ? (
           <>
             <Link to="/me">
-              <button className="hover:bg-blue-300 p-2 rounded-lg">
+              <button className="hover:bg-blue-300 dark:hover:bg-slate-600 p-2 rounded-lg">
                 Profile
               </button>
             </Link>
             <button
               onClick={logout}
-              className="hover:bg-blue-300 p-2 rounded-lg"
+              className="hover:bg-blue-300 dark:hover:bg-slate-600 p-2 rounded-lg"
             >
               Logout
             </button>
@@ -134,12 +143,12 @@ export default function NavBar() {
         ) : (
           <>
             <Link to="/login">
-              <button className="hover:bg-blue-300 p-2 rounded-lg">
+              <button className="hover:bg-blue-300 dark:hover:bg-slate-600 p-2 rounded-lg">
                 Login
               </button>
             </Link>
             <Link to="/signup">
-              <button className="hover:bg-blue-300 p-2 rounded-lg">
+              <button className="hover:bg-blue-300 dark:hover:bg-slate-600 p-2 rounded-lg">
                 Signup
               </button>
             </Link>
