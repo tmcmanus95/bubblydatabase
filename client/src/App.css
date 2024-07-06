@@ -863,6 +863,7 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
+  color: black !important;
 }
 .Peppermint-background {
   background-color: var(--lightGreenBackground);
@@ -1039,6 +1040,7 @@ body {
   padding: 5px;
   margin: 3px;
   background-color: #e7ffa4;
+  color: black !important;
 }
 .Sweetgrass-background {
   background-color: var(--lightGreenBackground);
