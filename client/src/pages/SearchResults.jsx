@@ -106,9 +106,9 @@ export default function SearchResults() {
           <>
             <h1 className="text-4xl mb-5 ml-2 md:ml-5">Users</h1>
             {userData.searchUsers ? (
-              <div className="bg-white text-xl md:text-2xl md:ml-5 ml-2 md:mr-10 ">
+              <div className=" text-xl md:text-2xl md:ml-5 ml-2 md:mr-10 ">
                 <Link to={`/user/${userData?.searchUsers?._id}`}>
-                  <span className="hover:bg-blue-300 p-2">
+                  <span className="hover:bg-blue-300 p-2 dark:hover:bg-gray-900">
                     {userData?.searchUsers?.username}
                   </span>
                 </Link>
