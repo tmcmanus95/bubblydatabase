@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import { QUERY_SINGLE_BRAND } from "../../utils/queries";
+import { QUERY_SINGLE_BRAND, QUERY_MEID } from "../../utils/queries";
 import { useParams } from "react-router-dom";
 import Loading from "../components/Loading";
 import { formatBrands } from "../../utils/formatBrands";
@@ -13,6 +13,13 @@ export default function Brand() {
   let { data, loading } = useQuery(QUERY_SINGLE_BRAND, {
     variables: { brandName },
   });
+  const { data: meIdData, error: meIdError } = useQuery(QUERY_MEID);
+  let userId;
+  if (meIdData) {
+    userId = meIdData.meId._id;
+    console.log("userId", userId);
+  }
+
   console.log("here is my brand data", data);
   let bubblyWaters = [];
   let logoLink = "";
@@ -68,6 +75,7 @@ export default function Brand() {
                   key={index}
                   bubblyWater={bubblyWater}
                   ranking={index}
+                  userId={userId}
                 />
               ))}
             </>
