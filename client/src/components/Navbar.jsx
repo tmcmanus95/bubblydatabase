@@ -57,7 +57,7 @@ export default function NavBar() {
         </div>
 
         {menuOpen && (
-          <div className="absolute inset-x-0 md:relative top-full md:top-auto md:left-auto md:flex flex-col items-center space-x-1 pb-3 md:pb-0 dark:bg-slate-900">
+          <div className="absolute inset-x-0 md:relative top-full md:top-auto md:left-auto md:flex bg-slate-200 flex-col items-center space-x-1 pb-3 md:pb-0 dark:bg-slate-900">
             <Link
               onClick={toggleMenu}
               to="/allBrands"
