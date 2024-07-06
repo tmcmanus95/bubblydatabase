@@ -42,6 +42,7 @@ export default function UsersRatings({ ratings, userId }) {
                 <CustomColorRating
                   flavor={rating.bubblyWater.flavor[0]}
                   size={"small"}
+                  readOnly
                   rating={rating.rating}
                   bubblyWaterId={rating.bubblyWater._id}
                   userId={userId}
