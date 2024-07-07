@@ -230,7 +230,7 @@ export default function BubblyWaterPage() {
                   <form onSubmit={(e) => handleReviewValueChange(e)}>
                     <textarea
                       name="reviewText"
-                      className="w-full p-4 border rounded-md focus:outline-none focus:ring focus:border-blue-500"
+                      className="w-full p-4 border rounded-md focus:outline-none focus:ring focus:border-blue-500 text-black"
                       placeholder="Write your review here..."
                       rows="4"
                       value={reviewText}
