@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 export default function RatingsBreakdown({ ratings }) {
   const userId = useParams();
-  console.log(userId.userId);
   const fiveRatings = ratings.filter((rating) => rating.rating === 5);
   const fourPointFiveRatings = ratings.filter(
     (rating) => rating.rating === 4.5

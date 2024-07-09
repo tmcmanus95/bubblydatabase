@@ -5,7 +5,6 @@ import { capitalizeSingleFlavor } from "../../utils/capitalizeSingleFlavor";
 import CustomColorRating from "./CustomColorRating";
 
 export default function UsersRatings({ ratings, userId }) {
-  console.log("ratings hi", ratings);
   return (
     <section className="">
       <h3 className="m-5 flex justify-center">Recent Ratings</h3>

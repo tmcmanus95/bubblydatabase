@@ -3,7 +3,7 @@ import { materialUIStylings } from "../../utils/materialUIStylings";
 import StarIcon from "@mui/icons-material/Star";
 import { useMutation, useQuery } from "@apollo/client";
 import Auth from "../../utils/auth";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Rating from "@mui/material/Rating";
 import {
@@ -22,19 +22,19 @@ export default function CustomColorRating({
   size,
   userId,
   bubblyWaterId,
-  readability,
 }) {
   const location = useLocation();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [addRating, { error: addRatingError }] = useMutation(ADD_RATING);
-  const [editRating, { error: editRatingError }] = useMutation(EDIT_RATING);
+  const [previouslyRated, setPreviouslyRated] = useState(false);
+  const [userRating, setUserRating] = useState(rating);
+  const [ratingId, setRatingId] = useState("");
+  const [addRating] = useMutation(ADD_RATING);
+  const [editRating] = useMutation(EDIT_RATING);
   const [value, setValue] = useState(0);
-  const { data, error } = useQuery(QUERY_RATING_BY_USER, {
+  const { data } = useQuery(QUERY_RATING_BY_USER, {
     variables: { userId: userId, bubblyWaterId: bubblyWaterId },
   });
-  let previouslyRated = false;
-  let userRating;
-  let ratingId;
+
   let emptyStar;
   if (
     window.matchMedia &&
@@ -43,13 +43,17 @@ export default function CustomColorRating({
     emptyStar = "gray";
   }
 
-  if (data) {
-    previouslyRated = true;
-    userRating = data.findUsersRating.rating;
-    ratingId = data.findUsersRating._id;
-  }
+  useEffect(() => {
+    if (data) {
+      setPreviouslyRated(true);
+      setUserRating(data.findUsersRating.rating);
+      setRatingId(data.findUsersRating._id);
+    }
+  }, [data]);
+
   const handleValueChange = (e, newValue) => {
     setValue(newValue);
+    setIsSubmitting(true);
     if (previouslyRated) {
       handleEditRating(e, newValue);
     } else {
@@ -60,30 +64,32 @@ export default function CustomColorRating({
   const handleEditRating = async (e, newValue) => {
     e.preventDefault();
     try {
-      const { data } = await editRating({
+      await editRating({
         variables: {
           rating: newValue,
           ratingId: ratingId,
           bubblyWaterId: bubblyWaterId,
         },
       });
-      previouslyRated = true;
+      setPreviouslyRated(true);
     } catch (err) {
-      console.error("Error editing review, ", err);
+      console.error("Error editing Rating, ", err);
+    } finally {
+      setIsSubmitting(false);
     }
   };
+
   const handleAddRating = async (e, newValue) => {
     e && e.preventDefault();
-    setIsSubmitting(true);
     try {
-      const { data } = await addRating({
+      await addRating({
         variables: {
           rating: newValue,
           userId: userId,
           bubblyWaterId: bubblyWaterId,
         },
       });
-      previouslyRated = true;
+      setPreviouslyRated(true);
     } catch (err) {
       console.error("Error adding rating, ", err);
     } finally {
@@ -91,19 +97,16 @@ export default function CustomColorRating({
     }
   };
 
-  const ratedWater = previouslyRated
-    ? { border: "2px solid green", borderRadius: "25px" }
-    : {};
-
   const capitalFlavor = capitalizeSingleFlavor(flavor);
-  const StyledRating = styled(Rating)({
+  const StyledRating = styled(Rating)(({ theme }) => ({
     "& .MuiRating-iconFilled": {
       color: materialUIStylings(capitalFlavor),
     },
     "& .MuiRating-iconHover": {
       color: materialUIStylings(capitalFlavor),
     },
-  });
+  }));
+
   return (
     <div className="flex flex-col items-center">
       {Auth.loggedIn() &&
@@ -114,13 +117,20 @@ export default function CustomColorRating({
             name="customized-color"
             getLabelText={(value) => `${value} Heart${value !== 1 ? "s" : ""}`}
             precision={0.5}
-            value={userRating}
+            value={previouslyRated ? userRating : value}
             size={size}
+            disabled={isSubmitting}
             onChange={(e, newValue) => {
+              setIsSubmitting(true);
+              console.log(
+                "Rating changed:",
+                newValue,
+                "Submitting:",
+                isSubmitting
+              );
               handleValueChange(e, newValue);
             }}
             icon={<StarIcon fontSize="inherit" />}
-            readOnly={isSubmitting ? true : false}
             emptyIcon={<StarIcon fontSize="inherit" />}
             className="flex justify-center"
           />
