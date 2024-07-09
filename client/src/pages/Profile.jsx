@@ -5,7 +5,7 @@ import {
   QUERY_SIMPLE_RATINGS,
 } from "../../utils/queries";
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useMutation } from "@apollo/client";
 import { EDIT_USER_COLOR } from "../../utils/mutations";
 import UsersRatings from "../components/UsersRatings";
@@ -15,21 +15,40 @@ import RatingsBreakdown from "../components/RatingsBreakdown";
 import { Rating } from "@mui/material";
 export default function Profile() {
   const { userId } = useParams();
-  const { loading, data } = useQuery(userId ? QUERY_SINGLE_USER : QUERY_ME, {
-    variables: { userId: userId },
-  });
+  const { loading, data, refetch } = useQuery(
+    userId ? QUERY_SINGLE_USER : QUERY_ME,
+    {
+      variables: { userId: userId },
+    }
+  );
 
   const [colorSelect, setColorSelect] = useState(false);
+  const [ratings, setRatings] = useState([]);
+  const [reviews, setReviews] = useState([]);
   const [editUserColor, { error: editUserColorError }] =
     useMutation(EDIT_USER_COLOR);
   const username = userId ? data?.user?.username : data?.me?.username;
-  const ratings = userId ? data?.user?.ratings : data?.me?.ratings;
-  const reviews = userId ? data?.user?.reviews : data?.me?.reviews;
   const color = userId ? data?.user?.color : data?.me?.color;
   const meId = userId ? "" : data?.me?._id;
   const toggleColorMenu = () => {
     setColorSelect(!colorSelect);
   };
+
+  useEffect(() => {
+    if (data) {
+      if (userId) {
+        setRatings(data?.user?.ratings);
+        setReviews(data?.user?.reviews);
+      } else {
+        setRatings(data?.me?.ratings);
+        setReviews(data?.me?.reviews);
+      }
+    }
+  }, [data]);
+
+  useEffect(() => {
+    refetch();
+  }, [userId]);
 
   const handleEditUserColor = async (e, selectedColor) => {
     e.preventDefault();
