@@ -36,6 +36,13 @@ const userSchema = new Schema({
       ref: "Review",
     },
   ],
+  isVerified: {
+    type: Boolean,
+    default: false,
+  },
+  emailVerificationToken: String,
+  passwordResetToken: String,
+  passwordResetExpires: Date,
 });
 
 // set up pre-save middleware to create password

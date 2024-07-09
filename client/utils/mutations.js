@@ -6,10 +6,12 @@ export const ADD_USER = gql`
       user {
         _id
         username
+        email
       }
     }
   }
 `;
+
 export const EDIT_USER_COLOR = gql`
   mutation Mutation($userId: ID!, $color: String) {
     editUserColor(userId: $userId, color: $color) {
@@ -97,6 +99,20 @@ export const LOGIN_USER = gql`
       user {
         _id
         username
+      }
+    }
+  }
+`;
+
+export const VERIFY_EMAIL = gql`
+  mutation VerifyEmail($token: String!) {
+    verifyEmail(token: $token) {
+      token
+      user {
+        _id
+        username
+        email
+        isVerified
       }
     }
   }

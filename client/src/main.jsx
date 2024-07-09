@@ -19,6 +19,7 @@ import SpecificUserRatings from "./pages/SpecificUserRatings.jsx";
 import BasicRating from "./components/FiveStarRating.jsx";
 import AllCaffeinated from "./pages/AllCaffeinated.jsx";
 import AllCBD from "./pages/AllCBD.jsx";
+import VerifyEmail from "./pages/VerifyEmail.jsx";
 
 const router = createBrowserRouter([
   {
@@ -90,6 +91,10 @@ const router = createBrowserRouter([
       {
         path: "/testingRatingComponent",
         element: <BasicRating />,
+      },
+      {
+        path: "/verifyEmail/:token",
+        element: <VerifyEmail />,
       },
       {
         path: "*",
