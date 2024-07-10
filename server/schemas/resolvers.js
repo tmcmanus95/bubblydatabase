@@ -218,7 +218,7 @@ const resolvers = {
         user.emailVerificationToken = null;
         await user.save();
 
-        return { message: "Email verified successfully" };
+        return { user };
       } catch (error) {
         console.error("Error verifying email:", error);
         throw AuthenticationError;

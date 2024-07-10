@@ -1,18 +1,22 @@
 import { useMutation } from "@apollo/client";
 import { VERIFY_EMAIL } from "../../utils/mutations";
-import { useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 export default function VerifyEmail() {
   const { token } = useParams();
   const [verifyEmail, { data, loading, error }] = useMutation(VERIFY_EMAIL);
+  const [isVerified, setIsVerified] = useState(false);
 
   useEffect(() => {
     const verify = async () => {
       try {
         const { data } = await verifyEmail({ variables: { token } });
+        if (data) {
+          console.log("verify email data", data);
+        }
         if (data.verifyEmail.user.isVerified) {
-          alert("Email verified successfully! You can now log in.");
+          setIsVerified(true);
         }
       } catch (err) {
         console.error("Error verifying email:", err);
@@ -22,9 +26,30 @@ export default function VerifyEmail() {
   }, [token, verifyEmail]);
 
   return (
-    <div className="mt-20">
+    <div className="my-20">
       {loading && <p>Verifying email...</p>}
-      {error && <p>Error verifying email: {error.message}</p>}
+      {isVerified ? (
+        <div className="flex flex-col items-center mt-40 mb-50 md:text-3xl">
+          <h1>Success!</h1>
+          <h2>You may now rate bubbly waters!</h2>
+          <Link
+            className="mt-10 hover:bg-blue-100 dark:hover:bg-gray-700 p-2 rounded-lg"
+            to={"/"}
+          >
+            Home
+          </Link>
+        </div>
+      ) : (
+        <div className="flex flex-col items-center mt-40 mb-50 md:text-3xl">
+          <h1>Could not authenticate email.</h1>
+          <Link
+            className="mt-10 hover:bg-blue-100 dark:hover:bg-gray-700 p-2 rounded-lg"
+            to={"/"}
+          >
+            Home
+          </Link>
+        </div>
+      )}
     </div>
   );
 }
