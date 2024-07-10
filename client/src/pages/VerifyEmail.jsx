@@ -26,10 +26,10 @@ export default function VerifyEmail() {
   }, [token, verifyEmail]);
 
   return (
-    <div className="my-20">
+    <div className="my-20 ">
       {loading && <p>Verifying email...</p>}
       {isVerified ? (
-        <div className="flex flex-col items-center mt-40 mb-50 md:text-3xl">
+        <div className="flex flex-col items-center mt-40 mb-50 md:text-3xl dark:border-white border-blue-300 border-2 md:mx-60 mx-10 p-3">
           <h1>Success!</h1>
           <h2>You may now rate bubbly waters!</h2>
           <Link
@@ -40,7 +40,7 @@ export default function VerifyEmail() {
           </Link>
         </div>
       ) : (
-        <div className="flex flex-col items-center mt-40 mb-50 md:text-3xl">
+        <div className="flex flex-col items-center mt-40 mb-50 md:text-3xl dark:border-white border-blue-300 border-2 md:mx-60 mx-10 p-3">
           <h1>Could not authenticate email.</h1>
           <Link
             className="mt-10 hover:bg-blue-100 dark:hover:bg-gray-700 p-2 rounded-lg"
