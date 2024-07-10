@@ -178,16 +178,12 @@ const resolvers = {
     addUser: async (parent, { username, email, password }) => {
       try {
         const emailVerificationToken = crypto.randomBytes(20).toString("hex");
-        const hashedToken = await bcrypt.hash(
-          emailVerificationToken,
-          saltRounds
-        );
 
         const user = await User.create({
           username,
           email,
           password,
-          emailVerificationToken: hashedToken,
+          emailVerificationToken: emailVerificationToken,
           isVerified: false,
         });
 
@@ -197,38 +193,35 @@ const resolvers = {
           subject: "Email Verification",
           text: `Please verify your email by clicking the following link: ${verificationUrl}`,
         });
+        const token = signToken({
+          email: user.email,
+          name: user.username,
+          _id: user._id,
+        });
 
-        return { user };
+        return { token, user };
       } catch (error) {
         console.error("Error adding user:", error);
         throw new Error("Failed to add user");
       }
     },
 
-    verifyEmail: async (parent, { token }) => {
+    verifyEmail: async (parent, { token }, context) => {
       try {
-        const user = await User.findOne({});
-        if (!user) {
-          throw new Error("Invalid or expired token");
-        }
+        const user = await User.findOne({ emailVerificationToken: token });
 
-        const isTokenValid = await bcrypt.compare(
-          token,
-          user.emailVerificationToken
-        );
-        if (!isTokenValid) {
-          throw new Error("Invalid or expired token");
+        if (!user) {
+          throw AuthenticationError;
         }
 
         user.isVerified = true;
         user.emailVerificationToken = null;
         await user.save();
 
-        const authToken = signToken(user);
-        return { token: authToken, user };
+        return { message: "Email verified successfully" };
       } catch (error) {
         console.error("Error verifying email:", error);
-        throw new Error("Failed to verify email");
+        throw AuthenticationError;
       }
     },
 
