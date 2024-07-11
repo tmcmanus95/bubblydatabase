@@ -21,10 +21,12 @@ export default function BubblyWaterList({ searchTerm }) {
   let hasCBDBubbly = false;
   let generalWaters = [];
   let userId;
+  let isVerified = false;
 
   const { data: meIdData, error: meIdError } = useQuery(QUERY_MEID);
   if (meIdData) {
     userId = meIdData.meId._id;
+    isVerified = true;
   }
   if (searchTerm == "caffeine") {
     const { error: caffeineError, data: caffeineData } = useQuery(
@@ -256,6 +258,7 @@ export default function BubblyWaterList({ searchTerm }) {
                   bubblyWater={bubblyWater}
                   userId={userId}
                   ranking={index}
+                  isVerified={isVerified}
                 />
               ))
             ) : generalWaters.length > 0 ? (
@@ -265,6 +268,7 @@ export default function BubblyWaterList({ searchTerm }) {
                   bubblyWater={bubblyWater}
                   userId={userId}
                   ranking={index}
+                  isVerified={isVerified}
                 />
               ))
             ) : (

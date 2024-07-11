@@ -6,7 +6,12 @@ import { formatBrands } from "../../utils/formatBrands";
 import Auth from "../../utils/auth";
 import CustomColorRating from "./CustomColorRating";
 
-export default function BubblyWaterListItem({ bubblyWater, userId, ranking }) {
+export default function BubblyWaterListItem({
+  bubblyWater,
+  userId,
+  ranking,
+  isVerified,
+}) {
   let ratingCount = 0;
   let hasCBD = false;
   let hasCaffeine = false;
@@ -87,6 +92,7 @@ export default function BubblyWaterListItem({ bubblyWater, userId, ranking }) {
                   rating={bubblyWater.averageRating}
                   bubblyWaterId={bubblyWater._id}
                   userId={userId}
+                  isVerified={isVerified}
                 />
               </div>
             </div>

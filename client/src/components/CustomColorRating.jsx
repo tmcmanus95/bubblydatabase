@@ -22,6 +22,7 @@ export default function CustomColorRating({
   size,
   userId,
   bubblyWaterId,
+  isVerified,
 }) {
   const location = useLocation();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -90,6 +91,7 @@ export default function CustomColorRating({
         },
       });
       setPreviouslyRated(true);
+      setUserRating(newValue);
     } catch (err) {
       console.error("Error adding rating, ", err);
     } finally {
@@ -111,7 +113,8 @@ export default function CustomColorRating({
     <div className="flex flex-col items-center">
       {Auth.loggedIn() &&
       location.pathname !== `/user/${userId}` &&
-      location.pathname !== "/me" ? (
+      location.pathname !== "/me" &&
+      isVerified ? (
         <div className="flex items-center">
           <StyledRating
             name="customized-color"
@@ -136,25 +139,32 @@ export default function CustomColorRating({
           />
         </div>
       ) : (
-        <Link to={`/bubblyWater/${bubblyWaterId}`}>
-          <div className="flex items-center">
-            <StyledRating
-              name="customized-color"
-              getLabelText={(value) =>
-                `${value} Heart${value !== 1 ? "s" : ""}`
-              }
-              precision={0.5}
-              value={rating}
-              size={size}
-              readOnly
-              icon={<StarIcon fontSize="inherit" />}
-              emptyIcon={
-                <StarIcon fontSize="inherit" style={{ color: emptyStar }} />
-              }
-              className="flex justify-center"
-            />
-          </div>
-        </Link>
+        <div>
+          <Link to={`/bubblyWater/${bubblyWaterId}`}>
+            <div className="flex items-center">
+              <StyledRating
+                name="customized-color"
+                getLabelText={(value) =>
+                  `${value} Heart${value !== 1 ? "s" : ""}`
+                }
+                precision={0.5}
+                value={rating}
+                size={size}
+                readOnly
+                icon={<StarIcon fontSize="inherit" />}
+                emptyIcon={
+                  <StarIcon fontSize="inherit" style={{ color: emptyStar }} />
+                }
+                className="flex justify-center"
+              />
+            </div>
+          </Link>
+          {Auth.loggedIn() && !isVerified ? (
+            <div>Please verify email address to rate waters</div>
+          ) : (
+            <></>
+          )}
+        </div>
       )}
     </div>
   );
