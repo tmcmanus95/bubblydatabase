@@ -26,7 +26,7 @@ export default function BubblyWaterList({ searchTerm }) {
   const { data: meIdData, error: meIdError } = useQuery(QUERY_MEID);
   if (meIdData) {
     userId = meIdData.meId._id;
-    isVerified = true;
+    isVerified = meIdData.meId.isVerified;
   }
   if (searchTerm == "caffeine") {
     const { error: caffeineError, data: caffeineData } = useQuery(

@@ -44,6 +44,10 @@ export default function CustomColorRating({
     emptyStar = "gray";
   }
 
+  if (!isVerified) {
+    console.log("nope");
+  }
+
   useEffect(() => {
     if (data) {
       setPreviouslyRated(true);
@@ -111,6 +115,11 @@ export default function CustomColorRating({
 
   return (
     <div className="flex flex-col items-center">
+      {Auth.loggedIn() && !isVerified ? (
+        <div>Please verify email to rate</div>
+      ) : (
+        <></>
+      )}
       {Auth.loggedIn() &&
       location.pathname !== `/user/${userId}` &&
       location.pathname !== "/me" &&
@@ -159,11 +168,6 @@ export default function CustomColorRating({
               />
             </div>
           </Link>
-          {Auth.loggedIn() && !isVerified ? (
-            <div>Please verify email address to rate waters</div>
-          ) : (
-            <></>
-          )}
         </div>
       )}
     </div>
