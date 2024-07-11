@@ -30,6 +30,8 @@ export default function Profile() {
   const username = userId ? data?.user?.username : data?.me?.username;
   const color = userId ? data?.user?.color : data?.me?.color;
   const meId = userId ? "" : data?.me?._id;
+  let isVerified = true;
+
   const toggleColorMenu = () => {
     setColorSelect(!colorSelect);
   };
@@ -287,6 +289,7 @@ export default function Profile() {
                   <UsersRatings
                     ratings={ratings}
                     userId={userId ? userId : meId}
+                    isVerified={isVerified}
                   />
                 )}
                 {reviews && <UsersReviews reviews={reviews} />}

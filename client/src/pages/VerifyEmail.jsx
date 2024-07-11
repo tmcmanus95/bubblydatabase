@@ -1,15 +1,22 @@
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { VERIFY_EMAIL } from "../../utils/mutations";
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Auth from "../../utils/auth";
+import { QUERY_MEID } from "../../utils/queries";
 
 export default function VerifyEmail() {
   const { token } = useParams();
   const [verifyEmail, { data, loading, error }] = useMutation(VERIFY_EMAIL);
+  const { data: meIdData, error: meIdError } = useQuery(QUERY_MEID);
+  const [meId, setMeId] = useState("");
   const [isVerified, setIsVerified] = useState(false);
 
   useEffect(() => {
+    if (meIdData) {
+      setMeId(meIdData.meId._id);
+      console.log("_id", meId);
+    }
     const verify = async () => {
       if (Auth.loggedIn()) {
         console.log("person is logged in");
