@@ -105,8 +105,8 @@ export const LOGIN_USER = gql`
 `;
 
 export const VERIFY_EMAIL = gql`
-  mutation VerifyEmail($token: String!) {
-    verifyEmail(token: $token) {
+  mutation Mutation($token: String!, $userId: ID!) {
+    verifyEmail(token: $token, userId: $userId) {
       token
       user {
         _id

@@ -44,12 +44,8 @@ export default function CustomColorRating({
     emptyStar = "gray";
   }
 
-  if (!isVerified) {
-    console.log("nope");
-  }
-
   useEffect(() => {
-    if (data) {
+    if (data && data.findUsersRating) {
       setPreviouslyRated(true);
       setUserRating(data.findUsersRating.rating);
       setRatingId(data.findUsersRating._id);

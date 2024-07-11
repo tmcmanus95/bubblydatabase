@@ -163,7 +163,7 @@ const resolvers = {
           .populate("bubblyWater");
 
         if (!rating) {
-          throw new Error("Rating not found");
+          return null;
         }
 
         return rating;
@@ -206,16 +206,18 @@ const resolvers = {
       }
     },
 
-    verifyEmail: async (parent, { token }, context) => {
+    verifyEmail: async (parent, { token, userId }, context) => {
       try {
         const user = await User.findOne({ emailVerificationToken: token });
 
         if (!user) {
           throw AuthenticationError;
         }
+        if (user._id == userId) {
+          user.isVerified = true;
+          user.emailVerificationToken = null;
+        }
 
-        user.isVerified = true;
-        user.emailVerificationToken = null;
         await user.save();
 
         return { user };

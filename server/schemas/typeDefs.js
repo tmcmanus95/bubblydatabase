@@ -87,7 +87,7 @@ const typeDefs = `
     addReview(bubblyWaterId: ID!, userId: ID!, reviewText: String!): BubblyWater
     editReview(reviewId: ID!, reviewText: String!): Review
     removeReview(reviewId: ID!): Review
-    verifyEmail(token: String!): AuthPayload
+    verifyEmail(token: String!, userId: ID!): AuthPayload
     forgotPassword(email: String!): Boolean
     resetPassword(token: String!, newPassword: String!): AuthPayload
   }

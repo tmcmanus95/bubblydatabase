@@ -15,29 +15,27 @@ export default function VerifyEmail() {
   useEffect(() => {
     if (meIdData) {
       setMeId(meIdData.meId._id);
-      console.log("_id", meId);
     }
+  }, [meIdData]);
+
+  useEffect(() => {
     const verify = async () => {
       if (Auth.loggedIn()) {
-        console.log("person is logged in");
         try {
-          const { data } = await verifyEmail({ variables: { token } });
-          if (data) {
-            console.log("verify email data", data);
-          }
+          const { data } = await verifyEmail({
+            variables: { token, userId: meId },
+          });
           if (data.verifyEmail.user.isVerified) {
             setIsVerified(true);
           }
         } catch (err) {
           console.error("Error verifying email:", err);
         }
-      } else {
-        console.log("person is not logged in");
       }
     };
 
     verify();
-  }, [token, verifyEmail]);
+  }, [token, verifyEmail, meId]);
 
   return Auth.loggedIn() ? (
     <div className="my-20">
