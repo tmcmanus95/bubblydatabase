@@ -9,7 +9,9 @@ const Signup = () => {
     username: "",
     email: "",
     password: "",
+    passwordCheck: "",
   });
+  const [passwordErrorToggle, setPasswordErrorToggle] = useState(false);
   const [addProfile, { error, data }] = useMutation(ADD_USER);
 
   // update state based on form input changes
@@ -26,14 +28,18 @@ const Signup = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    try {
-      const { data } = await addProfile({
-        variables: { ...formState },
-      });
-
-      Auth.login(data.addUser.token); // Assuming addUser returns the token
-    } catch (e) {
-      console.error(e);
+    const { username, email, password } = formState;
+    if (formState.password == formState.passwordCheck) {
+      try {
+        const { data } = await addProfile({
+          variables: { username, email, password },
+        });
+        Auth.login(data.addUser.token); // Assuming addUser returns the token
+      } catch (e) {
+        console.error(e);
+      }
+    } else {
+      setPasswordErrorToggle(true);
     }
   };
 
@@ -73,7 +79,7 @@ const Signup = () => {
             <div className="mb-4 border-2 border-solid px-1 border-sky-300">
               <input
                 className="form-input w-full text-black"
-                placeholder="******"
+                placeholder="Password"
                 name="password"
                 type="password"
                 value={formState.password}
@@ -81,6 +87,23 @@ const Signup = () => {
               />
             </div>
 
+            <div className="mb-4 border-2 border-solid px-1 border-sky-300">
+              <input
+                className="form-input w-full text-black"
+                placeholder="Confirm Password"
+                name="passwordCheck"
+                type="password"
+                value={formState.passwordCheck}
+                onChange={handleChange}
+              />
+            </div>
+            {passwordErrorToggle ? (
+              <div>
+                <h1>Passwords do not match</h1>
+              </div>
+            ) : (
+              <></>
+            )}
             <div className="text-center">
               <button
                 className="bg-transparent hover:bg-blue-300 text-blue-500 font-semibold hover:text-white py-2 px-4 border border-blue-300 hover:border-transparent rounded"

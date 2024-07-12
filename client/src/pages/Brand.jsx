@@ -15,8 +15,10 @@ export default function Brand() {
   });
   const { data: meIdData, error: meIdError } = useQuery(QUERY_MEID);
   let userId;
+  let isVerified;
   if (meIdData) {
     userId = meIdData.meId._id;
+    isVerified = meIdData.meId.isVerified;
     console.log("userId", userId);
   }
 
@@ -76,6 +78,7 @@ export default function Brand() {
                   bubblyWater={bubblyWater}
                   ranking={index}
                   userId={userId}
+                  isVerified={isVerified}
                 />
               ))}
             </>
