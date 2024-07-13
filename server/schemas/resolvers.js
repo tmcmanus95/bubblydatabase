@@ -240,7 +240,7 @@ const resolvers = {
         user.passwordResetExpires = Date.now() + 3600000; // 1 hour
         await user.save();
 
-        const resetUrl = `http://localhost:5001/forgotPassword/${resetToken}`;
+        const resetUrl = `http://localhost:5001/resetPassword/${resetToken}`;
         await sendEmail({
           to: email,
           subject: "Password Reset",
@@ -254,26 +254,26 @@ const resolvers = {
       }
     },
 
-    resetPassword: async (parent, { token, newPassword }) => {
+    resetPassword: async (parent, { email, token, newPassword }) => {
       try {
-        const user = await User.findOne({
-          passwordResetExpires: { $gt: Date.now() },
-        });
+        const user = await User.findOne({ email });
         if (!user) {
           throw new Error("Invalid or expired token");
         }
 
-        if (!isTokenValid) {
-          throw new Error("Invalid or expired token");
+        if (user.passwordResetToken === token) {
+          user.password = newPassword;
+          user.passwordResetToken = null;
+          user.passwordResetExpires = null;
+        } else {
+          console.log("user.passwordResetToken and token do not match!");
+          return;
         }
-        if ()
-        user.password = newPassword;
-        user.passwordResetToken = null;
-        user.passwordResetExpires = null;
         await user.save();
 
-        const authToken = signToken(user);
-        return { token: authToken, user };
+        // const authToken = signToken(user);
+        // return { token: authToken, user };
+        return user;
       } catch (error) {
         console.error("Error resetting password:", error);
         throw new Error("Failed to reset password");

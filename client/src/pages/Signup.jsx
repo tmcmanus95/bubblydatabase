@@ -99,7 +99,7 @@ const Signup = () => {
             </div>
             {passwordErrorToggle ? (
               <div>
-                <h1>Passwords do not match</h1>
+                <h1 className="text-black">Passwords do not match</h1>
               </div>
             ) : (
               <></>

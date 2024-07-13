@@ -82,7 +82,7 @@ const Login = (props) => {
                 </Link>
               </div>
               <div>
-                <Link to={"/resetPassword"}>
+                <Link to={"/forgotPassword"}>
                   <h4>Forgot password</h4>
                 </Link>
               </div>

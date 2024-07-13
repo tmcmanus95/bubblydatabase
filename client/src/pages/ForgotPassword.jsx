@@ -1,11 +1,9 @@
 import { useState } from "react";
-import Auth from "../../utils/auth";
-
+import { useMutation } from "@apollo/client";
+import { SEND_PASSWORD_RESET_LINK } from "../../utils/mutations";
 export default function ForgotPassword() {
   const [formState, setFormState] = useState({
     email: "",
-    password: "",
-    passwordCheck: "",
   });
 
   const handleChange = (event) => {
@@ -16,30 +14,26 @@ export default function ForgotPassword() {
       [name]: value,
     });
   };
-
+  const [sendPasswordResetLink, { data, loading, error }] = useMutation(
+    SEND_PASSWORD_RESET_LINK
+  );
   // submit form
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
-    const { email, password } = formState;
-    if (formState.password == formState.passwordCheck) {
-      try {
-        const { data } = await addProfile({
-          variables: { username, email, password },
-        });
-        Auth.login(data.addUser.token); // Assuming addUser returns the token
-      } catch (e) {
-        console.error(e);
-      }
-    } else {
-      setPasswordErrorToggle(true);
+    const { email } = formState;
+    try {
+      const { data } = sendPasswordResetLink({ variables: { email: email } });
+    } catch (err) {
+      console.log("Could not send password reset link", err);
     }
   };
 
   return (
     <div className="flex justify-center items-center h-screen">
       <div className="max-w-md w-full p-8 bg-white rounded-lg shadow-lg">
-        <h1 className="text-3xl text-center mb-6 text-black">Reset Password</h1>
+        <h1 className="text-3xl text-center mb-6 text-black">
+          Send Password Reset Link
+        </h1>
         <form onSubmit={handleFormSubmit}>
           <div className="mb-4 border-2 border-solid px-1 border-sky-300">
             <input
@@ -48,27 +42,6 @@ export default function ForgotPassword() {
               name="email"
               type="email"
               value={formState.email}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className="mb-4 border-2 border-solid px-1 border-sky-300">
-            <input
-              className="form-input w-full text-black"
-              placeholder="New Password"
-              name="passwordCheck"
-              type="password"
-              value={formState.passwordCheck}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="mb-4 border-2 border-solid px-1 border-sky-300">
-            <input
-              className="form-input w-full text-black"
-              placeholder="Confirm New Password"
-              name="passwordCheck"
-              type="password"
-              value={formState.passwordCheck}
               onChange={handleChange}
             />
           </div>

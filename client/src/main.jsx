@@ -99,11 +99,11 @@ const router = createBrowserRouter([
         element: <VerifyEmail />,
       },
       {
-        path: "/resetPassword",
+        path: "/resetPassword/:token",
         element: <ResetPassword />,
       },
       {
-        path: "/forgotPassword:token",
+        path: "/forgotPassword",
         element: <ForgotPassword />,
       },
       {
