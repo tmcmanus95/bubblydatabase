@@ -276,22 +276,22 @@ export default function BubblyWaterList({ searchTerm }) {
             )}
             {caffeineSearch ? (
               <div className="flex justify-center">
-                <div className="bg-blue-200 p-3 mb-10 rounded-lg hover:bg-blue-300">
-                  <Link className="flex" to="/allCaffeinated">
+                <Link className="flex" to="/allCaffeinated">
+                  <div className="bg-blue-200 dark:bg-slate-800 p-3 mb-10 rounded-lg hover:bg-blue-300 dark:hover:bg-slate-900">
                     View All Caffeinated Waters
-                  </Link>
-                </div>
+                  </div>
+                </Link>
               </div>
             ) : (
               <></>
             )}
             {CBDSearch ? (
               <div className="flex justify-center">
-                <div className="bg-blue-200 p-3 mb-10 rounded-lg hover:bg-blue-300">
-                  <Link className="flex" to="/allCBD">
+                <Link className="flex" to="/allCBD">
+                  <div className="bg-blue-200 dark:bg-slate-800 p-3 mb-10 rounded-lg hover:bg-blue-300 dark:hover:bg-slate-900">
                     View All Waters with CBD
-                  </Link>
-                </div>
+                  </div>
+                </Link>
               </div>
             ) : (
               <></>

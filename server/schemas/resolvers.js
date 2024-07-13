@@ -235,13 +235,12 @@ const resolvers = {
         }
 
         const resetToken = crypto.randomBytes(20).toString("hex");
-        const hashedResetToken = await bcrypt.hash(resetToken, saltRounds);
 
-        user.passwordResetToken = hashedResetToken;
+        user.passwordResetToken = resetToken;
         user.passwordResetExpires = Date.now() + 3600000; // 1 hour
         await user.save();
 
-        const resetUrl = `http://localhost:5001/resetPassword/${resetToken}`;
+        const resetUrl = `http://localhost:5001/forgotPassword/${resetToken}`;
         await sendEmail({
           to: email,
           subject: "Password Reset",
@@ -264,14 +263,10 @@ const resolvers = {
           throw new Error("Invalid or expired token");
         }
 
-        const isTokenValid = await bcrypt.compare(
-          token,
-          user.passwordResetToken
-        );
         if (!isTokenValid) {
           throw new Error("Invalid or expired token");
         }
-
+        if ()
         user.password = newPassword;
         user.passwordResetToken = null;
         user.passwordResetExpires = null;

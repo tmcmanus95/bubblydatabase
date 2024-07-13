@@ -72,6 +72,21 @@ const Login = (props) => {
                 onChange={handleChange}
               />
             </div>
+            <div className="flex justify-between">
+              <div className="flex-col flex">
+                <div className="text-sm">Don't have an account?</div>
+                <Link to={`/signUp`}>
+                  <h5 className="hover:bg-blue-300 rounded-lg text-sm text-center">
+                    Sign Up
+                  </h5>
+                </Link>
+              </div>
+              <div>
+                <Link to={"/resetPassword"}>
+                  <h4>Forgot password</h4>
+                </Link>
+              </div>
+            </div>
 
             <div className="text-center">
               <button
