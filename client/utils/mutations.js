@@ -123,6 +123,12 @@ export const SEND_PASSWORD_RESET_LINK = gql`
   }
 `;
 
+export const RESEND_VERIFICATION_LINK = gql`
+  mutation Mutation($email: String!) {
+    resendEmailVerification(email: $email)
+  }
+`;
+
 export const RESET_PASSWORD = gql`
   mutation Mutation($token: String!, $email: String!, $newPassword: String!) {
     resetPassword(token: $token, email: $email, newPassword: $newPassword) {

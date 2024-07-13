@@ -89,6 +89,7 @@ const typeDefs = `
     removeReview(reviewId: ID!): Review
     verifyEmail(token: String!, userId: ID!): AuthPayload
     forgotPassword(email: String!): Boolean
+    resendEmailVerification(email: String!): Boolean
     resetPassword(token: String!, email: String!, newPassword: String!): AuthPayload
   }
 `;
