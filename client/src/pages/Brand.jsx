@@ -8,15 +8,16 @@ import BubblyWaterListItem from "../components/BubblyWaterListItem";
 import { Link } from "react-router-dom";
 export default function Brand() {
   const { brandName } = useParams();
-  console.log(brandName);
   let sortedBubblyWaters = [];
   let { data, loading } = useQuery(QUERY_SINGLE_BRAND, {
     variables: { brandName },
   });
   const { data: meIdData, error: meIdError } = useQuery(QUERY_MEID);
   let userId;
+  let isVerified;
   if (meIdData) {
     userId = meIdData.meId._id;
+    isVerified = meIdData.meId.isVerified;
     console.log("userId", userId);
   }
 
@@ -76,6 +77,7 @@ export default function Brand() {
                   bubblyWater={bubblyWater}
                   ranking={index}
                   userId={userId}
+                  isVerified={isVerified}
                 />
               ))}
             </>

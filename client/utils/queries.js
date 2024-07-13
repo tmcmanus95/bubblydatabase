@@ -197,6 +197,7 @@ export const QUERY_ME = gql`
           flavor
         }
       }
+      isVerified
     }
   }
 `;
@@ -218,6 +219,7 @@ export const QUERY_MEID = gql`
     meId {
       _id
       username
+      isVerified
     }
   }
 `;

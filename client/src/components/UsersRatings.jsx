@@ -4,7 +4,7 @@ import { formatBrands } from "../../utils/formatBrands";
 import { capitalizeSingleFlavor } from "../../utils/capitalizeSingleFlavor";
 import CustomColorRating from "./CustomColorRating";
 
-export default function UsersRatings({ ratings, userId }) {
+export default function UsersRatings({ ratings, userId, isVerified }) {
   return (
     <section className="">
       <h3 className="m-5 flex justify-center">Recent Ratings</h3>
@@ -45,6 +45,7 @@ export default function UsersRatings({ ratings, userId }) {
                   rating={rating.rating}
                   bubblyWaterId={rating.bubblyWater._id}
                   userId={userId}
+                  isVerified={isVerified}
                 />
               </div>
             </li>

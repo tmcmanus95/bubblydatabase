@@ -6,10 +6,12 @@ export const ADD_USER = gql`
       user {
         _id
         username
+        email
       }
     }
   }
 `;
+
 export const EDIT_USER_COLOR = gql`
   mutation Mutation($userId: ID!, $color: String) {
     editUserColor(userId: $userId, color: $color) {
@@ -93,6 +95,37 @@ export const EDIT_RATING = gql`
 export const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {
     login(email: $email, password: $password) {
+      token
+      user {
+        _id
+        username
+      }
+    }
+  }
+`;
+
+export const VERIFY_EMAIL = gql`
+  mutation Mutation($token: String!, $userId: ID!) {
+    verifyEmail(token: $token, userId: $userId) {
+      token
+      user {
+        _id
+        username
+        email
+        isVerified
+      }
+    }
+  }
+`;
+export const SEND_PASSWORD_RESET_LINK = gql`
+  mutation Mutation($email: String!) {
+    forgotPassword(email: $email)
+  }
+`;
+
+export const RESET_PASSWORD = gql`
+  mutation Mutation($token: String!, $email: String!, $newPassword: String!) {
+    resetPassword(token: $token, email: $email, newPassword: $newPassword) {
       token
       user {
         _id

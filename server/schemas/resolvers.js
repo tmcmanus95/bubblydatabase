@@ -1,5 +1,9 @@
 const { User, BubblyWater, Rating, Review } = require("../models");
 const { signToken, AuthenticationError } = require("../utils/auth");
+const { sendEmail } = require("../utils/sendEmail");
+const crypto = require("crypto");
+const bcrypt = require("bcrypt");
+const saltRounds = 10;
 
 const resolvers = {
   Query: {
@@ -159,7 +163,7 @@ const resolvers = {
           .populate("bubblyWater");
 
         if (!rating) {
-          throw new Error("Rating not found");
+          return null;
         }
 
         return rating;
@@ -172,10 +176,111 @@ const resolvers = {
 
   Mutation: {
     addUser: async (parent, { username, email, password }) => {
-      const user = await User.create({ username, email, password });
-      const token = signToken(user);
+      try {
+        const emailVerificationToken = crypto.randomBytes(20).toString("hex");
 
-      return { token, user };
+        const user = await User.create({
+          username,
+          email,
+          password,
+          emailVerificationToken: emailVerificationToken,
+          isVerified: false,
+        });
+
+        const verificationUrl = `${process.env.WEBSITE_URL}/verifyEmail/${emailVerificationToken}`;
+        await sendEmail({
+          to: email,
+          subject: "Email Verification",
+          text: `Please verify your email by clicking the following link: ${verificationUrl}`,
+        });
+        const token = signToken({
+          email: user.email,
+          name: user.username,
+          _id: user._id,
+        });
+
+        return { token, user };
+      } catch (error) {
+        console.error("Error adding user:", error);
+        throw new Error("Failed to add user");
+      }
+    },
+
+    verifyEmail: async (parent, { token, userId }, context) => {
+      try {
+        const user = await User.findOne({ emailVerificationToken: token });
+
+        if (!user) {
+          throw AuthenticationError;
+        }
+        if (user._id == userId) {
+          user.isVerified = true;
+          user.emailVerificationToken = null;
+        }
+
+        await user.save();
+
+        return { user };
+      } catch (error) {
+        console.error("Error verifying email:", error);
+        throw AuthenticationError;
+      }
+    },
+
+    forgotPassword: async (parent, { email }) => {
+      try {
+        const user = await User.findOne({ email });
+        if (!user) {
+          throw new Error("No user found with this email");
+        }
+
+        const resetToken = crypto.randomBytes(20).toString("hex");
+
+        user.passwordResetToken = resetToken;
+        user.passwordResetExpires = Date.now() + 3600000; // 1 hour
+        await user.save();
+
+        const resetUrl = `${process.env.WEBSITE_URL}/resetPassword/${resetToken}`;
+        if (user) {
+          await sendEmail({
+            to: email,
+            subject: "Password Reset",
+            text: `Please reset your password by clicking the following link: ${resetUrl}`,
+          });
+          return true;
+        } else {
+          return;
+        }
+      } catch (error) {
+        console.error("Error in forgot password:", error);
+        throw new Error("Failed to process forgot password");
+      }
+    },
+
+    resetPassword: async (parent, { email, token, newPassword }) => {
+      try {
+        const user = await User.findOne({ email });
+        if (!user) {
+          throw new Error("Invalid or expired token");
+        }
+
+        if (user.passwordResetToken === token) {
+          user.password = newPassword;
+          user.passwordResetToken = null;
+          user.passwordResetExpires = null;
+        } else {
+          console.log("user.passwordResetToken and token do not match!");
+          return;
+        }
+        await user.save();
+
+        // const authToken = signToken(user);
+        // return { token: authToken, user };
+        return user;
+      } catch (error) {
+        console.error("Error resetting password:", error);
+        throw new Error("Failed to reset password");
+      }
     },
     editUserColor: async (parent, { userId, color }, context) => {
       try {

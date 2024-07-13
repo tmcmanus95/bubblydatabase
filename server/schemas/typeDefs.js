@@ -7,7 +7,15 @@ const typeDefs = `
     color: String
     ratings: [Rating]
     reviews: [Review]
-
+    isVerified: Boolean
+    emailVerificationToken: String
+    passwordResetToken: String
+    passwordResetExpires: String
+  }
+  
+  type AuthPayload {
+    token: String
+    user: User
   }
 
   type BubblyWater {
@@ -41,7 +49,7 @@ const typeDefs = `
   }
 
   type Auth {
-    token: ID!
+    token: ID
     user: User
   }
 
@@ -69,8 +77,8 @@ const typeDefs = `
   }
 
   type Mutation {
-    addUser(username: String!, email: String!, password: String!): Auth
-    removeUser: User
+    addUser(username: String!, email: String!, password: String!): AuthPayload
+    removeUser(userId: ID!): User
     editUserColor(userId: ID!, color: String): User
     login(email: String!, password: String!): Auth
     addRating(bubblyWaterId: ID!, userId: ID, rating: Float!): BubblyWater
@@ -79,6 +87,9 @@ const typeDefs = `
     addReview(bubblyWaterId: ID!, userId: ID!, reviewText: String!): BubblyWater
     editReview(reviewId: ID!, reviewText: String!): Review
     removeReview(reviewId: ID!): Review
+    verifyEmail(token: String!, userId: ID!): AuthPayload
+    forgotPassword(email: String!): Boolean
+    resetPassword(token: String!, email: String!, newPassword: String!): AuthPayload
   }
 `;
 
