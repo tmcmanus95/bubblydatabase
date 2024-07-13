@@ -241,16 +241,18 @@ const resolvers = {
         await user.save();
 
         const resetUrl = `http://localhost:5001/resetPassword/${resetToken}`;
-        await sendEmail({
-          to: email,
-          subject: "Password Reset",
-          text: `Please reset your password by clicking the following link: ${resetUrl}`,
-        });
-
-        return true;
+        if (user) {
+          await sendEmail({
+            to: email,
+            subject: "Password Reset",
+            text: `Please reset your password by clicking the following link: ${resetUrl}`,
+          });
+          return true;
+        } else {
+          return;
+        }
       } catch (error) {
-        console.error("Error in forgot password:", error);
-        throw new Error("Failed to process forgot password");
+        return "Error in forgot password:", error;
       }
     },
 

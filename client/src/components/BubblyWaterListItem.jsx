@@ -46,21 +46,20 @@ export default function BubblyWaterListItem({
               />
             </Link>
             <div className="flex flex-col justify-center mx-auto lg:w-3/5">
-              <div className=" flex items-right md:mt-0 mt-3">
+              <div className=" flex justify-end md:mt-0 mt-3 bg-red">
                 {hasCBD && (
-                  <>
+                  <div className="flex flex-row  ">
                     <PiFeatherBold />
                     <h5 className="ml-1">CBD</h5>
-                  </>
+                  </div>
                 )}
                 {hasCaffeine && (
-                  <>
+                  <div className="flex flex-row justify-between">
                     <BiSolidCoffeeBean />
                     <h5 className="ml-1 text-xs">Caffeine</h5>
-                  </>
+                  </div>
                 )}
               </div>
-
               <Link to={`/brands/${bubblyWater.brandName}`}>
                 <h3 className="text-lg font-medium pt-2 lg:pt-8 ">
                   {formatBrands(bubblyWater.brandName)}
