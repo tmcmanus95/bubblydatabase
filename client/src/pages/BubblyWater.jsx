@@ -31,6 +31,7 @@ export default function BubblyWaterPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [reviewText, setReviewText] = useState("");
   const userId = meIdData?.meId?._id;
+  let isVerified = meIdData?.meId?.isVerified;
   const bubblyWater = data?.bubblyWater;
   const flavors = bubblyWater ? capitalizeFlavors(bubblyWater) : [];
   let previouslyRated = false;
@@ -42,6 +43,10 @@ export default function BubblyWaterPage() {
   let ratings = data?.bubblyWater?.ratings;
   let ratingsCount = data?.bubblyWater?.ratings.length;
   let reviews = data?.bubblyWater?.reviews;
+  let capitalizedFlavors;
+  if (bubblyWater) {
+    capitalizedFlavors = capitalizeFlavors(bubblyWater);
+  }
 
   // Check if user has already rated bubbly water
   if (ratings && ratings.length > 0) {
@@ -195,23 +200,31 @@ export default function BubblyWaterPage() {
                       <span className="text-gray-500">({ratingsCount})</span>
                     </h3>
                     {Auth.loggedIn() ? (
-                      <Rating
+                      <CustomColorRating
                         value={previouslyRated ? userRating : value}
                         defaultValue={userRating}
+                        bubblyWaterId={bubblyWaterId}
                         precision={0.5}
+                        userId={userId}
                         size="large"
+                        flavor={capitalizedFlavors[0]}
                         className="mt-3"
                         disabled={isSubmitting}
+                        isVerified={isVerified}
                         onChange={(e, newValue) => {
                           handleValueChange(e, newValue);
                         }}
                       />
                     ) : (
                       <>
-                        <Rating
+                        <CustomColorRating
                           readOnly
+                          bubblyWaterId={bubblyWaterId}
                           value={previouslyRated ? userRating : value}
                           precision={0.5}
+                          flavor={capitalizedFlavors[0]}
+                          isVerified={isVerified}
+                          userId={userId}
                         />
                         <p>
                           <Link to="/login" className="text-blue-500">
