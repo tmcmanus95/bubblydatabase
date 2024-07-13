@@ -187,7 +187,7 @@ const resolvers = {
           isVerified: false,
         });
 
-        const verificationUrl = `http://localhost:5001/verifyEmail/${emailVerificationToken}`;
+        const verificationUrl = `${process.env.WEBSITE_URL}/verifyEmail/${emailVerificationToken}`;
         await sendEmail({
           to: email,
           subject: "Email Verification",
@@ -240,7 +240,7 @@ const resolvers = {
         user.passwordResetExpires = Date.now() + 3600000; // 1 hour
         await user.save();
 
-        const resetUrl = `http://localhost:5001/resetPassword/${resetToken}`;
+        const resetUrl = `${process.env.WEBSITE_URL}/resetPassword/${resetToken}`;
         if (user) {
           await sendEmail({
             to: email,
@@ -252,7 +252,8 @@ const resolvers = {
           return;
         }
       } catch (error) {
-        return "Error in forgot password:", error;
+        console.error("Error in forgot password:", error);
+        throw new Error("Failed to process forgot password");
       }
     },
 
