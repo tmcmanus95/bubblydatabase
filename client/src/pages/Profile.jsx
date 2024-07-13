@@ -4,7 +4,7 @@ import {
   QUERY_ME,
   QUERY_SIMPLE_RATINGS,
 } from "../../utils/queries";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useMutation } from "@apollo/client";
 import { EDIT_USER_COLOR } from "../../utils/mutations";
@@ -25,12 +25,12 @@ export default function Profile() {
   const [colorSelect, setColorSelect] = useState(false);
   const [ratings, setRatings] = useState([]);
   const [reviews, setReviews] = useState([]);
+  const [isVerified, setIsVerified] = useState(false);
   const [editUserColor, { error: editUserColorError }] =
     useMutation(EDIT_USER_COLOR);
   const username = userId ? data?.user?.username : data?.me?.username;
   const color = userId ? data?.user?.color : data?.me?.color;
   const meId = userId ? "" : data?.me?._id;
-  let isVerified = true;
 
   const toggleColorMenu = () => {
     setColorSelect(!colorSelect);
@@ -41,9 +41,11 @@ export default function Profile() {
       if (userId) {
         setRatings(data?.user?.ratings);
         setReviews(data?.user?.reviews);
+        setIsVerified(true);
       } else {
         setRatings(data?.me?.ratings);
         setReviews(data?.me?.reviews);
+        setIsVerified(data?.me?.isVerified);
       }
     }
   }, [data]);
@@ -266,7 +268,21 @@ export default function Profile() {
             <></>
           )}
           {ratings && reviews ? (
-            <div>
+            <div className="flex flex-col items-center">
+              {isVerified ? (
+                <></>
+              ) : (
+                <div className="items-center flex flex-row md:mt-10 md:text-xl bg-red-400 m-2 justify-between border-2 border-red-600">
+                  <h4 className="m-2">User not verified</h4>
+                  <Link
+                    to={`/resendEmailVerification`}
+                    className="rounded-lg bg-blue-300 p-1 m-2 hover:cursor-pointer hover:bg-blue-400"
+                  >
+                    Resend Verification Link
+                  </Link>
+                </div>
+              )}
+
               <div className="flex justify-center items-center mt-10 gap-10 h-full">
                 {ratings.length > 0 ? (
                   <h5>Total Ratings: {ratings?.length}</h5>

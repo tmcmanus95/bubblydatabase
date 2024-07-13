@@ -175,6 +175,7 @@ export const QUERY_ME = gql`
       _id
       username
       color
+      isVerified
       ratings {
         _id
         rating
