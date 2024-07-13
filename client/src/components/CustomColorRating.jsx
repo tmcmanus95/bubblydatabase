@@ -6,12 +6,7 @@ import Auth from "../../utils/auth";
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Rating from "@mui/material/Rating";
-import {
-  ADD_RATING,
-  EDIT_RATING,
-  ADD_REVIEW,
-  EDIT_REVIEW,
-} from "../../utils/mutations";
+import { ADD_RATING, EDIT_RATING } from "../../utils/mutations";
 import { QUERY_RATING_BY_USER } from "../../utils/queries";
 
 import { capitalizeSingleFlavor } from "../../utils/capitalizeSingleFlavor";
@@ -27,12 +22,12 @@ export default function CustomColorRating({
   const location = useLocation();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [previouslyRated, setPreviouslyRated] = useState(false);
-  const [userRating, setUserRating] = useState(rating);
+  const [userRating, setUserRating] = useState(0);
   const [ratingId, setRatingId] = useState("");
   const [addRating] = useMutation(ADD_RATING);
   const [editRating] = useMutation(EDIT_RATING);
   const [value, setValue] = useState(0);
-  const { data } = useQuery(QUERY_RATING_BY_USER, {
+  const { data, refetch } = useQuery(QUERY_RATING_BY_USER, {
     variables: { userId: userId, bubblyWaterId: bubblyWaterId },
   });
 
@@ -45,6 +40,7 @@ export default function CustomColorRating({
   }
 
   useEffect(() => {
+    refetch();
     if (data && data.findUsersRating) {
       setPreviouslyRated(true);
       setUserRating(data.findUsersRating.rating);
@@ -53,8 +49,8 @@ export default function CustomColorRating({
   }, [data]);
 
   const handleValueChange = (e, newValue) => {
-    setValue(newValue);
     setIsSubmitting(true);
+    setValue(newValue);
     if (previouslyRated) {
       handleEditRating(e, newValue);
     } else {
@@ -72,30 +68,42 @@ export default function CustomColorRating({
           bubblyWaterId: bubblyWaterId,
         },
       });
+      console.log("new value: ", newValue);
+
+      setUserRating(newValue);
+      console.log("edited user value", userRating);
       setPreviouslyRated(true);
     } catch (err) {
       console.error("Error editing Rating, ", err);
     } finally {
       setIsSubmitting(false);
+      setValue(0);
     }
   };
 
   const handleAddRating = async (e, newValue) => {
     e && e.preventDefault();
     try {
-      await addRating({
+      const { data: addRatingData } = await addRating({
         variables: {
           rating: newValue,
           userId: userId,
           bubblyWaterId: bubblyWaterId,
         },
       });
+      const { data: refetchedData } = await refetch();
+      console.log("refetched data", refetchedData);
+      setRatingId(refetchedData.findUsersRating._id);
+      setUserRating(refetchedData.findUsersRating.rating);
       setPreviouslyRated(true);
-      setUserRating(newValue);
+      console.log("new value: ", newValue);
     } catch (err) {
       console.error("Error adding rating, ", err);
     } finally {
       setIsSubmitting(false);
+      setValue(0);
+
+      console.log(`bubbly water rating: ${userRating}`);
     }
   };
 

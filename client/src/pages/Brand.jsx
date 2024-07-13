@@ -8,7 +8,6 @@ import BubblyWaterListItem from "../components/BubblyWaterListItem";
 import { Link } from "react-router-dom";
 export default function Brand() {
   const { brandName } = useParams();
-  console.log(brandName);
   let sortedBubblyWaters = [];
   let { data, loading } = useQuery(QUERY_SINGLE_BRAND, {
     variables: { brandName },
