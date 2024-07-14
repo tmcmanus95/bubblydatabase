@@ -197,6 +197,26 @@ const resolvers = {
 
   Mutation: {
     addUser: async (parent, { username, email, password }) => {
+      colors = [
+        "user-teal",
+        "user-cyan",
+        "user-sky",
+        "user-blue",
+        "user-lime",
+        "user-green",
+        "user-emerald",
+        "user-yellow",
+        "user-red",
+        "user-purple",
+        "user-indigo",
+        "user-violet",
+        "user-fuchsia",
+        "user-orange",
+        "user-amber",
+        "user-pink",
+        "user-rose",
+      ];
+      const userColor = colors[Math.floor(Math.random() * colors.length)];
       try {
         const emailVerificationToken = crypto.randomBytes(20).toString("hex");
 
@@ -206,6 +226,7 @@ const resolvers = {
           password,
           emailVerificationToken: emailVerificationToken,
           isVerified: false,
+          color: userColor,
         });
 
         const verificationUrl = `${process.env.WEBSITE_URL}/verifyEmail/${emailVerificationToken}`;
