@@ -1,4 +1,5 @@
 import { useQuery } from "@apollo/client";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import UsersRatings from "../components/UsersRatings";
 import Loading from "../components/Loading";
@@ -6,15 +7,14 @@ import { QUERY_SPECIFIC_USER_RATINGS } from "../../utils/queries";
 export default function SpecificUserRatings() {
   const params = useParams();
   const { userId, rating } = params;
-  console.log(typeof rating);
-  console.log("userid, " + userId + " rating, " + rating);
-
+  const isVerified = true;
+  const [ratings, setRatings] = useState([]);
   const { loading, error, data } = useQuery(QUERY_SPECIFIC_USER_RATINGS, {
     variables: { userId: userId, rating: parseFloat(rating) },
   });
-
-  const ratings = data?.queryUserRatingsOfGivenNumber.ratings;
-  console.log("ratings", ratings);
+  useEffect(() => {
+    setRatings(data?.queryUserRatingsOfGivenNumber.ratings);
+  }, [data]);
 
   return (
     <>

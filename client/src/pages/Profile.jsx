@@ -297,20 +297,54 @@ export default function Profile() {
                   <></>
                 )}
               </div>
-              <div className="flex flex-wrap justify-center mt-2">
-                <div className="flex justify-center">
-                  <RatingsBreakdown ratings={ratings} />
+              {ratings.length > 0 && (
+                <div className="flex flex-wrap justify-center mt-2">
+                  <div className="flex justify-center">
+                    <RatingsBreakdown
+                      ratings={ratings}
+                      userId={meId ? meId : userId}
+                    />
+                  </div>
                 </div>
-              </div>
+              )}
               <div className="flex flex-wrap justify-center">
-                {ratings && (
-                  <UsersRatings
-                    ratings={ratings}
-                    userId={userId ? userId : meId}
-                    isVerified={isVerified}
-                  />
+                {ratings.length > 0 && (
+                  <div>
+                    <h3 className="m-5 flex justify-center">Recent Ratings</h3>
+
+                    <UsersRatings
+                      ratings={ratings}
+                      userId={userId ? userId : meId}
+                      isVerified={isVerified}
+                    />
+                    <Link
+                      to={
+                        meId
+                          ? `/user/${meId}/allRatings/1-${ratings.length}/${totalRatingsNumber}`
+                          : `/user/${userId}/allRatings/1-${ratings.length}/${totalRatingsNumber}`
+                      }
+                      className="flex justify-center hover:text-blue-500"
+                    >
+                      View All Ratings
+                    </Link>
+                  </div>
                 )}
-                {reviews && <UsersReviews reviews={reviews} />}
+                {reviews.length > 0 && (
+                  <div>
+                    <h3 className="m-5 flex justify-center">Recent Reviews</h3>
+                    <UsersReviews reviews={reviews} />{" "}
+                    <Link
+                      to={
+                        meId
+                          ? `/user/${meId}/allReviews/1-${reviews.length}`
+                          : `/user/${userId}/allReviews/1-${reviews.length}`
+                      }
+                      className="flex justify-center hover:text-blue-500"
+                    >
+                      View All Reviews
+                    </Link>
+                  </div>
+                )}
               </div>
             </div>
           ) : (

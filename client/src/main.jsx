@@ -41,7 +41,7 @@ const router = createBrowserRouter([
         element: <Profile />,
       },
       {
-        path: "user/:userId/allRatings/:numRange",
+        path: "user/:userId/allRatings/:numRange/:totalRatingsNumber",
         element: <AllRatings />,
       },
       {
