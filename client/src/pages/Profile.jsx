@@ -269,22 +269,23 @@ export default function Profile() {
           ) : (
             <></>
           )}
-          {ratings && reviews ? (
+          {isVerified ? (
+            <></>
+          ) : (
             <div className="flex flex-col items-center">
-              {isVerified ? (
-                <></>
-              ) : (
-                <div className="items-center flex flex-row md:mt-10 md:text-xl bg-red-400 m-2 justify-between border-2 border-red-600">
-                  <h4 className="m-2">User not verified</h4>
-                  <Link
-                    to={`/resendEmailVerification`}
-                    className="rounded-lg bg-blue-300 p-1 m-2 hover:cursor-pointer hover:bg-blue-400"
-                  >
-                    Resend Verification Link
-                  </Link>
-                </div>
-              )}
-
+              <div className="items-center flex flex-row md:mt-10 md:text-xl bg-red-400 m-2 justify-between border-2 border-red-600">
+                <h4 className="m-2">User not verified</h4>
+                <Link
+                  to={`/resendEmailVerification`}
+                  className="rounded-lg bg-blue-500 p-1 m-2 hover:cursor-pointer hover:bg-blue-400"
+                >
+                  Resend Verification Link
+                </Link>
+              </div>
+            </div>
+          )}
+          {ratings.length > 0 && reviews.length > 0 ? (
+            <div className="flex flex-col items-center">
               <div className="flex justify-center items-center mt-10 gap-10 h-full">
                 {ratings.length > 0 ? (
                   <h5>Total Ratings: {totalRatingsNumber}</h5>
@@ -317,16 +318,18 @@ export default function Profile() {
                       userId={userId ? userId : meId}
                       isVerified={isVerified}
                     />
-                    <Link
-                      to={
-                        meId
-                          ? `/user/${meId}/allRatings/1-${ratings.length}/${totalRatingsNumber}`
-                          : `/user/${userId}/allRatings/1-${ratings.length}/${totalRatingsNumber}`
-                      }
-                      className="flex justify-center hover:text-blue-500"
-                    >
-                      View All Ratings
-                    </Link>
+                    {ratings.length > 25 && (
+                      <Link
+                        to={
+                          meId
+                            ? `/user/${meId}/allRatings/1-${ratings.length}/${totalRatingsNumber}`
+                            : `/user/${userId}/allRatings/1-${ratings.length}/${totalRatingsNumber}`
+                        }
+                        className="flex justify-center hover:text-blue-500"
+                      >
+                        View All Ratings
+                      </Link>
+                    )}
                   </div>
                 )}
                 {reviews.length > 0 && (
@@ -348,7 +351,12 @@ export default function Profile() {
               </div>
             </div>
           ) : (
-            <></>
+            <div className="text-xl flex justify-center mt-10">
+              <span className="mr-2">Go forth and </span>
+              <Link to={`/`} className="text-blue-500">
+                rate!
+              </Link>
+            </div>
           )}
         </div>
       )}
