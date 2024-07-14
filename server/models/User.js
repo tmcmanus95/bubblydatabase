@@ -22,7 +22,6 @@ const userSchema = new Schema({
   },
   color: {
     type: String,
-    default: "user-red",
   },
   ratings: [
     {
