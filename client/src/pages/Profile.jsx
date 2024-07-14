@@ -284,7 +284,7 @@ export default function Profile() {
               </div>
             </div>
           )}
-          {ratings.length > 0 && reviews.length > 0 ? (
+          {ratings && reviews ? (
             <div className="flex flex-col items-center">
               <div className="flex justify-center items-center mt-10 gap-10 h-full">
                 {ratings.length > 0 ? (
@@ -318,7 +318,7 @@ export default function Profile() {
                       userId={userId ? userId : meId}
                       isVerified={isVerified}
                     />
-                    {ratings.length > 25 && (
+                    {totalRatingsNumber > 25 && (
                       <Link
                         to={
                           meId
