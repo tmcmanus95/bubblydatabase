@@ -21,11 +21,11 @@ export default function Profile() {
       variables: { userId: userId },
     }
   );
-
+  const [totalRatingsNumber, setTotalRatingsNumber] = useState(0);
   const [colorSelect, setColorSelect] = useState(false);
   const [ratings, setRatings] = useState([]);
   const [reviews, setReviews] = useState([]);
-  const [isVerified, setIsVerified] = useState(false);
+  const [isVerified, setIsVerified] = useState(true);
   const [editUserColor, { error: editUserColorError }] =
     useMutation(EDIT_USER_COLOR);
   const username = userId ? data?.user?.username : data?.me?.username;
@@ -39,11 +39,13 @@ export default function Profile() {
   useEffect(() => {
     if (data) {
       if (userId) {
-        setRatings(data?.user?.ratings);
+        setTotalRatingsNumber(data?.user?.ratings.length);
+        setRatings(data?.user?.ratings.slice(0, 25));
         setReviews(data?.user?.reviews);
         setIsVerified(true);
       } else {
-        setRatings(data?.me?.ratings);
+        setTotalRatingsNumber(data?.me?.ratings.length);
+        setRatings(data?.me?.ratings.slice(0, 25));
         setReviews(data?.me?.reviews);
         setIsVerified(data?.me?.isVerified);
       }
@@ -285,7 +287,7 @@ export default function Profile() {
 
               <div className="flex justify-center items-center mt-10 gap-10 h-full">
                 {ratings.length > 0 ? (
-                  <h5>Total Ratings: {ratings?.length}</h5>
+                  <h5>Total Ratings: {totalRatingsNumber}</h5>
                 ) : (
                   <></>
                 )}
