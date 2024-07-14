@@ -3,6 +3,7 @@ const { signToken, AuthenticationError } = require("../utils/auth");
 const { sendEmail } = require("../utils/sendEmail");
 const crypto = require("crypto");
 const bcrypt = require("bcrypt");
+const { triggerAsyncId } = require("async_hooks");
 const saltRounds = 10;
 
 const resolvers = {
@@ -190,7 +191,7 @@ const resolvers = {
         const verificationUrl = `${process.env.WEBSITE_URL}/verifyEmail/${emailVerificationToken}`;
         await sendEmail({
           to: email,
-          subject: "Email Verification",
+          subject: "Bubbles Account Email Verification",
           text: `Please verify your email by clicking the following link: ${verificationUrl}`,
         });
         const token = signToken({
@@ -255,6 +256,21 @@ const resolvers = {
         console.error("Error in forgot password:", error);
         throw new Error("Failed to process forgot password");
       }
+    },
+
+    resendEmailVerification: async (parent, { email }) => {
+      const user = await User.findOne({ email });
+      const emailVerificationToken = crypto.randomBytes(20).toString("hex");
+      if (user) {
+        user.emailVerificationToken = emailVerificationToken;
+        const verificationUrl = `${process.env.WEBSITE_URL}/verifyEmail/${emailVerificationToken}`;
+        await sendEmail({
+          to: email,
+          subject: "Bubbles. Account Email Verification",
+          text: `Please verify your email by clicking the following link: ${verificationUrl}`,
+        });
+      }
+      await user.save();
     },
 
     resetPassword: async (parent, { email, token, newPassword }) => {

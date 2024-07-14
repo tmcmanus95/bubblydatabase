@@ -34,7 +34,7 @@ const Signup = () => {
         const { data } = await addProfile({
           variables: { username, email, password },
         });
-        Auth.login(data.addUser.token); // Assuming addUser returns the token
+        Auth.login(data.addUser.token);
       } catch (e) {
         console.error(e);
       }

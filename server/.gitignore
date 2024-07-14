@@ -4,3 +4,4 @@ node_modules
 onRenderConnection.js
 editEntry.js
 deleteRating.js
+updateUsers.js

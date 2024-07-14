@@ -22,6 +22,7 @@ import AllCBD from "./pages/AllCBD.jsx";
 import VerifyEmail from "./pages/VerifyEmail.jsx";
 import ForgotPassword from "./pages/ForgotPassword.jsx";
 import ResetPassword from "./pages/ResetPassword.jsx";
+import ResendVerificationLink from "./pages/ResendVerificationLink.jsx";
 
 const router = createBrowserRouter([
   {
@@ -105,6 +106,10 @@ const router = createBrowserRouter([
       {
         path: "/forgotPassword",
         element: <ForgotPassword />,
+      },
+      {
+        path: "/resendEmailVerification",
+        element: <ResendVerificationLink />,
       },
       {
         path: "*",
