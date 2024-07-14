@@ -21,11 +21,11 @@ export default function Profile() {
       variables: { userId: userId },
     }
   );
-
+  const [totalRatingsNumber, setTotalRatingsNumber] = useState(0);
   const [colorSelect, setColorSelect] = useState(false);
   const [ratings, setRatings] = useState([]);
   const [reviews, setReviews] = useState([]);
-  const [isVerified, setIsVerified] = useState(false);
+  const [isVerified, setIsVerified] = useState(true);
   const [editUserColor, { error: editUserColorError }] =
     useMutation(EDIT_USER_COLOR);
   const username = userId ? data?.user?.username : data?.me?.username;
@@ -39,11 +39,13 @@ export default function Profile() {
   useEffect(() => {
     if (data) {
       if (userId) {
-        setRatings(data?.user?.ratings);
+        setTotalRatingsNumber(data?.user?.ratings.length);
+        setRatings(data?.user?.ratings.slice(0, 25));
         setReviews(data?.user?.reviews);
         setIsVerified(true);
       } else {
-        setRatings(data?.me?.ratings);
+        setTotalRatingsNumber(data?.me?.ratings.length);
+        setRatings(data?.me?.ratings.slice(0, 25));
         setReviews(data?.me?.reviews);
         setIsVerified(data?.me?.isVerified);
       }
@@ -267,25 +269,26 @@ export default function Profile() {
           ) : (
             <></>
           )}
-          {ratings && reviews ? (
+          {isVerified ? (
+            <></>
+          ) : (
             <div className="flex flex-col items-center">
-              {isVerified ? (
-                <></>
-              ) : (
-                <div className="items-center flex flex-row md:mt-10 md:text-xl bg-red-400 m-2 justify-between border-2 border-red-600">
-                  <h4 className="m-2">User not verified</h4>
-                  <Link
-                    to={`/resendEmailVerification`}
-                    className="rounded-lg bg-blue-300 p-1 m-2 hover:cursor-pointer hover:bg-blue-400"
-                  >
-                    Resend Verification Link
-                  </Link>
-                </div>
-              )}
-
+              <div className="items-center flex flex-row md:mt-10 md:text-xl bg-red-400 m-2 justify-between border-2 border-red-600">
+                <h4 className="m-2">User not verified</h4>
+                <Link
+                  to={`/resendEmailVerification`}
+                  className="rounded-lg bg-blue-500 p-1 m-2 hover:cursor-pointer hover:bg-blue-400"
+                >
+                  Resend Verification Link
+                </Link>
+              </div>
+            </div>
+          )}
+          {ratings.length > 0 && reviews.length > 0 ? (
+            <div className="flex flex-col items-center">
               <div className="flex justify-center items-center mt-10 gap-10 h-full">
                 {ratings.length > 0 ? (
-                  <h5>Total Ratings: {ratings?.length}</h5>
+                  <h5>Total Ratings: {totalRatingsNumber}</h5>
                 ) : (
                   <></>
                 )}
@@ -295,24 +298,65 @@ export default function Profile() {
                   <></>
                 )}
               </div>
-              <div className="flex flex-wrap justify-center mt-2">
-                <div className="flex justify-center">
-                  <RatingsBreakdown ratings={ratings} />
+              {ratings.length > 0 && (
+                <div className="flex flex-wrap justify-center mt-2">
+                  <div className="flex justify-center">
+                    <RatingsBreakdown
+                      ratings={ratings}
+                      userId={meId ? meId : userId}
+                    />
+                  </div>
                 </div>
-              </div>
+              )}
               <div className="flex flex-wrap justify-center">
-                {ratings && (
-                  <UsersRatings
-                    ratings={ratings}
-                    userId={userId ? userId : meId}
-                    isVerified={isVerified}
-                  />
+                {ratings.length > 0 && (
+                  <div>
+                    <h3 className="m-5 flex justify-center">Recent Ratings</h3>
+
+                    <UsersRatings
+                      ratings={ratings}
+                      userId={userId ? userId : meId}
+                      isVerified={isVerified}
+                    />
+                    {ratings.length > 25 && (
+                      <Link
+                        to={
+                          meId
+                            ? `/user/${meId}/allRatings/1-${ratings.length}/${totalRatingsNumber}`
+                            : `/user/${userId}/allRatings/1-${ratings.length}/${totalRatingsNumber}`
+                        }
+                        className="flex justify-center hover:text-blue-500"
+                      >
+                        View All Ratings
+                      </Link>
+                    )}
+                  </div>
                 )}
-                {reviews && <UsersReviews reviews={reviews} />}
+                {reviews.length > 0 && (
+                  <div>
+                    <h3 className="m-5 flex justify-center">Recent Reviews</h3>
+                    <UsersReviews reviews={reviews} />{" "}
+                    <Link
+                      to={
+                        meId
+                          ? `/user/${meId}/allReviews/1-${reviews.length}`
+                          : `/user/${userId}/allReviews/1-${reviews.length}`
+                      }
+                      className="flex justify-center hover:text-blue-500"
+                    >
+                      View All Reviews
+                    </Link>
+                  </div>
+                )}
               </div>
             </div>
           ) : (
-            <></>
+            <div className="text-xl flex justify-center mt-10">
+              <span className="mr-2">Go forth and </span>
+              <Link to={`/`} className="text-blue-500">
+                rate!
+              </Link>
+            </div>
           )}
         </div>
       )}

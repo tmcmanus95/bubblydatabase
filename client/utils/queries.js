@@ -299,3 +299,22 @@ export const QUERY_RATING_BY_USER = gql`
     }
   }
 `;
+
+export const QUERY_USERS_RATINGS_BY_RANGE = gql`
+  query UsersRatings($userId: ID!, $numRange: String!) {
+    usersRatings(userId: $userId, numRange: $numRange) {
+      _id
+      ratings {
+        _id
+        rating
+        bubblyWater {
+          _id
+          productName
+          brandName
+          imageURL
+          flavor
+        }
+      }
+    }
+  }
+`;

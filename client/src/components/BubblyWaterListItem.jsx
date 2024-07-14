@@ -85,7 +85,26 @@ export default function BubblyWaterListItem({
                 <span>({ratingCount})</span>
               </h5>
               <div>
-                {Auth.loggedIn() ? <span>Your Rating: </span> : <></>}
+                {Auth.loggedIn() && !isVerified ? (
+                  <div>
+                    Please{" "}
+                    <Link
+                      className="text-blue-500"
+                      to={`/resendEmailVerification`}
+                    >
+                      verify email
+                    </Link>{" "}
+                    to rate
+                  </div>
+                ) : (
+                  <></>
+                )}
+
+                {Auth.loggedIn() && isVerified ? (
+                  <span>Your Rating: </span>
+                ) : (
+                  <></>
+                )}
                 <CustomColorRating
                   flavor={capitalizedFlavors[0]}
                   rating={bubblyWater.averageRating}

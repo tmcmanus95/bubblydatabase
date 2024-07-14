@@ -199,6 +199,21 @@ export default function BubblyWaterPage() {
                       Average Rating: {bubblyWater.averageRating.toFixed(2)}{" "}
                       <span className="text-gray-500">({ratingsCount})</span>
                     </h3>
+                    {Auth.loggedIn() && !isVerified ? (
+                      <div>
+                        Please{" "}
+                        <Link
+                          className="text-blue-500"
+                          to={`/resendEmailVerification`}
+                        >
+                          verify email
+                        </Link>{" "}
+                        to rate
+                      </div>
+                    ) : (
+                      <></>
+                    )}
+
                     {Auth.loggedIn() ? (
                       <CustomColorRating
                         value={previouslyRated ? userRating : value}

@@ -119,11 +119,6 @@ export default function CustomColorRating({
 
   return (
     <div className="flex flex-col items-center">
-      {Auth.loggedIn() && !isVerified ? (
-        <div>Please verify email to rate</div>
-      ) : (
-        <></>
-      )}
       {Auth.loggedIn() &&
       location.pathname !== `/user/${userId}` &&
       location.pathname !== "/me" &&
