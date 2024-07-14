@@ -23,6 +23,8 @@ import VerifyEmail from "./pages/VerifyEmail.jsx";
 import ForgotPassword from "./pages/ForgotPassword.jsx";
 import ResetPassword from "./pages/ResetPassword.jsx";
 import ResendVerificationLink from "./pages/ResendVerificationLink.jsx";
+import AllRatings from "./pages/AllRatings.jsx";
+import AllReviews from "./pages/AllReviews.jsx";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +39,10 @@ const router = createBrowserRouter([
       {
         path: "/user/:userId",
         element: <Profile />,
+      },
+      {
+        path: "user/:userId/allRatings/:numRange",
+        element: <AllRatings />,
       },
       {
         path: "/user/:userId/ratings/:rating",
