@@ -49,8 +49,8 @@ export default function UsersReviews({ reviews, isVerified }) {
                     )}
                   </div>
                 </div>
-                <div className="mt-4">
-                  <p className=" ml-2 text-left overflow-hidden overflow-ellipsis mb-2">
+                <div className="pt-2 p-1 bg-white dark:bg-blue-950 ">
+                  <p className=" ml-2 text-left overflow-hidden overflow-ellipsis mb-2 ">
                     {review.reviewText}
                   </p>
                 </div>
