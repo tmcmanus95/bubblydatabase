@@ -260,10 +260,25 @@ export default function BubblyWaterPage() {
                       name="reviewText"
                       className="w-full p-4 border rounded-md focus:outline-none focus:ring focus:border-blue-500 text-black"
                       placeholder="Write your review here..."
+                      readOnly={isVerified ? false : true}
                       rows="4"
                       value={reviewText}
                       onChange={(e) => setReviewText(e.target.value)}
                     ></textarea>
+                    {Auth.loggedIn() && !isVerified ? (
+                      <div>
+                        Please{" "}
+                        <Link
+                          className="text-blue-500"
+                          to={`/resendEmailVerification`}
+                        >
+                          verify email
+                        </Link>{" "}
+                        to review
+                      </div>
+                    ) : (
+                      <></>
+                    )}
                     {Auth.loggedIn() ? (
                       <button
                         type="submit"

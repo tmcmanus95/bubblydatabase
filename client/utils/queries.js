@@ -318,3 +318,23 @@ export const QUERY_USERS_RATINGS_BY_RANGE = gql`
     }
   }
 `;
+
+export const QUERY_USERS_REVIEWS_BY_RANGE = gql`
+  query Query($userId: ID!, $numRange: String!) {
+    usersReviews(userId: $userId, numRange: $numRange) {
+      _id
+      username
+      reviews {
+        _id
+        reviewText
+        bubblyWater {
+          _id
+          productName
+          brandName
+          imageURL
+          flavor
+        }
+      }
+    }
+  }
+`;
