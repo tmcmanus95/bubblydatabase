@@ -22,6 +22,8 @@ export default function Profile() {
     }
   );
   const [totalRatingsNumber, setTotalRatingsNumber] = useState(0);
+  const [totalReviewsNumber, setTotalReviewsNumber] = useState(0);
+
   const [colorSelect, setColorSelect] = useState(false);
   const [ratings, setRatings] = useState([]);
   const [reviews, setReviews] = useState([]);
@@ -40,13 +42,17 @@ export default function Profile() {
     if (data) {
       if (userId) {
         setTotalRatingsNumber(data?.user?.ratings.length);
+        setTotalReviewsNumber(data?.user?.reviews.length);
+
         setRatings(data?.user?.ratings.slice(0, 25));
-        setReviews(data?.user?.reviews);
+        setReviews(data?.user?.reviews.slice(0, 10));
         setIsVerified(true);
       } else {
         setTotalRatingsNumber(data?.me?.ratings.length);
+        setTotalReviewsNumber(data?.me?.reviews.length);
+
         setRatings(data?.me?.ratings.slice(0, 25));
-        setReviews(data?.me?.reviews);
+        setReviews(data?.me?.reviews.slice(0, 10));
         setIsVerified(data?.me?.isVerified);
       }
     }
@@ -293,7 +299,7 @@ export default function Profile() {
                   <></>
                 )}
                 {reviews.length > 0 ? (
-                  <h5>Total Reviews: {reviews?.length}</h5>
+                  <h5>Total Reviews: {totalReviewsNumber}</h5>
                 ) : (
                   <></>
                 )}
@@ -336,16 +342,18 @@ export default function Profile() {
                   <div>
                     <h3 className="m-5 flex justify-center">Recent Reviews</h3>
                     <UsersReviews reviews={reviews} />{" "}
-                    <Link
-                      to={
-                        meId
-                          ? `/user/${meId}/allReviews/1-${reviews.length}`
-                          : `/user/${userId}/allReviews/1-${reviews.length}`
-                      }
-                      className="flex justify-center hover:text-blue-500"
-                    >
-                      View All Reviews
-                    </Link>
+                    {totalReviewsNumber > 25 && (
+                      <Link
+                        to={
+                          meId
+                            ? `/user/${meId}/allReviews/1-${reviews.length}/${totalReviewsNumber}`
+                            : `/user/${userId}/allReviews/1-${reviews.length}/${totalReviewsNumber}`
+                        }
+                        className="flex justify-center hover:text-blue-500"
+                      >
+                        View All Reviews
+                      </Link>
+                    )}
                   </div>
                 )}
               </div>

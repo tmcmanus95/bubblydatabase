@@ -3,7 +3,7 @@ import { formatBrands } from "../../utils/formatBrands";
 import { Rating } from "@mui/material";
 import { capitalizeSingleFlavor } from "../../utils/capitalizeSingleFlavor";
 import CustomColorRating from "./CustomColorRating";
-export default function UsersReviews({ reviews }) {
+export default function UsersReviews({ reviews, isVerified }) {
   return (
     <>
       <section>

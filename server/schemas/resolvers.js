@@ -55,6 +55,26 @@ const resolvers = {
 
       return user;
     },
+    usersReviews: async (parent, { userId, numRange }) => {
+      const [start, end] = numRange.split("-").map(Number);
+      const limit = end - start + 1;
+      const skip = start - 1;
+
+      const user = await User.findOne({ _id: userId }).populate({
+        path: "reviews",
+        options: { sort: { createdAt: -1 }, skip, limit },
+        populate: {
+          path: "bubblyWater",
+          model: "BubblyWater",
+        },
+      });
+
+      if (!user) {
+        throw new Error("User not found");
+      }
+
+      return user;
+    },
     simpleRatings: async (parent, { userId }) => {
       return User.findOne({ _id: userId });
     },

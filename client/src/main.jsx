@@ -45,6 +45,10 @@ const router = createBrowserRouter([
         element: <AllRatings />,
       },
       {
+        path: "user/:userId/allReviews/:numRange/:totalReviewsNumber",
+        element: <AllReviews />,
+      },
+      {
         path: "/user/:userId/ratings/:rating",
         element: <SpecificUserRatings />,
       },
