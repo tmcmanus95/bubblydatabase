@@ -314,9 +314,9 @@ export default function Profile() {
                   </div>
                 </div>
               )}
-              <div className="flex flex-wrap justify-center">
+              <div className="flex flex-wrap justify-center mt-5">
                 {ratings.length > 0 && (
-                  <div>
+                  <div className="dark:bg-slate-900 bg-blue-100 ">
                     <h3 className="m-5 flex justify-center">Recent Ratings</h3>
 
                     <UsersRatings
@@ -331,18 +331,18 @@ export default function Profile() {
                             ? `/user/${meId}/allRatings/1-${ratings.length}/${totalRatingsNumber}`
                             : `/user/${userId}/allRatings/1-${ratings.length}/${totalRatingsNumber}`
                         }
-                        className="flex justify-center hover:text-blue-500"
+                        className="flex justify-center hover:text-blue-500 mb-5"
                       >
                         View All Ratings
                       </Link>
                     )}
                   </div>
-                )}
+                )}{" "}
                 {reviews.length > 0 && (
-                  <div>
+                  <div className="dark:bg-slate-900 bg-blue-100 mt-5 md:mt-0 md:m-2">
                     <h3 className="m-5 flex justify-center">Recent Reviews</h3>
                     <UsersReviews reviews={reviews} />{" "}
-                    {totalReviewsNumber > 25 && (
+                    {totalReviewsNumber > 10 && (
                       <Link
                         to={
                           meId
