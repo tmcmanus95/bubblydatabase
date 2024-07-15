@@ -511,7 +511,6 @@
     "isCaffeinated": false,
     "hasCBD": false
   },
-
   {
     "productName": "Half Tea, Half Lemon",
     "brandName": "spindrift",
@@ -696,7 +695,6 @@
     "isCaffeinated": false,
     "hasCBD": false
   },
-
   {
     "productName": "Mineral Water",
     "brandName": "topo-chico",
@@ -1129,7 +1127,6 @@
     "isCaffeinated": false,
     "hasCBD": false
   },
-
   {
     "productName": "Blackberry Chai",
     "brandName": "recess",
@@ -1234,7 +1231,6 @@
     "isCaffeinated": false,
     "hasCBD": false
   },
-
   {
     "productName": "Mango",
     "brandName": "sanzo",
@@ -1275,7 +1271,6 @@
     "isCaffeinated": false,
     "hasCBD": false
   },
-
   {
     "productName": "Indonesian Lemongrass",
     "brandName": "icelandic-glacial",
@@ -1820,7 +1815,6 @@
     "isCaffeinated": false,
     "hasCBD": false
   },
-
   {
     "productName": "Sparkling Lemon Flavor",
     "brandName": "ice-mountain",
@@ -2269,7 +2263,6 @@
     "isCaffeinated": true,
     "hasCBD": false
   },
-
   {
     "productName": "Mexican Lime",
     "brandName": "ardor",
@@ -3035,6 +3028,14 @@
     "brandName": "waterloo",
     "imageURL": "https://www.drinkwaterloo.com/wp-content/uploads/2024/04/2403_WebsiteHeroTop_SummerLTO_AllDayRose_1300x888_v2B.png",
     "flavor": ["rosé"],
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Strawberry Sunset",
+    "brandName": "bubly",
+    "imageURL": "https://liquiddeath.com/cdn/shop/files/LiquidDeath_Website_PDP_CherryObituary_GREY_CanFront.webp?v=1706054904&width=1200",
+    "flavor": ["strawberry", "kiwi", "pineapple"],
     "isCaffeinated": false,
     "hasCBD": false
   }

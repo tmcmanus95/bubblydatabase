@@ -1,41 +1,9 @@
 [
   {
-    "productName": "Cherry Obituary",
-    "brandName": "liquid-death",
+    "productName": "Strawberry Sunset",
+    "brandName": "bubly",
     "imageURL": "https://liquiddeath.com/cdn/shop/files/LiquidDeath_Website_PDP_CherryObituary_GREY_CanFront.webp?v=1706054904&width=1200",
-    "flavor": ["cherry"],
-    "isCaffeinated": false,
-    "hasCBD": false
-  },
-  {
-    "productName": "Squeezed To Death",
-    "brandName": "liquid-death",
-    "imageURL": "https://liquiddeath.com/cdn/shop/files/LiquidDeath_Website_PDP_SqueezedtoDeath_GREY_CanFront.webp?v=1706054762&width=1200",
-    "flavor": ["agave"],
-    "isCaffeinated": false,
-    "hasCBD": false
-  },
-  {
-    "productName": "Pi-Ño Colada",
-    "brandName": "waterloo",
-    "imageURL": "https://www.drinkwaterloo.com/wp-content/uploads/2024/04/2403_WebsiteHeroTop_SummerLTO_PiNoColada_1300x888_v2.png",
-    "flavor": ["coconut", "pinapple"],
-    "isCaffeinated": false,
-    "hasCBD": false
-  },
-  {
-    "productName": "Mojito Mocktail",
-    "brandName": "waterloo",
-    "imageURL": "https://www.drinkwaterloo.com/wp-content/uploads/2024/04/2403_WebsiteHeroTop_SummerLTO_MojitoMocktail_1300x888_v1.png",
-    "flavor": ["mojito", "lime", "mint"],
-    "isCaffeinated": false,
-    "hasCBD": false
-  },
-  {
-    "productName": "All Day Rosé",
-    "brandName": "waterloo",
-    "imageURL": "https://www.drinkwaterloo.com/wp-content/uploads/2024/04/2403_WebsiteHeroTop_SummerLTO_AllDayRose_1300x888_v2B.png",
-    "flavor": ["rosé"],
+    "flavor": ["strawberry", "kiwi", "pineapple"],
     "isCaffeinated": false,
     "hasCBD": false
   }
