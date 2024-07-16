@@ -349,7 +349,7 @@ export default function Profile() {
                             ? `/user/${meId}/allReviews/1-${reviews.length}/${totalReviewsNumber}`
                             : `/user/${userId}/allReviews/1-${reviews.length}/${totalReviewsNumber}`
                         }
-                        className="flex justify-center hover:text-blue-500"
+                        className="flex justify-center hover:text-blue-500 mb-5"
                       >
                         View All Reviews
                       </Link>
