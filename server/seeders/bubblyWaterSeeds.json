@@ -3,16 +3,25 @@
     "productName": "Lime",
     "brandName": "la-croix",
     "imageURL": "https://www.lacroixwater.com/wp-content/uploads/2019/01/LIME-1.png",
-    "flavor": ["lime"],
+    "flavor": [
+      "lime"
+    ],
     "isCaffeinated": false,
     "hasCBD": false,
-    "tags": ["lime", "la croix", "lime la croix", "lime lacroix"]
+    "tags": [
+      "lime",
+      "la croix",
+      "lime la croix",
+      "lime lacroix"
+    ]
   },
   {
     "productName": "Pure",
     "brandName": "la-croix",
     "imageURL": "https://www.lacroixwater.com/wp-content/uploads/2019/01/PURE-2-2022.png",
-    "flavor": ["plain"],
+    "flavor": [
+      "plain"
+    ],
     "isCaffeinated": false,
     "hasCBD": false,
     "tags": [
@@ -27,7 +36,9 @@
     "productName": "Lemon",
     "brandName": "la-croix",
     "imageURL": "https://www.lacroixwater.com/wp-content/uploads/2019/01/LEMON-2.png",
-    "flavor": ["lemon"],
+    "flavor": [
+      "lemon"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -35,7 +46,9 @@
     "productName": "Berry",
     "brandName": "la-croix",
     "imageURL": "https://www.lacroixwater.com/wp-content/uploads/2019/01/BERRY-1.png",
-    "flavor": ["berry"],
+    "flavor": [
+      "berry"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -43,7 +56,10 @@
     "productName": "Razz-Cranberry",
     "brandName": "la-croix",
     "imageURL": "https://www.lacroixwater.com/wp-content/uploads/2019/01/RAZZ-CRANBERRY.png",
-    "flavor": ["raspberry", "cranberry"],
+    "flavor": [
+      "raspberry",
+      "cranberry"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -51,7 +67,9 @@
     "productName": "Orange",
     "brandName": "la-croix",
     "imageURL": "https://www.lacroixwater.com/wp-content/uploads/2019/01/ORANGE.png",
-    "flavor": ["orange"],
+    "flavor": [
+      "orange"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -59,7 +77,10 @@
     "productName": "Peach-Pear",
     "brandName": "la-croix",
     "imageURL": "https://www.lacroixwater.com/wp-content/uploads/2019/01/PEACH-PEAR.png",
-    "flavor": ["peach", "pear"],
+    "flavor": [
+      "peach",
+      "pear"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -67,7 +88,9 @@
     "productName": "Pamplemousse",
     "brandName": "la-croix",
     "imageURL": "https://www.lacroixwater.com/wp-content/uploads/2019/01/PAMPLEMOUSSE-1.png",
-    "flavor": ["grapefruit"],
+    "flavor": [
+      "grapefruit"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -75,7 +98,9 @@
     "productName": "Coconut",
     "brandName": "la-croix",
     "imageURL": "https://www.lacroixwater.com/wp-content/uploads/2019/01/COCONUT.png",
-    "flavor": ["coconut"],
+    "flavor": [
+      "coconut"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -83,7 +108,9 @@
     "productName": "Passionfruit",
     "brandName": "la-croix",
     "imageURL": "https://www.lacroixwater.com/wp-content/uploads/2019/01/PASSIONFRUIT.png",
-    "flavor": ["passionfruit"],
+    "flavor": [
+      "passionfruit"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -91,7 +118,9 @@
     "productName": "Mango",
     "brandName": "la-croix",
     "imageURL": "https://www.lacroixwater.com/wp-content/uploads/2019/01/MANGO.png",
-    "flavor": ["mango"],
+    "flavor": [
+      "mango"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -99,7 +128,9 @@
     "productName": "Apricot",
     "brandName": "la-croix",
     "imageURL": "https://www.lacroixwater.com/wp-content/uploads/2019/01/APRICOT-3.png",
-    "flavor": ["apricot"],
+    "flavor": [
+      "apricot"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -107,7 +138,9 @@
     "productName": "Tangerine",
     "brandName": "la-croix",
     "imageURL": "https://www.lacroixwater.com/wp-content/uploads/2021/03/IMG-Tangerine-821.png",
-    "flavor": ["tangerine"],
+    "flavor": [
+      "tangerine"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -115,7 +148,9 @@
     "productName": "Key Lime",
     "brandName": "la-croix",
     "imageURL": "https://www.lacroixwater.com/wp-content/uploads/2021/03/IMG-Keylime-821.png",
-    "flavor": ["key-lime"],
+    "flavor": [
+      "key-lime"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -123,7 +158,9 @@
     "productName": "Hi-Biscus",
     "brandName": "la-croix",
     "imageURL": "https://www.lacroixwater.com/wp-content/uploads/2021/03/IMG-Hi-Biscus-821.png",
-    "flavor": ["hibiscus"],
+    "flavor": [
+      "hibiscus"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -131,7 +168,9 @@
     "productName": "Pastèque",
     "brandName": "la-croix",
     "imageURL": "https://www.lacroixwater.com/wp-content/uploads/2020/01/PASTEQUE.png",
-    "flavor": ["watermelon"],
+    "flavor": [
+      "watermelon"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -139,7 +178,10 @@
     "productName": "Limon Cello",
     "brandName": "la-croix",
     "imageURL": "https://www.lacroixwater.com/wp-content/uploads/2020/01/LIMONCELLO.png",
-    "flavor": ["limoncello", "lemon"],
+    "flavor": [
+      "limoncello",
+      "lemon"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -147,7 +189,9 @@
     "productName": "Black Razzberry",
     "brandName": "la-croix",
     "imageURL": "https://www.lacroixwater.com/wp-content/uploads/2021/03/18_LAC_12oz-Can_Black-Razzberry.png",
-    "flavor": ["raspberry"],
+    "flavor": [
+      "raspberry"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -155,7 +199,9 @@
     "productName": "Guava São Paulo",
     "brandName": "la-croix",
     "imageURL": "https://www.lacroixwater.com/wp-content/uploads/2021/03/19_LAC_12oz-Can_Guava-Sao-Paulo.png",
-    "flavor": ["guava"],
+    "flavor": [
+      "guava"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -163,7 +209,11 @@
     "productName": "Mojito",
     "brandName": "la-croix",
     "imageURL": "https://www.lacroixwater.com/wp-content/uploads/2023/09/Mojito-can.png",
-    "flavor": ["mojito", "lime", "mint"],
+    "flavor": [
+      "mojito",
+      "lime",
+      "mint"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -171,7 +221,9 @@
     "productName": "Cherry Blosson",
     "brandName": "la-croix",
     "imageURL": "https://www.lacroixwater.com/wp-content/uploads/2022/02/21_LAC_PSD_Mock-Can_Cherry-Blossom.png",
-    "flavor": ["cherry"],
+    "flavor": [
+      "cherry"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -179,7 +231,9 @@
     "productName": "Beach Plum",
     "brandName": "la-croix",
     "imageURL": "https://www.lacroixwater.com/wp-content/uploads/2021/03/IMG-Beach-Plum-821.png",
-    "flavor": ["plum"],
+    "flavor": [
+      "plum"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -187,7 +241,10 @@
     "productName": "Cúrate - Muré Pepino",
     "brandName": "la-croix",
     "imageURL": "https://i5.walmartimages.com/seo/La-Croix-Sparkling-Water-Mure-Pepino-Blackberry-Cucumber-Pack-of-6_6b2dcda1-b1d2-41d0-8225-ad9948c31ffc.2695b10e074ca07b234ef4b08e770b03.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF",
-    "flavor": ["cucumber", "blackberry"],
+    "flavor": [
+      "cucumber",
+      "blackberry"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -195,7 +252,10 @@
     "productName": "Cúrate - Kiwi Sandia",
     "brandName": "la-croix",
     "imageURL": "https://s2.r29static.com/bin/entry/d8f/x,80/2002732/image.jpg",
-    "flavor": ["kiwi", "watermelon"],
+    "flavor": [
+      "kiwi",
+      "watermelon"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -203,7 +263,10 @@
     "productName": "Cúrate - Cerise Limón",
     "brandName": "la-croix",
     "imageURL": "https://www.lacroixwater.com/wp-content/uploads/2019/01/CERISE-LIMON-1.png",
-    "flavor": ["cherry", "lime"],
+    "flavor": [
+      "cherry",
+      "lime"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -211,7 +274,10 @@
     "productName": "Cúrate - Piña Fraise",
     "brandName": "la-croix",
     "imageURL": "https://www.lacroixwater.com/wp-content/uploads/2019/01/PINA-FRAISE.png",
-    "flavor": ["pineapple", "strawberry"],
+    "flavor": [
+      "pineapple",
+      "strawberry"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -219,7 +285,9 @@
     "productName": "NiCola",
     "brandName": "la-croix",
     "imageURL": "https://www.lacroixwater.com/wp-content/uploads/2019/01/LaCOLA-1.png",
-    "flavor": ["cola"],
+    "flavor": [
+      "cola"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -227,7 +295,10 @@
     "productName": "Cúrate - Pomme Bayá",
     "brandName": "la-croix",
     "imageURL": "https://ip.prod.freshop.retail.ncrcloud.com/resize?url=https://images.freshop.ncrcloud.com/00073360771019/d0db00fd9529454df1faccae50c8bcbe_large.png&width=512&type=webp&quality=90",
-    "flavor": ["apple", "berry"],
+    "flavor": [
+      "apple",
+      "berry"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -235,7 +306,9 @@
     "productName": "Blackberry",
     "brandName": "bubly",
     "imageURL": "https://m.media-amazon.com/images/I/71KpHo3XlWL.jpg",
-    "flavor": ["blackberry"],
+    "flavor": [
+      "blackberry"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -243,7 +316,10 @@
     "productName": "Coconut Pineapple",
     "brandName": "bubly",
     "imageURL": "https://m.media-amazon.com/images/I/71dbrdQMjVL.jpg",
-    "flavor": ["coconut", "pineapple"],
+    "flavor": [
+      "coconut",
+      "pineapple"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -251,7 +327,9 @@
     "productName": "Lime",
     "brandName": "bubly",
     "imageURL": "https://m.media-amazon.com/images/I/71z7NbAd7vL.jpg",
-    "flavor": ["lime"],
+    "flavor": [
+      "lime"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -259,7 +337,9 @@
     "productName": "Grapefruit",
     "brandName": "bubly",
     "imageURL": "https://m.media-amazon.com/images/I/71hDgkqoY+L.jpg",
-    "flavor": ["grapefruit"],
+    "flavor": [
+      "grapefruit"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -267,7 +347,10 @@
     "productName": "Blood Orange Grapefruit",
     "brandName": "bubly",
     "imageURL": "https://m.media-amazon.com/images/I/61KllZcbbsL._AC_UF894,1000_QL80_.jpg",
-    "flavor": ["blood-orange", "grapefruit"],
+    "flavor": [
+      "blood-orange",
+      "grapefruit"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -275,7 +358,9 @@
     "productName": "Mango",
     "brandName": "bubly",
     "imageURL": "https://m.media-amazon.com/images/I/71JmZeixHHL.jpg",
-    "flavor": ["mango"],
+    "flavor": [
+      "mango"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -283,7 +368,9 @@
     "productName": "Peach",
     "brandName": "bubly",
     "imageURL": "https://m.media-amazon.com/images/I/71ahwXq7+VL.jpg",
-    "flavor": ["peach"],
+    "flavor": [
+      "peach"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -291,7 +378,9 @@
     "productName": "Raspberry",
     "brandName": "bubly",
     "imageURL": "https://m.media-amazon.com/images/I/71OofcOm1-L.jpg",
-    "flavor": ["raspberry"],
+    "flavor": [
+      "raspberry"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -299,7 +388,10 @@
     "productName": "Orange Cream",
     "brandName": "bubly",
     "imageURL": "https://www.kroger.com/product/images/large/left/0001200022102",
-    "flavor": ["orange", "orange-cream"],
+    "flavor": [
+      "orange",
+      "orange-cream"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -307,7 +399,9 @@
     "productName": "Cherry",
     "brandName": "bubly",
     "imageURL": "https://m.media-amazon.com/images/I/71VOdjB9uyL.jpg",
-    "flavor": ["cherry"],
+    "flavor": [
+      "cherry"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -315,7 +409,9 @@
     "productName": "Just",
     "brandName": "bubly",
     "imageURL": "https://www.kroger.com/product/images/large/right/0001200018116",
-    "flavor": ["plain"],
+    "flavor": [
+      "plain"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -323,7 +419,9 @@
     "productName": "Pineapple",
     "brandName": "bubly",
     "imageURL": "https://m.media-amazon.com/images/I/71ppiBeqCzL.jpg",
-    "flavor": ["pineapple"],
+    "flavor": [
+      "pineapple"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -331,7 +429,10 @@
     "productName": "Blueberry Pomegranate",
     "brandName": "bubly",
     "imageURL": "https://m.media-amazon.com/images/I/717B0-FzuHL.jpg",
-    "flavor": ["blueberry", "pomegranate"],
+    "flavor": [
+      "blueberry",
+      "pomegranate"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -339,7 +440,9 @@
     "productName": "Strawberry",
     "brandName": "bubly",
     "imageURL": "https://m.media-amazon.com/images/I/715jj1aRW0L.jpg",
-    "flavor": ["strawberry"],
+    "flavor": [
+      "strawberry"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -347,7 +450,10 @@
     "productName": "Lemon Sorbet",
     "brandName": "bubly",
     "imageURL": "https://www.kroger.com/product/images/large/right/0001200022100",
-    "flavor": ["lemon", "lemon-sorbet"],
+    "flavor": [
+      "lemon",
+      "lemon-sorbet"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -355,7 +461,10 @@
     "productName": "Mango Passionfruit",
     "brandName": "bubly",
     "imageURL": "https://www.pepsicoproductfacts.com/content/image/products/bubly_Bounce_ManPass_12.png?r=20240131",
-    "flavor": ["mango", "passionfruit"],
+    "flavor": [
+      "mango",
+      "passionfruit"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -363,7 +472,9 @@
     "productName": "Triple Berry",
     "brandName": "bubly",
     "imageURL": "https://m.media-amazon.com/images/I/61fWEm1xhFL.jpg",
-    "flavor": ["berry"],
+    "flavor": [
+      "berry"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -371,7 +482,10 @@
     "productName": "White Peach Ginger",
     "brandName": "bubly",
     "imageURL": "https://m.media-amazon.com/images/I/71xOyfjL32L.jpg",
-    "flavor": ["peach", "ginger"],
+    "flavor": [
+      "peach",
+      "ginger"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -379,7 +493,9 @@
     "productName": "Watermelon",
     "brandName": "bubly",
     "imageURL": "https://m.media-amazon.com/images/I/71baLcYAMQL._AC_UF894,1000_QL80_.jpg",
-    "flavor": ["watermelon"],
+    "flavor": [
+      "watermelon"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -387,7 +503,10 @@
     "productName": "Citrus Cherry",
     "brandName": "bubly",
     "imageURL": "https://cdn11.bigcommerce.com/s-qz13ep5fb4/images/stencil/1280x1280/products/176444/254256/2080825__77664.1703075605.jpg?c=1",
-    "flavor": ["citrus", "cherry"],
+    "flavor": [
+      "citrus",
+      "cherry"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -395,7 +514,9 @@
     "productName": "Passionfruit",
     "brandName": "bubly",
     "imageURL": "https://www.kroger.com/product/images/large/right/0001200020324",
-    "flavor": ["passionfruit"],
+    "flavor": [
+      "passionfruit"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -403,7 +524,10 @@
     "productName": "burst - watermelon lime",
     "brandName": "bubly",
     "imageURL": "https://www.pepsicoproductfacts.com/content/image/products/4606a4bc76a66c20_00012000230639_C1N1.png?r=20240408",
-    "flavor": ["watermelon", "lime"],
+    "flavor": [
+      "watermelon",
+      "lime"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -411,7 +535,11 @@
     "productName": "burst - cherry lemonade",
     "brandName": "bubly",
     "imageURL": "https://www.pepsicoproductfacts.com/content/image/products/58d935f685f81325_00012000230592_C1N1.png?r=20240408",
-    "flavor": ["cherry", "lemonade", "lemon"],
+    "flavor": [
+      "cherry",
+      "lemonade",
+      "lemon"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -419,7 +547,10 @@
     "productName": "burst - pineapple tangerine",
     "brandName": "bubly",
     "imageURL": "https://www.pepsicoproductfacts.com/content/image/products/60c7d350915dc32d_00012000230691_C1N1.png?r=20240408",
-    "flavor": ["pineapple", "tangerine"],
+    "flavor": [
+      "pineapple",
+      "tangerine"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -427,7 +558,10 @@
     "productName": "burst - peach mango",
     "brandName": "bubly",
     "imageURL": "https://www.pepsicoproductfacts.com/content/image/products/5b37db1d30514364_00012000230615_C1N1.png?r=20240408",
-    "flavor": ["peach", "mango"],
+    "flavor": [
+      "peach",
+      "mango"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -435,7 +569,10 @@
     "productName": "burst - tropical punch",
     "brandName": "bubly",
     "imageURL": "https://www.pepsicoproductfacts.com/content/image/products/4407d43e1d3e8e4a_00012000230677_C1N1.png?r=20240408",
-    "flavor": ["fruit-punch", "peach"],
+    "flavor": [
+      "fruit-punch",
+      "peach"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -443,7 +580,9 @@
     "productName": "burst - triple berry",
     "brandName": "bubly",
     "imageURL": "https://www.pepsicoproductfacts.com/content/image/products/797ae41bdfc60947_00012000230653_C1N1.png?r=20240408",
-    "flavor": ["berry"],
+    "flavor": [
+      "berry"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -451,7 +590,10 @@
     "productName": "Pineapple Passionfruit",
     "brandName": "aha",
     "imageURL": "https://www.coca-cola.com/content/dam/onexp/us/en/brands/aha/AHA-Desktop-PineapplePassionfruit-750x750.png/width2674.png",
-    "flavor": ["pineapple", "passionfruit"],
+    "flavor": [
+      "pineapple",
+      "passionfruit"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -459,7 +601,10 @@
     "productName": "Blueberry Pomegranate",
     "brandName": "aha",
     "imageURL": "https://www.coca-cola.com/content/dam/onexp/us/en/brands/aha/AHA-Desktop-BlueberryPomegranate-750x750.png/width2674.png",
-    "flavor": ["blueberry", "pomegranate"],
+    "flavor": [
+      "blueberry",
+      "pomegranate"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -467,7 +612,10 @@
     "productName": "Orange Grapefruit",
     "brandName": "aha",
     "imageURL": "https://www.coca-cola.com/content/dam/onexp/us/en/brands/aha/AHA-Desktop-OrangeGrapefruit-750x750.png/width2674.png",
-    "flavor": ["orange", "grapefruit"],
+    "flavor": [
+      "orange",
+      "grapefruit"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -475,7 +623,10 @@
     "productName": "Peach Honey",
     "brandName": "aha",
     "imageURL": "https://www.coca-cola.com/content/dam/onexp/us/en/brands/aha/AHA-Desktop-PeachHoney-750x750.png/width2674.png",
-    "flavor": ["peach", "honey"],
+    "flavor": [
+      "peach",
+      "honey"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -483,7 +634,10 @@
     "productName": "Lime Watermelon",
     "brandName": "aha",
     "imageURL": "https://www.coca-cola.com/content/dam/onexp/us/en/brands/aha/AHA-Desktop-LimeWatermelon-750x750.png/width2674.png",
-    "flavor": ["lime", "watermelon"],
+    "flavor": [
+      "lime",
+      "watermelon"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -491,7 +645,10 @@
     "productName": "Blackberry Lemon",
     "brandName": "aha",
     "imageURL": "https://www.coca-cola.com/content/dam/onexp/us/en/brands/aha/AHA-Desktop-BlackberryLemon-750x750.png/width2674.png",
-    "flavor": ["blackberry", "lemon"],
+    "flavor": [
+      "blackberry",
+      "lemon"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -499,7 +656,10 @@
     "productName": "Mango Orange",
     "brandName": "spindrift",
     "imageURL": "https://drinkspindrift.com/cdn/shop/files/spindrift-can-hero-mango-orange-flatlay.png?v=1673563404&width=600",
-    "flavor": ["mango", "orange"],
+    "flavor": [
+      "mango",
+      "orange"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -507,7 +667,10 @@
     "productName": "Blood Orange Tangerine",
     "brandName": "spindrift",
     "imageURL": "https://www.bakedbyyael.com/cdn/shop/products/spindrift-can-hero-mango-black-tea_1800x1800.webp?v=1690226663",
-    "flavor": ["blood-orange", "tangerine"],
+    "flavor": [
+      "blood-orange",
+      "tangerine"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -515,7 +678,10 @@
     "productName": "Half Tea, Half Lemon",
     "brandName": "spindrift",
     "imageURL": "https://m.media-amazon.com/images/S/aplus-media/vc/fbf24638-bdb9-487d-94d9-af33a7f0f149._CR125,0,750,1000_PT0_SX300__.jpg",
-    "flavor": ["tea", "lemon"],
+    "flavor": [
+      "tea",
+      "lemon"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -523,7 +689,9 @@
     "productName": "Grapefruit",
     "brandName": "spindrift",
     "imageURL": "https://m.media-amazon.com/images/S/aplus-media/vc/ff4f8b4b-f5bb-4fa7-ad1a-9270ea9e2dca.__CR125,0,750,1000_PT0_SX300_V1___.jpg",
-    "flavor": ["grapefruit"],
+    "flavor": [
+      "grapefruit"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -531,7 +699,10 @@
     "productName": "Raspberry Lime",
     "brandName": "spindrift",
     "imageURL": "https://static1.squarespace.com/static/53ef7f3be4b0880c7d4fbb28/60e7574bc180560ae2cb71f1/60e75752c62e7b76a4274913/1625773906426/?format=1500w",
-    "flavor": ["raspberry", "lime"],
+    "flavor": [
+      "raspberry",
+      "lime"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -539,7 +710,10 @@
     "productName": "Peach Strawberry",
     "brandName": "spindrift",
     "imageURL": "https://drinkspindrift.com/cdn/shop/files/spindrift-can-hero-peach-strawberry-flatlay.png?v=1673563510&width=600",
-    "flavor": ["peach", "strawberry"],
+    "flavor": [
+      "peach",
+      "strawberry"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -547,7 +721,11 @@
     "productName": "Mint Green Tea",
     "brandName": "spindrift",
     "imageURL": "https://drinkspindrift.com/cdn/shop/files/spindrift-can-hero-mint-green-tea-flatlay.png?v=1673563439&width=600",
-    "flavor": ["mint", "green-tea", "tea"],
+    "flavor": [
+      "mint",
+      "green-tea",
+      "tea"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -555,7 +733,11 @@
     "productName": "Mango Black Tea",
     "brandName": "spindrift",
     "imageURL": "https://drinkspindrift.com/cdn/shop/files/spindrift-can-hero-mango-black-tea-flatlay.png?v=1673563359&width=600",
-    "flavor": ["mango", "black-tea", "tea"],
+    "flavor": [
+      "mango",
+      "black-tea",
+      "tea"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -563,7 +745,10 @@
     "productName": "Cranberry Raspberry",
     "brandName": "spindrift",
     "imageURL": "https://drinkspindrift.com/cdn/shop/files/spindrift-can-hero-cranberry-raspberry-flatlay.png?v=1673563177&width=600",
-    "flavor": ["cranberry", "raspberry"],
+    "flavor": [
+      "cranberry",
+      "raspberry"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -571,7 +756,11 @@
     "productName": "Nojito",
     "brandName": "spindrift",
     "imageURL": "https://drinkspindrift.com/cdn/shop/files/spindrift-can-hero-nojito-flatlay.png?v=1673563484&width=600",
-    "flavor": ["mojito", "lime", "mint"],
+    "flavor": [
+      "mojito",
+      "lime",
+      "mint"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -579,7 +768,12 @@
     "productName": "Island Punch",
     "brandName": "spindrift",
     "imageURL": "https://drinkspindrift.com/cdn/shop/files/Spindrift_IslandPunch_Can-flatlay.png?v=1707762478&width=317",
-    "flavor": ["passionfruit", "guava", "orange", "fruit-punch"],
+    "flavor": [
+      "passionfruit",
+      "guava",
+      "orange",
+      "fruit-punch"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -587,7 +781,9 @@
     "productName": "Grapeade",
     "brandName": "spindrift",
     "imageURL": "https://drinkspindrift.com/cdn/shop/files/Spindrift_Grapeade_Can-flatlay.png?v=1707762470&width=317",
-    "flavor": ["grape"],
+    "flavor": [
+      "grape"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -595,7 +791,11 @@
     "productName": "Spiced Apple Cider",
     "brandName": "spindrift",
     "imageURL": "https://mma.prnewswire.com/media/2197220/spindrift_can_hero_spiced_apple_cider_flatlay.jpg",
-    "flavor": ["apple", "apple-cider", "cinnamon"],
+    "flavor": [
+      "apple",
+      "apple-cider",
+      "cinnamon"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -603,7 +803,11 @@
     "productName": "Strawberry Lemonade",
     "brandName": "spindrift",
     "imageURL": "https://boxncase.com/cdn/shop/files/bev18sb.original.jpg?v=1702938705&width=1200",
-    "flavor": ["strawberry", "lemon", "lemonade"],
+    "flavor": [
+      "strawberry",
+      "lemon",
+      "lemonade"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -611,7 +815,10 @@
     "productName": "Lemon Limeade",
     "brandName": "spindrift",
     "imageURL": "https://d2iiahg0ip5afn.cloudfront.net/media/spindrift/images/95424900.spindrift-12oz-2021-sparklingwaterfruit-unsweetlemonade-lemonlimeade-front.jpg",
-    "flavor": ["lemon", "lime"],
+    "flavor": [
+      "lemon",
+      "lime"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -619,7 +826,11 @@
     "productName": "Pink Lemonade",
     "brandName": "spindrift",
     "imageURL": "https://d2iiahg0ip5afn.cloudfront.net/media/spindrift/images/432926482.spindrift-12oz-2021-sparklingwaterfruit-unsweetlemonade-pinklemonade-front.jpg",
-    "flavor": ["lemonade", "lemon", "pink-lemonade"],
+    "flavor": [
+      "lemonade",
+      "lemon",
+      "pink-lemonade"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -627,7 +838,9 @@
     "productName": "Pineapple",
     "brandName": "spindrift",
     "imageURL": "https://drinkspindrift.com/cdn/shop/files/spindrift-can-hero-pineapple-flatlay.png?v=1673563535&width=600",
-    "flavor": ["pineapple"],
+    "flavor": [
+      "pineapple"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -635,7 +848,9 @@
     "productName": "Lemon",
     "brandName": "spindrift",
     "imageURL": "https://m.media-amazon.com/images/S/aplus-media/vc/6b3bdb8b-310d-43ef-b087-80adc08d35f7._CR125,0,750,1000_PT0_SX300__.jpg",
-    "flavor": ["lemon"],
+    "flavor": [
+      "lemon"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -643,7 +858,9 @@
     "productName": "Lime",
     "brandName": "spindrift",
     "imageURL": "https://drinkspindrift.com/cdn/shop/files/spindrift-can-hero-lime-flatlay.png?v=1673563313&width=600",
-    "flavor": ["lime"],
+    "flavor": [
+      "lime"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -651,7 +868,10 @@
     "productName": "Essenza Pink Grapefruit & Citrus Blend",
     "brandName": "san-pellegrino",
     "imageURL": "https://m.media-amazon.com/images/I/81e4iyYFG2L.jpg",
-    "flavor": ["grapefruit", "citrus"],
+    "flavor": [
+      "grapefruit",
+      "citrus"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -659,7 +879,10 @@
     "productName": "Essenza Tangerine & Wild Raspberry",
     "brandName": "san-pellegrino",
     "imageURL": "https://www.sanpellegrino.com/us/sites/g/files/xknfdk2166/files/2021-09/S_Pellegrino_Essenza_Tangerine_Wild_Strawberry_Front_0.jpg",
-    "flavor": ["tangerine", "raspberry"],
+    "flavor": [
+      "tangerine",
+      "raspberry"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -667,7 +890,10 @@
     "productName": "Essenza Blood Orange & Black Raspberry",
     "brandName": "san-pellegrino",
     "imageURL": "https://www.sanpellegrino.com/us/sites/g/files/xknfdk2166/files/2021-09/sanpellegrino-essenza-blood-orange-black-raspberry-can-INTL.jpg",
-    "flavor": ["blood-orange", "raspberry"],
+    "flavor": [
+      "blood-orange",
+      "raspberry"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -675,7 +901,9 @@
     "productName": "Sparkling Water",
     "brandName": "san-pellegrino",
     "imageURL": "https://target.scene7.com/is/image/Target/GUEST_dcc89ff9-8dee-4915-aa46-3fec9e86fe9c?wid=488&hei=488&fmt=pjpeg",
-    "flavor": ["plain"],
+    "flavor": [
+      "plain"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -683,7 +911,9 @@
     "productName": "Essenza Lemon & Lemon Zest",
     "brandName": "san-pellegrino",
     "imageURL": "https://m.media-amazon.com/images/I/81v21V5u1aL.jpg",
-    "flavor": ["lemon"],
+    "flavor": [
+      "lemon"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -691,7 +921,10 @@
     "productName": "Essenza Dark Morello Cherry & Pomegranate",
     "brandName": "san-pellegrino",
     "imageURL": "https://www.sanpellegrino.com/sites/g/files/xknfdk1986/files/2022-12/essenza-dark-morello-33-cl-can.jpg",
-    "flavor": ["cherry", "pomegranate"],
+    "flavor": [
+      "cherry",
+      "pomegranate"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -699,7 +932,9 @@
     "productName": "Mineral Water",
     "brandName": "topo-chico",
     "imageURL": "https://m.media-amazon.com/images/I/819ZD5GtJ7L.jpg",
-    "flavor": ["plain"],
+    "flavor": [
+      "plain"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -707,7 +942,9 @@
     "productName": "Mineral Water Twist of Lime",
     "brandName": "topo-chico",
     "imageURL": "https://m.media-amazon.com/images/I/61waYuSmGSL.jpg",
-    "flavor": ["lime"],
+    "flavor": [
+      "lime"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -715,7 +952,9 @@
     "productName": "Mineral Water Twist of Grapefruit",
     "brandName": "topo-chico",
     "imageURL": "https://m.media-amazon.com/images/I/61pZvkUlzXL.jpg",
-    "flavor": ["grapefruit"],
+    "flavor": [
+      "grapefruit"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -723,7 +962,10 @@
     "productName": "Sabores - Lime with Mint",
     "brandName": "topo-chico",
     "imageURL": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLUiEdxHgz-cpOvs6G20y07v3I_A76uknO3kWwEuDIIQ&s",
-    "flavor": ["lime", "mint"],
+    "flavor": [
+      "lime",
+      "mint"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -731,7 +973,10 @@
     "productName": "Sabores - Blueberry with Hibiscus Extract",
     "brandName": "topo-chico",
     "imageURL": "https://libertycokedelivery.com/cdn/shop/files/TopoChico_sabores-blueberry.jpg?v=1684952552",
-    "flavor": ["blueberry", "hibiscus"],
+    "flavor": [
+      "blueberry",
+      "hibiscus"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -739,7 +984,10 @@
     "productName": "Sabores - Tangerine with Ginger Extract",
     "brandName": "topo-chico",
     "imageURL": "https://libertycokedelivery.com/cdn/shop/files/TopoChico_sabores-tangerine.jpg?v=1684952928",
-    "flavor": ["tangerine", "ginger"],
+    "flavor": [
+      "tangerine",
+      "ginger"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -747,7 +995,9 @@
     "productName": "Convicted Melon",
     "brandName": "liquid-death",
     "imageURL": "https://m.media-amazon.com/images/I/71X+xJeo6yL.jpg",
-    "flavor": ["melon"],
+    "flavor": [
+      "melon"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -755,7 +1005,9 @@
     "productName": "Berry It Alive",
     "brandName": "liquid-death",
     "imageURL": "https://target.scene7.com/is/image/Target/GUEST_823cc117-7d5b-4072-bb91-2cd33966a7a1?wid=488&hei=488&fmt=pjpeg",
-    "flavor": ["berry"],
+    "flavor": [
+      "berry"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -763,7 +1015,9 @@
     "productName": "Mango Chainsaw",
     "brandName": "liquid-death",
     "imageURL": "https://m.media-amazon.com/images/I/71nMIeABGkL.jpg",
-    "flavor": ["mango"],
+    "flavor": [
+      "mango"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -771,7 +1025,9 @@
     "productName": "Severed Lime",
     "brandName": "liquid-death",
     "imageURL": "https://liquiddeath.com/cdn/shop/products/LiquidDeath_WebsitePDP_SeveredLime_GREY_CanFront.webp?v=1681315939&width=1200",
-    "flavor": ["lime"],
+    "flavor": [
+      "lime"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -779,7 +1035,9 @@
     "productName": "Sparkling Water",
     "brandName": "liquid-death",
     "imageURL": "https://liquiddeath.com/cdn/shop/products/LiquidDeath_WebsitePDP_SparklingWater_GREY_CanFront.webp?v=1681315907&width=1200",
-    "flavor": ["plain"],
+    "flavor": [
+      "plain"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -787,7 +1045,9 @@
     "productName": "Grape",
     "brandName": "waterloo",
     "imageURL": "https://m.media-amazon.com/images/I/51DzOTNq7ML._AC_UF894,1000_QL80_.jpg",
-    "flavor": ["grape"],
+    "flavor": [
+      "grape"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -795,7 +1055,9 @@
     "productName": "Watermelon",
     "brandName": "waterloo",
     "imageURL": "https://m.media-amazon.com/images/I/81VVEeRsIuL.jpg",
-    "flavor": ["watermelon"],
+    "flavor": [
+      "watermelon"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -803,7 +1065,9 @@
     "productName": "Pineapple",
     "brandName": "waterloo",
     "imageURL": "https://m.media-amazon.com/images/I/51EbvZEuC5L.jpg",
-    "flavor": ["pineapple"],
+    "flavor": [
+      "pineapple"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -811,7 +1075,9 @@
     "productName": "Strawberry",
     "brandName": "waterloo",
     "imageURL": "https://m.media-amazon.com/images/I/61zSiw3urVL.jpg",
-    "flavor": ["strawberry"],
+    "flavor": [
+      "strawberry"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -819,7 +1085,9 @@
     "productName": "Peach",
     "brandName": "waterloo",
     "imageURL": "https://m.media-amazon.com/images/I/51s1871OXwL.jpg",
-    "flavor": ["peach"],
+    "flavor": [
+      "peach"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -827,7 +1095,9 @@
     "productName": "Black Cherry",
     "brandName": "waterloo",
     "imageURL": "https://m.media-amazon.com/images/I/51CGIanAeNL.jpg",
-    "flavor": ["black-cherry"],
+    "flavor": [
+      "black-cherry"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -835,7 +1105,10 @@
     "productName": "Lemon-Lime",
     "brandName": "waterloo",
     "imageURL": "https://i5.walmartimages.com/asr/18bbcf1a-d110-42f2-a4ee-f167a0d932b5.3d5423175a0098c6c5c825387468a618.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF",
-    "flavor": ["lemon", "lime"],
+    "flavor": [
+      "lemon",
+      "lime"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -843,7 +1116,10 @@
     "productName": "Cherry Limade",
     "brandName": "waterloo",
     "imageURL": "https://i5.walmartimages.com/asr/98a414f4-bbd4-4e4d-8283-f7970171d13d.5cad642587c3bf88dbb1d2758160af98.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF",
-    "flavor": ["cherry", "lime"],
+    "flavor": [
+      "cherry",
+      "lime"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -851,7 +1127,11 @@
     "productName": "Blackberry Lemonade",
     "brandName": "waterloo",
     "imageURL": "https://i5.walmartimages.com/asr/d0214ce7-2f05-4376-8a52-09e247b1684c.fa9b7cce678262004c9d45fb455fca18.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF",
-    "flavor": ["blackberry", "lemon", "lemonade"],
+    "flavor": [
+      "blackberry",
+      "lemon",
+      "lemonade"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -859,7 +1139,9 @@
     "productName": "Summer Berry",
     "brandName": "waterloo",
     "imageURL": "https://m.media-amazon.com/images/I/61LY42r1ksL.jpg",
-    "flavor": ["berry"],
+    "flavor": [
+      "berry"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -867,7 +1149,11 @@
     "productName": "Orange Vanilla",
     "brandName": "waterloo",
     "imageURL": "https://m.media-amazon.com/images/I/71YYifIMPyL.jpg",
-    "flavor": ["orange", "vanilla", "orange-cream"],
+    "flavor": [
+      "orange",
+      "vanilla",
+      "orange-cream"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -875,7 +1161,10 @@
     "productName": "Ginger Citrus Twist",
     "brandName": "waterloo",
     "imageURL": "https://m.media-amazon.com/images/I/71AaZdFZpEL.jpg",
-    "flavor": ["ginger", "citrus"],
+    "flavor": [
+      "ginger",
+      "citrus"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -883,7 +1172,10 @@
     "productName": "Cranberry Clementine",
     "brandName": "polar-seltzer",
     "imageURL": "https://m.media-amazon.com/images/I/716eIegq9JL.jpg",
-    "flavor": ["cranberry", "clementine"],
+    "flavor": [
+      "cranberry",
+      "clementine"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -891,7 +1183,10 @@
     "productName": "Pineapple Pomelo",
     "brandName": "polar-seltzer",
     "imageURL": "https://m.media-amazon.com/images/I/71HWn1uGQ2L.jpg",
-    "flavor": ["pineapple", "pomelo"],
+    "flavor": [
+      "pineapple",
+      "pomelo"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -899,7 +1194,9 @@
     "productName": "Toasted Coconut",
     "brandName": "polar-seltzer",
     "imageURL": "https://m.media-amazon.com/images/I/617hH0x+gOL._AC_UF894,1000_QL80_.jpg",
-    "flavor": ["coconut"],
+    "flavor": [
+      "coconut"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -907,7 +1204,10 @@
     "productName": "Cranberry Lime",
     "brandName": "polar-seltzer",
     "imageURL": "https://m.media-amazon.com/images/I/71+ElVGYcdS.jpg",
-    "flavor": ["cranberry", "lime"],
+    "flavor": [
+      "cranberry",
+      "lime"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -915,7 +1215,9 @@
     "productName": "Ruby Red Grapefruit",
     "brandName": "polar-seltzer",
     "imageURL": "https://m.media-amazon.com/images/I/61zucKm1PQL.jpg",
-    "flavor": ["grapefruit"],
+    "flavor": [
+      "grapefruit"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -923,7 +1225,9 @@
     "productName": "Georgia Peach",
     "brandName": "polar-seltzer",
     "imageURL": "https://m.media-amazon.com/images/I/71Oi5BUvbCL._AC_UF894,1000_QL80_.jpg",
-    "flavor": ["peach"],
+    "flavor": [
+      "peach"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -931,7 +1235,10 @@
     "productName": "Mandarin",
     "brandName": "polar-seltzer",
     "imageURL": "https://m.media-amazon.com/images/I/51r+Nrla8VL._AC_UF894,1000_QL80_.jpg",
-    "flavor": ["mandarin", "orange"],
+    "flavor": [
+      "mandarin",
+      "orange"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -939,7 +1246,9 @@
     "productName": "Triple Berry",
     "brandName": "polar-seltzer",
     "imageURL": "https://m.media-amazon.com/images/I/717y3zaadSL.jpg",
-    "flavor": ["berry"],
+    "flavor": [
+      "berry"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -947,7 +1256,9 @@
     "productName": "Vanilla",
     "brandName": "polar-seltzer",
     "imageURL": "https://assets.wakefern.com/is/image/wakefern/7153702037-001?$Mi9Product_detail$",
-    "flavor": ["vanilla"],
+    "flavor": [
+      "vanilla"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -955,7 +1266,10 @@
     "productName": "Raspberry Lime",
     "brandName": "polar-seltzer",
     "imageURL": "https://beverages2u.com/wp-content/uploads/2023/07/polar-raspberry-lime-seltzer.jpg",
-    "flavor": ["raspberry", "lime"],
+    "flavor": [
+      "raspberry",
+      "lime"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -963,7 +1277,11 @@
     "productName": "Orange Vanilla",
     "brandName": "polar-seltzer",
     "imageURL": "https://m.media-amazon.com/images/I/71p8+yS97vL.jpg",
-    "flavor": ["orange", "vanilla", "orange-cream"],
+    "flavor": [
+      "orange",
+      "vanilla",
+      "orange-cream"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -971,7 +1289,10 @@
     "productName": "Strawberry Watermelon",
     "brandName": "polar-seltzer",
     "imageURL": "https://i5.walmartimages.com/asr/ad14b2ab-fd05-42f6-be5a-54cff8537676.7ecf9572650393f89c598bcd2da68f9a.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF",
-    "flavor": ["strawberry", "watermelon"],
+    "flavor": [
+      "strawberry",
+      "watermelon"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -979,7 +1300,11 @@
     "productName": "Blueberry Lemonade",
     "brandName": "polar-seltzer",
     "imageURL": "https://images.albertsons-media.com/is/image/ABS/960268784-ECOM?$ng-ecom-pdp-desktop$&defaultImage=Not_Available",
-    "flavor": ["blueberry", "lemon", "lemonade"],
+    "flavor": [
+      "blueberry",
+      "lemon",
+      "lemonade"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -987,7 +1312,10 @@
     "productName": "Pink Apple & Lemon",
     "brandName": "polar-seltzer",
     "imageURL": "https://m.media-amazon.com/images/I/61J9vdwJ78L.jpg",
-    "flavor": ["apple", "lemon"],
+    "flavor": [
+      "apple",
+      "lemon"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -995,7 +1323,10 @@
     "productName": "Ginger Lime Mule",
     "brandName": "polar-seltzer",
     "imageURL": "https://www.kroger.com/product/images/large/back/0007153720126",
-    "flavor": ["ginger", "lime"],
+    "flavor": [
+      "ginger",
+      "lime"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1003,7 +1334,9 @@
     "productName": "Original",
     "brandName": "polar-seltzer",
     "imageURL": "https://m.media-amazon.com/images/I/712YD1psAqS.jpg",
-    "flavor": ["plain"],
+    "flavor": [
+      "plain"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1011,7 +1344,9 @@
     "productName": "Lemon",
     "brandName": "polar-seltzer",
     "imageURL": "https://m.media-amazon.com/images/I/61oG-pgSNtL.jpg",
-    "flavor": ["lemon"],
+    "flavor": [
+      "lemon"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1019,7 +1354,9 @@
     "productName": "Lime",
     "brandName": "polar-seltzer",
     "imageURL": "https://beverages2u.com/wp-content/uploads/2023/07/polar-lime-seltzer.jpg",
-    "flavor": ["lime"],
+    "flavor": [
+      "lime"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1027,7 +1364,9 @@
     "productName": "Black Cherry",
     "brandName": "polar-seltzer",
     "imageURL": "https://m.media-amazon.com/images/I/71DmDuDbtmS.jpg",
-    "flavor": ["black-cherry"],
+    "flavor": [
+      "black-cherry"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1035,7 +1374,9 @@
     "productName": "Pomegranate",
     "brandName": "polar-seltzer",
     "imageURL": "https://www.myamericanmarket.com/media/catalog/product/cache/6d4a09ff1db2ecc28ee9c6b265bf55a1/p/o/polar-pomegranate-seltzer-1.jpg",
-    "flavor": ["pomegranate"],
+    "flavor": [
+      "pomegranate"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1043,7 +1384,9 @@
     "productName": "Energize - Pomegranate",
     "brandName": "perrier",
     "imageURL": "https://images.gopuff.com/blob/gopuffcatalogstorageprod/catalog-images-container/resize/cf/version=1_2,format=auto,fit=scale-down,width=800,height=800/859035c0-b907-44e3-a123-6f902fb34e45.png",
-    "flavor": ["pomegranate"],
+    "flavor": [
+      "pomegranate"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -1051,7 +1394,9 @@
     "productName": "Energize - Grapefruit",
     "brandName": "perrier",
     "imageURL": "https://images.gotoliquorstore.com/product/1000041916/17d9df69-ec9f-45d4-9eed-d7596ee99f92_510_m.jpg",
-    "flavor": ["grapefruit"],
+    "flavor": [
+      "grapefruit"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -1059,7 +1404,9 @@
     "productName": "Energize - Tangerine",
     "brandName": "perrier",
     "imageURL": "https://images.gopuff.com/blob/gopuffcatalogstorageprod/catalog-images-container/resize/cf/version=1_2,format=auto,fit=scale-down,width=800,height=800/4442e7c3-28e9-4143-ae99-d4b3fa2020eb.png",
-    "flavor": ["tangerine"],
+    "flavor": [
+      "tangerine"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -1067,7 +1414,9 @@
     "productName": "Watermelon",
     "brandName": "perrier",
     "imageURL": "https://images.gotoliquorstore.com/product/1000049703/b436435b-e8ff-435c-af13-43600a048e1d_510_m.jpg",
-    "flavor": ["watermelon"],
+    "flavor": [
+      "watermelon"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1075,7 +1424,9 @@
     "productName": "Lemon",
     "brandName": "perrier",
     "imageURL": "https://www.perrier.com/ca/sites/g/files/xknfdk446/files/styles/generic_image_style/public/PERRIER%20Lemon%20330ml%20Can%20English%20Front.jpg.webp?itok=Y2nH2JFl",
-    "flavor": ["lemon"],
+    "flavor": [
+      "lemon"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1083,7 +1434,9 @@
     "productName": "Pink Grapefruit",
     "brandName": "perrier",
     "imageURL": "https://m.media-amazon.com/images/I/71fRcbAQEYL._AC_UF894,1000_QL80_.jpg",
-    "flavor": ["grapefruit"],
+    "flavor": [
+      "grapefruit"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1091,7 +1444,9 @@
     "productName": "L'Orange",
     "brandName": "perrier",
     "imageURL": "https://www.kroger.com/product/images/large/front/0007478044699",
-    "flavor": ["orange"],
+    "flavor": [
+      "orange"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1099,7 +1454,9 @@
     "productName": "Strawberry",
     "brandName": "perrier",
     "imageURL": "https://ip.prod.freshop.retail.ncrcloud.com/resize?url=https://images.freshop.ncrcloud.com/00074780446952/a027b9d1119f7e1b3307f126525f4611_large.png&width=512&type=webp&quality=90",
-    "flavor": ["strawberry"],
+    "flavor": [
+      "strawberry"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1107,7 +1464,9 @@
     "productName": "Lime",
     "brandName": "perrier",
     "imageURL": "https://m.media-amazon.com/images/I/71A-m7NdH6L.jpg",
-    "flavor": ["lime"],
+    "flavor": [
+      "lime"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1115,7 +1474,9 @@
     "productName": "Peach",
     "brandName": "perrier",
     "imageURL": "https://i5.walmartimages.com/seo/Perrier-Peach-Water-1-can-253-5-fl-oz_a2625953-b72d-4bfc-b399-1b2b03b34d8f_1.8878d801f62c0641391340009eae24d2.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF",
-    "flavor": ["peach"],
+    "flavor": [
+      "peach"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1123,7 +1484,9 @@
     "productName": "Original",
     "brandName": "perrier",
     "imageURL": "https://www.perrier.com/ca/sites/g/files/xknfdk446/files/styles/generic_image_style_fallback/public/PERRIER%20Natural%20330ml%20Can%20Bilingual%20Front%20no%20PITCH.jpg?itok=GWuA5QVj",
-    "flavor": ["plain"],
+    "flavor": [
+      "plain"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1131,7 +1494,11 @@
     "productName": "Blackberry Chai",
     "brandName": "recess",
     "imageURL": "https://cdn.sanity.io/images/umoebutk/production/e875872b534c7efc9eba99fff36bee8379608102-743x1397.png?w=1024&h=1024&fit=max&auto=format",
-    "flavor": ["blackberry", "chai", "tea"],
+    "flavor": [
+      "blackberry",
+      "chai",
+      "tea"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1139,7 +1506,10 @@
     "productName": "Coconut Lime",
     "brandName": "recess",
     "imageURL": "https://cdn.localexpress.io/img/JyeicWbpavIiO3Ln1WJ3b0NyB3XlY1R2bTdvQ3FTLHRnFGePSh12cWbp9y5SZnFicGcqb3JCLiI6IScWbp9zVGZvXudWa2ZhB3dHMvUUR0NFSUZ3MCMy9WFWbp9w5SZnLicmbXazJCpjIlpicnI7MwUjOCaiwCADN6I=0Xfw.jpg",
-    "flavor": ["coconut", "lime"],
+    "flavor": [
+      "coconut",
+      "lime"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1147,7 +1517,9 @@
     "productName": "Black Cherry",
     "brandName": "recess",
     "imageURL": "https://cdn.sanity.io/images/umoebutk/production/d362ded284cffc6f26c44175a4a1234779f8391e-743x1397.png?w=1024&h=1024&fit=max&auto=format",
-    "flavor": ["black-cherry"],
+    "flavor": [
+      "black-cherry"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1155,7 +1527,10 @@
     "productName": "Pomegranate Hibiscus",
     "brandName": "recess",
     "imageURL": "https://cdn.sanity.io/images/umoebutk/production/8605876b6a3c25df795d1a98b7b4d71cce40bc81-743x1397.png?w=1024&h=1024&fit=max&auto=format",
-    "flavor": ["pomegranate", "hibiscus"],
+    "flavor": [
+      "pomegranate",
+      "hibiscus"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1163,7 +1538,10 @@
     "productName": "Peach Ginger",
     "brandName": "recess",
     "imageURL": "https://www.totalwine.com/dynamic/490x/media/sys_master/twmmedia/he1/hbc/27697504649246.png",
-    "flavor": ["peach", "ginger"],
+    "flavor": [
+      "peach",
+      "ginger"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1171,7 +1549,9 @@
     "productName": "Blood Orange",
     "brandName": "recess",
     "imageURL": "https://www.totalwine.com/dynamic/490x/media/sys_master/twmmedia/h5a/h55/27697499865118.png",
-    "flavor": ["blood-orange"],
+    "flavor": [
+      "blood-orange"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1179,7 +1559,9 @@
     "productName": "Black Cherry Mood",
     "brandName": "recess",
     "imageURL": "https://cdn.sanity.io/images/umoebutk/production/c0f697f2a86307a28bab8e98e0405fbadeecc3f7-744x1397.png?w=1024&h=1024&fit=max&auto=format",
-    "flavor": ["black-cherry"],
+    "flavor": [
+      "black-cherry"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1187,7 +1569,9 @@
     "productName": "Blood Orange Mood",
     "brandName": "recess",
     "imageURL": "https://cdn.sanity.io/images/umoebutk/production/2e4b3176350c6d6572ba1b54a777650630856438-744x1397.png?w=1024&h=1024&fit=max&auto=format",
-    "flavor": ["blood-orange"],
+    "flavor": [
+      "blood-orange"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1195,7 +1579,10 @@
     "productName": "Peach Ginger Mood",
     "brandName": "recess",
     "imageURL": "https://cdn.sanity.io/images/umoebutk/production/4a8c6c8e1547305c5bc6a40f6f96212d9fae28bc-744x1397.png?w=1024&h=1024&fit=max&auto=format",
-    "flavor": ["peach", "ginger"],
+    "flavor": [
+      "peach",
+      "ginger"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1203,7 +1590,10 @@
     "productName": "Strawberry Rose",
     "brandName": "recess",
     "imageURL": "https://cdn.sanity.io/images/umoebutk/production/19ba9943f6dc321cd3c549f0c64d4e74b12444ff-744x1397.png?w=1024&h=1024&fit=max&auto=format",
-    "flavor": ["strawberry", "rose"],
+    "flavor": [
+      "strawberry",
+      "rose"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1211,7 +1601,10 @@
     "productName": "Grapefruit Tangerine Mood",
     "brandName": "recess",
     "imageURL": "https://d2iiahg0ip5afn.cloudfront.net/media/recess/images/271697128.recess-12oz-2022-mood-sparkling-grapefruittangerine-front.jpg",
-    "flavor": ["grapefruit", "tangerine"],
+    "flavor": [
+      "grapefruit",
+      "tangerine"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1219,7 +1612,10 @@
     "productName": "Lime Citrus Mood",
     "brandName": "recess",
     "imageURL": "https://cdn.sanity.io/images/umoebutk/production/ba64b3a1ca11e83caa02adf8cd6877f44f38bc29-744x1397.png?w=1024&h=1024&fit=max&auto=format",
-    "flavor": ["lime", "citrus"],
+    "flavor": [
+      "lime",
+      "citrus"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1227,7 +1623,10 @@
     "productName": "Raspberry Lemon Mood",
     "brandName": "recess",
     "imageURL": "https://cdn.sanity.io/images/umoebutk/production/bf0f002bf5a4fdd529cc275563a2ae8a06128905-744x1397.png?w=1024&h=1024&fit=max&auto=format",
-    "flavor": ["raspberry", "lemon"],
+    "flavor": [
+      "raspberry",
+      "lemon"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1235,7 +1634,9 @@
     "productName": "Mango",
     "brandName": "sanzo",
     "imageURL": "https://m.media-amazon.com/images/I/61cIL78NYHL._AC_UF1000,1000_QL80_.jpg",
-    "flavor": ["mango"],
+    "flavor": [
+      "mango"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1243,7 +1644,9 @@
     "productName": "Calamansi",
     "brandName": "sanzo",
     "imageURL": "https://m.media-amazon.com/images/I/81eyj3Pq5AL._AC_UF894,1000_QL80_.jpg",
-    "flavor": ["calamansi"],
+    "flavor": [
+      "calamansi"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1251,7 +1654,9 @@
     "productName": "Pomelo",
     "brandName": "sanzo",
     "imageURL": "https://m.media-amazon.com/images/I/81bZYmI5pqL._AC_UF894,1000_QL80_.jpg",
-    "flavor": ["pomelo"],
+    "flavor": [
+      "pomelo"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1259,7 +1664,10 @@
     "productName": "Yuzu with Ginger",
     "brandName": "sanzo",
     "imageURL": "https://d2iiahg0ip5afn.cloudfront.net/media/sanzo/images/513453330.sanzo-12oz-2022-sparkling-yuzu-front.jpg",
-    "flavor": ["yuzu", "ginger"],
+    "flavor": [
+      "yuzu",
+      "ginger"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1267,7 +1675,9 @@
     "productName": "Lychee",
     "brandName": "sanzo",
     "imageURL": "https://s7d5.scene7.com/is/image/CentralMarket/005254093-1",
-    "flavor": ["lychee"],
+    "flavor": [
+      "lychee"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1275,7 +1685,9 @@
     "productName": "Indonesian Lemongrass",
     "brandName": "icelandic-glacial",
     "imageURL": "https://icelandicglacial.com/cdn/shop/products/500mllemongrassxbottle3D_4aeb2e94-8d51-411c-aa79-2bfd0e033cea_1200x.jpg?v=1621529320",
-    "flavor": ["lemongrass"],
+    "flavor": [
+      "lemongrass"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1283,7 +1695,9 @@
     "productName": "Tarocco Blood Orange",
     "brandName": "icelandic-glacial",
     "imageURL": "https://icelandicglacial.com/cdn/shop/files/AluminumBloodOrange_final_1200x.jpg?v=1702343289",
-    "flavor": ["blood-orange"],
+    "flavor": [
+      "blood-orange"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1291,7 +1705,9 @@
     "productName": "Tahitian Lime",
     "brandName": "icelandic-glacial",
     "imageURL": "https://icelandicglacial.com/cdn/shop/files/AluminumLime_final_1200x.jpg?v=1702343134",
-    "flavor": ["lime"],
+    "flavor": [
+      "lime"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1299,7 +1715,9 @@
     "productName": "Sicilian Lemon",
     "brandName": "icelandic-glacial",
     "imageURL": "https://icelandicglacial.com/cdn/shop/files/AluminumLemon_final_1200x.jpg?v=1702342691",
-    "flavor": ["lemon"],
+    "flavor": [
+      "lemon"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1307,7 +1725,9 @@
     "productName": "Sparkling",
     "brandName": "icelandic-glacial",
     "imageURL": "https://www.aquamaestro.com/media/catalog/product/cache/1/thumbnail/600x/392951836ea6af3c714f2ef54dab1abc/i/c/ice_4.jpg",
-    "flavor": ["plain"],
+    "flavor": [
+      "plain"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1315,7 +1735,10 @@
     "productName": "Grape Raspberry",
     "brandName": "sparkling-ice",
     "imageURL": "https://www.sparklingice.com/wp-content/uploads/2021/06/SI_US_GR_CORE_72DPI_1018.png",
-    "flavor": ["grape", "raspberry"],
+    "flavor": [
+      "grape",
+      "raspberry"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1323,7 +1746,9 @@
     "productName": "Black Cherry",
     "brandName": "sparkling-ice",
     "imageURL": "https://www.sparklingice.com/wp-content/uploads/2021/06/SI_US_BC_CORE_72DPI_0620.png",
-    "flavor": ["black-cherry"],
+    "flavor": [
+      "black-cherry"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1331,7 +1756,11 @@
     "productName": "Berry Lemonade",
     "brandName": "sparkling-ice",
     "imageURL": "https://www.sparklingice.com/wp-content/uploads/2021/07/Website_ProductRenders_072021_BerryLemonade.png",
-    "flavor": ["berry", "lemonade", "lemon"],
+    "flavor": [
+      "berry",
+      "lemonade",
+      "lemon"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1339,7 +1768,9 @@
     "productName": "Black Raspberry",
     "brandName": "sparkling-ice",
     "imageURL": "https://www.sparklingice.com/wp-content/uploads/2021/06/SI_US_BR_CORE_72DPI_0620.png",
-    "flavor": ["raspberry"],
+    "flavor": [
+      "raspberry"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1347,7 +1778,12 @@
     "productName": "Fruit Punch",
     "brandName": "sparkling-ice",
     "imageURL": "https://www.sparklingice.com/wp-content/uploads/2021/06/SI_US_FP_CORE_72DPI_0620.png",
-    "flavor": ["fruit-punch", "lemon", "orange", "cherry"],
+    "flavor": [
+      "fruit-punch",
+      "lemon",
+      "orange",
+      "cherry"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1355,7 +1791,10 @@
     "productName": "Cherry Limeade",
     "brandName": "sparkling-ice",
     "imageURL": "https://www.sparklingice.com/wp-content/uploads/2021/06/SI_US_ChL_CORE_72DPI_0620.png",
-    "flavor": ["cherry", "lime"],
+    "flavor": [
+      "cherry",
+      "lime"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1363,7 +1802,10 @@
     "productName": "Strawberry Watermelon",
     "brandName": "sparkling-ice",
     "imageURL": "https://www.sparklingice.com/wp-content/uploads/2021/06/SI_US_SW_CORE_72DPI_0620.png",
-    "flavor": ["strawberry", "watermelon"],
+    "flavor": [
+      "strawberry",
+      "watermelon"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1371,7 +1813,11 @@
     "productName": "Strawberry Lemonade",
     "brandName": "sparkling-ice",
     "imageURL": "https://www.sparklingice.com/wp-content/uploads/2021/06/SI_US_SLem_CORE_72DPI_0620.png",
-    "flavor": ["strawberry", "lemonade", "lemon"],
+    "flavor": [
+      "strawberry",
+      "lemonade",
+      "lemon"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1379,7 +1825,11 @@
     "productName": "Raspberry Lemonade",
     "brandName": "sparkling-ice",
     "imageURL": "https://www.kroger.com/product/images/large/front/0001657195780",
-    "flavor": ["raspberry", "lemonade", "lemon"],
+    "flavor": [
+      "raspberry",
+      "lemonade",
+      "lemon"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1387,7 +1837,10 @@
     "productName": "Kiwi Strawberry",
     "brandName": "sparkling-ice",
     "imageURL": "https://www.sparklingice.com/wp-content/uploads/2021/06/SI_US_KS_CORE_72DPI_0620.png",
-    "flavor": ["kiwi", "strawberry"],
+    "flavor": [
+      "kiwi",
+      "strawberry"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1395,7 +1848,9 @@
     "productName": "Pink Grapefruit",
     "brandName": "sparkling-ice",
     "imageURL": "https://www.sparklingice.com/wp-content/uploads/2021/06/SI_US_PG_CORE_72DPI_0620.png",
-    "flavor": ["grapefruit"],
+    "flavor": [
+      "grapefruit"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1403,7 +1858,10 @@
     "productName": "Peach Nectarine",
     "brandName": "sparkling-ice",
     "imageURL": "https://f818fc5631.nxcli.io/wp-content/uploads/2021/06/SI_US_PN_CORE_72DPI_0620.png",
-    "flavor": ["peach", "nectarine"],
+    "flavor": [
+      "peach",
+      "nectarine"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1411,7 +1869,10 @@
     "productName": "Orange Mango",
     "brandName": "sparkling-ice",
     "imageURL": "https://www.sparklingice.com/wp-content/uploads/2021/06/SI_US_OM_CORE_72DPI_0620.png",
-    "flavor": ["orange", "mango"],
+    "flavor": [
+      "orange",
+      "mango"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1419,7 +1880,10 @@
     "productName": "Coconut Pineapple",
     "brandName": "sparkling-ice",
     "imageURL": "https://www.sparklingice.com/wp-content/uploads/2019/04/SI_US_CP_Render_0518-2.png",
-    "flavor": ["coconut", "pineapple"],
+    "flavor": [
+      "coconut",
+      "pineapple"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1427,7 +1891,10 @@
     "productName": "Classic Lemonade",
     "brandName": "sparkling-ice",
     "imageURL": "https://target.scene7.com/is/image/Target/GUEST_de4c877c-01fe-41f2-b7c3-b7e183c124e2?wid=488&hei=488&fmt=pjpeg",
-    "flavor": ["lemonade", "lemon"],
+    "flavor": [
+      "lemonade",
+      "lemon"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1435,7 +1902,10 @@
     "productName": "Lemon Lime",
     "brandName": "sparkling-ice",
     "imageURL": "https://sureketo.com/images/16x9/sparkling-ice-lemon-lime-sparkling-water.jpg",
-    "flavor": ["lemon", "lime"],
+    "flavor": [
+      "lemon",
+      "lime"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1443,7 +1913,10 @@
     "productName": "+ Caffeine - Cherry Vanilla",
     "brandName": "sparkling-ice",
     "imageURL": "https://www.sparklingice.com/wp-content/uploads/2023/08/202308874924_SI_CaffeineProductRenders_WebsiteUpdate_FINAL_16oz_CV.png",
-    "flavor": ["cherry", "vanilla"],
+    "flavor": [
+      "cherry",
+      "vanilla"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -1451,7 +1924,9 @@
     "productName": "+ Caffeine - Black Raspberry",
     "brandName": "sparkling-ice",
     "imageURL": "https://www.sparklingice.com/wp-content/uploads/2023/08/202308874924_SI_CaffeineProductRenders_WebsiteUpdate_FINAL_16oz_BR.png",
-    "flavor": ["raspberry"],
+    "flavor": [
+      "raspberry"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -1459,7 +1934,11 @@
     "productName": "+ Caffeine - Tea + Lemonade",
     "brandName": "sparkling-ice",
     "imageURL": "https://www.sparklingice.com/wp-content/uploads/2024/01/Sparkling-Ice-Caffeine-Tea-and-Lemonade-16oz-can.png",
-    "flavor": ["tea", "lemonade", "lemon"],
+    "flavor": [
+      "tea",
+      "lemonade",
+      "lemon"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -1467,7 +1946,9 @@
     "productName": "+ Caffeine - Blue Raspberry",
     "brandName": "sparkling-ice",
     "imageURL": "https://www.sparklingice.com/wp-content/uploads/2023/08/202308874924_SI_CaffeineProductRenders_WebsiteUpdate_FINAL_16oz_BLR.png",
-    "flavor": ["raspberry"],
+    "flavor": [
+      "raspberry"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -1475,7 +1956,9 @@
     "productName": "+ Energy - Maximum Mango",
     "brandName": "sparkling-ice",
     "imageURL": "https://eadn-wc05-12323459.nxedge.io/wp-content/uploads/2023/07/Sparkling-Ice-Plus-Energy-Maximum-Mango-12-oz-can-Website.png",
-    "flavor": ["mango"],
+    "flavor": [
+      "mango"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -1483,7 +1966,9 @@
     "productName": "+ Energy - Berry Blast",
     "brandName": "sparkling-ice",
     "imageURL": "https://www.sparklingice.com/wp-content/uploads/2023/07/Sparkling-Ice-Plus-Energy-Berry-Blast-12-oz-can-Website.png",
-    "flavor": ["berry"],
+    "flavor": [
+      "berry"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -1491,7 +1976,11 @@
     "productName": "+ Energy - Power Punch",
     "brandName": "sparkling-ice",
     "imageURL": "https://www.sparklingice.com/wp-content/uploads/2023/07/Sparkling-Ice-Plus-Energy-Power-Punch-12-oz-can-Website.png",
-    "flavor": ["fruit-punch", "orange", "cherry"],
+    "flavor": [
+      "fruit-punch",
+      "orange",
+      "cherry"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -1499,7 +1988,10 @@
     "productName": "+ Caffeine - Strawberry Citrus",
     "brandName": "sparkling-ice",
     "imageURL": "https://www.sparklingice.com/wp-content/uploads/2023/08/202308874924_SI_CaffeineProductRenders_WebsiteUpdate_FINAL_16oz_SC.png",
-    "flavor": ["citrus", "strawberry"],
+    "flavor": [
+      "citrus",
+      "strawberry"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -1507,7 +1999,9 @@
     "productName": "+ Caffeine - Citrus Twist",
     "brandName": "sparkling-ice",
     "imageURL": "https://www.sparklingice.com/wp-content/uploads/2023/08/202308874924_SI_CaffeineProductRenders_WebsiteUpdate_FINAL_16oz_CT.png",
-    "flavor": ["citrus"],
+    "flavor": [
+      "citrus"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -1515,7 +2009,11 @@
     "productName": "+ Caffeine - Fruit Punch",
     "brandName": "sparkling-ice",
     "imageURL": "https://www.sparklingice.com/wp-content/uploads/2023/08/202308874924_SI_CaffeineProductRenders_WebsiteUpdate_FINAL_16oz_TP.png",
-    "flavor": ["fruit-punch", "pineapple", "grapefruit"],
+    "flavor": [
+      "fruit-punch",
+      "pineapple",
+      "grapefruit"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -1523,7 +2021,11 @@
     "productName": "+ Caffeine - Watermelon Lemonade",
     "brandName": "sparkling-ice",
     "imageURL": "https://www.sparklingice.com/wp-content/uploads/2023/08/202308874924_SI_CaffeineProductRenders_WebsiteUpdate_FINAL_16oz_WL.png",
-    "flavor": ["watermelon", "lemonade", "lemon"],
+    "flavor": [
+      "watermelon",
+      "lemonade",
+      "lemon"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -1531,7 +2033,9 @@
     "productName": "Yuzu",
     "brandName": "kimino",
     "imageURL": "https://m.media-amazon.com/images/I/5164L17IAqL.jpg",
-    "flavor": ["yuzu"],
+    "flavor": [
+      "yuzu"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1539,7 +2043,9 @@
     "productName": "Mikan",
     "brandName": "kimino",
     "imageURL": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScweUG4HIUUYg5as8iXRRk6okUKTLqVusyQOFmWQGIw7LnPxgXPciS5F63hLL_DAuYlgw&usqp=CAU",
-    "flavor": ["tangerine"],
+    "flavor": [
+      "tangerine"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1547,7 +2053,10 @@
     "productName": "Ume",
     "brandName": "kimino",
     "imageURL": "https://m.media-amazon.com/images/I/51LX6vgcncL._AC_UF894,1000_QL80_.jpg",
-    "flavor": ["ume", "plum"],
+    "flavor": [
+      "ume",
+      "plum"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1555,7 +2064,9 @@
     "productName": "Ringo",
     "brandName": "kimino",
     "imageURL": "https://oasissnacks.com/cdn/shop/products/ringo_can_updated_3.12_2000x_a7944a1f-c23f-4a56-887e-3502ecba532a_530x@2x.png?v=1632425639",
-    "flavor": ["apple"],
+    "flavor": [
+      "apple"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1563,7 +2074,9 @@
     "productName": "Sparkling",
     "brandName": "gerolsteiner",
     "imageURL": "https://m.media-amazon.com/images/I/51yJO+9HP8L.jpg",
-    "flavor": ["plain"],
+    "flavor": [
+      "plain"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1571,7 +2084,10 @@
     "productName": "Lime Ginger",
     "brandName": "nixie",
     "imageURL": "https://m.media-amazon.com/images/I/71c17zPI2JL._AC_UF894,1000_QL80_.jpg",
-    "flavor": ["lime", "ginger"],
+    "flavor": [
+      "lime",
+      "ginger"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1579,7 +2095,10 @@
     "productName": "Straweberry Hibiscus",
     "brandName": "nixie",
     "imageURL": "https://m.media-amazon.com/images/I/71GklRc85eL.jpg",
-    "flavor": ["strawberry", "hibiscus"],
+    "flavor": [
+      "strawberry",
+      "hibiscus"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1587,7 +2106,10 @@
     "productName": "Watermelon Mint",
     "brandName": "nixie",
     "imageURL": "https://drinknixie.com/cdn/shop/files/watermelon-mint.png?v=1683208653&width=300",
-    "flavor": ["watermelon", "mint"],
+    "flavor": [
+      "watermelon",
+      "mint"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1595,7 +2117,10 @@
     "productName": "Black Cherry Lime",
     "brandName": "nixie",
     "imageURL": "https://m.media-amazon.com/images/I/718KbU9FIOL._AC_UF894,1000_QL80_.jpg",
-    "flavor": ["black-cherry", "lime"],
+    "flavor": [
+      "black-cherry",
+      "lime"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1603,7 +2128,11 @@
     "productName": "Peach Black Tea",
     "brandName": "nixie",
     "imageURL": "https://m.media-amazon.com/images/I/71OYhcL6lqL.jpg",
-    "flavor": ["peach", "black-tea", "tea"],
+    "flavor": [
+      "peach",
+      "black-tea",
+      "tea"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -1611,7 +2140,9 @@
     "productName": "Grapefruit",
     "brandName": "nixie",
     "imageURL": "https://m.media-amazon.com/images/S/assets.wholefoodsmarket.com/PIE/product/5f8e29eedcf2cc7322dc3c59_810013080025-front.jpg",
-    "flavor": ["grapefruit"],
+    "flavor": [
+      "grapefruit"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1619,7 +2150,11 @@
     "productName": "Pomegranate Green Tea",
     "brandName": "nixie",
     "imageURL": "https://m.media-amazon.com/images/I/71GOI9H3vzL.jpg",
-    "flavor": ["pomegranate", "green-tea", "tea"],
+    "flavor": [
+      "pomegranate",
+      "green-tea",
+      "tea"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -1627,7 +2162,9 @@
     "productName": "Lime",
     "brandName": "nixie",
     "imageURL": "https://m.media-amazon.com/images/I/71nBoTGAvPL._AC_UF894,1000_QL80_.jpg",
-    "flavor": ["lime"],
+    "flavor": [
+      "lime"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1635,7 +2172,9 @@
     "productName": "Lemon",
     "brandName": "nixie",
     "imageURL": "https://m.media-amazon.com/images/I/714ynW3oyCL.jpg",
-    "flavor": ["lemon"],
+    "flavor": [
+      "lemon"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1643,7 +2182,10 @@
     "productName": "Yuzu Mandarin",
     "brandName": "good-&-gather",
     "imageURL": "https://dsom-imager-prod.shipt.com/83814222-27/0-9dda14aa49b7fe63c24fcec05ac37ae3.jpeg",
-    "flavor": ["yuzu", "mandarin"],
+    "flavor": [
+      "yuzu",
+      "mandarin"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1651,7 +2193,9 @@
     "productName": "Peach Bellini",
     "brandName": "good-&-gather",
     "imageURL": "https://target.scene7.com/is/image/Target/GUEST_803e4b27-c9a6-4152-a707-127f34ceda96?wid=800&hei=800&qlt=80&fmt=webp",
-    "flavor": ["peach"],
+    "flavor": [
+      "peach"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1659,7 +2203,10 @@
     "productName": "Strawberry Mango",
     "brandName": "good-&-gather",
     "imageURL": "https://www.verywellfit.com/thmb/Zp42R2j2uD5GS4zJu-zFFnqt6qI=/fit-in/1500x1000/filters:no_upscale():max_bytes(150000):strip_icc()/strawberry-mango-sparkling-water---8pk12-fl-oz-cans---good--gather-6317955b477546f39bc96bc004073824.jpg",
-    "flavor": ["strawberry", "mango"],
+    "flavor": [
+      "strawberry",
+      "mango"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1667,7 +2214,10 @@
     "productName": "Cranberry Citrus",
     "brandName": "good-&-gather",
     "imageURL": "https://mhsphoenix.com/wp-content/uploads/2023/03/unnamed-5-475x475.png",
-    "flavor": ["cranberry", "citrus"],
+    "flavor": [
+      "cranberry",
+      "citrus"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1675,7 +2225,10 @@
     "productName": "Ginger Peach",
     "brandName": "good-&-gather",
     "imageURL": "https://dsom-imager-prod.shipt.com/78807361-27/3895eaf92bed7e103c738df21bed9cc7.jpeg",
-    "flavor": ["ginger", "peach"],
+    "flavor": [
+      "ginger",
+      "peach"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1683,7 +2236,10 @@
     "productName": "Coconut Pineapple",
     "brandName": "good-&-gather",
     "imageURL": "https://dsom-imager-prod.shipt.com/54360492-27/0-b61223e86554935672cfcde55aa2405c.jpeg",
-    "flavor": ["coconut", "pineapple"],
+    "flavor": [
+      "coconut",
+      "pineapple"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1691,7 +2247,10 @@
     "productName": "Blackberry Mandarin",
     "brandName": "good-&-gather",
     "imageURL": "https://dsom-imager-prod.shipt.com/81491542-27/0-87417d4e43677b67a19c03b008335f04.jpeg",
-    "flavor": ["blackberry", "mandarin"],
+    "flavor": [
+      "blackberry",
+      "mandarin"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -1699,7 +2258,10 @@
     "productName": "Pomegranate Dragon Fruit",
     "brandName": "good-&-gather",
     "imageURL": "https://dsom-imager-prod.shipt.com/79499684-27/0-ced8364e6b76eb08d9b9def59d47be61.jpeg",
-    "flavor": ["pomegranate", "dragon-fruit"],
+    "flavor": [
+      "pomegranate",
+      "dragon-fruit"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1707,7 +2269,9 @@
     "productName": "Tropical Cherry",
     "brandName": "good-&-gather",
     "imageURL": "https://dsom-imager-prod.shipt.com/54360486-27/0-9a0ccca7c14c7bd453bc2890a03ba114.jpeg",
-    "flavor": ["cherry"],
+    "flavor": [
+      "cherry"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1715,7 +2279,10 @@
     "productName": "Pear Hibiscus",
     "brandName": "good-&-gather",
     "imageURL": "https://i0.wp.com/www.thegourmetgrocertt.com/wp-content/uploads/2023/11/WhatsApp-Image-2023-11-29-at-10.43.31-AM.jpeg?fit=500%2C500&ssl=1",
-    "flavor": ["pear", "hibiscus"],
+    "flavor": [
+      "pear",
+      "hibiscus"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -1723,7 +2290,10 @@
     "productName": "Cherry Cola",
     "brandName": "good-&-gather",
     "imageURL": "https://dsom-imager-prod.shipt.com/85632060-27/0-298ef7fc99c0e03b9d592057f3abe84f.jpeg",
-    "flavor": ["cherry", "cola"],
+    "flavor": [
+      "cherry",
+      "cola"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -1731,7 +2301,10 @@
     "productName": "Cucumber Mint",
     "brandName": "good-&-gather",
     "imageURL": "https://dsom-imager-prod.shipt.com/54360488-27/0-02c02c7bb9a704c063723751d12b09d8.jpeg",
-    "flavor": ["cucumber", "mint"],
+    "flavor": [
+      "cucumber",
+      "mint"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1739,7 +2312,10 @@
     "productName": "Raspberry Hibiscus",
     "brandName": "good-&-gather",
     "imageURL": "https://dsom-imager-prod.shipt.com/81499540-27/0-ef6eac9d1521b277f35e78a3abfd3443.jpeg",
-    "flavor": ["raspberry", "hibiscus"],
+    "flavor": [
+      "raspberry",
+      "hibiscus"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1747,7 +2323,10 @@
     "productName": "Watermelon Lime",
     "brandName": "good-&-gather",
     "imageURL": "https://dsom-imager-prod.shipt.com/83814223-27/0-f74fe492cd7d9fee2d858e5126dd2bdf.jpeg",
-    "flavor": ["watermelon", "lime"],
+    "flavor": [
+      "watermelon",
+      "lime"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1755,7 +2334,9 @@
     "productName": "Blackberry",
     "brandName": "untitled-art",
     "imageURL": "https://www.drinkuntitled.com/wp-content/uploads/2021/10/cbd_blackberry.png",
-    "flavor": ["blackberry"],
+    "flavor": [
+      "blackberry"
+    ],
     "isCaffeinated": false,
     "hasCBD": true
   },
@@ -1763,7 +2344,9 @@
     "productName": "Grapefruit",
     "brandName": "untitled-art",
     "imageURL": "https://www.drinkuntitled.com/wp-content/uploads/2021/10/cbd_grapefruit-scaled.jpg",
-    "flavor": ["grapefruit"],
+    "flavor": [
+      "grapefruit"
+    ],
     "isCaffeinated": false,
     "hasCBD": true
   },
@@ -1771,7 +2354,10 @@
     "productName": "Lemon Lime",
     "brandName": "untitled-art",
     "imageURL": "https://cbdrnk.com/cdn/shop/products/UA_LemonLime_CBD_grande.png?v=1664730209",
-    "flavor": ["lime", "lemon"],
+    "flavor": [
+      "lime",
+      "lemon"
+    ],
     "isCaffeinated": false,
     "hasCBD": true
   },
@@ -1779,7 +2365,9 @@
     "productName": "Strawberry",
     "brandName": "untitled-art",
     "imageURL": "https://cbdrnk.com/cdn/shop/products/UA_Strawberry_CBD_grande.png?v=1665469577",
-    "flavor": ["strawberry"],
+    "flavor": [
+      "strawberry"
+    ],
     "isCaffeinated": false,
     "hasCBD": true
   },
@@ -1787,7 +2375,9 @@
     "productName": "Sparkling Peach",
     "brandName": "origin",
     "imageURL": "https://www.readyrefresh.com/medias/sys_master/images/images/hc6/haa/h00/9116307521566/2880-zoom-origin-peach-flav-sparkling-water-12-ounce-single-can-large.png",
-    "flavor": ["peach"],
+    "flavor": [
+      "peach"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1795,7 +2385,9 @@
     "productName": "Sparkling Lime",
     "brandName": "origin",
     "imageURL": "https://www.drinkoriginwater.com/cdn/shop/files/origin_us_product-sparkling-lime-can--355mL_X500.png?v=1687478368",
-    "flavor": ["lime"],
+    "flavor": [
+      "lime"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1803,7 +2395,9 @@
     "productName": "Sparkling Berries",
     "brandName": "origin",
     "imageURL": "https://www.drinkoriginwater.com/cdn/shop/files/origin_us_product-sparkling-berries-can--355mL_X500.png?v=1687478278",
-    "flavor": ["berry"],
+    "flavor": [
+      "berry"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1811,7 +2405,9 @@
     "productName": "Sparkling",
     "brandName": "origin",
     "imageURL": "https://www.drinkoriginwater.com/cdn/shop/files/origin_us_product-sparkling-unflavored-can--355mL.png?v=1687478440",
-    "flavor": ["plain"],
+    "flavor": [
+      "plain"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1819,7 +2415,9 @@
     "productName": "Sparkling Lemon Flavor",
     "brandName": "ice-mountain",
     "imageURL": "https://www.icemountainwater.com/sites/g/files/zmtnxh171/files/2022-07/ice_mountain-product-sparkling--Lemon.png",
-    "flavor": ["lemon"],
+    "flavor": [
+      "lemon"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1827,7 +2425,9 @@
     "productName": "Sparkling Black Cherry Flavor",
     "brandName": "ice-mountain",
     "imageURL": "https://www.icemountainwater.com/sites/g/files/zmtnxh171/files/2022-10/ice_mountain-sparkling-bottle-detail--500mL-black_cherry.png",
-    "flavor": ["black-cherry"],
+    "flavor": [
+      "black-cherry"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1835,7 +2435,10 @@
     "productName": "Sparkling Raspberry Lime Flavor",
     "brandName": "ice-mountain",
     "imageURL": "https://www.icemountainwater.com/sites/g/files/zmtnxh171/files/2022-07/ice_mountain-product-sparkling--Raspberry-Lime.png",
-    "flavor": ["raspberry", "lime"],
+    "flavor": [
+      "raspberry",
+      "lime"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1843,7 +2446,9 @@
     "productName": "Sparkling Simply Bubbles Flavor",
     "brandName": "ice-mountain",
     "imageURL": "https://www.icemountainwater.com/sites/g/files/zmtnxh171/files/2022-07/ice_mountain-product-sparkling--Simply-Bubbles.png",
-    "flavor": ["plain"],
+    "flavor": [
+      "plain"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1851,7 +2456,12 @@
     "productName": "Sparkling Triple Berry Flavor",
     "brandName": "ice-mountain",
     "imageURL": "https://www.icemountainwater.com/sites/g/files/zmtnxh171/files/2022-07/ice_mountain-product-sparkling--Black-Cherry.png",
-    "flavor": ["berry", "blackberry", "blueberry", "strawberry"],
+    "flavor": [
+      "berry",
+      "blackberry",
+      "blueberry",
+      "strawberry"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1859,7 +2469,9 @@
     "productName": "Sparkling Lime Flavor",
     "brandName": "ice-mountain",
     "imageURL": "https://www.icemountainwater.com/sites/g/files/zmtnxh171/files/2022-07/ice_mountain-product-sparkling--Lime.png",
-    "flavor": ["lime"],
+    "flavor": [
+      "lime"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1867,7 +2479,10 @@
     "productName": "Raspberry Blackberry",
     "brandName": "splash-fizz",
     "imageURL": "https://assets.wakefern.com/is/image/wakefern/6827435189-001?$Mi9Product_detail$",
-    "flavor": ["raspberry", "blackberry"],
+    "flavor": [
+      "raspberry",
+      "blackberry"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1875,7 +2490,9 @@
     "productName": "Lemonade",
     "brandName": "splash-fizz",
     "imageURL": "https://assets.wakefern.com/is/image/wakefern/6827435193-009?$Mi9Product_detail$",
-    "flavor": ["lemonade"],
+    "flavor": [
+      "lemonade"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1883,7 +2500,9 @@
     "productName": "Blood Orange",
     "brandName": "splash-fizz",
     "imageURL": "https://images.gotoliquorstore.com/product/1000050885/7b5a984a-864b-4b77-8618-2b97afa7d330_360_m.jpg",
-    "flavor": ["blood-orange"],
+    "flavor": [
+      "blood-orange"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1891,7 +2510,9 @@
     "productName": "Black Cherry",
     "brandName": "splash-fizz",
     "imageURL": "https://assets.wakefern.com/is/image/wakefern/6827435197-001?$Mi9Product_detail$",
-    "flavor": ["black-cherry"],
+    "flavor": [
+      "black-cherry"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1899,7 +2520,10 @@
     "productName": "Cardamom & Black Tea",
     "brandName": "dram",
     "imageURL": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBm9P0hA_onWJRh8UhtyDdd50oD4DZYNyda-Qof2N5BQ&s",
-    "flavor": ["cardamom", "black-tea"],
+    "flavor": [
+      "cardamom",
+      "black-tea"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1907,7 +2531,10 @@
     "productName": "Lavender & Lemon Balm",
     "brandName": "dram",
     "imageURL": "https://m.media-amazon.com/images/S/assets.wholefoodsmarket.com/PIE/product/5f16313821f331de1e98fbd9_00854826008012-glamor-frontpackageglamor-2020-07-15t14-29-39-iphone-x-quality-90-1-21-1-user-5984ad42a967f880524de2c4-3yj9-145345.jpg",
-    "flavor": ["lavender", "lemon"],
+    "flavor": [
+      "lavender",
+      "lemon"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1915,7 +2542,10 @@
     "productName": "Holy Basil & Lemon",
     "brandName": "dram",
     "imageURL": "https://www.dramapothecary.com/wp-content/uploads/2022/05/DRAM-Holy-Basil-sparkling-water-1.jpg",
-    "flavor": ["basil", "lemon"],
+    "flavor": [
+      "basil",
+      "lemon"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1923,7 +2553,10 @@
     "productName": "Adaptogenic Mushroom Cola",
     "brandName": "dram",
     "imageURL": "https://www.dramapothecary.com/wp-content/uploads/2022/05/dram-mushroom-cola-good-food.jpg",
-    "flavor": ["mushroom", "cola"],
+    "flavor": [
+      "mushroom",
+      "cola"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1931,7 +2564,9 @@
     "productName": "Sweetgrass Adaptogenic",
     "brandName": "dram",
     "imageURL": "https://www.obstinatetastes.com/cdn/shop/files/DRAMSweetgrass.png?v=1704926438",
-    "flavor": ["sweetgrass"],
+    "flavor": [
+      "sweetgrass"
+    ],
     "isCaffeinated": false,
     "hasCBD": true
   },
@@ -1939,7 +2574,9 @@
     "productName": "Gingergrass Adaptogenic",
     "brandName": "dram",
     "imageURL": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUHlnYdPItZhjhOq1Y3NKN8EZEMtfoVtWN1hRTUmUimA&s",
-    "flavor": ["ginger"],
+    "flavor": [
+      "ginger"
+    ],
     "isCaffeinated": false,
     "hasCBD": true
   },
@@ -1947,7 +2584,9 @@
     "productName": "Rose Beauty Bubbles Adaptogenic",
     "brandName": "dram",
     "imageURL": "https://www.dramapothecary.com/wp-content/uploads/2019/07/Beauty-Bubbles-grey-bg-CBD-1536x1536.jpg",
-    "flavor": ["rose"],
+    "flavor": [
+      "rose"
+    ],
     "isCaffeinated": false,
     "hasCBD": true
   },
@@ -1955,7 +2594,9 @@
     "productName": "Lemongrass Adaptogenic",
     "brandName": "dram",
     "imageURL": "https://www.dramapothecary.com/wp-content/uploads/2019/07/Lemongrass-grey-bg-CBD.jpg",
-    "flavor": ["lemongrass"],
+    "flavor": [
+      "lemongrass"
+    ],
     "isCaffeinated": false,
     "hasCBD": true
   },
@@ -1963,7 +2604,9 @@
     "productName": "Citrus & Blossoms",
     "brandName": "dram",
     "imageURL": "https://m.media-amazon.com/images/S/assets.wholefoodsmarket.com/PIE/product/5f163137331e03ddf08b2892_00854826008005-glamor-frontpackageglamor-2020-07-15t14-30-59-iphone-x-quality-90-1-21-1-user-5984ad42a967f880524de2c4-apu4-024548.jpg",
-    "flavor": ["citrus"],
+    "flavor": [
+      "citrus"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -1971,7 +2614,10 @@
     "productName": "Cherry + Lime",
     "brandName": "aprch",
     "imageURL": "https://drinkaprch.com/cdn/shop/products/Cherry_Lime_CBD_beverages.png?v=1706074388",
-    "flavor": ["cherry", "lime"],
+    "flavor": [
+      "cherry",
+      "lime"
+    ],
     "isCaffeinated": false,
     "hasCBD": true
   },
@@ -1979,7 +2625,9 @@
     "productName": "Blackberry",
     "brandName": "aprch",
     "imageURL": "https://drinkaprch.com/cdn/shop/products/Blackberry_CBD_beverages.png?v=1706074404",
-    "flavor": ["blackberry"],
+    "flavor": [
+      "blackberry"
+    ],
     "isCaffeinated": false,
     "hasCBD": true
   },
@@ -1987,7 +2635,9 @@
     "productName": "Black Cherry",
     "brandName": "aprch",
     "imageURL": "https://drinkaprch.com/cdn/shop/files/Black_Cherry_CBD_Drinks_6a049eb6-10fa-4e7f-9869-08d87c6f87c1.png?v=1709665937",
-    "flavor": ["black-cherry"],
+    "flavor": [
+      "black-cherry"
+    ],
     "isCaffeinated": false,
     "hasCBD": true
   },
@@ -1995,7 +2645,9 @@
     "productName": "Watermelon",
     "brandName": "aprch",
     "imageURL": "https://drinkaprch.com/cdn/shop/products/Watermelon_CBD_beverages.png?v=1706074345",
-    "flavor": ["watermelon"],
+    "flavor": [
+      "watermelon"
+    ],
     "isCaffeinated": false,
     "hasCBD": true
   },
@@ -2003,7 +2655,9 @@
     "productName": "Fruit Punch",
     "brandName": "aprch",
     "imageURL": "https://drinkaprch.com/cdn/shop/products/FruitPunch-CBD_Drink.png?v=1706071346",
-    "flavor": ["fruit-punch"],
+    "flavor": [
+      "fruit-punch"
+    ],
     "isCaffeinated": false,
     "hasCBD": true
   },
@@ -2011,7 +2665,10 @@
     "productName": "Mint + Cucumber",
     "brandName": "aprch",
     "imageURL": "https://drinkaprch.com/cdn/shop/products/Mint_Cucumber_CBD_beverages.png?v=1706074369",
-    "flavor": ["mint", "cucumber"],
+    "flavor": [
+      "mint",
+      "cucumber"
+    ],
     "isCaffeinated": false,
     "hasCBD": true
   },
@@ -2019,7 +2676,9 @@
     "productName": "Huckleberry",
     "brandName": "aprch",
     "imageURL": "https://drinkaprch.com/cdn/shop/products/Huckleberry_CBD_seltzers.png?v=1706073273",
-    "flavor": ["huckleberry"],
+    "flavor": [
+      "huckleberry"
+    ],
     "isCaffeinated": false,
     "hasCBD": true
   },
@@ -2027,7 +2686,9 @@
     "productName": "Natural",
     "brandName": "present",
     "imageURL": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvPjKQIPPfjVCoSTE7DCvX2MEUuW5rf6cWolj4dMfn6Q&s",
-    "flavor": ["plain"],
+    "flavor": [
+      "plain"
+    ],
     "isCaffeinated": false,
     "hasCBD": true
   },
@@ -2035,7 +2696,10 @@
     "productName": "Lemon + Lime",
     "brandName": "present",
     "imageURL": "https://d2iiahg0ip5afn.cloudfront.net/media/present/images/753056390.present-16oz-sparklingwater-cbd-lemonlime-front.jpg",
-    "flavor": ["lemon", "lime"],
+    "flavor": [
+      "lemon",
+      "lime"
+    ],
     "isCaffeinated": false,
     "hasCBD": true
   },
@@ -2043,7 +2707,9 @@
     "productName": "Blood Orange",
     "brandName": "present",
     "imageURL": "https://d2iiahg0ip5afn.cloudfront.net/media/present/images/36489921.present-16oz-sparklingwater-cbd-bloodorange-front.jpg",
-    "flavor": ["blood-orange"],
+    "flavor": [
+      "blood-orange"
+    ],
     "isCaffeinated": false,
     "hasCBD": true
   },
@@ -2051,7 +2717,10 @@
     "productName": "Lemon & Ginger",
     "brandName": "baloo",
     "imageURL": "https://s7d5.scene7.com/is/image/CentralMarket/010292026-1",
-    "flavor": ["lemon", "ginger"],
+    "flavor": [
+      "lemon",
+      "ginger"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2059,7 +2728,10 @@
     "productName": "Blood Orange & Basil",
     "brandName": "baloo",
     "imageURL": "https://m.media-amazon.com/images/I/61N1jVS-PAL._AC_UF350,350_QL80_.jpg",
-    "flavor": ["blood-orange", "basil"],
+    "flavor": [
+      "blood-orange",
+      "basil"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2067,7 +2739,10 @@
     "productName": "Grapefruit & Mint",
     "brandName": "baloo",
     "imageURL": "https://s7d5.scene7.com/is/image/CentralMarket/010295508-1?hei=124&wid=124&$large$",
-    "flavor": ["grapefruit", "mint"],
+    "flavor": [
+      "grapefruit",
+      "mint"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2075,7 +2750,12 @@
     "productName": "tropical dream'r",
     "brandName": "bubbl'r",
     "imageURL": "https://www.drinkbubblr.com/wp-content/uploads/2022/04/WP-BUBBLR-Website-Flavr-tropicaldreamr.png",
-    "flavor": ["pineapple", "mango", "apple", "lime"],
+    "flavor": [
+      "pineapple",
+      "mango",
+      "apple",
+      "lime"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -2083,7 +2763,12 @@
     "productName": "triple berry breez'r",
     "brandName": "bubbl'r",
     "imageURL": "https://www.drinkbubblr.com/wp-content/uploads/2022/04/WP-BUBBLR-Website-Flavr-tropicaldreamr.png",
-    "flavor": ["berry", "raspberry", "blackberry", "blueberry"],
+    "flavor": [
+      "berry",
+      "raspberry",
+      "blackberry",
+      "blueberry"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -2091,7 +2776,11 @@
     "productName": "twisted elix'r",
     "brandName": "bubbl'r",
     "imageURL": "https://www.drinkbubblr.com/wp-content/uploads/2022/01/WP-BUBBLR-Website-Flavr-twistedelixr.png",
-    "flavor": ["raspberry", "lime", "citrus"],
+    "flavor": [
+      "raspberry",
+      "lime",
+      "citrus"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -2099,7 +2788,10 @@
     "productName": "lemon lime twist'r",
     "brandName": "bubbl'r",
     "imageURL": "https://www.drinkbubblr.com/wp-content/uploads/2022/01/WP-BUBBLR-Website-Flavr-lemonlimetwistr.png",
-    "flavor": ["lemon", "lime"],
+    "flavor": [
+      "lemon",
+      "lime"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -2107,7 +2799,10 @@
     "productName": "pitaya berry nect'r",
     "brandName": "bubbl'r",
     "imageURL": "https://www.drinkbubblr.com/wp-content/uploads/2022/01/WP-BUBBLR-Website-Flavr-pitayaberrynectr.png",
-    "flavor": ["dragon-fruit", "strawberry"],
+    "flavor": [
+      "dragon-fruit",
+      "strawberry"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -2115,7 +2810,10 @@
     "productName": "pitaya berry nect'r",
     "brandName": "bubbl'r",
     "imageURL": "https://www.drinkbubblr.com/wp-content/uploads/2022/01/WP-BUBBLR-Website-Flavr-cherryguavablendr.png",
-    "flavor": ["cherry", "guava"],
+    "flavor": [
+      "cherry",
+      "guava"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -2123,7 +2821,10 @@
     "productName": "blood orange mango mingl'r",
     "brandName": "bubbl'r",
     "imageURL": "https://www.drinkbubblr.com/wp-content/uploads/2022/01/WP-BUBBLR-Website-Flavr-bloodorangemangominglr.png",
-    "flavor": ["blood-orange", "mango"],
+    "flavor": [
+      "blood-orange",
+      "mango"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -2131,7 +2832,9 @@
     "productName": "passion fruit wond'r",
     "brandName": "bubbl'r",
     "imageURL": "https://www.drinkbubblr.com/wp-content/uploads/2022/01/WP-BUBBLR-Website-Flavr-passionfruitwondr.png",
-    "flavor": ["passionfruit"],
+    "flavor": [
+      "passionfruit"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -2139,7 +2842,10 @@
     "productName": "pomegranate acai refresh'r",
     "brandName": "bubbl'r",
     "imageURL": "https://www.drinkbubblr.com/wp-content/uploads/2022/01/WP-BUBBLR-Website-Flavr-pomegranateacairefreshr.png",
-    "flavor": ["pomegranate", "acai"],
+    "flavor": [
+      "pomegranate",
+      "acai"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -2147,7 +2853,10 @@
     "productName": "cranberry grapefruit sparkl'r",
     "brandName": "bubbl'r",
     "imageURL": "https://www.drinkbubblr.com/wp-content/uploads/2022/01/WP-BUBBLR-Website-Flavr-cranberrygrapefruitsparklr.png",
-    "flavor": ["cranberry", "grapefruit"],
+    "flavor": [
+      "cranberry",
+      "grapefruit"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -2155,7 +2864,9 @@
     "productName": "wild cherry chill'r",
     "brandName": "bubbl'r",
     "imageURL": "https://www.drinkbubblr.com/wp-content/uploads/2023/11/WP-BUBBLR-Website-Flavr-wildcherrychillr-v2.png",
-    "flavor": ["cherry"],
+    "flavor": [
+      "cherry"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -2163,7 +2874,9 @@
     "productName": "grapefruit",
     "brandName": "hi-ball-energy",
     "imageURL": "https://m.media-amazon.com/images/I/41w5bJ2hapL._SX300_SY300_QL70_FMwebp_.jpg",
-    "flavor": ["grapefruit"],
+    "flavor": [
+      "grapefruit"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -2171,7 +2884,9 @@
     "productName": "blood orange",
     "brandName": "hi-ball-energy",
     "imageURL": "https://m.media-amazon.com/images/S/assets.wholefoodsmarket.com/PIE/product/62d09db5d707891144dad965_0853585008417-glamor-back-left-2022-06-08t19-17-36-iphone-x-quality-90-1-29-0-user-5984ad42a967f880524de2c4-812w-694975.jpg",
-    "flavor": ["blood-orange"],
+    "flavor": [
+      "blood-orange"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -2179,7 +2894,9 @@
     "productName": "peach",
     "brandName": "hi-ball-energy",
     "imageURL": "https://www.kroger.com/product/images/large/front/0089735100082",
-    "flavor": ["peach"],
+    "flavor": [
+      "peach"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -2187,7 +2904,9 @@
     "productName": "vanilla",
     "brandName": "hi-ball-energy",
     "imageURL": "https://storage.googleapis.com/images-fol-prd-83dd8b8.fol.prd.v8.commerce.mi9cloud.com/product-images/detail/89735100052.jpg",
-    "flavor": ["vanilla"],
+    "flavor": [
+      "vanilla"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -2195,7 +2914,9 @@
     "productName": "wild berry",
     "brandName": "hi-ball-energy",
     "imageURL": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxjFyiOdQkVpTyVF_9DkwAsXN2pBHGWJZKt6ZDAQKWCg&s",
-    "flavor": ["berry"],
+    "flavor": [
+      "berry"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -2203,7 +2924,9 @@
     "productName": "blackberry",
     "brandName": "hi-ball-energy",
     "imageURL": "https://www.kroger.com/product/images/large/front/0085358500840",
-    "flavor": ["blackberry"],
+    "flavor": [
+      "blackberry"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -2211,7 +2934,10 @@
     "productName": "lemon lime",
     "brandName": "hi-ball-energy",
     "imageURL": "https://www.kroger.com/product/images/large/front/0089735100032",
-    "flavor": ["lemon", "lime"],
+    "flavor": [
+      "lemon",
+      "lime"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -2219,7 +2945,10 @@
     "productName": "watermelon mint",
     "brandName": "hi-ball-energy",
     "imageURL": "https://storage.googleapis.com/images-fol-prd-83dd8b8.fol.prd.v8.commerce.mi9cloud.com/product-images/detail/85358500842-1.jpg",
-    "flavor": ["watermelon", "mint"],
+    "flavor": [
+      "watermelon",
+      "mint"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -2227,7 +2956,9 @@
     "productName": "Pink Grapefruit",
     "imageURL": "https://images.squarespace-cdn.com/content/v1/5ffcc50691eb492f96d38c6f/47fbbf23-dbb2-47c4-98ad-e197c649f72f/Ardor2023_PG+copy.png?format=750w",
     "brandName": "ardor",
-    "flavor": ["grapefruit"],
+    "flavor": [
+      "grapefruit"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -2235,7 +2966,10 @@
     "productName": "Cucumber Mint",
     "brandName": "ardor",
     "imageURL": "https://images.squarespace-cdn.com/content/v1/5ffcc50691eb492f96d38c6f/3beb7923-884d-450d-9aad-135fa1d174e6/Ardor2023_CM.png?format=750w",
-    "flavor": ["cucumber", "mint"],
+    "flavor": [
+      "cucumber",
+      "mint"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -2243,7 +2977,9 @@
     "productName": "White Peach",
     "brandName": "ardor",
     "imageURL": "https://images.squarespace-cdn.com/content/v1/5ffcc50691eb492f96d38c6f/1610658912925-92ORTX7VQEYR4IRHCE63/ArdorStraightWhitePeach.png?format=1000w",
-    "flavor": ["peach"],
+    "flavor": [
+      "peach"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -2251,7 +2987,10 @@
     "productName": "Vanilla Blackberry",
     "brandName": "ardor",
     "imageURL": "https://images.squarespace-cdn.com/content/v1/5ffcc50691eb492f96d38c6f/f25af192-6ce4-4337-bd36-16d2a5b7d95c/Ardor2023_VB.png?format=750w",
-    "flavor": ["vanilla", "blackberry"],
+    "flavor": [
+      "vanilla",
+      "blackberry"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -2259,7 +2998,9 @@
     "productName": "Tropical Mango",
     "brandName": "ardor",
     "imageURL": "https://images.squarespace-cdn.com/content/v1/5ffcc50691eb492f96d38c6f/725a242d-6ca8-426e-8165-cc7d482370bd/Ardor2023_TM.png",
-    "flavor": ["mango"],
+    "flavor": [
+      "mango"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -2267,7 +3008,9 @@
     "productName": "Mexican Lime",
     "brandName": "ardor",
     "imageURL": "https://static1.squarespace.com/static/5ffcc50691eb492f96d38c6f/5ffdf9e6ceacfe6c09dfc4b1/5ffe3e781702cf464640ece0/1610497669587/ArdorStraightMexicanLime.png?format=1500w",
-    "flavor": ["lime"],
+    "flavor": [
+      "lime"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -2275,7 +3018,10 @@
     "productName": "Blueberry Pom",
     "brandName": "ardor",
     "imageURL": "https://images.squarespace-cdn.com/content/v1/5ffcc50691eb492f96d38c6f/9aae27ca-e77a-40c1-84d8-82517442b5d1/Ardor2023_BP.png?format=750w",
-    "flavor": ["blueberry", "pomegranate"],
+    "flavor": [
+      "blueberry",
+      "pomegranate"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -2283,7 +3029,9 @@
     "productName": "Blood Orange",
     "brandName": "phocus",
     "imageURL": "https://drinkphocus.com/cdn/shop/files/bloodorange122_1080x.png?v=1710536553",
-    "flavor": ["blood-orange"],
+    "flavor": [
+      "blood-orange"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -2291,7 +3039,9 @@
     "productName": "Peach",
     "brandName": "phocus",
     "imageURL": "https://drinkphocus.com/cdn/shop/files/peach122_1080x.png?v=1710537383",
-    "flavor": ["peach"],
+    "flavor": [
+      "peach"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -2299,7 +3049,9 @@
     "productName": "Root Beer",
     "brandName": "phocus",
     "imageURL": "https://drinkphocus.com/cdn/shop/files/rootbeer122_1080x.png?v=1710766933",
-    "flavor": ["root-beer"],
+    "flavor": [
+      "root-beer"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -2307,7 +3059,9 @@
     "productName": "Mixed Berry",
     "brandName": "phocus",
     "imageURL": "https://drinkphocus.com/cdn/shop/files/mixedberry122_1080x.png?v=1710537994",
-    "flavor": ["berry"],
+    "flavor": [
+      "berry"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -2315,7 +3069,9 @@
     "productName": "Grapefruit",
     "brandName": "phocus",
     "imageURL": "https://drinkphocus.com/cdn/shop/files/grapefruit122_1080x.png?v=1710769210",
-    "flavor": ["grapefruit"],
+    "flavor": [
+      "grapefruit"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -2323,7 +3079,9 @@
     "productName": "Crisp Apple",
     "brandName": "phocus",
     "imageURL": "https://drinkphocus.com/cdn/shop/files/apple122_1080x.png?v=1710536140",
-    "flavor": ["apple"],
+    "flavor": [
+      "apple"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -2331,7 +3089,10 @@
     "productName": "Lemon Lime",
     "brandName": "phocus",
     "imageURL": "https://drinkphocus.com/cdn/shop/files/lemonlime122_1080x.png?v=1710536769",
-    "flavor": ["lemon", "lime"],
+    "flavor": [
+      "lemon",
+      "lime"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -2339,7 +3100,10 @@
     "productName": "Strawberry Kiwi",
     "brandName": "phocus",
     "imageURL": "https://drinkphocus.com/cdn/shop/files/strawberrykiwi122_1080x.png?v=1710536894",
-    "flavor": ["strawberry", "kiwi"],
+    "flavor": [
+      "strawberry",
+      "kiwi"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -2347,7 +3111,9 @@
     "productName": "Belle Vie - Blackberry",
     "brandName": "puraqua",
     "imageURL": "https://www.instacart.com/image-server/394x394/filters:fill(FFF,true):format(jpg)/d2lnr5mha7bycj.cloudfront.net/product-image/file/large_d3a4b969-3cb8-4636-b7d6-7f9745b37603.jpg",
-    "flavor": ["blackberry"],
+    "flavor": [
+      "blackberry"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2355,7 +3121,10 @@
     "productName": "Belle Vie - Blackberry Cucumber",
     "brandName": "puraqua",
     "imageURL": "https://www.aldi.us/fileadmin/_processed_/8/5/csm_puraqua-belle-vie-blackberry-cucumber-desktop-pdp_c1165a589e.jpg",
-    "flavor": ["blackberry", "cucumber"],
+    "flavor": [
+      "blackberry",
+      "cucumber"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2363,7 +3132,9 @@
     "productName": "Belle Vie - Original",
     "brandName": "puraqua",
     "imageURL": "https://www.aldi.us/fileadmin/fm-dam/Products/Categories/Beverages/Water/product-detail-pur-belle-vie-sparkling-water-original-12pk.jpg",
-    "flavor": ["plain"],
+    "flavor": [
+      "plain"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2371,7 +3142,9 @@
     "productName": "Belle Vie - Tangerine",
     "brandName": "puraqua",
     "imageURL": "https://www.aldi.us/fileadmin/fm-dam/Products/Categories/Beverages/Water/product-detail-pur-belle-vie-sparkling-water-tangerine-12pk.jpg",
-    "flavor": ["tangerine"],
+    "flavor": [
+      "tangerine"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2379,7 +3152,10 @@
     "productName": "Belle Vie - Cherry Lime",
     "brandName": "puraqua",
     "imageURL": "https://www.instacart.com/image-server/1200x1200/www.instacart.com/assets/domains/product-image/file/large_74d74e74-7ac9-4748-a8f4-a9644121ec39.jpg",
-    "flavor": ["cherry", "lime"],
+    "flavor": [
+      "cherry",
+      "lime"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2387,7 +3163,10 @@
     "productName": "Belle Vie - Strawberry Pineapple",
     "brandName": "puraqua",
     "imageURL": "https://www.instacart.com/image-server/394x394/filters:fill(FFF,true):format(jpg)/d2lnr5mha7bycj.cloudfront.net/product-image/file/large_ff781cde-0b63-46d3-874f-cc5c2339fa0c.jpg",
-    "flavor": ["strawberry", "pineapple"],
+    "flavor": [
+      "strawberry",
+      "pineapple"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2395,7 +3174,9 @@
     "productName": "Belle Vie - Grapefruit",
     "brandName": "puraqua",
     "imageURL": "https://www.instacart.com/image-server/394x394/filters:fill(FFF,true):format(jpg)/d2lnr5mha7bycj.cloudfront.net/product-image/file/large_9f6d972e-774b-4ae5-9325-b132f74fa78a.jpg",
-    "flavor": ["grapefruit"],
+    "flavor": [
+      "grapefruit"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2403,7 +3184,9 @@
     "productName": "Belle Vie - Strawberry",
     "brandName": "puraqua",
     "imageURL": "https://www.instacart.com/image-server/394x394/filters:fill(FFF,true):format(jpg)/d2lnr5mha7bycj.cloudfront.net/product-image/file/large_10b62c33-4ca7-47c0-ad97-e12fb512e2eb.jpg",
-    "flavor": ["strawberry"],
+    "flavor": [
+      "strawberry"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2411,7 +3194,9 @@
     "productName": "Belle Vie - Lime",
     "brandName": "puraqua",
     "imageURL": "https://www.instacart.com/image-server/394x394/filters:fill(FFF,true):format(jpg)/d2lnr5mha7bycj.cloudfront.net/product-image/file/large_69f34502-0d84-4050-afb9-fd194ba447a2.jpg",
-    "flavor": ["lime"],
+    "flavor": [
+      "lime"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2419,7 +3204,9 @@
     "productName": "Lime",
     "brandName": "soleil",
     "imageURL": "https://images.albertsons-media.com/is/image/ABS/970308647-ECOM?$ng-ecom-pdp-desktop$&defaultImage=Not_Available",
-    "flavor": ["lime"],
+    "flavor": [
+      "lime"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2427,7 +3214,9 @@
     "productName": "Berry",
     "brandName": "soleil",
     "imageURL": "https://images.albertsons-media.com/is/image/ABS/970308649-ECOM?$ng-ecom-pdp-desktop$&defaultImage=Not_Available",
-    "flavor": ["berry"],
+    "flavor": [
+      "berry"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2435,7 +3224,9 @@
     "productName": "Mango",
     "brandName": "soleil",
     "imageURL": "https://images.albertsons-media.com/is/image/ABS/970526609-ECOM?$ng-ecom-pdp-desktop$&defaultImage=Not_Available",
-    "flavor": ["mango"],
+    "flavor": [
+      "mango"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2443,7 +3234,9 @@
     "productName": "Black Cherry",
     "brandName": "soleil",
     "imageURL": "https://images.albertsons-media.com/is/image/ABS/970308653-ECOM?$ng-ecom-pdp-desktop$&defaultImage=Not_Available",
-    "flavor": ["black-cherry"],
+    "flavor": [
+      "black-cherry"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2451,7 +3244,9 @@
     "productName": "Kiwi Watermelon",
     "brandName": "soleil",
     "imageURL": "https://images.albertsons-media.com/is/image/ABS/960516375-ECOM?$ng-ecom-pdp-desktop$&defaultImage=Not_Available",
-    "flavor": ["black-cherry"],
+    "flavor": [
+      "black-cherry"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2459,7 +3254,10 @@
     "productName": "Cucumber Melon",
     "brandName": "soleil",
     "imageURL": "https://images.albertsons-media.com/is/image/ABS/970308655-ECOM?$ng-ecom-pdp-desktop$&defaultImage=Not_Available",
-    "flavor": ["cucumber", "melon"],
+    "flavor": [
+      "cucumber",
+      "melon"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2467,7 +3265,9 @@
     "productName": "Pineapple",
     "brandName": "soleil",
     "imageURL": "https://images.albertsons-media.com/is/image/ABS/970320593-ECOM?$ng-ecom-pdp-desktop$&defaultImage=Not_Available",
-    "flavor": ["pineapple"],
+    "flavor": [
+      "pineapple"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2475,7 +3275,9 @@
     "productName": "Tangerine",
     "brandName": "soleil",
     "imageURL": "https://images.albertsons-media.com/is/image/ABS/970308658-ECOM?$ng-ecom-pdp-desktop$&defaultImage=Not_Available",
-    "flavor": ["tangerine"],
+    "flavor": [
+      "tangerine"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2483,7 +3285,9 @@
     "productName": "Grapefruit",
     "brandName": "soleil",
     "imageURL": "https://images.albertsons-media.com/is/image/ABS/970308648-ECOM?$ng-ecom-pdp-desktop$&defaultImage=Not_Available",
-    "flavor": ["grapefruit"],
+    "flavor": [
+      "grapefruit"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2491,7 +3295,9 @@
     "productName": "Blood Orange",
     "brandName": "soleil",
     "imageURL": "https://images.albertsons-media.com/is/image/ABS/960454682-ECOM?$ng-ecom-pdp-desktop$&defaultImage=Not_Available",
-    "flavor": ["blood-orange"],
+    "flavor": [
+      "blood-orange"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2499,7 +3305,9 @@
     "productName": "Original",
     "brandName": "soleil",
     "imageURL": "https://images.albertsons-media.com/is/image/ABS/960554920-ECOM?$ng-ecom-pdp-desktop$&defaultImage=Not_Available",
-    "flavor": ["plain"],
+    "flavor": [
+      "plain"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2507,7 +3315,9 @@
     "productName": "Black Currant",
     "brandName": "good-idea",
     "imageURL": "https://www.goodidea.us/cdn/shop/products/PRODUCTIMAGES-11_900x.png?v=1701419385",
-    "flavor": ["currant"],
+    "flavor": [
+      "currant"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2515,7 +3325,10 @@
     "productName": "Strawberry Elderflower",
     "brandName": "good-idea",
     "imageURL": "https://www.goodidea.us/cdn/shop/products/PRODUCTIMAGES-07_900x.png?v=1701419420",
-    "flavor": ["strawberry", "elderflower"],
+    "flavor": [
+      "strawberry",
+      "elderflower"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2523,7 +3336,9 @@
     "productName": "Swedish Lemon",
     "brandName": "good-idea",
     "imageURL": "https://www.goodidea.us/cdn/shop/products/PRODUCTIMAGES-10_900x.png?v=1701419433",
-    "flavor": ["lemon"],
+    "flavor": [
+      "lemon"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2531,7 +3346,9 @@
     "productName": "Wild Raspberry",
     "brandName": "good-idea",
     "imageURL": "https://www.goodidea.us/cdn/shop/products/PRODUCTIMAGES-12_900x.png?v=1701419446",
-    "flavor": ["raspberry"],
+    "flavor": [
+      "raspberry"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2539,7 +3356,9 @@
     "productName": "Sea Berry",
     "brandName": "good-idea",
     "imageURL": "https://www.goodidea.us/cdn/shop/products/PRODUCTIMAGES-08_900x.png?v=1701419408",
-    "flavor": ["sea-berry"],
+    "flavor": [
+      "sea-berry"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2547,7 +3366,9 @@
     "productName": "Power",
     "brandName": "tru",
     "imageURL": "https://i5.peapod.com/c/NR/NRHIU.png",
-    "flavor": ["watermelon"],
+    "flavor": [
+      "watermelon"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -2555,7 +3376,9 @@
     "productName": "Defend",
     "brandName": "tru",
     "imageURL": "https://i5.walmartimages.com/seo/Tru-Defend-Seltzer-Pineapple-Sparkling-Water-Vitamin-C-Immune-Support-Drink-12-oz-1-Pack_ee38a740-b85b-49d7-85db-9760cae2fa8b.604ba5ff0892249f39bab89e44c4192a.jpeg",
-    "flavor": ["pineapple"],
+    "flavor": [
+      "pineapple"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2563,7 +3386,10 @@
     "productName": "Dream",
     "brandName": "tru",
     "imageURL": "https://www.mercadomagico.com/images/thumbnails/465/465/detailed/4557/KHCH00387425-0.jpg",
-    "flavor": ["cherry", "berry"],
+    "flavor": [
+      "cherry",
+      "berry"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2571,7 +3397,9 @@
     "productName": "Rescue",
     "brandName": "tru",
     "imageURL": "https://i5.walmartimages.com/seo/Tru-Energy-Seltzer-Orange-Mango-Sparkling-Water-Clean-Energy-Drink-12-oz-1-Pack_d9905172-855d-433e-bf8f-96ebfccbe484.6bf93a9bbe7e71e1c0017fc613cd78fa.jpeg",
-    "flavor": ["blackberry"],
+    "flavor": [
+      "blackberry"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2579,7 +3407,9 @@
     "productName": "Beauty",
     "brandName": "tru",
     "imageURL": "https://i5.walmartimages.com/seo/Tru-Beauty-Seltzer-Raspberry-Sparkling-Water-Collagen-Biotin-Drink-12-oz-1-Pack_618d8a78-da53-4af1-a912-ceb1876d1b36.a1e5ab14b58d4d191a542b2b28a274da.jpeg",
-    "flavor": ["raspberry"],
+    "flavor": [
+      "raspberry"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2587,7 +3417,10 @@
     "productName": "Focus",
     "brandName": "tru",
     "imageURL": "https://i5.walmartimages.com/seo/Tru-Focus-Seltzer-Apple-Kiwi-Sparkling-Water-Nootropic-Yerba-Mate-Drink-12-oz-1-Pack_7c1e1bea-b960-4c04-a14c-50462d317b0b.a267a63fbfe7d89aa68b64b466be8beb.jpeg",
-    "flavor": ["apple", "kiwi"],
+    "flavor": [
+      "apple",
+      "kiwi"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -2595,7 +3428,10 @@
     "productName": "Energy",
     "brandName": "tru",
     "imageURL": "https://i5.walmartimages.com/seo/Tru-Rescue-Seltzer-Blackberry-Sparkling-Water-Electrolytes-Detox-Drink-12-oz-1-Pack_0f6ecb24-575a-403e-b7b6-baa56d3d1232.805e52d9ac10666fdfcd7a785cf4af10.jpeg",
-    "flavor": ["orange", "mango"],
+    "flavor": [
+      "orange",
+      "mango"
+    ],
     "isCaffeinated": true,
     "hasCBD": false
   },
@@ -2603,7 +3439,10 @@
     "productName": "Pineapple Holy Basil",
     "brandName": "aura-bora",
     "imageURL": "https://aurabora.com/cdn/shop/files/BB_herocarousel_1_1_4_1200x.jpg?v=1709743716",
-    "flavor": ["pineapple", "basil"],
+    "flavor": [
+      "pineapple",
+      "basil"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2611,7 +3450,10 @@
     "productName": "Peach Honeysuckle",
     "brandName": "aura-bora",
     "imageURL": "https://aurabora.com/cdn/shop/files/PH_herocarousel_1_1_1_1200x.jpg?v=1694192647",
-    "flavor": ["peach", "honeysuckle"],
+    "flavor": [
+      "peach",
+      "honeysuckle"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2619,7 +3461,10 @@
     "productName": "Ginger Meyer Lemon",
     "brandName": "aura-bora",
     "imageURL": "https://aurabora.com/cdn/shop/products/GML_herocarousel_1_1_1200x.jpg?v=1682356104",
-    "flavor": ["ginger", "lemon"],
+    "flavor": [
+      "ginger",
+      "lemon"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2627,7 +3472,10 @@
     "productName": "Cactus Rose",
     "brandName": "aura-bora",
     "imageURL": "https://aurabora.com/cdn/shop/products/CR_herocarousel_1_1_1200x.jpg?v=1682356100",
-    "flavor": ["cactus", "rose"],
+    "flavor": [
+      "cactus",
+      "rose"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2635,7 +3483,10 @@
     "productName": "Hibiscus Passionfruit",
     "brandName": "aura-bora",
     "imageURL": "https://aurabora.com/cdn/shop/products/HPF_herocarousel_1_1_1200x.jpg?v=1674519222",
-    "flavor": ["hibiscus", "passionfruit"],
+    "flavor": [
+      "hibiscus",
+      "passionfruit"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2643,7 +3494,10 @@
     "productName": "Lime Cardamom",
     "brandName": "aura-bora",
     "imageURL": "https://aurabora.com/cdn/shop/products/LiCa_herocarousel_1_1_1200x.jpg?v=1682356109",
-    "flavor": ["lime", "cardamom"],
+    "flavor": [
+      "lime",
+      "cardamom"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2651,7 +3505,10 @@
     "productName": "Mango Chili",
     "brandName": "aura-bora",
     "imageURL": "https://aurabora.com/cdn/shop/files/MC_herocarousel_1_1_1200x.jpg?v=1688675857",
-    "flavor": ["mango", "chili"],
+    "flavor": [
+      "mango",
+      "chili"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2659,7 +3516,10 @@
     "productName": "Blueberry Wildflower",
     "brandName": "aura-bora",
     "imageURL": "https://aurabora.com/cdn/shop/files/BW_herocarousel_1_1_1200x.jpg?v=1691174664",
-    "flavor": ["blueberry", "wildflower"],
+    "flavor": [
+      "blueberry",
+      "wildflower"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2667,7 +3527,10 @@
     "productName": "Raspberry Vanilla",
     "brandName": "aura-bora",
     "imageURL": "https://aurabora.com/cdn/shop/files/GE_herocarousel_1_1_2d484a49-1072-48c0-b8e1-58fc02954494_1200x.jpg?v=1686340869",
-    "flavor": ["raspberry", "vanilla"],
+    "flavor": [
+      "raspberry",
+      "vanilla"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2675,7 +3538,10 @@
     "productName": "Strawberry Basil",
     "brandName": "aura-bora",
     "imageURL": "https://aurabora.com/cdn/shop/files/Group3578_1200x.png?v=1697499166",
-    "flavor": ["strawberry", "basil"],
+    "flavor": [
+      "strawberry",
+      "basil"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2683,7 +3549,10 @@
     "productName": "Lavender Cucumber",
     "brandName": "aura-bora",
     "imageURL": "https://aurabora.com/cdn/shop/products/BB_herocarousel_1_1_2a05ce6e-c71f-4b43-a6f7-f858e281e260_1200x.jpg?v=1682356105",
-    "flavor": ["lavender", "cucumber"],
+    "flavor": [
+      "lavender",
+      "cucumber"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2691,7 +3560,10 @@
     "productName": "Grapefruit Elderflower",
     "brandName": "aura-bora",
     "imageURL": "https://aurabora.com/cdn/shop/products/EG_herocarousel_1_1_1200x.jpg?v=1682356102",
-    "flavor": ["grapefruit", "elderflower"],
+    "flavor": [
+      "grapefruit",
+      "elderflower"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2699,7 +3571,10 @@
     "productName": "Lemongrass Coconut",
     "brandName": "aura-bora",
     "imageURL": "https://aurabora.com/cdn/shop/products/LeC_herocarousel_1_1_1200x.jpg?v=1682356107",
-    "flavor": ["lemongrass", "coconut"],
+    "flavor": [
+      "lemongrass",
+      "coconut"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2707,7 +3582,10 @@
     "productName": "Peppermint Watermelon",
     "brandName": "aura-bora",
     "imageURL": "https://aurabora.com/cdn/shop/products/PW_herocarousel_1_1_1200x.jpg?v=1682356110",
-    "flavor": ["peppermint", "watermelon"],
+    "flavor": [
+      "peppermint",
+      "watermelon"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2715,7 +3593,10 @@
     "productName": "Banana Bergamot",
     "brandName": "aura-bora",
     "imageURL": "https://aurabora.com/cdn/shop/files/BB_herocarousel_1_1_2_1200x.jpg?v=1706898106",
-    "flavor": ["banana", "orange"],
+    "flavor": [
+      "banana",
+      "orange"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2723,7 +3604,9 @@
     "productName": "Strawberry Passion",
     "brandName": "wild-wonder",
     "imageURL": "https://cdn.shopify.com/s/files/1/0264/8952/0171/products/StrawberryPassion_402e4b4b-11e9-46b6-95ad-adc7be2d8023_1080x.png?v=1662009164",
-    "flavor": ["strawberry"],
+    "flavor": [
+      "strawberry"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2731,7 +3614,10 @@
     "productName": "Guava Rose",
     "brandName": "wild-wonder",
     "imageURL": "https://cdn.shopify.com/s/files/1/0264/8952/0171/products/GuavaRose_1080x.png?v=1662008794",
-    "flavor": ["guava", "rose"],
+    "flavor": [
+      "guava",
+      "rose"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2739,7 +3625,10 @@
     "productName": "Pear Turmeric",
     "brandName": "wild-wonder",
     "imageURL": "https://cdn.shopify.com/s/files/1/0264/8952/0171/products/PearTurmeric_1080x.png?v=1662009016",
-    "flavor": ["pear", "turmeric"],
+    "flavor": [
+      "pear",
+      "turmeric"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2747,7 +3636,10 @@
     "productName": "Peach Ginger",
     "brandName": "wild-wonder",
     "imageURL": "https://cdn.shopify.com/s/files/1/0264/8952/0171/products/PeachGinger_1080x.png?v=1662008948",
-    "flavor": ["peach", "ginger"],
+    "flavor": [
+      "peach",
+      "ginger"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2755,7 +3647,9 @@
     "productName": "Mango Gold",
     "brandName": "wild-wonder",
     "imageURL": "https://cdn.shopify.com/s/files/1/0264/8952/0171/products/3_8d9c9d3a-1f75-4277-a865-e6f5088e2583_1080x.png?v=1661848605",
-    "flavor": ["mango"],
+    "flavor": [
+      "mango"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2763,7 +3657,9 @@
     "productName": "pineapple",
     "brandName": "wild-wonder",
     "imageURL": "https://cdn.shopify.com/s/files/1/0264/8952/0171/files/PineappleParadise_1080x.png?v=1684822339",
-    "flavor": ["pineapple"],
+    "flavor": [
+      "pineapple"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2771,7 +3667,10 @@
     "productName": "Raspberry Lychee",
     "brandName": "wild-wonder",
     "imageURL": "https://cdn.shopify.com/s/files/1/0264/8952/0171/files/RaspberryLycheeCan_1080x.png?v=1709265132",
-    "flavor": ["raspberry", "lychee"],
+    "flavor": [
+      "raspberry",
+      "lychee"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2779,7 +3678,10 @@
     "productName": "Lemon Vanilla",
     "brandName": "daypack-athletic-brewing",
     "imageURL": "https://athleticbrewing.com/cdn/shop/files/main-pdp-image_6.png?v=1708446484&width=336",
-    "flavor": ["lemon", "vanilla"],
+    "flavor": [
+      "lemon",
+      "vanilla"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2787,7 +3689,9 @@
     "productName": "Mango",
     "brandName": "daypack-athletic-brewing",
     "imageURL": "https://athleticbrewing.com/cdn/shop/files/USA_Flagship_Mango_12oz_V1_022723_1_1.png?v=1689711779&width=500",
-    "flavor": ["mango"],
+    "flavor": [
+      "mango"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2795,7 +3699,9 @@
     "productName": "Black Cherry",
     "brandName": "daypack-athletic-brewing",
     "imageURL": "https://athleticbrewing.com/cdn/shop/files/USA_Flagship_BlackCheery_12oz_V1_0227231.png?v=1689711908&width=500",
-    "flavor": ["black-cherry"],
+    "flavor": [
+      "black-cherry"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2803,7 +3709,10 @@
     "productName": "Lemon Lime",
     "brandName": "daypack-athletic-brewing",
     "imageURL": "https://athleticbrewing.com/cdn/shop/files/USA_Flagship_LemonLime_12oz_V1_0227231.png?v=1689711920&width=500",
-    "flavor": ["lemon", "lime"],
+    "flavor": [
+      "lemon",
+      "lime"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2811,7 +3720,10 @@
     "productName": "Blood Orange",
     "brandName": "daypack-athletic-brewing",
     "imageURL": "https://athleticbrewing.com/cdn/shop/files/USA_Flagship_BloodOrange_12oz_V1_0227231.png?v=1689711966&width=500",
-    "flavor": ["lemon", "vanilla"],
+    "flavor": [
+      "lemon",
+      "vanilla"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2819,7 +3731,10 @@
     "productName": "Orange Cranberry",
     "brandName": "daypack-athletic-brewing",
     "imageURL": "https://athleticbrewing.com/cdn/shop/files/USA_Pilot_OrangeCranberry_12oz_111523_2.png?v=1702912060&width=336",
-    "flavor": ["orange", "cranberry"],
+    "flavor": [
+      "orange",
+      "cranberry"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2827,7 +3742,9 @@
     "productName": "Ingenious Apple",
     "brandName": "sovany",
     "imageURL": "https://sovany.com/cdn/shop/files/Can_with_fruit_and_glass_Green_Apple.png?v=1703180764&width=533",
-    "flavor": ["apple"],
+    "flavor": [
+      "apple"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2835,7 +3752,9 @@
     "productName": "Remarkable Raspberry",
     "brandName": "sovany",
     "imageURL": "https://sovany.com/cdn/shop/files/Can_with_fruit_and_glass_Raspberry.png?v=1703180950&width=720",
-    "flavor": ["raspberry"],
+    "flavor": [
+      "raspberry"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2843,7 +3762,9 @@
     "productName": "Brilliant Tangerine",
     "brandName": "sovany",
     "imageURL": "https://sovany.com/cdn/shop/files/Can_with_fruit_and_glass_Tangerine3.png?v=1703180725&width=720",
-    "flavor": ["tangerine"],
+    "flavor": [
+      "tangerine"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2851,7 +3772,9 @@
     "productName": "Maison Perrier - Forever Lemon",
     "brandName": "perrier",
     "imageURL": "https://www.maisonperrier.fr/sites/g/files/xknfdk2471/files/styles/original/public/2024-02/forever-lemon.png.webp?itok=4C_GbVSC",
-    "flavor": ["lemon"],
+    "flavor": [
+      "lemon"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2859,7 +3782,9 @@
     "productName": "Maison Perrier - Forever Orange",
     "brandName": "perrier",
     "imageURL": "https://www.maisonperrier.fr/sites/g/files/xknfdk2471/files/styles/original/public/2024-02/MAISON%20PERRIER_FOREVER_ORANGE_CAN33CL_PNG_228X471.png.webp?itok=MWBi_slD",
-    "flavor": ["orange"],
+    "flavor": [
+      "orange"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2867,7 +3792,9 @@
     "productName": "Maison Perrier - Forever Grapefruit",
     "brandName": "perrier",
     "imageURL": "https://www.maisonperrier.fr/sites/g/files/xknfdk2471/files/styles/original/public/2024-02/MAISON%20PERRIER_FOREVER_GRAPEFRUIT_CAN33CL_PNG_228X471.png.webp?itok=Th2oZURv",
-    "flavor": ["grapefruit"],
+    "flavor": [
+      "grapefruit"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2875,7 +3802,9 @@
     "productName": "Maison Perrier - Forever Strawberry",
     "brandName": "perrier",
     "imageURL": "https://www.maisonperrier.fr/sites/g/files/xknfdk2471/files/styles/original/public/2024-02/forever-strawberry.png.webp?itok=pIQKb3mx",
-    "flavor": ["strawberry"],
+    "flavor": [
+      "strawberry"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2883,7 +3812,9 @@
     "productName": "Maison Perrier - Forever Peach",
     "brandName": "perrier",
     "imageURL": "https://www.maisonperrier.fr/sites/g/files/xknfdk2471/files/styles/original/public/2024-02/forever-peach.png.webp?itok=dTq4wz9T",
-    "flavor": ["peach"],
+    "flavor": [
+      "peach"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2891,7 +3822,9 @@
     "productName": "Maison Perrier - Forever Blackberry",
     "brandName": "perrier",
     "imageURL": "https://www.maisonperrier.fr/sites/g/files/xknfdk2471/files/styles/original/public/2024-02/forever-blackberry.png.webp?itok=VFE29g5m",
-    "flavor": ["blackberry"],
+    "flavor": [
+      "blackberry"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2899,7 +3832,9 @@
     "productName": "Maison Perrier - Forever Pineapple",
     "brandName": "perrier",
     "imageURL": "https://www.maisonperrier.fr/sites/g/files/xknfdk2471/files/styles/original/public/2024-02/MAISON%20PERRIER_FOREVER_PINEAPPLE_CAN33CL_PNG_228X471.png.webp?itok=brWKD2vz",
-    "flavor": ["pineapple"],
+    "flavor": [
+      "pineapple"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2907,7 +3842,9 @@
     "productName": "Maison Perrier - Forever Raspberry",
     "brandName": "perrier",
     "imageURL": "https://www.maisonperrier.fr/sites/g/files/xknfdk2471/files/styles/original/public/2024-02/forever-raspberry.png.webp?itok=Kjorq1b7",
-    "flavor": ["raspberry"],
+    "flavor": [
+      "raspberry"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2915,7 +3852,10 @@
     "productName": "Maison Perrier - Forever Ginger Lime",
     "brandName": "perrier",
     "imageURL": "https://www.maisonperrier.fr/sites/g/files/xknfdk2471/files/styles/original/public/2024-02/MAISON%20PERRIER_FOREVER_GINGER_CAN33CL_PNG_228X471.png.webp?itok=xhufRwh3",
-    "flavor": ["ginger", "lime"],
+    "flavor": [
+      "ginger",
+      "lime"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2923,7 +3863,9 @@
     "productName": "Maison Perrier - Forever Mint",
     "brandName": "perrier",
     "imageURL": "https://www.maisonperrier.fr/sites/g/files/xknfdk2471/files/styles/original/public/2024-02/MAISON%20PERRIER_FOREVER_MINT_PET50CL_PNG_228X471.png.webp?itok=WQIUJBt5",
-    "flavor": ["mint"],
+    "flavor": [
+      "mint"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2931,7 +3873,9 @@
     "productName": "Maison Perrier - Forever Passion Fruit",
     "brandName": "perrier",
     "imageURL": "https://www.maisonperrier.fr/sites/g/files/xknfdk2471/files/styles/original/public/2024-02/MAISON%20PERRIER_FOREVER_FRUITPASSION_CAN33CL_PNG_228X471.png.webp?itok=wlI5wkz1",
-    "flavor": ["passionfruit"],
+    "flavor": [
+      "passionfruit"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2939,7 +3883,9 @@
     "productName": "Maison Perrier - Forever Litchi",
     "brandName": "perrier",
     "imageURL": "https://www.maisonperrier.fr/sites/g/files/xknfdk2471/files/styles/original/public/2024-02/MAISON%20PERRIER_FOREVER_LITCHI_CAN33CL_PNG_228X471.png.webp?itok=9oH9xFuT",
-    "flavor": ["lychee"],
+    "flavor": [
+      "lychee"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2947,7 +3893,9 @@
     "productName": "Maison Perrier - Forever Lime",
     "brandName": "perrier",
     "imageURL": "https://www.maisonperrier.fr/sites/g/files/xknfdk2471/files/styles/original/public/2024-02/MAISON%20PERRIER_FOREVER_LIME_CAN33CL_PNG_228X471.png.webp?itok=wxdmiOUB",
-    "flavor": ["lime"],
+    "flavor": [
+      "lime"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2955,7 +3903,9 @@
     "productName": "Sparkling Spring Water",
     "brandName": "saratoga",
     "imageURL": "https://www.saratogawater.com/cdn/shop/files/sparkling-28oz-blue.jpg?v=1710791676&width=550",
-    "flavor": ["plain"],
+    "flavor": [
+      "plain"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2963,7 +3913,9 @@
     "productName": "Sparkling",
     "brandName": "path",
     "imageURL": "https://drinkpathwater.com/cdn/shop/files/sparkling-20oz-aluminum-water-bottle_ad5b1dea-7cc0-4f0e-8c37-26250e2e5c71.png?v=1699579815&width=1426",
-    "flavor": ["plain"],
+    "flavor": [
+      "plain"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2971,7 +3923,10 @@
     "productName": "Sparkling Lemon Lime",
     "brandName": "path",
     "imageURL": "https://drinkpathwater.com/cdn/shop/files/sparkling-lemon-lime-20oz-aluminum-water-bottle_a38e075e-c525-4bb6-8d15-a837c895dda4.png?v=1699579871&width=1426",
-    "flavor": ["lemon", "lime"],
+    "flavor": [
+      "lemon",
+      "lime"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2979,7 +3934,10 @@
     "productName": "Sparkling Grapefruit Mango",
     "brandName": "path",
     "imageURL": "https://drinkpathwater.com/cdn/shop/files/sparkling-grapefruit-mango-20oz-aluminum-water-bottle_4f6b6d09-2d04-47e7-a57f-4ae14a4d925d.png?v=1699579871&width=1426",
-    "flavor": ["grapefruit", "mango"],
+    "flavor": [
+      "grapefruit",
+      "mango"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2987,7 +3945,10 @@
     "productName": "Sparkling Raspberry Orange",
     "brandName": "path",
     "imageURL": "https://drinkpathwater.com/cdn/shop/files/sparkling-raspberry-orange-20oz-aluminum-water-bottle_2691f915-9243-40f7-86fb-f5f01ddce21d.png?v=1699579871&width=1426",
-    "flavor": ["raspberry", "orange"],
+    "flavor": [
+      "raspberry",
+      "orange"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -2995,7 +3956,9 @@
     "productName": "Cherry Obituary",
     "brandName": "liquid-death",
     "imageURL": "https://liquiddeath.com/cdn/shop/files/LiquidDeath_Website_PDP_CherryObituary_GREY_CanFront.webp?v=1706054904&width=1200",
-    "flavor": ["cherry"],
+    "flavor": [
+      "cherry"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -3003,7 +3966,9 @@
     "productName": "Squeezed To Death",
     "brandName": "liquid-death",
     "imageURL": "https://liquiddeath.com/cdn/shop/files/LiquidDeath_Website_PDP_SqueezedtoDeath_GREY_CanFront.webp?v=1706054762&width=1200",
-    "flavor": ["agave"],
+    "flavor": [
+      "agave"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -3011,7 +3976,10 @@
     "productName": "Pi-Ño Colada",
     "brandName": "waterloo",
     "imageURL": "https://www.drinkwaterloo.com/wp-content/uploads/2024/04/2403_WebsiteHeroTop_SummerLTO_PiNoColada_1300x888_v2.png",
-    "flavor": ["coconut", "pinapple"],
+    "flavor": [
+      "coconut",
+      "pinapple"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -3019,7 +3987,11 @@
     "productName": "Mojito Mocktail",
     "brandName": "waterloo",
     "imageURL": "https://www.drinkwaterloo.com/wp-content/uploads/2024/04/2403_WebsiteHeroTop_SummerLTO_MojitoMocktail_1300x888_v1.png",
-    "flavor": ["mojito", "lime", "mint"],
+    "flavor": [
+      "mojito",
+      "lime",
+      "mint"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -3027,7 +3999,9 @@
     "productName": "All Day Rosé",
     "brandName": "waterloo",
     "imageURL": "https://www.drinkwaterloo.com/wp-content/uploads/2024/04/2403_WebsiteHeroTop_SummerLTO_AllDayRose_1300x888_v2B.png",
-    "flavor": ["rosé"],
+    "flavor": [
+      "rosé"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   },
@@ -3035,7 +4009,157 @@
     "productName": "Strawberry Sunset",
     "brandName": "bubly",
     "imageURL": "https://liquiddeath.com/cdn/shop/files/LiquidDeath_Website_PDP_CherryObituary_GREY_CanFront.webp?v=1706054904&width=1200",
-    "flavor": ["strawberry", "kiwi", "pineapple"],
+    "flavor": [
+      "strawberry",
+      "kiwi",
+      "pineapple"
+    ],
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Original Bubbles",
+    "brandName": "just",
+    "imageURL": "https://justwater.com/cdn/shop/products/Bubbles_Front_Can_Original.png?v=1676329114&width=832",
+    "flavor": [
+      "plain"
+    ],
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Cucumber Bubbles",
+    "brandName": "just",
+    "imageURL": "https://justwater.com/cdn/shop/products/Bubbles_Front_Can_Cuke.png?v=1677932627&width=832",
+    "flavor": [
+      "cucumber"
+    ],
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Strawberry Bubbles",
+    "brandName": "just",
+    "imageURL": "https://justwater.com/cdn/shop/files/strawberry_can_F_2250px.png?v=1699377853&width=720",
+    "flavor": [
+      "strawberry"
+    ],
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Watermelon Bubbles",
+    "brandName": "just",
+    "imageURL": "https://justwater.com/cdn/shop/products/Bubbles_Front_Can_Watermelon.png?v=1676329307&width=720",
+    "flavor": [
+      "watermelon"
+    ],
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Lemon Bubbles",
+    "brandName": "just",
+    "imageURL": "https://justwater.com/cdn/shop/products/Bubbles_Front_Can_Lemon.png?v=1676329259&width=720",
+    "flavor": [
+      "lemon"
+    ],
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Lime Bubbles",
+    "brandName": "just",
+    "imageURL": "https://justwater.com/cdn/shop/products/Bubbles_Front_Can_Lime.png?v=1676329277&width=720",
+    "flavor": [
+      "lime"
+    ],
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Coconut Mint Bubbles",
+    "brandName": "just",
+    "imageURL": "https://justwater.com/cdn/shop/products/Bubbles_Front_Can_Coconut.png?v=1676329143&width=832",
+    "flavor": [
+      "coconut",
+      "mint"
+    ],
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "HuckleBlueberry Bubbles",
+    "brandName": "just",
+    "imageURL": "https://justwater.com/cdn/shop/products/Bubbles_Front_Can_Huckle.png?v=1676329241&width=832",
+    "flavor": [
+      "huckleberry",
+      "blueberry"
+    ],
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Valencia Orange Bubbles",
+    "brandName": "just",
+    "imageURL": "https://justwater.com/cdn/shop/products/Bubbles_Valencia_Can_Front_1785x1785_1cb0c31e-f3a5-48de-a0da-235e85c3db93.png?v=1678743782&width=832",
+    "flavor": [
+      "orange"
+    ],
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Jr - Yeti Mischief",
+    "brandName": "polar-seltzer",
+    "imageURL": "https://polarseltzer.com/wp-content/uploads/SeltzerJR_Yeti_LoRes.png",
+    "flavor": [
+      "lemon",
+      "lime"
+    ],
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Jr - Pixie Lights",
+    "brandName": "polar-seltzer",
+    "imageURL": "https://polarseltzer.com/wp-content/uploads/SeltzerJR_Pixie_LoRes.png",
+    "flavor": [
+      "Citrus",
+      "Strawberry"
+    ],
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Jr - Mermaid Songs",
+    "brandName": "polar-seltzer",
+    "imageURL": "https://polarseltzer.com/wp-content/uploads/SeltzerJR_Mermaid_LoRes.png",
+    "flavor": [
+      "watermelon",
+      "cherry"
+    ],
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Jr - Dragon Whispers",
+    "brandName": "polar-seltzer",
+    "imageURL": "https://polarseltzer.com/wp-content/uploads/SeltzerJR_Dragon_LoRes.png",
+    "flavor": [
+      "fruit-punch"
+    ],
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Jr - Unicorn Kisses",
+    "brandName": "polar-seltzer",
+    "imageURL": "https://polarseltzer.com/wp-content/uploads/SeltzerJR_Unicorn_LoRes.png",
+    "flavor": [
+      "watermelon",
+      "strawberry"
+    ],
     "isCaffeinated": false,
     "hasCBD": false
   }

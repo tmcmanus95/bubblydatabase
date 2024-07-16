@@ -1,9 +1,113 @@
 [
   {
-    "productName": "Strawberry Sunset",
-    "brandName": "bubly",
-    "imageURL": "https://liquiddeath.com/cdn/shop/files/LiquidDeath_Website_PDP_CherryObituary_GREY_CanFront.webp?v=1706054904&width=1200",
-    "flavor": ["strawberry", "kiwi", "pineapple"],
+    "productName": "Original Bubbles",
+    "brandName": "just",
+    "imageURL": "https://justwater.com/cdn/shop/products/Bubbles_Front_Can_Original.png?v=1676329114&width=832",
+    "flavor": ["plain"],
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Cucumber Bubbles",
+    "brandName": "just",
+    "imageURL": "https://justwater.com/cdn/shop/products/Bubbles_Front_Can_Cuke.png?v=1677932627&width=832",
+    "flavor": ["cucumber"],
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Strawberry Bubbles",
+    "brandName": "just",
+    "imageURL": "https://justwater.com/cdn/shop/files/strawberry_can_F_2250px.png?v=1699377853&width=720",
+    "flavor": ["strawberry"],
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Watermelon Bubbles",
+    "brandName": "just",
+    "imageURL": "https://justwater.com/cdn/shop/products/Bubbles_Front_Can_Watermelon.png?v=1676329307&width=720",
+    "flavor": ["watermelon"],
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Lemon Bubbles",
+    "brandName": "just",
+    "imageURL": "https://justwater.com/cdn/shop/products/Bubbles_Front_Can_Lemon.png?v=1676329259&width=720",
+    "flavor": ["lemon"],
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Lime Bubbles",
+    "brandName": "just",
+    "imageURL": "https://justwater.com/cdn/shop/products/Bubbles_Front_Can_Lime.png?v=1676329277&width=720",
+    "flavor": ["lime"],
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Coconut Mint Bubbles",
+    "brandName": "just",
+    "imageURL": "https://justwater.com/cdn/shop/products/Bubbles_Front_Can_Coconut.png?v=1676329143&width=832",
+    "flavor": ["coconut", "mint"],
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "HuckleBlueberry Bubbles",
+    "brandName": "just",
+    "imageURL": "https://justwater.com/cdn/shop/products/Bubbles_Front_Can_Huckle.png?v=1676329241&width=832",
+    "flavor": ["huckleberry", "blueberry"],
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Valencia Orange Bubbles",
+    "brandName": "just",
+    "imageURL": "https://justwater.com/cdn/shop/products/Bubbles_Valencia_Can_Front_1785x1785_1cb0c31e-f3a5-48de-a0da-235e85c3db93.png?v=1678743782&width=832",
+    "flavor": ["orange"],
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Jr - Yeti Mischief",
+    "brandName": "polar-seltzer",
+    "imageURL": "https://polarseltzer.com/wp-content/uploads/SeltzerJR_Yeti_LoRes.png",
+    "flavor": ["lemon", "lime"],
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Jr - Pixie Lights",
+    "brandName": "polar-seltzer",
+    "imageURL": "https://polarseltzer.com/wp-content/uploads/SeltzerJR_Pixie_LoRes.png",
+    "flavor": ["Citrus", "Strawberry"],
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Jr - Mermaid Songs",
+    "brandName": "polar-seltzer",
+    "imageURL": "https://polarseltzer.com/wp-content/uploads/SeltzerJR_Mermaid_LoRes.png",
+    "flavor": ["watermelon", "cherry"],
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Jr - Dragon Whispers",
+    "brandName": "polar-seltzer",
+    "imageURL": "https://polarseltzer.com/wp-content/uploads/SeltzerJR_Dragon_LoRes.png",
+    "flavor": ["fruit-punch"],
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Jr - Unicorn Kisses",
+    "brandName": "polar-seltzer",
+    "imageURL": "https://polarseltzer.com/wp-content/uploads/SeltzerJR_Unicorn_LoRes.png",
+    "flavor": ["watermelon", "strawberry"],
     "isCaffeinated": false,
     "hasCBD": false
   }
