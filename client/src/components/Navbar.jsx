@@ -18,7 +18,7 @@ export default function NavBar() {
     <nav className="fixed top-0 left-0 right-0 z-50 mx-auto px-4 md:flex items-center bg-slate-200 dark:bg-slate-900 gap-6 py-1">
       <div className="flex w-full items-center">
         <Link to="/">
-          <img className="h-5 lg:h-10  mr-5" src={popIcon}></img>{" "}
+          <img className="h-5 lg:h-10  mr-5" src="/bubblesicon.png"></img>{" "}
         </Link>
         <div className="md:hidden flex items-center ml-5 text-right">
           <GiHamburgerMenu
