@@ -10,9 +10,6 @@ import { ADD_RATING, EDIT_RATING } from "../../utils/mutations";
 import { QUERY_RATING_BY_USER } from "../../utils/queries";
 
 import { capitalizeSingleFlavor } from "../../utils/capitalizeSingleFlavor";
-const isMobileDevice = () => {
-  return window.innerWidth <= 768;
-};
 
 export default function CustomColorRating({
   flavor,
@@ -27,7 +24,6 @@ export default function CustomColorRating({
   const [previouslyRated, setPreviouslyRated] = useState(false);
   const [userRating, setUserRating] = useState(0);
   const [ratingId, setRatingId] = useState("");
-  const [isMobile, setIsMobile] = useState(isMobileDevice());
   const [addRating] = useMutation(ADD_RATING);
   const [editRating] = useMutation(EDIT_RATING);
   const [value, setValue] = useState(0);
@@ -42,15 +38,6 @@ export default function CustomColorRating({
   ) {
     emptyStar = "gray";
   }
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(isMobileDevice());
-    };
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
 
   useEffect(() => {
     refetch();
@@ -145,24 +132,15 @@ export default function CustomColorRating({
             size={size}
             disabled={isSubmitting}
             onChange={(e, newValue) => {
-              if (isMobile) {
-                setIsSubmitting(true);
-                console.log(
-                  "Rating changed:",
-                  newValue,
-                  "Submitting:",
-                  isSubmitting
-                );
-                handleValueChange(e, newValue);
-                setIsSubmitting(false); // Reset the submitting state after handling the change
-              } else {
-                setValue(newValue);
-                handleValueChange(e, newValue);
-              }
+              setIsSubmitting(true);
+              console.log(
+                "Rating changed:",
+                newValue,
+                "Submitting:",
+                isSubmitting
+              );
+              handleValueChange(e, newValue);
             }}
-            onChangeActive={
-              isMobile ? (e, newValue) => setValue(newValue) : null
-            }
             icon={<StarIcon fontSize="inherit" />}
             emptyIcon={<StarIcon fontSize="inherit" />}
             className="flex justify-center"
