@@ -589,10 +589,11 @@ body {
   color: black !important;
 }
 .Lavender-background {
-  background-color: #f2e4fd;
+  background-color: var(--lightPurpleBackground);
 }
 .Lavender-brushings {
   background-color: #e6e6fa !important;
+  color: black !important;
 }
 .Lemon {
   border-radius: 5px;

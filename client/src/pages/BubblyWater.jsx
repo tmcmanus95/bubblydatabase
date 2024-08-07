@@ -367,8 +367,8 @@ export default function BubblyWaterPage() {
                 <></>
               )}
               <ul className="p-5 flex-col flex items-center ">
-                {bubblyWater.reviews?.map((review, index) => (
-                  <Link to={`/user/${review.user._id}`}>
+                {bubblyWater?.reviews?.map((review, index) => (
+                  <Link to={`/user/${review?.user?._id}`}>
                     <li
                       key={index}
                       className="dark:bg-slate-900 w-72 md:w-96 lg:w-96 rounded-lg mb-5"
@@ -378,7 +378,7 @@ export default function BubblyWaterPage() {
                       >
                         {review.user.username ? (
                           <span className=" font-semibold">
-                            {review.user.username}
+                            {review?.user?.username}
                           </span>
                         ) : (
                           <span className=" font-semibold">me</span>
