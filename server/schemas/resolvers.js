@@ -9,7 +9,9 @@ const saltRounds = 10;
 const resolvers = {
   Query: {
     users: async () => {
-      return User.find();
+      const users = await User.find();
+      console.log(users.length + " users");
+      return users;
     },
 
     user: async (parent, { userId }) => {
@@ -111,10 +113,37 @@ const resolvers = {
       throw AuthenticationError;
     },
     bubblyWaters: async () => {
-      return BubblyWater.find()
-        .populate("ratings")
-        .sort({ averageRating: -1 })
-        .limit(50);
+      return BubblyWater.aggregate([
+        {
+          $match: {
+            $expr: { $gt: [{ $size: "$ratings" }, 3] },
+          },
+        },
+        {
+          $lookup: {
+            from: "ratings",
+            localField: "ratings",
+            foreignField: "_id",
+            as: "ratings",
+          },
+        },
+        {
+          $addFields: {
+            averageRating: { $avg: "$ratings.rating" },
+          },
+        },
+        {
+          $sort: { averageRating: -1 },
+        },
+        {
+          $limit: 50,
+        },
+      ]);
+    },
+    allBubblies: async () => {
+      const allBubblies = await BubblyWater.find();
+      console.log(allBubblies.length + " bubblies");
+      return allBubblies;
     },
     bubblyWater: async (parent, { bubblyWaterId }) => {
       return BubblyWater.findOne({ _id: bubblyWaterId })
@@ -142,7 +171,20 @@ const resolvers = {
     rating: async (parent, { ratingId }) => {
       return Rating.findOne({ _id: ratingId }).populate("bubblyWater");
     },
-
+    ratings: async () => {
+      const ratings = await Rating.find()
+        .populate("bubblyWater")
+        .populate("user");
+      console.log(ratings.length + " ratings");
+      return ratings;
+    },
+    reviews: async () => {
+      const reviews = await Review.find()
+        .populate("bubblyWater")
+        .populate("user");
+      console.log(reviews.length + " reviews");
+      return reviews;
+    },
     flavors: async (parent, { flavor }) => {
       return BubblyWater.find({ flavor: { $in: flavor } }).populate("ratings");
     },

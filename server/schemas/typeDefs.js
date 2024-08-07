@@ -62,10 +62,13 @@ const typeDefs = `
     meId: User
     me: User
     bubblyWaters: [BubblyWater]
+    allBubblies: [BubblyWater]
     bubblyWater(bubblyWaterId: ID): BubblyWater
     caffeinatedBubblys: [BubblyWater]
     cbdBubblys: [BubblyWater]
     rating(ratingId: ID): Rating
+    ratings: [Rating]
+    reviews: [Review]
     flavors(flavor: [String]): [BubblyWater]
     brand(brandName: String): [BubblyWater]
     searchFlavors(flavor: [String]): [BubblyWater]
