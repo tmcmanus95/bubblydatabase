@@ -164,6 +164,7 @@ body {
 .Black-pepper {
   background-color: #000000;
   color: white;
+  border-radius: 5px;
   padding: 5px;
   margin: 3px;
   color: white;
