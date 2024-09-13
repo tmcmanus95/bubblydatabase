@@ -8,7 +8,7 @@
   --lightPurpleBackground: #fbf7fe;
   --lightBrownBackground: #e6d9cb;
   --lightGreyBackground: #e6d9cb;
-  --lightBlackbackground: #000000;
+  --lightBlackbackground: #ffffff;
 
   --darkRedBackground: #4e0105;
   --darkOrangeBackground: #6e1a00;
@@ -163,6 +163,9 @@ body {
 }
 .Black-pepper {
   background-color: #000000;
+  color: white;
+  padding: 5px;
+  margin: 3px;
   color: white;
 }
 .Black-pepper-background {
