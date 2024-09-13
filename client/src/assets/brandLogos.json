@@ -21,6 +21,11 @@
     "site": "https://aurabora.com/"
   },
   {
+    "name": "bonsai",
+    "link": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSl9tblFH9uUXVCOKP6NwStHAfL2_RRsuvXoA&s",
+    "site": "https://www.bonsaisparklingwater.com/"
+  },
+  {
     "name": "bubbl'r",
     "link": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzrkWpsY4YYYcXGlqU58GYgeEbI4nEuESiL8LYmj2TNw&s",
     "site": "https://www.drinkbubblr.com/"
@@ -39,6 +44,11 @@
     "name": "dram",
     "link": "https://mma.prnewswire.com/media/985436/Dram_Logo.jpg",
     "site": "https://www.dramapothecary.com/product-category/all-natural-sparkling-water/?v=7516fd43adaa"
+  },
+  {
+    "name": "heywell",
+    "link": "https://images.snackmagic.com/spree/provider_icon_image/1389/medium/nskdocdan4jfql41vnwslt2d54md.?1724426508",
+    "site": "https://livingheywell.com/"
   },
   {
     "name": "hi-ball-energy",
