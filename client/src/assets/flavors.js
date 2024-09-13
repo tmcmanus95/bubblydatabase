@@ -10,6 +10,7 @@ const flavors = [
   "Black-tea",
   "Blackberry",
   "Black-cherry",
+  "Black-pepper",
   "Blood-orange",
   "Blueberry",
   "Cactus",

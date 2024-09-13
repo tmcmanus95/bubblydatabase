@@ -8,6 +8,7 @@
   --lightPurpleBackground: #fbf7fe;
   --lightBrownBackground: #e6d9cb;
   --lightGreyBackground: #e6d9cb;
+  --lightBlackbackground: #000000;
 
   --darkRedBackground: #4e0105;
   --darkOrangeBackground: #6e1a00;
@@ -17,6 +18,7 @@
   --darkPurpleBackground: #0e0135;
   --darkBrownBackground: #4a3e2c;
   --darkGreyBackground: #232323;
+  --darkBlackBackground: #000000;
 }
 body {
   font-family: avenir;
@@ -158,6 +160,16 @@ body {
 }
 .Black-cherry-background {
   background-color: var(--lightPurpleBackground);
+}
+.Black-pepper {
+  background-color: #000000;
+  color: white;
+}
+.Black-pepper-background {
+  background-color: var(--lightBlackbackground);
+}
+.Black-pepper-brushings {
+  color: white !important;
 }
 .Black-cherry-brushings {
   background-color: #52253a !important;
