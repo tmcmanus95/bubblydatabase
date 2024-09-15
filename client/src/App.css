@@ -164,6 +164,7 @@ body {
 .Black-pepper {
   background-color: #000000;
   color: white;
+  border-radius: 5px;
   padding: 5px;
   margin: 3px;
   color: white;
@@ -744,7 +745,7 @@ body {
   color: black !important;
 }
 .Melon-background {
-  background-color: #b4f0cd;
+  background-color: var(--lightGreenBackground);
 }
 .Melon-brushings {
   background-color: #b4f0cd !important;
