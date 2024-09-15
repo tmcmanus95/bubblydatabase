@@ -745,7 +745,7 @@ body {
   color: black !important;
 }
 .Melon-background {
-  background-color: #b4f0cd;
+  background-color: var(--lightGreenBackground);
 }
 .Melon-brushings {
   background-color: #b4f0cd !important;
