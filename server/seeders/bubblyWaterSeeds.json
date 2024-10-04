@@ -4344,5 +4344,16 @@
     ],
     "isCaffeinated": false,
     "hasCBD": false
+  },
+  {
+    "productName": "watermelon lime smash'r",
+    "brandName": "bubbl'r",
+    "imageURL": "https://www.drinkbubblr.com/wp-content/uploads/2024/01/WP-BUBBLR-Website-Flavr-watermelonlimesmashr-v2.png",
+    "flavor": [
+      "watermelon",
+      "lime"
+    ],
+    "isCaffeinated": true,
+    "hasCBD": false
   }
 ]
