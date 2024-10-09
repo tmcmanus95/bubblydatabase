@@ -1,10 +1,10 @@
 [
   {
-    "productName": "watermelon lime smash'r",
-    "brandName": "bubbl'r",
-    "imageURL": "https://www.drinkbubblr.com/wp-content/uploads/2024/01/WP-BUBBLR-Website-Flavr-watermelonlimesmashr-v2.png",
-    "flavor": ["watermelon", "lime"],
-    "isCaffeinated": true,
+    "productName": "Pumpkin Spice",
+    "brandName": "aura-bora",
+    "imageURL": "https://aurabora.com/cdn/shop/files/PS_3dcan_Front_2_1_400x.png?v=1726495634",
+    "flavor": ["pumpkin", "vanilla"],
+    "isCaffeinated": false,
     "hasCBD": false
   }
 ]

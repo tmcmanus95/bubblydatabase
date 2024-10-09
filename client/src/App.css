@@ -970,6 +970,18 @@ body {
   background-color: #c0392b !important;
   color: white !important;
 }
+.Pumpkin {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #ff7518;
+}
+.Pumpkin-background {
+  background-color: var(--lightOrangeBackground);
+}
+.Pumpkin-brushings {
+  background-color: #ff7518;
+}
 .Raspberry {
   border-radius: 5px;
   padding: 5px;
