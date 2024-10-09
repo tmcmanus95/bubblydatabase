@@ -4355,5 +4355,16 @@
     ],
     "isCaffeinated": true,
     "hasCBD": false
+  },
+  {
+    "productName": "Pumpkin Spice",
+    "brandName": "aura-bora",
+    "imageURL": "https://aurabora.com/cdn/shop/files/PS_3dcan_Front_2_1_400x.png?v=1726495634",
+    "flavor": [
+      "pumpkin",
+      "vanilla"
+    ],
+    "isCaffeinated": false,
+    "hasCBD": false
   }
 ]

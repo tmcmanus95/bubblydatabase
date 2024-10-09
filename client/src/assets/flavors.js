@@ -68,6 +68,7 @@ const flavors = [
   "Plum",
   "Pomelo",
   "Pomegranate",
+  "Pumpkin",
   "Raspberry",
   "Root-beer",
   "Rose",
