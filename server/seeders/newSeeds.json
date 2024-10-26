@@ -1,9 +1,9 @@
 [
   {
-    "productName": "Strawberry Peach",
-    "brandName": "la-croix",
-    "imageURL": "https://lacroix.nbcstorefront.com/media/catalog/product/cache/322abdcc8a343a7c4537f40a80a1f125/l/a/lacroix_web_product_squares_1200x1200__strawberrypeach.jpg",
-    "flavor": ["strawberry", "peach"],
+    "productName": "Fuji Apple",
+    "brandName": "spindrift",
+    "imageURL": "https://drinkspindrift.com/cdn/shop/files/can-with-shadow.png?v=1723395541&width=317",
+    "flavor": ["apple"],
     "isCaffeinated": false,
     "hasCBD": false
   }

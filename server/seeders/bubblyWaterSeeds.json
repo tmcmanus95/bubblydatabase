@@ -4377,5 +4377,15 @@
     ],
     "isCaffeinated": false,
     "hasCBD": false
+  },
+  {
+    "productName": "Fuji Apple",
+    "brandName": "spindrift",
+    "imageURL": "https://drinkspindrift.com/cdn/shop/files/can-with-shadow.png?v=1723395541&width=317",
+    "flavor": [
+      "apple"
+    ],
+    "isCaffeinated": false,
+    "hasCBD": false
   }
 ]
