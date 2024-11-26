@@ -491,6 +491,19 @@ body {
   background-color: #fdb6f0 !important;
   color: black !important;
 }
+.Green-bean {
+  background-color: #709048;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+}
+.Green-bean-backgrounnd {
+  background-color: var(--lightGreenBackground);
+}
+.Green-bean-brushings {
+  background-color: #709048;
+}
+
 .Green-tea {
   border-radius: 5px;
   padding: 5px;
@@ -1037,6 +1050,19 @@ body {
 .Rosé-brushings {
   background-color: #f77cb9 !important;
 }
+.Sage {
+  background-color: #8f9779;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+}
+.Sage-background {
+  background-color: var(--lightGreenBackground);
+}
+.Sage-brushings {
+  background-color: #8f9779;
+}
+
 .Sea-berry {
   background-color: #f09447;
   border-radius: 5px;
