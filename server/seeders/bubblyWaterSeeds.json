@@ -4387,5 +4387,38 @@
     ],
     "isCaffeinated": false,
     "hasCBD": false
+  },
+  {
+    "productName": "Chai Cranberry",
+    "brandName": "aura-bora",
+    "imageURL": "https://aurabora.com/cdn/shop/files/ChaiCran_3dcan_Front_1_400x.png?v=1730908670",
+    "flavor": [
+      "chai",
+      "cranberry"
+    ],
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Green Bean Casserole",
+    "brandName": "aura-bora",
+    "imageURL": "https://aurabora.com/cdn/shop/files/GreenBeanCasserole_3dCan-f_1_400x.png?v=1697498672",
+    "flavor": [
+      "sage",
+      "green-bean"
+    ],
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Apple Cinnamon",
+    "brandName": "aura-bora",
+    "imageURL": "https://aurabora.com/cdn/shop/files/AppleCinn_3dcan_Front_12_400x.png?v=1727986547",
+    "flavor": [
+      "apple",
+      "cinnamon"
+    ],
+    "isCaffeinated": false,
+    "hasCBD": false
   }
 ]
