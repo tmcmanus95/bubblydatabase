@@ -8,7 +8,7 @@ import {
 } from "../../utils/queries";
 import BubblyWaterListItem from "./BubblyWaterListItem";
 import { averageRatingWeighting } from "../../utils/averageRatingWeighting";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { formatBrands } from "../../utils/formatBrands";
 import { Link } from "react-router-dom";
 import Loading from "./Loading";
@@ -20,14 +20,16 @@ export default function BubblyWaterList({ searchTerm }) {
   let hasCaffeinatedBubbly = false;
   let hasCBDBubbly = false;
   let generalWaters = [];
-  let userId;
-  let isVerified = false;
+  const [userId, setUserId] = useState(false);
+  const [isVerified, setIsVerified] = useState(false);
 
   const { data: meIdData, error: meIdError } = useQuery(QUERY_MEID);
-  if (meIdData) {
-    userId = meIdData?.meId?._id;
-    isVerified = meIdData?.meId?.isVerified;
-  }
+
+  useEffect(() => {
+    setUserId(meIdData?.meId?._id);
+    setIsVerified(meIdData?.meId?.isVerified);
+  }, [meIdData]);
+
   if (searchTerm == "caffeine") {
     const { error: caffeineError, data: caffeineData } = useQuery(
       QUERY_All_CAFFEINATED_BUBBLYS
