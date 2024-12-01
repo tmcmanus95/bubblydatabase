@@ -34,33 +34,36 @@ export default function BubblyWaterPage() {
   let isVerified = meIdData?.meId?.isVerified;
   const bubblyWater = data?.bubblyWater;
   const flavors = bubblyWater ? capitalizeFlavors(bubblyWater) : [];
-  let previouslyRated = false;
-  let previouslyReviewed = false;
-  let userRating = 0;
-  let userReview = "";
-  let ratingId;
-  let reviewId;
-  let ratings = data?.bubblyWater?.ratings;
-  let ratingsCount = data?.bubblyWater?.ratings.length;
-  let reviews = data?.bubblyWater?.reviews;
+  const [previouslyRated, setPreviouslyRated] = useState(false);
+  const [previouslyReviewed, setPreviouslyReviewed] = useState(false);
+  const [userRating, setUserRating] = useState(0);
+  const [userReview, setUserReview] = useState("");
+  const [ratingId, setRatingId] = useState("");
+  const [reviewId, setReviewId] = useState("");
+  const [ratings, setRatings] = useState([]);
+  const [ratingsCount, setRatingsCount] = useState(0);
+  const [reviews, setReviews] = useState([]);
+
   let capitalizedFlavors;
   if (bubblyWater) {
     capitalizedFlavors = capitalizeFlavors(bubblyWater);
   }
 
   // Check if user has already rated bubbly water
-  if (ratings && ratings.length > 0) {
+
+  useEffect(() => {
     for (let i = 0; i < ratings.length; i++) {
       if (ratings[i]?.user?._id === userId) {
-        userRating = ratings[i].rating;
-        ratingId = ratings[i]._id;
-        previouslyRated = true;
+        setUserRating(ratings[i].rating);
+        setRatingId(ratings[i]._id);
+        setPreviouslyRated(true);
       }
     }
-  }
+  }, [ratings]);
 
   // Check if the user has already reviewed bubbly Water
-  if (reviews && reviews.length > 0) {
+
+  useEffect(() => {
     for (let i = 0; i < reviews.length; i++) {
       if (reviews[i]?.user?._id === userId) {
         userReview = reviews[i].reviewText;
@@ -68,7 +71,7 @@ export default function BubblyWaterPage() {
         previouslyReviewed = true;
       }
     }
-  }
+  }, [reviews]);
 
   const handleValueChange = (e, newValue) => {
     setValue(newValue);
