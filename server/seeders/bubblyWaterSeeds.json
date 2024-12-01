@@ -4420,5 +4420,99 @@
     ],
     "isCaffeinated": false,
     "hasCBD": false
+  },
+  {
+    "productName": "Raspberry Lime Sparkling Water",
+    "brandName": "trader-joes",
+    "imageURL": "https://www.traderjoes.com/content/dam/trjo/products/m302/94028.png/jcr:content/renditions/webp-1280.webp",
+    "flavor": [
+      "raspberry",
+      "lime"
+    ],
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Lime Sparkling Water",
+    "brandName": "trader-joes",
+    "imageURL": "https://www.traderjoes.com/content/dam/trjo/products/m302/94031.png/jcr:content/renditions/webp-1280.webp",
+    "flavor": [
+      "lime"
+    ],
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Mandarin Orange Sparkling Water",
+    "brandName": "trader-joes",
+    "imageURL": "https://www.traderjoes.com/content/dam/trjo/products/m302/94027.png/jcr:content/renditions/webp-1280.webp",
+    "flavor": [
+      "mandarin",
+      "orange"
+    ],
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Plain Sparkling Water",
+    "brandName": "trader-joes",
+    "imageURL": "https://www.traderjoes.com/content/dam/trjo/products/m302/94022.png/jcr:content/renditions/webp-1280.webp",
+    "flavor": [
+      "plain"
+    ],
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Lemon Sparkling Water",
+    "brandName": "trader-joes",
+    "imageURL": "https://www.traderjoes.com/content/dam/trjo/products/m302/94030.png/jcr:content/renditions/webp-1280.webp",
+    "flavor": [
+      "lemon"
+    ],
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Grapefruit Sparkling Water",
+    "brandName": "trader-joes",
+    "imageURL": "https://www.traderjoes.com/content/dam/trjo/products/m302/60321.png/jcr:content/renditions/webp-1280.webp",
+    "flavor": [
+      "grapefruit"
+    ],
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Cranberry Clementine Sparkling Water",
+    "brandName": "trader-joes",
+    "imageURL": "https://www.traderjoes.com/content/dam/trjo/products/m302/60320.png/jcr:content/renditions/webp-1280.webp",
+    "flavor": [
+      "cranberry",
+      "clementine"
+    ],
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Winter Sangria Sparkling Water",
+    "brandName": "trader-joes",
+    "imageURL": "https://www.traderjoes.com/content/dam/trjo/products/m302/73086.png/jcr:content/renditions/webp-1280.webp",
+    "flavor": [
+      "grape",
+      "blood-orange"
+    ],
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Italian Sparkling Mineral Water",
+    "brandName": "trader-joes",
+    "imageURL": "https://www.traderjoes.com/content/dam/trjo/products/m302/74702.png/jcr:content/renditions/webp-1280.webp",
+    "flavor": [
+      "plain"
+    ],
+    "isCaffeinated": false,
+    "hasCBD": false
   }
 ]
