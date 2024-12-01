@@ -467,8 +467,6 @@ const resolvers = {
       { ratingId, rating, bubblyWaterId },
       context
     ) => {
-      console.log("Received parameters:", { ratingId, rating, bubblyWaterId });
-
       try {
         const updatedRating = await Rating.findOneAndUpdate(
           { _id: ratingId },
@@ -478,9 +476,6 @@ const resolvers = {
         const updatedBubblyWater = await BubblyWater.findOne({
           _id: bubblyWaterId,
         }).populate("ratings");
-        console.log("bubbly water id", bubblyWaterId);
-
-        console.log("updated bubb", updatedBubblyWater);
         // Update the average rating for the Bubbly Water
         const allRatings = await Rating.find({
           _id: { $in: updatedBubblyWater.ratings },
@@ -527,7 +522,6 @@ const resolvers = {
           user: userId,
           rating,
         });
-        console.log("new review", newReview);
         const updatedBubblyWater = await BubblyWater.findByIdAndUpdate(
           { _id: bubblyWaterId },
           {

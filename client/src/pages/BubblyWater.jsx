@@ -66,9 +66,9 @@ export default function BubblyWaterPage() {
   useEffect(() => {
     for (let i = 0; i < reviews.length; i++) {
       if (reviews[i]?.user?._id === userId) {
-        userReview = reviews[i].reviewText;
-        reviewId = reviews[i]._id;
-        previouslyReviewed = true;
+        setUserReview(reviews[i].reviewText);
+        setReviewId(reviews[i]._id);
+        setPreviouslyReviewed(true);
       }
     }
   }, [reviews]);
@@ -92,7 +92,7 @@ export default function BubblyWaterPage() {
           bubblyWaterId: bubblyWaterId,
         },
       });
-      previouslyRated = true;
+      setPreviouslyRated(true);
     } catch (err) {
       console.error("Error editing review, ", err);
     }
@@ -109,7 +109,7 @@ export default function BubblyWaterPage() {
           bubblyWaterId: bubblyWaterId,
         },
       });
-      previouslyRated = true;
+      setPreviouslyRated(true);
     } catch (err) {
       console.error("Error adding rating, ", err);
     } finally {
@@ -139,7 +139,7 @@ export default function BubblyWaterPage() {
         },
       });
 
-      previouslyReviewed = true;
+      setPreviouslyReviewed(true);
     } catch (err) {
       console.log("Error adding review", err);
     }
@@ -154,7 +154,7 @@ export default function BubblyWaterPage() {
           reviewId: reviewId,
         },
       });
-      previouslyReviewed = true;
+      setPreviouslyReviewed(true);
     } catch (err) {
       console.error("Error editing review, ", err);
     }
