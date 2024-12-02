@@ -4,6 +4,7 @@ import { Rating } from "@mui/material";
 import { capitalizeSingleFlavor } from "../../utils/capitalizeSingleFlavor";
 import CustomColorRating from "./CustomColorRating";
 export default function UsersReviews({ reviews, isVerified }) {
+  console.log("reviews", reviews);
   return (
     <>
       <section>
@@ -43,6 +44,7 @@ export default function UsersReviews({ reviews, isVerified }) {
                       // />
                       <CustomColorRating
                         flavor={review.bubblyWater.flavor[0]}
+                        rating={review?.rating}
                       />
                     ) : (
                       <></>
