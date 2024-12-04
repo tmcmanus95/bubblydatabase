@@ -363,8 +363,12 @@ export default function Profile() {
               <div className="flex flex-wrap justify-center mt-5">
                 {ratings.length > 0 && (
                   <div className="dark:bg-slate-900 bg-blue-100 ">
-                    <h3 className="m-5 flex justify-center">Recent Ratings</h3>
-
+                    <div className="flex flex-col items-center">
+                      <h3 className="mt-5 flex justify-center">
+                        Recent Ratings
+                      </h3>
+                      <hr className="h-px w-32 bg-gray-600 border-0 dark:bg-gray-300 "></hr>
+                    </div>
                     <UsersRatings
                       ratings={ratings}
                       userId={userId ? userId : meId}
@@ -386,7 +390,12 @@ export default function Profile() {
                 )}{" "}
                 {reviewsWithRating.length > 0 && (
                   <div className="dark:bg-slate-900 bg-blue-100 mt-5 md:mt-0 md:m-2">
-                    <h3 className="m-5 flex justify-center">Recent Reviews</h3>
+                    <div className="flex flex-col items-center">
+                      <h3 className="mt-5 flex justify-center">
+                        Recent Reviews
+                      </h3>
+                      <hr className="h-px w-32 bg-gray-600 border-0 dark:bg-gray-300 "></hr>
+                    </div>
                     <UsersReviews reviews={reviewsWithRating} />{" "}
                     {totalReviewsNumber > 10 && (
                       <Link

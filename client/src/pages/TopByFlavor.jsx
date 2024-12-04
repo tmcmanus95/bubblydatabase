@@ -7,7 +7,7 @@ export default function TopByFlavor() {
   return (
     <div className="mt-14">
       {/* <Logo /> */}
-      <BubblyWaterList searchTerm={flavor} />;
+      <BubblyWaterList searchTerm={flavor} />
     </div>
   );
 }

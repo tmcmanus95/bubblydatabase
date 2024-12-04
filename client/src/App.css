@@ -7,17 +7,17 @@
   --lightBlueBackground: #e8f4f8;
   --lightPurpleBackground: #fbf7fe;
   --lightBrownBackground: #e6d9cb;
-  --lightGreyBackground: #e6d9cb;
+  --lightGreyBackground: #d3d3d3;
   --lightBlackbackground: #ffffff;
 
-  --darkRedBackground: #4e0105;
-  --darkOrangeBackground: #6e1a00;
+  --darkRedBackground: #240000;
+  --darkOrangeBackground: #1f0700;
   --darkYellowBackground: #0a0030;
-  --darkGreenBackground: #0c4a13;
+  --darkGreenBackground: #031905;
   --darkBlueBackground: #0d1f4a;
   --darkPurpleBackground: #0e0135;
-  --darkBrownBackground: #4a3e2c;
-  --darkGreyBackground: #232323;
+  --darkBrownBackground: #1b1000;
+  --darkGreyBackground: #000000;
   --darkBlackBackground: #000000;
 }
 body {
