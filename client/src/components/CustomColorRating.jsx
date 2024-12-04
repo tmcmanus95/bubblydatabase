@@ -142,7 +142,9 @@ export default function CustomColorRating({
               handleValueChange(e, newValue);
             }}
             icon={<StarIcon fontSize="inherit" />}
-            emptyIcon={<StarIcon fontSize="inherit" />}
+            emptyIcon={
+              <StarIcon className="dark:text-gray-500" fontSize="inherit" />
+            }
             className="flex justify-center"
           />
         </div>

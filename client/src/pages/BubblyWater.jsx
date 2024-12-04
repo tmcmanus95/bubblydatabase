@@ -64,14 +64,17 @@ export default function BubblyWaterPage() {
   // Check if the user has already reviewed bubbly Water
 
   useEffect(() => {
-    for (let i = 0; i < reviews.length; i++) {
+    console.log("data", data);
+    let tempReviewsWithRatingsArray = [];
+    let rating = null;
+    for (let i = 0; i < data?.bubblyWater?.reviews.length; i++) {
       if (reviews[i]?.user?._id === userId) {
         setUserReview(reviews[i].reviewText);
         setReviewId(reviews[i]._id);
         setPreviouslyReviewed(true);
       }
     }
-  }, [reviews]);
+  }, [data]);
 
   const handleValueChange = (e, newValue) => {
     setValue(newValue);
@@ -162,21 +165,22 @@ export default function BubblyWaterPage() {
   const toggleLoginReminder = () => {
     setLoginReminder(!loginReminder);
   };
+  console.log("reviews, ", reviews);
 
   return (
     <>
       {bubblyWater ? (
         <div
-          className={`${capitalizeSingleFlavor(
-            bubblyWater.flavor[0]
-          )}-background`}
+        // className={`${capitalizeSingleFlavor(
+        //   bubblyWater.flavor[0]
+        // )}-background`}
         >
           <div>
             <div className="flex justify-center flex-col lg:flex-row mt-14 ">
               <section className="m-5 flex flex-col items-center sm:flex-row sm:justify-center gap-10  rounded-lg">
                 <div className="flex flex-col lg:flex-row items-center  justify-center gap-4 p-8 bg-yellow shadow-md rounded-lg">
                   <img
-                    className="object-cover rounded-full lg:mr-10 w-48 h-48 md:w-96 lg:w-96 lg:h-96 md:h-96"
+                    className="object-cover rounded-lg lg:mr-10 w-48 h-48 md:w-96 lg:w-96 lg:h-96 md:h-96"
                     src={bubblyWater.imageURL}
                     alt={bubblyWater.productName}
                   />
@@ -317,7 +321,7 @@ export default function BubblyWaterPage() {
                     <Link to={`/user/${rating?.user?._id}`}>
                       <li
                         key={index}
-                        className="flex border-2 border-black items-center justify-between w-72 md:w-96 lg:w-96 bg-gray-100 dark:bg-gray-900 hover:bg-gray-200 dark:hover:bg-gray-950"
+                        className={`${flavors[0]}-background flex border-2 border-black items-center justify-between w-72 md:w-96 lg:w-96 hover:bg-gray-200 dark:hover:bg-gray-950`}
                       >
                         <div className="flex items-center">
                           <div
@@ -348,10 +352,11 @@ export default function BubblyWaterPage() {
                           )}
                         </div>
                         <span className="text-2xl">
-                          <Rating
+                          <CustomColorRating
                             readOnly
                             size="small"
-                            value={rating.rating}
+                            flavor={bubblyWater?.flavor[0]}
+                            rating={rating.rating}
                             precision={0.5}
                           />
                         </span>
@@ -374,12 +379,12 @@ export default function BubblyWaterPage() {
                   <Link to={`/user/${review?.user?._id}`}>
                     <li
                       key={index}
-                      className="dark:bg-slate-900 w-72 md:w-96 lg:w-96 rounded-lg mb-5"
+                      className="dark:bg-slate-900 w-72 md:w-96 lg:w-96 rounded-lg mb-5 border-2 border-black"
                     >
                       <div
-                        className={`${flavors[0]}-brushings rounded-t-lg p-2 flex items-center justify-between`}
+                        className={`${flavors[0]}-background rounded-t-lg p-2 flex items-center justify-between`}
                       >
-                        {review.user.username ? (
+                        {review?.user?.username ? (
                           <span className=" font-semibold">
                             {review?.user?.username}
                           </span>
@@ -388,10 +393,11 @@ export default function BubblyWaterPage() {
                         )}
                         <div>
                           {review.rating ? (
-                            <Rating
+                            <CustomColorRating
                               readOnly
                               size="small"
-                              value={review.rating.rating}
+                              flavor={bubblyWater?.flavor[0]}
+                              rating={review.rating.rating}
                               precision={0.5}
                             />
                           ) : (
