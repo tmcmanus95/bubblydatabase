@@ -338,3 +338,31 @@ export const QUERY_USERS_REVIEWS_BY_RANGE = gql`
     }
   }
 `;
+export const QUERY_RECENT_RATINGS_AND_REVIEWS = gql`
+  query Query {
+    recentReviews {
+      _id
+      reviewText
+      createdAt
+      bubblyWater {
+        _id
+        productName
+        brandName
+        imageURL
+        flavor
+        ratings {
+          _id
+          rating
+          user {
+            _id
+          }
+        }
+      }
+      user {
+        _id
+        username
+        color
+      }
+    }
+  }
+`;

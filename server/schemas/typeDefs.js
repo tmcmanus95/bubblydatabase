@@ -75,6 +75,8 @@ const typeDefs = `
     searchExactProductName(productName: String): [BubblyWater]
     searchVagueProductName(productName: String): [BubblyWater]
     searchUsers(username: String): User
+    recentRatings: [Rating]
+    recentReviews: [Review]
     searchTags(searchTerm: String): [BubblyWater]
     searchGeneralBubblyWater(searchTerm: String): [BubblyWater]
     queryUserRatingsOfGivenNumber(userId: ID!, rating: Float): User

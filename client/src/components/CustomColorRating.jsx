@@ -118,7 +118,7 @@ export default function CustomColorRating({
   }));
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col ">
       {Auth.loggedIn() &&
       location.pathname !== `/user/${userId}` &&
       location.pathname !== "/me" &&

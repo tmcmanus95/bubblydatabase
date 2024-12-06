@@ -51,6 +51,12 @@ export default function NavBar() {
           >
             Contact
           </Link>
+          <Link
+            to="/recent"
+            className="hover:bg-blue-300 dark:hover:bg-slate-600 lg:p-2 rounded-lg"
+          >
+            Recent
+          </Link>
         </div>
         <div className="mx-5 flex justify-center align-center items-center">
           <GeneralSearchBar />
@@ -85,6 +91,13 @@ export default function NavBar() {
               className="py-2 px-3 block w-full hover:bg-blue-300 dark:hover:bg-slate-600"
             >
               Contact
+            </Link>
+            <Link
+              onClick={toggleMenu}
+              to="/recent"
+              className="py-2 px-3 block w-full hover:bg-blue-300 dark:hover:bg-slate-600"
+            >
+              Recent
             </Link>
 
             {Auth.loggedIn() ? (
