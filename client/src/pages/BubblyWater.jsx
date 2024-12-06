@@ -69,8 +69,8 @@ export default function BubblyWaterPage() {
     let rating = null;
     for (let i = 0; i < data?.bubblyWater?.reviews.length; i++) {
       if (reviews[i]?.user?._id === userId) {
-        setUserReview(reviews[i].reviewText);
-        setReviewId(reviews[i]._id);
+        setUserReview(reviews[i]?.reviewText);
+        setReviewId(reviews[i]?._id);
         setPreviouslyReviewed(true);
       }
     }

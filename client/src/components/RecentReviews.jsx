@@ -9,14 +9,16 @@ export default function RecentReviews({ review }) {
   }
   return (
     <div
-      className={`${capitalizedFlavors[0]}-background  flex flex-row border-2 border-black justify-between`}
+      className={`${capitalizedFlavors[0]}-background  flex flex-row border-2 border-black dark:border-white justify-between m-2`}
     >
       <div className="flex flex-row  border-white">
         <div className="flex flex-row p-5 basis-1/2">
-          <img
-            className="mx-auto lg:mx-0 lg:mb-0 object-cover lg:w-32 lg:h-32 h-32 w-16 dark:rounded-lg"
-            src={review.bubblyWater.imageURL}
-          />
+          <Link to={`/bubblyWater/${review.bubblyWater._id}`}>
+            <img
+              className="mx-auto lg:mx-0 lg:mb-0 object-cover lg:w-32 lg:h-32 h-32 w-16 dark:rounded-lg"
+              src={review.bubblyWater.imageURL}
+            />
+          </Link>
           <div className="flex flex-col ml-4">
             <div className="p-2">{review.bubblyWater.productName}</div>
             <div className="p-2">
@@ -26,7 +28,7 @@ export default function RecentReviews({ review }) {
             </div>
 
             {capitalizedFlavors.map((flavor, index) => (
-              <div className="my-2">
+              <div className="my-2 truncate lg:text-lg text-sm rounded-md lg:rounded-lg">
                 <Link to={`/flavors/${flavor.toLowerCase()}`} key={index}>
                   <span className={`${flavor} whitespace-nowrap text-center`}>
                     {flavor.replace(/-/g, " ")}
