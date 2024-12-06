@@ -25,6 +25,7 @@ import ResetPassword from "./pages/ResetPassword.jsx";
 import ResendVerificationLink from "./pages/ResendVerificationLink.jsx";
 import AllRatings from "./pages/AllRatings.jsx";
 import AllReviews from "./pages/AllReviews.jsx";
+import Recent from "./pages/Recent.jsx";
 
 const router = createBrowserRouter([
   {
@@ -100,11 +101,11 @@ const router = createBrowserRouter([
         path: "/contact",
         element: <Contact />,
       },
-
       {
-        path: "/testingRatingComponent",
-        element: <BasicRating />,
+        path: "/recent",
+        element: <Recent />,
       },
+
       {
         path: "/verifyEmail/:token",
         element: <VerifyEmail />,

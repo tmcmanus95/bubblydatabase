@@ -109,13 +109,15 @@ export default function BubblyWaterListItem({
                 ) : (
                   <></>
                 )}
-                <CustomColorRating
-                  flavor={capitalizedFlavors[0]}
-                  rating={bubblyWater.averageRating}
-                  bubblyWaterId={bubblyWater._id}
-                  userId={userId}
-                  isVerified={isVerified}
-                />
+                <div className="flex justify-center">
+                  <CustomColorRating
+                    flavor={capitalizedFlavors[0]}
+                    rating={bubblyWater.averageRating}
+                    bubblyWaterId={bubblyWater._id}
+                    userId={userId}
+                    isVerified={isVerified}
+                  />
+                </div>
               </div>
             </div>
           </div>

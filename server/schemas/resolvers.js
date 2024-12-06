@@ -219,6 +219,26 @@ const resolvers = {
     searchUsers: async (parent, { username }) => {
       return User.findOne({ username: username });
     },
+    recentRatings: async () => {
+      return Rating.find()
+        .populate("user")
+        .populate("bubblyWater")
+        .sort({ createdAt: -1 })
+        .limit(10);
+    },
+    recentReviews: async () => {
+      return Review.find()
+        .populate("user")
+        .populate({
+          path: "bubblyWater",
+          populate: {
+            path: "ratings",
+            model: "Rating",
+          },
+        })
+        .sort({ createdAt: -1 })
+        .limit(10);
+    },
     queryUserRatingsOfGivenNumber: async (parent, { userId, rating }) => {
       try {
         const user = await User.findOne({ _id: userId }).populate({
