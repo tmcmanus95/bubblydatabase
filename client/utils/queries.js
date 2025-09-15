@@ -197,6 +197,9 @@ export const QUERY_ME = gql`
           imageURL
           flavor
         }
+        rating {
+          rating
+        }
       }
       isVerified
     }

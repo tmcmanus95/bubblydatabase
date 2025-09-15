@@ -142,7 +142,6 @@ const resolvers = {
     },
     allBubblies: async () => {
       const allBubblies = await BubblyWater.find();
-      console.log(allBubblies.length + " bubblies");
       return allBubblies;
     },
     bubblyWater: async (parent, { bubblyWaterId }) => {
@@ -181,7 +180,8 @@ const resolvers = {
     reviews: async () => {
       const reviews = await Review.find()
         .populate("bubblyWater")
-        .populate("user");
+        .populate("user")
+        .populate("rating");
       console.log(reviews.length + " reviews");
       return reviews;
     },
@@ -457,6 +457,21 @@ const resolvers = {
           }
         ).populate("ratings");
 
+        const existingReview = await Review.findOne({
+          user: userId,
+          bubblyWater: bubblyWaterId,
+        });
+
+        // If there's an existing review from this user for this bubbly water, link the new rating to it
+        if (existingReview) {
+          await Review.findByIdAndUpdate(existingReview._id, {
+            rating: newRating._id,
+          });
+          console.log(
+            `Linked new rating ${newRating._id} to existing review ${existingReview._id}`
+          );
+        }
+
         //Save rating to User page
         const user = await User.findById(userId);
         user.ratings.push(newRating._id);
@@ -478,7 +493,9 @@ const resolvers = {
 
         return updatedBubblyWater;
       } catch (error) {
-        console.error(error);
+        console.error("=== ADD RATING ERROR ===");
+        console.error("Error details:", error);
+        console.error("Stack trace:", error.stack);
         throw new Error("Failed to add rating to water");
       }
     },
@@ -557,7 +574,6 @@ const resolvers = {
         const user = await User.findById(userId);
         user.reviews.push(newReview._id);
         await user.save();
-        console.log("ubw", updatedBubblyWater);
         await updatedBubblyWater.save();
         return updatedBubblyWater;
       } catch (error) {

@@ -4514,5 +4514,36 @@
     ],
     "isCaffeinated": false,
     "hasCBD": false
+  },
+  {
+    "productName": "Guy Fieri's Flavor Town Spiced Mango Sorbet",
+    "brandName": "waterloo",
+    "imageURL": "https://i5.walmartimages.com/asr/38277943-1346-4c80-9096-414d0ad7a1c7.5861bd93ae9b6563fe284d53e0aabad1.png",
+    "flavor": [
+      "mango",
+      "chili"
+    ],
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Guy Fieri's Flavor Town Huckleberry Cobbler",
+    "brandName": "waterloo",
+    "imageURL": "https://i5.walmartimages.com/asr/62fbbc1c-6e20-4c83-aa20-dc64a70647c3.8ac6d53a087705f170f19bdbe5fd65d8.png?odnHeight=768&odnWidth=768&odnBg=FFFFFF",
+    "flavor": [
+      "huckleberry"
+    ],
+    "isCaffeinated": false,
+    "hasCBD": false
+  },
+  {
+    "productName": "Guy Fieri's Flavor Town Lemon Italian Ice",
+    "brandName": "waterloo",
+    "imageURL": "https://i5.walmartimages.com/asr/e404912a-33bf-4d5f-90da-d29b1d34d299.2ea31821ab3a6f3eb5998daedd74e101.png?odnHeight=768&odnWidth=768&odnBg=FFFFFF",
+    "flavor": [
+      "lemon"
+    ],
+    "isCaffeinated": false,
+    "hasCBD": false
   }
 ]
