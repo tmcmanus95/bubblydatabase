@@ -441,6 +441,8 @@ const resolvers = {
     },
 
     addRating: async (parent, { userId, bubblyWaterId, rating }, context) => {
+      console.log("user id", userId);
+      console.log("bubblyWaterId", bubblyWaterId);
       try {
         const newRating = await Rating.create({
           rating: rating,
@@ -457,6 +459,24 @@ const resolvers = {
             runValidators: false,
           }
         ).populate("ratings");
+
+        console.log("new rating", newRating);
+
+        const existingReview = await Review.findOne({
+          user: userId,
+          bubblyWater: bubblyWaterId,
+        });
+        console.log("existing review", existingReview);
+
+        // If there's an existing review from this user for this bubbly water, link the new rating to it
+        if (existingReview) {
+          await Review.findByIdAndUpdate(existingReview._id, {
+            rating: newRating._id,
+          });
+          console.log(
+            `Linked new rating ${newRating._id} to existing review ${existingReview._id}`
+          );
+        }
 
         //Save rating to User page
         const user = await User.findById(userId);
@@ -479,7 +499,9 @@ const resolvers = {
 
         return updatedBubblyWater;
       } catch (error) {
-        console.error(error);
+        console.error("=== ADD RATING ERROR ===");
+        console.error("Error details:", error);
+        console.error("Stack trace:", error.stack);
         throw new Error("Failed to add rating to water");
       }
     },

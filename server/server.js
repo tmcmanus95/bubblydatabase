@@ -15,6 +15,20 @@ const app = express();
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  plugins: [
+    {
+      requestDidStart() {
+        return {
+          didResolveOperation(requestContext) {
+            console.log("=== GRAPHQL OPERATION ===");
+            console.log("Operation:", requestContext.request.operationName);
+            console.log("Query:", requestContext.request.query);
+            console.log("Variables:", requestContext.request.variables);
+          },
+        };
+      },
+    },
+  ],
 });
 
 // Create a new instance of an Apollo server with the GraphQL schema
