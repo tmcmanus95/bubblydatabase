@@ -11,6 +11,7 @@ const typeDefs = `
     emailVerificationToken: String
     passwordResetToken: String
     passwordResetExpires: String
+    likedReviews: [Review]
   }
   
   type AuthPayload {
@@ -46,6 +47,7 @@ const typeDefs = `
     bubblyWater: BubblyWater
     user: User
     rating: Rating
+    likes: Float
   }
 
   type Auth {
@@ -98,6 +100,7 @@ const typeDefs = `
     forgotPassword(email: String!): Boolean
     resendEmailVerification(email: String!): Boolean
     resetPassword(token: String!, email: String!, newPassword: String!): AuthPayload
+    addLikeToReview(userId: ID!, reviewId: ID!): User
   }
 `;
 

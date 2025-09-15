@@ -440,6 +440,9 @@ const resolvers = {
     },
 
     addRating: async (parent, { userId, bubblyWaterId, rating }, context) => {
+      console.log("=== ADD RATING RESOLVER CALLED ===");
+      console.log("Arguments received:", { userId, bubblyWaterId, rating });
+      console.log("Context user:", context.user);
       try {
         const newRating = await Rating.create({
           rating: rating,
@@ -613,6 +616,26 @@ const resolvers = {
 
       const token = signToken(user);
       return { token, user };
+    },
+    addLikeToReview: async (parent, { reviewId, userId }, context) => {
+      try {
+        const review = await Review.findById(reviewId);
+        const user = await User.findById(userId);
+        if (!review || !user) {
+          throw new Error("Review or User not found");
+        }
+        // Check if the user has already liked the review
+        if (user.likedReviews.includes(reviewId)) {
+          throw new Error("User has already liked this review");
+        }
+        review.likes += 1;
+        await review.save();
+        user.likedReviews.push(reviewId);
+        await user.save();
+      } catch (error) {
+        console.error(error);
+        throw new Error("Failed to like review");
+      }
     },
   },
 };
