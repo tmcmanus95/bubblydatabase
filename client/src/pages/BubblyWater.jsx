@@ -63,18 +63,18 @@ export default function BubblyWaterPage() {
 
   // Check if the user has already reviewed bubbly Water
 
-  useEffect(() => {
-    console.log("data", data);
-    let tempReviewsWithRatingsArray = [];
-    let rating = null;
-    for (let i = 0; i < data?.bubblyWater?.reviews.length; i++) {
-      if (reviews[i]?.user?._id === userId) {
-        setUserReview(reviews[i]?.reviewText);
-        setReviewId(reviews[i]?._id);
-        setPreviouslyReviewed(true);
-      }
-    }
-  }, [data]);
+  // useEffect(() => {
+  //   console.log("data", data);
+  //   let tempReviewsWithRatingsArray = [];
+  //   let rating = null;
+  //   for (let i = 0; i < data?.bubblyWater?.reviews.length; i++) {
+  //     if (reviews[i]?.user?._id === userId) {
+  //       setUserReview(reviews[i]?.reviewText);
+  //       setReviewId(reviews[i]?._id);
+  //       setPreviouslyReviewed(true);
+  //     }
+  //   }
+  // }, [data]);
 
   const handleValueChange = (e, newValue) => {
     setValue(newValue);

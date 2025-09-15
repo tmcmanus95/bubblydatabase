@@ -27,7 +27,6 @@ export default function Profile() {
   const [colorSelect, setColorSelect] = useState(false);
   const [ratings, setRatings] = useState([]);
   const [reviews, setReviews] = useState([]);
-  const [reviewsWithRating, setReviewsWithRating] = useState([]);
   const [ratingsIds, setRatingsIds] = useState([]);
   const [isVerified, setIsVerified] = useState(true);
   const [editUserColor, { error: editUserColorError }] =
@@ -41,61 +40,17 @@ export default function Profile() {
   };
 
   useEffect(() => {
-    let tempReviewsWithRatingArray = [];
     console.log("data", data);
     if (userId) {
       setTotalRatingsNumber(data?.user?.ratings?.length || 0);
       setTotalReviewsNumber(data?.user?.reviews?.length || 0);
 
       setRatings(data?.user?.ratings?.slice(0, 25));
-      for (let i = 0; i < 10; i++) {
-        if (data?.user?.reviews[i]) {
-          let bubblyWaterRating = "";
-          for (let j = 0; j < data?.user?.ratings?.length; j++) {
-            if (
-              data?.user?.ratings[j]?.bubblyWater?._id ===
-              data?.user?.reviews[i]?.bubblyWater?._id
-            ) {
-              bubblyWaterRating = data?.user?.ratings[j]?.rating;
-              break;
-            }
-          }
-          let tempReviewWithRatingObj = {
-            bubblyWater: data?.user?.reviews[i]?.bubblyWater,
-            reviewText: data?.user?.reviews[i].reviewText,
-            rating: bubblyWaterRating,
-          };
-          tempReviewsWithRatingArray.push(tempReviewWithRatingObj);
-        }
-      }
-      setReviewsWithRating(tempReviewsWithRatingArray);
       setReviews(data?.user?.reviews?.slice(0, 10));
       setIsVerified(true);
     } else {
       setTotalRatingsNumber(data?.me?.ratings?.length || 0);
       setTotalReviewsNumber(data?.me?.reviews?.length || 0);
-
-      for (let i = 0; i < 10; i++) {
-        if (data?.me?.reviews[i]) {
-          let bubblyWaterRating = "";
-          for (let j = 0; j < data?.me?.ratings?.length; j++) {
-            if (
-              data?.me?.ratings[j]?.bubblyWater?._id ===
-              data?.me?.reviews[i]?.bubblyWater?._id
-            ) {
-              bubblyWaterRating = data?.me?.ratings[j]?.rating;
-              break;
-            }
-          }
-          let tempReviewWithRatingObj = {
-            bubblyWater: data?.me?.reviews[i]?.bubblyWater,
-            reviewText: data?.me?.reviews[i].reviewText,
-            rating: bubblyWaterRating,
-          };
-          tempReviewsWithRatingArray.push(tempReviewWithRatingObj);
-        }
-      }
-      setReviewsWithRating(tempReviewsWithRatingArray);
 
       setRatings(data?.me?.ratings?.slice(0, 25));
       setReviews(data?.me?.reviews?.slice(0, 10));
@@ -121,7 +76,7 @@ export default function Profile() {
       console.error("Error editing review, ", err);
     }
   };
-  console.log("reviewsWithRatings", reviewsWithRating);
+  console.log("reviews structure", reviews);
   return (
     <>
       {loading ? (
@@ -388,7 +343,7 @@ export default function Profile() {
                     )}
                   </div>
                 )}{" "}
-                {reviewsWithRating.length > 0 && (
+                {reviews.length > 0 && (
                   <div className="dark:bg-slate-900 bg-blue-100 mt-5 md:mt-0 md:m-2">
                     <div className="flex flex-col items-center">
                       <h3 className="mt-5 flex justify-center">
@@ -396,7 +351,7 @@ export default function Profile() {
                       </h3>
                       <hr className="h-px w-32 bg-gray-600 border-0 dark:bg-gray-300 "></hr>
                     </div>
-                    <UsersReviews reviews={reviewsWithRating} />{" "}
+                    <UsersReviews reviews={reviews} />{" "}
                     {totalReviewsNumber > 10 && (
                       <Link
                         to={

@@ -181,7 +181,8 @@ const resolvers = {
     reviews: async () => {
       const reviews = await Review.find()
         .populate("bubblyWater")
-        .populate("user");
+        .populate("user")
+        .populate("rating");
       console.log(reviews.length + " reviews");
       return reviews;
     },

@@ -44,7 +44,7 @@ export default function UsersReviews({ reviews, isVerified }) {
                       // />
                       <CustomColorRating
                         flavor={review.bubblyWater.flavor[0]}
-                        rating={review?.rating}
+                        rating={review?.rating.rating}
                       />
                     ) : (
                       <></>
