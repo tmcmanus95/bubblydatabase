@@ -142,7 +142,6 @@ const resolvers = {
     },
     allBubblies: async () => {
       const allBubblies = await BubblyWater.find();
-      console.log(allBubblies.length + " bubblies");
       return allBubblies;
     },
     bubblyWater: async (parent, { bubblyWaterId }) => {
@@ -441,8 +440,6 @@ const resolvers = {
     },
 
     addRating: async (parent, { userId, bubblyWaterId, rating }, context) => {
-      console.log("user id", userId);
-      console.log("bubblyWaterId", bubblyWaterId);
       try {
         const newRating = await Rating.create({
           rating: rating,
@@ -460,13 +457,10 @@ const resolvers = {
           }
         ).populate("ratings");
 
-        console.log("new rating", newRating);
-
         const existingReview = await Review.findOne({
           user: userId,
           bubblyWater: bubblyWaterId,
         });
-        console.log("existing review", existingReview);
 
         // If there's an existing review from this user for this bubbly water, link the new rating to it
         if (existingReview) {
@@ -580,7 +574,6 @@ const resolvers = {
         const user = await User.findById(userId);
         user.reviews.push(newReview._id);
         await user.save();
-        console.log("ubw", updatedBubblyWater);
         await updatedBubblyWater.save();
         return updatedBubblyWater;
       } catch (error) {
