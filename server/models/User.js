@@ -35,6 +35,12 @@ const userSchema = new Schema({
       ref: "Review",
     },
   ],
+  likedReviews: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Review",
+    },
+  ],
   isVerified: {
     type: Boolean,
     default: false,

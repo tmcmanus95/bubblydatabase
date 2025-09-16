@@ -14,45 +14,59 @@ import { Link } from "react-router-dom";
 import Loading from "./Loading";
 import { capitalizeSingleFlavor } from "../../utils/capitalizeSingleFlavor";
 export default function BubblyWaterList({ searchTerm }) {
-  let sortedBubblyWaters = [];
-  let cbdBubblies;
-  let caffeinatedBubblies;
-  let hasCaffeinatedBubbly = false;
-  let hasCBDBubbly = false;
-  let generalWaters = [];
   const [userId, setUserId] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
+  const [visibleItems, setVisibleItems] = useState(new Set());
+  const [searchAll, setSearchAll] = useState(false);
+  const [caffeineSearch, setCaffeineSearch] = useState(false);
+  const [CBDSearch, setCBDSearch] = useState(false);
 
   const { data: meIdData, error: meIdError } = useQuery(QUERY_MEID);
+
+  // Query declarations moved to top level
+  const caffeineQuery = useQuery(QUERY_All_CAFFEINATED_BUBBLYS, {
+    skip: searchTerm !== "caffeine",
+  });
+
+  const cbdQuery = useQuery(QUERY_ALL_CBD_BUBBLYS, {
+    skip: searchTerm !== "cbd",
+  });
+
+  const { error, data } =
+    searchTerm && searchTerm !== "caffeine" && searchTerm !== "cbd"
+      ? useQuery(QUERY_SINGLE_FLAVOR, { variables: { flavor: searchTerm } })
+      : useQuery(QUERY_ALL_BUBBLYS);
 
   useEffect(() => {
     setUserId(meIdData?.meId?._id);
     setIsVerified(meIdData?.meId?.isVerified);
   }, [meIdData]);
 
-  if (searchTerm == "caffeine") {
-    const { error: caffeineError, data: caffeineData } = useQuery(
-      QUERY_All_CAFFEINATED_BUBBLYS
-    );
-    if (caffeineData && caffeineData.caffeinatedBubblys)
-      sortedBubblyWaters = caffeineData.caffeinatedBubblys
+  // Process data based on search type
+  let sortedBubblyWaters = [];
+  let cbdBubblies;
+  let caffeinatedBubblies;
+  let hasCaffeinatedBubbly = false;
+  let hasCBDBubbly = false;
+  let generalWaters = [];
+
+  // Handle caffeine search
+  if (searchTerm === "caffeine") {
+    if (caffeineQuery.data && caffeineQuery.data.caffeinatedBubblys) {
+      sortedBubblyWaters = caffeineQuery.data.caffeinatedBubblys
         .slice()
         .sort((a, b) => b.averageRating - a.averageRating);
+    }
   }
-  if (searchTerm == "cbd") {
-    const { error: cbdError, data: cbdData } = useQuery(QUERY_ALL_CBD_BUBBLYS);
-    if (cbdData && cbdData.cbdBubblys)
-      sortedBubblyWaters = cbdData.cbdBubblys
+
+  // Handle CBD search
+  if (searchTerm === "cbd") {
+    if (cbdQuery.data && cbdQuery.data.cbdBubblys) {
+      sortedBubblyWaters = cbdQuery.data.cbdBubblys
         .slice()
         .sort((a, b) => b.averageRating - a.averageRating);
+    }
   }
-  const { error, data } =
-    searchTerm && searchTerm != "caffeine" && searchTerm != "cbd"
-      ? useQuery(QUERY_SINGLE_FLAVOR, { variables: { flavor: searchTerm } })
-      : useQuery(QUERY_ALL_BUBBLYS);
-  const [searchAll, setSearchAll] = useState(false);
-  const [caffeineSearch, setCaffeineSearch] = useState(false);
-  const [CBDSearch, setCBDSearch] = useState(false);
   const toggleCBDSearch = () => {
     if (caffeineSearch == true) {
       setCaffeineSearch(false);
@@ -74,8 +88,8 @@ export default function BubblyWaterList({ searchTerm }) {
     setSearchAll(true);
   };
 
-  // We only need to sort the single flavor query, as the QUERY_ALL_BUBBLYS resolver already returns the bubbly waters sorted by average rating
-  if (searchTerm) {
+  // Process flavor and general data
+  if (searchTerm && searchTerm !== "caffeine" && searchTerm !== "cbd") {
     if (data && data.flavors) {
       sortedBubblyWaters = data.flavors
         .slice()
@@ -86,7 +100,7 @@ export default function BubblyWaterList({ searchTerm }) {
         (bubbly) => bubbly?.isCaffeinated === true
       );
     }
-  } else {
+  } else if (!searchTerm) {
     if (data && data.bubblyWaters) {
       generalWaters = data.bubblyWaters
         .slice()
@@ -100,6 +114,30 @@ export default function BubblyWaterList({ searchTerm }) {
     );
     averageRatingWeighting(generalWaters);
   }
+
+  // Animation effect - runs after data processing
+  useEffect(() => {
+    const itemsToAnimate =
+      sortedBubblyWaters.length > 0 ? sortedBubblyWaters : generalWaters;
+    if (itemsToAnimate.length > 0) {
+      // Reset visible items
+      setVisibleItems(new Set());
+
+      // Stagger the animation of each item
+      itemsToAnimate.forEach((item, index) => {
+        setTimeout(() => {
+          setVisibleItems((prev) => new Set([...prev, index]));
+        }, index * 100); // 100ms delay between each item
+      });
+    }
+  }, [
+    data,
+    caffeineQuery.data,
+    cbdQuery.data,
+    searchTerm,
+    CBDSearch,
+    caffeineSearch,
+  ]);
 
   if (CBDSearch) {
     if (cbdBubblies?.length > 0) {
@@ -255,23 +293,49 @@ export default function BubblyWaterList({ searchTerm }) {
           <div>
             {sortedBubblyWaters.length > 0 ? (
               sortedBubblyWaters.map((bubblyWater, index) => (
-                <BubblyWaterListItem
+                <div
                   key={index}
-                  bubblyWater={bubblyWater}
-                  userId={userId}
-                  ranking={index}
-                  isVerified={isVerified}
-                />
+                  className={`transition-all duration-700 ease-out ${
+                    visibleItems.has(index)
+                      ? "opacity-100 translate-y-0"
+                      : "opacity-0 translate-y-8"
+                  }`}
+                  style={{
+                    transitionDelay: visibleItems.has(index)
+                      ? "0ms"
+                      : `${index * 100}ms`,
+                  }}
+                >
+                  <BubblyWaterListItem
+                    bubblyWater={bubblyWater}
+                    userId={userId}
+                    ranking={index}
+                    isVerified={isVerified}
+                  />
+                </div>
               ))
             ) : generalWaters.length > 0 ? (
               generalWaters.map((bubblyWater, index) => (
-                <BubblyWaterListItem
+                <div
                   key={index}
-                  bubblyWater={bubblyWater}
-                  userId={userId}
-                  ranking={index}
-                  isVerified={isVerified}
-                />
+                  className={`transition-all duration-700 ease-out ${
+                    visibleItems.has(index)
+                      ? "opacity-100 translate-y-0"
+                      : "opacity-0 translate-y-8"
+                  }`}
+                  style={{
+                    transitionDelay: visibleItems.has(index)
+                      ? "0ms"
+                      : `${index * 100}ms`,
+                  }}
+                >
+                  <BubblyWaterListItem
+                    bubblyWater={bubblyWater}
+                    userId={userId}
+                    ranking={index}
+                    isVerified={isVerified}
+                  />
+                </div>
               ))
             ) : (
               <Loading />

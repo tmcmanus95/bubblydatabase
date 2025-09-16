@@ -97,6 +97,7 @@ export const QUERY_SINGLE_BUBBLYWATER = gql`
       reviews {
         _id
         reviewText
+        likes
         user {
           _id
           username
@@ -224,6 +225,10 @@ export const QUERY_MEID = gql`
       _id
       username
       isVerified
+      likedReviews {
+        _id
+        reviewText
+      }
     }
   }
 `;

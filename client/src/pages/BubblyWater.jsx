@@ -9,6 +9,8 @@ import {
   EDIT_RATING,
   ADD_REVIEW,
   EDIT_REVIEW,
+  ADD_LIKE_TO_REVIEW,
+  REMOVE_LIKE_FROM_REVIEW,
 } from "../../utils/mutations";
 import { capitalizeFlavors } from "../../utils/capitalizeFlavors";
 import { capitalizeSingleFlavor } from "../../utils/capitalizeSingleFlavor";
@@ -16,6 +18,8 @@ import { Link } from "react-router-dom";
 import { formatBrands } from "../../utils/formatBrands";
 import Loading from "../components/Loading";
 import CustomColorRating from "../components/CustomColorRating";
+import { AiOutlineLike, AiFillLike } from "react-icons/ai";
+
 export default function BubblyWaterPage() {
   const { bubblyWaterId } = useParams();
   const [value, setValue] = useState(0);
@@ -27,6 +31,33 @@ export default function BubblyWaterPage() {
   const [editRating, { error: editRatingError }] = useMutation(EDIT_RATING);
   const [addReview, { error: addReviewError }] = useMutation(ADD_REVIEW);
   const [editReview, { error: editReviewError }] = useMutation(EDIT_REVIEW);
+  const [addLikeToReview, { error: addLikeToReviewError }] = useMutation(
+    ADD_LIKE_TO_REVIEW,
+    {
+      refetchQueries: [
+        {
+          query: QUERY_SINGLE_BUBBLYWATER,
+          variables: { bubblyWaterId },
+        },
+        {
+          query: QUERY_MEID,
+        },
+      ],
+    }
+  );
+
+  const [removeLikeFromReview, { error: removeLikeFromReviewError }] =
+    useMutation(REMOVE_LIKE_FROM_REVIEW, {
+      refetchQueries: [
+        {
+          query: QUERY_SINGLE_BUBBLYWATER,
+          variables: { bubblyWaterId },
+        },
+        {
+          query: QUERY_MEID,
+        },
+      ],
+    });
   const [loginReminder, setLoginReminder] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [reviewText, setReviewText] = useState("");
@@ -40,9 +71,7 @@ export default function BubblyWaterPage() {
   const [userReview, setUserReview] = useState("");
   const [ratingId, setRatingId] = useState("");
   const [reviewId, setReviewId] = useState("");
-  const [ratings, setRatings] = useState([]);
-  const [ratingsCount, setRatingsCount] = useState(0);
-  const [reviews, setReviews] = useState([]);
+  const [likedReviews, setLikedReviews] = useState([]);
 
   let capitalizedFlavors;
   if (bubblyWater) {
@@ -50,16 +79,30 @@ export default function BubblyWaterPage() {
   }
 
   // Check if user has already rated bubbly water
-
   useEffect(() => {
-    for (let i = 0; i < ratings.length; i++) {
-      if (ratings[i]?.user?._id === userId) {
-        setUserRating(ratings[i].rating);
-        setRatingId(ratings[i]._id);
-        setPreviouslyRated(true);
+    if (bubblyWater?.ratings) {
+      for (let i = 0; i < bubblyWater.ratings.length; i++) {
+        if (bubblyWater.ratings[i]?.user?._id === userId) {
+          setUserRating(bubblyWater.ratings[i].rating);
+          setRatingId(bubblyWater.ratings[i]._id);
+          setPreviouslyRated(true);
+          break;
+        }
       }
     }
-  }, [ratings]);
+  }, [bubblyWater?.ratings, userId]);
+
+  useEffect(() => {
+    if (meIdData?.meId?.likedReviews) {
+      console.log("meIdData", meIdData);
+      // Check if likedReviews contains objects or just IDs
+      const likedIds = meIdData.meId.likedReviews.map((review) =>
+        typeof review === "object" ? review._id : review
+      );
+      setLikedReviews(likedIds);
+      console.log("likedReviews", likedIds);
+    }
+  }, [meIdData]);
 
   // Check if the user has already reviewed bubbly Water
 
@@ -165,8 +208,48 @@ export default function BubblyWaterPage() {
   const toggleLoginReminder = () => {
     setLoginReminder(!loginReminder);
   };
-  console.log("reviews, ", reviews);
 
+  const handleLikeReview = async (reviewId) => {
+    if (!Auth.loggedIn()) {
+      toggleLoginReminder();
+      return;
+    }
+
+    // Optimistic update - update UI immediately
+    setLikedReviews((prev) => [...prev, reviewId]);
+
+    try {
+      await addLikeToReview({
+        variables: { userId: userId, reviewId: reviewId },
+      });
+      // The refetchQueries will handle updating the UI automatically
+    } catch (err) {
+      // Revert optimistic update on error
+      setLikedReviews((prev) => prev.filter((id) => id !== reviewId));
+      console.error("Error liking review:", err);
+    }
+  };
+  const handleRemoveLikeReview = async (reviewId) => {
+    if (!Auth.loggedIn()) {
+      toggleLoginReminder();
+      return;
+    }
+
+    // Optimistic update - update UI immediately
+    setLikedReviews((prev) => prev.filter((id) => id !== reviewId));
+
+    console.log("remove like from review id", reviewId);
+    try {
+      await removeLikeFromReview({
+        variables: { userId: userId, reviewId: reviewId },
+      });
+      // The refetchQueries will handle updating the UI automatically
+    } catch (err) {
+      // Revert optimistic update on error
+      setLikedReviews((prev) => [...prev, reviewId]);
+      console.error("Error removing like from review:", err);
+    }
+  };
   return (
     <>
       {bubblyWater ? (
@@ -204,7 +287,9 @@ export default function BubblyWaterPage() {
                     </h4>
                     <h3 className="text-lg">
                       Average Rating: {bubblyWater.averageRating.toFixed(2)}{" "}
-                      <span className="text-gray-500">({ratingsCount})</span>
+                      <span className="text-gray-500">
+                        ({bubblyWater.ratings?.length || 0})
+                      </span>
                     </h3>
                     {Auth.loggedIn() && !isVerified ? (
                       <div>
@@ -404,6 +489,34 @@ export default function BubblyWaterPage() {
                             <></>
                           )}
                         </div>
+                        <span>{review.likes}</span>
+                        {likedReviews.includes(review._id) ? (
+                          <AiFillLike
+                            className={`hover:cursor-pointer hover:text-green-500 ${
+                              likedReviews.includes(review._id)
+                                ? "text-blue-500"
+                                : "text-gray-500"
+                            }`}
+                            size={25}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              handleRemoveLikeReview(review._id);
+                            }}
+                          />
+                        ) : (
+                          <AiOutlineLike
+                            className={`hover:cursor-pointer hover:text-green-500 ${
+                              likedReviews.includes(review._id)
+                                ? "bg-blue-500"
+                                : "text-gray-500"
+                            }`}
+                            size={25}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              handleLikeReview(review._id);
+                            }}
+                          />
+                        )}
                       </div>
                       <div className="mt-4 px-2">
                         <p className="text-gray-700 ml-2 text-left pb-2 dark:text-white">
