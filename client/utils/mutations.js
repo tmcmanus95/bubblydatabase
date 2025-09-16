@@ -140,3 +140,27 @@ export const RESET_PASSWORD = gql`
     }
   }
 `;
+
+export const ADD_LIKE_TO_REVIEW = gql`
+  mutation Mutation($userId: ID!, $reviewId: ID!) {
+    addLikeToReview(userId: $userId, reviewId: $reviewId) {
+      _id
+      username
+      likedReviews {
+        reviewText
+      }
+    }
+  }
+`;
+
+export const REMOVE_LIKE_FROM_REVIEW = gql`
+  mutation Mutation($userId: ID!, $reviewId: ID!) {
+    removeLikeFromReview(userId: $userId, reviewId: $reviewId) {
+      username
+      likedReviews {
+        reviewText
+        _id
+      }
+    }
+  }
+`;

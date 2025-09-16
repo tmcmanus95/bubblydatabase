@@ -101,6 +101,7 @@ const typeDefs = `
     resendEmailVerification(email: String!): Boolean
     resetPassword(token: String!, email: String!, newPassword: String!): AuthPayload
     addLikeToReview(userId: ID!, reviewId: ID!): User
+    removeLikeFromReview(userId: ID!, reviewId: ID!): User
   }
 `;
 
