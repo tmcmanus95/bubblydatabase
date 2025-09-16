@@ -140,6 +140,10 @@ export const QUERY_SINGLE_USER = gql`
           rating
         }
       }
+      likedReviews {
+        _id
+        reviewText
+      }
     }
   }
 `;
@@ -203,6 +207,10 @@ export const QUERY_ME = gql`
         }
       }
       isVerified
+      likedReviews {
+        _id
+        reviewText
+      }
     }
   }
 `;
