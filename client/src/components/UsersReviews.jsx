@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { formatBrands } from "../../utils/formatBrands";
 import { Rating } from "@mui/material";
+import Auth from "../../utils/auth";
 import { capitalizeSingleFlavor } from "../../utils/capitalizeSingleFlavor";
 import { useMutation } from "@apollo/client";
 import {
@@ -12,52 +13,46 @@ import { QUERY_MEID } from "../../utils/queries";
 import CustomColorRating from "./CustomColorRating";
 import { AiOutlineLike, AiFillLike } from "react-icons/ai";
 
-export default function UsersReviews({ reviews, isVerified }) {
-  const [likedReviews, setLikedReviews] = useState([]);
-  const [addLikeToReview] = useMutation(ADD_LIKE_TO_REVIEW, {
-    refetchQueries: [{ query: QUERY_MEID }],
-  });
-  const [removeLikeFromReview] = useMutation(REMOVE_LIKE_FROM_REVIEW, {
-    refetchQueries: [{ query: QUERY_MEID }],
-  });
+export default function UsersReviews({
+  reviews,
+  isVerified,
+  userId,
+  likedReviews,
+  onLikeReview,
+  onRemoveLikeReview,
+}) {
+  const [addLikeToReview] = useMutation(ADD_LIKE_TO_REVIEW);
+  const [removeLikeFromReview] = useMutation(REMOVE_LIKE_FROM_REVIEW);
+
   const handleLikeReview = async (reviewId) => {
     if (!Auth.loggedIn()) {
-      toggleLoginReminder();
+      // toggleLoginReminder(); // You'll need to pass this down or handle differently
       return;
     }
 
-    // Optimistic update - update UI immediately
-    setLikedReviews((prev) => [...prev, reviewId]);
-
     try {
       await addLikeToReview({
-        variables: { userId: userId, reviewId: reviewId },
+        variables: { reviewId: reviewId },
       });
-      // The refetchQueries will handle updating the UI automatically
+      // Call parent's callback to update liked reviews
+      onLikeReview?.(reviewId);
     } catch (err) {
-      // Revert optimistic update on error
-      setLikedReviews((prev) => prev.filter((id) => id !== reviewId));
       console.error("Error liking review:", err);
     }
   };
   const handleRemoveLikeReview = async (reviewId) => {
     if (!Auth.loggedIn()) {
-      toggleLoginReminder();
+      // toggleLoginReminder(); // You'll need to pass this down or handle differently
       return;
     }
 
-    // Optimistic update - update UI immediately
-    setLikedReviews((prev) => prev.filter((id) => id !== reviewId));
-
-    console.log("remove like from review id", reviewId);
     try {
       await removeLikeFromReview({
-        variables: { userId: userId, reviewId: reviewId },
+        variables: { reviewId: reviewId },
       });
-      // The refetchQueries will handle updating the UI automatically
+      // Call parent's callback to update liked reviews
+      onRemoveLikeReview?.(reviewId);
     } catch (err) {
-      // Revert optimistic update on error
-      setLikedReviews((prev) => [...prev, reviewId]);
       console.error("Error removing like from review:", err);
     }
   };
@@ -108,6 +103,33 @@ export default function UsersReviews({ reviews, isVerified }) {
                       <></>
                     )}
                   </div>
+                  {likedReviews.includes(review._id) ? (
+                    <AiFillLike
+                      className={`hover:cursor-pointer hover:text-green-500 ${
+                        likedReviews.includes(review._id)
+                          ? "text-blue-500"
+                          : "text-gray-500"
+                      }`}
+                      size={25}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleRemoveLikeReview(review._id);
+                      }}
+                    />
+                  ) : (
+                    <AiOutlineLike
+                      className={`hover:cursor-pointer hover:text-green-500 ${
+                        likedReviews.includes(review._id)
+                          ? "bg-blue-500"
+                          : "text-gray-500"
+                      }`}
+                      size={25}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleLikeReview(review._id);
+                      }}
+                    />
+                  )}
                 </div>
                 <div className="pt-2 p-1 bg-white dark:bg-blue-950 ">
                   <p className=" ml-2 text-left overflow-hidden overflow-ellipsis mb-2 ">

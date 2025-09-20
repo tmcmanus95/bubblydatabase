@@ -26,6 +26,7 @@ import ResendVerificationLink from "./pages/ResendVerificationLink.jsx";
 import AllRatings from "./pages/AllRatings.jsx";
 import AllReviews from "./pages/AllReviews.jsx";
 import Recent from "./pages/Recent.jsx";
+import NewHome from "./pages/New/NewHome.jsx";
 
 const router = createBrowserRouter([
   {
@@ -121,6 +122,10 @@ const router = createBrowserRouter([
       {
         path: "/resendEmailVerification",
         element: <ResendVerificationLink />,
+      },
+      {
+        path: "/working/home",
+        element: <NewHome />,
       },
       {
         path: "*",

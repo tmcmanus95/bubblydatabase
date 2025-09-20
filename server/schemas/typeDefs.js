@@ -30,6 +30,8 @@ const typeDefs = `
     averageRating: Float
     ratings: [Rating]
     reviews: [Review]
+    topReview: Review
+    topReviewUpdatedAt: String
   }
 
   type Rating {
@@ -48,6 +50,11 @@ const typeDefs = `
     user: User
     rating: Rating
     likes: Float
+  }
+
+  type LikeResult {
+    reviewId: ID!
+    newLikeCount: Int!
   }
 
   type Auth {
@@ -100,8 +107,8 @@ const typeDefs = `
     forgotPassword(email: String!): Boolean
     resendEmailVerification(email: String!): Boolean
     resetPassword(token: String!, email: String!, newPassword: String!): AuthPayload
-    addLikeToReview(userId: ID!, reviewId: ID!): User
-    removeLikeFromReview(userId: ID!, reviewId: ID!): User
+    addLikeToReview(reviewId: ID!): LikeResult
+    removeLikeFromReview(reviewId: ID!): LikeResult
   }
 `;
 

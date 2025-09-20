@@ -128,8 +128,47 @@ const resolvers = {
           },
         },
         {
+          $lookup: {
+            from: "reviews",
+            localField: "topReview",
+            foreignField: "_id",
+            as: "topReviewData",
+          },
+        },
+        {
           $addFields: {
             averageRating: { $avg: "$ratings.rating" },
+            topReview: { $arrayElemAt: ["$topReviewData", 0] },
+          },
+        },
+        // Populate user for topReview
+        {
+          $lookup: {
+            from: "users",
+            localField: "topReview.user",
+            foreignField: "_id",
+            as: "topReview.user",
+          },
+        },
+        // Populate rating for topReview
+        {
+          $lookup: {
+            from: "ratings",
+            localField: "topReview.rating",
+            foreignField: "_id",
+            as: "topReview.rating",
+          },
+        },
+        {
+          $addFields: {
+            "topReview.user": { $arrayElemAt: ["$topReview.user", 0] },
+            "topReview.rating": { $arrayElemAt: ["$topReview.rating", 0] },
+          },
+        },
+        // Remove temporary field
+        {
+          $project: {
+            topReviewData: 0,
           },
         },
         {
@@ -614,17 +653,24 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    addLikeToReview: async (parent, { reviewId, userId }, context) => {
+    addLikeToReview: async (parent, { reviewId }, context) => {
+      if (!context.user) {
+        throw AuthenticationError;
+      }
+
       try {
         const review = await Review.findById(reviewId);
-        const user = await User.findById(userId);
+        const user = await User.findById(context.user._id);
+
         if (!review || !user) {
           throw new Error("Review or User not found");
         }
+
         // Check if the user has already liked the review
         if (user.likedReviews.includes(reviewId)) {
           throw new Error("User has already liked this review");
         }
+
         review.likes += 1;
         await review.save();
         user.likedReviews.push(reviewId);
@@ -639,17 +685,24 @@ const resolvers = {
         throw new Error("Failed to like review");
       }
     },
-    removeLikeFromReview: async (parent, { reviewId, userId }, context) => {
+    removeLikeFromReview: async (parent, { reviewId }, context) => {
+      if (!context.user) {
+        throw AuthenticationError;
+      }
+
       try {
         const review = await Review.findById(reviewId);
-        const user = await User.findById(userId);
+        const user = await User.findById(context.user._id);
+
         if (!review || !user) {
           throw new Error("Review or User not found");
         }
+
         // Check if the user has liked the review
         if (!user.likedReviews.includes(reviewId)) {
           throw new Error("User has not liked this review");
         }
+
         review.likes = Math.max((review.likes || 1) - 1, 0);
         await review.save();
         user.likedReviews = user.likedReviews.filter(

@@ -45,6 +45,14 @@ const bubblyWaterSchema = new Schema(
         ref: "Review",
       },
     ],
+    topReview: {
+      type: Schema.Types.ObjectId,
+      ref: "Review",
+    },
+    topReviewUpdatedAt: {
+      type: Date,
+      default: Date.now,
+    },
   },
   {
     toJSON: {

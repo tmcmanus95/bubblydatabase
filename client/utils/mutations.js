@@ -142,13 +142,10 @@ export const RESET_PASSWORD = gql`
 `;
 
 export const ADD_LIKE_TO_REVIEW = gql`
-  mutation Mutation($userId: ID!, $reviewId: ID!) {
-    addLikeToReview(userId: $userId, reviewId: $reviewId) {
-      _id
-      username
-      likedReviews {
-        reviewText
-      }
+  mutation Mutation($reviewId: ID!) {
+    addLikeToReview(reviewId: $reviewId) {
+      newLikeCount
+      reviewId
     }
   }
 `;

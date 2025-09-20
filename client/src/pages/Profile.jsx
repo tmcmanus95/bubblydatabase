@@ -8,10 +8,12 @@ import { useParams, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useMutation } from "@apollo/client";
 import { EDIT_USER_COLOR } from "../../utils/mutations";
+
 import UsersRatings from "../components/UsersRatings";
 import UsersReviews from "../components/UsersReviews";
 import Loading from "../components/Loading";
 import RatingsBreakdown from "../components/RatingsBreakdown";
+
 import { Rating } from "@mui/material";
 export default function Profile() {
   const { userId } = useParams();
@@ -23,6 +25,7 @@ export default function Profile() {
   );
   const [totalRatingsNumber, setTotalRatingsNumber] = useState(0);
   const [totalReviewsNumber, setTotalReviewsNumber] = useState(0);
+  const [likedReviews, setLikedReviews] = useState([]);
 
   const [colorSelect, setColorSelect] = useState(false);
   const [ratings, setRatings] = useState([]);
@@ -31,6 +34,7 @@ export default function Profile() {
   const [isVerified, setIsVerified] = useState(true);
   const [editUserColor, { error: editUserColorError }] =
     useMutation(EDIT_USER_COLOR);
+
   const username = userId ? data?.user?.username : data?.me?.username;
   const color = userId ? data?.user?.color : data?.me?.color;
   const meId = userId ? "" : data?.me?._id;
@@ -39,19 +43,29 @@ export default function Profile() {
     setColorSelect(!colorSelect);
   };
 
+  const handleLikeReview = (reviewId) => {
+    // Update local state optimistically
+    setLikedReviews((prev) => [...prev, reviewId]);
+  };
+
+  const handleRemoveLikeReview = (reviewId) => {
+    // Update local state optimistically
+    setLikedReviews((prev) => prev.filter((id) => id !== reviewId));
+  };
+
   useEffect(() => {
     console.log("data", data);
     if (userId) {
       setTotalRatingsNumber(data?.user?.ratings?.length || 0);
       setTotalReviewsNumber(data?.user?.reviews?.length || 0);
-
+      setLikedReviews(data?.user?.likedReviews || []);
       setRatings(data?.user?.ratings?.slice(0, 25));
       setReviews(data?.user?.reviews?.slice(0, 10));
       setIsVerified(true);
     } else {
       setTotalRatingsNumber(data?.me?.ratings?.length || 0);
       setTotalReviewsNumber(data?.me?.reviews?.length || 0);
-
+      setLikedReviews(data?.me?.likedReviews || []);
       setRatings(data?.me?.ratings?.slice(0, 25));
       setReviews(data?.me?.reviews?.slice(0, 10));
       setIsVerified(data?.me?.isVerified);
@@ -351,7 +365,13 @@ export default function Profile() {
                       </h3>
                       <hr className="h-px w-32 bg-gray-600 border-0 dark:bg-gray-300 "></hr>
                     </div>
-                    <UsersReviews reviews={reviews} />{" "}
+                    <UsersReviews
+                      reviews={reviews}
+                      userId={userId}
+                      likedReviews={likedReviews}
+                      onLikeReview={handleLikeReview}
+                      onRemoveLikeReview={handleRemoveLikeReview}
+                    />{" "}
                     {totalReviewsNumber > 10 && (
                       <Link
                         to={

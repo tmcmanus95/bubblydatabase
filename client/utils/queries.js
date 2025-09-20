@@ -14,6 +14,17 @@ export const QUERY_ALL_BUBBLYS = gql`
       ratings {
         _id
       }
+      topReview {
+        _id
+        reviewText
+        likes
+        user {
+          username
+        }
+        rating {
+          rating
+        }
+      }
     }
   }
 `;
