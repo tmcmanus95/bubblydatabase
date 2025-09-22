@@ -7,7 +7,7 @@ export default function AllFlavors() {
       {flavors.map((flavor, index) => (
         <Link key={index} to={`/flavors/${flavor.toLowerCase()}`}>
           <div
-            className={`${flavor} w-28 md:w-36 lg:w-48 h-20 md:h-24 lg:h-32 rounded-md text-center hover:bg-blue-300 hover:text-black`}
+            className={`${flavor}-border ${flavor} ${flavor}-shadow w-28 md:w-36 lg:w-48 h-20 md:h-24 lg:h-32 rounded-md text-center  hover:text-black`}
           >
             <div className="flex items-center justify-center h-full p-2 md:p-3 lg:p-4">
               <h3 className="text-sm md:text-base lg:text-lg font-medium">

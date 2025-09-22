@@ -42,6 +42,19 @@ body {
   background-color: #46295a !important;
   color: black !important;
 }
+.Acai-border {
+  border: 2px solid #46295a;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: white !important;
+}
+.Acai-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Acai-shadow:hover {
+  box-shadow: 5px 5px 12px #46295a;
+}
 .Agave {
   border-radius: 5px;
   padding: 5px;
@@ -55,6 +68,19 @@ body {
 .Agave-brushings {
   background-color: #7a9a9a;
   color: black !important;
+}
+.Agave-border {
+  border: 2px solid #7a9a9a;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: black !important;
+}
+.Agave-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Agave-shadow:hover {
+  box-shadow: 5px 5px 12px #7a9a9a;
 }
 .Apple {
   border-radius: 5px;
@@ -70,6 +96,19 @@ body {
   background-color: #27ae60 !important;
   color: white !important;
 }
+.Apple-border {
+  border: 2px solid #27ae60;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: white !important;
+}
+.Apple-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Apple-shadow:hover {
+  box-shadow: 5px 5px 12px #27ae60;
+}
 .Apple-cider {
   border-radius: 5px;
   padding: 5px;
@@ -82,6 +121,19 @@ body {
 .Apple-cider-brushings {
   background-color: #e74c3c !important;
   color: black !important;
+}
+.Apple-cider-border {
+  border: 2px solid #e74c3c;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: black !important;
+}
+.Apple-cider-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Apple-cider-shadow:hover {
+  box-shadow: 5px 5px 12px #e74c3c;
 }
 .Apricot {
   border-radius: 5px;
@@ -97,6 +149,19 @@ body {
   background-color: #f3c06e !important;
   color: black !important;
 }
+.Apricot-border {
+  border: 2px solid #f3c06e;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: black !important;
+}
+.Apricot-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Apricot-shadow:hover {
+  box-shadow: 5px 5px 12px #f3c06e;
+}
 .Banana {
   border-radius: 5px;
   padding: 5px;
@@ -110,6 +175,19 @@ body {
 .Banana-brushings {
   background-color: #ffe135 !important;
 }
+.Banana-border {
+  border: 2px solid #ffe135;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: black !important;
+}
+.Banana-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Banana-shadow:hover {
+  box-shadow: 5px 5px 12px #ffe135;
+}
 .Basil {
   border-radius: 5px;
   padding: 5px;
@@ -122,6 +200,19 @@ body {
 }
 .Basil-brushings {
   background-color: #82c87e !important;
+}
+.Basil-border {
+  border: 2px solid #82c87e;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: black !important;
+}
+.Basil-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Basil-shadow:hover {
+  box-shadow: 5px 5px 12px #82c87e;
 }
 .Berry {
   border-radius: 5px;
@@ -137,6 +228,19 @@ body {
   background-color: #9b59b6 !important;
   color: white !important;
 }
+.Berry-border {
+  border: 2px solid #9b59b6;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: white !important;
+}
+.Berry-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Berry-shadow:hover {
+  box-shadow: 5px 5px 12px #9b59b6;
+}
 .Blackberry {
   border-radius: 5px;
   padding: 5px;
@@ -151,6 +255,20 @@ body {
   background-color: #37084b !important;
   color: white !important;
 }
+.Blackberry-border {
+  border: 2px solid #37084b;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: white !important;
+}
+.Blackberry-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Blackberry-shadow:hover {
+  box-shadow: 5px 5px 12px #37084b;
+}
+
 .Black-cherry {
   border-radius: 5px;
   padding: 5px;
@@ -160,6 +278,23 @@ body {
 }
 .Black-cherry-background {
   background-color: var(--lightPurpleBackground);
+}
+.Black-cherry-brushings {
+  background-color: #52253a !important;
+  color: white !important;
+}
+.Black-cherry-border {
+  border: 2px solid #52253a;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: white !important;
+}
+.Black-cherry-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Black-cherry-shadow:hover {
+  box-shadow: 5px 5px 12px #52253a;
 }
 .Black-pepper {
   background-color: #000000;
@@ -175,9 +310,18 @@ body {
 .Black-pepper-brushings {
   color: white !important;
 }
-.Black-cherry-brushings {
-  background-color: #52253a !important;
+.Black-pepper-border {
+  border: 2px solid #000000;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
   color: white !important;
+}
+.Black-pepper-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Black-pepper-shadow:hover {
+  box-shadow: 5px 5px 12px #000000;
 }
 .Black-tea {
   border-radius: 5px;
@@ -192,7 +336,19 @@ body {
 .Black-tea-brushings {
   background-color: #463333;
 }
-
+.Black-tea-border {
+  border: 2px solid #463333;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: white !important;
+}
+.Black-tea-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Black-tea-shadow:hover {
+  box-shadow: 5px 5px 12px #463333;
+}
 .Blood-orange {
   border-radius: 5px;
   padding: 5px;
@@ -206,7 +362,19 @@ body {
 .Blood-orange-brushings {
   background-color: #e74c3c !important;
 }
-
+.Blood-orange-border {
+  border: 2px solid #e74c3c;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: white !important;
+}
+.Blood-orange-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Blood-orange-shadow:hover {
+  box-shadow: 5px 5px 12px #e74c3c;
+}
 .Blueberry {
   border-radius: 5px;
   padding: 5px;
@@ -220,6 +388,19 @@ body {
 }
 .Blueberry-background {
   background-color: var(--lightBlueBackground);
+}
+.Blueberry-border {
+  border: 2px solid #3498db;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: white !important;
+}
+.Blueberry-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Blueberry-shadow:hover {
+  box-shadow: 5px 5px 12px #3498db;
 }
 .Cactus {
   border-radius: 5px;
@@ -235,6 +416,19 @@ body {
   background-color: #5c755e !important;
   color: white !important;
 }
+.Cactus-border {
+  border: 2px solid #5c755e;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: white !important;
+}
+.Cactus-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Cactus-shadow:hover {
+  box-shadow: 5px 5px 12px #5c755e;
+}
 .Calamansi {
   border-radius: 5px;
   padding: 5px;
@@ -247,6 +441,19 @@ body {
 }
 .Calamansi-brushings {
   background-color: #f1c40f !important;
+}
+.Calamansi-border {
+  border: 2px solid #f1c40f;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: black !important;
+}
+.Calamansi-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Calamansi-shadow:hover {
+  box-shadow: 5px 5px 12px #f1c40f;
 }
 .Cardamom {
   border-radius: 5px;
@@ -262,6 +469,18 @@ body {
   background-color: #757331 !important;
   color: white !important;
 }
+.Cardamom-border {
+  border: 2px solid #757331;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+}
+.Cardamom-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Cardamom-shadow:hover {
+  box-shadow: 5px 5px 12px #757331;
+}
 .Chili {
   border-radius: 5px;
   padding: 5px;
@@ -276,6 +495,18 @@ body {
   background-color: #e32227 !important;
   color: white !important;
 }
+.Chili-border {
+  border: 2px solid #e32227;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+}
+.Chili-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Chili-shadow:hover {
+  box-shadow: 5px 5px 12px #e32227;
+}
 .Chai {
   border-radius: 5px;
   padding: 5px;
@@ -288,6 +519,18 @@ body {
 }
 .Chai-brushings {
   background-color: #d1b280 !important;
+}
+.Chai-border {
+  border: 2px solid #d1b280;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+}
+.Chai-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Chai-shadow:hover {
+  box-shadow: 5px 5px 12px #d1b280;
 }
 .Cherry {
   border-radius: 5px;
@@ -302,6 +545,19 @@ body {
 .Cherry-brushings {
   background-color: #d10202 !important;
 }
+.Cherry-border {
+  border: 2px solid #d10202;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: white !important;
+}
+.Cherry-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Cherry-shadow:hover {
+  box-shadow: 5px 5px 12px #d10202;
+}
 .Cinnamon {
   border-radius: 5px;
   padding: 5px;
@@ -311,6 +567,18 @@ body {
 }
 .Cinnamon-background {
   background-color: var(--lightBrownBackground);
+}
+.Cinnamon-border {
+  border: 2px solid #d1b280;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+}
+.Cinnamon-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Cinnamon-shadow:hover {
+  box-shadow: 5px 5px 12px #d1b280;
 }
 .Citrus {
   border-radius: 5px;
@@ -326,6 +594,18 @@ body {
   background-color: greenyellow !important;
   color: black !important;
 }
+.Citrus-border {
+  border: 2px solid greenyellow;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+}
+.Citrus-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Citrus-shadow:hover {
+  box-shadow: 5px 5px 12px greenyellow;
+}
 .Clementine {
   border-radius: 5px;
   padding: 5px;
@@ -338,6 +618,19 @@ body {
 }
 .Clementine-brushings {
   background-color: #f39c12;
+}
+.Clementine-border {
+  border: 2px solid #f39c12;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: black !important;
+}
+.Clementine-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Clementine-shadow:hover {
+  box-shadow: 5px 5px 12px #f39c12;
 }
 .Coconut {
   border-radius: 5px;
@@ -353,6 +646,19 @@ body {
   background-color: #583e00 !important;
   color: white !important;
 }
+.Coconut-border {
+  border: 2px solid #583e00;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: white !important;
+}
+.Coconut-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Coconut-shadow:hover {
+  box-shadow: 5px 5px 12px #583e00;
+}
 .Cola {
   border-radius: 5px;
   padding: 5px;
@@ -367,7 +673,19 @@ body {
   background-color: #422801 !important;
   color: white;
 }
-
+.Cola-border {
+  border: 2px solid #422801;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: white !important;
+}
+.Cola-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Cola-shadow:hover {
+  box-shadow: 5px 5px 12px #422801;
+}
 .Cranberry {
   border-radius: 5px;
   padding: 5px;
@@ -380,6 +698,19 @@ body {
 }
 .Cranberry-brushings {
   background-color: #e74c3c !important;
+}
+.Cranberry-border {
+  border: 2px solid #e74c3c;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: white !important;
+}
+.Cranberry-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Cranberry-shadow:hover {
+  box-shadow: 5px 5px 12px #e74c3c;
 }
 .Cucumber {
   border-radius: 5px;
@@ -395,6 +726,19 @@ body {
   background-color: #b4f0cd !important;
   color: black !important;
 }
+.Cucumber-border {
+  border: 2px solid #b4f0cd;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: black !important;
+}
+.Cucumber-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Cucumber-shadow:hover {
+  box-shadow: 5px 5px 12px #b4f0cd;
+}
 .Currant {
   border-radius: 5px;
   padding: 5px;
@@ -409,6 +753,19 @@ body {
   background-color: #3d3242 !important;
   color: white !important;
 }
+.Currant-border {
+  border: 2px solid #3d3242;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: white !important;
+}
+.Currant-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Currant-shadow:hover {
+  box-shadow: 5px 5px 12px #3d3242;
+}
 .Dragon-fruit {
   border-radius: 5px;
   padding: 5px;
@@ -422,6 +779,19 @@ body {
   background-color: #f35d8b !important;
   color: black !important;
 }
+.Dragon-fruit-border {
+  border: 2px solid #f35d8b;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: black !important;
+}
+.Dragon-fruit-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Dragon-fruit-shadow:hover {
+  box-shadow: 5px 5px 12px #f35d8b;
+}
 .Elderflower {
   border-radius: 5px;
   padding: 5px;
@@ -434,6 +804,19 @@ body {
 }
 .Elderflower-brushings {
   background-color: #fbf9e8 !important;
+}
+.Elderflower-border {
+  border: 2px solid #fbf9e8;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: black !important;
+}
+.Elderflower-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Elderflower-shadow:hover {
+  box-shadow: 5px 5px 12px #fbf9e8;
 }
 .Fruit-punch {
   border-radius: 5px;
@@ -463,6 +846,19 @@ body {
   background-color: #d1b280 !important;
   color: black;
 }
+.Ginger-border {
+  border: 2px solid #d1b280;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: black !important;
+}
+.Ginger-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Ginger-shadow:hover {
+  box-shadow: 5px 5px 12px #d1b280;
+}
 .Grape {
   border-radius: 5px;
   padding: 5px;
@@ -490,6 +886,19 @@ body {
 .Grapefruit-brushings {
   background-color: #fdb6f0 !important;
   color: black !important;
+}
+.Grapefruit-border {
+  border: 2px solid #fdb6f0;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: black !important;
+}
+.Grapefruit-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Grapefruit-shadow:hover {
+  box-shadow: 5px 5px 12px #fdb6f0;
 }
 .Green-bean {
   background-color: #709048;
@@ -610,6 +1019,19 @@ body {
 .Kiwi-brushings {
   background-color: #a9c77e !important;
 }
+.Kiwi-border {
+  border: 2px solid #a9c77e;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: black !important;
+}
+.Kiwi-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Kiwi-shadow:hover {
+  box-shadow: 5px 5px 12px #a9c77e;
+}
 .Lavender {
   border-radius: 5px;
   padding: 5px;
@@ -623,6 +1045,19 @@ body {
 .Lavender-brushings {
   background-color: #e6e6fa !important;
   color: black !important;
+}
+.Lavender-border {
+  border: 2px solid #e6e6fa;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: black !important;
+}
+.Lavender-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Lavender-shadow:hover {
+  box-shadow: 5px 5px 12px #e6e6fa;
 }
 .Lemon {
   border-radius: 5px;
@@ -638,6 +1073,19 @@ body {
   background-color: #fff700 !important;
   color: black !important;
 }
+.Lemon-border {
+  border: 2px solid #fff700;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: black !important;
+}
+.Lemon-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Lemon-shadow:hover {
+  box-shadow: 5px 5px 12px #fff700;
+}
 .Lemonade {
   border-radius: 5px;
   padding: 5px;
@@ -651,6 +1099,19 @@ body {
 .Lemonade-brushings {
   background-color: #fffa8b !important;
   color: black !important;
+}
+.Lemonade-border {
+  border: 2px solid #fffa8b;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: black !important;
+}
+.Lemonade-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Lemonade-shadow:hover {
+  box-shadow: 5px 5px 12px #fffa8b;
 }
 .Lemongrass {
   border-radius: 5px;
@@ -708,6 +1169,19 @@ body {
 .Lime-brushings {
   background-color: #32cd32 !important;
 }
+.Lime-border {
+  border: 2px solid #32cd32;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: black !important;
+}
+.Lime-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Lime-shadow:hover {
+  box-shadow: 5px 5px 12px #32cd32;
+}
 .Lychee {
   border-radius: 5px;
   padding: 5px;
@@ -750,6 +1224,19 @@ body {
   background-color: #f4bb44 !important;
   color: black !important;
 }
+.Mango-border {
+  border: 2px solid #f4bb44;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: black !important;
+}
+.Mango-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Mango-shadow:hover {
+  box-shadow: 5px 5px 12px #f4bb44;
+}
 .Melon {
   border-radius: 5px;
   padding: 5px;
@@ -763,6 +1250,19 @@ body {
 .Melon-brushings {
   background-color: #b4f0cd !important;
   color: black !important;
+}
+.Melon-border {
+  border: 2px solid #fdbcb4;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: black !important;
+}
+.Melon-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Melon-shadow:hover {
+  box-shadow: 5px 5px 12px #fdbcb4;
 }
 .Mint {
   border-radius: 5px;
@@ -778,6 +1278,19 @@ body {
   background-color: #2ecc71 !important;
   color: black !important;
 }
+.Mint-border {
+  border: 2px solid #2ecc71;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: black !important;
+}
+.Mint-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Mint-shadow:hover {
+  box-shadow: 5px 5px 12px #2ecc71;
+}
 .Mojito {
   border-radius: 5px;
   padding: 5px;
@@ -791,6 +1304,19 @@ body {
 .Mojito-brushings {
   background-color: #2ecc71 !important;
   color: black !important;
+}
+.Mojito-border {
+  border: 2px solid #7fdfa7;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: black !important;
+}
+.Mojito-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Mojito-shadow:hover {
+  box-shadow: 5px 5px 12px #7fdfa7;
 }
 .Mushroom {
   border-radius: 5px;
@@ -806,6 +1332,19 @@ body {
   background-color: #d6ccc2 !important;
   color: black;
 }
+.Mushroom-border {
+  border: 2px solid #d6ccc2;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: black !important;
+}
+.Mushroom-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Mushroom-shadow:hover {
+  box-shadow: 5px 5px 12px #d6ccc2;
+}
 .Nectarine {
   border-radius: 5px;
   padding: 5px;
@@ -818,6 +1357,19 @@ body {
 }
 .Nectarine-brushings {
   background-color: #eca93d !important;
+}
+.Nectarine-border {
+  border: 2px solid #eca93d;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: black !important;
+}
+.Nectarine-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Nectarine-shadow:hover {
+  box-shadow: 5px 5px 12px #eca93d;
 }
 .Orange {
   border-radius: 5px;
@@ -832,7 +1384,19 @@ body {
 .Orange-brushings {
   background-color: #ffa500 !important;
 }
-
+.Orange-border {
+  border: 2px solid #ffa500;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: black !important;
+}
+.Orange-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Orange-shadow:hover {
+  box-shadow: 5px 5px 12px #ffa500;
+}
 .Orange-cream {
   border-radius: 5px;
   padding: 5px;
@@ -845,6 +1409,19 @@ body {
 }
 .Orange-cream-brushings {
   background-color: #f39c12 !important;
+}
+.Orange-cream-border {
+  border: 2px solid #f39c12;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: black !important;
+}
+.Orange-cream-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Orange-cream-shadow:hover {
+  box-shadow: 5px 5px 12px #f39c12;
 }
 .Passionfruit {
   border-radius: 5px;
@@ -860,6 +1437,19 @@ body {
   background-color: #81072c !important;
   color: white !important;
 }
+.Passionfruit-border {
+  border: 2px solid #81072c;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: white !important;
+}
+.Passionfruit-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Passionfruit-shadow:hover {
+  box-shadow: 5px 5px 12px #81072c;
+}
 .Peach {
   border-radius: 5px;
   padding: 5px;
@@ -873,6 +1463,19 @@ body {
 .Peach-brushings {
   background-color: #f39c12 !important;
   color: black !important;
+}
+.Peach-border {
+  border: 2px solid #f39c12;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: black !important;
+}
+.Peach-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Peach-shadow:hover {
+  box-shadow: 5px 5px 12px #f39c12;
 }
 .Pear {
   border-radius: 5px;
@@ -888,6 +1491,19 @@ body {
   background-color: #5af881 !important;
   color: black !important;
 }
+.Pear-border {
+  border: 2px solid #5af881;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: black !important;
+}
+.Pear-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Pear-shadow:hover {
+  box-shadow: 5px 5px 12px #5af881;
+}
 .Peppermint {
   background-color: #c5eada;
   border-radius: 5px;
@@ -900,6 +1516,19 @@ body {
 }
 .Peppermint-brushings {
   background-color: #c5eada;
+}
+.Peppermint-border {
+  border: 2px solid #c5eada;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: black !important;
+}
+.Peppermint-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Peppermint-shadow:hover {
+  box-shadow: 5px 5px 12px #c5eada;
 }
 .Pineapple {
   border-radius: 5px;
@@ -915,6 +1544,19 @@ body {
   background-color: #f1c40f !important;
   color: black !important;
 }
+.Pineapple-border {
+  border: 2px solid #f1c40f;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: black !important;
+}
+.Pineapple-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Pineapple-shadow:hover {
+  box-shadow: 5px 5px 12px #f1c40f;
+}
 .Pink-lemonade {
   border-radius: 5px;
   padding: 5px;
@@ -927,6 +1569,19 @@ body {
 }
 .Pink-lemonade-brushings {
   background-color: #efd3d2;
+}
+.Pink-lemonade-border {
+  border: 2px solid #efd3d2;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: black !important;
+}
+.Pink-lemonade-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Pink-lemonade-shadow:hover {
+  box-shadow: 5px 5px 12px #efd3d2;
 }
 .Plain {
   border-radius: 5px;
@@ -941,6 +1596,19 @@ body {
 .Plain-brushings {
   background-color: #a2a5a5 !important;
 }
+.Plain-border {
+  border: 2px solid #a2a5a5;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: black !important;
+}
+.Plain-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Plain-shadow:hover {
+  box-shadow: 5px 5px 12px #a2a5a5;
+}
 .Plum {
   border-radius: 5px;
   padding: 5px;
@@ -953,6 +1621,19 @@ body {
 }
 .Plum-brushings {
   background-color: #673147 !important;
+}
+.Plum-border {
+  border: 2px solid #673147;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: white !important;
+}
+.Plum-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Plum-shadow:hover {
+  box-shadow: 5px 5px 12px #673147;
 }
 .Pomelo {
   border-radius: 5px;
@@ -969,6 +1650,19 @@ body {
   background-color: #f39c12 !important;
   color: black !important;
 }
+.Pomelo-border {
+  border: 2px solid #f39c12;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: black !important;
+}
+.Pomelo-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Pomelo-shadow:hover {
+  box-shadow: 5px 5px 12px #f39c12;
+}
 .Pomegranate {
   border-radius: 5px;
   padding: 5px;
@@ -983,6 +1677,19 @@ body {
   background-color: #c0392b !important;
   color: white !important;
 }
+.Pomegranate-border {
+  border: 2px solid #c0392b;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: white !important;
+}
+.Pomegranate-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Pomegranate-shadow:hover {
+  box-shadow: 5px 5px 12px #c0392b;
+}
 .Pumpkin {
   border-radius: 5px;
   padding: 5px;
@@ -994,6 +1701,19 @@ body {
 }
 .Pumpkin-brushings {
   background-color: #ff7518;
+}
+.Pumpkin-border {
+  border: 2px solid #ff7518;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: black !important;
+}
+.Pumpkin-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Pumpkin-shadow:hover {
+  box-shadow: 5px 5px 12px #ff7518;
 }
 .Raspberry {
   border-radius: 5px;
@@ -1009,6 +1729,19 @@ body {
   background-color: #e30b5c !important;
   color: black !important;
 }
+.Raspberry-border {
+  border: 2px solid #e30b5c;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: black !important;
+}
+.Raspberry-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Raspberry-shadow:hover {
+  box-shadow: 5px 5px 12px #e30b5c;
+}
 .Root-beer {
   border-radius: 5px;
   padding: 5px;
@@ -1023,7 +1756,19 @@ body {
   background-color: #8c6a33 !important;
   color: white !important;
 }
-
+.Root-beer-border {
+  border: 2px solid #8c6a33;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: white !important;
+}
+.Root-beer-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Root-beer-shadow:hover {
+  box-shadow: 5px 5px 12px #8c6a33;
+}
 .Rose {
   border-radius: 5px;
   padding: 5px;
@@ -1036,6 +1781,19 @@ body {
 }
 .Rose-brushings {
   background-color: #ff007f !important;
+}
+.Rose-border {
+  border: 2px solid #ff007f;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: black !important;
+}
+.Rose-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Rose-shadow:hover {
+  box-shadow: 5px 5px 12px #ff007f;
 }
 .Rosé {
   border-radius: 5px;
@@ -1050,6 +1808,19 @@ body {
 .Rosé-brushings {
   background-color: #f77cb9 !important;
 }
+.Rosé-border {
+  border: 2px solid #f77cb9;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: black !important;
+}
+.Rosé-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Rosé-shadow:hover {
+  box-shadow: 5px 5px 12px #f77cb9;
+}
 .Sage {
   background-color: #8f9779;
   border-radius: 5px;
@@ -1062,7 +1833,19 @@ body {
 .Sage-brushings {
   background-color: #8f9779;
 }
-
+.Sage-border {
+  border: 2px solid #8f9779;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: black !important;
+}
+.Sage-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Sage-shadow:hover {
+  box-shadow: 5px 5px 12px #8f9779;
+}
 .Sea-berry {
   background-color: #f09447;
   border-radius: 5px;
@@ -1075,6 +1858,19 @@ body {
 .Sea-berry-brushings {
   background-color: #f09447;
   color: black !important;
+}
+.Sea-berry-border {
+  border: 2px solid #f09447;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: black !important;
+}
+.Sea-berry-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Sea-berry-shadow:hover {
+  box-shadow: 5px 5px 12px #f09447;
 }
 .Strawberry {
   border-radius: 5px;
@@ -1090,6 +1886,19 @@ body {
   background-color: #e74c3c !important;
   color: black !important;
 }
+.Strawberry-border {
+  border: 2px solid #e74c3c;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: black !important;
+}
+.Strawberry-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Strawberry-shadow:hover {
+  box-shadow: 5px 5px 12px #e74c3c;
+}
 .Sweetgrass {
   border-radius: 5px;
   padding: 5px;
@@ -1103,6 +1912,19 @@ body {
 .Sweetgrass-brushings {
   background-color: #e7ffa4 !important;
   color: black !important;
+}
+.Sweetgrass-border {
+  border: 2px solid #e7ffa4;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: black !important;
+}
+.Sweetgrass-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Sweetgrass-shadow:hover {
+  box-shadow: 5px 5px 12px #e7ffa4;
 }
 .Tangerine {
   border-radius: 5px;
@@ -1118,6 +1940,19 @@ body {
   background-color: #f39c12 !important;
   color: black !important;
 }
+.Tangerine-border {
+  border: 2px solid #f39c12;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: black !important;
+}
+.Tangerine-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Tangerine-shadow:hover {
+  box-shadow: 5px 5px 12px #f39c12;
+}
 .Tea {
   border-radius: 5px;
   padding: 5px;
@@ -1132,7 +1967,19 @@ body {
   background-color: #d1b280 !important;
   color: black !important;
 }
-
+.Tea-border {
+  border: 2px solid #d1b280;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: black !important;
+}
+.Tea-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Tea-shadow:hover {
+  box-shadow: 5px 5px 12px #d1b280;
+}
 .Turmeric {
   border-radius: 5px;
   padding: 5px;
@@ -1147,6 +1994,19 @@ body {
   background-color: #ccb647 !important;
   color: black !important;
 }
+.Turmeric-border {
+  border: 2px solid #ccb647;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: black !important;
+}
+.Turmeric-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Turmeric-shadow:hover {
+  box-shadow: 5px 5px 12px #ccb647;
+}
 .Vanilla {
   border-radius: 5px;
   padding: 5px;
@@ -1160,7 +2020,19 @@ body {
 .Vanilla-brushings {
   background-color: #f39c12 !important;
 }
-
+.Vanilla-border {
+  border: 2px solid #f1c40f;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: black !important;
+}
+.Vanilla-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Vanilla-shadow:hover {
+  box-shadow: 5px 5px 12px #f1c40f;
+}
 .Watermelon {
   border-radius: 5px;
   padding: 5px;
@@ -1173,6 +2045,19 @@ body {
 }
 .Watermelon-brushings {
   background-color: pink !important;
+}
+.Watermelon-border {
+  border: 2px solid pink;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: black !important;
+}
+.Watermelon-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Watermelon-shadow:hover {
+  box-shadow: 5px 5px 12px pink;
 }
 .Wildflower {
   border-radius: 5px;
@@ -1189,7 +2074,19 @@ body {
   background-color: #7d7dbd;
   color: white !important;
 }
-
+.Wildflower-border {
+  border: 2px solid #7d7dbd;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: white !important;
+}
+.Wildflower-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Wildflower-shadow:hover {
+  box-shadow: 5px 5px 12px #7d7dbd;
+}
 .Yuzu {
   border-radius: 5px;
   padding: 5px;
@@ -1205,7 +2102,19 @@ body {
   background-color: #f1c40f !important;
   color: black !important;
 }
-
+.Yuzu-border {
+  border: 2px solid #f1c40f;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+  color: black !important;
+}
+.Yuzu-shadow {
+  transition: box-shadow 0.75s ease;
+}
+.Yuzu-shadow:hover {
+  box-shadow: 5px 5px 12px #f1c40f;
+}
 .bubblyListItem {
   animation-name: animate-pop;
   animation-duration: 0.5s;
