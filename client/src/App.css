@@ -47,7 +47,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: white !important;
 }
 .Acai-shadow {
   transition: box-shadow 0.75s ease;
@@ -74,7 +73,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: black !important;
 }
 .Agave-shadow {
   transition: box-shadow 0.75s ease;
@@ -101,7 +99,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: white !important;
 }
 .Apple-shadow {
   transition: box-shadow 0.75s ease;
@@ -127,7 +124,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: black !important;
 }
 .Apple-cider-shadow {
   transition: box-shadow 0.75s ease;
@@ -154,7 +150,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: black !important;
 }
 .Apricot-shadow {
   transition: box-shadow 0.75s ease;
@@ -180,7 +175,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: black !important;
 }
 .Banana-shadow {
   transition: box-shadow 0.75s ease;
@@ -206,7 +200,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: black !important;
 }
 .Basil-shadow {
   transition: box-shadow 0.75s ease;
@@ -233,7 +226,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: white !important;
 }
 .Berry-shadow {
   transition: box-shadow 0.75s ease;
@@ -244,7 +236,6 @@ body {
 .Blackberry {
   border-radius: 5px;
   padding: 5px;
-  margin: 3px;
   color: white;
   background-color: #37084b;
 }
@@ -259,8 +250,6 @@ body {
   border: 2px solid #37084b;
   border-radius: 5px;
   padding: 5px;
-  margin: 3px;
-  color: white !important;
 }
 .Blackberry-shadow {
   transition: box-shadow 0.75s ease;
@@ -288,7 +277,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: white !important;
 }
 .Black-cherry-shadow {
   transition: box-shadow 0.75s ease;
@@ -315,7 +303,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: white !important;
 }
 .Black-pepper-shadow {
   transition: box-shadow 0.75s ease;
@@ -341,7 +328,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: white !important;
 }
 .Black-tea-shadow {
   transition: box-shadow 0.75s ease;
@@ -367,7 +353,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: white !important;
 }
 .Blood-orange-shadow {
   transition: box-shadow 0.75s ease;
@@ -394,7 +379,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: white !important;
 }
 .Blueberry-shadow {
   transition: box-shadow 0.75s ease;
@@ -421,7 +405,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: white !important;
 }
 .Cactus-shadow {
   transition: box-shadow 0.75s ease;
@@ -447,7 +430,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: black !important;
 }
 .Calamansi-shadow {
   transition: box-shadow 0.75s ease;
@@ -624,7 +606,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: black !important;
 }
 .Clementine-shadow {
   transition: box-shadow 0.75s ease;
@@ -651,7 +632,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: white !important;
 }
 .Coconut-shadow {
   transition: box-shadow 0.75s ease;
@@ -678,7 +658,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: white !important;
 }
 .Cola-shadow {
   transition: box-shadow 0.75s ease;
@@ -704,7 +683,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: white !important;
 }
 .Cranberry-shadow {
   transition: box-shadow 0.75s ease;
@@ -731,7 +709,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: black !important;
 }
 .Cucumber-shadow {
   transition: box-shadow 0.75s ease;
@@ -758,7 +735,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: white !important;
 }
 .Currant-shadow {
   transition: box-shadow 0.75s ease;
@@ -810,7 +786,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: black !important;
 }
 .Elderflower-shadow {
   transition: box-shadow 0.75s ease;
@@ -851,7 +826,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: black !important;
 }
 .Ginger-shadow {
   transition: box-shadow 0.75s ease;
@@ -892,7 +866,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: black !important;
 }
 .Grapefruit-shadow {
   transition: box-shadow 0.75s ease;
@@ -1024,7 +997,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: black !important;
 }
 .Kiwi-shadow {
   transition: box-shadow 0.75s ease;
@@ -1051,7 +1023,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: black !important;
 }
 .Lavender-shadow {
   transition: box-shadow 0.75s ease;
@@ -1062,7 +1033,6 @@ body {
 .Lemon {
   border-radius: 5px;
   padding: 5px;
-  margin: 3px;
   background-color: #fff700;
   color: black !important;
 }
@@ -1077,8 +1047,6 @@ body {
   border: 2px solid #fff700;
   border-radius: 5px;
   padding: 5px;
-  margin: 3px;
-  color: black !important;
 }
 .Lemon-shadow {
   transition: box-shadow 0.75s ease;
@@ -1089,7 +1057,6 @@ body {
 .Lemonade {
   border-radius: 5px;
   padding: 5px;
-  margin: 3px;
   background-color: #fffa8b;
   color: black !important;
 }
@@ -1104,8 +1071,6 @@ body {
   border: 2px solid #fffa8b;
   border-radius: 5px;
   padding: 5px;
-  margin: 3px;
-  color: black !important;
 }
 .Lemonade-shadow {
   transition: box-shadow 0.75s ease;
@@ -1174,7 +1139,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: black !important;
 }
 .Lime-shadow {
   transition: box-shadow 0.75s ease;
@@ -1256,7 +1220,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: black !important;
 }
 .Melon-shadow {
   transition: box-shadow 0.75s ease;
@@ -1283,7 +1246,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: black !important;
 }
 .Mint-shadow {
   transition: box-shadow 0.75s ease;
@@ -1310,7 +1272,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: black !important;
 }
 .Mojito-shadow {
   transition: box-shadow 0.75s ease;
@@ -1337,7 +1298,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: black !important;
 }
 .Mushroom-shadow {
   transition: box-shadow 0.75s ease;
@@ -1363,7 +1323,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: black !important;
 }
 .Nectarine-shadow {
   transition: box-shadow 0.75s ease;
@@ -1389,7 +1348,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: black !important;
 }
 .Orange-shadow {
   transition: box-shadow 0.75s ease;
@@ -1415,7 +1373,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: black !important;
 }
 .Orange-cream-shadow {
   transition: box-shadow 0.75s ease;
@@ -1442,7 +1399,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: white !important;
 }
 .Passionfruit-shadow {
   transition: box-shadow 0.75s ease;
@@ -1469,7 +1425,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: black !important;
 }
 .Peach-shadow {
   transition: box-shadow 0.75s ease;
@@ -1496,7 +1451,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: black !important;
 }
 .Pear-shadow {
   transition: box-shadow 0.75s ease;
@@ -1522,7 +1476,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: black !important;
 }
 .Peppermint-shadow {
   transition: box-shadow 0.75s ease;
@@ -1549,7 +1502,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: black !important;
 }
 .Pineapple-shadow {
   transition: box-shadow 0.75s ease;
@@ -1575,7 +1527,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: black !important;
 }
 .Pink-lemonade-shadow {
   transition: box-shadow 0.75s ease;
@@ -1600,8 +1551,6 @@ body {
   border: 2px solid #a2a5a5;
   border-radius: 5px;
   padding: 5px;
-  margin: 3px;
-  color: black !important;
 }
 .Plain-shadow {
   transition: box-shadow 0.75s ease;
@@ -1627,7 +1576,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: white !important;
 }
 .Plum-shadow {
   transition: box-shadow 0.75s ease;
@@ -1655,7 +1603,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: black !important;
 }
 .Pomelo-shadow {
   transition: box-shadow 0.75s ease;
@@ -1682,7 +1629,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: white !important;
 }
 .Pomegranate-shadow {
   transition: box-shadow 0.75s ease;
@@ -1707,7 +1653,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: black !important;
 }
 .Pumpkin-shadow {
   transition: box-shadow 0.75s ease;
@@ -1734,7 +1679,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: black !important;
 }
 .Raspberry-shadow {
   transition: box-shadow 0.75s ease;
@@ -1761,7 +1705,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: white !important;
 }
 .Root-beer-shadow {
   transition: box-shadow 0.75s ease;
@@ -1787,7 +1730,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: black !important;
 }
 .Rose-shadow {
   transition: box-shadow 0.75s ease;
@@ -1813,7 +1755,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: black !important;
 }
 .Rosé-shadow {
   transition: box-shadow 0.75s ease;
@@ -1838,7 +1779,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: black !important;
 }
 .Sage-shadow {
   transition: box-shadow 0.75s ease;
@@ -1864,7 +1804,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: black !important;
 }
 .Sea-berry-shadow {
   transition: box-shadow 0.75s ease;
@@ -1891,7 +1830,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: black !important;
 }
 .Strawberry-shadow {
   transition: box-shadow 0.75s ease;
@@ -1918,7 +1856,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: black !important;
 }
 .Sweetgrass-shadow {
   transition: box-shadow 0.75s ease;
@@ -1945,7 +1882,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: black !important;
 }
 .Tangerine-shadow {
   transition: box-shadow 0.75s ease;
@@ -1972,7 +1908,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: black !important;
 }
 .Tea-shadow {
   transition: box-shadow 0.75s ease;
@@ -1999,7 +1934,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: black !important;
 }
 .Turmeric-shadow {
   transition: box-shadow 0.75s ease;
@@ -2025,7 +1959,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: black !important;
 }
 .Vanilla-shadow {
   transition: box-shadow 0.75s ease;
@@ -2051,7 +1984,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: black !important;
 }
 .Watermelon-shadow {
   transition: box-shadow 0.75s ease;
@@ -2079,7 +2011,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: white !important;
 }
 .Wildflower-shadow {
   transition: box-shadow 0.75s ease;
@@ -2107,7 +2038,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 3px;
-  color: black !important;
 }
 .Yuzu-shadow {
   transition: box-shadow 0.75s ease;
