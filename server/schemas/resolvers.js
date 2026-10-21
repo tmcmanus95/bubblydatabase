@@ -1,14 +1,35 @@
 const { User, BubblyWater, Rating, Review } = require("../models");
-const { signToken, AuthenticationError } = require("../utils/auth");
+const {
+  signToken,
+  AuthenticationError,
+  requireUser,
+  requireSelfOrAdmin,
+  requireAdmin,
+} = require("../utils/auth");
 const { sendEmail } = require("../utils/sendEmail");
 const crypto = require("crypto");
 const bcrypt = require("bcrypt");
 const { triggerAsyncId } = require("async_hooks");
 const saltRounds = 10;
 
+// Ratings are 0.5 to 5 in half-star steps
+const isValidRating = (rating) =>
+  rating >= 0.5 && rating <= 5 && Number.isInteger(rating * 2);
+
 const resolvers = {
+  User: {
+    // Email is private: only the user themself can read it
+    email: (parent, args, context) => {
+      if (context.user && String(context.user._id) === String(parent._id)) {
+        return parent.email;
+      }
+      return null;
+    },
+  },
+
   Query: {
-    users: async () => {
+    users: async (parent, args, context) => {
+      requireAdmin(context);
       const users = await User.find();
       console.log(users.length + " users");
       return users;
@@ -334,13 +355,11 @@ const resolvers = {
       try {
         const user = await User.findOne({ emailVerificationToken: token });
 
-        if (!user) {
+        if (!user || String(user._id) !== String(userId)) {
           throw AuthenticationError;
         }
-        if (user._id == userId) {
-          user.isVerified = true;
-          user.emailVerificationToken = null;
-        }
+        user.isVerified = true;
+        user.emailVerificationToken = null;
 
         await user.save();
 
@@ -354,8 +373,9 @@ const resolvers = {
     forgotPassword: async (parent, { email }) => {
       try {
         const user = await User.findOne({ email });
+        // Same response whether or not the account exists
         if (!user) {
-          throw new Error("No user found with this email");
+          return true;
         }
 
         const resetToken = crypto.randomBytes(20).toString("hex");
@@ -392,8 +412,10 @@ const resolvers = {
           subject: "Bubbles. Account Email Verification",
           text: `Please verify your email by clicking the following link: ${verificationUrl}`,
         });
+        await user.save();
       }
-      await user.save();
+      // Same response whether or not the account exists
+      return true;
     },
 
     resetPassword: async (parent, { email, token, newPassword }) => {
@@ -403,25 +425,29 @@ const resolvers = {
           throw new Error("Invalid or expired token");
         }
 
-        if (user.passwordResetToken === token) {
-          user.password = newPassword;
-          user.passwordResetToken = null;
-          user.passwordResetExpires = null;
-        } else {
-          console.log("user.passwordResetToken and token do not match!");
-          return;
+        const tokenIsValid =
+          user.passwordResetToken &&
+          user.passwordResetToken === token &&
+          user.passwordResetExpires &&
+          user.passwordResetExpires.getTime() > Date.now();
+
+        if (!tokenIsValid) {
+          throw new Error("Invalid or expired token");
         }
+
+        user.password = newPassword;
+        user.passwordResetToken = null;
+        user.passwordResetExpires = null;
         await user.save();
 
-        // const authToken = signToken(user);
-        // return { token: authToken, user };
-        return user;
+        return { user };
       } catch (error) {
         console.error("Error resetting password:", error);
         throw new Error("Failed to reset password");
       }
     },
     editUserColor: async (parent, { userId, color }, context) => {
+      requireSelfOrAdmin(context, userId);
       try {
         const updatedUser = await User.findOneAndUpdate(
           { _id: userId },
@@ -435,11 +461,24 @@ const resolvers = {
         throw new Error("Failed to edit color");
       }
     },
-    removeUser: async (parent, { userId }) => {
+    removeUser: async (parent, { userId }, context) => {
+      requireAdmin(context);
       return User.findOneAndDelete({ _id: userId });
     },
 
-    addRating: async (parent, { userId, bubblyWaterId, rating }, context) => {
+    // The userId argument is ignored: ratings always belong to the logged in user
+    addRating: async (parent, { bubblyWaterId, rating }, context) => {
+      const userId = requireUser(context);
+      if (!isValidRating(rating)) {
+        throw new Error("Rating must be between 0.5 and 5 in half steps");
+      }
+      const alreadyRated = await Rating.exists({
+        user: userId,
+        bubblyWater: bubblyWaterId,
+      });
+      if (alreadyRated) {
+        throw new Error("You already rated this bubbly water");
+      }
       try {
         const newRating = await Rating.create({
           rating: rating,
@@ -499,19 +538,24 @@ const resolvers = {
         throw new Error("Failed to add rating to water");
       }
     },
-    editRating: async (
-      parent,
-      { ratingId, rating, bubblyWaterId },
-      context
-    ) => {
+    editRating: async (parent, { ratingId, rating }, context) => {
+      const existingRating = await Rating.findById(ratingId);
+      if (!existingRating) {
+        throw new Error("Rating not found");
+      }
+      requireSelfOrAdmin(context, existingRating.user);
+      if (!isValidRating(rating)) {
+        throw new Error("Rating must be between 0.5 and 5 in half steps");
+      }
       try {
         const updatedRating = await Rating.findOneAndUpdate(
           { _id: ratingId },
           { $set: { rating } },
           { new: true }
         );
+        // Recalculate the average for the rating's own bubbly water, not a client-supplied id
         const updatedBubblyWater = await BubblyWater.findOne({
-          _id: bubblyWaterId,
+          _id: existingRating.bubblyWater,
         }).populate("ratings");
         // Update the average rating for the Bubbly Water
         const allRatings = await Rating.find({
@@ -534,13 +578,20 @@ const resolvers = {
       }
     },
     removeRating: async (parent, { ratingId }, context) => {
+      const existingRating = await Rating.findById(ratingId);
+      if (!existingRating) {
+        return null;
+      }
+      requireSelfOrAdmin(context, existingRating.user);
       return Rating.findOneAndDelete({ _id: ratingId });
     },
-    addReview: async (
-      parent,
-      { userId, bubblyWaterId, reviewText },
-      context
-    ) => {
+    // The userId argument is ignored: reviews always belong to the logged in user
+    addReview: async (parent, { bubblyWaterId, reviewText }, context) => {
+      const userId = requireUser(context);
+      const reviewer = await User.findById(userId);
+      if (!reviewer || !reviewer.isVerified) {
+        throw new Error("Please verify your email to write reviews");
+      }
       try {
         const existingRating = await Rating.findOne({
           user: userId,
@@ -571,9 +622,8 @@ const resolvers = {
         ).populate("reviews");
 
         //Save review to User page
-        const user = await User.findById(userId);
-        user.reviews.push(newReview._id);
-        await user.save();
+        reviewer.reviews.push(newReview._id);
+        await reviewer.save();
         await updatedBubblyWater.save();
         return updatedBubblyWater;
       } catch (error) {
@@ -582,6 +632,11 @@ const resolvers = {
       }
     },
     editReview: async (parent, { reviewId, reviewText }, context) => {
+      const existingReview = await Review.findById(reviewId);
+      if (!existingReview) {
+        throw new Error("Review not found");
+      }
+      requireSelfOrAdmin(context, existingReview.user);
       try {
         const updatedReview = await Review.findByIdAndUpdate(
           reviewId,
@@ -596,6 +651,11 @@ const resolvers = {
       }
     },
     removeReview: async (parent, { reviewId }, context) => {
+      const existingReview = await Review.findById(reviewId);
+      if (!existingReview) {
+        return null;
+      }
+      requireSelfOrAdmin(context, existingReview.user);
       return Review.findOneAndDelete({ _id: reviewId });
     },
     login: async (parent, { email, password }) => {
@@ -614,7 +674,9 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    addLikeToReview: async (parent, { reviewId, userId }, context) => {
+    // The userId argument is ignored: likes always come from the logged in user
+    addLikeToReview: async (parent, { reviewId }, context) => {
+      const userId = requireUser(context);
       try {
         const review = await Review.findById(reviewId);
         const user = await User.findById(userId);
@@ -639,7 +701,8 @@ const resolvers = {
         throw new Error("Failed to like review");
       }
     },
-    removeLikeFromReview: async (parent, { reviewId, userId }, context) => {
+    removeLikeFromReview: async (parent, { reviewId }, context) => {
+      const userId = requireUser(context);
       try {
         const review = await Review.findById(reviewId);
         const user = await User.findById(userId);

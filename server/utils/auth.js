@@ -4,12 +4,61 @@ const jwt = require("jsonwebtoken");
 const secret = process.env.MY_SECRET;
 const expiration = "8760h";
 
+const AuthenticationError = new GraphQLError("Could not authenticate user.", {
+  extensions: {
+    code: "UNAUTHENTICATED",
+  },
+});
+
+const ForbiddenError = new GraphQLError("Not allowed.", {
+  extensions: {
+    code: "FORBIDDEN",
+  },
+});
+
+// Admins are listed by user _id in the ADMIN_USER_IDS env var (comma separated)
+const isAdmin = (context) => {
+  if (!context.user) {
+    return false;
+  }
+  const adminIds = (process.env.ADMIN_USER_IDS || "")
+    .split(",")
+    .map((id) => id.trim())
+    .filter(Boolean);
+  return adminIds.includes(String(context.user._id));
+};
+
+// Throws unless a logged in user made the request; returns that user's _id
+const requireUser = (context) => {
+  if (!context.user) {
+    throw AuthenticationError;
+  }
+  return String(context.user._id);
+};
+
+// Throws unless the logged in user is ownerId or an admin
+const requireSelfOrAdmin = (context, ownerId) => {
+  const userId = requireUser(context);
+  if (String(ownerId) !== userId && !isAdmin(context)) {
+    throw ForbiddenError;
+  }
+  return userId;
+};
+
+const requireAdmin = (context) => {
+  requireUser(context);
+  if (!isAdmin(context)) {
+    throw ForbiddenError;
+  }
+};
+
 module.exports = {
-  AuthenticationError: new GraphQLError("Could not authenticate user.", {
-    extensions: {
-      code: "UNAUTHENTICATED",
-    },
-  }),
+  AuthenticationError,
+  ForbiddenError,
+  isAdmin,
+  requireUser,
+  requireSelfOrAdmin,
+  requireAdmin,
   authMiddleware: function ({ req }) {
     // allows token to be sent via req.body, req.query, or headers
     let token = req.body.token || req.query.token || req.headers.authorization;

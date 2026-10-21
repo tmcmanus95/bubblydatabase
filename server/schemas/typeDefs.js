@@ -3,14 +3,10 @@ const typeDefs = `
     _id: ID
     username: String
     email: String
-    password: String
     color: String
     ratings: [Rating]
     reviews: [Review]
     isVerified: Boolean
-    emailVerificationToken: String
-    passwordResetToken: String
-    passwordResetExpires: String
     likedReviews: [Review]
   }
   
