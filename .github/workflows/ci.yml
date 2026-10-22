@@ -1,0 +1,66 @@
+# Runs every test and the client build on pull requests and on pushes to staging/main.
+# No secrets are used, and tests never touch Atlas: the server tests and the backup/restore script
+# tests run against throwaway local MongoDB instances.
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [staging, main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 20 # same major as production (package.json engines)
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            server/package-lock.json
+            client/package-lock.json
+
+      # mongod (in-memory test DBs), mongodump/mongorestore and age (backup/restore script tests)
+      - name: Install MongoDB server, database tools and age
+        env:
+          MONGODB_TGZ_URL: https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-ubuntu2404-8.0.34.tgz
+          MONGODB_TGZ_SHA256: 3e55cdcf7013fbc805d29d8195230df4b23c7688733ee15ad58ac6bc2a416611
+          TOOLS_DEB_URL: https://fastdl.mongodb.org/tools/db/mongodb-database-tools-ubuntu2404-x86_64-100.19.1.deb
+          TOOLS_DEB_SHA256: 4bb0482aced31090b9ab1615b75db90ec3eea91c01ba45d03454748cc3658b69
+        run: |
+          curl -fsSL "$MONGODB_TGZ_URL" -o "$RUNNER_TEMP/mongodb.tgz"
+          echo "$MONGODB_TGZ_SHA256  $RUNNER_TEMP/mongodb.tgz" | sha256sum -c -
+          mkdir -p "$RUNNER_TEMP/mongodb"
+          tar -xzf "$RUNNER_TEMP/mongodb.tgz" -C "$RUNNER_TEMP/mongodb" --strip-components=1
+          echo "$RUNNER_TEMP/mongodb/bin" >> "$GITHUB_PATH"
+          curl -fsSL "$TOOLS_DEB_URL" -o "$RUNNER_TEMP/database-tools.deb"
+          echo "$TOOLS_DEB_SHA256  $RUNNER_TEMP/database-tools.deb" | sha256sum -c -
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq age "$RUNNER_TEMP/database-tools.deb"
+
+      - name: Install dependencies
+        run: |
+          npm ci --ignore-scripts
+          npm --prefix server ci
+          npm --prefix client ci
+
+      - name: Tests
+        run: |
+          mongod --version | head -1
+          npm test
+
+      - name: Client build
+        run: npm run build

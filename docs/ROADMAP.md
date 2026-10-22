@@ -1,9 +1,9 @@
 # BubblyDB — Roadmap
 
-_Status: **Approved by Thomas (2026-10-21).** P0-0 through P0-9 done; P0-10..12 in review; next: P0-13 (CI)._
+_Status: **Approved by Thomas (2026-10-21).** **Phase 0 complete** once P0-13 merges; next: Phase 1._
 _Sources: `docs/SPEC.md`, `docs/AUDIT.md`. Last updated 2026-10-22._
 
-**Next up:** Thomas: review the smoke-test PR. Claude: P0-13 (CI). PRs now go into `staging`; Thomas releases with a `staging` → `main` PR.
+**Next up:** Thomas: merge P0-13, release `staging` → `main`, optionally require the CI check. Claude: P1-0 (image audit), then P1-1. PRs now go into `staging`; Thomas releases with a `staging` → `main` PR.
 
 ## How to read this
 
@@ -168,7 +168,7 @@ Files: `scripts/restore.sh`, `server/scripts/verifyCounts.js`, `scripts/test/res
 - [x] 3 health tests pass; tests use the local `mongod` when installed (no download), never Atlas. Without a local `mongod`, the binary is downloaded once from MongoDB and cached
 - [ ] Thomas tries `npm run dev` once (Claude couldn't: Thomas's dev servers were using ports 3000/5001)
 
-### P0-10 🤖 Smoke tests: signup + login — 45m — DB: none (in-memory) — in review
+### P0-10 🤖 Smoke tests: signup + login — 45m — DB: none (in-memory) — done (PR #171)
 
 `server/tests/auth.test.js` (9 tests)
 - [x] Signup creates an unverified user with a hashed password, returns a token, and the outbox gets a verification URL; duplicate username/email rejected
@@ -176,7 +176,7 @@ Files: `scripts/restore.sh`, `server/scripts/verifyCounts.js`, `scripts/test/res
 - [x] Email verification and password reset flows (token must match, reset expires and is single-use, no account enumeration)
 - [x] Regression: `users` admin-only; sensitive fields not in the schema; email visible only to its owner (P0-0b)
 
-### P0-11 🤖 Smoke tests: search + product page — 45m — DB: none (in-memory) — in review
+### P0-11 🤖 Smoke tests: search + product page — 45m — DB: none (in-memory) — done (PR #171)
 
 `server/tests/catalog.test.js` (6 tests), fixtures in `server/tests/fixtures.js`
 - [x] Fixtures: products, users, ratings, reviews
@@ -184,7 +184,7 @@ Files: `scripts/restore.sh`, `server/scripts/verifyCounts.js`, `scripts/test/res
 - [x] Home top list ranks by average and only includes products with more than 3 ratings
 - [x] `bubblyWater(id)` returns ratings/reviews with public user info only; unknown id → `null`
 
-### P0-12 🤖 Smoke tests: rate + review — 45m — DB: none (in-memory) — in review
+### P0-12 🤖 Smoke tests: rate + review — 45m — DB: none (in-memory) — done (PR #171)
 
 `server/tests/ratings.test.js` (7 tests): the P0-0 hotfix checks, now permanent
 - [x] An authenticated rate updates `averageRating`; an edit updates it again (and ignores a bogus `bubblyWaterId`); one rating per user; half steps 0.5–5 only
@@ -192,13 +192,15 @@ Files: `scripts/restore.sh`, `server/scripts/verifyCounts.js`, `scripts/test/res
 - [x] Regression: anonymous or other-user writes rejected; client `userId` ignored; likes; profile color; `removeUser` admin-only (P0-0c)
 - [x] Checked that the tests catch regressions: removing the `editRating` ownership guard makes the suite fail
 
-### P0-13 🤖 CI — 30m — DB: none — todo
+### P0-13 🤖 CI — 30m — DB: none — in review
 
-- [ ] `.github/workflows/ci.yml`: install, `npm test`, client build on push/PR
-- [ ] Green on `staging`; branch protection on `main` suggested to Thomas
+- [x] `.github/workflows/ci.yml`: Node 20, MongoDB 8.0 + database tools + age installed (sha256-checked), `npm test` (all 50 tests, none skipped) and the client build on every PR and on pushes to `staging`/`main`
+- [x] Green on the PR (first run: 34 + 16 tests, 0 skipped, build OK)
+- [ ] Thomas (optional): require the `test` check before merging into `main` and `staging`
 
 **Phase 0 exit criteria:** hotfix live; a tested restore documented; daily encrypted off-site backups
 running; staging refreshable and deployed; smoke tests green in CI.
+**Status (2026-10-22): all met** (pending the P0-13 merge).
 
 ---
 
