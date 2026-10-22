@@ -33,15 +33,16 @@ _Last session: 2026-10-21._
   into `new-aesthetic`, that file doesn't exist there, so the script fails safely.
 - `cd server && npm test` runs the guard tests (no network/DB).
 
-## P0-2 (repo hygiene): PR open
-- Branch `p0-2-repo-hygiene` (worktree `../p0-2-repo-hygiene`, from `main` @ `f2f8670`).
-- Adds `server/.env.example`, root `.gitignore`, untracks `.DS_Store`, and commits `docs/` except
-  `AUDIT.md` (local + gitignored by Thomas's decision).
-- Open: create the `staging` branch after merge; pin `engines.node` once Thomas sends Render's Node version.
-- **Docs location after merge:** the source of truth becomes `docs/` on `main`. This `new-aesthetic`
-  folder still has its own untracked copies, which will block merging `main` into `new-aesthetic`
-  ("untracked files would be overwritten"). Before that merge, move `docs/AUDIT.md` somewhere safe and
-  delete the other untracked docs here (they're identical to `main`); put `AUDIT.md` back after.
+## P0-2 (repo hygiene): merged (PR #162 → `main` @ `39e5f64`)
+- `server/.env.example`, root `.gitignore`, `.DS_Store` untracked, `docs/` committed (except
+  `AUDIT.md`: local + gitignored by Thomas's decision).
+- `staging` branch created from `main` @ `39e5f64`.
+- Follow-up PR: `engines.node` = `20.x` (Render reported 20.12.0). Node 20 is end-of-life; the
+  upgrade to 22 is tracked in P1-10.
+- **Docs source of truth is `docs/` on `main`.** Claude updates docs through PRs and mirrors them into
+  the `new-aesthetic` folder's untracked copies so they stay readable there. Before merging `main` into
+  `new-aesthetic`, move `docs/AUDIT.md` somewhere safe and delete the other untracked docs (git refuses
+  to overwrite untracked files); put `AUDIT.md` back after.
 
 ## Watch out
 - The repo is public. Never paste secrets; PR/commit text is visible to everyone.
@@ -50,4 +51,4 @@ _Last session: 2026-10-21._
 - Root `npm run dev` / `npm test` and `migrate:*` don't exist yet (P0-9, P1-11). `server/` has `npm test`.
 
 ## Next Claude ticket
-P0-3 (backup script), after the P0-2 PR is reviewed.
+P0-3 (backup script).

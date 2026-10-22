@@ -6,7 +6,9 @@ Newest first. Format: date · decision · why · who decided.
 - `docs/` (CLAUDE.md, SPEC, ROADMAP, DECISIONS, HANDOFF) is committed to `main`. `docs/AUDIT.md` stays
   local and gitignored, because it details security gaps that remain open until the Phase 1 security
   tickets ship. Revisit after P1-1..P1-9.
-- `engines.node` gets pinned to the major Render uses today, so the next deploy doesn't change prod's Node.
+- `engines.node` gets pinned to the major Render uses today (`20.x`; Render reported 20.12.0), so the
+  next deploy doesn't change prod's Node major. Node 20 is past end-of-life (April 2026); moving to
+  22 is tracked in P1-10 and gets tested on staging first.
 - Decided by: Thomas.
 
 ## 2026-10-21 · Product visuals are text/color cards; no scraped images or logos
