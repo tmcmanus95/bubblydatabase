@@ -44,7 +44,7 @@ RateYourMusic-style sparkling water rating site. MERN (MongoDB, Express, React, 
 Setup: copy `server/.env.example` to `server/.env` (staging values only).
 
 - `npm run dev` — server (:3000, restarts on change) + client (:5001, proxies `/graphql`)
-- `npm test` — all tests: server (in-memory MongoDB, never Atlas) + backup/restore scripts
+- `npm test` — all tests: server (in-memory MongoDB, never Atlas) + backup/restore scripts. CI runs it on every PR
 - `cd server && npm start` — API only
 - New server tests: `server/tests/*.test.js`, using `startTestServer()` from `server/tests/helpers.js`
 - `EMAIL_MODE=log` — never send email (tests, staging); messages go to the console
