@@ -1,9 +1,9 @@
 # BubblyDB — Roadmap
 
-_Status: **Approved by Thomas (2026-10-21).** P0-0 through P0-4 done; P0-5 in review._
-_Sources: `docs/SPEC.md`, `docs/AUDIT.md`. Last updated 2026-10-21._
+_Status: **Approved by Thomas (2026-10-21).** P0-0 through P0-5 done; P0-6 in review._
+_Sources: `docs/SPEC.md`, `docs/AUDIT.md`. Last updated 2026-10-22._
 
-**Next up:** Thomas: merge P0-5, then start the first backup run by hand. Claude: P0-6 (restore + verification).
+**Next up:** Thomas: review P0-6, then do the monthly restore test once (`docs/RUNBOOK.md`). Claude: P0-7 (`staging:refresh`).
 
 ## How to read this
 
@@ -122,25 +122,26 @@ Files: `scripts/backup.sh`, `scripts/test/backup.test.js` (`node --test scripts/
 - [x] `age` keypair: public key in GH secrets, private key only in Thomas's password manager
 - [x] GH Actions secrets (names as saved): `BACKUP_MONGODB_URI`, `AGE_PUBLIC_KEY`, `R2_ACCESS_KEY`, `R2_SECRET_ACCESS_KEY`, `R2_ENDPOINT`, `R2_BUCKET`
 
-### P0-5 🤖 Backup workflow — 30m — DB: none — in review
+### P0-5 🤖 Backup workflow — 30m — DB: none — done (PR #166 → `main` @ `364ff1e`)
 
 File: `.github/workflows/backup.yml`.
 
 - [x] Triggers: daily `schedule` (08:17 UTC) + `workflow_dispatch` only (never `pull_request`, so forks can't reach secrets); `contents: read` permissions; no persisted git credentials
 - [x] Pinned installs: database tools 100.19.1 `.deb` with sha256 check, `age` from Ubuntu, `actions/checkout` pinned to a commit; runs `scripts/backup.sh`
 - [x] Failure notifies Thomas (GitHub emails the workflow owner on failed scheduled runs)
-- [ ] A manual run by Thomas uploads an object to R2
+- [x] First manual run (started by Claude with `gh workflow run`, 2026-10-22 01:29 UTC) succeeded: users 45, reviews 159, ratings 1350, bubblywaters 442 (plus the empty `bubblydatabase3` collection); 79,896-byte encrypted archive uploaded to R2
 - Note: GitHub disables scheduled workflows in public repos after 60 days without repo activity. A backup-freshness check belongs in P1-9 (uptime monitoring).
 
-### P0-6 🤖 Restore + verification — 60m — DB: staging-write (scratch db) — todo
+### P0-6 🤖 Restore + verification — 60m — DB: local only — in review
 
-Files: `scripts/restore.sh`, `scripts/verifyCounts.js`, `docs/RUNBOOK.md`.
+Files: `scripts/restore.sh`, `server/scripts/verifyCounts.js`, `scripts/test/restore.test.js`, `docs/RUNBOOK.md`.
 
-- [ ] `restore.sh <object-key> <targetDb>` downloads, decrypts (private key from a local file), and runs `mongorestore --nsFrom 'bubblydatabase3.*' --nsTo '<targetDb>.*'`
-- [ ] Refuses `targetDb == bubblydatabase3`
-- [ ] `verifyCounts.js` prints per-collection counts + index lists and compares them to the expected numbers
-- [ ] Thomas restores the latest backup into `bubblydatabase3_restoretest`; counts match; the db is dropped after
-- [ ] `RUNBOOK.md`: step-by-step disaster-recovery restore, including where the private key lives
+- [x] `restore.sh <file|r2-key|latest> <targetDb>` downloads (or reads a local file), decrypts with `AGE_IDENTITY_FILE`, and streams into `mongorestore --drop --nsFrom '<src>.*' --nsTo '<targetDb>.*'`; the plaintext never touches disk
+- [x] Refuses `bubblydatabase3` as a target, and anything that isn't `bubblydatabase3_staging` or local (same `assertStaging` guard as P0-1); credentials redacted from output
+- [x] `verifyCounts.js` (in `server/scripts/`, read-only, staging/local only) prints per-collection counts + indexes and compares them to the counts mongorestore reported; fails on mismatch or an empty database
+- [x] Tests: 5 end-to-end tests with real mongodump/mongorestore/age on a throwaway local mongod (restore, re-restore without duplicates, wrong key, refusals, `latest` from R2 via a fake aws)
+- [ ] Thomas restores the latest real backup into a **local** `bubblydatabase3_restoretest` (the staging Atlas user can't write other databases, and this way the prod copy never leaves his machine); counts match; db dropped after. Steps: `docs/RUNBOOK.md` → Monthly restore test
+- [x] `RUNBOOK.md`: where everything lives, health checks, monthly restore test, manual production restore (Thomas only), key/token incidents
 
 ### P0-7 🤖 `npm run staging:refresh` — 45m — DB: staging-write — todo
 

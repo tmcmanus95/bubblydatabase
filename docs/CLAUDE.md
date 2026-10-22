@@ -47,6 +47,8 @@ Setup: copy `server/.env.example` to `server/.env` (staging values only).
 - `cd client && npm run dev` — site on :5001 (proxies `/graphql` to :3000)
 - `cd server && npm test` — server tests (no network/DB)
 - `cd server && node seeders/<script>.js` — maintenance scripts; staging/local only (`seed.js` also needs `--yes-drop-staging`)
+- `node --test scripts/test/` files — backup/restore script tests (restore tests need local `mongod` + `age`)
+- `scripts/backup.sh` / `scripts/restore.sh` — encrypted backups; see `docs/RUNBOOK.md`
 - Planned: root `npm run dev` / `npm test` (P0-9), `npm run migrate:up` / `migrate:down` (P1-11, staging only)
 
 ## Branches
