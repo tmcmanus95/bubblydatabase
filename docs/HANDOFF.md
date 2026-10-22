@@ -53,9 +53,10 @@ _Last session: 2026-10-21._
 - The repo is public. Never paste secrets; PR/commit text is visible to everyone.
 - Root `npm run dev` / `npm test` and `migrate:*` don't exist yet (P0-9, P1-11). `server/` has `npm test`.
 
-## P0-3 (backup script): PR open
+## P0-3 (backup script): done (PR #164 → `main` @ `089e3f3`)
 - `scripts/backup.sh` (usage in its header) + `scripts/test/backup.test.js`.
-- **Thomas's dry run against staging** (also creates the real age key for P0-4):
+- Dry run against staging passed (2026-10-21). The age key made for it is the real backup key
+  (private key only in Thomas's password manager). Steps, for re-running:
   ```sh
   brew install age                      # mongodump is already installed
   age-keygen -o ~/bubbly-backup.key     # prints "Public key: age1..."; save this file in your password manager
@@ -64,7 +65,8 @@ _Last session: 2026-10-21._
   export AGE_PUBLIC_KEY="age1..."       # from age-keygen
   mkdir -p ~/bubbly-backup-test && scripts/backup.sh --local-only ~/bubbly-backup-test
   age -d -i ~/bubbly-backup.key ~/bubbly-backup-test/*.age > ~/bubbly-backup-test/plain.archive
-  xxd -l 4 ~/bubbly-backup-test/plain.archive   # should show "6de2 9981" (mongodump archive magic number)
+  xxd -l 4 ~/bubbly-backup-test/plain.archive   # "1f8b 0800": the whole archive is gzipped
+  gunzip -c ~/bubbly-backup-test/plain.archive | xxd -l 4   # "6de2 9981": mongodump archive magic number
   rm -rf ~/bubbly-backup-test           # it holds a plaintext copy of staging (real user emails)
   ```
   Then keep the key file only in the password manager (delete `~/bubbly-backup.key`).
