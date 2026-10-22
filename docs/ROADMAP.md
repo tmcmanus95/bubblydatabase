@@ -1,9 +1,9 @@
 # BubblyDB — Roadmap
 
-_Status: **Approved by Thomas (2026-10-21).** P0-0 through P0-6 merged (P0-6 awaits Thomas's real restore test); P0-7 in review._
+_Status: **Approved by Thomas (2026-10-21).** P0-0 through P0-7 done; P0-9 in review._
 _Sources: `docs/SPEC.md`, `docs/AUDIT.md`. Last updated 2026-10-22._
 
-**Next up:** Thomas: review P0-7; run the real restore test (P0-6) and a first `staging:refresh`; then P0-8 (staging Render service). Claude: P0-9 (test harness).
+**Next up:** Thomas: review P0-9, then P0-8 (staging Render service). Claude: P0-10..12 (smoke tests).
 
 ## How to read this
 
@@ -132,7 +132,7 @@ File: `.github/workflows/backup.yml`.
 - [x] First manual run (started by Claude with `gh workflow run`, 2026-10-22 01:29 UTC) succeeded: users 45, reviews 159, ratings 1350, bubblywaters 442 (plus the empty `bubblydatabase3` collection); 79,896-byte encrypted archive uploaded to R2
 - Note: GitHub disables scheduled workflows in public repos after 60 days without repo activity. A backup-freshness check belongs in P1-9 (uptime monitoring).
 
-### P0-6 🤖 Restore + verification — 60m — DB: local only — merged (PR #167); real restore test pending
+### P0-6 🤖 Restore + verification — 60m — DB: local only — done (PR #167)
 
 Files: `scripts/restore.sh`, `server/scripts/verifyCounts.js`, `scripts/test/restore.test.js`, `docs/RUNBOOK.md`.
 
@@ -140,31 +140,32 @@ Files: `scripts/restore.sh`, `server/scripts/verifyCounts.js`, `scripts/test/res
 - [x] Refuses `bubblydatabase3` as a target, and anything that isn't `bubblydatabase3_staging` or local (same `assertStaging` guard as P0-1); credentials redacted from output
 - [x] `verifyCounts.js` (in `server/scripts/`, read-only, staging/local only) prints per-collection counts + indexes and compares them to the counts mongorestore reported; fails on mismatch or an empty database
 - [x] Tests: 5 end-to-end tests with real mongodump/mongorestore/age on a throwaway local mongod (restore, re-restore without duplicates, wrong key, refusals, `latest` from R2 via a fake aws)
-- [ ] Thomas restores the latest real backup into a **local** `bubblydatabase3_restoretest` (the staging Atlas user can't write other databases, and this way the prod copy never leaves his machine); counts match; db dropped after. Steps: `docs/RUNBOOK.md` → Monthly restore test
+- [x] Thomas restored the latest real backup (2026-10-22) into a **local** `bubblydatabase3_restoretest` (the staging Atlas user can't write other databases, and this way the prod copy never leaves his machine); counts matched (users 45, bubblywaters 442, ratings 1350, reviews 159; 1996 documents, 0 failures; indexes restored); db dropped after. Steps: `docs/RUNBOOK.md` → Monthly restore test
 - [x] `RUNBOOK.md`: where everything lives, health checks, monthly restore test, manual production restore (Thomas only), key/token incidents
 
-### P0-7 🤖 `npm run staging:refresh` — 45m — DB: staging-write — todo
+### P0-7 🤖 `npm run staging:refresh` — 45m — DB: staging-write — done (PR #168)
 
 - [x] `npm run staging:refresh [-- <file|r2-key>]`: latest R2 backup (default) → `restore.sh` → `bubblydatabase3_staging` (`--drop` only on restored collections) → `verifyCounts`
 - [x] Refuses unless `MONGODB_URI` (env, else `server/.env`) names `bubblydatabase3_staging`
 - [x] Email scrub is the **default** (changed from an optional `--scrub`; see DECISIONS): emails → `user+<id>@example.test`, reset/verification tokens cleared, passwords untouched. `--keep-emails` opts out
 - [x] Tests: 4 end-to-end tests on a throwaway local mongod (stale data replaced, scrub, `--keep-emails`, refusals); restore tests now share `scripts/test/helpers.js`
-- [ ] Thomas runs it once end to end against Atlas staging (steps in `docs/RUNBOOK.md` → Refresh staging)
+- [x] Thomas ran it end to end against Atlas staging (2026-10-22): counts matched, 45 emails scrubbed
 
 ### P0-8 🧑 Staging Render service — 30m — DB: none — todo
 
 - [ ] New Render web service, Starter plan, branch `staging`, same build/start commands as prod
-- [ ] Env: staging-only `MONGODB_URI`, its own `MY_SECRET`, `WEBSITE_URL` = staging URL, email disabled/sandboxed (`EMAIL_MODE=log`, implemented in P0-9 if needed)
+- [ ] Env: staging-only `MONGODB_URI`, its own `MY_SECRET`, `WEBSITE_URL` = staging URL, email disabled with `EMAIL_MODE=log` (exists since P0-9)
 - [ ] Staging URL loads the app with staging data
 - [ ] Optional: Render's basic auth or a non-indexed URL so staging stays out of search engines
 
-### P0-9 🤖 Test harness — 45m — DB: none — todo
+### P0-9 🤖 Test harness — 45m — DB: none — in review
 
-- [ ] Vitest + supertest + mongodb-memory-server in `server/`
-- [ ] `server.js` split so `app` is exportable without listening/connecting
-- [ ] `sendEmail` swappable (log mode in test/staging)
-- [ ] Root scripts: `npm test`, `npm run dev` (server + client via `concurrently`)
-- [ ] One passing health test; `npm test` never touches the network or Atlas
+- [x] Node's built-in test runner (instead of Vitest; see DECISIONS) + supertest + mongodb-memory-server-core in `server/`; helpers in `server/tests/helpers.js` (`startTestServer()` → `gql()`, `reset()`, `outbox`)
+- [x] `server/app.js` (`createApp()`) builds the app without connecting or listening; `server.js` just connects and listens, same startup as before (verified by booting it against a throwaway local mongod)
+- [x] `sendEmail` has `EMAIL_MODE=log`: nothing is sent; messages land in `outbox`. The Gmail transporter is created lazily
+- [x] Root scripts: `npm test` (server + script suites) and `npm run dev` (server with `node --watch` + client, via `concurrently`)
+- [x] 3 health tests pass; tests use the local `mongod` when installed (no download), never Atlas. Without a local `mongod`, the binary is downloaded once from MongoDB and cached
+- [ ] Thomas tries `npm run dev` once (Claude couldn't: Thomas's dev servers were using ports 3000/5001)
 
 ### P0-10 🤖 Smoke tests: signup + login — 45m — DB: none (in-memory) — todo
 

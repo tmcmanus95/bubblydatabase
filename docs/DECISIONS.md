@@ -2,6 +2,12 @@
 
 Newest first. Format: date · decision · why · who decided.
 
+## 2026-10-22 · Tests use Node's built-in runner, not Vitest
+- `node --test` + `node:assert`, with supertest and mongodb-memory-server-core for API tests.
+- Why: every existing test already used it; it works on Node 20 (prod) and 22 (local) with no extra
+  dependency; one way to run everything. Revisit if we need watch-mode UI or module mocking.
+- Decided by: Claude (within P0-9 scope).
+
 ## 2026-10-22 · `staging:refresh` scrubs emails by default
 - Every refresh replaces user emails with `user+<id>@example.test` and clears reset/verification tokens.
   `--keep-emails` opts out. The roadmap had scrubbing as an optional flag.

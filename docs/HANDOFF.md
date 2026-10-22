@@ -86,18 +86,21 @@ _Last session: 2026-10-21._
 - Public repos: GitHub disables scheduled workflows after 60 days with no repo activity. It emails a
   warning first; re-enable from the Actions tab.
 
-## P0-6 (restore + runbook): merged (PR #167)
-- `scripts/restore.sh` + `server/scripts/verifyCounts.js`; procedures in `docs/RUNBOOK.md`.
-- Open: Thomas runs the monthly restore test once against the real latest backup (local mongod).
-  He needs `brew install awscli` (or downloads the file from the R2 dashboard) and the R2 keys + age
-  key from his password manager.
+## P0-6 / P0-7 (restore, staging refresh): done
+- Real restore test passed (2026-10-22): the latest prod backup decrypted with Thomas's key and
+  restored with matching counts. `staging:refresh` also ran against Atlas staging.
+- **Staging logins are now `user+<your _id>@example.test`** with your normal password.
+- `bubblydatabase-main` (a sibling folder) is a checkout of `main` with `server/.env` (staging) and
+  server deps installed. Run scripts from there. Update it with `git pull`.
+- Age key: `~/bubbly-backup.key` still exists. Once it's confirmed in the password manager, delete the file.
 
-## P0-7 (`staging:refresh`): PR open
-- `npm run staging:refresh` reloads `bubblydatabase3_staging` from the newest R2 backup (or a given
-  file), verifies counts, then scrubs emails (default).
-- **After a refresh, log in to staging as `user+<your _id>@example.test` with your normal password.**
-- Open: Thomas runs it once against Atlas staging (RUNBOOK → Refresh staging).
+## P0-9 (test harness): PR open
+- `npm test` at the root runs everything; `npm run dev` runs server (auto-restart) + client.
+- Server tests: `server/tests/*.test.js` with `startTestServer()` from `server/tests/helpers.js`
+  (in-memory MongoDB, email captured in `outbox`).
+- The lockfile picked up in-range updates of a few transitive production packages (bson, form-data,
+  follow-redirects, saslprep, …) while adding the test dependencies. Listed in the PR.
 
 ## Next Claude ticket
-P0-9 (test harness: root `npm test` / `npm run dev`, supertest + in-memory Mongo). P0-8 is Thomas's
+P0-10..12 (smoke tests: signup/login, search/product page, rate/review). P0-8 is Thomas's
 (staging Render service).

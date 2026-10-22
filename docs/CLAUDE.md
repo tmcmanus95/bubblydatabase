@@ -43,14 +43,15 @@ RateYourMusic-style sparkling water rating site. MERN (MongoDB, Express, React, 
 
 Setup: copy `server/.env.example` to `server/.env` (staging values only).
 
-- `cd server && npm start` — API on :3000
-- `cd client && npm run dev` — site on :5001 (proxies `/graphql` to :3000)
-- `cd server && npm test` — server tests (no network/DB)
+- `npm run dev` — server (:3000, restarts on change) + client (:5001, proxies `/graphql`)
+- `npm test` — all tests: server (in-memory MongoDB, never Atlas) + backup/restore scripts
+- `cd server && npm start` — API only
+- New server tests: `server/tests/*.test.js`, using `startTestServer()` from `server/tests/helpers.js`
+- `EMAIL_MODE=log` — never send email (tests, staging); messages go to the console
 - `cd server && node seeders/<script>.js` — maintenance scripts; staging/local only (`seed.js` also needs `--yes-drop-staging`)
-- `node --test scripts/test/` files — backup/restore script tests (restore tests need local `mongod` + `age`)
 - `scripts/backup.sh` / `scripts/restore.sh` — encrypted backups; see `docs/RUNBOOK.md`
 - `npm run staging:refresh` — reload staging from the latest backup and scrub emails (RUNBOOK)
-- Planned: root `npm run dev` / `npm test` (P0-9), `npm run migrate:up` / `migrate:down` (P1-11, staging only)
+- Planned: `npm run migrate:up` / `migrate:down` (P1-11, staging only)
 
 ## Branches
 
