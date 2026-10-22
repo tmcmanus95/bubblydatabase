@@ -130,16 +130,22 @@ _Last session: 2026-10-21._
 - `docs/IMAGE_AUDIT.md`. Thomas approved the proposal; it's now tickets P1-0a..e in the roadmap.
 - Still waiting on Thomas (P1-0e): where `bubblesicon.png` and the bubble textures came from.
 
-## P1-1 (security headers): PR open (into `staging`)
+## P1-1 (security headers): done (PR #175)
 - `helmet` + CSP header (production only), `CORS_ORIGINS` allowlist, 100kb JSON limit.
 - Bug found and fixed: the old `<meta>` CSP in `client/index.html` blocked the Lilita One font on the
   live site, and would block the Formspree contact form.
 - `server/.env.example` documents `CORS_ORIGINS` (leave empty unless another site needs the API).
-- Check on staging after merge: the font renders; the contact form sends.
+- Verified on staging by Thomas: the font renders and the contact form sends. **Prod still serves the old
+  meta CSP (font blocked, contact form broken) until `staging` is released to `main`.**
 
 ## CI ruleset
-- "Tests" ruleset is Active and requires `test` on all branches (`~ALL`). If it ever blocks pushing a
-  new feature branch, narrow it to `main` + `staging`.
+- "Tests" ruleset: Active, requires the `test` check on `main` and `staging` (narrowed from all branches
+  on 2026-10-22, after it blocked pushing feature branches).
+
+## P1-0a (brand colors): PR open (into `staging`)
+- `client/src/theme/brandColors.js` (+ `color.js` for OKLCH/contrast math). To recolor a brand, edit
+  its line in `BRAND_COLORS`; the test enforces gamut and AA contrast.
+- Nothing renders with it yet; P1-0b's `<ProductCard>` is the first user.
 
 ## Next Claude ticket
-P1-0a..d (brand colors → ProductCard → swap images → brand pages), then P1-2 (rate limiting).
+P1-0b (`<ProductCard>`), then P1-0c (swap images, removing the Amazon ones), P1-0d (brand pages).

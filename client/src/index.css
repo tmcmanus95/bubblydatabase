@@ -2,3 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 @import-normalize;
+
+/* Brand color surface: set the variables with brandStyle(brandName) from src/theme/brandColors.js */
+.brand-surface {
+  background-color: var(--brand-bg);
+  color: var(--brand-ink);
+}
+@media (prefers-color-scheme: dark) {
+  .brand-surface {
+    background-color: var(--brand-bg-dark);
+    color: var(--brand-ink-dark);
+  }
+}
