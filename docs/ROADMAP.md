@@ -1,9 +1,9 @@
 # BubblyDB — Roadmap
 
-_Status: **Approved by Thomas (2026-10-21).** **Phase 0 complete** once P0-13 merges; next: Phase 1._
+_Status: **Approved by Thomas (2026-10-21).** **Phase 0 complete** (released to `main` in #173). Phase 1 started._
 _Sources: `docs/SPEC.md`, `docs/AUDIT.md`. Last updated 2026-10-22._
 
-**Next up:** Thomas: merge P0-13, release `staging` → `main`, optionally require the CI check. Claude: P1-0 (image audit), then P1-1. PRs now go into `staging`; Thomas releases with a `staging` → `main` PR.
+**Next up:** Thomas: review P1-0 and approve (or edit) the image tickets it proposes. Claude: P1-1 (helmet, CORS, body limits). PRs now go into `staging`; Thomas releases with a `staging` → `main` PR.
 
 ## How to read this
 
@@ -192,7 +192,7 @@ Files: `scripts/restore.sh`, `server/scripts/verifyCounts.js`, `scripts/test/res
 - [x] Regression: anonymous or other-user writes rejected; client `userId` ignored; likes; profile color; `removeUser` admin-only (P0-0c)
 - [x] Checked that the tests catch regressions: removing the `editRating` ownership guard makes the suite fail
 
-### P0-13 🤖 CI — 30m — DB: none — in review
+### P0-13 🤖 CI — 30m — DB: none — done (PR #172)
 
 - [x] `.github/workflows/ci.yml`: Node 20, MongoDB 8.0 + database tools + age installed (sha256-checked), `npm test` (all 50 tests, none skipped) and the client build on every PR and on pushes to `staging`/`main`
 - [x] Green on the PR (first run: 34 + 16 tests, 0 skipped, build OK)
@@ -206,11 +206,13 @@ running; staging refreshable and deployed; smoke tests green in CI.
 
 ## Phase 1 — Security baseline
 
-#### P1-0 🤖 Image audit — 30m — DB: staging-read
+#### P1-0 🤖 Image audit — 30m — DB: staging-read — in review
 
-- [ ] Report every image field/URL in products + where the client renders them; list external hosts
-- [ ] Classify each: own / user / third-party hotlink
-- [ ] Proposal for replacing third-party images with text cards (no data deleted; per hard rule 3)
+Report: `docs/IMAGE_AUDIT.md`; script: `server/scripts/imageAudit.js` (read-only, never fetches images)
+- [x] All 442 products hotlink third-party images from 74 hosts (Amazon 70, brand sites 211, retailers 109, CDNs 40, Google thumbnails 6, blogs 6); all 43 brand logos are hotlinked; 8 client render sites listed
+- [x] Classified: own 0 · user 0 · third-party hotlink 442; the site's own decorative assets have unknown provenance
+- [x] Proposal: brand color tokens → `<ProductCard>` → swap all product images (removes the Amazon images) → typographic brand pages; keep `imageURL` data; optional later rename only with approval
+- [ ] Thomas approves the proposed tickets so they can be added here as P1-0a..e
 
 #### P1-1 🤖 helmet, explicit CORS, body limits — 30m
 
