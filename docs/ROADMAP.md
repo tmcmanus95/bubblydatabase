@@ -1,9 +1,9 @@
 # BubblyDB — Roadmap
 
-_Status: **Approved by Thomas (2026-10-21).** P0-0 through P0-7 done; P0-9 in review._
+_Status: **Approved by Thomas (2026-10-21).** **Phase 0 complete** once P0-13 merges; next: Phase 1._
 _Sources: `docs/SPEC.md`, `docs/AUDIT.md`. Last updated 2026-10-22._
 
-**Next up:** Thomas: review P0-9, then P0-8 (staging Render service). Claude: P0-10..12 (smoke tests).
+**Next up:** Thomas: merge P0-13, release `staging` → `main`, optionally require the CI check. Claude: P1-0 (image audit), then P1-1. PRs now go into `staging`; Thomas releases with a `staging` → `main` PR.
 
 ## How to read this
 
@@ -151,14 +151,15 @@ Files: `scripts/restore.sh`, `server/scripts/verifyCounts.js`, `scripts/test/res
 - [x] Tests: 4 end-to-end tests on a throwaway local mongod (stale data replaced, scrub, `--keep-emails`, refusals); restore tests now share `scripts/test/helpers.js`
 - [x] Thomas ran it end to end against Atlas staging (2026-10-22): counts matched, 45 emails scrubbed
 
-### P0-8 🧑 Staging Render service — 30m — DB: none — todo
+### P0-8 🧑 Staging Render service — 30m — DB: none — done (2026-10-22)
 
-- [ ] New Render web service, Starter plan, branch `staging`, same build/start commands as prod
-- [ ] Env: staging-only `MONGODB_URI`, its own `MY_SECRET`, `WEBSITE_URL` = staging URL, email disabled with `EMAIL_MODE=log` (exists since P0-9)
-- [ ] Staging URL loads the app with staging data
+- [x] New Render web service on branch `staging` (auto-deploy). Its build command installs the client's devDependencies, because with `NODE_ENV=production` plain `npm install` skips `vite` (`vite: not found`)
+- [x] Env: staging-only `MONGODB_URI`, its own `MY_SECRET`, `WEBSITE_URL` = staging URL, `EMAIL_MODE=log`, `NODE_ENV=production`, `ADMIN_USER_IDS`; no Gmail credentials
+- [x] Staging URL loads the app with staging data; Thomas logged in as `user+<_id>@example.test`
+- [x] `staging` branch fast-forwarded to `main` @ `9ff0f1f` (includes `EMAIL_MODE`)
 - [ ] Optional: Render's basic auth or a non-indexed URL so staging stays out of search engines
 
-### P0-9 🤖 Test harness — 45m — DB: none — in review
+### P0-9 🤖 Test harness — 45m — DB: none — done (PR #169)
 
 - [x] Node's built-in test runner (instead of Vitest; see DECISIONS) + supertest + mongodb-memory-server-core in `server/`; helpers in `server/tests/helpers.js` (`startTestServer()` → `gql()`, `reset()`, `outbox`)
 - [x] `server/app.js` (`createApp()`) builds the app without connecting or listening; `server.js` just connects and listens, same startup as before (verified by booting it against a throwaway local mongod)
@@ -167,31 +168,39 @@ Files: `scripts/restore.sh`, `server/scripts/verifyCounts.js`, `scripts/test/res
 - [x] 3 health tests pass; tests use the local `mongod` when installed (no download), never Atlas. Without a local `mongod`, the binary is downloaded once from MongoDB and cached
 - [ ] Thomas tries `npm run dev` once (Claude couldn't: Thomas's dev servers were using ports 3000/5001)
 
-### P0-10 🤖 Smoke tests: signup + login — 45m — DB: none (in-memory) — todo
+### P0-10 🤖 Smoke tests: signup + login — 45m — DB: none (in-memory) — done (PR #171)
 
-- [ ] Signup creates a user and returns a token; the email transport is called with a verification URL
-- [ ] Login succeeds with the correct password and fails with a wrong one
-- [ ] Regression: anonymous `users` and sensitive fields are unavailable (P0-0b)
+`server/tests/auth.test.js` (9 tests)
+- [x] Signup creates an unverified user with a hashed password, returns a token, and the outbox gets a verification URL; duplicate username/email rejected
+- [x] Login succeeds with the correct password and fails with a wrong one or an unknown email; the token works for `meId`
+- [x] Email verification and password reset flows (token must match, reset expires and is single-use, no account enumeration)
+- [x] Regression: `users` admin-only; sensitive fields not in the schema; email visible only to its owner (P0-0b)
 
-### P0-11 🤖 Smoke tests: search + product page — 45m — DB: none (in-memory) — todo
+### P0-11 🤖 Smoke tests: search + product page — 45m — DB: none (in-memory) — done (PR #171)
 
-- [ ] Fixtures: a few products, users, ratings, reviews
-- [ ] `searchGeneralBubblyWater`, `flavors`, `brand` return the expected products
-- [ ] `bubblyWater(id)` returns ratings/reviews with no sensitive user fields
+`server/tests/catalog.test.js` (6 tests), fixtures in `server/tests/fixtures.js`
+- [x] Fixtures: products, users, ratings, reviews
+- [x] `searchGeneralBubblyWater` (text index), `searchVagueProductName`, `flavors`, `brand`, caffeine/CBD lists return the expected products
+- [x] Home top list ranks by average and only includes products with more than 3 ratings
+- [x] `bubblyWater(id)` returns ratings/reviews with public user info only; unknown id → `null`
 
-### P0-12 🤖 Smoke tests: rate + review — 45m — DB: none (in-memory) — todo
+### P0-12 🤖 Smoke tests: rate + review — 45m — DB: none (in-memory) — done (PR #171)
 
-- [ ] An authenticated rate updates `averageRating`; an edit updates it again
-- [ ] Review create/edit works for the owner
-- [ ] Regression: anonymous or other-user writes are rejected (P0-0c)
+`server/tests/ratings.test.js` (7 tests): the P0-0 hotfix checks, now permanent
+- [x] An authenticated rate updates `averageRating`; an edit updates it again (and ignores a bogus `bubblyWaterId`); one rating per user; half steps 0.5–5 only
+- [x] Review create/edit/remove works for the owner; verified users only; linked to the reviewer's rating
+- [x] Regression: anonymous or other-user writes rejected; client `userId` ignored; likes; profile color; `removeUser` admin-only (P0-0c)
+- [x] Checked that the tests catch regressions: removing the `editRating` ownership guard makes the suite fail
 
-### P0-13 🤖 CI — 30m — DB: none — todo
+### P0-13 🤖 CI — 30m — DB: none — in review
 
-- [ ] `.github/workflows/ci.yml`: install, `npm test`, client build on push/PR
-- [ ] Green on `staging`; branch protection on `main` suggested to Thomas
+- [x] `.github/workflows/ci.yml`: Node 20, MongoDB 8.0 + database tools + age installed (sha256-checked), `npm test` (all 50 tests, none skipped) and the client build on every PR and on pushes to `staging`/`main`
+- [x] Green on the PR (first run: 34 + 16 tests, 0 skipped, build OK)
+- [ ] Thomas (optional): require the `test` check before merging into `main` and `staging`
 
 **Phase 0 exit criteria:** hotfix live; a tested restore documented; daily encrypted off-site backups
 running; staging refreshable and deployed; smoke tests green in CI.
+**Status (2026-10-22): all met** (pending the P0-13 merge).
 
 ---
 

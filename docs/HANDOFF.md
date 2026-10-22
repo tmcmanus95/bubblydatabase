@@ -94,13 +94,36 @@ _Last session: 2026-10-21._
   server deps installed. Run scripts from there. Update it with `git pull`.
 - Age key: `~/bubbly-backup.key` still exists. Once it's confirmed in the password manager, delete the file.
 
-## P0-9 (test harness): PR open
+## P0-8 (staging Render service): done (2026-10-22)
+- Separate Render web service on branch `staging`, database `bubblydatabase3_staging`, `EMAIL_MODE=log`,
+  no Gmail credentials. Pushing to `staging` deploys it.
+- Its build command installs the client's devDependencies: with `NODE_ENV=production`, plain
+  `npm install` skips `vite`. If the build fails with `vite: not found`, the build command needs
+  `npm --prefix client install --include=dev`.
+- Log in as `user+<your _id>@example.test` (note the `+`) with your normal password.
+- **Release flow from now on:** feature PRs → `staging` → check the staging site → PR `staging` → `main`.
+
+## P0-9 (test harness): done (PR #169)
 - `npm test` at the root runs everything; `npm run dev` runs server (auto-restart) + client.
 - Server tests: `server/tests/*.test.js` with `startTestServer()` from `server/tests/helpers.js`
   (in-memory MongoDB, email captured in `outbox`).
 - The lockfile picked up in-range updates of a few transitive production packages (bson, form-data,
   follow-redirects, saslprep, …) while adding the test dependencies. Listed in the PR.
 
+## P0-10..12 (smoke tests): done (PR #171)
+- `server/tests/{auth,catalog,ratings}.test.js` + `fixtures.js`: 22 tests over the real GraphQL API on
+  an in-memory database. `npm test` now runs 50 tests.
+- Tests only; no app code changed, so there's nothing to check on the staging site.
+
+## P0-13 (CI): PR open (into `staging`)
+- `.github/workflows/ci.yml` runs all 50 tests (MongoDB 8.0 on the runner, nothing skipped) and the
+  client build on every PR and on pushes to `staging`/`main`. No secrets.
+- Thomas (optional): Settings → Branches/Rules → require the `test` check on `main` and `staging`.
+
+## Phase 0 wrap-up
+- All Phase 0 exit criteria are met once P0-13 merges.
+- **Release pending:** `main` (prod) is at `9ff0f1f`. `staging` has #170 (docs), #171 (tests), and CI.
+  None of them change app code. Release with a PR `staging` → `main` whenever convenient.
+
 ## Next Claude ticket
-P0-10..12 (smoke tests: signup/login, search/product page, rate/review). P0-8 is Thomas's
-(staging Render service).
+P1-0 (image audit, read-only on staging), then P1-1 (helmet, CORS, body limits).
