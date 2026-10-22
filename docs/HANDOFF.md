@@ -79,13 +79,18 @@ _Last session: 2026-10-21._
   sent to Claude. Some R2/Atlas values were shared that way on 2026-10-22; Thomas was advised to
   rotate the R2 token and the `backup-ro` password, and update the matching GH secrets.
 
-## P0-5 (backup workflow): PR open
+## P0-5 (backup workflow): done (PR #166)
 - `.github/workflows/backup.yml`: daily at 08:17 UTC plus a manual "Run workflow" button.
-- First run, after merge: GitHub → **Actions → Database backup → Run workflow**, or
-  `gh workflow run backup.yml`. Then check the run log ends with `backup: uploaded s3://…` and that the
-  file appears in the R2 bucket.
+- First run (2026-10-22 01:29 UTC) succeeded: 45 users, 159 reviews, 1350 ratings, 442 bubblywaters;
+  80 KB encrypted archive in R2.
 - Public repos: GitHub disables scheduled workflows after 60 days with no repo activity. It emails a
   warning first; re-enable from the Actions tab.
 
+## P0-6 (restore + runbook): PR open
+- `scripts/restore.sh` + `server/scripts/verifyCounts.js`; procedures in `docs/RUNBOOK.md`.
+- Open: Thomas runs the monthly restore test once against the real latest backup (local mongod).
+  He needs `brew install awscli` (or downloads the file from the R2 dashboard) and the R2 keys + age
+  key from his password manager.
+
 ## Next Claude ticket
-P0-6 (restore script + verification + runbook).
+P0-7 (`npm run staging:refresh`: latest backup → `bubblydatabase3_staging`, with email scrubbing).
