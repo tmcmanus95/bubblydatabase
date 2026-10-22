@@ -1,9 +1,9 @@
 # BubblyDB — Roadmap
 
-_Status: **Approved by Thomas (2026-10-21).** P0-0, P0-1, P0-2 done; P0-3 in review._
+_Status: **Approved by Thomas (2026-10-21).** P0-0 through P0-3 done._
 _Sources: `docs/SPEC.md`, `docs/AUDIT.md`. Last updated 2026-10-21._
 
-**Next up:** Thomas: review the P0-3 PR, then do the staging dry run and P0-4 (backup infrastructure). Claude: P0-5 (backup workflow).
+**Next up:** Thomas: P0-4 (backup infrastructure). Claude: P0-5 (backup workflow), which can be built in parallel.
 
 ## How to read this
 
@@ -104,7 +104,7 @@ Files: `server/seeders/{seed,cleanDB,addSeeds}.js`, new `server/scripts/lib/{ass
 - [x] `staging` branch created from `main` @ `39e5f64`
 - [x] `engines.node` = `20.x` in the root `package.json` (Render reported 20.12.0). Render resolves `20.x` to the latest Node 20 patch, so the next deploy picks up 20.x security patches but stays on Node 20.
 
-### P0-3 🤖 Backup script — 45m — DB: staging-read — in review
+### P0-3 🤖 Backup script — 45m — DB: staging-read — done (PR #164 → `main` @ `089e3f3`)
 
 Files: `scripts/backup.sh`, `scripts/test/backup.test.js` (`node --test scripts/test/backup.test.js`).
 
@@ -113,7 +113,7 @@ Files: `scripts/backup.sh`, `scripts/test/backup.test.js` (`node --test scripts/
 - [x] Non-zero exit on any failed step; archives under `MIN_BACKUP_BYTES` (10 KB) or without an age header are rejected and deleted; requires an explicit db name in the URI
 - [x] `--local-only DIR` mode for dry runs (no upload); bash 3.2 compatible (macOS)
 - [x] Verified: 7 tests with fake tools; real `mongodump` → archive → `mongorestore` round trip on a throwaway local mongod (counts match)
-- [ ] Dry run by Thomas against staging produces an archive he can decrypt locally (steps in `HANDOFF.md`)
+- [x] Dry run by Thomas against staging (2026-10-21): archive created, decrypted with the real age key, valid mongodump archive. The age keypair from the dry run is the real one: public key goes to GH secrets in P0-4, private key lives only in Thomas's password manager
 
 ### P0-4 🧑 Backup infrastructure — 30m — DB: none — todo
 
