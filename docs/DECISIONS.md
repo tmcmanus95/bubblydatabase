@@ -2,6 +2,12 @@
 
 Newest first. Format: date · decision · why · who decided.
 
+## 2026-10-22 · Placeholder flavor icons drawn in code (for now)
+- `FlavorIcon.jsx` draws 11 simple category icons as inline SVG, in the card's text color, so the
+  cards can ship now. They get replaced by the illustrated set from the Phase 4 designer brief.
+- Why: CLAUDE.md wants our own icons, not stock sets, and none exist yet.
+- Decided by: Claude, proposed to Thomas on 2026-10-22; not yet confirmed.
+
 ## 2026-10-22 · Replace third-party images with typographic cards (P1-0a..e)
 - Approved the image-audit proposal: brand color tokens → `<ProductCard>` → swap all product images
   (removes the 70 Amazon images) → typographic brand pages. `imageURL` data is kept.

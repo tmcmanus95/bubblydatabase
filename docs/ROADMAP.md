@@ -3,7 +3,7 @@
 _Status: **Approved by Thomas (2026-10-21).** **Phase 0 complete** (released to `main` in #173). Phase 1 started._
 _Sources: `docs/SPEC.md`, `docs/AUDIT.md`. Last updated 2026-10-22._
 
-**Next up:** Thomas: review P1-0a; release `staging` → `main` (ships the P1-1 font/contact fix to prod). Claude: P1-0b (`<ProductCard>`). PRs now go into `staging`; Thomas releases with a `staging` → `main` PR.
+**Next up:** Thomas: review P1-0b and look at `/working/cards` on staging. Claude: P1-0c (swap product images for cards; removes the Amazon images). PRs now go into `staging`; Thomas releases with a `staging` → `main` PR.
 
 ## How to read this
 
@@ -214,18 +214,20 @@ Report: `docs/IMAGE_AUDIT.md`; script: `server/scripts/imageAudit.js` (read-only
 - [x] Proposal: brand color tokens → `<ProductCard>` → swap all product images (removes the Amazon images) → typographic brand pages; keep `imageURL` data; optional later rename only with approval
 - [x] Thomas approved the proposed tickets (2026-10-22): P1-0a..e below
 
-#### P1-0a 🤖 Brand color tokens — 45m — in review
+#### P1-0a 🤖 Brand color tokens — 45m — done (PR #176)
 
 - [x] `client/src/theme/brandColors.js`: a 12-color OKLCH palette (light bg/ink + dark bg/ink) and an explicit color for all 44 current brands; alphabetical neighbors get well-separated hues. Flavor colors are still hex in `App.css` (move into the theme in Phase 4)
 - [x] Brands not listed get a stable automatic color (FNV hash of the name); `brandStyle()` + `.brand-surface` (index.css) apply it, following the OS light/dark setting like Tailwind
 - [x] Test: every color in sRGB gamut and ≥ 4.5:1 text contrast in both modes (actual 7.5–11:1); every brand with a page has an explicit color (`client/src/theme/brandColors.test.js`, in `npm test`)
 - [x] Swatches checked visually in light + dark (lemon brightened so it reads yellow, not khaki)
 
-#### P1-0b 🤖 `<ProductCard>` typographic component — 60m
+#### P1-0b 🤖 `<ProductCard>` typographic component — 60m — in review
 
-- [ ] Brand color + flavor name + brand name + score as the anchor; our own flavor-category icon; no photo
-- [ ] Real text (no text-in-image), visible focus, keyboard reachable, AA contrast
-- [ ] Respects `prefers-reduced-motion`; playful, not generic (CLAUDE.md aesthetic)
+- [x] `client/src/components/ProductCard.jsx` (`full` and `compact` variants): brand color surface, flavor name in Lilita One, brand name, caffeine/CBD tags, score as the anchor ("No ratings yet" otherwise); no photo
+- [x] `FlavorIcon.jsx`: 11 placeholder category icons drawn in code (citrus, berry, stone, tropical, orchard, melon, botanical, spice, brewed, plain, bubbles), until the Phase 4 illustrated set exists. `flavorCategories.js` maps all 87 flavors (tested)
+- [x] Real text; the whole card is one link (stretched flavor link) with a visible focus ring; AA contrast from P1-0a tokens; "out of 5" for screen readers
+- [x] Hand-cut sticker look (wobbly radius, solid offset shadow, slight tilt on hover/focus); tilt off with `prefers-reduced-motion`
+- [x] Preview page `/working/cards` (not linked) with real data; checked in light and dark mode via headless Chrome screenshots
 
 #### P1-0c 🤖 Swap product images for cards — 45m
 
