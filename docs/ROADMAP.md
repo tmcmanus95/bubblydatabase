@@ -1,9 +1,9 @@
 # BubblyDB — Roadmap
 
-_Status: **Approved by Thomas (2026-10-21).** P0-0 and P0-1 merged; P0-2 in review._
+_Status: **Approved by Thomas (2026-10-21).** P0-0, P0-1 and P0-2 merged (P0-2's Node pin in a follow-up PR)._
 _Sources: `docs/SPEC.md`, `docs/AUDIT.md`. Last updated 2026-10-21._
 
-**Next up:** Thomas reviews the P0-2 PR and sends Render's Node version; then Claude does P0-3 (backup script). Two P0-0e items stay open for Thomas (see `HANDOFF.md`).
+**Next up:** P0-3 (backup script). Two P0-0e items stay open for Thomas (see `HANDOFF.md`).
 
 ## How to read this
 
@@ -95,14 +95,14 @@ Files: `server/seeders/{seed,cleanDB,addSeeds}.js`, new `server/scripts/lib/{ass
 - [x] Unit tests: every `seeders/*.js` refuses a prod URI, with no network (9 tests; 14 with Thomas's local-only scripts present)
 - [x] `calculateTopReviews.js` (uncommitted WIP, local only) switched to `require("../scripts/lib/stagingConnection")` by Claude at Thomas's request. It only runs once `main` is merged into `new-aesthetic`; until then it fails with "module not found", which is safe.
 
-### P0-2 🤖+🧑 Repo hygiene — 30m — DB: none — in review (PR pending)
+### P0-2 🤖+🧑 Repo hygiene — 30m — DB: none — done (PR #162 → `main` @ `39e5f64`; Node pin in a follow-up PR)
 
 - [x] Uncommitted WIP on `new-aesthetic` is left untouched (Thomas's call). New work branches from `main`.
 - [x] `server/.env.example` (every key the code reads, incl. `ADMIN_USER_IDS`, no values); root `.gitignore` covers `.env*`, `.DS_Store`, `node_modules/`; tracked `.DS_Store` files removed from git
 - [x] Docs committed to `main`, except `docs/AUDIT.md`, which stays local and gitignored until the Phase 1 security tickets ship (Thomas, 2026-10-21)
 - [x] Branch strategy written in `CLAUDE.md` (Branches) + real commands under Commands
-- [ ] `staging` branch created from `main` after this PR merges
-- [ ] `engines.node` pinned to the major Render uses today. **Waiting on Thomas** for the "Using Node.js version …" line from a Render deploy log.
+- [x] `staging` branch created from `main` @ `39e5f64`
+- [x] `engines.node` = `20.x` in the root `package.json` (Render reported 20.12.0). Render resolves `20.x` to the latest Node 20 patch, so the next deploy picks up 20.x security patches but stays on Node 20.
 
 ### P0-3 🤖 Backup script — 45m — DB: staging-read — todo
 
@@ -258,6 +258,7 @@ running; staging refreshable and deployed; smoke tests green in CI.
 - [ ] Remove `apollo-server-express`, `crypto`, `ldrs`/`axios` if unused (server); `express`, `dotenv`, `headlessui`, `heroicons` (client)
 - [ ] In-range `npm update` in server + client
 - [ ] `npm audit` reports 0 high/critical (or each exception documented in `DECISIONS.md`)
+- [ ] Move prod to Node 22 LTS (Node 20 reached end-of-life in April 2026): `engines.node` → `22.x`, verify on staging first, then prod
 - [ ] Smoke tests + client build green
 
 ## Phase 1 — Quick wins
