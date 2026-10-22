@@ -2,6 +2,14 @@
 
 Newest first. Format: date · decision · why · who decided.
 
+## 2026-10-22 · `staging:refresh` scrubs emails by default
+- Every refresh replaces user emails with `user+<id>@example.test` and clears reset/verification tokens.
+  `--keep-emails` opts out. The roadmap had scrubbing as an optional flag.
+- Why: staging runs real app code, including the email-sending flows. A staging copy holding real
+  emails is the most likely way to accidentally email real users, so the safe behavior is the
+  default. Passwords are untouched; log in as `user+<your _id>@example.test`.
+- Decided by: Claude (within the approved P0-7 scope); Thomas can reverse it.
+
 ## 2026-10-21 · Docs live in the repo, except AUDIT.md
 - `docs/` (CLAUDE.md, SPEC, ROADMAP, DECISIONS, HANDOFF) is committed to `main`. `docs/AUDIT.md` stays
   local and gitignored, because it details security gaps that remain open until the Phase 1 security

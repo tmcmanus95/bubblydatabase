@@ -8,7 +8,8 @@
     "render-build": "npm install && npm run build",
     "install": "cd server && npm i && cd ../client && npm i",
     "build": "cd client && npm run build",
-    "start": "node server/server.js"
+    "start": "node server/server.js",
+    "staging:refresh": "bash scripts/staging-refresh.sh"
   },
   "keywords": [],
   "author": "",

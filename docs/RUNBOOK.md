@@ -63,6 +63,26 @@ mongosh --port 27099 --quiet --eval 'db.adminCommand({shutdown: 1})' || pkill -f
 rm -rf /tmp/bubbly-restore-db /tmp/bubbly-backup.key
 ```
 
+## Refresh staging from the latest backup
+
+Replaces `bubblydatabase3_staging` with the newest production backup, then scrubs user emails.
+Uses the staging `MONGODB_URI` from `server/.env`; refuses any other database.
+
+```sh
+pbpaste > /tmp/bubbly-backup.key        # age key, copied from the password manager
+export AGE_IDENTITY_FILE=/tmp/bubbly-backup.key
+export R2_ENDPOINT="https://<account-id>.r2.cloudflarestorage.com" R2_BUCKET="bubblydb-backups"
+export AWS_ACCESS_KEY_ID="…" AWS_SECRET_ACCESS_KEY="…"
+npm run staging:refresh                  # or: npm run staging:refresh -- ~/Downloads/<backup>.age
+rm /tmp/bubbly-backup.key
+```
+Expected: the restore table with `OK: counts match`, then `Scrubbed N user emails`, then `done`.
+
+- Afterwards, log in to staging as `user+<your _id>@example.test` with your normal password.
+- `--keep-emails` skips the scrub (`npm run staging:refresh -- --keep-emails`). Don't use it while
+  staging can send email.
+- Collections that exist only in staging (not in the backup) are left as they are.
+
 ## Disaster recovery: restoring production (Thomas only)
 
 `scripts/restore.sh` deliberately refuses production. A production restore is done by hand, by Thomas,

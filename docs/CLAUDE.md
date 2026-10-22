@@ -49,6 +49,7 @@ Setup: copy `server/.env.example` to `server/.env` (staging values only).
 - `cd server && node seeders/<script>.js` — maintenance scripts; staging/local only (`seed.js` also needs `--yes-drop-staging`)
 - `node --test scripts/test/` files — backup/restore script tests (restore tests need local `mongod` + `age`)
 - `scripts/backup.sh` / `scripts/restore.sh` — encrypted backups; see `docs/RUNBOOK.md`
+- `npm run staging:refresh` — reload staging from the latest backup and scrub emails (RUNBOOK)
 - Planned: root `npm run dev` / `npm test` (P0-9), `npm run migrate:up` / `migrate:down` (P1-11, staging only)
 
 ## Branches

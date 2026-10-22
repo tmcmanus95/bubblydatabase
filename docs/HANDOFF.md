@@ -86,11 +86,18 @@ _Last session: 2026-10-21._
 - Public repos: GitHub disables scheduled workflows after 60 days with no repo activity. It emails a
   warning first; re-enable from the Actions tab.
 
-## P0-6 (restore + runbook): PR open
+## P0-6 (restore + runbook): merged (PR #167)
 - `scripts/restore.sh` + `server/scripts/verifyCounts.js`; procedures in `docs/RUNBOOK.md`.
 - Open: Thomas runs the monthly restore test once against the real latest backup (local mongod).
   He needs `brew install awscli` (or downloads the file from the R2 dashboard) and the R2 keys + age
   key from his password manager.
 
+## P0-7 (`staging:refresh`): PR open
+- `npm run staging:refresh` reloads `bubblydatabase3_staging` from the newest R2 backup (or a given
+  file), verifies counts, then scrubs emails (default).
+- **After a refresh, log in to staging as `user+<your _id>@example.test` with your normal password.**
+- Open: Thomas runs it once against Atlas staging (RUNBOOK → Refresh staging).
+
 ## Next Claude ticket
-P0-7 (`npm run staging:refresh`: latest backup → `bubblydatabase3_staging`, with email scrubbing).
+P0-9 (test harness: root `npm test` / `npm run dev`, supertest + in-memory Mongo). P0-8 is Thomas's
+(staging Render service).

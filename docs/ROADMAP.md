@@ -1,9 +1,9 @@
 # BubblyDB — Roadmap
 
-_Status: **Approved by Thomas (2026-10-21).** P0-0 through P0-5 done; P0-6 in review._
+_Status: **Approved by Thomas (2026-10-21).** P0-0 through P0-6 merged (P0-6 awaits Thomas's real restore test); P0-7 in review._
 _Sources: `docs/SPEC.md`, `docs/AUDIT.md`. Last updated 2026-10-22._
 
-**Next up:** Thomas: review P0-6, then do the monthly restore test once (`docs/RUNBOOK.md`). Claude: P0-7 (`staging:refresh`).
+**Next up:** Thomas: review P0-7; run the real restore test (P0-6) and a first `staging:refresh`; then P0-8 (staging Render service). Claude: P0-9 (test harness).
 
 ## How to read this
 
@@ -132,7 +132,7 @@ File: `.github/workflows/backup.yml`.
 - [x] First manual run (started by Claude with `gh workflow run`, 2026-10-22 01:29 UTC) succeeded: users 45, reviews 159, ratings 1350, bubblywaters 442 (plus the empty `bubblydatabase3` collection); 79,896-byte encrypted archive uploaded to R2
 - Note: GitHub disables scheduled workflows in public repos after 60 days without repo activity. A backup-freshness check belongs in P1-9 (uptime monitoring).
 
-### P0-6 🤖 Restore + verification — 60m — DB: local only — in review
+### P0-6 🤖 Restore + verification — 60m — DB: local only — merged (PR #167); real restore test pending
 
 Files: `scripts/restore.sh`, `server/scripts/verifyCounts.js`, `scripts/test/restore.test.js`, `docs/RUNBOOK.md`.
 
@@ -145,10 +145,11 @@ Files: `scripts/restore.sh`, `server/scripts/verifyCounts.js`, `scripts/test/res
 
 ### P0-7 🤖 `npm run staging:refresh` — 45m — DB: staging-write — todo
 
-- [ ] Root script: latest R2 backup → `restore.sh` → `bubblydatabase3_staging` with `--drop` scoped to the staging namespace → `verifyCounts`
-- [ ] Refuses any target other than `bubblydatabase3_staging`
-- [ ] Optional `--scrub` flag replaces user emails with `user+<id>@example.test` (so staging never emails real users)
-- [ ] Thomas runs it once end to end successfully
+- [x] `npm run staging:refresh [-- <file|r2-key>]`: latest R2 backup (default) → `restore.sh` → `bubblydatabase3_staging` (`--drop` only on restored collections) → `verifyCounts`
+- [x] Refuses unless `MONGODB_URI` (env, else `server/.env`) names `bubblydatabase3_staging`
+- [x] Email scrub is the **default** (changed from an optional `--scrub`; see DECISIONS): emails → `user+<id>@example.test`, reset/verification tokens cleared, passwords untouched. `--keep-emails` opts out
+- [x] Tests: 4 end-to-end tests on a throwaway local mongod (stale data replaced, scrub, `--keep-emails`, refusals); restore tests now share `scripts/test/helpers.js`
+- [ ] Thomas runs it once end to end against Atlas staging (steps in `docs/RUNBOOK.md` → Refresh staging)
 
 ### P0-8 🧑 Staging Render service — 30m — DB: none — todo
 
