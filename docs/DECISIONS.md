@@ -2,6 +2,18 @@
 
 Newest first. Format: date · decision · why · who decided.
 
+## 2026-10-22 · Replace third-party images with typographic cards (P1-0a..e)
+- Approved the image-audit proposal: brand color tokens → `<ProductCard>` → swap all product images
+  (removes the 70 Amazon images) → typographic brand pages. `imageURL` data is kept.
+- Ordering: the image tickets come right after P1-1, ahead of the rest of Phase 1, because the Amazon
+  images are the biggest licensing risk.
+- Decided by: Thomas (proposal by Claude).
+
+## 2026-10-22 · The CSP is an HTTP header, not a `<meta>` tag
+- `server/app.js` sends it via `helmet` in production; `client/index.html` no longer has one. Browsers
+  enforce every policy they see, so keeping both would mean the stricter one silently wins.
+- Decided by: Claude (P1-1).
+
 ## 2026-10-22 · Tests use Node's built-in runner, not Vitest
 - `node --test` + `node:assert`, with supertest and mongodb-memory-server-core for API tests.
 - Why: every existing test already used it; it works on Node 20 (prod) and 22 (local) with no extra

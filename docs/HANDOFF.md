@@ -126,13 +126,20 @@ _Last session: 2026-10-21._
 - Thomas created a "Tests" ruleset requiring the `test` check. As of 2026-10-22 it was **Disabled** and
   targeted only `main`: set it to Active and add `staging`.
 
-## P1-0 (image audit): PR open (into `staging`)
-- `docs/IMAGE_AUDIT.md`: every product image (442) and brand logo (43) is a third-party hotlink; 70
-  are Amazon. Proposes 5 tickets to switch to typographic cards without deleting data.
-- Waiting on Thomas: approve or edit the proposed tickets; confirm where `bubblesicon.png` and the
-  bubble textures came from.
-- The typographic card ticket Thomas mentioned adding on 2026-10-21 never made it into ROADMAP.md;
-  proposal steps 1–4 can replace it.
+## P1-0 (image audit): done (PR #174)
+- `docs/IMAGE_AUDIT.md`. Thomas approved the proposal; it's now tickets P1-0a..e in the roadmap.
+- Still waiting on Thomas (P1-0e): where `bubblesicon.png` and the bubble textures came from.
+
+## P1-1 (security headers): PR open (into `staging`)
+- `helmet` + CSP header (production only), `CORS_ORIGINS` allowlist, 100kb JSON limit.
+- Bug found and fixed: the old `<meta>` CSP in `client/index.html` blocked the Lilita One font on the
+  live site, and would block the Formspree contact form.
+- `server/.env.example` documents `CORS_ORIGINS` (leave empty unless another site needs the API).
+- Check on staging after merge: the font renders; the contact form sends.
+
+## CI ruleset
+- "Tests" ruleset is Active and requires `test` on all branches (`~ALL`). If it ever blocks pushing a
+  new feature branch, narrow it to `main` + `staging`.
 
 ## Next Claude ticket
-P1-1 (helmet, CORS, body limits). CSP uses `img-src 'self' data: https:` until the image swap ships.
+P1-0a..d (brand colors → ProductCard → swap images → brand pages), then P1-2 (rate limiting).
