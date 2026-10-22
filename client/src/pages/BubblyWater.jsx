@@ -18,6 +18,7 @@ import { Link } from "react-router-dom";
 import { formatBrands } from "../../utils/formatBrands";
 import Loading from "../components/Loading";
 import CustomColorRating from "../components/CustomColorRating";
+import ProductCard from "../components/ProductCard";
 import { AiOutlineLike, AiFillLike } from "react-icons/ai";
 
 export default function BubblyWaterPage() {
@@ -261,36 +262,23 @@ export default function BubblyWaterPage() {
           <div>
             <div className="flex justify-center flex-col lg:flex-row mt-14 ">
               <section className="m-5 flex flex-col items-center sm:flex-row sm:justify-center gap-10  rounded-lg">
-                <div className="flex flex-col lg:flex-row items-center  justify-center gap-4 p-8 bg-yellow shadow-md rounded-lg">
-                  <img
-                    className="object-cover rounded-lg lg:mr-10 w-48 h-48 md:w-96 lg:w-96 lg:h-96 md:h-96"
-                    src={bubblyWater.imageURL}
-                    alt={bubblyWater.productName}
-                  />
-                  <div className="text-center">
-                    <Link to={`/brands/${bubblyWater.brandName}`}>
-                      <h1 className="text-3xl font-semibold m-5">
+                <div className="flex flex-col lg:flex-row items-center justify-center gap-8 p-4">
+                  <ProductCard bubblyWater={bubblyWater} variant="hero" headingLevel={1} />
+                  <div className="text-center flex flex-col items-center gap-2 min-w-[16rem]">
+                    <p>
+                      More from{" "}
+                      <Link to={`/brands/${bubblyWater.brandName}`} className="font-semibold underline">
                         {formatBrands(bubblyWater.brandName)}
-                      </h1>
-                    </Link>
-                    <h2 className="text-xl">{bubblyWater.productName}</h2>
-                    <h3 className="text-lg font-bold mt-3">Flavors</h3>
-                    <h4 className="text-base m-5">
-                      {flavors.map((flavor, index) => (
-                        <Link
-                          to={`/flavors/${flavor.toLowerCase()}`}
-                          key={index}
-                        >
-                          <span className={flavor}>{flavor} </span>
+                      </Link>
+                    </p>
+                    <p className="flex flex-wrap justify-center gap-2">
+                      <span>Flavors:</span>
+                      {flavors.map((flavor) => (
+                        <Link key={flavor} to={`/flavors/${flavor.toLowerCase()}`} className="underline">
+                          {flavor.replace(/-/g, " ")}
                         </Link>
                       ))}
-                    </h4>
-                    <h3 className="text-lg">
-                      Average Rating: {bubblyWater.averageRating.toFixed(2)}{" "}
-                      <span className="text-gray-500">
-                        ({bubblyWater.ratings?.length || 0})
-                      </span>
-                    </h3>
+                    </p>
                     {Auth.loggedIn() && !isVerified ? (
                       <div>
                         Please{" "}

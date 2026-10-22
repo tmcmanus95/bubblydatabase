@@ -3,7 +3,7 @@
 _Status: **Approved by Thomas (2026-10-21).** **Phase 0 complete** (released to `main` in #173). Phase 1 started._
 _Sources: `docs/SPEC.md`, `docs/AUDIT.md`. Last updated 2026-10-22._
 
-**Next up:** Thomas: review the card layout follow-up on `/working/cards`. Claude: P1-0c (swap product images for cards; removes the Amazon images). PRs now go into `staging`; Thomas releases with a `staging` → `main` PR.
+**Next up:** Thomas: review P1-0c on staging (home, a product page, search, a profile, recent), then release. Claude: P1-0d (brand pages without logos). PRs now go into `staging`; Thomas releases with a `staging` → `main` PR.
 
 ## How to read this
 
@@ -221,7 +221,7 @@ Report: `docs/IMAGE_AUDIT.md`; script: `server/scripts/imageAudit.js` (read-only
 - [x] Test: every color in sRGB gamut and ≥ 4.5:1 text contrast in both modes (actual 7.5–11:1); every brand with a page has an explicit color (`client/src/theme/brandColors.test.js`, in `npm test`)
 - [x] Swatches checked visually in light + dark (lemon brightened so it reads yellow, not khaki)
 
-#### P1-0b 🤖 `<ProductCard>` typographic component — 60m — done (PR #178) + layout follow-up in review
+#### P1-0b 🤖 `<ProductCard>` typographic component — 60m — done (PR #178, layout follow-up #179)
 
 - [x] `client/src/components/ProductCard.jsx` (`full` and `compact` variants): brand color surface, flavor name in Lilita One, brand name, caffeine/CBD tags, score as the anchor ("No ratings yet" otherwise); no photo
 - [x] `FlavorIcon.jsx`: 11 placeholder category icons drawn in code (citrus, berry, stone, tropical, orchard, melon, botanical, spice, brewed, plain, bubbles), until the Phase 4 illustrated set exists. `flavorCategories.js` maps all 87 flavors (tested)
@@ -230,12 +230,13 @@ Report: `docs/IMAGE_AUDIT.md`; script: `server/scripts/imageAudit.js` (read-only
 - [x] Preview page `/working/cards` (not linked) with real data; checked in light and dark mode via headless Chrome screenshots
 - [x] Follow-up from Thomas's review: every element in a fixed slot (brand always top-left, icon top-right, name in a 2-line slot, flavor chips, score bottom-left, tags bottom-right; same card height), and **all flavor colors visible**: a split stripe along the top edge (left edge on compact) plus color-dot chips (up to 3, then "+N"). Colors come from `client/src/theme/flavorColors.js`, copied from App.css and kept in sync by a test (OKLCH conversion in Phase 4). Pineapple and peach icons redrawn so every category is distinct
 
-#### P1-0c 🤖 Swap product images for cards — 45m
+#### P1-0c 🤖 Swap product images for cards — 45m — in review
 
-- [ ] All 6 product render sites use `<ProductCard>` (or its compact variant); `imageURL` no longer requested by client queries
-- [ ] **Removes all 70 Amazon images** and every other third-party product photo from the site
-- [ ] `imageURL` stays in the database and schema (hard rule 3)
-- [ ] CSP `img-src` tightened to `'self' data:` once P1-0d also ships
+- [x] All 6 product render sites use `<ProductCard>`: list items (full card + "Your rating" for logged-in users), product page (new `hero` variant, not a link, with "More from <brand>" and flavor links beside it), search results, profile ratings/reviews and recent reviews (`compact`, with that person's rating in the score slot via the new `score`/`scoreDetail` props). `imageURL` removed from all 17 client queries + 1 mutation; caffeinated + search queries gained the card fields; all 32 client operations validate against the schema
+- [x] **Removes all 70 Amazon images** and every other third-party product photo: on home, product, search, profile and recent pages, the only `<img>` left is our own `bubblesicon.png` (checked in headless Chrome)
+- [x] `imageURL` stays in the database and schema (hard rule 3)
+- [x] Deliberate change: list rows no longer have their own brand/flavor links (the card is one link); brands and flavors stay reachable from the navbar and the product page
+- [ ] CSP `img-src` tightened to `'self' data:` once P1-0d also ships (brand logos are the last external images)
 
 #### P1-0d 🤖 Brand pages without logos — 30m
 

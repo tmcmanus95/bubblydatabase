@@ -290,7 +290,7 @@ export default function BubblyWaterList({ searchTerm }) {
 
             <p className="text-md  leading-8 text-gray-800"></p>
           </div>
-          <div>
+          <div className="pt-10">
             {sortedBubblyWaters.length > 0 ? (
               sortedBubblyWaters.map((bubblyWater, index) => (
                 <div

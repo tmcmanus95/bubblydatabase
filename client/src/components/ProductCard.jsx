@@ -12,16 +12,30 @@ import { formatBrands } from "../../utils/formatBrands";
 //
 //   <ProductCard bubblyWater={bw} />                  full card (lists)
 //   <ProductCard bubblyWater={bw} variant="compact" /> one-line card (search, profiles, recent)
+//   <ProductCard bubblyWater={bw} variant="hero" headingLevel={1} />  big, not a link (product page)
 //   ratingCount defaults to bubblyWater.ratingCount, then bubblyWater.ratings.length
+//   score={4.5} scoreDetail="rated" shows one person's rating instead of the average
+//   showScore={false} leaves the score slot empty
 
 const MAX_CHIPS = 3;
 
 const flavorLabel = (flavor) => flavor.replace(/-/g, " ");
 
-export default function ProductCard({ bubblyWater, variant = "full", ratingCount, headingLevel = 3 }) {
+export default function ProductCard({
+  bubblyWater,
+  variant = "full",
+  ratingCount,
+  headingLevel = 3,
+  score,
+  scoreDetail,
+  showScore = true,
+}) {
   const { _id, productName, brandName, flavor = [], averageRating, isCaffeinated, hasCBD } = bubblyWater;
   const count = ratingCount ?? bubblyWater.ratingCount ?? bubblyWater.ratings?.length ?? 0;
-  const hasScore = count > 0 && typeof averageRating === "number";
+  const hasOverride = typeof score === "number";
+  const hasScore = hasOverride || (count > 0 && typeof averageRating === "number");
+  const isLink = variant !== "hero";
+  const showChips = variant !== "compact";
   const Heading = `h${headingLevel}`;
   const flavors = flavor.length ? flavor : ["plain"];
   const hiddenChips = flavors.length - MAX_CHIPS;
@@ -38,12 +52,16 @@ export default function ProductCard({ bubblyWater, variant = "full", ratingCount
       <FlavorIcon flavor={flavors[0]} className="product-card__icon" />
 
       <Heading className="product-card__name">
-        <Link to={`/bubblyWater/${_id}`} className="product-card__link">
-          {productName}
-        </Link>
+        {isLink ? (
+          <Link to={`/bubblyWater/${_id}`} className="product-card__link">
+            {productName}
+          </Link>
+        ) : (
+          productName
+        )}
       </Heading>
 
-      {variant === "full" ? (
+      {showChips ? (
         <ul className="product-card__flavors" aria-label="Flavors">
           {flavors.slice(0, MAX_CHIPS).map((f) => (
             <li key={f} className="product-card__flavor">
@@ -58,13 +76,13 @@ export default function ProductCard({ bubblyWater, variant = "full", ratingCount
       )}
 
       <p className="product-card__score">
-        {hasScore ? (
+        {!showScore ? null : hasScore ? (
           <>
-            <span className="product-card__score-value">{averageRating.toFixed(1)}</span>
+            <span className="product-card__score-value">{(hasOverride ? score : averageRating).toFixed(1)}</span>
             <span className="product-card__score-detail">
               <span className="sr-only"> out of 5, </span>
               <span aria-hidden="true">/5 · </span>
-              {count} {count === 1 ? "rating" : "ratings"}
+              {hasOverride ? scoreDetail : `${count} ${count === 1 ? "rating" : "ratings"}`}
             </span>
           </>
         ) : (
@@ -74,7 +92,7 @@ export default function ProductCard({ bubblyWater, variant = "full", ratingCount
         )}
       </p>
 
-      {variant === "full" && (
+      {showChips && (
         <p className="product-card__tags">
           {isCaffeinated && <span className="product-card__tag">caffeine</span>}
           {hasCBD && <span className="product-card__tag">CBD</span>}

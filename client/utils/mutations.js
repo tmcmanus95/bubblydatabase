@@ -32,7 +32,6 @@ export const ADD_REVIEW = gql`
       _id
       productName
       brandName
-      imageURL
       reviews {
         _id
         reviewText
