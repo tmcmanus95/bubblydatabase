@@ -1,4 +1,4 @@
-const db = require("../config/onRenderConnection");
+const db = require("../scripts/lib/stagingConnection");
 const fs = require("fs");
 const path = require("path");
 
