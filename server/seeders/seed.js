@@ -1,4 +1,11 @@
-const db = require("../config/connection");
+// Drops and reseeds users + bubblywaters, so it needs an explicit flag (checked before connecting)
+if (!process.argv.includes("--yes-drop-staging")) {
+  console.error(
+    "seed.js drops the users and bubblywaters collections. Re-run with --yes-drop-staging if you mean it."
+  );
+  process.exit(1);
+}
+const db = require("../scripts/lib/stagingConnection");
 const { User, BubblyWater } = require("../models");
 const userSeeds = require("./userSeeds.json");
 const bubblyWaterSeeds = require("./bubblyWaterSeeds.json");
