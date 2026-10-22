@@ -1,9 +1,9 @@
 # BubblyDB — Roadmap
 
-_Status: **Approved by Thomas (2026-10-21).** P0-0, P0-1 and P0-2 merged (P0-2's Node pin in a follow-up PR)._
+_Status: **Approved by Thomas (2026-10-21).** P0-0, P0-1, P0-2 done; P0-3 in review._
 _Sources: `docs/SPEC.md`, `docs/AUDIT.md`. Last updated 2026-10-21._
 
-**Next up:** P0-3 (backup script). Two P0-0e items stay open for Thomas (see `HANDOFF.md`).
+**Next up:** Thomas: review the P0-3 PR, then do the staging dry run and P0-4 (backup infrastructure). Claude: P0-5 (backup workflow).
 
 ## How to read this
 
@@ -77,13 +77,13 @@ Files: `server/utils/auth.js` (`requireUser`, `requireSelfOrAdmin`, `requireAdmi
 - [x] `resendEmailVerification` doesn't crash on an unknown email and returns `true`
 - [x] `verifyEmail` requires the token _and_ the matching userId before saving
 
-#### P0-0e 🧑 Ship the hotfix — 20m — DB: none — merged + deployed (PR #160 → `main` @ `1ffa11a`); 2 items open
+#### P0-0e 🧑 Ship the hotfix — 20m — DB: none — done (PR #160 → `main` @ `1ffa11a`)
 
 - [x] Render prod env: add `ADMIN_USER_IDS=<Thomas's user _id>` (comma-separated if more). Without it, `removeUser`/`users` are refused for everyone, which is safe.
 - [x] Push `hotfix/p0-security`, open a PR → `main` (#160)
 - [x] Tested locally against staging by Thomas; reviewed and merged
-- [ ] Thomas confirms on prod: logged out, `users` and `removeUser` are refused; logged in, rating/review/like still work
-- [ ] Merge `main` into `new-aesthetic`. **Known conflict** in `server/schemas/resolvers.js` (like resolvers, plus the uncommitted WIP in the same file). Do it once the WIP is committed or set aside; Claude can resolve it.
+- [x] Thomas confirmed on prod: logged out, `users` and `removeUser` are refused; logged in, rating/review/like work (2026-10-21)
+- [x] `main` merged into `new-aesthetic` (local merge commit `5e517d7`, after a local WIP snapshot commit `321b6a1`; not pushed). The like-resolver conflict was resolved with `main`'s `requireUser` version; 50/50 resolver checks and the P0-1 guard tests pass on the merged code.
 
 ### P0-1 🤖 Quarantine database scripts — 45m — DB: none — done (PR #161 → `main` @ `f2f8670`)
 
@@ -104,14 +104,16 @@ Files: `server/seeders/{seed,cleanDB,addSeeds}.js`, new `server/scripts/lib/{ass
 - [x] `staging` branch created from `main` @ `39e5f64`
 - [x] `engines.node` = `20.x` in the root `package.json` (Render reported 20.12.0). Render resolves `20.x` to the latest Node 20 patch, so the next deploy picks up 20.x security patches but stays on Node 20.
 
-### P0-3 🤖 Backup script — 45m — DB: staging-read — todo
+### P0-3 🤖 Backup script — 45m — DB: staging-read — in review
 
-File: `scripts/backup.sh`.
+Files: `scripts/backup.sh`, `scripts/test/backup.test.js` (`node --test scripts/test/backup.test.js`).
 
-- [ ] `mongodump --uri "$BACKUP_MONGODB_URI" --archive --gzip` piped to `age -r "$AGE_PUBLIC_KEY"` → `bubblydatabase3-YYYY-MM-DDTHHMM.archive.gz.age`
-- [ ] Uploads to R2 through the S3 API (`aws s3 cp --endpoint-url`); the URI is never echoed (`set +x`, no `-v`)
-- [ ] Non-zero exit on any failed step (`set -euo pipefail`); zero-byte archives rejected
-- [ ] Dry run by Thomas against staging produces an archive he can decrypt locally
+- [x] `mongodump --uri=… --archive --gzip` piped straight into `age -r "$AGE_PUBLIC_KEY"` → `<db>-YYYY-MM-DDTHHMMZ.archive.gz.age`; the plaintext dump never touches disk
+- [x] Uploads to R2 through the S3 API (`aws s3 cp --endpoint-url`), then verifies with `head-object`; credentials are redacted from any tool output (tested)
+- [x] Non-zero exit on any failed step; archives under `MIN_BACKUP_BYTES` (10 KB) or without an age header are rejected and deleted; requires an explicit db name in the URI
+- [x] `--local-only DIR` mode for dry runs (no upload); bash 3.2 compatible (macOS)
+- [x] Verified: 7 tests with fake tools; real `mongodump` → archive → `mongorestore` round trip on a throwaway local mongod (counts match)
+- [ ] Dry run by Thomas against staging produces an archive he can decrypt locally (steps in `HANDOFF.md`)
 
 ### P0-4 🧑 Backup infrastructure — 30m — DB: none — todo
 
