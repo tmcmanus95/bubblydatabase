@@ -1,37 +1,62 @@
 import { Link } from "react-router-dom";
 import FlavorIcon from "./FlavorIcon";
 import { brandStyle } from "../theme/brandColors";
+import { flavorColor } from "../theme/flavorColors";
 import { formatBrands } from "../../utils/formatBrands";
 
 // Typographic product card: brand color + flavor name + brand name, with the score as the anchor.
 // No product photos (CLAUDE.md hard rule 10). The whole card is one link to the product page.
+// Every element sits in a fixed slot, so all cards line up whatever their content:
+//   full:    [flavor stripe] brand · icon / name (2 lines) / flavor chips / score · tags
+//   compact: [flavor stripe] icon / brand + name (1 line each) / score
 //
 //   <ProductCard bubblyWater={bw} />                  full card (lists)
 //   <ProductCard bubblyWater={bw} variant="compact" /> one-line card (search, profiles, recent)
 //   ratingCount defaults to bubblyWater.ratingCount, then bubblyWater.ratings.length
+
+const MAX_CHIPS = 3;
+
+const flavorLabel = (flavor) => flavor.replace(/-/g, " ");
+
 export default function ProductCard({ bubblyWater, variant = "full", ratingCount, headingLevel = 3 }) {
   const { _id, productName, brandName, flavor = [], averageRating, isCaffeinated, hasCBD } = bubblyWater;
   const count = ratingCount ?? bubblyWater.ratingCount ?? bubblyWater.ratings?.length ?? 0;
   const hasScore = count > 0 && typeof averageRating === "number";
   const Heading = `h${headingLevel}`;
+  const flavors = flavor.length ? flavor : ["plain"];
+  const hiddenChips = flavors.length - MAX_CHIPS;
 
   return (
     <article className={`product-card product-card--${variant} brand-surface`} style={brandStyle(brandName)}>
-      <FlavorIcon flavor={flavor[0]} className="product-card__icon" />
-      <div className="product-card__names">
-        <Heading className="product-card__flavor">
-          <Link to={`/bubblyWater/${_id}`} className="product-card__link">
-            {productName}
-          </Link>
-        </Heading>
-        <p className="product-card__brand">{formatBrands(brandName)}</p>
-        {variant === "full" && (isCaffeinated || hasCBD) && (
-          <p className="product-card__tags">
-            {isCaffeinated && <span className="product-card__tag">caffeine</span>}
-            {hasCBD && <span className="product-card__tag">CBD</span>}
-          </p>
-        )}
+      <div className="product-card__stripe" aria-hidden="true">
+        {flavors.map((f) => (
+          <span key={f} style={{ backgroundColor: flavorColor(f) }} />
+        ))}
       </div>
+
+      <p className="product-card__brand">{formatBrands(brandName)}</p>
+      <FlavorIcon flavor={flavors[0]} className="product-card__icon" />
+
+      <Heading className="product-card__name">
+        <Link to={`/bubblyWater/${_id}`} className="product-card__link">
+          {productName}
+        </Link>
+      </Heading>
+
+      {variant === "full" ? (
+        <ul className="product-card__flavors" aria-label="Flavors">
+          {flavors.slice(0, MAX_CHIPS).map((f) => (
+            <li key={f} className="product-card__flavor">
+              <span className="product-card__dot" style={{ backgroundColor: flavorColor(f) }} aria-hidden="true" />
+              {flavorLabel(f)}
+            </li>
+          ))}
+          {hiddenChips > 0 && <li className="product-card__flavor">+{hiddenChips}</li>}
+        </ul>
+      ) : (
+        <p className="sr-only">Flavors: {flavors.map(flavorLabel).join(", ")}</p>
+      )}
+
       <p className="product-card__score">
         {hasScore ? (
           <>
@@ -48,6 +73,13 @@ export default function ProductCard({ bubblyWater, variant = "full", ratingCount
           </span>
         )}
       </p>
+
+      {variant === "full" && (
+        <p className="product-card__tags">
+          {isCaffeinated && <span className="product-card__tag">caffeine</span>}
+          {hasCBD && <span className="product-card__tag">CBD</span>}
+        </p>
+      )}
     </article>
   );
 }
