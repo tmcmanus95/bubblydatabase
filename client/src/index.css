@@ -14,3 +14,136 @@
     color: var(--brand-ink-dark);
   }
 }
+
+/* Typographic product card (components/ProductCard.jsx): a hand-cut sticker in the brand's color */
+.product-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.25rem 0.75rem;
+  padding: 1rem 1.1rem 1.1rem;
+  border: 2px solid var(--brand-ink);
+  border-radius: 26px 18px 24px 20px / 20px 24px 18px 26px;
+  box-shadow: 4px 4px 0 var(--brand-ink);
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+.product-card:hover,
+.product-card:focus-within {
+  transform: translateY(-2px) rotate(-1deg);
+  box-shadow: 6px 6px 0 var(--brand-ink);
+}
+.product-card:focus-within {
+  outline: 3px solid var(--brand-ink);
+  outline-offset: 4px;
+}
+@media (prefers-color-scheme: dark) {
+  .product-card {
+    border-color: var(--brand-ink-dark);
+    box-shadow: 4px 4px 0 rgb(0 0 0 / 0.55);
+  }
+  .product-card:hover,
+  .product-card:focus-within {
+    box-shadow: 6px 6px 0 rgb(0 0 0 / 0.55);
+  }
+  .product-card:focus-within {
+    outline-color: var(--brand-ink-dark);
+  }
+  .product-card--compact {
+    box-shadow: 3px 3px 0 rgb(0 0 0 / 0.55);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .product-card,
+  .product-card:hover,
+  .product-card:focus-within {
+    transition: none;
+    transform: none;
+  }
+}
+.product-card__icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  grid-row: span 2;
+}
+.product-card__names {
+  min-width: 0;
+}
+.product-card__flavor {
+  font-family: "Lilita One", sans-serif;
+  font-size: 1.6rem;
+  line-height: 1.1;
+  overflow-wrap: anywhere;
+}
+/* The flavor link stretches over the whole card so the card is one click/focus target */
+.product-card__link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+.product-card__link:focus-visible {
+  outline: none;
+}
+.product-card__brand {
+  font-weight: 600;
+  opacity: 0.85;
+}
+.product-card__tags {
+  display: flex;
+  gap: 0.35rem;
+  margin-top: 0.35rem;
+}
+.product-card__tag {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.05rem 0.5rem;
+  border: 1.5px solid currentColor;
+  border-radius: 999px;
+}
+.product-card__score {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+}
+.product-card__score-value {
+  font-family: "Lilita One", sans-serif;
+  font-size: 2.6rem;
+  line-height: 1;
+}
+.product-card__score-detail {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+/* Compact: one line for search results, profiles and recent activity */
+.product-card--compact {
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  padding: 0.6rem 0.9rem;
+  box-shadow: 3px 3px 0 var(--brand-ink);
+}
+.product-card--compact .product-card__icon {
+  width: 1.9rem;
+  height: 1.9rem;
+  grid-row: auto;
+}
+.product-card--compact .product-card__flavor {
+  font-size: 1.2rem;
+}
+.product-card--compact .product-card__score {
+  grid-column: auto;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0;
+  margin-top: 0;
+  text-align: right;
+}
+.product-card--compact .product-card__score-value {
+  font-size: 1.6rem;
+}
+.product-card--compact .product-card__score-detail {
+  font-size: 0.75rem;
+}

@@ -142,10 +142,15 @@ _Last session: 2026-10-21._
 - "Tests" ruleset: Active, requires the `test` check on `main` and `staging` (narrowed from all branches
   on 2026-10-22, after it blocked pushing feature branches).
 
-## P1-0a (brand colors): PR open (into `staging`)
+## P1-0a (brand colors): done (PR #176)
 - `client/src/theme/brandColors.js` (+ `color.js` for OKLCH/contrast math). To recolor a brand, edit
   its line in `BRAND_COLORS`; the test enforces gamut and AA contrast.
-- Nothing renders with it yet; P1-0b's `<ProductCard>` is the first user.
+- Released to prod on 2026-10-22 together with P1-1 (prod now sends the new CSP: font + contact form fixed).
+
+## P1-0b (ProductCard): PR open (into `staging`)
+- `<ProductCard>` (full/compact) + `FlavorIcon` placeholder icons. Not used on real pages yet.
+- **See it on staging at `/working/cards`** (top 18 bubblies, real data).
+- Icons are placeholders drawn in code; Thomas hasn't confirmed this approach yet (DECISIONS).
 
 ## Next Claude ticket
-P1-0b (`<ProductCard>`), then P1-0c (swap images, removing the Amazon ones), P1-0d (brand pages).
+P1-0c (swap the 6 product image sites for cards; removes the Amazon images), then P1-0d (brand pages).
