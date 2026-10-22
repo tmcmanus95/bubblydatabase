@@ -115,15 +115,37 @@ _Last session: 2026-10-21._
   an in-memory database. `npm test` now runs 50 tests.
 - Tests only; no app code changed, so there's nothing to check on the staging site.
 
-## P0-13 (CI): PR open (into `staging`)
+## P0-13 (CI): done (PR #172)
 - `.github/workflows/ci.yml` runs all 50 tests (MongoDB 8.0 on the runner, nothing skipped) and the
   client build on every PR and on pushes to `staging`/`main`. No secrets.
 - Thomas (optional): Settings → Branches/Rules → require the `test` check on `main` and `staging`.
 
 ## Phase 0 wrap-up
 - All Phase 0 exit criteria are met once P0-13 merges.
-- **Release pending:** `main` (prod) is at `9ff0f1f`. `staging` has #170 (docs), #171 (tests), and CI.
-  None of them change app code. Release with a PR `staging` → `main` whenever convenient.
+- Released to `main` in #173 (2026-10-22). CI runs on every PR.
+- Thomas created a "Tests" ruleset requiring the `test` check. As of 2026-10-22 it was **Disabled** and
+  targeted only `main`: set it to Active and add `staging`.
+
+## P1-0 (image audit): done (PR #174)
+- `docs/IMAGE_AUDIT.md`. Thomas approved the proposal; it's now tickets P1-0a..e in the roadmap.
+- Still waiting on Thomas (P1-0e): where `bubblesicon.png` and the bubble textures came from.
+
+## P1-1 (security headers): done (PR #175)
+- `helmet` + CSP header (production only), `CORS_ORIGINS` allowlist, 100kb JSON limit.
+- Bug found and fixed: the old `<meta>` CSP in `client/index.html` blocked the Lilita One font on the
+  live site, and would block the Formspree contact form.
+- `server/.env.example` documents `CORS_ORIGINS` (leave empty unless another site needs the API).
+- Verified on staging by Thomas: the font renders and the contact form sends. **Prod still serves the old
+  meta CSP (font blocked, contact form broken) until `staging` is released to `main`.**
+
+## CI ruleset
+- "Tests" ruleset: Active, requires the `test` check on `main` and `staging` (narrowed from all branches
+  on 2026-10-22, after it blocked pushing feature branches).
+
+## P1-0a (brand colors): PR open (into `staging`)
+- `client/src/theme/brandColors.js` (+ `color.js` for OKLCH/contrast math). To recolor a brand, edit
+  its line in `BRAND_COLORS`; the test enforces gamut and AA contrast.
+- Nothing renders with it yet; P1-0b's `<ProductCard>` is the first user.
 
 ## Next Claude ticket
-P1-0 (image audit, read-only on staging), then P1-1 (helmet, CORS, body limits).
+P1-0b (`<ProductCard>`), then P1-0c (swap images, removing the Amazon ones), P1-0d (brand pages).
