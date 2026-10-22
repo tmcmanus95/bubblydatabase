@@ -1,0 +1,8 @@
+node_modules/
+.env
+.env.*
+!.env.example
+.DS_Store
+
+# Local-only: lists security gaps that stay open until Phase 1 (decided 2026-10-21)
+docs/AUDIT.md
