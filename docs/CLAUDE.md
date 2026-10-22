@@ -56,7 +56,7 @@ Setup: copy `server/.env.example` to `server/.env` (staging values only).
 ## Branches
 
 - `main` = production (Render auto-deploys it). `staging` = the staging Render service (P0-8).
-- Work on a short branch from `main` → PR into `staging` → verify on staging → PR `staging` → `main`.
-  Until the staging service exists, PRs go straight to `main`.
+- Work on a short branch from `staging` → PR into `staging` (auto-deploys to the staging site) → verify
+  there → Thomas releases with a PR `staging` → `main`.
 - Hotfixes branch from `main` and PR straight into `main`; then merge `main` back into `staging`.
 - `new-aesthetic` holds Thomas's design WIP; leave it alone.

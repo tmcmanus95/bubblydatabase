@@ -94,7 +94,16 @@ _Last session: 2026-10-21._
   server deps installed. Run scripts from there. Update it with `git pull`.
 - Age key: `~/bubbly-backup.key` still exists. Once it's confirmed in the password manager, delete the file.
 
-## P0-9 (test harness): PR open
+## P0-8 (staging Render service): done (2026-10-22)
+- Separate Render web service on branch `staging`, database `bubblydatabase3_staging`, `EMAIL_MODE=log`,
+  no Gmail credentials. Pushing to `staging` deploys it.
+- Its build command installs the client's devDependencies: with `NODE_ENV=production`, plain
+  `npm install` skips `vite`. If the build fails with `vite: not found`, the build command needs
+  `npm --prefix client install --include=dev`.
+- Log in as `user+<your _id>@example.test` (note the `+`) with your normal password.
+- **Release flow from now on:** feature PRs → `staging` → check the staging site → PR `staging` → `main`.
+
+## P0-9 (test harness): done (PR #169)
 - `npm test` at the root runs everything; `npm run dev` runs server (auto-restart) + client.
 - Server tests: `server/tests/*.test.js` with `startTestServer()` from `server/tests/helpers.js`
   (in-memory MongoDB, email captured in `outbox`).
@@ -102,5 +111,4 @@ _Last session: 2026-10-21._
   follow-redirects, saslprep, …) while adding the test dependencies. Listed in the PR.
 
 ## Next Claude ticket
-P0-10..12 (smoke tests: signup/login, search/product page, rate/review). P0-8 is Thomas's
-(staging Render service).
+P0-10..12 (smoke tests: signup/login, search/product page, rate/review), then P0-13 (CI).

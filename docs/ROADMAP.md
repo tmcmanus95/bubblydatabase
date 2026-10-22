@@ -1,9 +1,9 @@
 # BubblyDB — Roadmap
 
-_Status: **Approved by Thomas (2026-10-21).** P0-0 through P0-7 done; P0-9 in review._
+_Status: **Approved by Thomas (2026-10-21).** P0-0 through P0-9 done; next: smoke tests + CI._
 _Sources: `docs/SPEC.md`, `docs/AUDIT.md`. Last updated 2026-10-22._
 
-**Next up:** Thomas: review P0-9, then P0-8 (staging Render service). Claude: P0-10..12 (smoke tests).
+**Next up:** Claude: P0-10..12 (smoke tests), then P0-13 (CI). PRs now go into `staging`; Thomas releases with a `staging` → `main` PR.
 
 ## How to read this
 
@@ -151,14 +151,15 @@ Files: `scripts/restore.sh`, `server/scripts/verifyCounts.js`, `scripts/test/res
 - [x] Tests: 4 end-to-end tests on a throwaway local mongod (stale data replaced, scrub, `--keep-emails`, refusals); restore tests now share `scripts/test/helpers.js`
 - [x] Thomas ran it end to end against Atlas staging (2026-10-22): counts matched, 45 emails scrubbed
 
-### P0-8 🧑 Staging Render service — 30m — DB: none — todo
+### P0-8 🧑 Staging Render service — 30m — DB: none — done (2026-10-22)
 
-- [ ] New Render web service, Starter plan, branch `staging`, same build/start commands as prod
-- [ ] Env: staging-only `MONGODB_URI`, its own `MY_SECRET`, `WEBSITE_URL` = staging URL, email disabled with `EMAIL_MODE=log` (exists since P0-9)
-- [ ] Staging URL loads the app with staging data
+- [x] New Render web service on branch `staging` (auto-deploy). Its build command installs the client's devDependencies, because with `NODE_ENV=production` plain `npm install` skips `vite` (`vite: not found`)
+- [x] Env: staging-only `MONGODB_URI`, its own `MY_SECRET`, `WEBSITE_URL` = staging URL, `EMAIL_MODE=log`, `NODE_ENV=production`, `ADMIN_USER_IDS`; no Gmail credentials
+- [x] Staging URL loads the app with staging data; Thomas logged in as `user+<_id>@example.test`
+- [x] `staging` branch fast-forwarded to `main` @ `9ff0f1f` (includes `EMAIL_MODE`)
 - [ ] Optional: Render's basic auth or a non-indexed URL so staging stays out of search engines
 
-### P0-9 🤖 Test harness — 45m — DB: none — in review
+### P0-9 🤖 Test harness — 45m — DB: none — done (PR #169)
 
 - [x] Node's built-in test runner (instead of Vitest; see DECISIONS) + supertest + mongodb-memory-server-core in `server/`; helpers in `server/tests/helpers.js` (`startTestServer()` → `gql()`, `reset()`, `outbox`)
 - [x] `server/app.js` (`createApp()`) builds the app without connecting or listening; `server.js` just connects and listens, same startup as before (verified by booting it against a throwaway local mongod)
