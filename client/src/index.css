@@ -228,3 +228,41 @@
 .product-card--compact .product-card__score-detail {
   font-size: 0.7rem;
 }
+/* Hero: the product page's big card. Same slots, larger type; not a link */
+.product-card--hero {
+  width: min(100%, 26rem);
+  height: 22rem;
+  padding: 1.8rem 1.5rem 1.4rem;
+  grid-template-rows: auto calc(2 * 2.4rem * 1.1) auto 1fr auto;
+}
+.product-card--hero:hover {
+  transform: none;
+  box-shadow: 4px 4px 0 var(--brand-ink);
+}
+.product-card--hero .product-card__stripe {
+  height: 0.8rem;
+}
+.product-card--hero .product-card__brand {
+  font-size: 1rem;
+}
+.product-card--hero .product-card__icon {
+  width: 3rem;
+  height: 3rem;
+}
+.product-card--hero .product-card__name {
+  font-size: 2.4rem;
+}
+.product-card--hero .product-card__flavor {
+  font-size: 0.95rem;
+}
+.product-card--hero .product-card__score-value {
+  font-size: 3.6rem;
+}
+.product-card--hero .product-card__score-detail {
+  font-size: 1rem;
+}
+@media (prefers-color-scheme: dark) {
+  .product-card--hero:hover {
+    box-shadow: 4px 4px 0 rgb(0 0 0 / 0.55);
+  }
+}

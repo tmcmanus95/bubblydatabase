@@ -147,12 +147,19 @@ _Last session: 2026-10-21._
   its line in `BRAND_COLORS`; the test enforces gamut and AA contrast.
 - Released to prod on 2026-10-22 together with P1-1 (prod now sends the new CSP: font + contact form fixed).
 
-## P1-0b (ProductCard): done (PR #178); layout follow-up PR open
+## P1-0b (ProductCard): done (PR #178, follow-up #179)
 - `<ProductCard>` (full/compact) + `FlavorIcon` placeholder icons. Not used on real pages yet.
 - Follow-up per Thomas: fixed slots for every element, and all flavor colors shown (stripe + chips) via
   `client/src/theme/flavorColors.js` (mirrors App.css; a test keeps them in sync).
 - **See it on staging at `/working/cards`** (top 18 bubblies, real data).
 - Icons are placeholders drawn in code; Thomas hasn't confirmed this approach yet (DECISIONS).
 
+## P1-0c (swap product images): PR open (into `staging`)
+- Every product photo on the site is now a `<ProductCard>`; no Amazon or other third-party product
+  images load anywhere. Brand logos (brand pages) are the last external images: P1-0d.
+- Check on staging: home list, a product page (hero card), search, a profile, recent reviews.
+- List rows lost their separate brand/flavor links on purpose (card = one link).
+
 ## Next Claude ticket
-P1-0c (swap the 6 product image sites for cards; removes the Amazon images), then P1-0d (brand pages).
+P1-0d (typographic brand pages, drop logo links, delete dead `Header.jsx`), then tighten the CSP
+`img-src` and continue with P1-2 (rate limiting).

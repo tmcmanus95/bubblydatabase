@@ -7,8 +7,8 @@ import {
   QUERY_ALL_DATABASE,
 } from "../../utils/queries";
 import { useQuery } from "@apollo/client";
-import { formatBrands } from "../../utils/formatBrands";
 import BubblyWaterListItem from "../components/BubblyWaterListItem";
+import ProductCard from "../components/ProductCard";
 export default function SearchResults() {
   const { searchTerm } = useParams();
   let brandSearchTerm = searchTerm.toLowerCase().replace(/ /g, "-");
@@ -61,33 +61,9 @@ export default function SearchResults() {
 
             {searchResults && searchResults.length > 0 ? (
               <>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
-                  {searchResults.map((result, index) => (
-                    <Link to={`/bubblyWater/${result._id}`} key={index}>
-                      <div className="p-4 border rounded bg-gray-100 dark:bg-gray-800 flex hover:bg-blue-100  dark:hover:bg-gray-900">
-                        <img
-                          src={result.imageURL}
-                          alt={result.brandName}
-                          width={150}
-                          height={150}
-                          style={{
-                            width: "100px",
-                            height: "100px",
-                            objectFit: "cover",
-                          }}
-                          className="w-full h-auto mb-2"
-                        />
-                        <div className="ml-4 flex flex-col justify-center overflow-hidden">
-                          <h1 className="text-lg font-semibold ">
-                            {result.productName}
-                          </h1>
-                          <h1 className="text-lg font-semibold">
-                            {formatBrands(result.brandName)}
-                          </h1>
-                          <p className="text-sm text-gray-600 line-clamp-3"></p>
-                        </div>
-                      </div>
-                    </Link>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:mx-5">
+                  {searchResults.map((result) => (
+                    <ProductCard key={result._id} bubblyWater={result} variant="compact" headingLevel={2} />
                   ))}
                 </div>
               </>
