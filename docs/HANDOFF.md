@@ -71,5 +71,21 @@ _Last session: 2026-10-21._
   ```
   Then keep the key file only in the password manager (delete `~/bubbly-backup.key`).
 
+## P0-4 (backup infrastructure): done by Thomas (2026-10-22)
+- R2 bucket `bubblydb-backups` (30-day delete rule), bucket-scoped R2 token, Atlas `backup-ro` (`read` on
+  `bubblydatabase3` only), age keypair (private key only in the password manager), 6 GH secrets.
+- The access key secret is named `R2_ACCESS_KEY` (not `_ID`); the workflow maps it.
+- Keep credentials out of `server/.env`: it holds staging values only, and editor selections of it get
+  sent to Claude. Some R2/Atlas values were shared that way on 2026-10-22; Thomas was advised to
+  rotate the R2 token and the `backup-ro` password, and update the matching GH secrets.
+
+## P0-5 (backup workflow): PR open
+- `.github/workflows/backup.yml`: daily at 08:17 UTC plus a manual "Run workflow" button.
+- First run, after merge: GitHub → **Actions → Database backup → Run workflow**, or
+  `gh workflow run backup.yml`. Then check the run log ends with `backup: uploaded s3://…` and that the
+  file appears in the R2 bucket.
+- Public repos: GitHub disables scheduled workflows after 60 days with no repo activity. It emails a
+  warning first; re-enable from the Actions tab.
+
 ## Next Claude ticket
-P0-5 (backup GitHub Actions workflow). It can be built now; it only runs once Thomas finishes P0-4.
+P0-6 (restore script + verification + runbook).

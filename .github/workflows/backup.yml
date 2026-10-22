@@ -1,0 +1,49 @@
+# Daily encrypted backup of the production database to Cloudflare R2 (see scripts/backup.sh).
+# Runs only on its schedule or when started by hand: never on pull requests, so forks can't reach the
+# secrets. Uses a read-only Atlas user; the archive is encrypted with an age public key, and the private
+# key is never stored on GitHub.
+name: Database backup
+
+on:
+  schedule:
+    - cron: "17 8 * * *" # daily at 08:17 UTC (early morning US time)
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: database-backup
+  cancel-in-progress: false
+
+jobs:
+  backup:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Install mongodump and age
+        env:
+          TOOLS_DEB_URL: https://fastdl.mongodb.org/tools/db/mongodb-database-tools-ubuntu2404-x86_64-100.19.1.deb
+          TOOLS_DEB_SHA256: 4bb0482aced31090b9ab1615b75db90ec3eea91c01ba45d03454748cc3658b69
+        run: |
+          curl -fsSL "$TOOLS_DEB_URL" -o "$RUNNER_TEMP/database-tools.deb"
+          echo "$TOOLS_DEB_SHA256  $RUNNER_TEMP/database-tools.deb" | sha256sum -c -
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq age "$RUNNER_TEMP/database-tools.deb"
+          mongodump --version | head -1
+          age --version
+          aws --version
+
+      - name: Back up production to R2
+        env:
+          BACKUP_MONGODB_URI: ${{ secrets.BACKUP_MONGODB_URI }}
+          AGE_PUBLIC_KEY: ${{ secrets.AGE_PUBLIC_KEY }}
+          R2_ENDPOINT: ${{ secrets.R2_ENDPOINT }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+        run: scripts/backup.sh

@@ -1,9 +1,9 @@
 # BubblyDB — Roadmap
 
-_Status: **Approved by Thomas (2026-10-21).** P0-0 through P0-3 done._
+_Status: **Approved by Thomas (2026-10-21).** P0-0 through P0-4 done; P0-5 in review._
 _Sources: `docs/SPEC.md`, `docs/AUDIT.md`. Last updated 2026-10-21._
 
-**Next up:** Thomas: P0-4 (backup infrastructure). Claude: P0-5 (backup workflow), which can be built in parallel.
+**Next up:** Thomas: merge P0-5, then start the first backup run by hand. Claude: P0-6 (restore + verification).
 
 ## How to read this
 
@@ -115,21 +115,22 @@ Files: `scripts/backup.sh`, `scripts/test/backup.test.js` (`node --test scripts/
 - [x] Verified: 7 tests with fake tools; real `mongodump` → archive → `mongorestore` round trip on a throwaway local mongod (counts match)
 - [x] Dry run by Thomas against staging (2026-10-21): archive created, decrypted with the real age key, valid mongodump archive. The age keypair from the dry run is the real one: public key goes to GH secrets in P0-4, private key lives only in Thomas's password manager
 
-### P0-4 🧑 Backup infrastructure — 30m — DB: none — todo
+### P0-4 🧑 Backup infrastructure — 30m — DB: none — done (2026-10-22)
 
-- [ ] R2 bucket (private) with a 30-day lifecycle rule; scoped R2 API token (write to this bucket only)
-- [ ] Atlas user `backup-ro` with the `backup` role (read-only) on `bubblydatabase3`
-- [ ] `age` keypair: public key in GH secrets, private key stored offline (password manager)
-- [ ] GH Actions secrets: `BACKUP_MONGODB_URI`, `AGE_PUBLIC_KEY`, `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`, `R2_ENDPOINT`, `R2_BUCKET`
+- [x] R2 bucket `bubblydb-backups` (private) with a 30-day delete lifecycle rule; R2 API token scoped to this bucket (Object Read & Write: read is needed to verify uploads). R2 has no object versioning; a bucket lock rule (e.g. 7 days) is the optional equivalent
+- [x] Atlas user `backup-ro` with only `read` on `bubblydatabase3` (less access than the built-in `backup` role)
+- [x] `age` keypair: public key in GH secrets, private key only in Thomas's password manager
+- [x] GH Actions secrets (names as saved): `BACKUP_MONGODB_URI`, `AGE_PUBLIC_KEY`, `R2_ACCESS_KEY`, `R2_SECRET_ACCESS_KEY`, `R2_ENDPOINT`, `R2_BUCKET`
 
-### P0-5 🤖 Backup workflow — 30m — DB: none — todo
+### P0-5 🤖 Backup workflow — 30m — DB: none — in review
 
 File: `.github/workflows/backup.yml`.
 
-- [ ] Triggers: daily `schedule` + `workflow_dispatch` only (never `pull_request`, so forks can't reach secrets)
-- [ ] Pinned `mongodb-database-tools` + `age` install; runs `scripts/backup.sh`
-- [ ] Failure notifies Thomas (GitHub's default failure email is enough)
+- [x] Triggers: daily `schedule` (08:17 UTC) + `workflow_dispatch` only (never `pull_request`, so forks can't reach secrets); `contents: read` permissions; no persisted git credentials
+- [x] Pinned installs: database tools 100.19.1 `.deb` with sha256 check, `age` from Ubuntu, `actions/checkout` pinned to a commit; runs `scripts/backup.sh`
+- [x] Failure notifies Thomas (GitHub emails the workflow owner on failed scheduled runs)
 - [ ] A manual run by Thomas uploads an object to R2
+- Note: GitHub disables scheduled workflows in public repos after 60 days without repo activity. A backup-freshness check belongs in P1-9 (uptime monitoring).
 
 ### P0-6 🤖 Restore + verification — 60m — DB: staging-write (scratch db) — todo
 
