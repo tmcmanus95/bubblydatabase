@@ -3,7 +3,7 @@
 _Status: **Approved by Thomas (2026-10-21).** **Phase 0 complete** (released to `main` in #173). Phase 1 started._
 _Sources: `docs/SPEC.md`, `docs/AUDIT.md`. Last updated 2026-10-22._
 
-**Next up:** Thomas: review P1-0 and approve (or edit) the image tickets it proposes. Claude: P1-1 (helmet, CORS, body limits). PRs now go into `staging`; Thomas releases with a `staging` → `main` PR.
+**Next up:** Thomas: review P1-1 and check staging. Claude: P1-0a..d (typographic cards; removes the Amazon images), then P1-2. PRs now go into `staging`; Thomas releases with a `staging` → `main` PR.
 
 ## How to read this
 
@@ -206,20 +206,51 @@ running; staging refreshable and deployed; smoke tests green in CI.
 
 ## Phase 1 — Security baseline
 
-#### P1-0 🤖 Image audit — 30m — DB: staging-read — in review
+#### P1-0 🤖 Image audit — 30m — DB: staging-read — done (PR #174)
 
 Report: `docs/IMAGE_AUDIT.md`; script: `server/scripts/imageAudit.js` (read-only, never fetches images)
 - [x] All 442 products hotlink third-party images from 74 hosts (Amazon 70, brand sites 211, retailers 109, CDNs 40, Google thumbnails 6, blogs 6); all 43 brand logos are hotlinked; 8 client render sites listed
 - [x] Classified: own 0 · user 0 · third-party hotlink 442; the site's own decorative assets have unknown provenance
 - [x] Proposal: brand color tokens → `<ProductCard>` → swap all product images (removes the Amazon images) → typographic brand pages; keep `imageURL` data; optional later rename only with approval
-- [ ] Thomas approves the proposed tickets so they can be added here as P1-0a..e
+- [x] Thomas approved the proposed tickets (2026-10-22): P1-0a..e below
 
-#### P1-1 🤖 helmet, explicit CORS, body limits — 30m
+#### P1-0a 🤖 Brand color tokens — 45m
 
-- [ ] `helmet` with a CSP that allows the current external image hosts (or `img-src https:`) and Formspree
-- [ ] `cors` restricted to the site origin(s) via env
-- [ ] `express.json({ limit: "100kb" })`; unused `urlencoded` removed
-- [ ] Smoke tests still green; site loads on staging with no CSP console errors
+- [ ] One OKLCH color per brand (light + dark values) in the theme file, next to the flavor colors
+- [ ] Brands without a hand-picked color get a deterministic fallback from a small palette (stable per brand name)
+- [ ] Text on every brand color meets WCAG AA in both modes (checked by a test)
+
+#### P1-0b 🤖 `<ProductCard>` typographic component — 60m
+
+- [ ] Brand color + flavor name + brand name + score as the anchor; our own flavor-category icon; no photo
+- [ ] Real text (no text-in-image), visible focus, keyboard reachable, AA contrast
+- [ ] Respects `prefers-reduced-motion`; playful, not generic (CLAUDE.md aesthetic)
+
+#### P1-0c 🤖 Swap product images for cards — 45m
+
+- [ ] All 6 product render sites use `<ProductCard>` (or its compact variant); `imageURL` no longer requested by client queries
+- [ ] **Removes all 70 Amazon images** and every other third-party product photo from the site
+- [ ] `imageURL` stays in the database and schema (hard rule 3)
+- [ ] CSP `img-src` tightened to `'self' data:` once P1-0d also ships
+
+#### P1-0d 🤖 Brand pages without logos — 30m
+
+- [ ] Brand page and All Brands grid are typographic (brand name in its color); official site stays as a text link
+- [ ] `link` removed from `brandLogos.json` (keep `site`); dead `Header.jsx` deleted
+
+#### P1-0e 🧑 Own asset provenance — 15m
+
+- [ ] Thomas confirms where `bubblesicon.png` and the bubble textures (`whitebubbles.jpg`, `blackbubbles.jpg`) came from; if the license is unknown, they're replaced in Phase 4
+- [ ] Remove unused `bubblesbackground.webp` and `vite.svg`
+
+#### P1-1 🤖 helmet, explicit CORS, body limits — 30m — in review
+
+- [x] `helmet` on every response; the CSP is an HTTP header in production (`server/app.js`) allowing exactly what the site uses: own scripts, inline styles (MUI) + Google Fonts, Formspree, `img-src https:` (until P1-0c/d)
+- [x] Removed the old `<meta>` CSP from `client/index.html`. It was **blocking the Lilita One font on the live site** (and Formspree), confirmed in headless Chrome
+- [x] `cors` on `/graphql` only allows origins listed in `CORS_ORIGINS` (empty = same-origin site only)
+- [x] `express.json({ limit: "100kb" })` on `/graphql`; `urlencoded` removed
+- [x] 6 new tests; all 56 green. Built site served in production mode: 0 CSP violations on home + contact (headless Chrome)
+- [ ] Thomas: after merge, open staging; the heading font should now be Lilita One; submit the contact form once
 
 #### P1-2 🤖 Rate limiting — 45m
 
