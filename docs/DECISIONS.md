@@ -1,0 +1,79 @@
+# Decisions
+
+Newest first. Format: date · decision · why · who decided.
+
+## 2026-10-21 · Docs live in the repo, except AUDIT.md
+- `docs/` (CLAUDE.md, SPEC, ROADMAP, DECISIONS, HANDOFF) is committed to `main`. `docs/AUDIT.md` stays
+  local and gitignored, because it details security gaps that remain open until the Phase 1 security
+  tickets ship. Revisit after P1-1..P1-9.
+- `engines.node` gets pinned to the major Render uses today, so the next deploy doesn't change prod's Node.
+- Decided by: Thomas.
+
+## 2026-10-21 · Product visuals are text/color cards; no scraped images or logos
+
+- Product cards are generated from data (brand color, names, score, own icons). No downloaded or
+  hotlinked third-party photos; no brand logos.
+- Amazon images only via the official API inside the "Where to buy" block, after API access is granted
+  (Amazon typically requires qualifying sales first). Until then the block is text-only.
+- Possible later: user photo uploads (requires ToS license grant + registered DMCA agent) or own photos.
+- Why: copyright/takedown risk on rehosted images; Amazon Associates terms forbid rehosting its images;
+  logos are trademarks and imply endorsement. Text cards are also more consistent.
+- Decided by: Thomas.
+
+## 2026-10-21 · Admins are listed in the `ADMIN_USER_IDS` env var (for now)
+
+- `removeUser` stays (Thomas uses it as admin) but is admin-only. The `users` query is admin-only too.
+- Admin = the logged-in user's `_id` appears in the comma-separated `ADMIN_USER_IDS` env var. If the
+  var is unset, nobody is an admin (fails safe).
+- Why: no schema change or migration is needed for an emergency hotfix. P1-7 adds a proper `role` field,
+  which can replace this.
+- Decided by: Thomas (keep removeUser, admin-only); Claude (mechanism).
+
+## 2026-10-21 · Security hotfix scope (P0-0)
+
+- Writes use the logged-in user from the JWT, never a `userId` sent by the client. Edits/removals are
+  owner-or-admin.
+- Included beyond the original ticket, because each is a one-line guard that protects data integrity:
+  - ratings limited to 0.5–5 in half steps
+  - new duplicate ratings rejected (one per user per product)
+  - email verification enforced server-side for reviews (the client already required it; SPEC keeps it for reviews)
+- Not included (waits for Phase 1): rate limiting, cookie sessions, hashing reset tokens at rest,
+  removing tokens from the query string/body.
+- Decided by: Thomas (hotfix first); Claude (scope).
+
+## 2026-10-21 · Existing duplicate ratings: keep the newest, archive the rest
+
+- In the P1-13 migration, before adding the unique `(user, bubblyWater)` index: keep the most recent
+  rating per pair; move the older ones to a `ratings_duplicates_archive` collection; repoint reviews
+  and product/user ref arrays to the kept rating; recompute averages. `down` restores everything.
+- Why: the newest rating is the user's current opinion (the UI shows one rating per user anyway).
+  Archiving instead of deleting respects hard rule 3 and keeps the migration reversible.
+- Going forward, the hotfix rejects new duplicates; P1-15 makes `addRating` an upsert.
+- Decided by: Claude (delegated by Thomas).
+
+## 2026-10-21 · Scheduled jobs: GitHub Actions for read-only work, Render Cron for prod writes
+
+- Backups (read-only prod user, encrypted archive) → GitHub Actions → R2.
+- Nightly aggregate/top-review recompute (P1-16) and the weekly link health check (P15-6) write to the
+  prod DB → Render Cron Jobs, sharing the web service's env group.
+- Why: the repo is public, so a read-write prod credential shouldn't live in GitHub secrets. Render
+  already holds `MONGODB_URI`. The cost is about $1/mo per cron job. Running in-process (node-cron in
+  the web server) was rejected: it duplicates runs across instances and is skipped whenever the
+  service is down or restarting.
+- Decided by: Thomas (backups → GH Actions/R2); Claude (recompute/link check, delegated).
+
+## 2026-10-21 · Production deploys `main`; staging is a Render Starter service on `staging`
+
+- Hotfixes branch from `origin/main`. Feature work goes through `staging` → `main`.
+- Decided by: Thomas.
+
+## 2026-10-21 · Uncommitted `new-aesthetic` work is left alone
+
+- It isn't merged or committed by Claude. It may serve as light inspiration for Phase 4, but
+  Aura Bora remains the design true north.
+- Decided by: Thomas.
+
+## 2026-10-21 · Production Atlas credentials rotated
+
+- The password exposed in public git history (commit `1f7c729`) was rotated.
+- Decided/done by: Thomas.
