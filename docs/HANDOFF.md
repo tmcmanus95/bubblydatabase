@@ -110,5 +110,10 @@ _Last session: 2026-10-21._
 - The lockfile picked up in-range updates of a few transitive production packages (bson, form-data,
   follow-redirects, saslprep, …) while adding the test dependencies. Listed in the PR.
 
+## P0-10..12 (smoke tests): PR open (into `staging`)
+- `server/tests/{auth,catalog,ratings}.test.js` + `fixtures.js`: 22 tests over the real GraphQL API on
+  an in-memory database. `npm test` now runs 50 tests.
+- Tests only; no app code changed, so there's nothing to check on the staging site.
+
 ## Next Claude ticket
-P0-10..12 (smoke tests: signup/login, search/product page, rate/review), then P0-13 (CI).
+P0-13 (CI: GitHub Actions runs `npm test` + client build on PRs and pushes).

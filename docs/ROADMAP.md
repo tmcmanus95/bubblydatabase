@@ -1,9 +1,9 @@
 # BubblyDB — Roadmap
 
-_Status: **Approved by Thomas (2026-10-21).** P0-0 through P0-9 done; next: smoke tests + CI._
+_Status: **Approved by Thomas (2026-10-21).** P0-0 through P0-9 done; P0-10..12 in review; next: P0-13 (CI)._
 _Sources: `docs/SPEC.md`, `docs/AUDIT.md`. Last updated 2026-10-22._
 
-**Next up:** Claude: P0-10..12 (smoke tests), then P0-13 (CI). PRs now go into `staging`; Thomas releases with a `staging` → `main` PR.
+**Next up:** Thomas: review the smoke-test PR. Claude: P0-13 (CI). PRs now go into `staging`; Thomas releases with a `staging` → `main` PR.
 
 ## How to read this
 
@@ -168,23 +168,29 @@ Files: `scripts/restore.sh`, `server/scripts/verifyCounts.js`, `scripts/test/res
 - [x] 3 health tests pass; tests use the local `mongod` when installed (no download), never Atlas. Without a local `mongod`, the binary is downloaded once from MongoDB and cached
 - [ ] Thomas tries `npm run dev` once (Claude couldn't: Thomas's dev servers were using ports 3000/5001)
 
-### P0-10 🤖 Smoke tests: signup + login — 45m — DB: none (in-memory) — todo
+### P0-10 🤖 Smoke tests: signup + login — 45m — DB: none (in-memory) — in review
 
-- [ ] Signup creates a user and returns a token; the email transport is called with a verification URL
-- [ ] Login succeeds with the correct password and fails with a wrong one
-- [ ] Regression: anonymous `users` and sensitive fields are unavailable (P0-0b)
+`server/tests/auth.test.js` (9 tests)
+- [x] Signup creates an unverified user with a hashed password, returns a token, and the outbox gets a verification URL; duplicate username/email rejected
+- [x] Login succeeds with the correct password and fails with a wrong one or an unknown email; the token works for `meId`
+- [x] Email verification and password reset flows (token must match, reset expires and is single-use, no account enumeration)
+- [x] Regression: `users` admin-only; sensitive fields not in the schema; email visible only to its owner (P0-0b)
 
-### P0-11 🤖 Smoke tests: search + product page — 45m — DB: none (in-memory) — todo
+### P0-11 🤖 Smoke tests: search + product page — 45m — DB: none (in-memory) — in review
 
-- [ ] Fixtures: a few products, users, ratings, reviews
-- [ ] `searchGeneralBubblyWater`, `flavors`, `brand` return the expected products
-- [ ] `bubblyWater(id)` returns ratings/reviews with no sensitive user fields
+`server/tests/catalog.test.js` (6 tests), fixtures in `server/tests/fixtures.js`
+- [x] Fixtures: products, users, ratings, reviews
+- [x] `searchGeneralBubblyWater` (text index), `searchVagueProductName`, `flavors`, `brand`, caffeine/CBD lists return the expected products
+- [x] Home top list ranks by average and only includes products with more than 3 ratings
+- [x] `bubblyWater(id)` returns ratings/reviews with public user info only; unknown id → `null`
 
-### P0-12 🤖 Smoke tests: rate + review — 45m — DB: none (in-memory) — todo
+### P0-12 🤖 Smoke tests: rate + review — 45m — DB: none (in-memory) — in review
 
-- [ ] An authenticated rate updates `averageRating`; an edit updates it again
-- [ ] Review create/edit works for the owner
-- [ ] Regression: anonymous or other-user writes are rejected (P0-0c)
+`server/tests/ratings.test.js` (7 tests): the P0-0 hotfix checks, now permanent
+- [x] An authenticated rate updates `averageRating`; an edit updates it again (and ignores a bogus `bubblyWaterId`); one rating per user; half steps 0.5–5 only
+- [x] Review create/edit/remove works for the owner; verified users only; linked to the reviewer's rating
+- [x] Regression: anonymous or other-user writes rejected; client `userId` ignored; likes; profile color; `removeUser` admin-only (P0-0c)
+- [x] Checked that the tests catch regressions: removing the `editRating` ownership guard makes the suite fail
 
 ### P0-13 🤖 CI — 30m — DB: none — todo
 
