@@ -15,13 +15,23 @@
   }
 }
 
-/* Typographic product card (components/ProductCard.jsx): a hand-cut sticker in the brand's color */
+/* Typographic product card (components/ProductCard.jsx): a hand-cut sticker in the brand's color.
+   Every element has a fixed grid slot so all cards line up, whatever their content. */
 .product-card {
   position: relative;
+  overflow: hidden;
   display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 0.25rem 0.75rem;
-  padding: 1rem 1.1rem 1.1rem;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    "brand icon"
+    "name  name"
+    "flav  flav"
+    ".     ."
+    "score tags";
+  grid-template-rows: auto calc(2 * 1.6rem * 1.1) auto 1fr auto;
+  column-gap: 0.75rem;
+  height: 15.5rem;
+  padding: 1.35rem 1.1rem 1rem;
   border: 2px solid var(--brand-ink);
   border-radius: 26px 18px 24px 20px / 20px 24px 18px 26px;
   box-shadow: 4px 4px 0 var(--brand-ink);
@@ -60,21 +70,50 @@
     transform: none;
   }
 }
-.product-card__icon {
-  width: 2.5rem;
-  height: 2.5rem;
-  grid-row: span 2;
+/* Flavor colors: a stripe split per flavor along the top edge (left edge on compact cards) */
+.product-card__stripe {
+  position: absolute;
+  inset: 0 0 auto 0;
+  display: flex;
+  height: 0.55rem;
+  border-bottom: 2px solid currentColor;
 }
-.product-card__names {
+.product-card__stripe > span {
+  flex: 1;
+}
+.product-card__stripe > span + span {
+  border-left: 2px solid currentColor;
+}
+.product-card__brand {
+  grid-area: brand;
+  align-self: center;
   min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
-.product-card__flavor {
+.product-card__icon {
+  grid-area: icon;
+  width: 2.2rem;
+  height: 2.2rem;
+}
+.product-card__name {
+  grid-area: name;
+  align-self: start;
   font-family: "Lilita One", sans-serif;
   font-size: 1.6rem;
   line-height: 1.1;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
   overflow-wrap: anywhere;
 }
-/* The flavor link stretches over the whole card so the card is one click/focus target */
+/* The name link stretches over the whole card so the card is one click/focus target */
 .product-card__link::after {
   content: "";
   position: absolute;
@@ -84,30 +123,37 @@
 .product-card__link:focus-visible {
   outline: none;
 }
-.product-card__brand {
-  font-weight: 600;
-  opacity: 0.85;
-}
-.product-card__tags {
+.product-card__flavors {
+  grid-area: flav;
   display: flex;
+  flex-wrap: nowrap;
   gap: 0.35rem;
-  margin-top: 0.35rem;
+  overflow: hidden;
+  margin-top: 0.4rem;
 }
-.product-card__tag {
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  padding: 0.05rem 0.5rem;
+.product-card__flavor {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  flex-shrink: 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  padding: 0.05rem 0.5rem 0.05rem 0.3rem;
   border: 1.5px solid currentColor;
   border-radius: 999px;
 }
+.product-card__dot {
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 999px;
+  border: 1.5px solid currentColor;
+}
 .product-card__score {
-  grid-column: 1 / -1;
+  grid-area: score;
   display: flex;
   align-items: baseline;
   gap: 0.4rem;
-  margin-top: 0.5rem;
 }
 .product-card__score-value {
   font-family: "Lilita One", sans-serif;
@@ -115,35 +161,70 @@
   line-height: 1;
 }
 .product-card__score-detail {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 600;
 }
-/* Compact: one line for search results, profiles and recent activity */
+.product-card__tags {
+  grid-area: tags;
+  align-self: end;
+  display: flex;
+  gap: 0.35rem;
+}
+.product-card__tag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.05rem 0.5rem;
+  border: 1.5px solid currentColor;
+  border-radius: 999px;
+}
+/* Compact: icon · brand + name · score, one fixed height */
 .product-card--compact {
   grid-template-columns: auto 1fr auto;
+  grid-template-areas:
+    "icon brand score"
+    "icon name  score";
+  grid-template-rows: auto auto;
   align-items: center;
-  padding: 0.6rem 0.9rem;
+  height: 4.5rem;
+  padding: 0.5rem 0.9rem 0.5rem 1.3rem;
   box-shadow: 3px 3px 0 var(--brand-ink);
+}
+.product-card--compact .product-card__stripe {
+  inset: 0 auto 0 0;
+  flex-direction: column;
+  width: 0.5rem;
+  height: auto;
+  border-bottom: 0;
+  border-right: 2px solid currentColor;
+}
+.product-card--compact .product-card__stripe > span + span {
+  border-left: 0;
+  border-top: 2px solid currentColor;
 }
 .product-card--compact .product-card__icon {
   width: 1.9rem;
   height: 1.9rem;
-  grid-row: auto;
 }
-.product-card--compact .product-card__flavor {
-  font-size: 1.2rem;
+.product-card--compact .product-card__brand {
+  align-self: end;
+  font-size: 0.7rem;
+}
+.product-card--compact .product-card__name {
+  align-self: start;
+  font-size: 1.15rem;
+  -webkit-line-clamp: 1;
 }
 .product-card--compact .product-card__score {
-  grid-column: auto;
   flex-direction: column;
   align-items: flex-end;
   gap: 0;
-  margin-top: 0;
   text-align: right;
 }
 .product-card--compact .product-card__score-value {
   font-size: 1.6rem;
 }
 .product-card--compact .product-card__score-detail {
-  font-size: 0.75rem;
+  font-size: 0.7rem;
 }

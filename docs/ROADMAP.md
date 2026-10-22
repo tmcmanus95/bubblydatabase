@@ -3,7 +3,7 @@
 _Status: **Approved by Thomas (2026-10-21).** **Phase 0 complete** (released to `main` in #173). Phase 1 started._
 _Sources: `docs/SPEC.md`, `docs/AUDIT.md`. Last updated 2026-10-22._
 
-**Next up:** Thomas: review P1-0b and look at `/working/cards` on staging. Claude: P1-0c (swap product images for cards; removes the Amazon images). PRs now go into `staging`; Thomas releases with a `staging` → `main` PR.
+**Next up:** Thomas: review the card layout follow-up on `/working/cards`. Claude: P1-0c (swap product images for cards; removes the Amazon images). PRs now go into `staging`; Thomas releases with a `staging` → `main` PR.
 
 ## How to read this
 
@@ -221,13 +221,14 @@ Report: `docs/IMAGE_AUDIT.md`; script: `server/scripts/imageAudit.js` (read-only
 - [x] Test: every color in sRGB gamut and ≥ 4.5:1 text contrast in both modes (actual 7.5–11:1); every brand with a page has an explicit color (`client/src/theme/brandColors.test.js`, in `npm test`)
 - [x] Swatches checked visually in light + dark (lemon brightened so it reads yellow, not khaki)
 
-#### P1-0b 🤖 `<ProductCard>` typographic component — 60m — in review
+#### P1-0b 🤖 `<ProductCard>` typographic component — 60m — done (PR #178) + layout follow-up in review
 
 - [x] `client/src/components/ProductCard.jsx` (`full` and `compact` variants): brand color surface, flavor name in Lilita One, brand name, caffeine/CBD tags, score as the anchor ("No ratings yet" otherwise); no photo
 - [x] `FlavorIcon.jsx`: 11 placeholder category icons drawn in code (citrus, berry, stone, tropical, orchard, melon, botanical, spice, brewed, plain, bubbles), until the Phase 4 illustrated set exists. `flavorCategories.js` maps all 87 flavors (tested)
 - [x] Real text; the whole card is one link (stretched flavor link) with a visible focus ring; AA contrast from P1-0a tokens; "out of 5" for screen readers
 - [x] Hand-cut sticker look (wobbly radius, solid offset shadow, slight tilt on hover/focus); tilt off with `prefers-reduced-motion`
 - [x] Preview page `/working/cards` (not linked) with real data; checked in light and dark mode via headless Chrome screenshots
+- [x] Follow-up from Thomas's review: every element in a fixed slot (brand always top-left, icon top-right, name in a 2-line slot, flavor chips, score bottom-left, tags bottom-right; same card height), and **all flavor colors visible**: a split stripe along the top edge (left edge on compact) plus color-dot chips (up to 3, then "+N"). Colors come from `client/src/theme/flavorColors.js`, copied from App.css and kept in sync by a test (OKLCH conversion in Phase 4). Pineapple and peach icons redrawn so every category is distinct
 
 #### P1-0c 🤖 Swap product images for cards — 45m
 
