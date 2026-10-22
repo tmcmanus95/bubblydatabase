@@ -3,7 +3,7 @@
 _Status: **Approved by Thomas (2026-10-21).** **Phase 0 complete** (released to `main` in #173). Phase 1 started._
 _Sources: `docs/SPEC.md`, `docs/AUDIT.md`. Last updated 2026-10-22._
 
-**Next up:** Thomas: review P1-1 and check staging. Claude: P1-0a..d (typographic cards; removes the Amazon images), then P1-2. PRs now go into `staging`; Thomas releases with a `staging` → `main` PR.
+**Next up:** Thomas: review P1-0a; release `staging` → `main` (ships the P1-1 font/contact fix to prod). Claude: P1-0b (`<ProductCard>`). PRs now go into `staging`; Thomas releases with a `staging` → `main` PR.
 
 ## How to read this
 
@@ -214,11 +214,12 @@ Report: `docs/IMAGE_AUDIT.md`; script: `server/scripts/imageAudit.js` (read-only
 - [x] Proposal: brand color tokens → `<ProductCard>` → swap all product images (removes the Amazon images) → typographic brand pages; keep `imageURL` data; optional later rename only with approval
 - [x] Thomas approved the proposed tickets (2026-10-22): P1-0a..e below
 
-#### P1-0a 🤖 Brand color tokens — 45m
+#### P1-0a 🤖 Brand color tokens — 45m — in review
 
-- [ ] One OKLCH color per brand (light + dark values) in the theme file, next to the flavor colors
-- [ ] Brands without a hand-picked color get a deterministic fallback from a small palette (stable per brand name)
-- [ ] Text on every brand color meets WCAG AA in both modes (checked by a test)
+- [x] `client/src/theme/brandColors.js`: a 12-color OKLCH palette (light bg/ink + dark bg/ink) and an explicit color for all 44 current brands; alphabetical neighbors get well-separated hues. Flavor colors are still hex in `App.css` (move into the theme in Phase 4)
+- [x] Brands not listed get a stable automatic color (FNV hash of the name); `brandStyle()` + `.brand-surface` (index.css) apply it, following the OS light/dark setting like Tailwind
+- [x] Test: every color in sRGB gamut and ≥ 4.5:1 text contrast in both modes (actual 7.5–11:1); every brand with a page has an explicit color (`client/src/theme/brandColors.test.js`, in `npm test`)
+- [x] Swatches checked visually in light + dark (lemon brightened so it reads yellow, not khaki)
 
 #### P1-0b 🤖 `<ProductCard>` typographic component — 60m
 
@@ -243,14 +244,14 @@ Report: `docs/IMAGE_AUDIT.md`; script: `server/scripts/imageAudit.js` (read-only
 - [ ] Thomas confirms where `bubblesicon.png` and the bubble textures (`whitebubbles.jpg`, `blackbubbles.jpg`) came from; if the license is unknown, they're replaced in Phase 4
 - [ ] Remove unused `bubblesbackground.webp` and `vite.svg`
 
-#### P1-1 🤖 helmet, explicit CORS, body limits — 30m — in review
+#### P1-1 🤖 helmet, explicit CORS, body limits — 30m — done (PR #175)
 
 - [x] `helmet` on every response; the CSP is an HTTP header in production (`server/app.js`) allowing exactly what the site uses: own scripts, inline styles (MUI) + Google Fonts, Formspree, `img-src https:` (until P1-0c/d)
 - [x] Removed the old `<meta>` CSP from `client/index.html`. It was **blocking the Lilita One font on the live site** (and Formspree), confirmed in headless Chrome
 - [x] `cors` on `/graphql` only allows origins listed in `CORS_ORIGINS` (empty = same-origin site only)
 - [x] `express.json({ limit: "100kb" })` on `/graphql`; `urlencoded` removed
 - [x] 6 new tests; all 56 green. Built site served in production mode: 0 CSP violations on home + contact (headless Chrome)
-- [ ] Thomas: after merge, open staging; the heading font should now be Lilita One; submit the contact form once
+- [x] Thomas checked staging (2026-10-22): Lilita One renders; the contact form sends. Prod gets it with the next release
 
 #### P1-2 🤖 Rate limiting — 45m
 
