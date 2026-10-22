@@ -115,15 +115,24 @@ _Last session: 2026-10-21._
   an in-memory database. `npm test` now runs 50 tests.
 - Tests only; no app code changed, so there's nothing to check on the staging site.
 
-## P0-13 (CI): PR open (into `staging`)
+## P0-13 (CI): done (PR #172)
 - `.github/workflows/ci.yml` runs all 50 tests (MongoDB 8.0 on the runner, nothing skipped) and the
   client build on every PR and on pushes to `staging`/`main`. No secrets.
 - Thomas (optional): Settings → Branches/Rules → require the `test` check on `main` and `staging`.
 
 ## Phase 0 wrap-up
 - All Phase 0 exit criteria are met once P0-13 merges.
-- **Release pending:** `main` (prod) is at `9ff0f1f`. `staging` has #170 (docs), #171 (tests), and CI.
-  None of them change app code. Release with a PR `staging` → `main` whenever convenient.
+- Released to `main` in #173 (2026-10-22). CI runs on every PR.
+- Thomas created a "Tests" ruleset requiring the `test` check. As of 2026-10-22 it was **Disabled** and
+  targeted only `main`: set it to Active and add `staging`.
+
+## P1-0 (image audit): PR open (into `staging`)
+- `docs/IMAGE_AUDIT.md`: every product image (442) and brand logo (43) is a third-party hotlink; 70
+  are Amazon. Proposes 5 tickets to switch to typographic cards without deleting data.
+- Waiting on Thomas: approve or edit the proposed tickets; confirm where `bubblesicon.png` and the
+  bubble textures came from.
+- The typographic card ticket Thomas mentioned adding on 2026-10-21 never made it into ROADMAP.md;
+  proposal steps 1–4 can replace it.
 
 ## Next Claude ticket
-P1-0 (image audit, read-only on staging), then P1-1 (helmet, CORS, body limits).
+P1-1 (helmet, CORS, body limits). CSP uses `img-src 'self' data: https:` until the image swap ships.
