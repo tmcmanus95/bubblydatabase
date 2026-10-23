@@ -95,7 +95,9 @@ test("login: repeated wrong passwords get TOO_MANY_ATTEMPTS, same for unknown em
     const blocked = await t.gql(LOGIN, { e: email, p: "wrong-guess" });
     assert.strictEqual(code(blocked), "TOO_MANY_ATTEMPTS", email);
     assert.match(blocked.errors[0].message, /^Too many login attempts\. Try again in/);
+    if (email === "real@example.test") {
+      // Even the right password waits during the backoff (checked at once: the wait is only 1s)
+      assert.strictEqual(code(await t.gql(LOGIN, { e: email, p: "password123" })), "TOO_MANY_ATTEMPTS");
+    }
   }
-  // Even the right password waits during the backoff
-  assert.strictEqual(code(await t.gql(LOGIN, { e: "real@example.test", p: "password123" })), "TOO_MANY_ATTEMPTS");
 });

@@ -12,7 +12,7 @@ const crypto = require("crypto");
 const bcrypt = require("bcrypt");
 
 // A hash of nothing in particular, compared against when no account matches (same cost as real hashes)
-const NO_USER_HASH = bcrypt.hashSync(crypto.randomBytes(16).toString("hex"), 10);
+const NO_USER_HASH = bcrypt.hashSync(crypto.randomBytes(16).toString("hex"), User.PASSWORD_COST);
 const { triggerAsyncId } = require("async_hooks");
 const saltRounds = 10;
 
@@ -684,6 +684,7 @@ const resolvers = {
       }
 
       loginThrottle.succeed(email, ip);
+      await user.upgradePasswordHash(password);
       const token = signToken(user);
       return { token, user };
     },
