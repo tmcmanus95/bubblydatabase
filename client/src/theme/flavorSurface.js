@@ -112,20 +112,33 @@ const goldenYellow = (color) => {
   return formatOklch({ l, c: Math.min(c * 1.15, maxChroma(l, 85) * 0.95), h: 85 });
 };
 
+const STAR_MAX_CHROMA = 0.27;
+
 // { light, dark } star fill: the pill tone in light mode unless that's too close to the card (yellows), and
 // a rich deep tone in dark mode, where cards are brighter
 export function flavorStarColor(flavor) {
   const source = baseColor(flavor);
   const cache = cacheFor("star");
   if (!cache.has(source)) {
-    const { pill, star } = getColorSettings();
+    const { pill, star, palette } = getColorSettings();
     const color = cssColorToOklch(source);
     const pillL = parseOklch(flavorAccent(flavor).light).l;
     const cardL = parseOklch(flavorSurface(flavor).light).l;
-    cache.set(source, {
-      light: goldenYellow(tone(color, Math.min(pillL, cardL - star.lightModeGapBelowCard), pill.maxChroma)),
-      dark: tone(color, star.darkLightness, pill.maxChroma),
-    });
+    if (palette === "aura") {
+      cache.set(source, {
+        light: tone(color, Math.min(pillL, cardL - star.lightModeGapBelowCard), pill.maxChroma),
+        dark: tone(color, star.darkLightness, pill.maxChroma),
+      });
+    } else {
+      // Vivid palettes: the most colorful tone a little darker than the card (darkening at a fixed amount
+      // turned yellows and oranges brown). White-topped cards look the same on a dark page, so both modes
+      // match there.
+      const vivid = goldenYellow(
+        pillTone({ ...color, c: STAR_MAX_CHROMA }, { minLightness: cardL - 0.32, maxLightness: cardL - 0.18 }, STAR_MAX_CHROMA, "lightest")
+      );
+      const dark = palette === "vibrant" ? tone(color, star.darkLightness, STAR_MAX_CHROMA) : vivid;
+      cache.set(source, { light: vivid, dark });
+    }
   }
   return cache.get(source);
 }
@@ -236,7 +249,13 @@ export function flavorBubbles(flavors, mode) {
   if (palette === "splash") {
     const { accents } = splashColors(flavors);
     const bg = BUBBLE_TILES.map((t, i) => bubbleTile(t, accents.slice(i % accents.length).concat(accents.slice(0, i % accents.length)))).join(", ");
-    return { ...pair("bubbles", { light: bg, dark: bg }, mode), "--bubbles-top": `${SPLASH_TOP / 2 + 8}%` };
+    // Compact cards are too short for the white top: they're all water (index.css)
+    return {
+      ...pair("bubbles", { light: bg, dark: bg }, mode),
+      "--bubbles-top": `${SPLASH_TOP / 2 + 8}%`,
+      "--surface-fill": splashColors(flavors).fill,
+      "--compact-bubbles-top": "0%",
+    };
   }
   if (palette === "white") {
     const colors = whiteLineColors(flavors);

@@ -10,7 +10,7 @@ export const DEFAULT_COLOR_SETTINGS = {
   // "vibrant" (each flavor at its own natural, brighter lightness: lemons stay lemon-yellow) or "white"
   // (white card; only the wave lines and bubbles carry the flavor colors) or "splash" (white on top, the
   // first flavor's vivid color filling below the wave; edge line and bubbles in the other flavor).
-  palette: "aura",
+  palette: "splash", // picked by Thomas, 2026-10-23
   // The card background (one band per flavor) for the "aura" palette
   card: {
     light: { lightness: 0.86, maxChroma: 0.17 },

@@ -69,6 +69,18 @@
     background: var(--bubbles-dark);
   }
 }
+/* Compact cards in the splash palette: the whole card is water (no white top), bubbles throughout */
+.product-card--compact.flavor-surface {
+  background: var(--surface-fill, var(--surface-bg));
+}
+@media (prefers-color-scheme: dark) {
+  .product-card--compact.flavor-surface {
+    background: var(--surface-fill, var(--surface-bg-dark));
+  }
+}
+.product-card--compact.flavor-surface--waves::before {
+  top: var(--compact-bubbles-top, var(--bubbles-top));
+}
 .flavor-surface--waves:hover,
 .flavor-surface--waves:focus-within,
 .flavor-surface--waves:hover::before,
