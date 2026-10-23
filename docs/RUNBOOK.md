@@ -128,3 +128,27 @@ and recreate `backup-ro`.
 | Private key leaked | Same as lost (new keypair + manual run). Then delete old backups from R2, since whoever has the key can read them |
 | R2 token leaked | R2 → Manage API tokens: create a new one (same scope), update `R2_ACCESS_KEY` / `R2_SECRET_ACCESS_KEY`, delete the old token |
 | `backup-ro` password leaked | Atlas → Database Access → `backup-ro` → Edit Password, then update `BACKUP_MONGODB_URI` |
+
+## Database migrations
+
+Every schema change ships as a migration in `migrations/` (CLAUDE.md rule 2): a file named
+`<YYYYMMDDHHMM>-<what-it-does>.js` exporting `description`, `up(db)` and `down(db)`. Applied ones are
+recorded in the `migrations_changelog` collection.
+
+From the repo root, with `server/.env` pointing at staging:
+
+```
+npm run migrate:status   # [x] applied, [ ] pending
+npm run migrate:up       # applies every pending migration, in order
+npm run migrate:down     # reverts the most recent one
+```
+
+These refuse any database except `bubblydatabase3_staging` or a local one. **Production (Thomas only):**
+take a fresh backup first (the daily backup workflow can be run on demand), confirm the same migration
+went up *and* down cleanly on staging, then run with the production URI and the override flag:
+
+```
+MONGODB_URI="<production uri>" node server/scripts/migrate.js up --i-am-thomas-on-prod
+```
+
+If something goes wrong, `down` with the same flag reverts the last migration; the backup is the fallback.
