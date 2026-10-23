@@ -3,7 +3,7 @@ import FitText from "./FitText";
 import Stars from "./Stars";
 import { brandFontStyle } from "../theme/brandFonts";
 import { getColorSettings } from "../theme/colorSettings";
-import { accentStyle, brandStyle, flavorStyle, popStyle, starStyle } from "../theme/flavorSurface";
+import { accentStyle, brandStyle, flavorBubbles, flavorStyle, popStyle, starStyle } from "../theme/flavorSurface";
 import { formatBrands } from "../../utils/formatBrands";
 
 // Typographic product card: the flavors' colors fill the card (in the pattern from colorSettings.js),
@@ -55,7 +55,7 @@ export default function ProductCard({
   return (
     <article
       className={`product-card product-card--${variant} flavor-surface${waves}${hasTags ? " product-card--has-tags" : ""}`}
-      style={{ ...flavorStyle(flavors, mode), ...popStyle(flavors[0], mode), ...brandStyle(brandName) }}
+      style={{ ...flavorStyle(flavors, mode), ...flavorBubbles(flavors, mode), ...popStyle(flavors[0], mode), ...brandStyle(brandName) }}
     >
       <FitText
         as="p"

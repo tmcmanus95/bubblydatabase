@@ -169,8 +169,8 @@ _Last session: 2026-10-21._
 - P1-21 decided: tap stars directly on cards (with scroll-safe taps, stars above the link, undo toast).
 - Flavor icons removed (#184). Brand border approved (Thomas picked "frame" over "tab"); PR open with the
   mobile overflow/pill fix and 5 background patterns; Thomas picked **waves** as the default (2026-10-23).
-- Waves merged (#185). Wave motion PR open: hover/focus drift + tiny bubbles in the neighbor flavor's
-  color (`flavorBackground` waves case + `.flavor-surface--waves` in `index.css`); respects reduce motion.
+- Waves merged (#185). Wave motion PR #186: hover/focus slosh + rising tiny bubbles in the bottom region
+  (`flavorBubbles` in `flavorSurface.js`, drawn by `.flavor-surface--waves::before` in `index.css`); respects reduce motion.
 - Mobile screenshots: headless Chrome can't make <500px windows, and iframes are blocked by our own CSP
   (frame-ancestors 'none'); use real device emulation (puppeteer-core) for phone checks.
 

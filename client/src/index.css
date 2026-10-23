@@ -16,27 +16,68 @@
     background: var(--surface-bg-dark);
   }
 }
-/* Waves drift on hover/focus, like liquid sloshing. Each wave layer is drawn twice the card's width with
-   a repeating shape, so sliding it by whole card widths loops seamlessly; the second layer moves twice as
-   far (a little depth), and both bob a few pixels. Positions repeat for cards with more layers. */
+/* Waves slosh on hover/focus. Each wave layer is drawn twice the card's width with a repeating shape, so
+   sliding it by whole card widths loops seamlessly; the second layer moves twice as far (depth). The
+   sideways drift and the up-and-down bob run on separate clocks so the motion feels fluid, not linear.
+   Tiny bubbles (flavorBubbles) fill the bottom region, fade out before the wave and rise on hover.
+   Animations pause rather than stop, so leaving a card freezes it instead of snapping back. */
 @keyframes wave-drift {
-  0% {
-    background-position: 0% 0, 0% 0;
+  to {
+    background-position-x: 100%, 200%;
   }
-  50% {
-    background-position: 50% 3px, 100% -3px;
+}
+@keyframes wave-bob {
+  from {
+    background-position-y: 0px, 0px;
   }
-  100% {
-    background-position: 100% 0, 200% 0;
+  to {
+    background-position-y: 4px, -3px;
+  }
+}
+@keyframes bubbles-rise {
+  to {
+    background-position-y: -240px, -160px;
+  }
+}
+@keyframes bubbles-sway {
+  from {
+    background-position-x: -3px, 2px;
+  }
+  to {
+    background-position-x: 3px, -2px;
+  }
+}
+.flavor-surface--waves {
+  isolation: isolate;
+  animation: wave-drift 16s linear infinite, wave-bob 2.6s ease-in-out infinite alternate;
+  animation-play-state: paused;
+}
+.flavor-surface--waves::before {
+  content: "";
+  position: absolute;
+  inset: var(--bubbles-top) 0 0 0;
+  z-index: -1;
+  pointer-events: none;
+  background: var(--bubbles);
+  -webkit-mask-image: linear-gradient(transparent, #000 45%);
+  mask-image: linear-gradient(transparent, #000 45%);
+  animation: bubbles-rise 12s linear infinite, bubbles-sway 2.2s ease-in-out infinite alternate;
+  animation-play-state: paused;
+}
+@media (prefers-color-scheme: dark) {
+  .flavor-surface--waves::before {
+    background: var(--bubbles-dark);
   }
 }
 .flavor-surface--waves:hover,
-.flavor-surface--waves:focus-within {
-  animation: wave-drift 3.5s linear infinite;
+.flavor-surface--waves:focus-within,
+.flavor-surface--waves:hover::before,
+.flavor-surface--waves:focus-within::before {
+  animation-play-state: running;
 }
 @media (prefers-reduced-motion: reduce) {
-  .flavor-surface--waves:hover,
-  .flavor-surface--waves:focus-within {
+  .flavor-surface--waves,
+  .flavor-surface--waves::before {
     animation: none;
   }
 }
