@@ -6,9 +6,10 @@
 //   pill  (flavorAccent)    each hue at its natural vivid lightness within a range (yellows high, blues low,
 //                           so yellows never turn olive); dark mode searches above the deeper card.
 //   star  (flavorStarColor) always clearly darker than the card so filled stars read as filled.
-import { cssColorToOklch, formatOklch, maxChroma, parseOklch } from "./color.js";
+import { cssColorToOklch, formatOklch, maxChroma, oklchToHex, parseOklch } from "./color.js";
 import { flavorColor } from "./flavorColors.js";
 import { getColorSettings, colorSettingsVersion } from "./colorSettings.js";
+import { BRAND_COLORS, DEFAULT_BRAND_COLOR } from "./brandColors.js";
 
 const DARK_INK = "oklch(0.24 0.02 60)";
 export const INK = { light: DARK_INK, dark: DARK_INK };
@@ -123,7 +124,81 @@ export function flavorBands(flavors, mode) {
   return `linear-gradient(${getColorSettings().bandAngle}deg, ${stops.join(", ")})`;
 }
 
+// A lighter, softer tint of a card tone: texture for single-flavor waves/bubbles. Lighter keeps the ink
+// readable.
+const tint = (color) => {
+  const { l, c, h } = parseOklch(color);
+  return formatOklch({ l: Math.min(0.97, l + 0.06), c: c * 0.6, h });
+};
+
+// Bubble positions (% of the card) and radii (px): a loose cluster rising on the right
+const BUBBLES = [
+  { x: 88, y: 82, r: 34 },
+  { x: 70, y: 96, r: 18 },
+  { x: 95, y: 40, r: 16 },
+  { x: 78, y: 58, r: 10 },
+  { x: 60, y: 74, r: 8 },
+  { x: 84, y: 18, r: 7 },
+  { x: 8, y: 92, r: 12 },
+  { x: 40, y: 104, r: 22 },
+];
+
+// A wavy edge from x=0 to x=400 around height y (in a 400×200 box)
+const wave = (y) => `M0 ${y} C 70 ${y - 22}, 130 ${y + 22}, 200 ${y} S 330 ${y - 22}, 400 ${y} V200 H0 Z`;
+
+// The card background for a mode, in the pattern chosen in colorSettings.js. Every pattern only
+// rearranges the same card tones, so readability is the same in all of them.
+export function flavorBackground(flavors, mode) {
+  const list = flavors.length ? flavors : ["plain"];
+  const colors = list.map((f) => flavorSurface(f)[mode]);
+  const { pattern, bandAngle } = getColorSettings();
+  switch (pattern) {
+    case "gradient":
+      return colors.length === 1 ? colors[0] : `linear-gradient(${bandAngle}deg, ${colors.join(", ")})`;
+    case "stripes": {
+      if (colors.length === 1) return colors[0];
+      const width = 22;
+      const stops = colors.map((col, i) => `${col} ${i * width}px ${(i + 1) * width}px`);
+      return `repeating-linear-gradient(${bandAngle}deg, ${stops.join(", ")})`;
+    }
+    case "bubbles": {
+      const base = colors[0];
+      const bubbleColors = colors.length > 1 ? colors.slice(1) : [tint(base)];
+      const circles = BUBBLES.map(
+        ({ x, y, r }, i) =>
+          `radial-gradient(circle at ${x}% ${y}%, ${bubbleColors[i % bubbleColors.length]} 0 ${r}px, transparent ${r + 1}px)`
+      );
+      return `${circles.join(", ")}, ${base}`;
+    }
+    case "waves": {
+      const layers = colors.length > 1 ? colors : [colors[0], tint(colors[0])];
+      const paths = layers
+        .slice(1)
+        .map((col, i) => `<path d="${wave((200 * (i + 1)) / layers.length)}" fill="${oklchToHex(col)}"/>`)
+        .join("");
+      const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200" preserveAspectRatio="none"><rect width="400" height="200" fill="${oklchToHex(layers[0])}"/>${paths}</svg>`;
+      return `url("data:image/svg+xml,${encodeURIComponent(svg)}") center / 100% 100% no-repeat, ${layers[0]}`;
+    }
+    default:
+      return flavorBands(list, mode);
+  }
+}
+
 // CSS custom properties for an element with the "flavor-surface" class (see index.css)
 export function flavorStyle(flavors, mode) {
-  return pair("surface-bg", { light: flavorBands(flavors, "light"), dark: flavorBands(flavors, "dark") }, mode);
+  return pair(
+    "surface-bg",
+    { light: flavorBackground(flavors, "light"), dark: flavorBackground(flavors, "dark") },
+    mode
+  );
+}
+
+// The brand's package color for the card border (brandColors.js, or a Color Lab / settings override)
+export function brandColor(brandName) {
+  const key = String(brandName || "").trim().toLowerCase();
+  return getColorSettings().brandColorOverrides[key] || BRAND_COLORS[key] || DEFAULT_BRAND_COLOR;
+}
+
+export function brandStyle(brandName) {
+  return { "--brand": brandColor(brandName) };
 }

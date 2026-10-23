@@ -2,11 +2,12 @@ import { Link } from "react-router-dom";
 import FitText from "./FitText";
 import Stars from "./Stars";
 import { brandFontStyle } from "../theme/brandFonts";
-import { accentStyle, flavorStyle, popStyle, starStyle } from "../theme/flavorSurface";
+import { accentStyle, brandStyle, flavorStyle, popStyle, starStyle } from "../theme/flavorSurface";
 import { formatBrands } from "../../utils/formatBrands";
 
-// Typographic product card: the flavors' colors fill the card (one band per flavor), the brand name
-// is set in that brand's font (shrunk to fit), and the score badge + stars are the anchor.
+// Typographic product card: the flavors' colors fill the card (in the pattern from colorSettings.js),
+// the border is the brand's package color, the brand name is set in that brand's font (shrunk to fit),
+// and the score badge + stars are the anchor.
 // No product photos (CLAUDE.md hard rule 10). The whole card is one link to the product page.
 // Every element sits in a fixed slot, so all cards line up whatever their content:
 //   full/hero: brand · score badge / name (2 lines) · badge / flavor pills · tags / stars (centered)
@@ -47,11 +48,12 @@ export default function ProductCard({
   const Heading = `h${headingLevel}`;
   const flavors = flavor.length ? flavor : ["plain"];
   const hiddenChips = flavors.length - MAX_CHIPS;
+  const hasTags = showChips && (isCaffeinated || hasCBD);
 
   return (
     <article
-      className={`product-card product-card--${variant} flavor-surface`}
-      style={{ ...flavorStyle(flavors, mode), ...popStyle(flavors[0], mode) }}
+      className={`product-card product-card--${variant} flavor-surface${hasTags ? " product-card--has-tags" : ""}`}
+      style={{ ...flavorStyle(flavors, mode), ...popStyle(flavors[0], mode), ...brandStyle(brandName) }}
     >
       <FitText
         as="p"
@@ -108,7 +110,7 @@ export default function ProductCard({
         )}
       </div>
 
-      {showChips && (
+      {hasTags && (
         <p className="product-card__tags">
           {isCaffeinated && <span className="product-card__tag">caffeine</span>}
           {hasCBD && <span className="product-card__tag">CBD</span>}

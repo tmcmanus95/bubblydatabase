@@ -108,3 +108,49 @@ test("mode forces one color mode into both CSS variables", () => {
   const normal = starStyle("lime");
   assert.notStrictEqual(normal["--star"], normal["--star-dark"]);
 });
+
+test("every background pattern produces a valid background, and texture tints stay readable", async () => {
+  const { DEFAULT_COLOR_SETTINGS, setColorSettings } = await import("./colorSettings.js");
+  const { flavorBackground } = await import("./flavorSurface.js");
+  try {
+    for (const pattern of ["bands", "waves", "bubbles", "gradient", "stripes"]) {
+      setColorSettings({ ...DEFAULT_COLOR_SETTINGS, pattern });
+      for (const flavors of [["lime"], ["lime", "raspberry"], ["lime", "raspberry", "lemon"]]) {
+        for (const mode of ["light", "dark"]) {
+          const bg = flavorBackground(flavors, mode);
+          assert.ok(typeof bg === "string" && bg.length > 10, `${pattern} ${flavors} ${mode}`);
+          for (const tone of bg.match(/oklch\([^)]*\)/g) || []) {
+            assert.ok(contrastRatio(tone, INK[mode]) >= 4.5, `${pattern}: ${tone} not readable`);
+          }
+        }
+      }
+    }
+    setColorSettings({ ...DEFAULT_COLOR_SETTINGS, pattern: "waves" });
+    const background = flavorBackground(["lime", "raspberry"], "light");
+    const encoded = /url\("data:image\/svg\+xml,([^"]+)"\)/.exec(background);
+    assert.ok(encoded, "waves use an inline SVG");
+    const svg = decodeURIComponent(encoded[1]);
+    assert.match(svg, /^<svg /);
+    assert.match(svg, /fill="#[0-9a-f]{6}"/);
+    assert.doesNotMatch(svg, /oklch/, "SVG uses hex, not oklch");
+  } finally {
+    setColorSettings(DEFAULT_COLOR_SETTINGS);
+  }
+});
+
+test("every brand has a border color; overrides and unknown brands work", async () => {
+  const { DEFAULT_COLOR_SETTINGS, setColorSettings } = await import("./colorSettings.js");
+  const { brandColor, brandStyle } = await import("./flavorSurface.js");
+  const { BRAND_COLORS, DEFAULT_BRAND_COLOR } = await import("./brandColors.js");
+  const { readFileSync } = await import("node:fs");
+  const brandLogos = JSON.parse(readFileSync(new URL("../assets/brandLogos.json", import.meta.url), "utf8"));
+  for (const { name } of brandLogos) assert.match(BRAND_COLORS[name] || "", /^#[0-9a-f]{6}$/, name);
+  assert.strictEqual(brandColor("liquid-death"), "#111111");
+  assert.strictEqual(brandColor("brand-new-fizz"), DEFAULT_BRAND_COLOR);
+  try {
+    setColorSettings({ ...DEFAULT_COLOR_SETTINGS, brandColorOverrides: { spindrift: "#1b365d" } });
+    assert.deepStrictEqual(brandStyle("spindrift"), { "--brand": "#1b365d" });
+  } finally {
+    setColorSettings(DEFAULT_COLOR_SETTINGS);
+  }
+});

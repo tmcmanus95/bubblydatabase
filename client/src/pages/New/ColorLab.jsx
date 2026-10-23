@@ -5,7 +5,8 @@ import ProductCard from "../../components/ProductCard";
 import Loading from "../../components/Loading";
 import { DEFAULT_COLOR_SETTINGS, setColorSettings } from "../../theme/colorSettings";
 import { FLAVOR_COLORS } from "../../theme/flavorColors";
-import { INK, flavorSurface, flavorAccent, flavorStarColor } from "../../theme/flavorSurface";
+import { BRAND_COLORS } from "../../theme/brandColors";
+import { INK, brandColor, flavorSurface, flavorAccent, flavorStarColor } from "../../theme/flavorSurface";
 import { contrastRatio, parseOklch } from "../../theme/color";
 
 // Color Lab (not linked from the site): drag the sliders to tune the card colors live, check that every
@@ -53,6 +54,7 @@ export default function ColorLab() {
   const [settings, setSettings] = useState(DEFAULT_COLOR_SETTINGS);
   const [version, setVersion] = useState(0);
   const [overrideFlavor, setOverrideFlavor] = useState("lemon");
+  const [overrideBrand, setOverrideBrand] = useState("spindrift");
   const [copied, setCopied] = useState(false);
 
   const apply = (next) => {
@@ -110,6 +112,57 @@ export default function ColorLab() {
               })}
             </fieldset>
           ))}
+
+          <fieldset className="rounded-lg border-2 border-current p-3">
+            <legend className="px-1 font-bold">Background pattern</legend>
+            <select
+              aria-label="Background pattern"
+              className="text-black"
+              value={settings.pattern}
+              onChange={(e) => apply({ ...settings, pattern: e.target.value })}
+            >
+              {["bands", "waves", "bubbles", "gradient", "stripes"].map((p) => (
+                <option key={p}>{p}</option>
+              ))}
+            </select>
+          </fieldset>
+
+          <fieldset className="rounded-lg border-2 border-current p-3">
+            <legend className="px-1 font-bold">Change a brand's border color</legend>
+            <div className="flex items-center gap-2 text-sm">
+              <select value={overrideBrand} onChange={(e) => setOverrideBrand(e.target.value)} className="text-black">
+                {Object.keys(BRAND_COLORS).map((b) => (
+                  <option key={b}>{b}</option>
+                ))}
+              </select>
+              <input
+                type="color"
+                aria-label={`Border color for ${overrideBrand}`}
+                value={brandColor(overrideBrand)}
+                onChange={(e) =>
+                  apply({ ...settings, brandColorOverrides: { ...settings.brandColorOverrides, [overrideBrand]: e.target.value } })
+                }
+              />
+            </div>
+            <ul className="mt-2 text-sm">
+              {Object.entries(settings.brandColorOverrides).map(([b, c]) => (
+                <li key={b} className="flex items-center gap-2">
+                  <span className="inline-block h-3 w-3 rounded-full border border-current" style={{ background: c }} />
+                  {b}: {c}
+                  <button
+                    type="button"
+                    className="underline"
+                    onClick={() => {
+                      const { [b]: _removed, ...rest } = settings.brandColorOverrides;
+                      apply({ ...settings, brandColorOverrides: rest });
+                    }}
+                  >
+                    remove
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </fieldset>
 
           <fieldset className="rounded-lg border-2 border-current p-3">
             <legend className="px-1 font-bold">Change one flavor's color</legend>

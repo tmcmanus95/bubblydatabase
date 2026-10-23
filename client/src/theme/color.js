@@ -83,3 +83,13 @@ export function maxChroma(l, h) {
 export function formatOklch({ l, c, h }) {
   return `oklch(${+l.toFixed(3)} ${+c.toFixed(3)} ${+h.toFixed(1)})`;
 }
+
+// oklch() string → "#rrggbb" (clipped to sRGB). For places that need plain hex, like inline SVG.
+export function oklchToHex(value) {
+  const encode = (v) => {
+    const x = Math.min(1, Math.max(0, v));
+    const s = x <= 0.0031308 ? 12.92 * x : 1.055 * x ** (1 / 2.4) - 0.055;
+    return Math.round(s * 255).toString(16).padStart(2, "0");
+  };
+  return `#${oklchToLinearSrgb(parseOklch(value)).map(encode).join("")}`;
+}
