@@ -83,7 +83,7 @@ export function flavorAccent(flavor) {
   if (!cache.has(source)) {
     const { pill, palette } = getColorSettings();
     const color = cssColorToOklch(source);
-    if (palette === "vibrant") {
+    if (palette === "vibrant" || palette === "soda" || palette === "sparkle") {
       // The card is already the vivid tone, so pills and the badge are a lighter version of it
       const card = flavorSurface(flavor);
       const lighter = (c) => {
@@ -236,6 +236,7 @@ const bubbleTile = ({ w, h, circles }, colors) =>
 // ribbons through the pill row (the pills float on it), in each flavor's deep tone; the bubbles below mix
 // all the flavors' colors.
 const PAPER = "oklch(0.99 0.004 90)";
+const WHITE_BUBBLE = "#ffffff";
 const WHITE_LINE_TOP = 120;
 const WHITE_LINE_GAP = 8;
 const whiteLineColors = (flavors) => (flavors.length ? flavors : ["plain"]).map((f) => oklchToHex(flavorStarColor(f).light));
@@ -246,6 +247,14 @@ const whiteLineColors = (flavors) => (flavors.length ? flavors : ["plain"]).map(
 export function flavorBubbles(flavors, mode) {
   const { pattern, palette } = getColorSettings();
   if (pattern !== "waves") return {};
+  if (palette === "soda" || palette === "sparkle") {
+    // Bubbles across the whole card: white, except soda cards with several flavors, whose bubbles are the
+    // other flavors' deep tones (the first flavor is the background)
+    const list = flavors.length ? flavors : ["plain"];
+    const colors = palette === "soda" && list.length > 1 ? list.slice(1).map((f) => oklchToHex(flavorStarColor(f).light)) : [WHITE_BUBBLE];
+    const bg = BUBBLE_TILES.map((t, i) => bubbleTile(t, colors.slice(i % colors.length).concat(colors.slice(0, i % colors.length)))).join(", ");
+    return { ...pair("bubbles", { light: bg, dark: bg }, mode), "--bubbles-top": "0%", "--bubbles-fade": "18%" };
+  }
   if (palette === "fizz") {
     // No waves: the bubbles fill the whole card, mixing every flavor's color
     const colors = whiteLineColors(flavors);
@@ -310,6 +319,14 @@ export function flavorBackground(flavors, mode) {
   if (getColorSettings().palette === "white") return whiteBackground(list);
   if (getColorSettings().palette === "splash") return splashBackground(list);
   if (getColorSettings().palette === "fizz") return PAPER;
+  // soda: the first flavor's vivid color fills the card. sparkle: a gradient of every flavor's vivid color
+  // (one flavor fades into its lighter tint). Both stay bright on dark pages.
+  if (getColorSettings().palette === "soda") return flavorSurface(list[0]).light;
+  if (getColorSettings().palette === "sparkle") {
+    const tones = list.map((f) => flavorSurface(f).light);
+    const stops = tones.length > 1 ? tones : [tones[0], tint(tones[0])];
+    return `linear-gradient(${getColorSettings().bandAngle}deg, ${stops.join(", ")})`;
+  }
   const colors = list.map((f) => flavorSurface(f)[mode]);
   const { pattern, bandAngle } = getColorSettings();
   switch (pattern) {
