@@ -143,8 +143,40 @@ const BUBBLES = [
   { x: 40, y: 104, r: 22 },
 ];
 
-// A wavy edge from x=0 to x=400 around height y (in a 400×200 box)
-const wave = (y) => `M0 ${y} C 70 ${y - 22}, 130 ${y + 22}, 200 ${y} S 330 ${y - 22}, 400 ${y} V200 H0 Z`;
+// Waves are drawn 800 units wide with a wave shape that repeats every 200 units, shown at twice the
+// card's width. Sliding a layer sideways by a multiple of the card width therefore loops seamlessly
+// (the hover drift in index.css relies on this).
+const WAVE_WIDTH = 800;
+const WAVE_PERIOD = 200;
+
+// A wavy edge around height y that fills everything below it
+const wave = (y) => {
+  let d = `M0 ${y}`;
+  for (let x = 0; x < WAVE_WIDTH; x += WAVE_PERIOD) d += ` C ${x + 70} ${y - 22}, ${x + 130} ${y + 22}, ${x + 200} ${y}`;
+  return `${d} V200 H0 Z`;
+};
+
+// Tiny bubbles inside the region between two wave heights, repeated every half-width so the loop stays
+// seamless. Deterministic positions: same card, same bubbles.
+const tinyBubbles = (top, bottom, color, seed) => {
+  const circles = [];
+  const height = bottom - top;
+  for (let j = 0; j < 6; j++) {
+    const jitter = ((j * 37 + seed * 53) % 17) / 17;
+    const x = 22 + j * 64 + jitter * 22;
+    const y = top + 18 + (((j * 29 + seed * 41) % 13) / 13) * Math.max(0, height - 36);
+    const r = 2.5 + ((j * 7 + seed * 3) % 5) * 0.9;
+    for (const offset of [0, WAVE_WIDTH / 2]) {
+      circles.push(`<circle cx="${(x + offset).toFixed(1)}" cy="${y.toFixed(1)}" r="${r.toFixed(1)}" fill="${color}"/>`);
+    }
+  }
+  return circles.join("");
+};
+
+const svgLayer = (content) =>
+  `url("data:image/svg+xml,${encodeURIComponent(
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${WAVE_WIDTH} 200" preserveAspectRatio="none">${content}</svg>`
+  )}") 0 0 / 200% 100% repeat-x`;
 
 // The card background for a mode, in the pattern chosen in colorSettings.js. Every pattern only
 // rearranges the same card tones, so readability is the same in all of them.
@@ -171,13 +203,20 @@ export function flavorBackground(flavors, mode) {
       return `${circles.join(", ")}, ${base}`;
     }
     case "waves": {
+      // One background image per wave layer so layers can drift at different speeds on hover (index.css).
+      // Each flavor's region gets tiny bubbles in its neighbor's color.
       const layers = colors.length > 1 ? colors : [colors[0], tint(colors[0])];
-      const paths = layers
-        .slice(1)
-        .map((col, i) => `<path d="${wave((200 * (i + 1)) / layers.length)}" fill="${oklchToHex(col)}"/>`)
-        .join("");
-      const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200" preserveAspectRatio="none"><rect width="400" height="200" fill="${oklchToHex(layers[0])}"/>${paths}</svg>`;
-      return `url("data:image/svg+xml,${encodeURIComponent(svg)}") center / 100% 100% no-repeat, ${layers[0]}`;
+      const hex = layers.map(oklchToHex);
+      const heights = layers.map((_, i) => (200 * i) / layers.length).concat(200);
+      const images = [];
+      for (let i = 1; i < layers.length; i++) {
+        // The region just above this wave belongs to layer i - 1: put its bubbles here too
+        const above = tinyBubbles(heights[i - 1], heights[i] - 22, hex[i], i * 2);
+        const below = tinyBubbles(heights[i] + 22, heights[i + 1], hex[i - 1] === hex[i] ? hex[0] : hex[i - 1], i * 2 + 1);
+        images.push(svgLayer(`${above}<path d="${wave(heights[i])}" fill="${hex[i]}"/>${below}`));
+      }
+      // Lower waves cover upper ones, so list them first (the first background is drawn on top)
+      return `${images.reverse().join(", ")}, ${layers[0]}`;
     }
     default:
       return flavorBands(list, mode);
