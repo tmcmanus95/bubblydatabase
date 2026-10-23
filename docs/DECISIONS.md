@@ -2,6 +2,13 @@
 
 Newest first. Format: date · decision · why · who decided.
 
+## 2026-10-22 · No flavor icons; tap-to-rate on cards
+- The placeholder flavor icons are removed; the cards stand on their own. If icons return, they must be
+  our own illustrated assets.
+- P1-21: ratings happen by tapping the stars directly on cards, with safeguards against accidental
+  ratings while scrolling (movement check, stars above the card link, undo toast).
+- Decided by: Thomas.
+
 ## 2026-10-22 · Card layout B "Score sticker" + a Color Lab for tuning
 - Picked from three mocked layouts (A tight stack, B score sticker, C side score): the score sits in a
   round badge filled with the flavor color, stars are centered along the bottom, tags go at the end of

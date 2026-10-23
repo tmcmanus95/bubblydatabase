@@ -163,10 +163,11 @@ _Last session: 2026-10-21._
 - Second round (PR open): punchier colors, solid flavor pills, bigger brand names, flavor-colored stars.
   Tones per role live in `flavorSurface.js` (`flavorSurface`, `flavorAccent`, `flavorStarColor`); tests
   check contrast and that pills/stars stand out, so tune numbers there and let the tests guard.
-- Third round (PR open): layout B "Score sticker", colored hover shadow, auto-fit brand names, bigger
+- Third round (#183): layout B "Score sticker", colored hover shadow, auto-fit brand names, bigger
   centered stars. **To edit colors:** open `/working/colors` (Color Lab), drag sliders, "Copy settings",
   paste over `DEFAULT_COLOR_SETTINGS` in `client/src/theme/colorSettings.js`, run `npm test`.
-- Open question for P1-21: how rating on cards should work (tap stars / "Rate" button / product page only).
+- P1-21 decided: tap stars directly on cards (with scroll-safe taps, stars above the link, undo toast).
+- Flavor icons removed (no icons for now). Brand-color accent: mocked for Thomas (frame vs tab), not committed.
 
 ## Next Claude ticket
 P1-0d (typographic brand pages in brand fonts, drop logo links, delete dead `Header.jsx`), then
