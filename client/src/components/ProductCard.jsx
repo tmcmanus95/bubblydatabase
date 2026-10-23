@@ -2,8 +2,7 @@ import { Link } from "react-router-dom";
 import FlavorIcon from "./FlavorIcon";
 import Stars from "./Stars";
 import { brandFontStyle } from "../theme/brandFonts";
-import { flavorColor } from "../theme/flavorColors";
-import { flavorStyle } from "../theme/flavorSurface";
+import { accentStyle, flavorStyle, starStyle } from "../theme/flavorSurface";
 import { formatBrands } from "../../utils/formatBrands";
 
 // Typographic product card: the flavors' colors fill the card (one band per flavor), the brand name
@@ -63,8 +62,7 @@ export default function ProductCard({
       {showChips ? (
         <ul className="product-card__flavors" aria-label="Flavors">
           {flavors.slice(0, MAX_CHIPS).map((f) => (
-            <li key={f} className="product-card__flavor">
-              <span className="product-card__dot" style={{ backgroundColor: flavorColor(f) }} aria-hidden="true" />
+            <li key={f} className="product-card__flavor" style={accentStyle(f)}>
               {flavorLabel(f)}
             </li>
           ))}
@@ -79,7 +77,7 @@ export default function ProductCard({
           <>
             <span className="product-card__score-value">{(hasOverride ? score : averageRating).toFixed(1)}</span>
             <span className="product-card__score-detail">
-              <Stars value={hasOverride ? score : averageRating} />
+              <Stars value={hasOverride ? score : averageRating} style={starStyle(flavors[0])} />
               <span>
                 <span className="sr-only"> out of 5, </span>
                 {hasOverride ? scoreDetail : `${count} ${count === 1 ? "rating" : "ratings"}`}
