@@ -26,7 +26,7 @@
   /* Layout "B · Score sticker": score badge top-right, stars centered along the bottom */
   grid-template-columns: auto minmax(0, 1fr) auto;
   grid-template-areas:
-    "icon  brand score"
+    "brand brand score"
     "name  name  score"
     "flav  flav  tags"
     "stars stars stars";
@@ -84,12 +84,6 @@
   text-overflow: ellipsis;
   font-size: 1.55rem;
   line-height: 1.25;
-}
-.product-card__icon {
-  grid-area: icon;
-  align-self: center;
-  width: 1.7rem;
-  height: 1.7rem;
 }
 .product-card__name {
   grid-area: name;
@@ -197,20 +191,16 @@
 }
 /* Compact: icon · brand + name · score, one fixed height */
 .product-card--compact {
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: minmax(0, 1fr) auto;
   grid-template-areas:
-    "icon brand score"
-    "icon name  stars";
+    "brand score"
+    "name  stars";
   grid-template-rows: auto auto;
   row-gap: 0;
   align-items: center;
   height: 4.5rem;
   padding: 0.5rem 0.9rem;
   box-shadow: 3px 3px 0 var(--ink);
-}
-.product-card--compact .product-card__icon {
-  width: 1.9rem;
-  height: 1.9rem;
 }
 .product-card--compact .product-card__brand {
   align-self: end;
@@ -274,10 +264,6 @@
 }
 .product-card--hero .product-card__brand {
   font-size: 2.1rem;
-}
-.product-card--hero .product-card__icon {
-  width: 2.4rem;
-  height: 2.4rem;
 }
 .product-card--hero .product-card__name {
   font-size: 2.4rem;

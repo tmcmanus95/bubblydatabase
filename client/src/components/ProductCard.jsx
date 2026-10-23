@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import FlavorIcon from "./FlavorIcon";
 import FitText from "./FitText";
 import Stars from "./Stars";
 import { brandFontStyle } from "../theme/brandFonts";
@@ -10,8 +9,8 @@ import { formatBrands } from "../../utils/formatBrands";
 // is set in that brand's font (shrunk to fit), and the score badge + stars are the anchor.
 // No product photos (CLAUDE.md hard rule 10). The whole card is one link to the product page.
 // Every element sits in a fixed slot, so all cards line up whatever their content:
-//   full/hero: icon · brand · score badge / name (2 lines) · badge / flavor pills · tags / stars (centered)
-//   compact:   icon / brand + name (1 line each) / score + stars
+//   full/hero: brand · score badge / name (2 lines) · badge / flavor pills · tags / stars (centered)
+//   compact:   brand + name (1 line each) / score + stars
 //
 //   <ProductCard bubblyWater={bw} />                  full card (lists)
 //   <ProductCard bubblyWater={bw} variant="compact" /> one-line card (search, profiles, recent)
@@ -63,7 +62,6 @@ export default function ProductCard({
       >
         {formatBrands(brandName)}
       </FitText>
-      <FlavorIcon flavor={flavors[0]} className="product-card__icon" />
 
       <Heading className="product-card__name">
         {isLink ? (
