@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../../utils/mutations";
 import Auth from "../../utils/auth";
+import { errorMessage } from "../../utils/errorMessage";
 
 const Signup = () => {
   const [formState, setFormState] = useState({
@@ -118,7 +119,7 @@ const Signup = () => {
 
         {error && (
           <div className="my-3 p-3 bg-danger text-center dark:text-black">
-            {error.message}
+            {errorMessage(error)}
           </div>
         )}
       </div>

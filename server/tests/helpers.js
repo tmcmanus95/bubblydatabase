@@ -17,6 +17,7 @@ const { MongoMemoryServer } = require("mongodb-memory-server-core");
 const { createApp } = require("../app");
 const { signToken } = require("../utils/auth");
 const { outbox } = require("../utils/sendEmail");
+const { loginThrottle } = require("../utils/loginThrottle");
 
 const localMongod = () => {
   const result = spawnSync("sh", ["-c", "command -v mongod"], { encoding: "utf8" });
@@ -53,6 +54,7 @@ const startTestServer = async ({ rateLimits = false } = {}) => {
   // Empties every collection between tests
   const reset = async () => {
     outbox.length = 0;
+    loginThrottle.reset();
     for (const collection of Object.values(mongoose.connection.collections)) {
       await collection.deleteMany({});
     }
