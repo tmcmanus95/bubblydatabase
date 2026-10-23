@@ -172,6 +172,8 @@ _Last session: 2026-10-21._
 - Waves merged (#185). Wave motion PR #186: hover/focus slosh + rising tiny bubbles in the bottom region
   (`flavorBubbles` in `flavorSurface.js`, drawn by `.flavor-surface--waves::before` in `index.css`); respects reduce motion.
 - Wave motion follow-up merged (#187). Brand pages: `BrandTile` (font + package-color frame), no logos.
+- Palettes to compare (Thomas picking): `palette` in `colorSettings.js` = "aura" (default), "vibrant" or "white";
+  preview at `/working/cards?palette=…` (add `&flavor=lemon` to filter) or the Color Lab dropdown.
 - Mobile screenshots: headless Chrome can't make <500px windows, and iframes are blocked by our own CSP
   (frame-ancestors 'none'); use real device emulation (puppeteer-core) for phone checks.
 

@@ -6,26 +6,41 @@ import ProductCard from "../../components/ProductCard";
 import Loading from "../../components/Loading";
 
 const PATTERNS = ["bands", "waves", "bubbles", "gradient", "stripes"];
+const PALETTES = ["aura", "vibrant", "white"];
 
 // Preview of the product cards with real data. Not linked from the site.
-// ?pattern=waves (or bubbles, gradient, stripes, bands) previews a background pattern.
+// ?pattern=waves (or bubbles, gradient, stripes, bands) previews a background pattern;
+// ?palette=vibrant (or aura, white) previews a color style; ?flavor=lemon shows only cards with that flavor.
 export default function CardPreview() {
   const { data, error } = useQuery(QUERY_ALL_BUBBLYS);
   const [params] = useSearchParams();
   const pattern = PATTERNS.includes(params.get("pattern")) ? params.get("pattern") : DEFAULT_COLOR_SETTINGS.pattern;
+  const palette = PALETTES.includes(params.get("palette")) ? params.get("palette") : DEFAULT_COLOR_SETTINGS.palette;
+  const link = (next) => `?${new URLSearchParams({ pattern, palette, ...(params.get("flavor") ? { flavor: params.get("flavor") } : {}), ...next })}`;
   // Applied during render so the cards below pick it up on the first paint
-  setColorSettings({ ...DEFAULT_COLOR_SETTINGS, pattern });
+  setColorSettings({ ...DEFAULT_COLOR_SETTINGS, pattern, palette });
   if (error) return <p className="m-8">Couldn't load bubblies: {error.message}</p>;
   if (!data) return <Loading />;
-  const bubblies = data.bubblyWaters;
+  const flavor = params.get("flavor");
+  const bubblies = flavor
+    ? data.bubblyWaters.filter((bw) => bw.flavor.some((f) => f.toLowerCase() === flavor.toLowerCase()))
+    : data.bubblyWaters;
 
   return (
     <main className="mx-auto max-w-6xl px-4 pb-10 pt-24">
       <h1 className="topBubblysHeader mb-2 text-4xl">Card preview</h1>
+      <p className="mb-1">
+        Palette:{" "}
+        {PALETTES.map((p) => (
+          <a key={p} href={link({ palette: p })} className={`mr-3 underline ${p === palette ? "font-bold" : ""}`}>
+            {p}
+          </a>
+        ))}
+      </p>
       <p className="mb-6">
         Pattern:{" "}
         {PATTERNS.map((p) => (
-          <a key={p} href={`?pattern=${p}`} className={`mr-3 underline ${p === pattern ? "font-bold" : ""}`}>
+          <a key={p} href={link({ pattern: p })} className={`mr-3 underline ${p === pattern ? "font-bold" : ""}`}>
             {p}
           </a>
         ))}

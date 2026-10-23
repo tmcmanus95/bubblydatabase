@@ -27,28 +27,18 @@ const cacheFor = (name) => {
   return caches[name];
 };
 
+// Base colors that read wrong once they're vivid: CSS "pink" turns into raspberry, so watermelon gets
+// real watermelon flesh. Only used by the "vibrant" and "white" palettes.
+const VIBRANT_BASES = { watermelon: "#ff5c7a" };
+
 // The flavor's base color: a Color Lab / settings override, else flavorColors.js
 const baseColor = (flavor) => {
   const key = String(flavor || "").trim().toLowerCase().replace(/\s+/g, "-");
-  return getColorSettings().flavorOverrides[key] || flavorColor(flavor);
+  const { flavorOverrides, palette } = getColorSettings();
+  return flavorOverrides[key] || (palette !== "aura" && VIBRANT_BASES[key]) || flavorColor(flavor);
 };
 
 const tone = ({ c, h }, l, cap) => formatOklch({ l, c: Math.min(c, cap, maxChroma(l, h) * 0.95), h });
-
-// { light, dark } background colors for one flavor
-export function flavorSurface(flavor) {
-  const source = baseColor(flavor);
-  const cache = cacheFor("surface");
-  if (!cache.has(source)) {
-    const { card } = getColorSettings();
-    const color = cssColorToOklch(source);
-    cache.set(source, {
-      light: tone(color, card.light.lightness, card.light.maxChroma),
-      dark: tone(color, card.dark.lightness, card.dark.maxChroma),
-    });
-  }
-  return cache.get(source);
-}
 
 // The hue's natural vivid lightness within a range: where the gamut allows the most color for this hue
 const pillTone = (color, { minLightness, maxLightness }, cap, prefer) => {
@@ -61,20 +51,66 @@ const pillTone = (color, { minLightness, maxLightness }, cap, prefer) => {
   return tone(color, candidates.find((t) => t.room >= mostRoom * 0.98).l, cap);
 };
 
+// { light, dark } background colors for one flavor. "aura": one lightness for every flavor. "vibrant" and
+// "white": each flavor at its own most vivid lightness, with a chroma boost.
+export function flavorSurface(flavor) {
+  const { palette, card, vibrant } = getColorSettings();
+  const source = baseColor(flavor);
+  const cache = cacheFor("surface");
+  const cacheKey = `${palette}:${source}`;
+  if (!cache.has(cacheKey)) {
+    const color = cssColorToOklch(source);
+    if (palette === "aura") {
+      cache.set(cacheKey, {
+        light: tone(color, card.light.lightness, card.light.maxChroma),
+        dark: tone(color, card.dark.lightness, card.dark.maxChroma),
+      });
+    } else {
+      const boosted = { ...color, c: color.c * vibrant.chromaBoost };
+      cache.set(cacheKey, {
+        light: pillTone(boosted, vibrant.light, vibrant.maxChroma, "darkest"),
+        dark: pillTone(boosted, vibrant.dark, vibrant.maxChroma, "darkest"),
+      });
+    }
+  }
+  return cache.get(cacheKey);
+}
+
 // { light, dark } vivid tones of one flavor for pills and the score badge
 export function flavorAccent(flavor) {
   const source = baseColor(flavor);
   const cache = cacheFor("accent");
   if (!cache.has(source)) {
-    const { pill } = getColorSettings();
+    const { pill, palette } = getColorSettings();
     const color = cssColorToOklch(source);
-    cache.set(source, {
-      light: pillTone(color, pill.light, pill.maxChroma, "darkest"),
-      dark: pillTone(color, pill.dark, pill.maxChroma, "lightest"),
-    });
+    if (palette === "vibrant") {
+      // The card is already the vivid tone, so pills and the badge are a lighter version of it
+      const card = flavorSurface(flavor);
+      const lighter = (c) => {
+        const { l, h } = parseOklch(c);
+        return tone({ c: pill.maxChroma, h }, Math.min(0.97, l + 0.1), pill.maxChroma);
+      };
+      cache.set(source, { light: lighter(card.light), dark: lighter(card.dark) });
+    } else if (palette === "white") {
+      // On a white card the pills and badge carry the flavor's full vivid tone
+      cache.set(source, { ...flavorSurface(flavor) });
+    } else {
+      cache.set(source, {
+        light: pillTone(color, pill.light, pill.maxChroma, "darkest"),
+        dark: pillTone(color, pill.dark, pill.maxChroma, "lightest"),
+      });
+    }
   }
   return cache.get(source);
 }
+
+// Lemon-yellow hues turn olive when darkened; deep yellows lean toward gold instead (only outside "aura",
+// whose tones Thomas already approved)
+const goldenYellow = (color) => {
+  const { l, c, h } = parseOklch(color);
+  if (getColorSettings().palette === "aura" || h < 95 || h > 118 || l > 0.86) return color;
+  return formatOklch({ l, c: Math.min(c * 1.15, maxChroma(l, 85) * 0.95), h: 85 });
+};
 
 // { light, dark } star fill: the pill tone in light mode unless that's too close to the card (yellows), and
 // a rich deep tone in dark mode, where cards are brighter
@@ -82,11 +118,12 @@ export function flavorStarColor(flavor) {
   const source = baseColor(flavor);
   const cache = cacheFor("star");
   if (!cache.has(source)) {
-    const { card, pill, star } = getColorSettings();
+    const { pill, star } = getColorSettings();
     const color = cssColorToOklch(source);
     const pillL = parseOklch(flavorAccent(flavor).light).l;
+    const cardL = parseOklch(flavorSurface(flavor).light).l;
     cache.set(source, {
-      light: tone(color, Math.min(pillL, card.light.lightness - star.lightModeGapBelowCard), pill.maxChroma),
+      light: goldenYellow(tone(color, Math.min(pillL, cardL - star.lightModeGapBelowCard), pill.maxChroma)),
       dark: tone(color, star.darkLightness, pill.maxChroma),
     });
   }
@@ -128,7 +165,9 @@ export function flavorBands(flavors, mode) {
 // readable.
 const tint = (color) => {
   const { l, c, h } = parseOklch(color);
-  return formatOklch({ l: Math.min(0.97, l + 0.06), c: c * 0.6, h });
+  const vivid = getColorSettings().palette !== "aura";
+  const lighter = Math.min(0.97, l + (vivid ? 0.08 : 0.06));
+  return formatOklch({ l: lighter, c: vivid ? Math.min(c, maxChroma(lighter, h) * 0.9) : c * 0.6, h });
 };
 
 // Bubble positions (% of the card) and radii (px): a loose cluster rising on the right
@@ -172,29 +211,56 @@ const BUBBLE_TILES = [
   { w: 96, h: 120, circles: [[18, 20, 2.4], [62, 52, 3.2], [34, 86, 2.6], [80, 104, 2.2]] },
   { w: 150, h: 160, circles: [[40, 30, 4.6], [112, 92, 5.6], [70, 136, 4]] },
 ];
-const bubbleTile = ({ w, h, circles }, color) =>
+// Circle j takes colors[j % colors.length]
+const bubbleTile = ({ w, h, circles }, colors) =>
   `url("data:image/svg+xml,${encodeURIComponent(
     `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}">${circles
-      .map(([cx, cy, r]) => `<circle cx="${cx}" cy="${cy}" r="${r}" fill="${color}"/>`)
+      .map(([cx, cy, r], j) => `<circle cx="${cx}" cy="${cy}" r="${r}" fill="${colors[j % colors.length]}"/>`)
       .join("")}</svg>`
   )}") 0 0 / ${w}px ${h}px repeat`;
+
+// "white" palette: a white sticker (in dark mode too) with one thin wave line per flavor, stacked like
+// ribbons through the pill row (the pills float on it), in each flavor's deep tone; the bubbles below mix
+// all the flavors' colors.
+const PAPER = "oklch(0.99 0.004 90)";
+const WHITE_LINE_TOP = 120;
+const WHITE_LINE_GAP = 8;
+const whiteLineColors = (flavors) => (flavors.length ? flavors : ["plain"]).map((f) => oklchToHex(flavorStarColor(f).light));
 
 // Tiny bubbles in the bottom wave region, in the color of the flavor above it (a one-flavor card's
 // bubbles use the flavor on its lighter tint). Only for the waves pattern; drawn by
 // .flavor-surface--waves::before in index.css, which starts just below the lowest wave.
 export function flavorBubbles(flavors, mode) {
-  if (getColorSettings().pattern !== "waves") return {};
+  const { pattern, palette } = getColorSettings();
+  if (pattern !== "waves") return {};
+  if (palette === "white") {
+    const colors = whiteLineColors(flavors);
+    const bg = BUBBLE_TILES.map((t, i) => bubbleTile(t, colors.slice(i % colors.length).concat(colors.slice(0, i % colors.length)))).join(", ");
+    const top = (WHITE_LINE_TOP + (colors.length - 1) * WHITE_LINE_GAP) / 2 + 7;
+    return { ...pair("bubbles", { light: bg, dark: bg }, mode), "--bubbles-top": `${top}%` };
+  }
   const tones = (m) => {
     const layers = waveLayers((flavors.length ? flavors : ["plain"]).map((f) => flavorSurface(f)[m]));
     const color = oklchToHex(layers[layers.length - 2]);
-    return { top: (100 * (layers.length - 1)) / layers.length + 6, bg: BUBBLE_TILES.map((t) => bubbleTile(t, color)).join(", ") };
+    return { top: (100 * (layers.length - 1)) / layers.length + 6, bg: BUBBLE_TILES.map((t) => bubbleTile(t, [color])).join(", ") };
   };
   const light = tones("light");
   return { ...pair("bubbles", { light: light.bg, dark: tones("dark").bg }, mode), "--bubbles-top": `${light.top}%` };
 }
 
+// Just the wavy line at height y (no fill), drawn at a constant thickness however the card stretches it
+const waveLine = (y, color) =>
+  `<path d="${wave(y).replace(" V200 H0 Z", "")}" fill="none" stroke="${color}" stroke-width="3.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/>`;
+
+const whiteBackground = (flavors) => {
+  if (getColorSettings().pattern !== "waves") return PAPER;
+  const lines = whiteLineColors(flavors).map((color, i) => svgLayer(waveLine(WHITE_LINE_TOP + i * WHITE_LINE_GAP, color)));
+  return `${lines.join(", ")}, ${PAPER}`;
+};
+
 export function flavorBackground(flavors, mode) {
   const list = flavors.length ? flavors : ["plain"];
+  if (getColorSettings().palette === "white") return whiteBackground(list);
   const colors = list.map((f) => flavorSurface(f)[mode]);
   const { pattern, bandAngle } = getColorSettings();
   switch (pattern) {

@@ -6,10 +6,22 @@
 // same dark ink everywhere, so `npm test` checks every flavor stays readable (WCAG AA) after a change.
 
 export const DEFAULT_COLOR_SETTINGS = {
-  // The card background (one band per flavor)
+  // Overall color style: "aura" (soft, every flavor at the same lightness, like Aura Bora's cans),
+  // "vibrant" (each flavor at its own natural, brighter lightness: lemons stay lemon-yellow) or "white"
+  // (white card; only the wave lines and bubbles carry the flavor colors).
+  palette: "aura",
+  // The card background (one band per flavor) for the "aura" palette
   card: {
     light: { lightness: 0.86, maxChroma: 0.17 },
     dark: { lightness: 0.72, maxChroma: 0.18 },
+  },
+  // The card background for the "vibrant" palette: each flavor takes the lightness where it can be most
+  // vivid, kept within this range so the ink stays readable; chroma is boosted (x chromaBoost, capped).
+  vibrant: {
+    light: { minLightness: 0.74, maxLightness: 0.95 },
+    dark: { minLightness: 0.7, maxLightness: 0.9 },
+    maxChroma: 0.25,
+    chromaBoost: 1.5,
   },
   // Flavor pills and the score badge. Each flavor picks the most vivid lightness in its range.
   pill: {

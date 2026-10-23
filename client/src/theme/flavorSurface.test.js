@@ -163,3 +163,28 @@ test("every brand has a border color; overrides and unknown brands work", async 
     setColorSettings(DEFAULT_COLOR_SETTINGS);
   }
 });
+
+test("vibrant and white palettes keep every flavor readable, with lemons yellow (not olive)", async () => {
+  const { DEFAULT_COLOR_SETTINGS, setColorSettings } = await import("./colorSettings.js");
+  try {
+    for (const palette of ["vibrant", "white"]) {
+      setColorSettings({ ...DEFAULT_COLOR_SETTINGS, palette });
+      for (const flavor of Object.keys(FLAVOR_COLORS)) {
+        for (const mode of ["light", "dark"]) {
+          for (const tone of [flavorSurface(flavor)[mode], flavorAccent(flavor)[mode]]) {
+            assert.ok(contrastRatio(tone, INK[mode]) >= 4.5, `${palette} ${flavor} ${mode}: ${tone} not readable`);
+          }
+          const bg = flavorBackground([flavor, "lime"], mode);
+          for (const tone of bg.match(/oklch\([^)]*\)/g) || []) {
+            assert.ok(contrastRatio(tone, INK[mode]) >= 4.5, `${palette} background ${tone} not readable`);
+          }
+        }
+      }
+    }
+    setColorSettings({ ...DEFAULT_COLOR_SETTINGS, palette: "vibrant" });
+    const lemon = parseOklch(flavorSurface("lemon").light);
+    assert.ok(lemon.l >= 0.9 && lemon.c >= 0.15, `vibrant lemon should be bright yellow, got ${flavorSurface("lemon").light}`);
+  } finally {
+    setColorSettings(DEFAULT_COLOR_SETTINGS);
+  }
+});
