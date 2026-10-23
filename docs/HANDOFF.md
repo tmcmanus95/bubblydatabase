@@ -160,6 +160,9 @@ _Last session: 2026-10-21._
   (`brandFonts.js`, 44 Google Fonts; edit a line to swap one), read-only stars (`Stars.jsx`). Brand
   colors removed (`brandColors.js` deleted).
 - Check on staging: `/working/cards`, home, a product page, in light and dark mode.
+- Second round (PR open): punchier colors, solid flavor pills, bigger brand names, flavor-colored stars.
+  Tones per role live in `flavorSurface.js` (`flavorSurface`, `flavorAccent`, `flavorStarColor`); tests
+  check contrast and that pills/stars stand out, so tune numbers there and let the tests guard.
 
 ## Next Claude ticket
 P1-0d (typographic brand pages in brand fonts, drop logo links, delete dead `Header.jsx`), then
