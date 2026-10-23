@@ -2,7 +2,7 @@
 import { test } from "node:test";
 import assert from "node:assert";
 import { readFileSync } from "node:fs";
-import { contrastRatio, inSrgbGamut, cssColorToOklch, parseOklch } from "./color.js";
+import { contrastRatio, inSrgbGamut, cssColorToOklch, parseOklch, oklchToHex } from "./color.js";
 import { FLAVOR_COLORS } from "./flavorColors.js";
 import { INK, flavorSurface, flavorAccent, flavorStarColor, accentStyle, starStyle, flavorBands, flavorBackground, flavorStyle } from "./flavorSurface.js";
 
@@ -133,11 +133,15 @@ test("every background pattern produces a valid background, and texture tints st
     assert.match(svg, /^<svg /);
     assert.match(svg, /fill="#[0-9a-f]{6}"/);
     assert.doesNotMatch(svg, /oklch/, "SVG uses hex, not oklch");
-    // Tiny bubbles in each region use the other flavor's color.
-    const waveFill = /<path[^>]*fill="(#[0-9a-f]{6})"/.exec(svg)[1];
-    const bubbleFills = new Set([...svg.matchAll(/<circle[^>]*fill="(#[0-9a-f]{6})"/g)].map((m) => m[1]));
-    assert.equal(bubbleFills.size, 2, "bubbles in both flavor colors");
-    assert.ok(bubbleFills.has(waveFill), "bubbles above the wave match the wave's color");
+    // Tiny bubbles sit in the bottom half, in the color of the flavor above the bottom wave.
+    const { flavorBubbles } = await import("./flavorSurface.js");
+    const bubbles = flavorBubbles(["lime", "raspberry"], "light");
+    assert.ok(parseFloat(bubbles["--bubbles-top"]) >= 50, "bubbles only in the bottom half");
+    const tile = decodeURIComponent(/url\("data:image\/svg\+xml,([^"]+)"\)/.exec(bubbles["--bubbles"])[1]);
+    const topColor = oklchToHex(flavorSurface("lime").light);
+    assert.match(tile, new RegExp(`<circle[^>]*fill="${topColor}"`));
+    setColorSettings({ ...DEFAULT_COLOR_SETTINGS, pattern: "bands" });
+    assert.deepEqual(flavorBubbles(["lime", "raspberry"], "light"), {}, "no bubbles on other patterns");
   } finally {
     setColorSettings(DEFAULT_COLOR_SETTINGS);
   }
