@@ -3,7 +3,7 @@
 _Status: **Approved by Thomas (2026-10-21).** **Phase 0 complete** (released to `main` in #173). Phase 1 started._
 _Sources: `docs/SPEC.md`, `docs/AUDIT.md`. Last updated 2026-10-22._
 
-**Next up:** Thomas: review the wave-motion PR. Claude: P1-0d (brand pages without logos, in brand fonts). PRs now go into `staging`; Thomas releases with a `staging` → `main` PR.
+**Next up:** Thomas: review the P1-0d PR (brand pages, CSP images locked down) and P1-0e (asset provenance). Claude: P1-2 (rate limiting). PRs now go into `staging`; Thomas releases with a `staging` → `main` PR.
 
 ## How to read this
 
@@ -236,7 +236,7 @@ Report: `docs/IMAGE_AUDIT.md`; script: `server/scripts/imageAudit.js` (read-only
 - [x] **Removes all 70 Amazon images** and every other third-party product photo: on home, product, search, profile and recent pages, the only `<img>` left is our own `bubblesicon.png` (checked in headless Chrome)
 - [x] `imageURL` stays in the database and schema (hard rule 3)
 - [x] Deliberate change: list rows no longer have their own brand/flavor links (the card is one link); brands and flavors stay reachable from the navbar and the product page
-- [ ] CSP `img-src` tightened to `'self' data:` once P1-0d also ships (brand logos are the last external images)
+- [x] CSP `img-src` tightened to `'self' data:` with P1-0d (brand logos were the last external images); a test pins it. P15-5 adds Amazon's image host when the "Where to buy" block lands
 - [x] Follow-up from Thomas's review (in review): **flavor colors take over the card** (each flavor's hue at a fixed pastel lightness; one hard-edged diagonal band per flavor; dark mode uses slightly deeper still-bright tones with the same dark ink, since darker tones turned yellows muddy), **brand name in a per-brand Google Font** loosely in the spirit of its logo (44 brands, one stylesheet, only used fonts download), **read-only stars** next to the score. Brand colors removed. Tests: every flavor color in gamut with ≥ 6.9:1 contrast in both modes; every brand has a font and is in the stylesheet URL — merged (#181)
 - [x] Second round from Thomas (#182): punchier card colors, **solid flavor-colored pills** (each hue at its natural vivid lightness, so yellows stay yellow), **bigger brand names**, **flavor-colored stars** (always darker than the card so they read as filled; deep rich tones in dark mode). Tests: pills AA + vivid (light) / distinct (dark); stars clearly separated from their card in both modes
 - [x] Third round (#183): **layout "B · Score sticker"** picked by Thomas from three mocks (score in a round badge filled with the flavor color, stars centered along the bottom, tags at the end of the pill row; 12.75rem tall, was 15.5), **colored hover shadow** (strong flavor color), **brand names auto-fit** their space (`FitText`), stars bigger (1.75rem) in their own slot ready for P1-21, and an **easy way to edit colors**: every knob in `client/src/theme/colorSettings.js` plus the live **Color Lab** at `/working/colors` (sliders, light/dark previews, readability check, "Copy settings")
@@ -244,10 +244,10 @@ Report: `docs/IMAGE_AUDIT.md`; script: `server/scripts/imageAudit.js` (read-only
 - [x] **Brand border** (#185): each card's border is the brand's package color (`client/src/theme/brandColors.js`, editable in the Color Lab), ringed in ink so white brands show. **Mobile fix:** cards used to be wider than phone screens and pills got sliced; now a two-column grid lets brand names shrink, pills use the full width when there are no tags, and pills that don't fit drop whole (verified at 390px with real mobile emulation: no overflow, no cut pills). **Background patterns**: **waves** (Thomas's pick, now the default), bands, bubbles, gradient, stripes, set via `pattern` in `colorSettings.js`, previewable at `/working/cards?pattern=…` and in the Color Lab
 - [x] **Wave motion** (in review): on hover or keyboard focus the waves slosh slowly (sideways drift and a gentle bob on separate clocks), and tiny bubbles in the bottom region, colored like the flavor above, rise and fade before the wave. Leaving a card freezes it in place; off with "reduce motion"
 
-#### P1-0d 🤖 Brand pages without logos — 30m
+#### P1-0d 🤖 Brand pages without logos — 30m — in review
 
-- [ ] Brand page and All Brands grid are typographic (brand name in its brand font from `brandFonts.js`, no brand colors); official site stays as a text link
-- [ ] `link` removed from `brandLogos.json` (keep `site`); dead `Header.jsx` deleted
+- [x] Brand page and All Brands grid are typographic: `<BrandTile>` shows the brand name in its brand font on a paper sticker, framed in the brand's package color like the product cards (brand colors were approved for card borders on 2026-10-22, so the tiles match); official site stays as a text link (now a real external link; the old one called an undefined function)
+- [x] `link` removed from `brandLogos.json` (keep `site`); dead `Header.jsx` deleted
 
 #### P1-0e 🧑 Own asset provenance — 15m
 

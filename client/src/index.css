@@ -82,6 +82,63 @@
   }
 }
 
+/* Brand tile (components/BrandTile.jsx): the brand name in its brand font on a paper sticker, framed in
+   the brand's package color like the product cards. Stays light in dark mode, as the cards do. */
+.brand-tile {
+  --ink: oklch(0.24 0.02 60);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  height: 6.5rem;
+  padding: 0 0.7rem;
+  background: oklch(0.98 0.012 90);
+  color: var(--ink);
+  text-align: center;
+  border: 5px solid var(--brand, var(--ink));
+  border-radius: 26px 18px 24px 20px / 20px 24px 18px 26px;
+  box-shadow: 0 0 0 2px var(--ink), 5px 5px 0 2px var(--ink);
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+a.brand-tile:hover,
+a.brand-tile:focus-visible {
+  transform: translateY(-2px) rotate(-1deg);
+  box-shadow: 0 0 0 2px var(--ink), 8px 8px 0 2px var(--ink);
+  outline: none;
+}
+a.brand-tile:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 4px;
+}
+@media (prefers-color-scheme: dark) {
+  .brand-tile {
+    box-shadow: 0 0 0 2px var(--ink), 5px 5px 0 2px oklch(0.97 0.01 90 / 0.35);
+  }
+  a.brand-tile:hover,
+  a.brand-tile:focus-visible {
+    box-shadow: 0 0 0 2px var(--ink), 8px 8px 0 2px oklch(0.97 0.01 90 / 0.6);
+  }
+}
+.brand-tile__name {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  line-height: 1.25;
+}
+.brand-tile--hero {
+  height: clamp(7rem, 22vw, 10rem);
+  width: min(100% - 2rem, 36rem);
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+.brand-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 10rem), 1fr));
+  gap: 1.5rem;
+}
+
 /* Typographic product card (components/ProductCard.jsx): a hand-cut sticker filled with its flavors.
    Every element has a fixed grid slot so all cards line up, whatever their content. */
 .product-card {

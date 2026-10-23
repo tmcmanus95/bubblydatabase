@@ -171,9 +171,10 @@ _Last session: 2026-10-21._
   mobile overflow/pill fix and 5 background patterns; Thomas picked **waves** as the default (2026-10-23).
 - Waves merged (#185). Wave motion PR #186: hover/focus slosh + rising tiny bubbles in the bottom region
   (`flavorBubbles` in `flavorSurface.js`, drawn by `.flavor-surface--waves::before` in `index.css`); respects reduce motion.
+- Wave motion follow-up merged (#187). Brand pages: `BrandTile` (font + package-color frame), no logos.
 - Mobile screenshots: headless Chrome can't make <500px windows, and iframes are blocked by our own CSP
   (frame-ancestors 'none'); use real device emulation (puppeteer-core) for phone checks.
 
 ## Next Claude ticket
-P1-0d (typographic brand pages in brand fonts, drop logo links, delete dead `Header.jsx`), then
-tighten the CSP `img-src` and continue with P1-2 (rate limiting).
+P1-2 (rate limiting), after the P1-0d PR (typographic brand pages via `BrandTile.jsx`, logo links gone,
+CSP `img-src 'self' data:`). Heads-up for P15-5: Amazon images need their host added to `img-src`.

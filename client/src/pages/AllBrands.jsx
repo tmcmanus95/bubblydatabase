@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import brandLogos from "../assets/brandLogos.json";
-import { formatBrands } from "../../utils/formatBrands";
+import BrandTile from "../components/BrandTile";
 export default function AllBrands() {
   return (
     <>
@@ -11,23 +11,9 @@ export default function AllBrands() {
             Bubbles. is not affiliated with any of the brands listed below.
           </h6>
         </div>
-        <div className="mt-20 mb-14 justify-center flex flex-wrap gap-4 md:gap-6 lg:gap-10">
-          {brandLogos.map((brand, index) => (
-            <div>
-              <Link to={`/brands/${brand.name}`}>
-                <div className="flex-1 text-center shadow-lg p-10 rounded-xl my-10  bg-white text-black">
-                  <img
-                    src={`${brand.link}`}
-                    width={100}
-                    height={100}
-                    className="mx-auto"
-                  />
-                  <h3 className="text-lg font-medium pt-8 pb-2">
-                    {formatBrands(brand.name)}
-                  </h3>
-                </div>
-              </Link>
-            </div>
+        <div className="brand-grid max-w-6xl mx-auto mt-14 mb-14">
+          {brandLogos.map((brand) => (
+            <BrandTile key={brand.name} brandName={brand.name} />
           ))}
         </div>
       </section>
