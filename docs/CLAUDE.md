@@ -36,8 +36,10 @@ RateYourMusic-style sparkling water rating site. MERN (MongoDB, Express, React, 
 - Flavor colors: OKLCH tokens with separate light/dark values in the theme file. Animated glow borders respect `prefers-reduced-motion`.
 - Aesthetic: playful, illustrated, hand-made (reference: Aura Bora). Avoid generic "AI-generated" UI patterns (gradient meshes everywhere, glassmorphism, stock icon sets).
 - Accessibility: keyboard operable, visible focus, alt text, WCAG AA contrast.
-- Product cards are typographic: brand color (OKLCH token from `client/src/theme/brandColors.js`) +
-  flavor name + brand name + score as the anchor. Flavor-category icons are our own assets. No product photos required to ship.
+- Product cards are typographic: the flavors' colors fill the card (`client/src/theme/flavorSurface.js`;
+  one hard-edged band per flavor), the brand name is set in that brand's font (`brandFonts.js`), and the
+  score + stars are the anchor. No brand colors. Flavor-category icons are our own assets. No product
+  photos required to ship.
 
 ## Commands
 

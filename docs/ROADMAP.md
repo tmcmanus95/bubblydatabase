@@ -3,7 +3,7 @@
 _Status: **Approved by Thomas (2026-10-21).** **Phase 0 complete** (released to `main` in #173). Phase 1 started._
 _Sources: `docs/SPEC.md`, `docs/AUDIT.md`. Last updated 2026-10-22._
 
-**Next up:** Thomas: review P1-0c on staging (home, a product page, search, a profile, recent), then release. Claude: P1-0d (brand pages without logos). PRs now go into `staging`; Thomas releases with a `staging` → `main` PR.
+**Next up:** Thomas: review the flavor-card redesign on staging, then release. Claude: P1-0d (brand pages without logos, in brand fonts). PRs now go into `staging`; Thomas releases with a `staging` → `main` PR.
 
 ## How to read this
 
@@ -214,7 +214,7 @@ Report: `docs/IMAGE_AUDIT.md`; script: `server/scripts/imageAudit.js` (read-only
 - [x] Proposal: brand color tokens → `<ProductCard>` → swap all product images (removes the Amazon images) → typographic brand pages; keep `imageURL` data; optional later rename only with approval
 - [x] Thomas approved the proposed tickets (2026-10-22): P1-0a..e below
 
-#### P1-0a 🤖 Brand color tokens — 45m — done (PR #176)
+#### P1-0a 🤖 Brand color tokens — 45m — done (PR #176), **superseded**: Thomas dropped brand colors on 2026-10-22; cards use flavor colors (see P1-0c follow-up). `brandColors.js` removed
 
 - [x] `client/src/theme/brandColors.js`: a 12-color OKLCH palette (light bg/ink + dark bg/ink) and an explicit color for all 44 current brands; alphabetical neighbors get well-separated hues. Flavor colors are still hex in `App.css` (move into the theme in Phase 4)
 - [x] Brands not listed get a stable automatic color (FNV hash of the name); `brandStyle()` + `.brand-surface` (index.css) apply it, following the OS light/dark setting like Tailwind
@@ -230,17 +230,18 @@ Report: `docs/IMAGE_AUDIT.md`; script: `server/scripts/imageAudit.js` (read-only
 - [x] Preview page `/working/cards` (not linked) with real data; checked in light and dark mode via headless Chrome screenshots
 - [x] Follow-up from Thomas's review: every element in a fixed slot (brand always top-left, icon top-right, name in a 2-line slot, flavor chips, score bottom-left, tags bottom-right; same card height), and **all flavor colors visible**: a split stripe along the top edge (left edge on compact) plus color-dot chips (up to 3, then "+N"). Colors come from `client/src/theme/flavorColors.js`, copied from App.css and kept in sync by a test (OKLCH conversion in Phase 4). Pineapple and peach icons redrawn so every category is distinct
 
-#### P1-0c 🤖 Swap product images for cards — 45m — in review
+#### P1-0c 🤖 Swap product images for cards — 45m — done (PR #180)
 
 - [x] All 6 product render sites use `<ProductCard>`: list items (full card + "Your rating" for logged-in users), product page (new `hero` variant, not a link, with "More from <brand>" and flavor links beside it), search results, profile ratings/reviews and recent reviews (`compact`, with that person's rating in the score slot via the new `score`/`scoreDetail` props). `imageURL` removed from all 17 client queries + 1 mutation; caffeinated + search queries gained the card fields; all 32 client operations validate against the schema
 - [x] **Removes all 70 Amazon images** and every other third-party product photo: on home, product, search, profile and recent pages, the only `<img>` left is our own `bubblesicon.png` (checked in headless Chrome)
 - [x] `imageURL` stays in the database and schema (hard rule 3)
 - [x] Deliberate change: list rows no longer have their own brand/flavor links (the card is one link); brands and flavors stay reachable from the navbar and the product page
 - [ ] CSP `img-src` tightened to `'self' data:` once P1-0d also ships (brand logos are the last external images)
+- [x] Follow-up from Thomas's review (in review): **flavor colors take over the card** (each flavor's hue at a fixed pastel lightness; one hard-edged diagonal band per flavor; dark mode uses slightly deeper still-bright tones with the same dark ink, since darker tones turned yellows muddy), **brand name in a per-brand Google Font** loosely in the spirit of its logo (44 brands, one stylesheet, only used fonts download), **read-only stars** next to the score. Brand colors removed. Tests: every flavor color in gamut with ≥ 6.9:1 contrast in both modes; every brand has a font and is in the stylesheet URL
 
 #### P1-0d 🤖 Brand pages without logos — 30m
 
-- [ ] Brand page and All Brands grid are typographic (brand name in its color); official site stays as a text link
+- [ ] Brand page and All Brands grid are typographic (brand name in its brand font from `brandFonts.js`, no brand colors); official site stays as a text link
 - [ ] `link` removed from `brandLogos.json` (keep `site`); dead `Header.jsx` deleted
 
 #### P1-0e 🧑 Own asset provenance — 15m
@@ -384,6 +385,7 @@ Report: `docs/IMAGE_AUDIT.md`; script: `server/scripts/imageAudit.js` (read-only
 - [ ] Optimistic save with rollback + toast on error; half-star support
 - [ ] Keyboard: arrows/Home/End; `role="slider"` with `aria-valuenow/min/max/valuetext`; visible focus
 - [ ] Respects `prefers-reduced-motion`; replaces MUI `Rating` in `CustomColorRating`
+- Note: read-only stars already show on every card (`client/src/components/Stars.jsx`, 2026-10-22); this ticket is the interactive rating control. Thomas wants stars kept
 
 #### P1-22 🤖 Batched "my ratings" — 30m
 
