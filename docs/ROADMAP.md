@@ -251,7 +251,7 @@ Report: `docs/IMAGE_AUDIT.md`; script: `server/scripts/imageAudit.js` (read-only
 
 #### P1-0e 🧑 Own asset provenance — 15m
 
-- [ ] Thomas confirms where `bubblesicon.png` and the bubble textures (`whitebubbles.jpg`, `blackbubbles.jpg`) came from; if the license is unknown, they're replaced in Phase 4
+- [x] Thomas confirms where `bubblesicon.png` and the bubble textures (`whitebubbles.jpg`, `blackbubbles.jpg`) came from; if the license is unknown, they're replaced in Phase 4 — **unknown (2026-10-23): replace.** Thomas may commission a designer or design them himself; until then Claude can swap in generated stand-ins
 - [ ] Remove unused `bubblesbackground.webp` and `vite.svg`
 
 #### P1-1 🤖 helmet, explicit CORS, body limits — 30m — done (PR #175)
@@ -282,11 +282,11 @@ Report: `docs/IMAGE_AUDIT.md`; script: `server/scripts/imageAudit.js` (read-only
 - [x] Generic error message; unknown emails are counted, timed (dummy bcrypt check) and answered exactly like real ones; client shows server messages instead of "status code 429"
 - [x] Tests (`server/tests/loginThrottle.test.js`, `client/utils/errorMessage.test.js`)
 
-#### P1-5 🤖 bcrypt 6 + rehash on login — 30m
+#### P1-5 🤖 bcrypt 6 + rehash on login — 30m — in review
 
-- [ ] Upgrade to `bcrypt@6` (existing hashes stay valid)
-- [ ] On successful login, if the hash cost is below 12, rehash and save. No forced resets.
-- [ ] Test: a cost-10 hash logs in and is upgraded
+- [x] Upgrade to `bcrypt@6` (existing hashes stay valid)
+- [x] On successful login, if the hash cost is below 12, rehash and save. No forced resets. New hashes use cost 12
+- [x] Test: a cost-10 hash logs in and is upgraded
 
 #### P1-6 🤖 Cookie sessions (split across 2 sessions) — 2 × 60m
 
