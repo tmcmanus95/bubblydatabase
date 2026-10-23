@@ -6,11 +6,11 @@ import ProductCard from "../../components/ProductCard";
 import Loading from "../../components/Loading";
 
 const PATTERNS = ["bands", "waves", "bubbles", "gradient", "stripes"];
-const PALETTES = ["aura", "vibrant", "white"];
+const PALETTES = ["aura", "vibrant", "white", "splash"];
 
 // Preview of the product cards with real data. Not linked from the site.
 // ?pattern=waves (or bubbles, gradient, stripes, bands) previews a background pattern;
-// ?palette=vibrant (or aura, white) previews a color style; ?flavor=lemon shows only cards with that flavor.
+// ?palette=vibrant (or aura, white, splash) previews a color style; ?flavor=lemon shows only cards with that flavor.
 export default function CardPreview() {
   const { data, error } = useQuery(QUERY_ALL_BUBBLYS);
   const [params] = useSearchParams();

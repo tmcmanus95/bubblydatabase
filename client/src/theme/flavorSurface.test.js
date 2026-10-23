@@ -164,10 +164,10 @@ test("every brand has a border color; overrides and unknown brands work", async 
   }
 });
 
-test("vibrant and white palettes keep every flavor readable, with lemons yellow (not olive)", async () => {
+test("vibrant, white and splash palettes keep every flavor readable, with lemons yellow (not olive)", async () => {
   const { DEFAULT_COLOR_SETTINGS, setColorSettings } = await import("./colorSettings.js");
   try {
-    for (const palette of ["vibrant", "white"]) {
+    for (const palette of ["vibrant", "white", "splash"]) {
       setColorSettings({ ...DEFAULT_COLOR_SETTINGS, palette });
       for (const flavor of Object.keys(FLAVOR_COLORS)) {
         for (const mode of ["light", "dark"]) {
