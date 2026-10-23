@@ -269,12 +269,12 @@ Report: `docs/IMAGE_AUDIT.md`; script: `server/scripts/imageAudit.js` (read-only
 - [x] Per-operation limits keyed on the mutation fields in the parsed query (the client-sent operation name is spoofable; aliases can't repeat a limited mutation): `login`, `addUser`, `forgotPassword`, `resetPassword`, `resendEmailVerification`, `addRating`, `editRating`, `addReview`
 - [x] `trust proxy` = 1 hop in production (`TRUST_PROXY` env overrides); tests prove the 429 behavior. **Thomas:** confirm on staging that limits are per visitor (see the PR)
 
-#### P1-3 🤖 Input validation + sanitizing — 60m
+#### P1-3 🤖 Input validation + sanitizing — 60m — in review
 
-- [ ] zod schemas: ObjectIds, rating ∈ {0.5, 1, …, 5}, reviewText 1–500 trimmed, username/email/password rules
-- [ ] `searchVagueProductName` escapes regex input (or switches to text search)
-- [ ] `express-mongo-sanitize` (or equivalent) on request bodies
-- [ ] Tests for rejected inputs
+- [x] zod schemas for every resolver with arguments (`server/schemas/validation.js`): ObjectIds, rating ∈ {0.5, 1, …, 5}, reviewText 1–500 trimmed, username/email/password rules (new accounts/passwords only, so old logins keep working)
+- [x] `searchVagueProductName` escapes regex input
+- [x] Equivalent of `express-mongo-sanitize` (unmaintained): requests with `$`/dotted keys get a 400 (`server/utils/rejectOperatorKeys.js`)
+- [x] Tests for rejected inputs (`server/tests/validation.test.js`)
 
 #### P1-4 🤖 Login lockout/backoff — 45m
 
