@@ -267,7 +267,7 @@ Report: `docs/IMAGE_AUDIT.md`; script: `server/scripts/imageAudit.js` (read-only
 
 - [x] Global limiter on `/graphql` (1500 requests / 15 min per IP; generous until P1-22 stops the home page sending one query per product)
 - [x] Per-operation limits keyed on the mutation fields in the parsed query (the client-sent operation name is spoofable; aliases can't repeat a limited mutation): `login`, `addUser`, `forgotPassword`, `resetPassword`, `resendEmailVerification`, `addRating`, `editRating`, `addReview`
-- [x] `trust proxy` = 1 hop in production (`TRUST_PROXY` env overrides); tests prove the 429 behavior. **Thomas:** confirm on staging that limits are per visitor (see the PR)
+- [x] `trust proxy` = 3 hops in production (Cloudflare → Render load balancer → local proxy, measured on staging 2026-10-23; `TRUST_PROXY` env overrides); tests prove the 429 behavior and that forged `X-Forwarded-For` is ignored
 
 #### P1-3 🤖 Input validation + sanitizing — 60m — in review
 

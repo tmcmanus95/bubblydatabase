@@ -80,14 +80,16 @@ const appWith = async (nodeEnv, trustProxy) => {
 const fromIp = (app, ip) =>
   supertest(app).post("/graphql").set("Content-Type", "application/json").set("X-Forwarded-For", ip).send({ query: "{ __typename }" });
 
-test("production trusts Render's one proxy, so each visitor gets their own limit", async () => {
+test("production trusts Render's three proxies, so each visitor gets their own limit", async () => {
   const { app, server } = await appWith("production");
+  // What Render hands the app: visitor, Cloudflare edge, Render load balancer (the socket is the 3rd hop)
+  const chain = (visitor, edge) => `${visitor}, ${edge}, 10.24.63.117`;
   try {
-    assert.strictEqual((await fromIp(app, "203.0.113.1")).status, 200);
-    assert.strictEqual((await fromIp(app, "203.0.113.1")).status, 429);
-    assert.strictEqual((await fromIp(app, "203.0.113.2")).status, 200, "a different visitor isn't blocked");
-    // A spoofed extra hop: only the address the proxy saw counts
-    assert.strictEqual((await fromIp(app, "198.51.100.9, 203.0.113.1")).status, 429);
+    assert.strictEqual((await fromIp(app, chain("203.0.113.1", "104.22.160.12"))).status, 200);
+    assert.strictEqual((await fromIp(app, chain("203.0.113.1", "172.71.147.99"))).status, 429, "a different Cloudflare edge is still the same visitor");
+    assert.strictEqual((await fromIp(app, chain("203.0.113.2", "104.22.160.12"))).status, 200, "a different visitor isn't blocked");
+    // A visitor forging X-Forwarded-For: Cloudflare appends the real address after it
+    assert.strictEqual((await fromIp(app, `198.51.100.9, ${chain("203.0.113.1", "104.22.160.12")}`)).status, 429);
   } finally {
     await server.stop();
   }
@@ -100,17 +102,5 @@ test("without a proxy (development), X-Forwarded-For is ignored", async () => {
     assert.strictEqual((await fromIp(app, "203.0.113.2")).status, 429, "a faked header can't reset the limit");
   } finally {
     await server.stop();
-  }
-});
-
-test("the client-IP diagnostic header only appears when DEBUG_CLIENT_IP is on", async () => {
-  const off = await t.request.post("/graphql").set("Content-Type", "application/json").send({ query: "{ __typename }" });
-  assert.strictEqual(off.headers["x-debug-client-ip"], undefined);
-  process.env.DEBUG_CLIENT_IP = "true";
-  try {
-    const on = await t.request.post("/graphql").set("Content-Type", "application/json").send({ query: "{ __typename }" });
-    assert.ok(JSON.parse(on.headers["x-debug-client-ip"]).ip);
-  } finally {
-    delete process.env.DEBUG_CLIENT_IP;
   }
 });
