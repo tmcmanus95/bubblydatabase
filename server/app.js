@@ -39,35 +39,16 @@ const isAllowedOrigin = (origin) =>
     .filter(Boolean)
     .includes(origin);
 
-// How many proxies sit in front of the app (TRUST_PROXY). Render puts one load balancer in front, so
-// production trusts one hop and req.ip is the visitor's address rather than the proxy's; rate limits key
-// on req.ip. Trusting more hops than exist would let visitors fake their IP via X-Forwarded-For.
+// How many proxies sit in front of the app (TRUST_PROXY). On Render every request passes through three:
+// Cloudflare, Render's load balancer, and a proxy on the same machine (measured on staging, 2026-10-23:
+// X-Forwarded-For = "<visitor>, <Cloudflare>, <10.x Render>" from socket ::1). Trusting exactly three hops
+// makes req.ip the visitor, which rate limits key on; anything a visitor writes into X-Forwarded-For sits
+// further left and is ignored. Trusting more hops than exist would let visitors fake their IP.
 const trustProxy = (isProduction) => {
   const value = process.env.TRUST_PROXY;
-  if (value === undefined || value === "") return isProduction ? 1 : false;
+  if (value === undefined || value === "") return isProduction ? 3 : false;
   if (/^\d+$/.test(value)) return Number(value);
   return value === "true" ? true : value === "false" ? false : value;
-};
-
-// Temporary (P1-2 follow-up): with DEBUG_CLIENT_IP=true, echo the proxy chain this request arrived
-// through in a response header, so TRUST_PROXY can be set from facts. Only the requester sees it, and it
-// only contains their own address and the proxies'. Staging only; remove once TRUST_PROXY is settled.
-const debugClientIp = (req, res, next) => {
-  if (process.env.DEBUG_CLIENT_IP === "true") {
-    const pick = (name) => req.headers[name] || null;
-    res.set(
-      "X-Debug-Client-Ip",
-      JSON.stringify({
-        ip: req.ip,
-        socket: req.socket.remoteAddress,
-        xff: pick("x-forwarded-for"),
-        cf: pick("cf-connecting-ip"),
-        trueClient: pick("true-client-ip"),
-        realIp: pick("x-real-ip"),
-      })
-    );
-  }
-  next();
 };
 
 // Builds the Express app with GraphQL mounted. Doesn't connect to MongoDB or listen on a port, so
@@ -90,7 +71,6 @@ const createApp = async ({ rateLimits } = {}) => {
     cors({ origin: (origin, callback) => callback(null, Boolean(origin) && isAllowedOrigin(origin)) }),
     express.json({ limit: "100kb" }),
     rejectOperatorKeys,
-    debugClientIp,
     ...graphqlRateLimits(rateLimits),
     expressMiddleware(server, {
       context: authMiddleware,
