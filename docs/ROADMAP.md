@@ -263,11 +263,11 @@ Report: `docs/IMAGE_AUDIT.md`; script: `server/scripts/imageAudit.js` (read-only
 - [x] 6 new tests; all 56 green. Built site served in production mode: 0 CSP violations on home + contact (headless Chrome)
 - [x] Thomas checked staging (2026-10-22): Lilita One renders; the contact form sends. Prod gets it with the next release
 
-#### P1-2 🤖 Rate limiting — 45m
+#### P1-2 🤖 Rate limiting — 45m — in review
 
-- [ ] Global limiter on `/graphql`
-- [ ] Per-operation limits keyed on the GraphQL operation name: `login`, `addUser`, `forgotPassword`, `resetPassword`, `resendEmailVerification`, `addRating`, `editRating`, `addReview`
-- [ ] `trust proxy` set correctly for Render; tests prove the 429 behavior
+- [x] Global limiter on `/graphql` (1500 requests / 15 min per IP; generous until P1-22 stops the home page sending one query per product)
+- [x] Per-operation limits keyed on the mutation fields in the parsed query (the client-sent operation name is spoofable; aliases can't repeat a limited mutation): `login`, `addUser`, `forgotPassword`, `resetPassword`, `resendEmailVerification`, `addRating`, `editRating`, `addReview`
+- [x] `trust proxy` = 1 hop in production (`TRUST_PROXY` env overrides); tests prove the 429 behavior. **Thomas:** confirm on staging that limits are per visitor (see the PR)
 
 #### P1-3 🤖 Input validation + sanitizing — 60m
 

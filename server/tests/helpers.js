@@ -23,14 +23,15 @@ const localMongod = () => {
   return result.status === 0 ? result.stdout.trim() : null;
 };
 
-// Starts the in-memory database and the app. Call stop() in an `after` hook.
-const startTestServer = async () => {
+// Starts the in-memory database and the app. Call stop() in an `after` hook. Rate limits are off unless
+// a test passes its own (see utils/rateLimits.js).
+const startTestServer = async ({ rateLimits = false } = {}) => {
   const systemBinary = localMongod();
   const mongo = await MongoMemoryServer.create(systemBinary ? { binary: { systemBinary } } : {});
   await mongoose.connect(mongo.getUri("bubbly_test"));
   assert.strictEqual(mongoose.connection.host, "127.0.0.1", "tests must only use the in-memory database");
 
-  const { app, server } = await createApp();
+  const { app, server } = await createApp({ rateLimits });
   const request = supertest(app);
 
   // Sends a GraphQL operation; pass a user document to send their JWT
