@@ -22,11 +22,18 @@ export const DEFAULT_COLOR_SETTINGS = {
     lightModeGapBelowCard: 0.16,
     darkLightness: 0.5,
   },
-  // Angle of the diagonal bands on multi-flavor cards, in degrees
+  // How multiple flavors share a card: "bands" (diagonal), "waves", "bubbles", "gradient" or "stripes".
+  // Single-flavor cards are solid in "bands"/"gradient"/"stripes"; "waves" and "bubbles" add a lighter
+  // tint of the flavor for texture.
+  pattern: "waves", // picked by Thomas, 2026-10-23
+  // Angle of the diagonal bands / gradient / stripes, in degrees
   bandAngle: 115,
   // Replace a flavor's base color for cards only, e.g. { lemon: "#fff200" }. Keys are flavor values
   // (lowercase, dashes). Without an entry, the color comes from flavorColors.js (mirrors App.css).
   flavorOverrides: {},
+  // Replace a brand's border color, e.g. { spindrift: "#1b365d" }. Without an entry, it comes from
+  // brandColors.js.
+  brandColorOverrides: {},
 };
 
 let current = DEFAULT_COLOR_SETTINGS;

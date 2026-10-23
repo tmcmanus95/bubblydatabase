@@ -167,7 +167,10 @@ _Last session: 2026-10-21._
   centered stars. **To edit colors:** open `/working/colors` (Color Lab), drag sliders, "Copy settings",
   paste over `DEFAULT_COLOR_SETTINGS` in `client/src/theme/colorSettings.js`, run `npm test`.
 - P1-21 decided: tap stars directly on cards (with scroll-safe taps, stars above the link, undo toast).
-- Flavor icons removed (no icons for now). Brand-color accent: mocked for Thomas (frame vs tab), not committed.
+- Flavor icons removed (#184). Brand border approved (Thomas picked "frame" over "tab"); PR open with the
+  mobile overflow/pill fix and 5 background patterns; Thomas picked **waves** as the default (2026-10-23).
+- Mobile screenshots: headless Chrome can't make <500px windows, and iframes are blocked by our own CSP
+  (frame-ancestors 'none'); use real device emulation (puppeteer-core) for phone checks.
 
 ## Next Claude ticket
 P1-0d (typographic brand pages in brand fonts, drop logo links, delete dead `Header.jsx`), then
