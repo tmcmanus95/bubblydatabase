@@ -7,7 +7,7 @@ import { FLAVOR_COLORS } from "./flavorColors.js";
 import { INK, flavorSurface, flavorAccent, flavorStarColor, accentStyle, starStyle, flavorBands, flavorBackground, flavorStyle } from "./flavorSurface.js";
 import { DEFAULT_COLOR_SETTINGS as SHIPPED, setColorSettings as applySettings } from "./colorSettings.js";
 
-// Most tests check the "aura" tone rules; palette tests opt into theirs. The site ships "splash".
+// Most tests check the "aura" tone rules; palette tests opt into theirs. The site ships "soda".
 const AURA = { ...SHIPPED, palette: "aura" };
 applySettings(AURA);
 
@@ -194,9 +194,9 @@ test("vibrant, white and splash palettes keep every flavor readable, with lemons
   }
 });
 
-test("splash is the shipped palette, and its stars are vivid, not brown", async () => {
+test("soda is the shipped palette; vivid-palette stars are vivid, not brown", async () => {
   const { setColorSettings } = await import("./colorSettings.js");
-  assert.strictEqual(SHIPPED.palette, "splash");
+  assert.strictEqual(SHIPPED.palette, "soda");
   try {
     setColorSettings(SHIPPED);
     for (const flavor of ["lemon", "orange", "pineapple", "mango", "lime", "raspberry", "blueberry", "grape"]) {

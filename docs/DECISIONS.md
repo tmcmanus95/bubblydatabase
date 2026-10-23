@@ -146,3 +146,4 @@ Newest first. Format: date · decision · why · who decided.
 - The password exposed in public git history (commit `1f7c729`) was rotated.
 - Decided/done by: Thomas.
 - 2026-10-23: Card palette is **splash** (Thomas): white top, the first flavor's vivid color filling below the wave, the other flavor's deep tone for the wave line and bubbles. Compact cards are all water. Stars use the most vivid tone a step darker than the fill. Other palettes stay available in `colorSettings.js` / the Color Lab.
+- 2026-10-23: Card palette switched to **soda** (Thomas): the first flavor's vivid color fills the card; white bubbles, or the other flavors' deep tones on multi-flavor cards; text sits on 90% patches of the card color so bubbles never cross letters. Splash and the others stay selectable.

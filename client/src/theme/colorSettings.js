@@ -13,7 +13,7 @@ export const DEFAULT_COLOR_SETTINGS = {
   // (white card, no waves, bubbles in every flavor's color rising across the whole card), "soda" (fizz
   // inverted: the first flavor fills the card; white bubbles, or the other flavors' colors) or "sparkle"
   // (a gradient of the flavors' colors with white bubbles).
-  palette: "splash", // picked by Thomas, 2026-10-23
+  palette: "soda", // picked by Thomas, 2026-10-23 (replaces "splash")
   // The card background (one band per flavor) for the "aura" palette
   card: {
     light: { lightness: 0.86, maxChroma: 0.17 },
