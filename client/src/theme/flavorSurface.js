@@ -253,7 +253,9 @@ export function flavorBubbles(flavors, mode) {
     const list = flavors.length ? flavors : ["plain"];
     const colors = palette === "soda" && list.length > 1 ? list.slice(1).map((f) => oklchToHex(flavorStarColor(f).light)) : [WHITE_BUBBLE];
     const bg = BUBBLE_TILES.map((t, i) => bubbleTile(t, colors.slice(i % colors.length).concat(colors.slice(0, i % colors.length)))).join(", ");
-    return { ...pair("bubbles", { light: bg, dark: bg }, mode), "--bubbles-top": "0%", "--bubbles-fade": "18%" };
+    // soda: text patches in the card's own color (90%), so they hide the bubbles without showing as boxes
+    const patch = palette === "soda" ? { "--text-patch": `${oklchToHex(flavorSurface(list[0]).light)}e6` } : {};
+    return { ...pair("bubbles", { light: bg, dark: bg }, mode), "--bubbles-top": "0%", "--bubbles-fade": "18%", ...patch };
   }
   if (palette === "fizz") {
     // No waves: the bubbles fill the whole card, mixing every flavor's color
