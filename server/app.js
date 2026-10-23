@@ -7,6 +7,8 @@ const path = require("path");
 const { authMiddleware } = require("./utils/auth");
 const typeDefs = require("./schemas/typeDefs");
 const { graphqlRateLimits } = require("./utils/rateLimits");
+const { withValidation } = require("./schemas/validation");
+const { rejectOperatorKeys } = require("./utils/rejectOperatorKeys");
 const resolvers = require("./schemas/resolvers");
 
 // What the built site is allowed to load. Images: only our own files and data: URIs (generated cards);
@@ -55,7 +57,7 @@ const createApp = async ({ rateLimits } = {}) => {
   app.set("trust proxy", trustProxy(isProduction));
   const server = new ApolloServer({
     typeDefs,
-    resolvers,
+    resolvers: withValidation(resolvers),
   });
   await server.start();
 
@@ -66,6 +68,7 @@ const createApp = async ({ rateLimits } = {}) => {
     "/graphql",
     cors({ origin: (origin, callback) => callback(null, Boolean(origin) && isAllowedOrigin(origin)) }),
     express.json({ limit: "100kb" }),
+    rejectOperatorKeys,
     ...graphqlRateLimits(rateLimits),
     expressMiddleware(server, {
       context: authMiddleware,

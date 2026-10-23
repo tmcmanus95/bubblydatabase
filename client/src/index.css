@@ -59,8 +59,8 @@
   z-index: -1;
   pointer-events: none;
   background: var(--bubbles);
-  -webkit-mask-image: linear-gradient(transparent, #000 45%);
-  mask-image: linear-gradient(transparent, #000 45%);
+  -webkit-mask-image: linear-gradient(transparent, #000 var(--bubbles-fade, 45%));
+  mask-image: linear-gradient(transparent, #000 var(--bubbles-fade, 45%));
   animation: bubbles-rise 12s linear infinite, bubbles-sway 2.2s ease-in-out infinite alternate;
   animation-play-state: paused;
 }
