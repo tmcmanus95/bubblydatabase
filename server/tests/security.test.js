@@ -47,6 +47,7 @@ test("the CSP is sent in production and allows exactly what the site uses", asyn
   assert.ok(directives["connect-src"].includes("https://formspree.io"));
   assert.deepStrictEqual(directives["frame-ancestors"], ["'none'"]);
   assert.deepStrictEqual(directives["object-src"], ["'none'"]);
+  assert.deepStrictEqual(directives["img-src"], ["'self'", "data:"], "no third-party images");
 });
 
 test("no CSP in development, where Vite serves the client", async () => {

@@ -8,8 +8,8 @@ const { authMiddleware } = require("./utils/auth");
 const typeDefs = require("./schemas/typeDefs");
 const resolvers = require("./schemas/resolvers");
 
-// What the built site is allowed to load. Images stay open to any https host until the typographic
-// cards replace third-party product images (P1-0c/d); then imgSrc tightens to 'self' and data:.
+// What the built site is allowed to load. Images: only our own files and data: URIs (generated cards);
+// no third-party images (CLAUDE.md rule 10). Amazon's "Where to buy" images get their own host later (P15-5).
 const contentSecurityPolicy = {
   directives: {
     defaultSrc: ["'self'"],
@@ -17,7 +17,7 @@ const contentSecurityPolicy = {
     // MUI/emotion injects <style> tags; Google Fonts serves the Lilita One stylesheet
     styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
     fontSrc: ["'self'", "https://fonts.gstatic.com", "data:"],
-    imgSrc: ["'self'", "data:", "https:"],
+    imgSrc: ["'self'", "data:"],
     // The contact form posts to Formspree
     connectSrc: ["'self'", "https://formspree.io"],
     formAction: ["'self'", "https://formspree.io"],
