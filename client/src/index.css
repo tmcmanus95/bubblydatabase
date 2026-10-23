@@ -97,19 +97,26 @@
 /* Fizz, soda and sparkle: bubbles cover the whole card, so every bit of text sits on a mostly opaque patch
    with a little breathing room; bubbles drift behind it and never cut through letters. The room is a
    box-shadow spread, so nothing moves (padding would shift the stars' fill layer). Fizz: paper patches;
-   soda: patches in the card's own color (set by flavorBubbles); sparkle: frosted white over the gradient. */
+   soda: patches in the card's own color (set by flavorBubbles); sparkle: frosted glass (below). */
 .product-card--fizz {
   --text-patch: oklch(0.99 0.004 90 / 0.9);
 }
-.product-card--sparkle {
-  --text-patch: oklch(0.99 0.004 90 / 0.6);
-}
-:is(.product-card--fizz, .product-card--soda, .product-card--sparkle) :is(.product-card__brand, .product-card__name, .product-card__stars > *, .product-card__tag) {
+:is(.product-card--fizz, .product-card--soda) :is(.product-card__brand, .product-card__name, .product-card__stars > *, .product-card__tag) {
   background: var(--text-patch);
   box-shadow: 0 0 0 0.3rem var(--text-patch);
   border-radius: 6px;
 }
 :is(.product-card--fizz, .product-card--soda, .product-card--sparkle) :is(.product-card__brand, .product-card__name) {
+  width: fit-content;
+  max-width: 100%;
+}
+/* Sparkle: a flat patch would show as a box on the gradient, so text gets frosted glass instead. Blurring
+   a smooth gradient leaves it unchanged, while the tiny bubbles behind the text smear away to nothing. */
+.product-card--sparkle :is(.product-card__brand, .product-card__name, .product-card__stars, .product-card__tags) {
+  -webkit-backdrop-filter: blur(9px);
+  backdrop-filter: blur(9px);
+}
+.product-card--sparkle :is(.product-card__brand, .product-card__name) {
   width: fit-content;
   max-width: 100%;
 }
