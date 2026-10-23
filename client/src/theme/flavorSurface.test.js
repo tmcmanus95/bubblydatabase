@@ -5,6 +5,11 @@ import { readFileSync } from "node:fs";
 import { contrastRatio, inSrgbGamut, cssColorToOklch, parseOklch, oklchToHex } from "./color.js";
 import { FLAVOR_COLORS } from "./flavorColors.js";
 import { INK, flavorSurface, flavorAccent, flavorStarColor, accentStyle, starStyle, flavorBands, flavorBackground, flavorStyle } from "./flavorSurface.js";
+import { DEFAULT_COLOR_SETTINGS as SHIPPED, setColorSettings as applySettings } from "./colorSettings.js";
+
+// Most tests check the "aura" tone rules; palette tests opt into theirs. The site ships "splash".
+const AURA = { ...SHIPPED, palette: "aura" };
+applySettings(AURA);
 
 test("color math matches known values", () => {
   assert.strictEqual(contrastRatio("oklch(1 0 0)", "oklch(0 0 0)").toFixed(1), "21.0");
@@ -91,11 +96,11 @@ test("index.css uses the same ink color as flavorSurface.js", () => {
 test("Color Lab settings changes take effect live and can be reset", async () => {
   const { DEFAULT_COLOR_SETTINGS, setColorSettings } = await import("./colorSettings.js");
   const before = flavorSurface("lime").light;
-  setColorSettings({ ...DEFAULT_COLOR_SETTINGS, card: { ...DEFAULT_COLOR_SETTINGS.card, light: { lightness: 0.8, maxChroma: 0.2 } } });
+  setColorSettings({ ...AURA, card: { ...DEFAULT_COLOR_SETTINGS.card, light: { lightness: 0.8, maxChroma: 0.2 } } });
   assert.match(flavorSurface("lime").light, /^oklch\(0\.8 /);
-  setColorSettings({ ...DEFAULT_COLOR_SETTINGS, flavorOverrides: { lime: "#0000ff" } });
+  setColorSettings({ ...AURA, flavorOverrides: { lime: "#0000ff" } });
   assert.ok(Math.abs(parseOklch(flavorSurface("lime").light).h - cssColorToOklch("#0000ff").h) < 1, "override changes the hue");
-  setColorSettings(DEFAULT_COLOR_SETTINGS);
+  setColorSettings(AURA);
   assert.strictEqual(flavorSurface("lime").light, before);
 });
 
@@ -114,7 +119,7 @@ test("every background pattern produces a valid background, and texture tints st
   const { flavorBackground } = await import("./flavorSurface.js");
   try {
     for (const pattern of ["bands", "waves", "bubbles", "gradient", "stripes"]) {
-      setColorSettings({ ...DEFAULT_COLOR_SETTINGS, pattern });
+      setColorSettings({ ...AURA, pattern });
       for (const flavors of [["lime"], ["lime", "raspberry"], ["lime", "raspberry", "lemon"]]) {
         for (const mode of ["light", "dark"]) {
           const bg = flavorBackground(flavors, mode);
@@ -125,7 +130,7 @@ test("every background pattern produces a valid background, and texture tints st
         }
       }
     }
-    setColorSettings({ ...DEFAULT_COLOR_SETTINGS, pattern: "waves" });
+    setColorSettings({ ...AURA, pattern: "waves" });
     const background = flavorBackground(["lime", "raspberry"], "light");
     const encoded = /url\("data:image\/svg\+xml,([^"]+)"\)/.exec(background);
     assert.ok(encoded, "waves use an inline SVG");
@@ -140,10 +145,10 @@ test("every background pattern produces a valid background, and texture tints st
     const tile = decodeURIComponent(/url\("data:image\/svg\+xml,([^"]+)"\)/.exec(bubbles["--bubbles"])[1]);
     const topColor = oklchToHex(flavorSurface("lime").light);
     assert.match(tile, new RegExp(`<circle[^>]*fill="${topColor}"`));
-    setColorSettings({ ...DEFAULT_COLOR_SETTINGS, pattern: "bands" });
+    setColorSettings({ ...AURA, pattern: "bands" });
     assert.deepEqual(flavorBubbles(["lime", "raspberry"], "light"), {}, "no bubbles on other patterns");
   } finally {
-    setColorSettings(DEFAULT_COLOR_SETTINGS);
+    setColorSettings(AURA);
   }
 });
 
@@ -157,10 +162,10 @@ test("every brand has a border color; overrides and unknown brands work", async 
   assert.strictEqual(brandColor("liquid-death"), "#111111");
   assert.strictEqual(brandColor("brand-new-fizz"), DEFAULT_BRAND_COLOR);
   try {
-    setColorSettings({ ...DEFAULT_COLOR_SETTINGS, brandColorOverrides: { spindrift: "#1b365d" } });
+    setColorSettings({ ...AURA, brandColorOverrides: { spindrift: "#1b365d" } });
     assert.deepStrictEqual(brandStyle("spindrift"), { "--brand": "#1b365d" });
   } finally {
-    setColorSettings(DEFAULT_COLOR_SETTINGS);
+    setColorSettings(AURA);
   }
 });
 
@@ -168,7 +173,7 @@ test("vibrant, white and splash palettes keep every flavor readable, with lemons
   const { DEFAULT_COLOR_SETTINGS, setColorSettings } = await import("./colorSettings.js");
   try {
     for (const palette of ["vibrant", "white", "splash", "fizz"]) {
-      setColorSettings({ ...DEFAULT_COLOR_SETTINGS, palette });
+      setColorSettings({ ...AURA, palette });
       for (const flavor of Object.keys(FLAVOR_COLORS)) {
         for (const mode of ["light", "dark"]) {
           for (const tone of [flavorSurface(flavor)[mode], flavorAccent(flavor)[mode]]) {
@@ -181,10 +186,25 @@ test("vibrant, white and splash palettes keep every flavor readable, with lemons
         }
       }
     }
-    setColorSettings({ ...DEFAULT_COLOR_SETTINGS, palette: "vibrant" });
+    setColorSettings({ ...AURA, palette: "vibrant" });
     const lemon = parseOklch(flavorSurface("lemon").light);
     assert.ok(lemon.l >= 0.9 && lemon.c >= 0.15, `vibrant lemon should be bright yellow, got ${flavorSurface("lemon").light}`);
   } finally {
-    setColorSettings(DEFAULT_COLOR_SETTINGS);
+    setColorSettings(AURA);
+  }
+});
+
+test("splash is the shipped palette, and its stars are vivid, not brown", async () => {
+  const { setColorSettings } = await import("./colorSettings.js");
+  assert.strictEqual(SHIPPED.palette, "splash");
+  try {
+    setColorSettings(SHIPPED);
+    for (const flavor of ["lemon", "orange", "pineapple", "mango", "lime", "raspberry", "blueberry", "grape"]) {
+      const { l, c } = parseOklch(flavorStarColor(flavor).light);
+      assert.ok(c >= 0.12, `${flavor} star is dull: ${flavorStarColor(flavor).light}`);
+      assert.ok(l < parseOklch(flavorSurface(flavor).light).l, `${flavor} star should be darker than its fill`);
+    }
+  } finally {
+    setColorSettings(AURA);
   }
 });

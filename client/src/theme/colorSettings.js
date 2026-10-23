@@ -11,7 +11,7 @@ export const DEFAULT_COLOR_SETTINGS = {
   // (white card; only the wave lines and bubbles carry the flavor colors) or "splash" (white on top, the
   // first flavor's vivid color filling below the wave; edge line and bubbles in the other flavor) or "fizz"
   // (white card, no waves, bubbles in every flavor's color rising across the whole card).
-  palette: "aura",
+  palette: "splash", // picked by Thomas, 2026-10-23
   // The card background (one band per flavor) for the "aura" palette
   card: {
     light: { lightness: 0.86, maxChroma: 0.17 },
