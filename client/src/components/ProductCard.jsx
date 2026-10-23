@@ -50,11 +50,12 @@ export default function ProductCard({
   const flavors = flavor.length ? flavor : ["plain"];
   const hiddenChips = flavors.length - MAX_CHIPS;
   const hasTags = showChips && (isCaffeinated || hasCBD);
-  const waves = getColorSettings().pattern === "waves" ? " flavor-surface--waves" : "";
+  const { pattern, palette } = getColorSettings();
+  const waves = pattern === "waves" ? " flavor-surface--waves" : "";
 
   return (
     <article
-      className={`product-card product-card--${variant} flavor-surface${waves}${hasTags ? " product-card--has-tags" : ""}`}
+      className={`product-card product-card--${variant} product-card--${palette} flavor-surface${waves}${hasTags ? " product-card--has-tags" : ""}`}
       style={{ ...flavorStyle(flavors, mode), ...flavorBubbles(flavors, mode), ...popStyle(flavors[0], mode), ...brandStyle(brandName) }}
     >
       <FitText

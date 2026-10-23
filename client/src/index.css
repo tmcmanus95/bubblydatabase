@@ -94,6 +94,26 @@
   }
 }
 
+/* Fizz palette: bubbles cover the whole card, so every bit of text sits on a soft, mostly opaque paper
+   patch with a little breathing room; bubbles drift behind it and never cut through letters. The room is
+   a box-shadow spread, so nothing moves (padding would shift the stars' fill layer). */
+.product-card--fizz {
+  --text-patch: oklch(0.99 0.004 90 / 0.9);
+}
+.product-card--fizz .product-card__brand,
+.product-card--fizz .product-card__name,
+.product-card--fizz .product-card__stars > *,
+.product-card--fizz .product-card__tag {
+  background: var(--text-patch);
+  box-shadow: 0 0 0 0.3rem var(--text-patch);
+  border-radius: 6px;
+}
+.product-card--fizz .product-card__brand,
+.product-card--fizz .product-card__name {
+  width: fit-content;
+  max-width: 100%;
+}
+
 /* Brand tile (components/BrandTile.jsx): the brand name in its brand font on a paper sticker, framed in
    the brand's package color like the product cards. Stays light in dark mode, as the cards do. */
 .brand-tile {
