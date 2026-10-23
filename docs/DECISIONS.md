@@ -6,8 +6,8 @@ Newest first. Format: date · decision · why · who decided.
 - Each brand's signature package color (green bottle for San Pellegrino/Perrier, black can for Liquid
   Death, clear/white for Topo Chico…) is the card border, ringed in ink. Chosen over a brand-name "tab"
   label. Colors in `brandColors.js`; Thomas gave some, approved Claude's guesses, may edit later.
-- Background patterns (bands/waves/bubbles/gradient/stripes) are a setting; bands stay the default
-  until Thomas picks.
+- Background patterns (bands/waves/bubbles/gradient/stripes) are a setting; Thomas picked **waves** as
+  the default (2026-10-23).
 - Decided by: Thomas.
 
 ## 2026-10-22 · No flavor icons; tap-to-rate on cards

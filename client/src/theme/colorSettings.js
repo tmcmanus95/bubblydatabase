@@ -25,7 +25,7 @@ export const DEFAULT_COLOR_SETTINGS = {
   // How multiple flavors share a card: "bands" (diagonal), "waves", "bubbles", "gradient" or "stripes".
   // Single-flavor cards are solid in "bands"/"gradient"/"stripes"; "waves" and "bubbles" add a lighter
   // tint of the flavor for texture.
-  pattern: "bands",
+  pattern: "waves", // picked by Thomas, 2026-10-23
   // Angle of the diagonal bands / gradient / stripes, in degrees
   bandAngle: 115,
   // Replace a flavor's base color for cards only, e.g. { lemon: "#fff200" }. Keys are flavor values
