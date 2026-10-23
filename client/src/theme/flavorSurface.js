@@ -28,7 +28,7 @@ const cacheFor = (name) => {
 };
 
 // Base colors that read wrong once they're vivid: CSS "pink" turns into raspberry, so watermelon gets
-// real watermelon flesh. Only used by the "vibrant" and "white" palettes.
+// real watermelon flesh. Used by every palette except "aura".
 const VIBRANT_BASES = { watermelon: "#ff5c7a" };
 
 // The flavor's base color: a Color Lab / settings override, else flavorColors.js
@@ -91,7 +91,7 @@ export function flavorAccent(flavor) {
         return tone({ c: pill.maxChroma, h }, Math.min(0.97, l + 0.1), pill.maxChroma);
       };
       cache.set(source, { light: lighter(card.light), dark: lighter(card.dark) });
-    } else if (palette === "white") {
+    } else if (palette === "white" || palette === "splash") {
       // On a white card the pills and badge carry the flavor's full vivid tone
       cache.set(source, { ...flavorSurface(flavor) });
     } else {
@@ -233,6 +233,11 @@ const whiteLineColors = (flavors) => (flavors.length ? flavors : ["plain"]).map(
 export function flavorBubbles(flavors, mode) {
   const { pattern, palette } = getColorSettings();
   if (pattern !== "waves") return {};
+  if (palette === "splash") {
+    const { accents } = splashColors(flavors);
+    const bg = BUBBLE_TILES.map((t, i) => bubbleTile(t, accents.slice(i % accents.length).concat(accents.slice(0, i % accents.length)))).join(", ");
+    return { ...pair("bubbles", { light: bg, dark: bg }, mode), "--bubbles-top": `${SPLASH_TOP / 2 + 8}%` };
+  }
   if (palette === "white") {
     const colors = whiteLineColors(flavors);
     const bg = BUBBLE_TILES.map((t, i) => bubbleTile(t, colors.slice(i % colors.length).concat(colors.slice(0, i % colors.length)))).join(", ");
@@ -252,6 +257,23 @@ export function flavorBubbles(flavors, mode) {
 const waveLine = (y, color) =>
   `<path d="${wave(y).replace(" V200 H0 Z", "")}" fill="none" stroke="${color}" stroke-width="3.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/>`;
 
+// "splash" palette: white on top; below a wave the card fills with the first flavor's vivid color. The
+// wave's edge line and the bubbles are the other flavors' deep tones (a one-flavor card uses its own deep
+// tone), with one extra line per further flavor stacked above the edge.
+const SPLASH_TOP = 116;
+const splashColors = (flavors) => {
+  const list = flavors.length ? flavors : ["plain"];
+  const others = list.length > 1 ? list.slice(1) : list;
+  return { fill: oklchToHex(flavorSurface(list[0]).light), accents: others.map((f) => oklchToHex(flavorStarColor(f).light)) };
+};
+const splashBackground = (flavors) => {
+  if (getColorSettings().pattern !== "waves") return PAPER;
+  const { fill, accents } = splashColors(flavors);
+  const layers = [svgLayer(`<path d="${wave(SPLASH_TOP)}" fill="${fill}"/>${waveLine(SPLASH_TOP, accents[0])}`)];
+  accents.slice(1).forEach((color, i) => layers.unshift(svgLayer(waveLine(SPLASH_TOP - (i + 1) * WHITE_LINE_GAP, color))));
+  return `${layers.join(", ")}, ${PAPER}`;
+};
+
 const whiteBackground = (flavors) => {
   if (getColorSettings().pattern !== "waves") return PAPER;
   const lines = whiteLineColors(flavors).map((color, i) => svgLayer(waveLine(WHITE_LINE_TOP + i * WHITE_LINE_GAP, color)));
@@ -261,6 +283,7 @@ const whiteBackground = (flavors) => {
 export function flavorBackground(flavors, mode) {
   const list = flavors.length ? flavors : ["plain"];
   if (getColorSettings().palette === "white") return whiteBackground(list);
+  if (getColorSettings().palette === "splash") return splashBackground(list);
   const colors = list.map((f) => flavorSurface(f)[mode]);
   const { pattern, bandAngle } = getColorSettings();
   switch (pattern) {

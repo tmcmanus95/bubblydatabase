@@ -8,7 +8,8 @@
 export const DEFAULT_COLOR_SETTINGS = {
   // Overall color style: "aura" (soft, every flavor at the same lightness, like Aura Bora's cans),
   // "vibrant" (each flavor at its own natural, brighter lightness: lemons stay lemon-yellow) or "white"
-  // (white card; only the wave lines and bubbles carry the flavor colors).
+  // (white card; only the wave lines and bubbles carry the flavor colors) or "splash" (white on top, the
+  // first flavor's vivid color filling below the wave; edge line and bubbles in the other flavor).
   palette: "aura",
   // The card background (one band per flavor) for the "aura" palette
   card: {
