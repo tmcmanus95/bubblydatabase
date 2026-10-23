@@ -121,7 +121,7 @@ export default function ColorLab() {
               value={settings.palette}
               onChange={(e) => apply({ ...settings, palette: e.target.value })}
             >
-              {["aura", "vibrant", "white", "splash", "fizz"].map((p) => (
+              {["aura", "vibrant", "white", "splash", "fizz", "soda", "sparkle"].map((p) => (
                 <option key={p}>{p}</option>
               ))}
             </select>
