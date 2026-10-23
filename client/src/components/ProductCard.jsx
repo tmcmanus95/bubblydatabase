@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import FitText from "./FitText";
 import Stars from "./Stars";
 import { brandFontStyle } from "../theme/brandFonts";
+import { getColorSettings } from "../theme/colorSettings";
 import { accentStyle, brandStyle, flavorStyle, popStyle, starStyle } from "../theme/flavorSurface";
 import { formatBrands } from "../../utils/formatBrands";
 
@@ -49,10 +50,11 @@ export default function ProductCard({
   const flavors = flavor.length ? flavor : ["plain"];
   const hiddenChips = flavors.length - MAX_CHIPS;
   const hasTags = showChips && (isCaffeinated || hasCBD);
+  const waves = getColorSettings().pattern === "waves" ? " flavor-surface--waves" : "";
 
   return (
     <article
-      className={`product-card product-card--${variant} flavor-surface${hasTags ? " product-card--has-tags" : ""}`}
+      className={`product-card product-card--${variant} flavor-surface${waves}${hasTags ? " product-card--has-tags" : ""}`}
       style={{ ...flavorStyle(flavors, mode), ...popStyle(flavors[0], mode), ...brandStyle(brandName) }}
     >
       <FitText

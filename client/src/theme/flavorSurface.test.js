@@ -133,6 +133,11 @@ test("every background pattern produces a valid background, and texture tints st
     assert.match(svg, /^<svg /);
     assert.match(svg, /fill="#[0-9a-f]{6}"/);
     assert.doesNotMatch(svg, /oklch/, "SVG uses hex, not oklch");
+    // Tiny bubbles in each region use the other flavor's color.
+    const waveFill = /<path[^>]*fill="(#[0-9a-f]{6})"/.exec(svg)[1];
+    const bubbleFills = new Set([...svg.matchAll(/<circle[^>]*fill="(#[0-9a-f]{6})"/g)].map((m) => m[1]));
+    assert.equal(bubbleFills.size, 2, "bubbles in both flavor colors");
+    assert.ok(bubbleFills.has(waveFill), "bubbles above the wave match the wave's color");
   } finally {
     setColorSettings(DEFAULT_COLOR_SETTINGS);
   }

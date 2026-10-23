@@ -3,7 +3,7 @@
 _Status: **Approved by Thomas (2026-10-21).** **Phase 0 complete** (released to `main` in #173). Phase 1 started._
 _Sources: `docs/SPEC.md`, `docs/AUDIT.md`. Last updated 2026-10-22._
 
-**Next up:** Thomas: merge #185 (waves default). Claude: P1-0d (brand pages). Claude: P1-0d (brand pages without logos, in brand fonts). PRs now go into `staging`; Thomas releases with a `staging` → `main` PR.
+**Next up:** Thomas: review the wave-motion PR. Claude: P1-0d (brand pages without logos, in brand fonts). PRs now go into `staging`; Thomas releases with a `staging` → `main` PR.
 
 ## How to read this
 
@@ -241,7 +241,8 @@ Report: `docs/IMAGE_AUDIT.md`; script: `server/scripts/imageAudit.js` (read-only
 - [x] Second round from Thomas (#182): punchier card colors, **solid flavor-colored pills** (each hue at its natural vivid lightness, so yellows stay yellow), **bigger brand names**, **flavor-colored stars** (always darker than the card so they read as filled; deep rich tones in dark mode). Tests: pills AA + vivid (light) / distinct (dark); stars clearly separated from their card in both modes
 - [x] Third round (#183): **layout "B · Score sticker"** picked by Thomas from three mocks (score in a round badge filled with the flavor color, stars centered along the bottom, tags at the end of the pill row; 12.75rem tall, was 15.5), **colored hover shadow** (strong flavor color), **brand names auto-fit** their space (`FitText`), stars bigger (1.75rem) in their own slot ready for P1-21, and an **easy way to edit colors**: every knob in `client/src/theme/colorSettings.js` plus the live **Color Lab** at `/working/colors` (sliders, light/dark previews, readability check, "Copy settings")
 - [x] Flavor icons removed (Thomas, 2026-10-22: "no icons for now"); the brand name takes the full top line (#184)
-- [x] **Brand border** (in review): each card's border is the brand's package color (`client/src/theme/brandColors.js`, editable in the Color Lab), ringed in ink so white brands show. **Mobile fix:** cards used to be wider than phone screens and pills got sliced; now a two-column grid lets brand names shrink, pills use the full width when there are no tags, and pills that don't fit drop whole (verified at 390px with real mobile emulation: no overflow, no cut pills). **Background patterns**: **waves** (Thomas's pick, now the default), bands, bubbles, gradient, stripes, set via `pattern` in `colorSettings.js`, previewable at `/working/cards?pattern=…` and in the Color Lab
+- [x] **Brand border** (#185): each card's border is the brand's package color (`client/src/theme/brandColors.js`, editable in the Color Lab), ringed in ink so white brands show. **Mobile fix:** cards used to be wider than phone screens and pills got sliced; now a two-column grid lets brand names shrink, pills use the full width when there are no tags, and pills that don't fit drop whole (verified at 390px with real mobile emulation: no overflow, no cut pills). **Background patterns**: **waves** (Thomas's pick, now the default), bands, bubbles, gradient, stripes, set via `pattern` in `colorSettings.js`, previewable at `/working/cards?pattern=…` and in the Color Lab
+- [x] **Wave motion** (in review): on hover or keyboard focus the waves drift slowly and tiny bubbles in the other flavor's color float through each region (one-flavor cards use the lighter tint). Off with "reduce motion"; static otherwise
 
 #### P1-0d 🤖 Brand pages without logos — 30m
 

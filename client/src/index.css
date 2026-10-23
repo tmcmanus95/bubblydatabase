@@ -16,6 +16,30 @@
     background: var(--surface-bg-dark);
   }
 }
+/* Waves drift on hover/focus, like liquid sloshing. Each wave layer is drawn twice the card's width with
+   a repeating shape, so sliding it by whole card widths loops seamlessly; the second layer moves twice as
+   far (a little depth), and both bob a few pixels. Positions repeat for cards with more layers. */
+@keyframes wave-drift {
+  0% {
+    background-position: 0% 0, 0% 0;
+  }
+  50% {
+    background-position: 50% 3px, 100% -3px;
+  }
+  100% {
+    background-position: 100% 0, 200% 0;
+  }
+}
+.flavor-surface--waves:hover,
+.flavor-surface--waves:focus-within {
+  animation: wave-drift 3.5s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .flavor-surface--waves:hover,
+  .flavor-surface--waves:focus-within {
+    animation: none;
+  }
+}
 
 /* Typographic product card (components/ProductCard.jsx): a hand-cut sticker filled with its flavors.
    Every element has a fixed grid slot so all cards line up, whatever their content. */
