@@ -114,6 +114,20 @@ export default function ColorLab() {
           ))}
 
           <fieldset className="rounded-lg border-2 border-current p-3">
+            <legend className="px-1 font-bold">Palette</legend>
+            <select
+              aria-label="Palette"
+              className="text-black"
+              value={settings.palette}
+              onChange={(e) => apply({ ...settings, palette: e.target.value })}
+            >
+              {["aura", "vibrant", "white"].map((p) => (
+                <option key={p}>{p}</option>
+              ))}
+            </select>
+          </fieldset>
+
+          <fieldset className="rounded-lg border-2 border-current p-3">
             <legend className="px-1 font-bold">Background pattern</legend>
             <select
               aria-label="Background pattern"
