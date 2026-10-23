@@ -49,6 +49,27 @@ const trustProxy = (isProduction) => {
   return value === "true" ? true : value === "false" ? false : value;
 };
 
+// Temporary (P1-2 follow-up): with DEBUG_CLIENT_IP=true, echo the proxy chain this request arrived
+// through in a response header, so TRUST_PROXY can be set from facts. Only the requester sees it, and it
+// only contains their own address and the proxies'. Staging only; remove once TRUST_PROXY is settled.
+const debugClientIp = (req, res, next) => {
+  if (process.env.DEBUG_CLIENT_IP === "true") {
+    const pick = (name) => req.headers[name] || null;
+    res.set(
+      "X-Debug-Client-Ip",
+      JSON.stringify({
+        ip: req.ip,
+        socket: req.socket.remoteAddress,
+        xff: pick("x-forwarded-for"),
+        cf: pick("cf-connecting-ip"),
+        trueClient: pick("true-client-ip"),
+        realIp: pick("x-real-ip"),
+      })
+    );
+  }
+  next();
+};
+
 // Builds the Express app with GraphQL mounted. Doesn't connect to MongoDB or listen on a port, so
 // tests can use it with their own database. `rateLimits`: see utils/rateLimits.js (false = off).
 const createApp = async ({ rateLimits } = {}) => {
@@ -69,6 +90,7 @@ const createApp = async ({ rateLimits } = {}) => {
     cors({ origin: (origin, callback) => callback(null, Boolean(origin) && isAllowedOrigin(origin)) }),
     express.json({ limit: "100kb" }),
     rejectOperatorKeys,
+    debugClientIp,
     ...graphqlRateLimits(rateLimits),
     expressMiddleware(server, {
       context: authMiddleware,

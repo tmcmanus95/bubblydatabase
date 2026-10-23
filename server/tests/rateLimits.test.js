@@ -102,3 +102,15 @@ test("without a proxy (development), X-Forwarded-For is ignored", async () => {
     await server.stop();
   }
 });
+
+test("the client-IP diagnostic header only appears when DEBUG_CLIENT_IP is on", async () => {
+  const off = await t.request.post("/graphql").set("Content-Type", "application/json").send({ query: "{ __typename }" });
+  assert.strictEqual(off.headers["x-debug-client-ip"], undefined);
+  process.env.DEBUG_CLIENT_IP = "true";
+  try {
+    const on = await t.request.post("/graphql").set("Content-Type", "application/json").send({ query: "{ __typename }" });
+    assert.ok(JSON.parse(on.headers["x-debug-client-ip"]).ip);
+  } finally {
+    delete process.env.DEBUG_CLIENT_IP;
+  }
+});
