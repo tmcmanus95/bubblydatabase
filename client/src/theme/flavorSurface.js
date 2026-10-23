@@ -156,23 +156,6 @@ const wave = (y) => {
   return `${d} V200 H0 Z`;
 };
 
-// Tiny bubbles inside the region between two wave heights, repeated every half-width so the loop stays
-// seamless. Deterministic positions: same card, same bubbles.
-const tinyBubbles = (top, bottom, color, seed) => {
-  const circles = [];
-  const height = bottom - top;
-  for (let j = 0; j < 6; j++) {
-    const jitter = ((j * 37 + seed * 53) % 17) / 17;
-    const x = 22 + j * 64 + jitter * 22;
-    const y = top + 18 + (((j * 29 + seed * 41) % 13) / 13) * Math.max(0, height - 36);
-    const r = 2.5 + ((j * 7 + seed * 3) % 5) * 0.9;
-    for (const offset of [0, WAVE_WIDTH / 2]) {
-      circles.push(`<circle cx="${(x + offset).toFixed(1)}" cy="${y.toFixed(1)}" r="${r.toFixed(1)}" fill="${color}"/>`);
-    }
-  }
-  return circles.join("");
-};
-
 const svgLayer = (content) =>
   `url("data:image/svg+xml,${encodeURIComponent(
     `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${WAVE_WIDTH} 200" preserveAspectRatio="none">${content}</svg>`
@@ -180,6 +163,36 @@ const svgLayer = (content) =>
 
 // The card background for a mode, in the pattern chosen in colorSettings.js. Every pattern only
 // rearranges the same card tones, so readability is the same in all of them.
+// Wave layers top to bottom: one per flavor, or a flavor and its tint.
+const waveLayers = (colors) => (colors.length > 1 ? colors : [colors[0], tint(colors[0])]);
+
+// Two tiles of tiny bubbles (small and close, bigger and sparser) that repeat in both directions, so
+// they can rise forever on hover. Sizes in px; every circle stays inside its tile.
+const BUBBLE_TILES = [
+  { w: 96, h: 120, circles: [[18, 20, 2.4], [62, 52, 3.2], [34, 86, 2.6], [80, 104, 2.2]] },
+  { w: 150, h: 160, circles: [[40, 30, 4.6], [112, 92, 5.6], [70, 136, 4]] },
+];
+const bubbleTile = ({ w, h, circles }, color) =>
+  `url("data:image/svg+xml,${encodeURIComponent(
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}">${circles
+      .map(([cx, cy, r]) => `<circle cx="${cx}" cy="${cy}" r="${r}" fill="${color}"/>`)
+      .join("")}</svg>`
+  )}") 0 0 / ${w}px ${h}px repeat`;
+
+// Tiny bubbles in the bottom wave region, in the color of the flavor above it (a one-flavor card's
+// bubbles use the flavor on its lighter tint). Only for the waves pattern; drawn by
+// .flavor-surface--waves::before in index.css, which starts just below the lowest wave.
+export function flavorBubbles(flavors, mode) {
+  if (getColorSettings().pattern !== "waves") return {};
+  const tones = (m) => {
+    const layers = waveLayers((flavors.length ? flavors : ["plain"]).map((f) => flavorSurface(f)[m]));
+    const color = oklchToHex(layers[layers.length - 2]);
+    return { top: (100 * (layers.length - 1)) / layers.length + 6, bg: BUBBLE_TILES.map((t) => bubbleTile(t, color)).join(", ") };
+  };
+  const light = tones("light");
+  return { ...pair("bubbles", { light: light.bg, dark: tones("dark").bg }, mode), "--bubbles-top": `${light.top}%` };
+}
+
 export function flavorBackground(flavors, mode) {
   const list = flavors.length ? flavors : ["plain"];
   const colors = list.map((f) => flavorSurface(f)[mode]);
@@ -204,17 +217,10 @@ export function flavorBackground(flavors, mode) {
     }
     case "waves": {
       // One background image per wave layer so layers can drift at different speeds on hover (index.css).
-      // Each flavor's region gets tiny bubbles in its neighbor's color.
-      const layers = colors.length > 1 ? colors : [colors[0], tint(colors[0])];
+      const layers = waveLayers(colors);
       const hex = layers.map(oklchToHex);
-      const heights = layers.map((_, i) => (200 * i) / layers.length).concat(200);
-      const images = [];
-      for (let i = 1; i < layers.length; i++) {
-        // The region just above this wave belongs to layer i - 1: put its bubbles here too
-        const above = tinyBubbles(heights[i - 1], heights[i] - 22, hex[i], i * 2);
-        const below = tinyBubbles(heights[i] + 22, heights[i + 1], hex[i - 1] === hex[i] ? hex[0] : hex[i - 1], i * 2 + 1);
-        images.push(svgLayer(`${above}<path d="${wave(heights[i])}" fill="${hex[i]}"/>${below}`));
-      }
+      const heights = layers.map((_, i) => (200 * i) / layers.length);
+      const images = layers.slice(1).map((_, k) => svgLayer(`<path d="${wave(heights[k + 1])}" fill="${hex[k + 1]}"/>`));
       // Lower waves cover upper ones, so list them first (the first background is drawn on top)
       return `${images.reverse().join(", ")}, ${layers[0]}`;
     }
