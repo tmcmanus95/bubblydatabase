@@ -2,6 +2,14 @@
 
 Newest first. Format: date · decision · why · who decided.
 
+## 2026-10-22 · Card layout B "Score sticker" + a Color Lab for tuning
+- Picked from three mocked layouts (A tight stack, B score sticker, C side score): the score sits in a
+  round badge filled with the flavor color, stars are centered along the bottom, tags go at the end of
+  the pill row. Brand names auto-shrink to fit. The hover shadow takes a strong flavor color.
+- All color knobs live in `colorSettings.js`; `/working/colors` tunes them live and outputs settings to
+  paste. Tests still guard readability after any change.
+- Decided by: Thomas (layout, fit-to-width, centered stars, wanting easy color edits); Claude (Color Lab).
+
 ## 2026-10-22 · Cards: flavor colors take over, brand fonts, stars; no brand colors
 - Brand colors are dropped. The flavors' colors fill the card: each flavor's hue at one fixed lightness
   per mode, one hard-edged diagonal band per flavor. Dark mode uses slightly deeper but still bright
