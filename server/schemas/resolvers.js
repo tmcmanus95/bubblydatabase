@@ -222,8 +222,10 @@ const resolvers = {
       return BubblyWater.find({ productName: productName }).limit("5");
     },
     searchVagueProductName: async (parent, { productName }) => {
+      // Escaped so the search is literal text, never a user-written pattern
+      const literal = String(productName || "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
       return BubblyWater.find({
-        productName: { $regex: productName, $options: "i" },
+        productName: { $regex: literal, $options: "i" },
       });
     },
     searchGeneralBubblyWater: async (_, { searchTerm }) => {
