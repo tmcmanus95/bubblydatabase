@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npm --prefix server test && node --test scripts/test/backup.test.js scripts/test/restore.test.js scripts/test/staging-refresh.test.js client/src/theme/flavorSurface.test.js client/src/theme/brandFonts.test.js client/src/theme/flavorColors.test.js",
+    "test": "npm --prefix server test && node --test scripts/test/backup.test.js scripts/test/restore.test.js scripts/test/staging-refresh.test.js client/src/theme/flavorSurface.test.js client/src/theme/brandFonts.test.js client/src/theme/flavorColors.test.js client/utils/errorMessage.test.js",
     "dev": "concurrently --kill-others --names server,client --prefix-colors blue,magenta \"npm --prefix server run dev\" \"npm --prefix client run dev\"",
     "render-build": "npm install && npm run build",
     "install": "cd server && npm i && cd ../client && npm i",

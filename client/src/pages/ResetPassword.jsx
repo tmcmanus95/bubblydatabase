@@ -3,6 +3,7 @@ import Auth from "../../utils/auth";
 import { useMutation } from "@apollo/client";
 import { useParams, Link } from "react-router-dom";
 import { RESET_PASSWORD } from "../../utils/mutations";
+import { errorMessage } from "../../utils/errorMessage";
 export default function ResetPassword() {
   const { token } = useParams();
   const [formState, setFormState] = useState({
@@ -100,7 +101,7 @@ export default function ResetPassword() {
             )}
             {error && (
               <div className="my-3 p-3 bg-danger text-center">
-                {error.message}
+                {errorMessage(error)}
               </div>
             )}
 

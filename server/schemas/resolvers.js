@@ -1,3 +1,4 @@
+const { loginThrottle } = require("../utils/loginThrottle");
 const { User, BubblyWater, Rating, Review } = require("../models");
 const {
   signToken,
@@ -9,6 +10,9 @@ const {
 const { sendEmail } = require("../utils/sendEmail");
 const crypto = require("crypto");
 const bcrypt = require("bcrypt");
+
+// A hash of nothing in particular, compared against when no account matches (same cost as real hashes)
+const NO_USER_HASH = bcrypt.hashSync(crypto.randomBytes(16).toString("hex"), 10);
 const { triggerAsyncId } = require("async_hooks");
 const saltRounds = 10;
 
@@ -660,19 +664,26 @@ const resolvers = {
       requireSelfOrAdmin(context, existingReview.user);
       return Review.findOneAndDelete({ _id: reviewId });
     },
-    login: async (parent, { email, password }) => {
+    // Repeated failures from an account + IP wait longer and longer, then lock (utils/loginThrottle.js)
+    login: async (parent, { email, password }, context) => {
+      const ip = context.ip;
+      loginThrottle.check(email, ip);
+
       const user = await User.findOne({ email });
-
-      if (!user) {
-        throw AuthenticationError;
+      let correctPw = false;
+      if (user) {
+        correctPw = await user.isCorrectPassword(password);
+      } else {
+        // Unknown emails still pay for a bcrypt check, so response times don't reveal which accounts exist
+        await bcrypt.compare(password, NO_USER_HASH);
       }
-
-      const correctPw = await user.isCorrectPassword(password);
 
       if (!correctPw) {
+        loginThrottle.fail(email, ip);
         throw AuthenticationError;
       }
 
+      loginThrottle.succeed(email, ip);
       const token = signToken(user);
       return { token, user };
     },

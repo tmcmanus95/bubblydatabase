@@ -276,11 +276,11 @@ Report: `docs/IMAGE_AUDIT.md`; script: `server/scripts/imageAudit.js` (read-only
 - [x] Equivalent of `express-mongo-sanitize` (unmaintained): requests with `$`/dotted keys get a 400 (`server/utils/rejectOperatorKeys.js`)
 - [x] Tests for rejected inputs (`server/tests/validation.test.js`)
 
-#### P1-4 🤖 Login lockout/backoff — 45m
+#### P1-4 🤖 Login lockout/backoff — 45m — in review
 
-- [ ] After N failed logins per account+IP within a window: increasing delay, then a temporary lock
-- [ ] Generic error message; no account enumeration
-- [ ] Tests
+- [x] After 5 failed logins per account+IP in 15 min: waits double (1s, 2s, 4s… up to 60s); 10 failures lock that account+IP for 15 min; 30 failures across all IPs lock the account (`server/utils/loginThrottle.js`, in memory)
+- [x] Generic error message; unknown emails are counted, timed (dummy bcrypt check) and answered exactly like real ones; client shows server messages instead of "status code 429"
+- [x] Tests (`server/tests/loginThrottle.test.js`, `client/utils/errorMessage.test.js`)
 
 #### P1-5 🤖 bcrypt 6 + rehash on login — 30m
 
@@ -352,7 +352,7 @@ Report: `docs/IMAGE_AUDIT.md`; script: `server/scripts/imageAudit.js` (read-only
 - [ ] add/edit/remove rating and add/remove review update the aggregates atomically (update pipeline or `$inc`)
 - [ ] `addRating` becomes an upsert (one rating per user per product)
 - [ ] remove operations `$pull` refs from product and user
-- [ ] Tests cover each write path
+- [x] Tests (`server/tests/loginThrottle.test.js`, `client/utils/errorMessage.test.js`) cover each write path
 
 #### P1-16 🤖 Nightly recompute — 45m
 
@@ -375,7 +375,7 @@ Report: `docs/IMAGE_AUDIT.md`; script: `server/scripts/imageAudit.js` (read-only
 #### P1-19 🤖 Unified search resolver — 60m
 
 - [ ] `search(q, flavor, caffeine, cbd, sort, page)` resolver using aggregation + indexes, paginated, returns counts not arrays
-- [ ] Tests for each filter combination
+- [x] Tests (`server/tests/loginThrottle.test.js`, `client/utils/errorMessage.test.js`) for each filter combination
 
 #### P1-20 🤖 One search page, URL state — 60m
 
