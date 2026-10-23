@@ -2,6 +2,17 @@
 
 Newest first. Format: date · decision · why · who decided.
 
+## 2026-10-22 · Cards: flavor colors take over, brand fonts, stars; no brand colors
+- Brand colors are dropped. The flavors' colors fill the card: each flavor's hue at one fixed lightness
+  per mode, one hard-edged diagonal band per flavor. Dark mode uses slightly deeper but still bright
+  tones with the same dark ink: darker tones made yellows and oranges muddy olive/brown.
+- The brand name is set in a per-brand Google Font loosely in the spirit of its logo (style only, never
+  the logo). Picks are a starting point; Thomas swaps any he doesn't like in `brandFonts.js`.
+- Read-only stars show next to the score; the interactive control remains P1-21.
+- Considered: a neutral card with flavor accents (Thomas's other option). Mocked it; the flavors become
+  a thin band and the cards feel clinical, so the takeover won.
+- Decided by: Thomas (direction); Claude (takeover over neutral, dark-mode treatment, font picks).
+
 ## 2026-10-22 · Placeholder flavor icons drawn in code (for now)
 - `FlavorIcon.jsx` draws 11 simple category icons as inline SVG, in the card's text color, so the
   cards can ship now. They get replaced by the illustrated set from the Phase 4 designer brief.

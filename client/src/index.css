@@ -3,15 +3,17 @@
 @tailwind utilities;
 @import-normalize;
 
-/* Brand color surface: set the variables with brandStyle(brandName) from src/theme/brandColors.js */
-.brand-surface {
-  background-color: var(--brand-bg);
-  color: var(--brand-ink);
+/* Flavor surface: the flavors' colors fill the element; set them with flavorStyle(flavors) from
+   src/theme/flavorSurface.js. --ink must match INK there (checked by flavorSurface.test.js).
+   Dark mode keeps the dark ink on slightly deeper, still-bright flavor tones. */
+.flavor-surface {
+  --ink: oklch(0.24 0.02 60);
+  background: var(--surface-bg);
+  color: var(--ink);
 }
 @media (prefers-color-scheme: dark) {
-  .brand-surface {
-    background-color: var(--brand-bg-dark);
-    color: var(--brand-ink-dark);
+  .flavor-surface {
+    background: var(--surface-bg-dark);
   }
 }
 
@@ -31,35 +33,35 @@
   grid-template-rows: auto calc(2 * 1.6rem * 1.1) auto 1fr auto;
   column-gap: 0.75rem;
   height: 15.5rem;
-  padding: 1.35rem 1.1rem 1rem;
-  border: 2px solid var(--brand-ink);
+  padding: 1.1rem 1.1rem 1rem;
+  border: 2px solid var(--ink);
   border-radius: 26px 18px 24px 20px / 20px 24px 18px 26px;
-  box-shadow: 4px 4px 0 var(--brand-ink);
+  box-shadow: 4px 4px 0 var(--ink);
   transition: transform 160ms ease, box-shadow 160ms ease;
 }
 .product-card:hover,
 .product-card:focus-within {
   transform: translateY(-2px) rotate(-1deg);
-  box-shadow: 6px 6px 0 var(--brand-ink);
+  box-shadow: 6px 6px 0 var(--ink);
 }
 .product-card:focus-within {
-  outline: 3px solid var(--brand-ink);
+  outline: 3px solid var(--ink);
   outline-offset: 4px;
 }
+/* On a dark page the offset shadow and focus ring are light so they stay visible */
 @media (prefers-color-scheme: dark) {
   .product-card {
-    border-color: var(--brand-ink-dark);
-    box-shadow: 4px 4px 0 rgb(0 0 0 / 0.55);
+    box-shadow: 4px 4px 0 oklch(0.97 0.01 90 / 0.35);
   }
   .product-card:hover,
   .product-card:focus-within {
-    box-shadow: 6px 6px 0 rgb(0 0 0 / 0.55);
+    box-shadow: 6px 6px 0 oklch(0.97 0.01 90 / 0.35);
   }
   .product-card:focus-within {
-    outline-color: var(--brand-ink-dark);
+    outline-color: oklch(0.97 0.01 90);
   }
   .product-card--compact {
-    box-shadow: 3px 3px 0 rgb(0 0 0 / 0.55);
+    box-shadow: 3px 3px 0 oklch(0.97 0.01 90 / 0.35);
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -70,20 +72,6 @@
     transform: none;
   }
 }
-/* Flavor colors: a stripe split per flavor along the top edge (left edge on compact cards) */
-.product-card__stripe {
-  position: absolute;
-  inset: 0 0 auto 0;
-  display: flex;
-  height: 0.55rem;
-  border-bottom: 2px solid currentColor;
-}
-.product-card__stripe > span {
-  flex: 1;
-}
-.product-card__stripe > span + span {
-  border-left: 2px solid currentColor;
-}
 .product-card__brand {
   grid-area: brand;
   align-self: center;
@@ -91,10 +79,8 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  font-size: 1.2rem;
+  line-height: 1.3;
 }
 .product-card__icon {
   grid-area: icon;
@@ -161,6 +147,9 @@
   line-height: 1;
 }
 .product-card__score-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
   font-size: 0.85rem;
   font-weight: 600;
 }
@@ -188,20 +177,8 @@
   grid-template-rows: auto auto;
   align-items: center;
   height: 4.5rem;
-  padding: 0.5rem 0.9rem 0.5rem 1.3rem;
-  box-shadow: 3px 3px 0 var(--brand-ink);
-}
-.product-card--compact .product-card__stripe {
-  inset: 0 auto 0 0;
-  flex-direction: column;
-  width: 0.5rem;
-  height: auto;
-  border-bottom: 0;
-  border-right: 2px solid currentColor;
-}
-.product-card--compact .product-card__stripe > span + span {
-  border-left: 0;
-  border-top: 2px solid currentColor;
+  padding: 0.5rem 0.9rem;
+  box-shadow: 3px 3px 0 var(--ink);
 }
 .product-card--compact .product-card__icon {
   width: 1.9rem;
@@ -209,7 +186,8 @@
 }
 .product-card--compact .product-card__brand {
   align-self: end;
-  font-size: 0.7rem;
+  font-size: 0.9rem;
+  line-height: 1.2;
 }
 .product-card--compact .product-card__name {
   align-self: start;
@@ -222,6 +200,14 @@
   gap: 0;
   text-align: right;
 }
+.product-card--compact .product-card__score-detail {
+  align-items: flex-end;
+  gap: 0;
+}
+.product-card--compact .stars__star {
+  width: 0.7rem;
+  height: 0.7rem;
+}
 .product-card--compact .product-card__score-value {
   font-size: 1.6rem;
 }
@@ -232,18 +218,15 @@
 .product-card--hero {
   width: min(100%, 26rem);
   height: 22rem;
-  padding: 1.8rem 1.5rem 1.4rem;
+  padding: 1.5rem 1.5rem 1.4rem;
   grid-template-rows: auto calc(2 * 2.4rem * 1.1) auto 1fr auto;
 }
 .product-card--hero:hover {
   transform: none;
-  box-shadow: 4px 4px 0 var(--brand-ink);
-}
-.product-card--hero .product-card__stripe {
-  height: 0.8rem;
+  box-shadow: 4px 4px 0 var(--ink);
 }
 .product-card--hero .product-card__brand {
-  font-size: 1rem;
+  font-size: 1.6rem;
 }
 .product-card--hero .product-card__icon {
   width: 3rem;
@@ -263,6 +246,30 @@
 }
 @media (prefers-color-scheme: dark) {
   .product-card--hero:hover {
-    box-shadow: 4px 4px 0 rgb(0 0 0 / 0.55);
+    box-shadow: 4px 4px 0 oklch(0.97 0.01 90 / 0.35);
   }
+}
+
+/* Read-only stars (components/Stars.jsx): an outline row with a filled row clipped on top */
+.stars {
+  position: relative;
+  display: inline-flex;
+  width: max-content;
+}
+.stars__row {
+  display: inline-flex;
+}
+.stars__row--filled {
+  position: absolute;
+  inset: 0 auto 0 0;
+  overflow: hidden;
+}
+.stars__star {
+  flex-shrink: 0;
+  width: 0.95rem;
+  height: 0.95rem;
+}
+.product-card--hero .stars__star {
+  width: 1.3rem;
+  height: 1.3rem;
 }

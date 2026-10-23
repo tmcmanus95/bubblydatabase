@@ -154,12 +154,13 @@ _Last session: 2026-10-21._
 - **See it on staging at `/working/cards`** (top 18 bubblies, real data).
 - Icons are placeholders drawn in code; Thomas hasn't confirmed this approach yet (DECISIONS).
 
-## P1-0c (swap product images): PR open (into `staging`)
-- Every product photo on the site is now a `<ProductCard>`; no Amazon or other third-party product
-  images load anywhere. Brand logos (brand pages) are the last external images: P1-0d.
-- Check on staging: home list, a product page (hero card), search, a profile, recent reviews.
-- List rows lost their separate brand/flavor links on purpose (card = one link).
+## P1-0c (swap product images): done (PR #180); flavor-card redesign PR open
+- Every product photo is a `<ProductCard>`; no third-party product images load anywhere.
+- Redesign per Thomas: flavor colors fill the card (`flavorSurface.js`), brand names in per-brand fonts
+  (`brandFonts.js`, 44 Google Fonts; edit a line to swap one), read-only stars (`Stars.jsx`). Brand
+  colors removed (`brandColors.js` deleted).
+- Check on staging: `/working/cards`, home, a product page, in light and dark mode.
 
 ## Next Claude ticket
-P1-0d (typographic brand pages, drop logo links, delete dead `Header.jsx`), then tighten the CSP
-`img-src` and continue with P1-2 (rate limiting).
+P1-0d (typographic brand pages in brand fonts, drop logo links, delete dead `Header.jsx`), then
+tighten the CSP `img-src` and continue with P1-2 (rate limiting).

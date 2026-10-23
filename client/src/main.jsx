@@ -1,6 +1,9 @@
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
+import { loadBrandFonts } from "./theme/brandFonts.js";
+
+loadBrandFonts();
 import App from "./App.jsx";
 import Home from "./pages/Home.jsx";
 import Profile from "./pages/Profile.jsx";
