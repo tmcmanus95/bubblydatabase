@@ -1,16 +1,17 @@
 import { Link } from "react-router-dom";
 import FlavorIcon from "./FlavorIcon";
+import FitText from "./FitText";
 import Stars from "./Stars";
 import { brandFontStyle } from "../theme/brandFonts";
-import { accentStyle, flavorStyle, starStyle } from "../theme/flavorSurface";
+import { accentStyle, flavorStyle, popStyle, starStyle } from "../theme/flavorSurface";
 import { formatBrands } from "../../utils/formatBrands";
 
 // Typographic product card: the flavors' colors fill the card (one band per flavor), the brand name
-// is set in that brand's font, and the score (number + stars) is the anchor.
+// is set in that brand's font (shrunk to fit), and the score badge + stars are the anchor.
 // No product photos (CLAUDE.md hard rule 10). The whole card is one link to the product page.
 // Every element sits in a fixed slot, so all cards line up whatever their content:
-//   full:    brand · icon / name (2 lines) / flavor chips / score + stars · tags
-//   compact: icon / brand + name (1 line each) / score + stars
+//   full/hero: icon · brand · score badge / name (2 lines) · badge / flavor pills · tags / stars (centered)
+//   compact:   icon / brand + name (1 line each) / score + stars
 //
 //   <ProductCard bubblyWater={bw} />                  full card (lists)
 //   <ProductCard bubblyWater={bw} variant="compact" /> one-line card (search, profiles, recent)
@@ -18,8 +19,12 @@ import { formatBrands } from "../../utils/formatBrands";
 //   ratingCount defaults to bubblyWater.ratingCount, then bubblyWater.ratings.length
 //   score={4.5} scoreDetail="rated" shows one person's rating instead of the average
 //   showScore={false} leaves the score slot empty
+//   mode="light" | "dark" forces one color mode regardless of the OS setting (the Color Lab uses it)
 
 const MAX_CHIPS = 3;
+
+// Brand name size range (rem) per variant: starts at max, shrinks to fit
+const BRAND_SIZE = { full: [1.55, 0.85], compact: [1.1, 0.7], hero: [2.1, 1.1] };
 
 const flavorLabel = (flavor) => flavor.replace(/-/g, " ");
 
@@ -31,11 +36,13 @@ export default function ProductCard({
   score,
   scoreDetail,
   showScore = true,
+  mode,
 }) {
   const { _id, productName, brandName, flavor = [], averageRating, isCaffeinated, hasCBD } = bubblyWater;
   const count = ratingCount ?? bubblyWater.ratingCount ?? bubblyWater.ratings?.length ?? 0;
   const hasOverride = typeof score === "number";
   const hasScore = hasOverride || (count > 0 && typeof averageRating === "number");
+  const shownScore = hasOverride ? score : averageRating;
   const isLink = variant !== "hero";
   const showChips = variant !== "compact";
   const Heading = `h${headingLevel}`;
@@ -43,10 +50,19 @@ export default function ProductCard({
   const hiddenChips = flavors.length - MAX_CHIPS;
 
   return (
-    <article className={`product-card product-card--${variant} flavor-surface`} style={flavorStyle(flavors)}>
-      <p className="product-card__brand" style={brandFontStyle(brandName)}>
+    <article
+      className={`product-card product-card--${variant} flavor-surface`}
+      style={{ ...flavorStyle(flavors, mode), ...popStyle(flavors[0], mode) }}
+    >
+      <FitText
+        as="p"
+        className="product-card__brand"
+        style={brandFontStyle(brandName)}
+        maxRem={BRAND_SIZE[variant][0]}
+        minRem={BRAND_SIZE[variant][1]}
+      >
         {formatBrands(brandName)}
-      </p>
+      </FitText>
       <FlavorIcon flavor={flavors[0]} className="product-card__icon" />
 
       <Heading className="product-card__name">
@@ -62,7 +78,7 @@ export default function ProductCard({
       {showChips ? (
         <ul className="product-card__flavors" aria-label="Flavors">
           {flavors.slice(0, MAX_CHIPS).map((f) => (
-            <li key={f} className="product-card__flavor" style={accentStyle(f)}>
+            <li key={f} className="product-card__flavor" style={accentStyle(f, mode)}>
               {flavorLabel(f)}
             </li>
           ))}
@@ -72,24 +88,27 @@ export default function ProductCard({
         <p className="sr-only">Flavors: {flavors.map(flavorLabel).join(", ")}</p>
       )}
 
-      <p className="product-card__score">
+      <p className="product-card__score" style={variant === "compact" ? undefined : accentStyle(flavors[0], mode)}>
         {!showScore ? null : hasScore ? (
           <>
-            <span className="product-card__score-value">{(hasOverride ? score : averageRating).toFixed(1)}</span>
+            <span className="product-card__score-value">{shownScore.toFixed(1)}</span>
             <span className="product-card__score-detail">
-              <Stars value={hasOverride ? score : averageRating} style={starStyle(flavors[0])} />
-              <span>
-                <span className="sr-only"> out of 5, </span>
-                {hasOverride ? scoreDetail : `${count} ${count === 1 ? "rating" : "ratings"}`}
-              </span>
+              <span className="sr-only"> out of 5, </span>
+              {hasOverride ? scoreDetail : `${count} ${count === 1 ? "rating" : "ratings"}`}
             </span>
           </>
         ) : (
-          <span className="product-card__score-detail">
-            {variant === "compact" ? "No ratings yet" : "No ratings yet. Be the first fizz critic!"}
-          </span>
+          <span className="product-card__score-detail">{variant === "compact" ? "No ratings yet" : "New!"}</span>
         )}
       </p>
+
+      {/* Its own slot: big enough to become the tap-to-rate control later (roadmap P1-21) */}
+      <div className="product-card__stars">
+        {showScore && hasScore && <Stars value={shownScore} style={starStyle(flavors[0], mode)} />}
+        {showScore && !hasScore && variant !== "compact" && (
+          <span className="product-card__score-detail">No ratings yet. Be the first fizz critic!</span>
+        )}
+      </div>
 
       {showChips && (
         <p className="product-card__tags">

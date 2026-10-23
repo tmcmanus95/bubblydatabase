@@ -87,3 +87,24 @@ test("index.css uses the same ink color as flavorSurface.js", () => {
   assert.strictEqual(INK.light, INK.dark, "one dark ink in both modes");
   assert.ok(css.includes(`--ink: ${INK.light};`));
 });
+
+test("Color Lab settings changes take effect live and can be reset", async () => {
+  const { DEFAULT_COLOR_SETTINGS, setColorSettings } = await import("./colorSettings.js");
+  const before = flavorSurface("lime").light;
+  setColorSettings({ ...DEFAULT_COLOR_SETTINGS, card: { ...DEFAULT_COLOR_SETTINGS.card, light: { lightness: 0.8, maxChroma: 0.2 } } });
+  assert.match(flavorSurface("lime").light, /^oklch\(0\.8 /);
+  setColorSettings({ ...DEFAULT_COLOR_SETTINGS, flavorOverrides: { lime: "#0000ff" } });
+  assert.ok(Math.abs(parseOklch(flavorSurface("lime").light).h - cssColorToOklch("#0000ff").h) < 1, "override changes the hue");
+  setColorSettings(DEFAULT_COLOR_SETTINGS);
+  assert.strictEqual(flavorSurface("lime").light, before);
+});
+
+test("mode forces one color mode into both CSS variables", () => {
+  const dark = flavorStyle(["lime"], "dark");
+  assert.strictEqual(dark["--surface-bg"], dark["--surface-bg-dark"]);
+  assert.strictEqual(dark["--surface-bg"], flavorSurface("lime").dark);
+  const light = accentStyle("lime", "light");
+  assert.strictEqual(light["--accent-dark"], flavorAccent("lime").light);
+  const normal = starStyle("lime");
+  assert.notStrictEqual(normal["--star"], normal["--star-dark"]);
+});

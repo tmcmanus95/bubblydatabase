@@ -30,6 +30,7 @@ import AllRatings from "./pages/AllRatings.jsx";
 import AllReviews from "./pages/AllReviews.jsx";
 import Recent from "./pages/Recent.jsx";
 import CardPreview from "./pages/New/CardPreview.jsx";
+import ColorLab from "./pages/New/ColorLab.jsx";
 
 const router = createBrowserRouter([
   {
@@ -129,6 +130,10 @@ const router = createBrowserRouter([
       {
         path: "/working/cards",
         element: <CardPreview />,
+      },
+      {
+        path: "/working/colors",
+        element: <ColorLab />,
       },
       {
         path: "*",

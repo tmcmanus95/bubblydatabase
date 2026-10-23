@@ -3,7 +3,7 @@
 _Status: **Approved by Thomas (2026-10-21).** **Phase 0 complete** (released to `main` in #173). Phase 1 started._
 _Sources: `docs/SPEC.md`, `docs/AUDIT.md`. Last updated 2026-10-22._
 
-**Next up:** Thomas: review the card color/pill/star tweaks on staging, then release. Claude: P1-0d (brand pages without logos, in brand fonts). PRs now go into `staging`; Thomas releases with a `staging` → `main` PR.
+**Next up:** Thomas: review layout B + Color Lab on staging, then release. Claude: P1-0d (brand pages without logos, in brand fonts). PRs now go into `staging`; Thomas releases with a `staging` → `main` PR.
 
 ## How to read this
 
@@ -238,7 +238,8 @@ Report: `docs/IMAGE_AUDIT.md`; script: `server/scripts/imageAudit.js` (read-only
 - [x] Deliberate change: list rows no longer have their own brand/flavor links (the card is one link); brands and flavors stay reachable from the navbar and the product page
 - [ ] CSP `img-src` tightened to `'self' data:` once P1-0d also ships (brand logos are the last external images)
 - [x] Follow-up from Thomas's review (in review): **flavor colors take over the card** (each flavor's hue at a fixed pastel lightness; one hard-edged diagonal band per flavor; dark mode uses slightly deeper still-bright tones with the same dark ink, since darker tones turned yellows muddy), **brand name in a per-brand Google Font** loosely in the spirit of its logo (44 brands, one stylesheet, only used fonts download), **read-only stars** next to the score. Brand colors removed. Tests: every flavor color in gamut with ≥ 6.9:1 contrast in both modes; every brand has a font and is in the stylesheet URL — merged (#181)
-- [x] Second round from Thomas (in review): punchier card colors, **solid flavor-colored pills** (each hue at its natural vivid lightness, so yellows stay yellow), **bigger brand names**, **flavor-colored stars** (always darker than the card so they read as filled; deep rich tones in dark mode). Tests: pills AA + vivid (light) / distinct (dark); stars clearly separated from their card in both modes
+- [x] Second round from Thomas (#182): punchier card colors, **solid flavor-colored pills** (each hue at its natural vivid lightness, so yellows stay yellow), **bigger brand names**, **flavor-colored stars** (always darker than the card so they read as filled; deep rich tones in dark mode). Tests: pills AA + vivid (light) / distinct (dark); stars clearly separated from their card in both modes
+- [x] Third round (in review): **layout "B · Score sticker"** picked by Thomas from three mocks (score in a round badge filled with the flavor color, stars centered along the bottom, tags at the end of the pill row; 12.75rem tall, was 15.5), **colored hover shadow** (strong flavor color), **brand names auto-fit** their space (`FitText`), stars bigger (1.75rem) in their own slot ready for P1-21, and an **easy way to edit colors**: every knob in `client/src/theme/colorSettings.js` plus the live **Color Lab** at `/working/colors` (sliders, light/dark previews, readability check, "Copy settings")
 
 #### P1-0d 🤖 Brand pages without logos — 30m
 
@@ -386,7 +387,7 @@ Report: `docs/IMAGE_AUDIT.md`; script: `server/scripts/imageAudit.js` (read-only
 - [ ] Optimistic save with rollback + toast on error; half-star support
 - [ ] Keyboard: arrows/Home/End; `role="slider"` with `aria-valuenow/min/max/valuetext`; visible focus
 - [ ] Respects `prefers-reduced-motion`; replaces MUI `Rating` in `CustomColorRating`
-- Note: read-only stars already show on every card (`client/src/components/Stars.jsx`, 2026-10-22); this ticket is the interactive rating control. Thomas wants stars kept
+- Note: read-only stars already show on every card (`client/src/components/Stars.jsx`, 2026-10-22) in their own slot (`.product-card__stars`), sized as a tap target; this ticket is the interactive rating control. Thomas wants stars kept. **Open question for Thomas:** rate by tapping stars on cards, via a small "Rate" button that unlocks them, or on the product page only
 
 #### P1-22 🤖 Batched "my ratings" — 30m
 

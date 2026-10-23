@@ -38,7 +38,8 @@ RateYourMusic-style sparkling water rating site. MERN (MongoDB, Express, React, 
 - Accessibility: keyboard operable, visible focus, alt text, WCAG AA contrast.
 - Product cards are typographic: the flavors' colors fill the card (`client/src/theme/flavorSurface.js`;
   one hard-edged band per flavor), the brand name is set in that brand's font (`brandFonts.js`), and the
-  score + stars are the anchor. No brand colors. Flavor-category icons are our own assets. No product
+  score badge + stars are the anchor (layout "B · Score sticker"). No brand colors. Color knobs live in
+  `client/src/theme/colorSettings.js`; tune them live at `/working/colors` (Color Lab). Flavor-category icons are our own assets. No product
   photos required to ship.
 
 ## Commands

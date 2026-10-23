@@ -17,32 +17,35 @@
   }
 }
 
-/* Typographic product card (components/ProductCard.jsx): a hand-cut sticker in the brand's color.
+/* Typographic product card (components/ProductCard.jsx): a hand-cut sticker filled with its flavors.
    Every element has a fixed grid slot so all cards line up, whatever their content. */
 .product-card {
   position: relative;
   overflow: hidden;
   display: grid;
-  grid-template-columns: 1fr auto;
+  /* Layout "B · Score sticker": score badge top-right, stars centered along the bottom */
+  grid-template-columns: auto minmax(0, 1fr) auto;
   grid-template-areas:
-    "brand icon"
-    "name  name"
-    "flav  flav"
-    ".     ."
-    "score tags";
-  grid-template-rows: auto calc(2 * 1.6rem * 1.1) auto 1fr auto;
-  column-gap: 0.75rem;
-  height: 15.5rem;
+    "icon  brand score"
+    "name  name  score"
+    "flav  flav  tags"
+    "stars stars stars";
+  /* minmax keeps the pill row from collapsing (it clips overflow, so its minimum would otherwise be 0) */
+  grid-template-rows: auto calc(2 * 1.6rem * 1.1) minmax(1.8rem, auto) auto;
+  column-gap: 0.6rem;
+  row-gap: 0.3rem;
+  height: 12.75rem;
   padding: 1.1rem 1.1rem 1rem;
   border: 2px solid var(--ink);
   border-radius: 26px 18px 24px 20px / 20px 24px 18px 26px;
   box-shadow: 4px 4px 0 var(--ink);
   transition: transform 160ms ease, box-shadow 160ms ease;
 }
+/* Hover/focus: the offset shadow takes a strong flavor color (popStyle in theme/flavorSurface.js) */
 .product-card:hover,
 .product-card:focus-within {
   transform: translateY(-2px) rotate(-1deg);
-  box-shadow: 6px 6px 0 var(--ink);
+  box-shadow: 7px 7px 0 var(--pop, var(--ink));
 }
 .product-card:focus-within {
   outline: 3px solid var(--ink);
@@ -55,7 +58,7 @@
   }
   .product-card:hover,
   .product-card:focus-within {
-    box-shadow: 6px 6px 0 oklch(0.97 0.01 90 / 0.35);
+    box-shadow: 7px 7px 0 var(--pop-dark, oklch(0.97 0.01 90 / 0.35));
   }
   .product-card:focus-within {
     outline-color: oklch(0.97 0.01 90);
@@ -84,8 +87,9 @@
 }
 .product-card__icon {
   grid-area: icon;
-  width: 2.2rem;
-  height: 2.2rem;
+  align-self: center;
+  width: 1.7rem;
+  height: 1.7rem;
 }
 .product-card__name {
   grid-area: name;
@@ -115,7 +119,7 @@
   flex-wrap: nowrap;
   gap: 0.35rem;
   overflow: hidden;
-  margin-top: 0.4rem;
+  padding: 0.1rem 0 0.2rem;
 }
 .product-card__flavor {
   display: inline-flex;
@@ -136,27 +140,49 @@
     background: var(--accent-dark);
   }
 }
+/* The score badge: a round sticker in the main flavor's strong color */
 .product-card__score {
   grid-area: score;
+  align-self: start;
   display: flex;
-  align-items: baseline;
-  gap: 0.4rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 4.8rem;
+  height: 4.8rem;
+  line-height: 1.05;
+  text-align: center;
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+@media (prefers-color-scheme: dark) {
+  .product-card__score {
+    background: var(--accent-dark);
+  }
 }
 .product-card__score-value {
   font-family: "Lilita One", sans-serif;
-  font-size: 2.6rem;
+  font-size: 2rem;
   line-height: 1;
 }
 .product-card__score-detail {
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-  font-size: 0.85rem;
+  font-size: 0.62rem;
   font-weight: 600;
+  white-space: nowrap;
+}
+.product-card__stars {
+  grid-area: stars;
+  align-self: center;
+  justify-self: center;
+}
+.product-card__stars .product-card__score-detail {
+  font-size: 0.85rem;
 }
 .product-card__tags {
   grid-area: tags;
-  align-self: end;
+  align-self: center;
   display: flex;
   gap: 0.35rem;
 }
@@ -174,8 +200,9 @@
   grid-template-columns: auto 1fr auto;
   grid-template-areas:
     "icon brand score"
-    "icon name  score";
+    "icon name  stars";
   grid-template-rows: auto auto;
+  row-gap: 0;
   align-items: center;
   height: 4.5rem;
   padding: 0.5rem 0.9rem;
@@ -196,31 +223,50 @@
   -webkit-line-clamp: 1;
 }
 .product-card--compact .product-card__score {
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 0;
-  text-align: right;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 0.35rem;
+  width: auto;
+  height: auto;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
 }
-.product-card--compact .product-card__score-detail {
-  align-items: flex-end;
-  gap: 0;
+.product-card--compact .product-card__stars {
+  align-self: start;
+}
+.product-card--compact .product-card__stars {
+  justify-self: end;
 }
 .product-card--compact .stars__star {
-  width: 0.85rem;
-  height: 0.85rem;
+  width: 1rem;
+  height: 1rem;
 }
 .product-card--compact .product-card__score-value {
-  font-size: 1.6rem;
+  font-size: 1.5rem;
+  line-height: 1.05;
 }
 .product-card--compact .product-card__score-detail {
   font-size: 0.7rem;
 }
+@media (prefers-color-scheme: dark) {
+  .product-card--compact .product-card__score {
+    background: none;
+  }
+}
 /* Hero: the product page's big card. Same slots, larger type; not a link */
 .product-card--hero {
   width: min(100%, 26rem);
-  height: 22rem;
+  height: 18rem;
   padding: 1.5rem 1.5rem 1.4rem;
-  grid-template-rows: auto calc(2 * 2.4rem * 1.1) auto 1fr auto;
+  grid-template-rows: auto calc(2 * 2.4rem * 1.1) minmax(2rem, auto) auto;
+  row-gap: 0.5rem;
+}
+.product-card--hero .product-card__score {
+  width: 6.4rem;
+  height: 6.4rem;
 }
 .product-card--hero:hover {
   transform: none;
@@ -230,8 +276,8 @@
   font-size: 2.1rem;
 }
 .product-card--hero .product-card__icon {
-  width: 3rem;
-  height: 3rem;
+  width: 2.4rem;
+  height: 2.4rem;
 }
 .product-card--hero .product-card__name {
   font-size: 2.4rem;
@@ -240,10 +286,10 @@
   font-size: 0.95rem;
 }
 .product-card--hero .product-card__score-value {
-  font-size: 3.6rem;
+  font-size: 2.8rem;
 }
 .product-card--hero .product-card__score-detail {
-  font-size: 1rem;
+  font-size: 0.8rem;
 }
 @media (prefers-color-scheme: dark) {
   .product-card--hero:hover {
@@ -267,8 +313,8 @@
 }
 .stars__star {
   flex-shrink: 0;
-  width: 1.15rem;
-  height: 1.15rem;
+  width: 1.75rem;
+  height: 1.75rem;
 }
 .stars__fill {
   fill: var(--star, currentColor);
@@ -279,6 +325,6 @@
   }
 }
 .product-card--hero .stars__star {
-  width: 1.3rem;
-  height: 1.3rem;
+  width: 2.2rem;
+  height: 2.2rem;
 }
