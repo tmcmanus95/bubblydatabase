@@ -4,7 +4,7 @@ import assert from "node:assert";
 import { readFileSync } from "node:fs";
 import { contrastRatio, inSrgbGamut, cssColorToOklch, parseOklch } from "./color.js";
 import { FLAVOR_COLORS } from "./flavorColors.js";
-import { INK, flavorSurface, flavorAccent, flavorStarColor, accentStyle, starStyle, flavorBands, flavorStyle } from "./flavorSurface.js";
+import { INK, flavorSurface, flavorAccent, flavorStarColor, accentStyle, starStyle, flavorBands, flavorBackground, flavorStyle } from "./flavorSurface.js";
 
 test("color math matches known values", () => {
   assert.strictEqual(contrastRatio("oklch(1 0 0)", "oklch(0 0 0)").toFixed(1), "21.0");
@@ -102,7 +102,7 @@ test("Color Lab settings changes take effect live and can be reset", async () =>
 test("mode forces one color mode into both CSS variables", () => {
   const dark = flavorStyle(["lime"], "dark");
   assert.strictEqual(dark["--surface-bg"], dark["--surface-bg-dark"]);
-  assert.strictEqual(dark["--surface-bg"], flavorSurface("lime").dark);
+  assert.strictEqual(dark["--surface-bg"], flavorBackground(["lime"], "dark"));
   const light = accentStyle("lime", "light");
   assert.strictEqual(light["--accent-dark"], flavorAccent("lime").light);
   const normal = starStyle("lime");
