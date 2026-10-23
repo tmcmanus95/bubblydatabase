@@ -91,7 +91,7 @@ export function flavorAccent(flavor) {
         return tone({ c: pill.maxChroma, h }, Math.min(0.97, l + 0.1), pill.maxChroma);
       };
       cache.set(source, { light: lighter(card.light), dark: lighter(card.dark) });
-    } else if (palette === "white" || palette === "splash") {
+    } else if (palette === "white" || palette === "splash" || palette === "fizz") {
       // On a white card the pills and badge carry the flavor's full vivid tone
       cache.set(source, { ...flavorSurface(flavor) });
     } else {
@@ -233,6 +233,12 @@ const whiteLineColors = (flavors) => (flavors.length ? flavors : ["plain"]).map(
 export function flavorBubbles(flavors, mode) {
   const { pattern, palette } = getColorSettings();
   if (pattern !== "waves") return {};
+  if (palette === "fizz") {
+    // No waves: the bubbles fill the whole card, mixing every flavor's color
+    const colors = whiteLineColors(flavors);
+    const bg = BUBBLE_TILES.map((t, i) => bubbleTile(t, colors.slice(i % colors.length).concat(colors.slice(0, i % colors.length)))).join(", ");
+    return { ...pair("bubbles", { light: bg, dark: bg }, mode), "--bubbles-top": "0%", "--bubbles-fade": "18%" };
+  }
   if (palette === "splash") {
     const { accents } = splashColors(flavors);
     const bg = BUBBLE_TILES.map((t, i) => bubbleTile(t, accents.slice(i % accents.length).concat(accents.slice(0, i % accents.length)))).join(", ");
@@ -284,6 +290,7 @@ export function flavorBackground(flavors, mode) {
   const list = flavors.length ? flavors : ["plain"];
   if (getColorSettings().palette === "white") return whiteBackground(list);
   if (getColorSettings().palette === "splash") return splashBackground(list);
+  if (getColorSettings().palette === "fizz") return PAPER;
   const colors = list.map((f) => flavorSurface(f)[mode]);
   const { pattern, bandAngle } = getColorSettings();
   switch (pattern) {
