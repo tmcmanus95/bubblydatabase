@@ -279,21 +279,6 @@ export default function BubblyWaterPage() {
                         </Link>
                       ))}
                     </p>
-                    {Auth.loggedIn() && !isVerified ? (
-                      <div>
-                        Please{" "}
-                        <Link
-                          className="text-blue-500"
-                          to={`/resendEmailVerification`}
-                        >
-                          verify email
-                        </Link>{" "}
-                        to rate
-                      </div>
-                    ) : (
-                      <></>
-                    )}
-
                     {Auth.loggedIn() ? (
                       <CustomColorRating
                         value={previouslyRated ? userRating : value}
@@ -354,7 +339,7 @@ export default function BubblyWaterPage() {
                         >
                           verify email
                         </Link>{" "}
-                        to review
+                        to write reviews
                       </div>
                     ) : (
                       <></>

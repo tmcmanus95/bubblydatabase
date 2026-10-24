@@ -148,3 +148,13 @@ test("removeUser: admins only, never self-service or anonymous", async () => {
     process.env.ADMIN_USER_IDS = "";
   }
 });
+
+test("unverified users can rate but not review (P1-17)", async () => {
+  const newbie = await createUser({ isVerified: false });
+  const water = await createBubbly();
+  const rated = await t.gql(ADD_RATING, { b: id(water), r: 4 }, newbie);
+  assert.ifError(rated.errors);
+  assert.strictEqual(rated.data.addRating.averageRating, 4);
+  const reviewed = await t.gql(ADD_REVIEW, { b: id(water), u: id(newbie), t: "Nice" }, newbie);
+  assert.match(reviewed.errors[0].message, /verify your email to write reviews/);
+});

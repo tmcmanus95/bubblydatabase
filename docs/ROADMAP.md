@@ -360,11 +360,11 @@ Report: `docs/IMAGE_AUDIT.md`; script: `server/scripts/imageAudit.js` (read-only
 - [x] Runs as a **Render Cron Job** (`node server/scripts/recompute.js --render-cron`, nightly; the flag only works inside Render) using the same env as the web service, so no prod write credential lives on GitHub. RUNBOOK has the setup
 - [ ] 🧑 Create the Render Cron Job (about $1/mo) once the script lands
 
-#### P1-17 🤖 Remove the email gate for rating — 45m
+#### P1-17 🤖 Remove the email gate for rating — 45m — in review
 
-- [ ] Logged-in unverified users can rate (client gate removed in `CustomColorRating`, `BubblyWaterListItem`, `BubblyWater`)
-- [ ] Server: `addReview` requires `isVerified`; `addRating` doesn't
-- [ ] Copy updated ("verify email to write reviews")
+- [x] Logged-in unverified users can rate (client gate removed in `CustomColorRating`, `BubblyWaterListItem`, `BubblyWater`; checked in a browser)
+- [x] Server: `addReview` requires `isVerified`; `addRating` doesn't (already true; now tested)
+- [x] Copy updated ("verify email to write reviews")
 
 #### P1-18 🤖 Rating abuse controls — 45m
 

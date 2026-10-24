@@ -121,8 +121,7 @@ export default function CustomColorRating({
     <div className="flex flex-col ">
       {Auth.loggedIn() &&
       location.pathname !== `/user/${userId}` &&
-      location.pathname !== "/me" &&
-      isVerified ? (
+      location.pathname !== "/me" ? (
         <div className="flex items-center">
           <StyledRating
             name="customized-color"
