@@ -354,10 +354,10 @@ Report: `docs/IMAGE_AUDIT.md`; script: `server/scripts/imageAudit.js` (read-only
 - [x] remove operations `$pull` refs from product and user (and likers; reviews lose a removed rating's link)
 - [x] Tests cover each write path, incl. 10 concurrent ratings (`server/tests/aggregatesOnWrite.test.js`)
 
-#### P1-16 🤖 Nightly recompute — 45m
+#### P1-16 🤖 Nightly recompute — 45m — in review
 
-- [ ] Job recomputes the aggregates (and top review) with `$group` + `bulkWrite`, logs drift
-- [ ] Runs as a **Render Cron Job** (`node server/scripts/recompute.js`, nightly) using the same env group as the web service, so no prod write credential lives on GitHub; fixes the `topReview`/`topReviews` bug
+- [x] Job recomputes the aggregates with `$group` + `bulkWrite`, logs drift (`npm run recompute [-- --dry-run]`). Top review: that feature only exists in the `new-aesthetic` WIP, so it joins the job when that design merges
+- [x] Runs as a **Render Cron Job** (`node server/scripts/recompute.js --render-cron`, nightly; the flag only works inside Render) using the same env as the web service, so no prod write credential lives on GitHub. RUNBOOK has the setup
 - [ ] 🧑 Create the Render Cron Job (about $1/mo) once the script lands
 
 #### P1-17 🤖 Remove the email gate for rating — 45m
