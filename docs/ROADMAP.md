@@ -312,13 +312,13 @@ Report: `docs/IMAGE_AUDIT.md`; script: `server/scripts/imageAudit.js` (read-only
 - [x] `pino-http` request logging (no tokens/passwords/cookies/bodies logged; request id in `X-Request-Id`) + `/healthz` for monitors
 - [ ] 🧑 Uptime monitor (e.g. UptimeRobot/Better Stack) on prod + staging, pointed at `/healthz`
 
-#### P1-10 🤖 Dependency cleanup — 45m
+#### P1-10 🤖 Dependency cleanup — 45m — in review
 
-- [ ] Remove `apollo-server-express`, `crypto`, `ldrs`/`axios` if unused (server); `express`, `dotenv`, `headlessui`, `heroicons` (client)
-- [ ] In-range `npm update` in server + client
-- [ ] `npm audit` reports 0 high/critical (or each exception documented in `DECISIONS.md`)
-- [ ] Move prod to Node 22 LTS (Node 20 reached end-of-life in April 2026): `engines.node` → `22.x`, verify on staging first, then prod
-- [ ] Smoke tests + client build green
+- [x] Removed `apollo-server-express`, `crypto`, `ldrs`, `axios` (server); `express`, `dotenv`, `headlessui`, `heroicons`, plus unused `@headlessui/react` and `@heroicons/react` (client)
+- [x] In-range `npm update` in server + client; plus nodemailer 10, Apollo Server 5, Vite 6.4
+- [x] `npm audit` reports 0 high/critical (server: 0 total; client: 5 moderate, documented in `DECISIONS.md`)
+- [x] Move prod to Node 22 LTS: `engines.node` → `22.x` and CI on 22 (**Thomas:** confirm staging's deploy log says Node 22, then release)
+- [x] Smoke tests + client build green; Vite dev server starts; home/brand pages render
 
 ## Phase 1 — Quick wins
 

@@ -147,3 +147,10 @@ Newest first. Format: date · decision · why · who decided.
 - Decided/done by: Thomas.
 - 2026-10-23: Card palette is **splash** (Thomas): white top, the first flavor's vivid color filling below the wave, the other flavor's deep tone for the wave line and bubbles. Compact cards are all water. Stars use the most vivid tone a step darker than the fill. Other palettes stay available in `colorSettings.js` / the Color Lab.
 - 2026-10-23: Card palette switched to **soda** (Thomas): the first flavor's vivid color fills the card; white bubbles, or the other flavors' deep tones on multi-flavor cards; text sits on 90% patches of the card color so bubbles never cross letters. Splash and the others stay selectable.
+- 2026-10-24 (P1-10): `npm audit` is at 0 high/critical in server and client. The client's remaining 5
+  **moderate** findings are accepted until the Phase 4 rebuild (they need majors: Tailwind 4, React Router 7):
+  `postcss-selector-parser`/`postcss-nested` via Tailwind 3 (build-time CSS parsing only; never runs in
+  visitors' browsers), and two React Router 6 issues: an open redirect that needs a `<Link>` or
+  `navigate()` target starting with a backslash (ours are all app paths built from `/…` literals) and an
+  SSR-hydration issue (we don't server-render). Vite went 5 → 6.4.5 (no config changes needed) to clear its
+  dev-server advisories; Apollo Server went 4 (end of life) → 5 with `@as-integrations/express4`.
