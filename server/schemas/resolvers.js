@@ -1,4 +1,5 @@
 const { loginThrottle } = require("../utils/loginThrottle");
+const { startSession, endSession, endAllSessions } = require("../utils/sessions");
 const { User, BubblyWater, Rating, Review } = require("../models");
 const {
   signToken,
@@ -305,7 +306,7 @@ const resolvers = {
   },
 
   Mutation: {
-    addUser: async (parent, { username, email, password }) => {
+    addUser: async (parent, { username, email, password }, context) => {
       colors = [
         "user-teal",
         "user-cyan",
@@ -344,11 +345,13 @@ const resolvers = {
           subject: "Bubbles Account Email Verification",
           text: `Please verify your email by clicking the following link: ${verificationUrl}`,
         });
+        // The token is still returned for clients from before cookie sessions (until P1-6 part 2)
         const token = signToken({
           email: user.email,
           name: user.username,
           _id: user._id,
         });
+        await startSession(context, user);
 
         return { token, user };
       } catch (error) {
@@ -445,6 +448,8 @@ const resolvers = {
         user.passwordResetToken = null;
         user.passwordResetExpires = null;
         await user.save();
+        // A new password signs out every browser that was using the old one
+        await endAllSessions(user._id);
 
         return { user };
       } catch (error) {
@@ -686,7 +691,12 @@ const resolvers = {
       loginThrottle.succeed(email, ip);
       await user.upgradePasswordHash(password);
       const token = signToken(user);
+      await startSession(context, user);
       return { token, user };
+    },
+    logout: async (parent, args, context) => {
+      await endSession(context);
+      return true;
     },
     // The userId argument is ignored: likes always come from the logged in user
     addLikeToReview: async (parent, { reviewId }, context) => {

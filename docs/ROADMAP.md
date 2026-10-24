@@ -288,12 +288,12 @@ Report: `docs/IMAGE_AUDIT.md`; script: `server/scripts/imageAudit.js` (read-only
 - [x] On successful login, if the hash cost is below 12, rehash and save. No forced resets. New hashes use cost 12
 - [x] Test: a cost-10 hash logs in and is upgraded
 
-#### P1-6 🤖 Cookie sessions (split across 2 sessions) — 2 × 60m
+#### P1-6 🤖 Cookie sessions (split across 2 sessions) — 2 × 60m — part 1 (server) in review
 
-- [ ] Access token (15m) + refresh token (30d, rotating, stored hashed server-side) in `httpOnly`, `Secure`, `SameSite=Lax` cookies
-- [ ] Grace period: existing localStorage Bearer tokens are still accepted until a set date, then dropped; tokens no longer accepted from the query string/body
+- [x] Access token (15m) + refresh token (30d, rotating, stored hashed server-side) in `httpOnly`, `Secure`, `SameSite=Lax` cookies; reuse of a rotated token revokes all the user's sessions; `sessions` collection via migration
+- [x] Grace period: existing localStorage Bearer tokens are still accepted until `BEARER_GRACE_UNTIL` (default 2027-01-31) and upgrade the browser to cookies; tokens no longer accepted from the query string/body
 - [ ] Client: Apollo `credentials: "include"`, no token in localStorage, logout clears cookies
-- [ ] CSRF protection on mutations (SameSite + Apollo's CSRF prevention / custom header)
+- [x] CSRF protection on mutations (SameSite=Lax + Apollo's built-in CSRF prevention; tested)
 - [ ] Existing users stay logged in or re-login normally (no password reset)
 
 #### P1-7 🤖 Roles — 45m — DB: staging-write (migration)

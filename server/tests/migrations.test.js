@@ -22,6 +22,9 @@ before(async () => {
 after(() => t.stop());
 beforeEach(async () => {
   await t.reset();
+  // Test servers apply the repo's migrations; these tests use their own folder
+  await mongoose.connection.db.collection(migrations.CHANGELOG).deleteMany({});
+  await mongoose.connection.db.collection("widgets").deleteMany({});
   dir = fs.mkdtempSync(path.join(os.tmpdir(), "migrations-"));
   write(
     "202601010000-add-widgets.js",

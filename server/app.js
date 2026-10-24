@@ -9,6 +9,8 @@ const typeDefs = require("./schemas/typeDefs");
 const { graphqlRateLimits } = require("./utils/rateLimits");
 const { withValidation } = require("./schemas/validation");
 const { rejectOperatorKeys } = require("./utils/rejectOperatorKeys");
+const cookieParser = require("cookie-parser");
+const { sessionMiddleware } = require("./utils/sessions");
 const resolvers = require("./schemas/resolvers");
 
 // What the built site is allowed to load. Images: only our own files and data: URIs (generated cards);
@@ -72,6 +74,8 @@ const createApp = async ({ rateLimits } = {}) => {
     express.json({ limit: "100kb" }),
     rejectOperatorKeys,
     ...graphqlRateLimits(rateLimits),
+    cookieParser(),
+    sessionMiddleware,
     expressMiddleware(server, {
       context: authMiddleware,
     })

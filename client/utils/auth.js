@@ -28,7 +28,18 @@ class AuthService {
     window.location.assign("/");
   }
 
-  logout() {
+  // Ends the cookie session on the server too (P1-6), then forgets the old stored token
+  async logout() {
+    try {
+      await fetch("/graphql", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "same-origin",
+        body: JSON.stringify({ query: "mutation { logout }" }),
+      });
+    } catch {
+      // Offline: the cookies expire on their own; still sign out locally
+    }
     localStorage.removeItem("id_token");
     window.location.assign("/");
   }

@@ -18,6 +18,7 @@ const { createApp } = require("../app");
 const { signToken } = require("../utils/auth");
 const { outbox } = require("../utils/sendEmail");
 const { loginThrottle } = require("../utils/loginThrottle");
+const migrations = require("../scripts/lib/migrations");
 
 const localMongod = () => {
   const result = spawnSync("sh", ["-c", "command -v mongod"], { encoding: "utf8" });
@@ -32,6 +33,8 @@ const startTestServer = async ({ rateLimits = false } = {}) => {
   await mongoose.connect(mongo.getUri("bubbly_test"));
   assert.strictEqual(mongoose.connection.host, "127.0.0.1", "tests must only use the in-memory database");
 
+  // The same migrations as staging/production create collections and indexes (e.g. sessions)
+  await migrations.up(mongoose.connection.db, undefined, () => {});
   const { app, server } = await createApp({ rateLimits });
   const request = supertest(app);
 
@@ -58,6 +61,7 @@ const startTestServer = async ({ rateLimits = false } = {}) => {
     for (const collection of Object.values(mongoose.connection.collections)) {
       await collection.deleteMany({});
     }
+    await mongoose.connection.db.collection("sessions").deleteMany({});
   };
 
   return { request, gql, stop, reset, outbox };
