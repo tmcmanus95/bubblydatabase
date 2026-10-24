@@ -436,14 +436,14 @@ denormalized and indexed; `npm audit` high/critical = 0.
 - [x] Logs to a `clicks` collection `{productId, offerId, network, ts, referrerPath}` with no PII/IP stored (migration `202610240006`); rate-limited 60/min per IP
 - [x] 302 redirect with `X-Robots-Tag: noindex, nofollow` and no referrer; the links themselves (`rel="sponsored nofollow noopener"`) come with P15-5
 
-#### P15-4 🤖 Disclosure component — 30m
+#### P15-4 🤖 Disclosure component — 30m — in review (with P15-5)
 
-- [ ] `<AffiliateDisclosure>` renders only when a tagged offer is shown; includes Amazon's required statement
-- [ ] Accessible and on-brand (silly but clear)
+- [x] `<AffiliateDisclosure>` renders only when a tagged offer is shown (`Offer.sponsored`); includes Amazon's required statement when a tagged Amazon link is shown
+- [x] Accessible and on-brand (silly but clear): "Fizz-closure: some of these links pay us a little… It never changes a rating."
 
-#### P15-5 🤖 "Where to buy" block — 45m
+#### P15-5 🤖 "Where to buy" block — 45m — in review
 
-- [ ] Product page lists active offers through `/go/...` links; hidden when there are none
+- [x] Product page lists active offers through `/go/...` links (`rel="sponsored nofollow noopener"` on paid links, new tab); hidden when there are none
 
 #### P15-6 🤖 Weekly link health check — 45m
 

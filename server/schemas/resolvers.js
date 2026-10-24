@@ -56,6 +56,11 @@ const resolvers = {
     offers: (product) => (product.offers || []).filter((o) => o.active),
   },
 
+  Offer: {
+    sponsored: (offer) =>
+      offer.network === "amazon" ? Boolean((process.env.AMAZON_ASSOCIATE_TAG || "").trim()) : Boolean(offer.affiliateUrl),
+  },
+
   AdminOffer: {
     lastChecked: (offer) => (offer.lastChecked ? new Date(offer.lastChecked).toISOString() : null),
   },

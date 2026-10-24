@@ -80,6 +80,9 @@ const typeDefs = `
     packSize: String
     active: Boolean!
     status: String
+    # True when the link earns us a commission (an affiliate URL, or Amazon once our tag is set): the page
+    # then shows the disclosure (P15-4)
+    sponsored: Boolean!
   }
 
   # The full offer, for admins managing them
