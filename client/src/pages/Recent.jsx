@@ -9,34 +9,16 @@ export default function Recent() {
   const [recentRatings, setRecentRatings] = useState([]);
 
   useEffect(() => {
-    console.log("recent data", data);
-    let tempReviewWithRatingArray = [];
-    let bubblyWaterRating = "";
-
-    for (let i = 0; i < data?.recentReviews.length; i++) {
-      for (
-        let j = 0;
-        j < data?.recentReviews[i].bubblyWater.ratings.length;
-        j++
-      ) {
-        if (
-          data?.recentReviews[i].user._id ==
-          data?.recentReviews[i].bubblyWater.ratings[j].user._id
-        ) {
-          bubblyWaterRating =
-            data?.recentReviews[i].bubblyWater.ratings[j].rating;
-        }
-      }
-      let tempRatingWithReviewObj = {
-        bubblyWater: data?.recentReviews[i].bubblyWater,
-        reviewText: data?.recentReviews[i].reviewText,
-        user: data?.recentReviews[i].user,
-        rating: bubblyWaterRating,
-      };
-      tempReviewWithRatingArray.push(tempRatingWithReviewObj);
-    }
+    // Each review arrives with the reviewer's own rating (server join), no searching needed
     setRecentRatings(data?.recentRatings);
-    setRecentReviews(tempReviewWithRatingArray);
+    setRecentReviews(
+      (data?.recentReviews || []).map((review) => ({
+        bubblyWater: review.bubblyWater,
+        reviewText: review.reviewText,
+        user: review.user,
+        rating: review.rating ? review.rating.rating : "",
+      }))
+    );
   }, [data]);
 
   return (

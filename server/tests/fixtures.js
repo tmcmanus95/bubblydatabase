@@ -25,11 +25,12 @@ const createBubbly = (overrides = {}) =>
     ...overrides,
   });
 
-// Adds a rating linked on both sides, the way addRating does
+// Adds a rating linked on both sides and counted in the product's aggregates, the way addRating does
 const addRatingFor = async (user, bubbly, rating) => {
   const doc = await Rating.create({ rating, user: user._id, bubblyWater: bubbly._id });
   await BubblyWater.updateOne({ _id: bubbly._id }, { $push: { ratings: doc._id } });
   await User.updateOne({ _id: user._id }, { $push: { ratings: doc._id } });
+  await require("../utils/aggregates").ratingAdded(bubbly._id, rating);
   return doc;
 };
 

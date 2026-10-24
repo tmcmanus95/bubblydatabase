@@ -10,9 +10,7 @@ export const QUERY_ALL_BUBBLYS = gql`
       isCaffeinated
       hasCBD
       averageRating
-      ratings {
-        _id
-      }
+      ratingCount
     }
   }
 `;
@@ -27,9 +25,7 @@ export const QUERY_All_CAFFEINATED_BUBBLYS = gql`
       isCaffeinated
       hasCBD
       averageRating
-      ratings {
-        rating
-      }
+      ratingCount
     }
   }
 `;
@@ -44,9 +40,7 @@ export const QUERY_ALL_CBD_BUBBLYS = gql`
       isCaffeinated
       hasCBD
       averageRating
-      ratings {
-        rating
-      }
+      ratingCount
     }
   }
 `;
@@ -61,12 +55,7 @@ export const QUERY_SINGLE_FLAVOR = gql`
       isCaffeinated
       hasCBD
       averageRating
-      ratings {
-        rating
-        user {
-          username
-        }
-      }
+      ratingCount
     }
   }
 `;
@@ -111,6 +100,12 @@ export const QUERY_SINGLE_USER = gql`
       _id
       username
       color
+      ratingCount
+      reviewCount
+      ratingBreakdown {
+        rating
+        count
+      }
       ratings {
         _id
         rating
@@ -148,17 +143,7 @@ export const QUERY_SINGLE_BRAND = gql`
       isCaffeinated
       hasCBD
       averageRating
-      ratings {
-        _id
-        rating
-      }
-      reviews {
-        _id
-        reviewText
-        user {
-          username
-        }
-      }
+      ratingCount
     }
   }
 `;
@@ -169,6 +154,12 @@ export const QUERY_ME = gql`
       _id
       username
       color
+      ratingCount
+      reviewCount
+      ratingBreakdown {
+        rating
+        count
+      }
       isVerified
       ratings {
         _id
@@ -343,18 +334,14 @@ export const QUERY_RECENT_RATINGS_AND_REVIEWS = gql`
       _id
       reviewText
       createdAt
+      rating {
+        rating
+      }
       bubblyWater {
         _id
         productName
         brandName
         flavor
-        ratings {
-          _id
-          rating
-          user {
-            _id
-          }
-        }
       }
       user {
         _id
