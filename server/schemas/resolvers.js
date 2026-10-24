@@ -3,6 +3,7 @@ const { loginThrottle } = require("../utils/loginThrottle");
 const { startSession, endSession, endAllSessions } = require("../utils/sessions");
 const { verifyTurnstile } = require("../utils/turnstile");
 const aggregates = require("../utils/aggregates");
+const { ratingLimiter } = require("../utils/ratingRules");
 const { User, BubblyWater, Rating, Review } = require("../models");
 const {
   signToken,
@@ -496,6 +497,7 @@ const resolvers = {
       if (!isValidRating(rating)) {
         throw new Error("Rating must be between 0.5 and 5 in half steps");
       }
+      ratingLimiter.check(userId);
       if (!(await BubblyWater.exists({ _id: bubblyWaterId }))) {
         throw new Error("Bubbly water not found");
       }
@@ -531,6 +533,7 @@ const resolvers = {
       if (!isValidRating(rating)) {
         throw new Error("Rating must be between 0.5 and 5 in half steps");
       }
+      ratingLimiter.check(requireUser(context));
       try {
         const updatedRating = await Rating.findOneAndUpdate(
           { _id: ratingId },

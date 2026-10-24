@@ -159,3 +159,9 @@ Newest first. Format: date · decision · why · who decided.
   data), the 21 anonymous ratings from before rating required a login, and (Claude, same reasoning) ratings
   whose product or user alone is gone. Duplicates keep the newest rating. They move to `ratings_archive` /
   `reviews_archive` with `_archive.reason`; the migration's `down` restores them exactly.
+- 2026-10-24 (P1-18, Claude; Thomas can change the numbers in `server/utils/ratingRules.js`): rating abuse
+  controls now that rating doesn't need a verified email. Per account: 120 ratings or rating edits per hour;
+  accounts under 24 hours old: 30 per hour (a real person rarely rates more than a few dozen waters in a
+  sitting). `trustedForAggregates`: verified accounts, or unverified ones at least 7 days old; leaderboards
+  and "controversial" lists will count only trusted raters (Phase 2). Account age comes from the user's
+  ObjectId, so no new field or migration.
