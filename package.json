@@ -10,7 +10,10 @@
     "install": "cd server && npm i && cd ../client && npm i",
     "build": "cd client && npm run build",
     "start": "node server/server.js",
-    "staging:refresh": "bash scripts/staging-refresh.sh"
+    "staging:refresh": "bash scripts/staging-refresh.sh",
+    "migrate:status": "node server/scripts/migrate.js status",
+    "migrate:up": "node server/scripts/migrate.js up",
+    "migrate:down": "node server/scripts/migrate.js down"
   },
   "keywords": [],
   "author": "",

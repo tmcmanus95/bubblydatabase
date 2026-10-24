@@ -322,11 +322,11 @@ Report: `docs/IMAGE_AUDIT.md`; script: `server/scripts/imageAudit.js` (read-only
 
 ## Phase 1 — Quick wins
 
-#### P1-11 🤖 Migration runner — 45m
+#### P1-11 🤖 Migration runner — 45m — in review (pulled ahead of P1-6, which needs a migration)
 
-- [ ] `migrate-mongo` (or a minimal runner) with `migrations/`, up/down, changelog collection
-- [ ] `npm run migrate:up` / `migrate:down` use `assertStaging()` unless `--i-am-thomas-on-prod` is passed
-- [ ] Example no-op migration runs up and down on staging
+- [x] A minimal runner (no new dependency): `migrations/`, up/down, `migrations_changelog` collection (`server/scripts/lib/migrations.js`)
+- [x] `npm run migrate:status` / `migrate:up` / `migrate:down` use `assertStaging()` unless `--i-am-thomas-on-prod` is passed
+- [ ] Example no-op migration runs up and down on staging (**Thomas**; verified by Claude on a local throwaway database)
 
 #### P1-12 🤖 Data-integrity report — 30m — DB: staging-read
 
