@@ -41,6 +41,11 @@ const reviewSchema = new Schema(
   }
 );
 
+// Same names as migrations/202610240003-add-rating-review-product-indexes.js
+reviewSchema.index({ bubblyWater: 1, createdAt: -1 }, { name: "bubblyWater_1_createdAt_-1" });
+reviewSchema.index({ user: 1, createdAt: -1 }, { name: "user_1_createdAt_-1" });
+reviewSchema.index({ createdAt: -1 }, { name: "createdAt_-1" });
+
 const Review = model("Review", reviewSchema);
 
 module.exports = Review;

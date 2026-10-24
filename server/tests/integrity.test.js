@@ -16,6 +16,8 @@ const oid = () => new mongoose.Types.ObjectId();
 
 test("each check finds its problem, and the report changes nothing", async () => {
   const db = mongoose.connection.db;
+  // Old data predates the one-rating-per-user index (P1-13); drop it to recreate that state
+  await db.collection("ratings").dropIndex("user_1_bubblyWater_1").catch(() => {});
   const [u1, u2, gone] = [oid(), oid(), oid()];
   const [p1, p2, p3] = [oid(), oid(), oid()];
   const r = Array.from({ length: 7 }, oid);

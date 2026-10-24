@@ -333,13 +333,13 @@ Report: `docs/IMAGE_AUDIT.md`; script: `server/scripts/imageAudit.js` (read-only
 - [x] Read-only script (`npm run report:integrity`): duplicate (user, bubblyWater) ratings, anonymous and stranded ratings, orphaned reviews, dangling refs on products/users, `averageRating` drift
 - [x] Report saved (`reports/`, gitignored: it lists ids). Staging 2026-10-24: 10 duplicate pairs, 21 anonymous ratings, 520 stranded ratings + 61 stranded reviews (product and user both gone), 8 ratings with only the product gone, 50 dangling product→rating refs on 12 products, 49 user→rating refs on 5 users, 6 products with a wrong average. Duplicates: keep the most recent, archive the rest (`DECISIONS.md`); stranded/anonymous handling decided by Thomas before P1-13
 
-#### P1-13 🤖 Index migration — 45m — DB: staging-write
+#### P1-13 🤖 Index migration — 45m — DB: staging-write — in review
 
-- [ ] Dedupe step first (before the unique index): for each (user, bubblyWater) keep the newest rating; move the others to `ratings_duplicates_archive`; repoint any review's `rating`, and `$pull` archived ids from the product and user arrays; recompute affected `averageRating`. `down` restores archived ratings and refs exactly.
-- [ ] ratings: `{bubblyWater:1}`, `{user:1, createdAt:-1}`, `{createdAt:-1}`, unique `{user:1, bubblyWater:1}`
-- [ ] reviews: `{bubblyWater:1, createdAt:-1}`, `{user:1, createdAt:-1}`, `{createdAt:-1}`
-- [ ] bubblywaters: `{flavor:1, averageRating:-1}`, `{brandName:1}`, `{averageRating:-1}`
-- [ ] Indexes also declared in the Mongoose schemas; `down` drops them; `explain()` shows IXSCAN on key queries
+- [x] Dedupe step first (`202610240002`): duplicates (newest kept), anonymous and orphaned ratings/reviews move to `ratings_archive`/`reviews_archive` with a reason; reviews repointed; dead ids pulled from product/user arrays; every `averageRating` recomputed. `down` restores everything exactly (verified on a copy of staging)
+- [x] ratings: `{bubblyWater:1}`, `{user:1, createdAt:-1}`, `{createdAt:-1}`, unique `{user:1, bubblyWater:1}` (partial: ratings with a user)
+- [x] reviews: `{bubblyWater:1, createdAt:-1}`, `{user:1, createdAt:-1}`, `{createdAt:-1}`
+- [x] bubblywaters: `{flavor:1, averageRating:-1}`, `{brandName:1}`, `{averageRating:-1}`
+- [x] Indexes also declared in the Mongoose schemas; `down` drops them; `explain()` shows each key query using its index (staging copy)
 
 #### P1-14 🤖 Denormalized aggregates migration — 45m — DB: staging-write
 
