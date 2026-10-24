@@ -165,3 +165,6 @@ Newest first. Format: date · decision · why · who decided.
   sitting). `trustedForAggregates`: verified accounts, or unverified ones at least 7 days old; leaderboards
   and "controversial" lists will count only trusted raters (Phase 2). Account age comes from the user's
   ObjectId, so no new field or migration.
+- 2026-10-24 (Phase 1 exit check, Claude): every SPEC §4 item is done except one, deferred to Thomas: rotating
+  the R2 access key and the read-only `backup-ro` Atlas password, which were visible to Claude in an editor
+  selection early in the project (staging/backup credentials, not production).
