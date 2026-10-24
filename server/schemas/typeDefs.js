@@ -99,6 +99,18 @@ const typeDefs = `
     lastChecked: String
   }
 
+  # One admin change (P2-1). before/after are JSON snapshots of the changed record.
+  type AdminEdit {
+    _id: ID!
+    admin: User
+    action: String!
+    targetType: String!
+    targetId: ID!
+    before: String
+    after: String
+    at: String!
+  }
+
   input OfferInput {
     retailer: String!
     network: String!
@@ -144,6 +156,7 @@ const typeDefs = `
     findUsersRating(userId: ID!, bubblyWaterId: ID!): Rating
     myRatings(bubblyWaterIds: [ID!]!): [Rating!]!
     adminOffers(bubblyWaterId: ID!): [AdminOffer!]!
+    adminEdits(targetId: ID, limit: Int): [AdminEdit!]!
   }
 
   type Mutation {

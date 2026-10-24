@@ -6,6 +6,8 @@ const aggregates = require("../utils/aggregates");
 const { ratingLimiter } = require("../utils/ratingRules");
 const { searchProducts } = require("../utils/search");
 const { isAdmin } = require("../utils/auth");
+const { recordAdminEdit } = require("../utils/audit");
+const { AdminEdit } = require("../models");
 
 // Product fields that cards and lists need: everything but the id arrays of ratings and reviews
 const PRODUCT_CARD_FIELDS = "-ratings -reviews -offers";
@@ -59,6 +61,13 @@ const resolvers = {
   Offer: {
     sponsored: (offer) =>
       offer.network === "amazon" ? Boolean((process.env.AMAZON_ASSOCIATE_TAG || "").trim()) : Boolean(offer.affiliateUrl),
+  },
+
+  AdminEdit: {
+    admin: (edit) => User.findById(edit.admin).exec(),
+    before: (edit) => (edit.before == null ? null : JSON.stringify(edit.before)),
+    after: (edit) => (edit.after == null ? null : JSON.stringify(edit.after)),
+    at: (edit) => new Date(edit.at).toISOString(),
   },
 
   AdminOffer: {
@@ -258,6 +267,11 @@ const resolvers = {
       } catch (error) {
         throw new Error("Error returning users ratings of a specific number");
       }
+    },
+    // The admin audit log, newest first: everything, or one record's history (admins only; P2-1)
+    adminEdits: async (_, { targetId, limit }, context) => {
+      await requireAdmin(context);
+      return AdminEdit.find(targetId ? { targetId } : {}).sort({ at: -1 }).limit(limit || 50).exec();
     },
     // Every offer on a product, links included (admins only; P15-2)
     adminOffers: async (_, { bubblyWaterId }, context) => {
@@ -629,6 +643,8 @@ const resolvers = {
         { new: true, projection: { offers: 1 } }
       );
       if (!product) throw new Error("Bubbly water not found");
+      const added = product.offers[product.offers.length - 1];
+      await recordAdminEdit(context, { action: "offer.add", targetType: "product", targetId: bubblyWaterId, after: added });
       return product.offers;
     },
     editOffer: async (_, { bubblyWaterId, offerId, offer }, context) => {
@@ -639,10 +655,18 @@ const resolvers = {
       const product = await BubblyWater.findOneAndUpdate(
         { _id: bubblyWaterId, "offers._id": offerId },
         { $set: set },
-        { new: true, projection: { offers: 1 } }
+        { new: false, projection: { offers: 1 } }
       );
       if (!product) throw new Error("Offer not found");
-      return product.offers;
+      const updated = await BubblyWater.findById(bubblyWaterId, { offers: 1 });
+      await recordAdminEdit(context, {
+        action: "offer.edit",
+        targetType: "product",
+        targetId: bubblyWaterId,
+        before: product.offers.id(offerId),
+        after: updated.offers.id(offerId),
+      });
+      return updated.offers;
     },
     setOfferActive: async (_, { bubblyWaterId, offerId, active }, context) => {
       await requireAdmin(context);
@@ -652,6 +676,13 @@ const resolvers = {
         { new: true, projection: { offers: 1 } }
       );
       if (!product) throw new Error("Offer not found");
+      await recordAdminEdit(context, {
+        action: active ? "offer.activate" : "offer.deactivate",
+        targetType: "product",
+        targetId: bubblyWaterId,
+        before: { offerId, active: !active },
+        after: { offerId, active },
+      });
       return product.offers;
     },
     // Repeated failures from an account + IP wait longer and longer, then lock (utils/loginThrottle.js)

@@ -65,6 +65,7 @@ const RULES = {
     queryUserRatingsOfGivenNumber: args({ userId: id("userId"), rating: rating.nullish() }),
     findUsersRating: args({ userId: id("userId"), bubblyWaterId: id("bubblyWaterId") }),
     adminOffers: args({ bubblyWaterId: id("bubblyWaterId") }),
+    adminEdits: args({ targetId: optionalId("targetId"), limit: z.number().int().min(1).max(200).nullish() }),
     myRatings: args({ bubblyWaterIds: z.array(id("bubblyWaterId")).max(100, "At most 100 products at a time") }),
   },
   Mutation: {
