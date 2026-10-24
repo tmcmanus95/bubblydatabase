@@ -460,6 +460,85 @@ a.brand-tile:focus-visible {
   }
 }
 
+/* Interactive rating (components/RatingStars.jsx). Above the card's stretched link so a tap rates instead
+   of opening the product; vertical touch moves still scroll the page. */
+.rating-stars {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.rating-stars__control {
+  display: inline-flex;
+  padding: 0.15rem 0.25rem;
+  border-radius: 999px;
+  cursor: pointer;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.rating-stars__control:focus-visible {
+  outline: 3px solid var(--ink, currentColor);
+  outline-offset: 2px;
+}
+.rating-stars__you {
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.rating-stars--small .stars__star {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+.rating-stars--large .stars__star {
+  width: 2.4rem;
+  height: 2.4rem;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .rating-stars__control .stars__star {
+    transition: transform 120ms ease;
+  }
+  .rating-stars__control:hover .stars__star {
+    transform: scale(1.06);
+  }
+}
+
+/* Toast (components/Toast.jsx): one message at a time, bottom center */
+.toast-host {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 1rem;
+  z-index: 60;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  padding: 0 1rem;
+}
+.toast {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  max-width: 28rem;
+  padding: 0.6rem 0.9rem;
+  border: 2px solid oklch(0.24 0.02 60);
+  border-radius: 14px;
+  background: oklch(0.99 0.004 90);
+  color: oklch(0.24 0.02 60);
+  box-shadow: 4px 4px 0 oklch(0.24 0.02 60);
+  font-weight: 600;
+}
+.toast__action {
+  font-weight: 800;
+  text-decoration: underline;
+}
+.toast__close {
+  opacity: 0.6;
+}
+
 /* Read-only stars (components/Stars.jsx): an outline row with a filled row clipped on top */
 .stars {
   position: relative;

@@ -1,175 +1,32 @@
-import { styled } from "@mui/material/styles";
-import { materialUIStylings } from "../../utils/materialUIStylings";
-import StarIcon from "@mui/icons-material/Star";
-import { useMutation, useQuery } from "@apollo/client";
 import Auth from "../../utils/auth";
-import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
-import Rating from "@mui/material/Rating";
-import { ADD_RATING, EDIT_RATING } from "../../utils/mutations";
-import { QUERY_RATING_BY_USER } from "../../utils/queries";
+import { useLocation } from "react-router-dom";
+import Stars from "./Stars";
+import RatingStars from "./RatingStars";
+import { starStyle } from "../theme/flavorSurface";
 
-import { capitalizeSingleFlavor } from "../../utils/capitalizeSingleFlavor";
-
-export default function CustomColorRating({
-  flavor,
-  rating,
-  size,
-  userId,
-  bubblyWaterId,
-  isVerified,
-}) {
+// Stars for a rating, in the flavor's star color (P1-21 replaced the MUI rating here). Interactive (tap to
+// rate) for a logged-in visitor when given a product and not `readOnly`; otherwise read-only stars showing
+// `rating`. Your own ratings come from the shared batched store (utils/myRatings.js), so a page of these
+// makes one request instead of one per product (P1-22).
+export default function CustomColorRating({ flavor, rating, size, bubblyWaterId, readOnly, productName }) {
   const location = useLocation();
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [previouslyRated, setPreviouslyRated] = useState(false);
-  const [userRating, setUserRating] = useState(0);
-  const [ratingId, setRatingId] = useState("");
-  const [addRating] = useMutation(ADD_RATING);
-  const [editRating] = useMutation(EDIT_RATING);
-  const [value, setValue] = useState(0);
-  const { data, refetch } = useQuery(QUERY_RATING_BY_USER, {
-    variables: { userId: userId, bubblyWaterId: bubblyWaterId },
-  });
-
-  let emptyStar;
-  if (
-    window.matchMedia &&
-    window.matchMedia("(prefers-color-scheme: dark)").matches
-  ) {
-    emptyStar = "gray";
+  const onProfile = location.pathname === "/me" || location.pathname.startsWith("/user/");
+  const style = starStyle(String(flavor || "plain").toLowerCase());
+  if (!readOnly && bubblyWaterId && Auth.loggedIn() && !onProfile) {
+    return (
+      <RatingStars
+        productId={bubblyWaterId}
+        productName={productName}
+        average={rating}
+        starStyle={style}
+        size={size === "large" ? "large" : "card"}
+      />
+    );
   }
-
-  useEffect(() => {
-    refetch();
-    if (data && data.findUsersRating) {
-      setPreviouslyRated(true);
-      setUserRating(data.findUsersRating.rating);
-      setRatingId(data.findUsersRating._id);
-    }
-  }, [data]);
-
-  const handleValueChange = (e, newValue) => {
-    setIsSubmitting(true);
-    setValue(newValue);
-    if (previouslyRated) {
-      handleEditRating(e, newValue);
-    } else {
-      handleAddRating(e, newValue);
-    }
-  };
-
-  const handleEditRating = async (e, newValue) => {
-    e.preventDefault();
-    try {
-      await editRating({
-        variables: {
-          rating: newValue,
-          ratingId: ratingId,
-          bubblyWaterId: bubblyWaterId,
-        },
-      });
-      console.log("new value: ", newValue);
-
-      setUserRating(newValue);
-      console.log("edited user value", userRating);
-      setPreviouslyRated(true);
-    } catch (err) {
-      console.error("Error editing Rating, ", err);
-    } finally {
-      setIsSubmitting(false);
-      setValue(0);
-    }
-  };
-
-  const handleAddRating = async (e, newValue) => {
-    e && e.preventDefault();
-    try {
-      const { data: addRatingData } = await addRating({
-        variables: {
-          rating: newValue,
-          userId: userId,
-          bubblyWaterId: bubblyWaterId,
-        },
-      });
-      const { data: refetchedData } = await refetch();
-      console.log("refetched data", refetchedData);
-      setRatingId(refetchedData.findUsersRating._id);
-      setUserRating(refetchedData.findUsersRating.rating);
-      setPreviouslyRated(true);
-      console.log("new value: ", newValue);
-    } catch (err) {
-      console.error("Error adding rating, ", err);
-    } finally {
-      setIsSubmitting(false);
-      setValue(0);
-
-      console.log(`bubbly water rating: ${userRating}`);
-    }
-  };
-
-  const capitalFlavor = capitalizeSingleFlavor(flavor);
-  const StyledRating = styled(Rating)(({ theme }) => ({
-    "& .MuiRating-iconFilled": {
-      color: materialUIStylings(capitalFlavor),
-    },
-    "& .MuiRating-iconHover": {
-      color: materialUIStylings(capitalFlavor),
-    },
-  }));
-
   return (
-    <div className="flex flex-col ">
-      {Auth.loggedIn() &&
-      location.pathname !== `/user/${userId}` &&
-      location.pathname !== "/me" ? (
-        <div className="flex items-center">
-          <StyledRating
-            name="customized-color"
-            getLabelText={(value) => `${value} Heart${value !== 1 ? "s" : ""}`}
-            precision={0.5}
-            value={previouslyRated ? userRating : value}
-            size={size}
-            disabled={isSubmitting}
-            onChange={(e, newValue) => {
-              setIsSubmitting(true);
-              console.log(
-                "Rating changed:",
-                newValue,
-                "Submitting:",
-                isSubmitting
-              );
-              handleValueChange(e, newValue);
-            }}
-            icon={<StarIcon fontSize="inherit" />}
-            emptyIcon={
-              <StarIcon className="dark:text-gray-500" fontSize="inherit" />
-            }
-            className="flex justify-center"
-          />
-        </div>
-      ) : (
-        <div>
-          <Link to={`/bubblyWater/${bubblyWaterId}`}>
-            <div className="flex items-center">
-              <StyledRating
-                name="customized-color"
-                getLabelText={(value) =>
-                  `${value} Heart${value !== 1 ? "s" : ""}`
-                }
-                precision={0.5}
-                value={rating}
-                size={size}
-                readOnly
-                icon={<StarIcon fontSize="inherit" />}
-                emptyIcon={
-                  <StarIcon fontSize="inherit" style={{ color: emptyStar }} />
-                }
-                className="flex justify-center"
-              />
-            </div>
-          </Link>
-        </div>
-      )}
-    </div>
+    <span className={size === "small" ? "rating-stars--small" : undefined}>
+      <Stars value={rating || 0} style={style} />
+      <span className="sr-only">{rating ? `${rating} out of 5 stars` : "Not rated"}</span>
+    </span>
   );
 }
