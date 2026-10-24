@@ -13,6 +13,7 @@ const cookieParser = require("cookie-parser");
 const { sessionMiddleware } = require("./utils/sessions");
 const mongoose = require("mongoose");
 const { createLogger, requestLogger, createFormatError } = require("./utils/logging");
+const { createGoRouter } = require("./routes/go");
 const resolvers = require("./schemas/resolvers");
 
 // What the built site is allowed to load. Images: only our own files and data: URIs (generated cards);
@@ -81,6 +82,9 @@ const createApp = async ({ rateLimits, logger = createLogger() } = {}) => {
 
   // The CSP only applies to the built site; in development the client is served by Vite
   app.use(helmet({ contentSecurityPolicy: isProduction ? contentSecurityPolicy : false }));
+
+  // Where-to-buy redirects (P15-3)
+  app.use("/go", createGoRouter({ limit: rateLimits === false ? 10000 : 60 }));
 
   app.use(
     "/graphql",

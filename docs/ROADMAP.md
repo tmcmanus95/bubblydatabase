@@ -429,12 +429,12 @@ denormalized and indexed; `npm audit` high/critical = 0.
 - [x] Admin-only mutations to add/edit/deactivate offers (`requireAdmin`, from P1-7) + `adminOffers` query; the public sees only active offers, never the links
 - [x] Minimal admin form on the product page, visible only to admins (`me.isAdmin`, self-only)
 
-#### P15-3 🤖 `/go/:productId/:offerId` redirect — 45m
+#### P15-3 🤖 `/go/:productId/:offerId` redirect — 45m — in review
 
-- [ ] Express route: validates ids, active offers only, 404 otherwise
-- [ ] Amazon: URL built from the ASIN + `AMAZON_ASSOCIATE_TAG` (untagged when empty); others: `affiliateUrl ?? url`
-- [ ] Logs to a `clicks` collection `{productId, offerId, ts, referrerPath}` with no PII/IP stored; rate-limited
-- [ ] 302 redirect; outbound links use `rel="sponsored nofollow noopener"`
+- [x] Express route: validates ids, active offers only, 404 otherwise (`server/routes/go.js`)
+- [x] Amazon: URL built from the ASIN + `AMAZON_ASSOCIATE_TAG` (untagged when empty); others: `affiliateUrl ?? url` (https only)
+- [x] Logs to a `clicks` collection `{productId, offerId, network, ts, referrerPath}` with no PII/IP stored (migration `202610240006`); rate-limited 60/min per IP
+- [x] 302 redirect with `X-Robots-Tag: noindex, nofollow` and no referrer; the links themselves (`rel="sponsored nofollow noopener"`) come with P15-5
 
 #### P15-4 🤖 Disclosure component — 30m
 
