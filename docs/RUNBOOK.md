@@ -176,3 +176,22 @@ remove `ADMIN_USER_IDS` from Render so there's one source of truth.
   carries an `X-Request-Id` header that matches `req.id` in the logs.
 - **Health check:** `GET /healthz` returns `200 {"ok":true}` when the app and database are up, `503` when
   the database isn't. Uptime monitors point here.
+
+## Nightly aggregate recompute (Render Cron Job)
+
+Products store `avgRating`, `ratingCount` and `reviewCount`, updated on every write. A nightly job
+recomputes them from the raw collections and fixes any drift (`server/scripts/recompute.js`).
+
+**Create it once (Thomas, production):** Render → New → **Cron Job** → this repo, branch `main`.
+- Build command: `cd server && npm install`
+- Command: `node server/scripts/recompute.js --render-cron`
+- Schedule: `17 9 * * *` (09:17 UTC daily, after the 08:17 backup)
+- Environment: the same `MONGODB_URI` as the production web service (link the same environment group, or
+  copy the variable). Nothing else is needed.
+- Plan: the smallest instance (about $1/month).
+
+`--render-cron` is only honored inside Render (Render sets `RENDER=true`); from a laptop the script refuses
+anything but staging or a local database. Each run logs one line: `checked`, `drifted`, `fixed`, with up
+to 20 examples. A non-zero `drifted` after the first night means some write path skips the aggregates.
+
+Staging/local by hand: `npm run recompute -- --dry-run` (report only) or `npm run recompute`.
