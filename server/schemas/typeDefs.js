@@ -34,6 +34,7 @@ const typeDefs = `
   type Rating {
     _id: ID
     rating: Float
+    bubblyWaterId: ID
     bubblyWater: BubblyWater
     createdAt: String
     user: User
@@ -97,6 +98,7 @@ const typeDefs = `
     searchGeneralBubblyWater(searchTerm: String): [BubblyWater]
     queryUserRatingsOfGivenNumber(userId: ID!, rating: Float): User
     findUsersRating(userId: ID!, bubblyWaterId: ID!): Rating
+    myRatings(bubblyWaterIds: [ID!]!): [Rating!]!
   }
 
   type Mutation {

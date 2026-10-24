@@ -19,7 +19,6 @@ import About from "./pages/About.jsx";
 import Search from "./pages/Search.jsx";
 import { searchUrl } from "../utils/searchParams";
 import SpecificUserRatings from "./pages/SpecificUserRatings.jsx";
-import BasicRating from "./components/FiveStarRating.jsx";
 import AllCaffeinated from "./pages/AllCaffeinated.jsx";
 import AllCBD from "./pages/AllCBD.jsx";
 import VerifyEmail from "./pages/VerifyEmail.jsx";

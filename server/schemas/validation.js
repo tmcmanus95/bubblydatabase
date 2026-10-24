@@ -63,6 +63,7 @@ const RULES = {
     searchGeneralBubblyWater: args({ searchTerm: text("Search").nullish() }),
     queryUserRatingsOfGivenNumber: args({ userId: id("userId"), rating: rating.nullish() }),
     findUsersRating: args({ userId: id("userId"), bubblyWaterId: id("bubblyWaterId") }),
+    myRatings: args({ bubblyWaterIds: z.array(id("bubblyWaterId")).max(100, "At most 100 products at a time") }),
   },
   Mutation: {
     addUser: args({

@@ -27,6 +27,11 @@ const isValidRating = (rating) =>
   rating >= 0.5 && rating <= 5 && Number.isInteger(rating * 2);
 
 const resolvers = {
+  Rating: {
+    // The product's id without loading the product
+    bubblyWaterId: (rating) => (rating.bubblyWater ? String(rating.bubblyWater._id || rating.bubblyWater) : null),
+  },
+
   User: {
     // Email is private: only the user themself can read it
     email: (parent, args, context) => {
@@ -288,6 +293,11 @@ const resolvers = {
       } catch (error) {
         throw new Error("Error returning users ratings of a specific number");
       }
+    },
+    // The logged-in user's ratings for a page of products, in one request (P1-22); [] when logged out
+    myRatings: async (_, { bubblyWaterIds }, context) => {
+      if (!context.user) return [];
+      return Rating.find({ user: context.user._id, bubblyWater: { $in: bubblyWaterIds } });
     },
     findUsersRating: async (_, { userId, bubblyWaterId }, context) => {
       // Check if the user is authenticated

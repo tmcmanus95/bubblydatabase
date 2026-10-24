@@ -1,7 +1,6 @@
 import { QUERY_MEID, QUERY_SINGLE_BUBBLYWATER } from "../../utils/queries";
 import { useParams } from "react-router-dom";
 import { useQuery, useMutation } from "@apollo/client";
-import Rating from "@mui/material/Rating";
 import { useState, useEffect } from "react";
 import Auth from "../../utils/auth";
 import {
@@ -280,40 +279,16 @@ export default function BubblyWaterPage() {
                         </Link>
                       ))}
                     </p>
+                    {/* Rating happens on the card's stars (P1-21) */}
                     {Auth.loggedIn() ? (
-                      <CustomColorRating
-                        value={previouslyRated ? userRating : value}
-                        defaultValue={userRating}
-                        bubblyWaterId={bubblyWaterId}
-                        precision={0.5}
-                        userId={userId}
-                        size="large"
-                        flavor={capitalizedFlavors[0]}
-                        className="mt-3"
-                        disabled={isSubmitting}
-                        isVerified={isVerified}
-                        onChange={(e, newValue) => {
-                          handleValueChange(e, newValue);
-                        }}
-                      />
+                      <p className="text-sm">Tap the stars on the card to rate it.</p>
                     ) : (
-                      <>
-                        <CustomColorRating
-                          readOnly
-                          bubblyWaterId={bubblyWaterId}
-                          value={previouslyRated ? userRating : value}
-                          precision={0.5}
-                          flavor={capitalizedFlavors[0]}
-                          isVerified={isVerified}
-                          userId={userId}
-                        />
-                        <p>
-                          <Link to="/login" className="text-blue-500">
-                            Login
-                          </Link>{" "}
-                          to rate this water!
-                        </p>
-                      </>
+                      <p>
+                        <Link to="/login" className="text-blue-500">
+                          Login
+                        </Link>{" "}
+                        to rate this water!
+                      </p>
                     )}
                   </div>
                 </div>

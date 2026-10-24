@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import FitText from "./FitText";
 import Stars from "./Stars";
+import RatingStars from "./RatingStars";
+import Auth from "../../utils/auth";
 import { brandFontStyle } from "../theme/brandFonts";
 import { getColorSettings } from "../theme/colorSettings";
 import { accentStyle, brandStyle, flavorBubbles, flavorStyle, popStyle, starStyle } from "../theme/flavorSurface";
@@ -45,6 +47,8 @@ export default function ProductCard({
   const hasScore = hasOverride || (count > 0 && typeof averageRating === "number");
   const shownScore = hasOverride ? score : averageRating;
   const isLink = variant !== "hero";
+  // Logged-in visitors rate by tapping the stars (P1-21); compact cards and fixed scores stay read-only
+  const interactive = showScore && !hasOverride && variant !== "compact" && Boolean(_id) && Auth.loggedIn();
   const showChips = variant !== "compact";
   const Heading = `h${headingLevel}`;
   const flavors = flavor.length ? flavor : ["plain"];
@@ -107,8 +111,18 @@ export default function ProductCard({
 
       {/* Its own slot: big enough to become the tap-to-rate control later (roadmap P1-21) */}
       <div className="product-card__stars">
-        {showScore && hasScore && <Stars value={shownScore} style={starStyle(flavors[0], mode)} />}
-        {showScore && !hasScore && variant !== "compact" && (
+        {interactive ? (
+          <RatingStars
+            productId={_id}
+            productName={productName}
+            average={hasScore ? shownScore : undefined}
+            starStyle={starStyle(flavors[0], mode)}
+            size={variant === "hero" ? "large" : "card"}
+          />
+        ) : (
+          showScore && hasScore && <Stars value={shownScore} style={starStyle(flavors[0], mode)} />
+        )}
+        {!interactive && showScore && !hasScore && variant !== "compact" && (
           <span className="product-card__score-detail">No ratings yet. Be the first fizz critic!</span>
         )}
       </div>

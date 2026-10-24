@@ -10,6 +10,8 @@ import { Outlet } from "react-router-dom";
 import Footer from "./components/Footer";
 import NavBar from "./components/Navbar";
 import Auth from "../utils/auth";
+import ToastHost from "./components/Toast";
+import { setApolloClient } from "../utils/myRatings";
 
 Auth.upgradeLegacyToken();
 
@@ -29,6 +31,7 @@ const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
+setApolloClient(client);
 
 function App() {
   return (
@@ -38,6 +41,7 @@ function App() {
         <Outlet />
 
         <Footer />
+        <ToastHost />
       </div>
     </ApolloProvider>
   );

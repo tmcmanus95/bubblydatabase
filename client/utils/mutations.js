@@ -161,3 +161,24 @@ export const REMOVE_LIKE_FROM_REVIEW = gql`
     }
   }
 `;
+
+// Rate (or re-rate: addRating is an upsert, P1-15). Returns just the product's new numbers, which
+// Apollo merges into every card showing that product.
+export const RATE_PRODUCT = gql`
+  mutation RateProduct($bubblyWaterId: ID!, $rating: Float!) {
+    addRating(bubblyWaterId: $bubblyWaterId, rating: $rating) {
+      _id
+      averageRating
+      avgRating
+      ratingCount
+    }
+  }
+`;
+
+export const REMOVE_RATING = gql`
+  mutation RemoveRating($ratingId: ID!) {
+    removeRating(ratingId: $ratingId) {
+      _id
+    }
+  }
+`;

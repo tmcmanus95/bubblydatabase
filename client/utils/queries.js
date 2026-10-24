@@ -385,3 +385,14 @@ export const QUERY_SEARCH = gql`
     }
   }
 `;
+
+// The logged-in user's ratings for a page of products, in one request (P1-22)
+export const QUERY_MY_RATINGS = gql`
+  query MyRatings($ids: [ID!]!) {
+    myRatings(bubblyWaterIds: $ids) {
+      _id
+      rating
+      bubblyWaterId
+    }
+  }
+`;

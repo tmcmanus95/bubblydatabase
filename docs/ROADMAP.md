@@ -384,19 +384,19 @@ Report: `docs/IMAGE_AUDIT.md`; script: `server/scripts/imageAudit.js` (read-only
 - [x] Flavor links → `/search?flavor=x`; `/flavors/:flavor` and `/search/:term` redirect; old TopByFlavor/SearchResults pages removed
 - [x] Back/refresh/share preserve state (checked in a browser locally); **Thomas:** quick check on staging
 
-#### P1-21 🤖 Custom rating component — 60m
+#### P1-21 🤖 Custom rating component — 60m — in review
 
-- [ ] Pointer events (mouse/touch/pen), live preview while dragging, commit on release
-- [ ] Optimistic save with rollback + toast on error; half-star support
-- [ ] Keyboard: arrows/Home/End; `role="slider"` with `aria-valuenow/min/max/valuetext`; visible focus
-- [ ] Respects `prefers-reduced-motion`; replaces MUI `Rating` in `CustomColorRating`
-- [ ] **Decided (Thomas, 2026-10-22): rate by tapping the stars directly on cards.** Safeguards: a touch only rates if the finger didn't move (scrolling never rates); the stars sit above the card's stretched link so tapping them never opens the product; a short "Rated 4 ★ · Undo" toast after each rating
+- [x] Pointer events (mouse/touch/pen), live preview while dragging, commit on release (`client/src/components/RatingStars.jsx`)
+- [x] Optimistic save with rollback + toast on error; half-star support
+- [x] Keyboard: arrows/Home/End; `role="slider"` with `aria-valuenow/min/max/valuetext`; visible focus
+- [x] Respects `prefers-reduced-motion`; replaces MUI `Rating` in `CustomColorRating`
+- [x] **Decided (Thomas, 2026-10-22): rate by tapping the stars directly on cards.** Safeguards: a touch only rates if the finger didn't move (scrolling never rates); the stars sit above the card's stretched link so tapping them never opens the product; a short "Rated 4 ★ · Undo" toast after each rating
 - Note: read-only stars already show on every card (`client/src/components/Stars.jsx`, 2026-10-22) in their own slot (`.product-card__stars`), sized as a tap target; this ticket is the interactive rating control. Thomas wants stars kept. Interaction decided: tap directly (see above)
 
-#### P1-22 🤖 Batched "my ratings" — 30m
+#### P1-22 🤖 Batched "my ratings" — 30m — in review (with P1-21)
 
-- [ ] `myRatings(bubblyWaterIds: [ID!]!)` query; lists issue one request instead of one per item
-- [ ] `findUsersRating` per-item calls removed
+- [x] `myRatings(bubblyWaterIds: [ID!]!)` query; lists issue one request instead of one per item (`client/utils/myRatings.js`; home: 50 → 1)
+- [x] `findUsersRating` per-item calls removed
 
 #### P1-23 🤖 Server N+1 cleanup — 60m
 
