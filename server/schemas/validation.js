@@ -39,6 +39,15 @@ const args = (shape) => z.looseObject(shape);
 
 const RULES = {
   Query: {
+    search: args({
+      q: text("Search").nullish(),
+      flavor: flavors,
+      brand: text("Brand", 60).nullish(),
+      caffeine: z.boolean().nullish(),
+      cbd: z.boolean().nullish(),
+      page: z.number().int().min(1, "Pages start at 1").max(1000).nullish(),
+      pageSize: z.number().int().min(1).max(50, "At most 50 results per page").nullish(),
+    }),
     user: args({ userId: id("userId") }),
     usersRatings: args({ userId: id("userId"), numRange }),
     usersReviews: args({ userId: id("userId"), numRange }),

@@ -372,10 +372,10 @@ Report: `docs/IMAGE_AUDIT.md`; script: `server/scripts/imageAudit.js` (read-only
 - [x] `trustedForAggregates` rule (verified, or 7+ days old) ready for leaderboards/controversial
 - [x] Thresholds in `server/utils/ratingRules.js`; documented in `DECISIONS.md`
 
-#### P1-19 🤖 Unified search resolver — 60m
+#### P1-19 🤖 Unified search resolver — 60m — in review
 
-- [ ] `search(q, flavor, caffeine, cbd, sort, page)` resolver using aggregation + indexes, paginated, returns counts not arrays
-- [ ] Tests for each filter combination
+- [x] `search(q, flavor, brand, caffeine, cbd, sort, page, pageSize)` resolver: one aggregation (`$facet` total + page), stored aggregates for sorting, no ratings loaded (`server/utils/search.js`)
+- [x] Tests for each filter combination (`server/tests/search.test.js`)
 
 #### P1-20 🤖 One search page, URL state — 60m
 
