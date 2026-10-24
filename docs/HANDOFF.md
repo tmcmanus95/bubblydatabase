@@ -176,6 +176,8 @@ _Last session: 2026-10-21._
   preview at `/working/cards?palette=…` (add `&flavor=lemon` to filter) or the Color Lab dropdown.
 - **Production migrations (Thomas, 2026-10-23):** `202610230001-example-noop` and `202610230002-create-sessions`
   applied to `bubblydatabase3` after a backup; cookie sessions verified on the live site.
+- **Roles (P1-7) pending Thomas, no rush:** run the roles migration with the next production release, then
+  `setRole.js <username> admin` on production; afterwards delete `ADMIN_USER_IDS` from Render. Staging can wait.
 - Mobile screenshots: headless Chrome can't make <500px windows, and iframes are blocked by our own CSP
   (frame-ancestors 'none'); use real device emulation (puppeteer-core) for phone checks.
 

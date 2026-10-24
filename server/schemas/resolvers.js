@@ -1,5 +1,7 @@
+const { GraphQLError } = require("graphql");
 const { loginThrottle } = require("../utils/loginThrottle");
 const { startSession, endSession, endAllSessions } = require("../utils/sessions");
+const { verifyTurnstile } = require("../utils/turnstile");
 const { User, BubblyWater, Rating, Review } = require("../models");
 const {
   signToken,
@@ -306,7 +308,17 @@ const resolvers = {
   },
 
   Mutation: {
-    addUser: async (parent, { username, email, password }, context) => {
+    // Bot friction (P1-8): "website" is a hidden field people never see, so anything in it means a bot.
+    // Bots get an ordinary-looking success with nothing created. Turnstile runs when it's configured.
+    addUser: async (parent, { username, email, password, website, turnstileToken }, context) => {
+      if (website) {
+        return { token: null, user: null };
+      }
+      if (!(await verifyTurnstile(turnstileToken, context.ip))) {
+        throw new GraphQLError("Please complete the \"verify you're human\" check and try again.", {
+          extensions: { code: "BAD_USER_INPUT", field: "turnstileToken" },
+        });
+      }
       colors = [
         "user-teal",
         "user-cyan",

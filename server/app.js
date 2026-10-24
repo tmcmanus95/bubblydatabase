@@ -18,7 +18,9 @@ const resolvers = require("./schemas/resolvers");
 const contentSecurityPolicy = {
   directives: {
     defaultSrc: ["'self'"],
-    scriptSrc: ["'self'"],
+    // Cloudflare Turnstile on the signup page (P1-8): its script and its iframe
+    scriptSrc: ["'self'", "https://challenges.cloudflare.com"],
+    frameSrc: ["https://challenges.cloudflare.com"],
     // MUI/emotion injects <style> tags; Google Fonts serves the Lilita One stylesheet
     styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
     fontSrc: ["'self'", "https://fonts.gstatic.com", "data:"],

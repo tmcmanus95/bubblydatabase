@@ -301,10 +301,10 @@ Report: `docs/IMAGE_AUDIT.md`; script: `server/scripts/imageAudit.js` (read-only
 - [x] Migration adds `role: "user"` to all users (up/down); Thomas's account set to `admin` with `server/scripts/setRole.js` (**Thomas**: staging, then production)
 - [x] `requireAdmin(context)` helper + tests, now role-based (read from the database each request); `ADMIN_USER_IDS` still counts until production admins have the role
 
-#### P1-8 🤖 Bot friction on signup — 45m
+#### P1-8 🤖 Bot friction on signup — 45m — in review
 
-- [ ] Honeypot field (silent reject)
-- [ ] Cloudflare Turnstile widget + server verification (`TURNSTILE_SECRET` env; disabled in tests)
+- [x] Honeypot field (silent reject: looks like success, creates nothing, sends no email)
+- [x] Cloudflare Turnstile widget + server verification (`TURNSTILE_SECRET` + `VITE_TURNSTILE_SITE_KEY` env; off until set; fails closed) — **Thomas:** create the Turnstile widget and add both env vars
 
 #### P1-9 🤖+🧑 Errors, logging, uptime — 45m
 

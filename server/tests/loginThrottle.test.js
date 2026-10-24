@@ -2,7 +2,7 @@
 // login mutation end to end.
 const { test, before, after, beforeEach } = require("node:test");
 const assert = require("node:assert");
-const { createLoginThrottle } = require("../utils/loginThrottle");
+const { createLoginThrottle, loginThrottle } = require("../utils/loginThrottle");
 const { startTestServer } = require("./helpers");
 const { createUser } = require("./fixtures");
 
@@ -89,6 +89,7 @@ const LOGIN = `mutation($e: String!, $p: String!) { login(email: $e, password: $
 const code = (res) => res.errors && res.errors[0].extensions.code;
 
 test("login: repeated wrong passwords get TOO_MANY_ATTEMPTS, same for unknown emails", async () => {
+  loginThrottle.configure({ baseDelayMs: 60 * 1000 }); // a long first wait, so timing can't flake
   await createUser({ email: "real@example.test", password: "password123" });
   for (const email of ["real@example.test", "nobody@example.test"]) {
     for (let i = 0; i < 5; i++) assert.strictEqual(code(await t.gql(LOGIN, { e: email, p: "wrong-guess" })), "UNAUTHENTICATED");
@@ -96,7 +97,7 @@ test("login: repeated wrong passwords get TOO_MANY_ATTEMPTS, same for unknown em
     assert.strictEqual(code(blocked), "TOO_MANY_ATTEMPTS", email);
     assert.match(blocked.errors[0].message, /^Too many login attempts\. Try again in/);
     if (email === "real@example.test") {
-      // Even the right password waits during the backoff (checked at once: the wait is only 1s)
+      // Even the right password waits during the backoff
       assert.strictEqual(code(await t.gql(LOGIN, { e: email, p: "password123" })), "TOO_MANY_ATTEMPTS");
     }
   }
