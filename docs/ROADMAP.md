@@ -328,10 +328,10 @@ Report: `docs/IMAGE_AUDIT.md`; script: `server/scripts/imageAudit.js` (read-only
 - [x] `npm run migrate:status` / `migrate:up` / `migrate:down` use `assertStaging()` unless `--i-am-thomas-on-prod` is passed
 - [x] Example no-op migration runs on staging (Thomas, 2026-10-23: `migrate:up` applied the example and `create-sessions` to `bubblydatabase3_staging`)
 
-#### P1-12 🤖 Data-integrity report — 30m — DB: staging-read
+#### P1-12 🤖 Data-integrity report — 30m — DB: staging-read — in review
 
-- [ ] Read-only script: duplicate (user, bubblyWater) ratings, dangling refs on products/users, `averageRating` drift
-- [ ] Report saved. Resolution is already decided (see `DECISIONS.md`): keep the most recent rating per (user, product) and archive the rest
+- [x] Read-only script (`npm run report:integrity`): duplicate (user, bubblyWater) ratings, anonymous and stranded ratings, orphaned reviews, dangling refs on products/users, `averageRating` drift
+- [x] Report saved (`reports/`, gitignored: it lists ids). Staging 2026-10-24: 10 duplicate pairs, 21 anonymous ratings, 520 stranded ratings + 61 stranded reviews (product and user both gone), 8 ratings with only the product gone, 50 dangling product→rating refs on 12 products, 49 user→rating refs on 5 users, 6 products with a wrong average. Duplicates: keep the most recent, archive the rest (`DECISIONS.md`); stranded/anonymous handling decided by Thomas before P1-13
 
 #### P1-13 🤖 Index migration — 45m — DB: staging-write
 
