@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, Navigate, RouterProvider, useParams } from "react-router-dom";
 import "./index.css";
 import { loadBrandFonts } from "./theme/brandFonts.js";
 
@@ -12,12 +12,12 @@ import Signup from "./pages/Signup.jsx";
 import BubblyWater from "./pages/BubblyWater.jsx";
 import Brand from "./pages/Brand.jsx";
 import AllBrands from "./pages/AllBrands.jsx";
-import TopByFlavor from "./pages/TopByFlavor.jsx";
 import Contact from "./pages/Contact.jsx";
 import ErrorPage from "./pages/ErrorPage.jsx";
 import AllFlavors from "./pages/AllFlavors.jsx";
 import About from "./pages/About.jsx";
-import SearchResults from "./pages/SearchResults.jsx";
+import Search from "./pages/Search.jsx";
+import { searchUrl } from "../utils/searchParams";
 import SpecificUserRatings from "./pages/SpecificUserRatings.jsx";
 import BasicRating from "./components/FiveStarRating.jsx";
 import AllCaffeinated from "./pages/AllCaffeinated.jsx";
@@ -31,6 +31,16 @@ import AllReviews from "./pages/AllReviews.jsx";
 import Recent from "./pages/Recent.jsx";
 import CardPreview from "./pages/New/CardPreview.jsx";
 import ColorLab from "./pages/New/ColorLab.jsx";
+
+// Old addresses now open the one search page (P1-20)
+function FlavorRedirect() {
+  const { flavor } = useParams();
+  return <Navigate replace to={searchUrl({ flavor: [flavor.toLowerCase()] })} />;
+}
+function SearchTermRedirect() {
+  const { searchTerm } = useParams();
+  return <Navigate replace to={searchUrl({ q: searchTerm })} />;
+}
 
 const router = createBrowserRouter([
   {
@@ -95,12 +105,16 @@ const router = createBrowserRouter([
         element: <About />,
       },
       {
+        path: "/search",
+        element: <Search />,
+      },
+      {
         path: "flavors/:flavor",
-        element: <TopByFlavor />,
+        element: <FlavorRedirect />,
       },
       {
         path: "search/:searchTerm",
-        element: <SearchResults />,
+        element: <SearchTermRedirect />,
       },
       {
         path: "/contact",

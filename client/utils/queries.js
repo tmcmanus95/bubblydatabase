@@ -364,3 +364,24 @@ export const QUERY_RECENT_RATINGS_AND_REVIEWS = gql`
     }
   }
 `;
+
+// One search for products (P1-19): filters, sorting and pages; results carry stored counts, not ratings
+export const QUERY_SEARCH = gql`
+  query Search($q: String, $flavor: [String], $caffeine: Boolean, $cbd: Boolean, $sort: SearchSort, $page: Int, $pageSize: Int) {
+    search(q: $q, flavor: $flavor, caffeine: $caffeine, cbd: $cbd, sort: $sort, page: $page, pageSize: $pageSize) {
+      total
+      page
+      pageSize
+      results {
+        _id
+        productName
+        brandName
+        flavor
+        isCaffeinated
+        hasCBD
+        averageRating
+        ratingCount
+      }
+    }
+  }
+`;

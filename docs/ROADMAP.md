@@ -377,12 +377,12 @@ Report: `docs/IMAGE_AUDIT.md`; script: `server/scripts/imageAudit.js` (read-only
 - [x] `search(q, flavor, brand, caffeine, cbd, sort, page, pageSize)` resolver: one aggregation (`$facet` total + page), stored aggregates for sorting, no ratings loaded (`server/utils/search.js`)
 - [x] Tests for each filter combination (`server/tests/search.test.js`)
 
-#### P1-20 🤖 One search page, URL state — 60m
+#### P1-20 🤖 One search page, URL state — 60m — in review
 
-- [ ] `/search?q=&flavor=&caffeine=0&cbd=0&sort=` reads/writes URL params; results render under the bar
-- [ ] Navbar + home search submit properly (`onSubmit` + `navigate`), with Enter-key support
-- [ ] Flavor chips → `/search?flavor=x`; `/flavors/:flavor` and `/search/:term` redirect
-- [ ] Back/refresh/share preserve state; manual check on staging
+- [x] `/search?q=&flavor=&caffeine=0&cbd=0&sort=&page=` reads/writes URL params; results render under the bar (`client/src/pages/Search.jsx`, `client/utils/searchParams.js`)
+- [x] Navbar + home search submit properly (`onSubmit` + `navigate`), with Enter-key support
+- [x] Flavor links → `/search?flavor=x`; `/flavors/:flavor` and `/search/:term` redirect; old TopByFlavor/SearchResults pages removed
+- [x] Back/refresh/share preserve state (checked in a browser locally); **Thomas:** quick check on staging
 
 #### P1-21 🤖 Custom rating component — 60m
 
