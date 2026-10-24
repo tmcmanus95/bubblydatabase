@@ -19,6 +19,7 @@ const { createLogger } = require("../utils/logging");
 const { signToken } = require("../utils/auth");
 const { outbox } = require("../utils/sendEmail");
 const { loginThrottle } = require("../utils/loginThrottle");
+const { ratingLimiter } = require("../utils/ratingRules");
 const migrations = require("../scripts/lib/migrations");
 
 const localMongod = () => {
@@ -59,6 +60,7 @@ const startTestServer = async ({ rateLimits = false } = {}) => {
   const reset = async () => {
     outbox.length = 0;
     loginThrottle.reset();
+    ratingLimiter.reset();
     for (const collection of Object.values(mongoose.connection.collections)) {
       await collection.deleteMany({});
     }

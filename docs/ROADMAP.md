@@ -366,11 +366,11 @@ Report: `docs/IMAGE_AUDIT.md`; script: `server/scripts/imageAudit.js` (read-only
 - [x] Server: `addReview` requires `isVerified`; `addRating` doesn't (already true; now tested)
 - [x] Copy updated ("verify email to write reviews")
 
-#### P1-18 🤖 Rating abuse controls — 45m
+#### P1-18 🤖 Rating abuse controls — 45m — in review
 
-- [ ] Per-account rating rate limit and a stricter limit for accounts < 24h old
-- [ ] `trustedForAggregates` rule (e.g. verified or older than N days) used later by leaderboards/controversial
-- [ ] Thresholds in config; documented in `DECISIONS.md`
+- [x] Per-account rating rate limit (120/hour) and a stricter limit for accounts < 24h old (30/hour), on addRating and editRating
+- [x] `trustedForAggregates` rule (verified, or 7+ days old) ready for leaderboards/controversial
+- [x] Thresholds in `server/utils/ratingRules.js`; documented in `DECISIONS.md`
 
 #### P1-19 🤖 Unified search resolver — 60m
 
