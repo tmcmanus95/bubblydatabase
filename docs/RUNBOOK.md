@@ -159,9 +159,9 @@ Accounts have `role: "user"` or `"admin"` (P1-7). Admin-only operations check th
 every request, so changes take effect immediately. To make someone an admin (or take it away):
 
 ```
-node server/scripts/setRole.js <email> admin      # staging (server/.env)
-node server/scripts/setRole.js <email> user
-MONGODB_URI='<production uri>' node server/scripts/setRole.js <email> admin --i-am-thomas-on-prod
+node server/scripts/setRole.js <username> admin   # staging (server/.env); an email works too
+node server/scripts/setRole.js <username> user
+MONGODB_URI='<production uri>' node server/scripts/setRole.js <username> admin --i-am-thomas-on-prod
 ```
 
 The older `ADMIN_USER_IDS` env var still grants admin too. Once your production account has the role,

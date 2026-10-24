@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../../utils/mutations";
 import Auth from "../../utils/auth";
 import { errorMessage } from "../../utils/errorMessage";
+import Turnstile from "../components/Turnstile";
 
 const Signup = () => {
   const [formState, setFormState] = useState({
@@ -11,7 +12,11 @@ const Signup = () => {
     email: "",
     password: "",
     passwordCheck: "",
+    // Honeypot: hidden from people, so only bots fill it in (the server quietly ignores those signups)
+    website: "",
   });
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const onTurnstileToken = useCallback((token) => setTurnstileToken(token), []);
   const [passwordErrorToggle, setPasswordErrorToggle] = useState(false);
   const [addProfile, { error, data }] = useMutation(ADD_USER);
 
@@ -29,11 +34,11 @@ const Signup = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    const { username, email, password } = formState;
+    const { username, email, password, website } = formState;
     if (formState.password == formState.passwordCheck) {
       try {
         const { data } = await addProfile({
-          variables: { username, email, password },
+          variables: { username, email, password, website, turnstileToken },
         });
         Auth.login();
       } catch (e) {
@@ -55,6 +60,12 @@ const Signup = () => {
           </p>
         ) : (
           <form onSubmit={handleFormSubmit}>
+            <div aria-hidden="true" style={{ position: "absolute", left: "-10000px", width: 1, height: 1, overflow: "hidden" }}>
+              <label>
+                Website
+                <input type="text" name="website" tabIndex={-1} autoComplete="off" value={formState.website} onChange={handleChange} />
+              </label>
+            </div>
             <div className="mb-4 border-2 border-solid px-1 border-sky-300">
               <input
                 className="form-input w-full text-black"
@@ -105,6 +116,7 @@ const Signup = () => {
             ) : (
               <></>
             )}
+            <Turnstile onToken={onTurnstileToken} />
             <div className="text-center">
               <button
                 className="bg-transparent hover:bg-blue-300 text-blue-500 font-semibold hover:text-white py-2 px-4 border border-blue-300 hover:border-transparent rounded"

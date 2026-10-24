@@ -65,6 +65,8 @@ const RULES = {
         .regex(/^[A-Za-z0-9_.-]+$/, "Usernames can only use letters, numbers, dots, dashes and underscores"),
       email: newEmail,
       password: newPassword,
+      website: z.string().max(200).nullish(),
+      turnstileToken: z.string().max(2048).nullish(),
     }),
     removeUser: args({ userId: id("userId") }),
     editUserColor: args({

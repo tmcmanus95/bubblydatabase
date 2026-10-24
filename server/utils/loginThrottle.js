@@ -12,6 +12,7 @@ const MINUTE = 60 * 1000;
 const DEFAULTS = {
   windowMs: 15 * MINUTE, // failures older than this are forgotten
   freeAttempts: 5, // failures allowed before any delay
+  baseDelayMs: 1000, // first wait; each further failure doubles it
   maxDelayMs: 60 * 1000,
   lockAfter: 10, // failures (per account + IP) that trigger a lock
   lockAfterAnyIp: 30, // failures (per account, all IPs) that trigger a lock
@@ -56,7 +57,7 @@ const createLoginThrottle = (options = {}) => {
     const e = entry(pair);
     const extra = e.failures.length - settings.freeAttempts;
     if (extra >= 0) {
-      const delay = Math.min(settings.maxDelayMs, 1000 * 2 ** extra);
+      const delay = Math.min(settings.maxDelayMs, settings.baseDelayMs * 2 ** extra);
       const readyAt = e.failures[e.failures.length - 1] + delay;
       if (readyAt > t) throw tooMany(readyAt - t);
     }
@@ -86,7 +87,9 @@ const createLoginThrottle = (options = {}) => {
     }
   };
 
-  return { check, fail, succeed, sweep, size: () => entries.size, reset: () => entries.clear() };
+  // configure: tests stretch the waits so slow machines don't race them
+  const configure = (changes) => Object.assign(settings, changes);
+  return { check, fail, succeed, sweep, configure, size: () => entries.size, reset: () => entries.clear() };
 };
 
 const loginThrottle = createLoginThrottle();

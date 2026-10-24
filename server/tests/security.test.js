@@ -41,7 +41,8 @@ test("the CSP is sent in production and allows exactly what the site uses", asyn
   const directives = Object.fromEntries(
     csp.split(";").map((d) => d.trim().split(/\s+/)).filter((p) => p[0]).map(([name, ...values]) => [name, values])
   );
-  assert.deepStrictEqual(directives["script-src"], ["'self'"]);
+  assert.deepStrictEqual(directives["script-src"], ["'self'", "https://challenges.cloudflare.com"]);
+  assert.deepStrictEqual(directives["frame-src"], ["https://challenges.cloudflare.com"]);
   assert.ok(directives["style-src"].includes("https://fonts.googleapis.com"));
   assert.ok(directives["font-src"].includes("https://fonts.gstatic.com"));
   assert.ok(directives["connect-src"].includes("https://formspree.io"));

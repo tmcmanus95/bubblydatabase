@@ -82,7 +82,7 @@ const typeDefs = `
   }
 
   type Mutation {
-    addUser(username: String!, email: String!, password: String!): AuthPayload
+    addUser(username: String!, email: String!, password: String!, website: String, turnstileToken: String): AuthPayload
     removeUser(userId: ID!): User
     editUserColor(userId: ID!, color: String): User
     login(email: String!, password: String!): Auth
