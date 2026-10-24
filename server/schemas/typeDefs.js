@@ -140,7 +140,7 @@ const typeDefs = `
   }
 
   type Query {
-    search(q: String, flavor: [String], brand: String, caffeine: Boolean, cbd: Boolean, sort: SearchSort, page: Int, pageSize: Int): SearchResult!
+    search(q: String, flavor: [String], brand: String, caffeine: Boolean, cbd: Boolean, sort: SearchSort, page: Int, pageSize: Int, includeArchived: Boolean): SearchResult!
     users: [User]
     user(userId: ID!): User
     usersRatings(userId: ID!, numRange: String!): User
@@ -190,6 +190,7 @@ const typeDefs = `
     updateProduct(bubblyWaterId: ID!, product: ProductInput!): BubblyWater!
     archiveProduct(bubblyWaterId: ID!): BubblyWater!
     restoreProduct(bubblyWaterId: ID!): BubblyWater!
+    bulkEditProducts(bubblyWaterIds: [ID!]!, addFlavors: [String!], removeFlavors: [String!], addTags: [String!], removeTags: [String!]): [BubblyWater!]!
   }
 `;
 

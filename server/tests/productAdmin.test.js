@@ -71,3 +71,30 @@ test("non-admins can't manage products; bad input is refused", async () => {
     assert.strictEqual(code(await t.gql(CREATE, { p: bad }, admin)), "BAD_USER_INPUT", JSON.stringify(bad));
   }
 });
+
+test("bulk edit adds/removes flavors and tags across products; never leaves a product flavorless", async () => {
+  const admin = await createUser({ role: "admin" });
+  const a = await createBubbly({ productName: "A", flavor: ["lime"], tags: ["citrus"] });
+  const b = await createBubbly({ productName: "B", flavor: ["lime", "mint"], tags: [] });
+  const BULK = `mutation($ids: [ID!]!, $af: [String!], $rf: [String!], $at: [String!], $rt: [String!]) {
+    bulkEditProducts(bubblyWaterIds: $ids, addFlavors: $af, removeFlavors: $rf, addTags: $at, removeTags: $rt) { productName flavor tags } }`;
+  const res = await t.gql(BULK, { ids: [String(a._id), String(b._id)], af: ["Lemon"], rf: ["mint"], at: ["Zesty"], rt: ["citrus"] }, admin);
+  assert.ifError(res.errors);
+  const byName = Object.fromEntries(res.data.bulkEditProducts.map((p) => [p.productName, p]));
+  assert.deepStrictEqual(byName.A, { productName: "A", flavor: ["lime", "lemon"], tags: ["zesty"] });
+  assert.deepStrictEqual(byName.B, { productName: "B", flavor: ["lime", "lemon"], tags: ["zesty"] });
+  const empty = await t.gql(BULK, { ids: [String(a._id)], rf: ["lime", "lemon"] }, admin);
+  assert.match(empty.errors[0].message, /no flavors/);
+  assert.strictEqual((await t.gql(BULK, { ids: [String(a._id)], af: ["x"] }, await createUser())).errors[0].extensions.code, "FORBIDDEN");
+});
+
+test("only admins can search archived products", async () => {
+  const admin = await createUser({ role: "admin" });
+  const water = await createBubbly({ productName: "Ghost Lime" });
+  await t.gql(ARCHIVE, { id: String(water._id) }, admin);
+  const Q = `{ search(q: "ghost", includeArchived: true) { total results { archivedAt } } }`;
+  assert.strictEqual((await t.gql(Q, {}, admin)).data.search.total, 1);
+  assert.ok((await t.gql(Q, {}, admin)).data.search.results[0].archivedAt);
+  assert.strictEqual((await t.gql(Q, {}, await createUser())).data.search.total, 0, "ignored for non-admins");
+  assert.strictEqual((await t.gql(Q)).data.search.total, 0);
+});

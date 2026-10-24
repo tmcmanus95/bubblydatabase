@@ -141,7 +141,8 @@ const resolvers = {
 
   Query: {
     // One search with filters, sorting and pages (P1-19); the older search* queries remain for now
-    search: async (parent, args) => searchProducts(args),
+    search: async (parent, args, context) =>
+      searchProducts({ ...args, includeArchived: Boolean(args.includeArchived) && (await isAdmin(context)) }),
     users: async (parent, args, context) => {
       await requireAdmin(context);
       const users = await User.find();
@@ -700,6 +701,21 @@ const resolvers = {
         after: productSnapshot(updated),
       });
       return updated;
+    },
+    // Add/remove flavors and tags on many products at once (admin products page); one audit entry per product
+    bulkEditProducts: async (_, { bubblyWaterIds, addFlavors = [], removeFlavors = [], addTags = [], removeTags = [] }, context) => {
+      await requireAdmin(context);
+      const products = await BubblyWater.find({ _id: { $in: bubblyWaterIds } });
+      const results = [];
+      for (const before of products) {
+        const flavor = [...new Set([...before.flavor.filter((f) => !removeFlavors.includes(f)), ...addFlavors])];
+        const tags = [...new Set([...(before.tags || []).filter((x) => !removeTags.includes(x)), ...addTags])];
+        if (!flavor.length) throw new Error(`${before.productName} would be left with no flavors`);
+        const updated = await BubblyWater.findByIdAndUpdate(before._id, { $set: { flavor, tags } }, { new: true });
+        await recordAdminEdit(context, { action: "product.bulkEdit", targetType: "product", targetId: before._id, before: productSnapshot(before), after: productSnapshot(updated) });
+        results.push(updated);
+      }
+      return results;
     },
     archiveProduct: async (_, { bubblyWaterId }, context) => setArchived(context, bubblyWaterId, true),
     restoreProduct: async (_, { bubblyWaterId }, context) => setArchived(context, bubblyWaterId, false),

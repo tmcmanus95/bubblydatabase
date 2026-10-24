@@ -471,9 +471,9 @@ From SPEC §5. Sized for 30–60 minute sessions. Thomas's answers (DECISIONS.md
 - [x] `createProduct` / `updateProduct` / `archiveProduct` / `restoreProduct` (archive = hidden everywhere public, ratings kept; never hard-delete, rule 3), admin-only, zod-validated, audit-logged; duplicate name+brand refused; migration `202610240008` indexes `archivedAt`
 - [ ] Brand/flavor values validated against the brands/flavors collections (P2-4b)
 
-#### P2-3 🤖 Admin products page — 60m
-- [ ] `/admin/products`: search (reuses P1-19), edit form, archive; admin-only route + server checks
-- [ ] Bulk edit for flavors/tags on selected products
+#### P2-3 🤖 Admin products page — 60m — in review
+- [x] `/admin/products`: search incl. archived (reuses P1-19; `includeArchived` honored for admins only), add/edit form, archive/restore; admin-only page + server checks; "Admin" nav link for admins
+- [x] Bulk edit for flavors/tags on selected products (`bulkEditProducts`, audit-logged per product)
 
 #### P2-4 🤖 Product attributes as data — 45m — DB: staging-write (migration)
 - [ ] `sweetened`, `size`, `upc` (optional) on products, so new filters don't need code (SPEC §6 filters)

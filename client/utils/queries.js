@@ -363,3 +363,25 @@ export const QUERY_ADMIN_OFFERS = gql`
     }
   }
 `;
+
+// Admin products page (P2-3): search including archived products (honored for admins only)
+export const QUERY_ADMIN_PRODUCTS = gql`
+  query AdminProducts($q: String, $page: Int) {
+    search(q: $q, sort: NAME, page: $page, pageSize: 50, includeArchived: true) {
+      total
+      page
+      pageSize
+      results {
+        _id
+        productName
+        brandName
+        flavor
+        tags
+        isCaffeinated
+        hasCBD
+        archivedAt
+        ratingCount
+      }
+    }
+  }
+`;
