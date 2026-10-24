@@ -45,3 +45,51 @@ export function contrastRatio(a, b) {
   const [hi, lo] = [relativeLuminance(a), relativeLuminance(b)].sort((x, y) => y - x);
   return (hi + 0.05) / (lo + 0.05);
 }
+
+// The few CSS color names used by flavor colors in App.css
+const NAMED_COLORS = { greenyellow: "#adff2f", pink: "#ffc0cb", white: "#ffffff", black: "#000000" };
+
+// "#rgb", "#rrggbb" or a known color name → { l, c, h } (OKLCH)
+export function cssColorToOklch(value) {
+  let hex = NAMED_COLORS[String(value).trim().toLowerCase()] || String(value).trim();
+  if (!/^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(hex)) throw new Error(`unsupported color: ${value}`);
+  if (hex.length === 4) hex = `#${[...hex.slice(1)].map((ch) => ch + ch).join("")}`;
+  const toLinear = (v) => (v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4);
+  const [r, g, b] = [1, 3, 5].map((i) => toLinear(parseInt(hex.slice(i, i + 2), 16) / 255));
+
+  const l_ = Math.cbrt(0.4122214708 * r + 0.5363325363 * g + 0.0514459929 * b);
+  const m_ = Math.cbrt(0.2119034982 * r + 0.6806995451 * g + 0.1073969566 * b);
+  const s_ = Math.cbrt(0.0883024619 * r + 0.2817188376 * g + 0.6299787005 * b);
+  const L = 0.2104542553 * l_ + 0.793617785 * m_ - 0.0040720468 * s_;
+  const A = 1.9779984951 * l_ - 2.428592205 * m_ + 0.4505937099 * s_;
+  const B = 0.0259040371 * l_ + 0.7827717662 * m_ - 0.808675766 * s_;
+  const c = Math.hypot(A, B);
+  const h = c < 1e-4 ? 0 : ((Math.atan2(B, A) * 180) / Math.PI + 360) % 360;
+  return { l: L, c, h };
+}
+
+// Largest chroma at this lightness and hue that still fits in sRGB
+export function maxChroma(l, h) {
+  let lo = 0;
+  let hi = 0.4;
+  for (let i = 0; i < 24; i++) {
+    const mid = (lo + hi) / 2;
+    if (inSrgbGamut(formatOklch({ l, c: mid, h }), 0)) lo = mid;
+    else hi = mid;
+  }
+  return lo;
+}
+
+export function formatOklch({ l, c, h }) {
+  return `oklch(${+l.toFixed(3)} ${+c.toFixed(3)} ${+h.toFixed(1)})`;
+}
+
+// oklch() string → "#rrggbb" (clipped to sRGB). For places that need plain hex, like inline SVG.
+export function oklchToHex(value) {
+  const encode = (v) => {
+    const x = Math.min(1, Math.max(0, v));
+    const s = x <= 0.0031308 ? 12.92 * x : 1.055 * x ** (1 / 2.4) - 0.055;
+    return Math.round(s * 255).toString(16).padStart(2, "0");
+  };
+  return `#${oklchToLinearSrgb(parseOklch(value)).map(encode).join("")}`;
+}

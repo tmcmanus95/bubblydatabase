@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { RESEND_VERIFICATION_LINK } from "../../utils/mutations";
 import { Link } from "react-router-dom";
+import { errorMessage as apolloErrorMessage } from "../../utils/errorMessage";
 export default function ResendVerificationLink() {
   const [formState, setFormState] = useState({
     email: "",
@@ -59,7 +60,7 @@ export default function ResendVerificationLink() {
             </div>
             {error && (
               <div className="my-3 p-3 bg-danger text-center">
-                {error.message}
+                {apolloErrorMessage(error)}
               </div>
             )}
 

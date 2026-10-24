@@ -3,7 +3,7 @@
 _Status: **Approved by Thomas (2026-10-21).** **Phase 0 complete** (released to `main` in #173). Phase 1 started._
 _Sources: `docs/SPEC.md`, `docs/AUDIT.md`. Last updated 2026-10-22._
 
-**Next up:** Thomas: review P1-0a; release `staging` → `main` (ships the P1-1 font/contact fix to prod). Claude: P1-0b (`<ProductCard>`). PRs now go into `staging`; Thomas releases with a `staging` → `main` PR.
+**Next up:** Thomas: review the P1-0d PR (brand pages, CSP images locked down) and P1-0e (asset provenance). Claude: P1-2 (rate limiting). PRs now go into `staging`; Thomas releases with a `staging` → `main` PR.
 
 ## How to read this
 
@@ -214,34 +214,44 @@ Report: `docs/IMAGE_AUDIT.md`; script: `server/scripts/imageAudit.js` (read-only
 - [x] Proposal: brand color tokens → `<ProductCard>` → swap all product images (removes the Amazon images) → typographic brand pages; keep `imageURL` data; optional later rename only with approval
 - [x] Thomas approved the proposed tickets (2026-10-22): P1-0a..e below
 
-#### P1-0a 🤖 Brand color tokens — 45m — in review
+#### P1-0a 🤖 Brand color tokens — 45m — done (PR #176), **superseded**: Thomas dropped brand colors on 2026-10-22; cards use flavor colors (see P1-0c follow-up). `brandColors.js` removed
 
 - [x] `client/src/theme/brandColors.js`: a 12-color OKLCH palette (light bg/ink + dark bg/ink) and an explicit color for all 44 current brands; alphabetical neighbors get well-separated hues. Flavor colors are still hex in `App.css` (move into the theme in Phase 4)
 - [x] Brands not listed get a stable automatic color (FNV hash of the name); `brandStyle()` + `.brand-surface` (index.css) apply it, following the OS light/dark setting like Tailwind
 - [x] Test: every color in sRGB gamut and ≥ 4.5:1 text contrast in both modes (actual 7.5–11:1); every brand with a page has an explicit color (`client/src/theme/brandColors.test.js`, in `npm test`)
 - [x] Swatches checked visually in light + dark (lemon brightened so it reads yellow, not khaki)
 
-#### P1-0b 🤖 `<ProductCard>` typographic component — 60m
+#### P1-0b 🤖 `<ProductCard>` typographic component — 60m — done (PR #178, layout follow-up #179)
 
-- [ ] Brand color + flavor name + brand name + score as the anchor; our own flavor-category icon; no photo
-- [ ] Real text (no text-in-image), visible focus, keyboard reachable, AA contrast
-- [ ] Respects `prefers-reduced-motion`; playful, not generic (CLAUDE.md aesthetic)
+- [x] `client/src/components/ProductCard.jsx` (`full` and `compact` variants): brand color surface, flavor name in Lilita One, brand name, caffeine/CBD tags, score as the anchor ("No ratings yet" otherwise); no photo
+- [x] `FlavorIcon.jsx`: 11 placeholder category icons drawn in code (citrus, berry, stone, tropical, orchard, melon, botanical, spice, brewed, plain, bubbles), until the Phase 4 illustrated set exists. `flavorCategories.js` maps all 87 flavors (tested)
+- [x] Real text; the whole card is one link (stretched flavor link) with a visible focus ring; AA contrast from P1-0a tokens; "out of 5" for screen readers
+- [x] Hand-cut sticker look (wobbly radius, solid offset shadow, slight tilt on hover/focus); tilt off with `prefers-reduced-motion`
+- [x] Preview page `/working/cards` (not linked) with real data; checked in light and dark mode via headless Chrome screenshots
+- [x] Follow-up from Thomas's review: every element in a fixed slot (brand always top-left, icon top-right, name in a 2-line slot, flavor chips, score bottom-left, tags bottom-right; same card height), and **all flavor colors visible**: a split stripe along the top edge (left edge on compact) plus color-dot chips (up to 3, then "+N"). Colors come from `client/src/theme/flavorColors.js`, copied from App.css and kept in sync by a test (OKLCH conversion in Phase 4). Pineapple and peach icons redrawn so every category is distinct
 
-#### P1-0c 🤖 Swap product images for cards — 45m
+#### P1-0c 🤖 Swap product images for cards — 45m — done (PR #180)
 
-- [ ] All 6 product render sites use `<ProductCard>` (or its compact variant); `imageURL` no longer requested by client queries
-- [ ] **Removes all 70 Amazon images** and every other third-party product photo from the site
-- [ ] `imageURL` stays in the database and schema (hard rule 3)
-- [ ] CSP `img-src` tightened to `'self' data:` once P1-0d also ships
+- [x] All 6 product render sites use `<ProductCard>`: list items (full card + "Your rating" for logged-in users), product page (new `hero` variant, not a link, with "More from <brand>" and flavor links beside it), search results, profile ratings/reviews and recent reviews (`compact`, with that person's rating in the score slot via the new `score`/`scoreDetail` props). `imageURL` removed from all 17 client queries + 1 mutation; caffeinated + search queries gained the card fields; all 32 client operations validate against the schema
+- [x] **Removes all 70 Amazon images** and every other third-party product photo: on home, product, search, profile and recent pages, the only `<img>` left is our own `bubblesicon.png` (checked in headless Chrome)
+- [x] `imageURL` stays in the database and schema (hard rule 3)
+- [x] Deliberate change: list rows no longer have their own brand/flavor links (the card is one link); brands and flavors stay reachable from the navbar and the product page
+- [x] CSP `img-src` tightened to `'self' data:` with P1-0d (brand logos were the last external images); a test pins it. P15-5 adds Amazon's image host when the "Where to buy" block lands
+- [x] Follow-up from Thomas's review (in review): **flavor colors take over the card** (each flavor's hue at a fixed pastel lightness; one hard-edged diagonal band per flavor; dark mode uses slightly deeper still-bright tones with the same dark ink, since darker tones turned yellows muddy), **brand name in a per-brand Google Font** loosely in the spirit of its logo (44 brands, one stylesheet, only used fonts download), **read-only stars** next to the score. Brand colors removed. Tests: every flavor color in gamut with ≥ 6.9:1 contrast in both modes; every brand has a font and is in the stylesheet URL — merged (#181)
+- [x] Second round from Thomas (#182): punchier card colors, **solid flavor-colored pills** (each hue at its natural vivid lightness, so yellows stay yellow), **bigger brand names**, **flavor-colored stars** (always darker than the card so they read as filled; deep rich tones in dark mode). Tests: pills AA + vivid (light) / distinct (dark); stars clearly separated from their card in both modes
+- [x] Third round (#183): **layout "B · Score sticker"** picked by Thomas from three mocks (score in a round badge filled with the flavor color, stars centered along the bottom, tags at the end of the pill row; 12.75rem tall, was 15.5), **colored hover shadow** (strong flavor color), **brand names auto-fit** their space (`FitText`), stars bigger (1.75rem) in their own slot ready for P1-21, and an **easy way to edit colors**: every knob in `client/src/theme/colorSettings.js` plus the live **Color Lab** at `/working/colors` (sliders, light/dark previews, readability check, "Copy settings")
+- [x] Flavor icons removed (Thomas, 2026-10-22: "no icons for now"); the brand name takes the full top line (#184)
+- [x] **Brand border** (#185): each card's border is the brand's package color (`client/src/theme/brandColors.js`, editable in the Color Lab), ringed in ink so white brands show. **Mobile fix:** cards used to be wider than phone screens and pills got sliced; now a two-column grid lets brand names shrink, pills use the full width when there are no tags, and pills that don't fit drop whole (verified at 390px with real mobile emulation: no overflow, no cut pills). **Background patterns**: **waves** (Thomas's pick, now the default), bands, bubbles, gradient, stripes, set via `pattern` in `colorSettings.js`, previewable at `/working/cards?pattern=…` and in the Color Lab
+- [x] **Wave motion** (in review): on hover or keyboard focus the waves slosh slowly (sideways drift and a gentle bob on separate clocks), and tiny bubbles in the bottom region, colored like the flavor above, rise and fade before the wave. Leaving a card freezes it in place; off with "reduce motion"
 
-#### P1-0d 🤖 Brand pages without logos — 30m
+#### P1-0d 🤖 Brand pages without logos — 30m — in review
 
-- [ ] Brand page and All Brands grid are typographic (brand name in its color); official site stays as a text link
-- [ ] `link` removed from `brandLogos.json` (keep `site`); dead `Header.jsx` deleted
+- [x] Brand page and All Brands grid are typographic: `<BrandTile>` shows the brand name in its brand font on a paper sticker, framed in the brand's package color like the product cards (brand colors were approved for card borders on 2026-10-22, so the tiles match); official site stays as a text link (now a real external link; the old one called an undefined function)
+- [x] `link` removed from `brandLogos.json` (keep `site`); dead `Header.jsx` deleted
 
 #### P1-0e 🧑 Own asset provenance — 15m
 
-- [ ] Thomas confirms where `bubblesicon.png` and the bubble textures (`whitebubbles.jpg`, `blackbubbles.jpg`) came from; if the license is unknown, they're replaced in Phase 4
+- [x] Thomas confirms where `bubblesicon.png` and the bubble textures (`whitebubbles.jpg`, `blackbubbles.jpg`) came from; if the license is unknown, they're replaced in Phase 4 — **unknown (2026-10-23): replace.** Thomas may commission a designer or design them himself; until then Claude can swap in generated stand-ins
 - [ ] Remove unused `bubblesbackground.webp` and `vite.svg`
 
 #### P1-1 🤖 helmet, explicit CORS, body limits — 30m — done (PR #175)
@@ -253,38 +263,38 @@ Report: `docs/IMAGE_AUDIT.md`; script: `server/scripts/imageAudit.js` (read-only
 - [x] 6 new tests; all 56 green. Built site served in production mode: 0 CSP violations on home + contact (headless Chrome)
 - [x] Thomas checked staging (2026-10-22): Lilita One renders; the contact form sends. Prod gets it with the next release
 
-#### P1-2 🤖 Rate limiting — 45m
+#### P1-2 🤖 Rate limiting — 45m — in review
 
-- [ ] Global limiter on `/graphql`
-- [ ] Per-operation limits keyed on the GraphQL operation name: `login`, `addUser`, `forgotPassword`, `resetPassword`, `resendEmailVerification`, `addRating`, `editRating`, `addReview`
-- [ ] `trust proxy` set correctly for Render; tests prove the 429 behavior
+- [x] Global limiter on `/graphql` (1500 requests / 15 min per IP; generous until P1-22 stops the home page sending one query per product)
+- [x] Per-operation limits keyed on the mutation fields in the parsed query (the client-sent operation name is spoofable; aliases can't repeat a limited mutation): `login`, `addUser`, `forgotPassword`, `resetPassword`, `resendEmailVerification`, `addRating`, `editRating`, `addReview`
+- [x] `trust proxy` = 3 hops in production (Cloudflare → Render load balancer → local proxy, measured on staging 2026-10-23; `TRUST_PROXY` env overrides); tests prove the 429 behavior and that forged `X-Forwarded-For` is ignored
 
-#### P1-3 🤖 Input validation + sanitizing — 60m
+#### P1-3 🤖 Input validation + sanitizing — 60m — in review
 
-- [ ] zod schemas: ObjectIds, rating ∈ {0.5, 1, …, 5}, reviewText 1–500 trimmed, username/email/password rules
-- [ ] `searchVagueProductName` escapes regex input (or switches to text search)
-- [ ] `express-mongo-sanitize` (or equivalent) on request bodies
-- [ ] Tests for rejected inputs
+- [x] zod schemas for every resolver with arguments (`server/schemas/validation.js`): ObjectIds, rating ∈ {0.5, 1, …, 5}, reviewText 1–500 trimmed, username/email/password rules (new accounts/passwords only, so old logins keep working)
+- [x] `searchVagueProductName` escapes regex input
+- [x] Equivalent of `express-mongo-sanitize` (unmaintained): requests with `$`/dotted keys get a 400 (`server/utils/rejectOperatorKeys.js`)
+- [x] Tests for rejected inputs (`server/tests/validation.test.js`)
 
-#### P1-4 🤖 Login lockout/backoff — 45m
+#### P1-4 🤖 Login lockout/backoff — 45m — in review
 
-- [ ] After N failed logins per account+IP within a window: increasing delay, then a temporary lock
-- [ ] Generic error message; no account enumeration
-- [ ] Tests
+- [x] After 5 failed logins per account+IP in 15 min: waits double (1s, 2s, 4s… up to 60s); 10 failures lock that account+IP for 15 min; 30 failures across all IPs lock the account (`server/utils/loginThrottle.js`, in memory)
+- [x] Generic error message; unknown emails are counted, timed (dummy bcrypt check) and answered exactly like real ones; client shows server messages instead of "status code 429"
+- [x] Tests (`server/tests/loginThrottle.test.js`, `client/utils/errorMessage.test.js`)
 
-#### P1-5 🤖 bcrypt 6 + rehash on login — 30m
+#### P1-5 🤖 bcrypt 6 + rehash on login — 30m — in review
 
-- [ ] Upgrade to `bcrypt@6` (existing hashes stay valid)
-- [ ] On successful login, if the hash cost is below 12, rehash and save. No forced resets.
-- [ ] Test: a cost-10 hash logs in and is upgraded
+- [x] Upgrade to `bcrypt@6` (existing hashes stay valid)
+- [x] On successful login, if the hash cost is below 12, rehash and save. No forced resets. New hashes use cost 12
+- [x] Test: a cost-10 hash logs in and is upgraded
 
-#### P1-6 🤖 Cookie sessions (split across 2 sessions) — 2 × 60m
+#### P1-6 🤖 Cookie sessions (split across 2 sessions) — 2 × 60m — part 1 done (#204), part 2 in review
 
-- [ ] Access token (15m) + refresh token (30d, rotating, stored hashed server-side) in `httpOnly`, `Secure`, `SameSite=Lax` cookies
-- [ ] Grace period: existing localStorage Bearer tokens are still accepted until a set date, then dropped; tokens no longer accepted from the query string/body
-- [ ] Client: Apollo `credentials: "include"`, no token in localStorage, logout clears cookies
-- [ ] CSRF protection on mutations (SameSite + Apollo's CSRF prevention / custom header)
-- [ ] Existing users stay logged in or re-login normally (no password reset)
+- [x] Access token (15m) + refresh token (30d, rotating, stored hashed server-side) in `httpOnly`, `Secure`, `SameSite=Lax` cookies; reuse of a rotated token revokes all the user's sessions; `sessions` collection via migration
+- [x] Grace period: existing localStorage Bearer tokens are still accepted until `BEARER_GRACE_UNTIL` (default 2027-01-31) and upgrade the browser to cookies; tokens no longer accepted from the query string/body
+- [x] Client: cookies on every request (same-origin), no token in localStorage (old ones are upgraded to cookies once, then deleted), logout clears cookies; signed-in UI reads a secret-free `bubbly_signed_in` cookie
+- [x] CSRF protection on mutations (SameSite=Lax + Apollo's built-in CSRF prevention; tested)
+- [x] Existing users stay logged in or re-login normally (no password reset); checked in a real browser
 
 #### P1-7 🤖 Roles — 45m — DB: staging-write (migration)
 
@@ -312,11 +322,11 @@ Report: `docs/IMAGE_AUDIT.md`; script: `server/scripts/imageAudit.js` (read-only
 
 ## Phase 1 — Quick wins
 
-#### P1-11 🤖 Migration runner — 45m
+#### P1-11 🤖 Migration runner — 45m — done (#203; pulled ahead of P1-6)
 
-- [ ] `migrate-mongo` (or a minimal runner) with `migrations/`, up/down, changelog collection
-- [ ] `npm run migrate:up` / `migrate:down` use `assertStaging()` unless `--i-am-thomas-on-prod` is passed
-- [ ] Example no-op migration runs up and down on staging
+- [x] A minimal runner (no new dependency): `migrations/`, up/down, `migrations_changelog` collection (`server/scripts/lib/migrations.js`)
+- [x] `npm run migrate:status` / `migrate:up` / `migrate:down` use `assertStaging()` unless `--i-am-thomas-on-prod` is passed
+- [x] Example no-op migration runs on staging (Thomas, 2026-10-23: `migrate:up` applied the example and `create-sessions` to `bubblydatabase3_staging`)
 
 #### P1-12 🤖 Data-integrity report — 30m — DB: staging-read
 
@@ -342,7 +352,7 @@ Report: `docs/IMAGE_AUDIT.md`; script: `server/scripts/imageAudit.js` (read-only
 - [ ] add/edit/remove rating and add/remove review update the aggregates atomically (update pipeline or `$inc`)
 - [ ] `addRating` becomes an upsert (one rating per user per product)
 - [ ] remove operations `$pull` refs from product and user
-- [ ] Tests cover each write path
+- [x] Tests (`server/tests/loginThrottle.test.js`, `client/utils/errorMessage.test.js`) cover each write path
 
 #### P1-16 🤖 Nightly recompute — 45m
 
@@ -365,7 +375,7 @@ Report: `docs/IMAGE_AUDIT.md`; script: `server/scripts/imageAudit.js` (read-only
 #### P1-19 🤖 Unified search resolver — 60m
 
 - [ ] `search(q, flavor, caffeine, cbd, sort, page)` resolver using aggregation + indexes, paginated, returns counts not arrays
-- [ ] Tests for each filter combination
+- [x] Tests (`server/tests/loginThrottle.test.js`, `client/utils/errorMessage.test.js`) for each filter combination
 
 #### P1-20 🤖 One search page, URL state — 60m
 
@@ -380,6 +390,8 @@ Report: `docs/IMAGE_AUDIT.md`; script: `server/scripts/imageAudit.js` (read-only
 - [ ] Optimistic save with rollback + toast on error; half-star support
 - [ ] Keyboard: arrows/Home/End; `role="slider"` with `aria-valuenow/min/max/valuetext`; visible focus
 - [ ] Respects `prefers-reduced-motion`; replaces MUI `Rating` in `CustomColorRating`
+- [ ] **Decided (Thomas, 2026-10-22): rate by tapping the stars directly on cards.** Safeguards: a touch only rates if the finger didn't move (scrolling never rates); the stars sit above the card's stretched link so tapping them never opens the product; a short "Rated 4 ★ · Undo" toast after each rating
+- Note: read-only stars already show on every card (`client/src/components/Stars.jsx`, 2026-10-22) in their own slot (`.product-card__stars`), sized as a tap target; this ticket is the interactive rating control. Thomas wants stars kept. Interaction decided: tap directly (see above)
 
 #### P1-22 🤖 Batched "my ratings" — 30m
 

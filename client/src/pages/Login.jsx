@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../../utils/mutations";
 import Auth from "../../utils/auth";
+import { errorMessage } from "../../utils/errorMessage";
 
 const Login = (props) => {
   const [formState, setFormState] = useState({ email: "", password: "" });
@@ -27,7 +28,7 @@ const Login = (props) => {
         variables: { ...formState },
       });
 
-      Auth.login(data.login.token);
+      Auth.login();
     } catch (e) {
       console.error("Error, ", e);
     }
@@ -101,7 +102,7 @@ const Login = (props) => {
         )}
 
         {error && (
-          <div className="my-3 p-3 bg-danger text-center">{error.message}</div>
+          <div className="my-3 p-3 bg-danger text-center">{errorMessage(error)}</div>
         )}
       </div>
     </div>

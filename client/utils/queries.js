@@ -6,7 +6,6 @@ export const QUERY_ALL_BUBBLYS = gql`
       _id
       productName
       brandName
-      imageURL
       flavor
       isCaffeinated
       hasCBD
@@ -24,9 +23,9 @@ export const QUERY_All_CAFFEINATED_BUBBLYS = gql`
       _id
       productName
       brandName
-      imageURL
       flavor
       isCaffeinated
+      hasCBD
       averageRating
       ratings {
         rating
@@ -41,7 +40,6 @@ export const QUERY_ALL_CBD_BUBBLYS = gql`
       _id
       productName
       brandName
-      imageURL
       flavor
       isCaffeinated
       hasCBD
@@ -59,7 +57,6 @@ export const QUERY_SINGLE_FLAVOR = gql`
       _id
       productName
       brandName
-      imageURL
       flavor
       isCaffeinated
       hasCBD
@@ -80,7 +77,6 @@ export const QUERY_SINGLE_BUBBLYWATER = gql`
       _id
       productName
       brandName
-      imageURL
       flavor
       isCaffeinated
       hasCBD
@@ -122,7 +118,6 @@ export const QUERY_SINGLE_USER = gql`
           _id
           productName
           brandName
-          imageURL
           flavor
         }
       }
@@ -133,7 +128,6 @@ export const QUERY_SINGLE_USER = gql`
           _id
           productName
           brandName
-          imageURL
           flavor
         }
         rating {
@@ -150,7 +144,6 @@ export const QUERY_SINGLE_BRAND = gql`
       _id
       productName
       brandName
-      imageURL
       flavor
       isCaffeinated
       hasCBD
@@ -184,7 +177,6 @@ export const QUERY_ME = gql`
           _id
           productName
           brandName
-          imageURL
           flavor
         }
       }
@@ -195,7 +187,6 @@ export const QUERY_ME = gql`
           _id
           productName
           brandName
-          imageURL
           flavor
         }
         rating {
@@ -239,7 +230,6 @@ export const QUERY_SEARCH_VAGUE_PRODUCT_NAME = gql`
       _id
       productName
       brandName
-      imageURL
       flavor
       isCaffeinated
       hasCBD
@@ -263,7 +253,6 @@ export const QUERY_SEARCH_FLAVORS = gql`
       _id
       productName
       brandName
-      imageURL
     }
   }
 `;
@@ -274,8 +263,13 @@ export const QUERY_ALL_DATABASE = gql`
       _id
       productName
       brandName
-      imageURL
       flavor
+      isCaffeinated
+      hasCBD
+      averageRating
+      ratings {
+        _id
+      }
     }
   }
 `;
@@ -291,7 +285,6 @@ export const QUERY_SPECIFIC_USER_RATINGS = gql`
           _id
           productName
           brandName
-          imageURL
           flavor
         }
       }
@@ -319,7 +312,6 @@ export const QUERY_USERS_RATINGS_BY_RANGE = gql`
           _id
           productName
           brandName
-          imageURL
           flavor
         }
       }
@@ -339,7 +331,6 @@ export const QUERY_USERS_REVIEWS_BY_RANGE = gql`
           _id
           productName
           brandName
-          imageURL
           flavor
         }
       }
@@ -356,7 +347,6 @@ export const QUERY_RECENT_RATINGS_AND_REVIEWS = gql`
         _id
         productName
         brandName
-        imageURL
         flavor
         ratings {
           _id

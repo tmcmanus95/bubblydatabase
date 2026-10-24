@@ -142,10 +142,41 @@ _Last session: 2026-10-21._
 - "Tests" ruleset: Active, requires the `test` check on `main` and `staging` (narrowed from all branches
   on 2026-10-22, after it blocked pushing feature branches).
 
-## P1-0a (brand colors): PR open (into `staging`)
+## P1-0a (brand colors): done (PR #176)
 - `client/src/theme/brandColors.js` (+ `color.js` for OKLCH/contrast math). To recolor a brand, edit
   its line in `BRAND_COLORS`; the test enforces gamut and AA contrast.
-- Nothing renders with it yet; P1-0b's `<ProductCard>` is the first user.
+- Released to prod on 2026-10-22 together with P1-1 (prod now sends the new CSP: font + contact form fixed).
+
+## P1-0b (ProductCard): done (PR #178, follow-up #179)
+- `<ProductCard>` (full/compact) + `FlavorIcon` placeholder icons. Not used on real pages yet.
+- Follow-up per Thomas: fixed slots for every element, and all flavor colors shown (stripe + chips) via
+  `client/src/theme/flavorColors.js` (mirrors App.css; a test keeps them in sync).
+- **See it on staging at `/working/cards`** (top 18 bubblies, real data).
+- Icons are placeholders drawn in code; Thomas hasn't confirmed this approach yet (DECISIONS).
+
+## P1-0c (swap product images): done (PR #180); flavor-card redesign PR open
+- Every product photo is a `<ProductCard>`; no third-party product images load anywhere.
+- Redesign per Thomas: flavor colors fill the card (`flavorSurface.js`), brand names in per-brand fonts
+  (`brandFonts.js`, 44 Google Fonts; edit a line to swap one), read-only stars (`Stars.jsx`). Brand
+  colors removed (`brandColors.js` deleted).
+- Check on staging: `/working/cards`, home, a product page, in light and dark mode.
+- Second round (PR open): punchier colors, solid flavor pills, bigger brand names, flavor-colored stars.
+  Tones per role live in `flavorSurface.js` (`flavorSurface`, `flavorAccent`, `flavorStarColor`); tests
+  check contrast and that pills/stars stand out, so tune numbers there and let the tests guard.
+- Third round (#183): layout B "Score sticker", colored hover shadow, auto-fit brand names, bigger
+  centered stars. **To edit colors:** open `/working/colors` (Color Lab), drag sliders, "Copy settings",
+  paste over `DEFAULT_COLOR_SETTINGS` in `client/src/theme/colorSettings.js`, run `npm test`.
+- P1-21 decided: tap stars directly on cards (with scroll-safe taps, stars above the link, undo toast).
+- Flavor icons removed (#184). Brand border approved (Thomas picked "frame" over "tab"); PR open with the
+  mobile overflow/pill fix and 5 background patterns; Thomas picked **waves** as the default (2026-10-23).
+- Waves merged (#185). Wave motion PR #186: hover/focus slosh + rising tiny bubbles in the bottom region
+  (`flavorBubbles` in `flavorSurface.js`, drawn by `.flavor-surface--waves::before` in `index.css`); respects reduce motion.
+- Wave motion follow-up merged (#187). Brand pages: `BrandTile` (font + package-color frame), no logos.
+- Palettes to compare (Thomas picking): `palette` in `colorSettings.js` = "aura" (default), "vibrant" or "white";
+  preview at `/working/cards?palette=…` (add `&flavor=lemon` to filter) or the Color Lab dropdown.
+- Mobile screenshots: headless Chrome can't make <500px windows, and iframes are blocked by our own CSP
+  (frame-ancestors 'none'); use real device emulation (puppeteer-core) for phone checks.
 
 ## Next Claude ticket
-P1-0b (`<ProductCard>`), then P1-0c (swap images, removing the Amazon ones), P1-0d (brand pages).
+P1-2 (rate limiting), after the P1-0d PR (typographic brand pages via `BrandTile.jsx`, logo links gone,
+CSP `img-src 'self' data:`). Heads-up for P15-5: Amazon images need their host added to `img-src`.

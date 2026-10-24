@@ -2,6 +2,46 @@
 
 Newest first. Format: date · decision · why · who decided.
 
+## 2026-10-22 · Brand package color as the card border
+- Each brand's signature package color (green bottle for San Pellegrino/Perrier, black can for Liquid
+  Death, clear/white for Topo Chico…) is the card border, ringed in ink. Chosen over a brand-name "tab"
+  label. Colors in `brandColors.js`; Thomas gave some, approved Claude's guesses, may edit later.
+- Background patterns (bands/waves/bubbles/gradient/stripes) are a setting; Thomas picked **waves** as
+  the default (2026-10-23).
+- Decided by: Thomas.
+
+## 2026-10-22 · No flavor icons; tap-to-rate on cards
+- The placeholder flavor icons are removed; the cards stand on their own. If icons return, they must be
+  our own illustrated assets.
+- P1-21: ratings happen by tapping the stars directly on cards, with safeguards against accidental
+  ratings while scrolling (movement check, stars above the card link, undo toast).
+- Decided by: Thomas.
+
+## 2026-10-22 · Card layout B "Score sticker" + a Color Lab for tuning
+- Picked from three mocked layouts (A tight stack, B score sticker, C side score): the score sits in a
+  round badge filled with the flavor color, stars are centered along the bottom, tags go at the end of
+  the pill row. Brand names auto-shrink to fit. The hover shadow takes a strong flavor color.
+- All color knobs live in `colorSettings.js`; `/working/colors` tunes them live and outputs settings to
+  paste. Tests still guard readability after any change.
+- Decided by: Thomas (layout, fit-to-width, centered stars, wanting easy color edits); Claude (Color Lab).
+
+## 2026-10-22 · Cards: flavor colors take over, brand fonts, stars; no brand colors
+- Brand colors are dropped. The flavors' colors fill the card: each flavor's hue at one fixed lightness
+  per mode, one hard-edged diagonal band per flavor. Dark mode uses slightly deeper but still bright
+  tones with the same dark ink: darker tones made yellows and oranges muddy olive/brown.
+- The brand name is set in a per-brand Google Font loosely in the spirit of its logo (style only, never
+  the logo). Picks are a starting point; Thomas swaps any he doesn't like in `brandFonts.js`.
+- Read-only stars show next to the score; the interactive control remains P1-21.
+- Considered: a neutral card with flavor accents (Thomas's other option). Mocked it; the flavors become
+  a thin band and the cards feel clinical, so the takeover won.
+- Decided by: Thomas (direction); Claude (takeover over neutral, dark-mode treatment, font picks).
+
+## 2026-10-22 · Placeholder flavor icons drawn in code (for now)
+- `FlavorIcon.jsx` draws 11 simple category icons as inline SVG, in the card's text color, so the
+  cards can ship now. They get replaced by the illustrated set from the Phase 4 designer brief.
+- Why: CLAUDE.md wants our own icons, not stock sets, and none exist yet.
+- Decided by: Claude, proposed to Thomas on 2026-10-22; not yet confirmed.
+
 ## 2026-10-22 · Replace third-party images with typographic cards (P1-0a..e)
 - Approved the image-audit proposal: brand color tokens → `<ProductCard>` → swap all product images
   (removes the 70 Amazon images) → typographic brand pages. `imageURL` data is kept.
@@ -105,3 +145,5 @@ Newest first. Format: date · decision · why · who decided.
 
 - The password exposed in public git history (commit `1f7c729`) was rotated.
 - Decided/done by: Thomas.
+- 2026-10-23: Card palette is **splash** (Thomas): white top, the first flavor's vivid color filling below the wave, the other flavor's deep tone for the wave line and bubbles. Compact cards are all water. Stars use the most vivid tone a step darker than the fill. Other palettes stay available in `colorSettings.js` / the Color Lab.
+- 2026-10-23: Card palette switched to **soda** (Thomas): the first flavor's vivid color fills the card; white bubbles, or the other flavors' deep tones on multi-flavor cards; text sits on 90% patches of the card color so bubbles never cross letters. Splash and the others stay selectable.

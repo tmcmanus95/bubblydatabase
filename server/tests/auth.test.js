@@ -139,3 +139,28 @@ test("the users list is admin-only", async () => {
     process.env.ADMIN_USER_IDS = "";
   }
 });
+
+test("old cost-10 hashes still log in and are upgraded to cost 12; new passwords use 12", async () => {
+  const bcrypt = require("bcrypt");
+  const user = await createUser({ email: "legacy@example.test", password: "temporary1" });
+  // Store a hash the way the old code did (cost 10), bypassing the save hook
+  await User.updateOne({ _id: user._id }, { $set: { password: await bcrypt.hash("oldpassword", 10) } });
+
+  const res = await t.gql(LOGIN, { e: "legacy@example.test", p: "oldpassword" });
+  assert.ifError(res.errors);
+  const upgraded = (await User.findById(user._id)).password;
+  assert.strictEqual(bcrypt.getRounds(upgraded), 12);
+  assert.ok(await bcrypt.compare("oldpassword", upgraded), "same password, stronger hash");
+
+  // Logging in again still works and doesn't rehash
+  assert.ifError((await t.gql(LOGIN, { e: "legacy@example.test", p: "oldpassword" })).errors);
+  assert.strictEqual((await User.findById(user._id)).password, upgraded);
+
+  // A wrong password never triggers an upgrade
+  await User.updateOne({ _id: user._id }, { $set: { password: await bcrypt.hash("oldpassword", 10) } });
+  await t.gql(LOGIN, { e: "legacy@example.test", p: "not-it" });
+  assert.strictEqual(bcrypt.getRounds((await User.findById(user._id)).password), 10);
+
+  const fresh = await createUser({ password: "brandnew99" });
+  assert.strictEqual(bcrypt.getRounds(fresh.password), 12);
+});

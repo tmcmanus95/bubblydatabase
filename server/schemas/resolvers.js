@@ -1,3 +1,5 @@
+const { loginThrottle } = require("../utils/loginThrottle");
+const { startSession, endSession, endAllSessions } = require("../utils/sessions");
 const { User, BubblyWater, Rating, Review } = require("../models");
 const {
   signToken,
@@ -9,6 +11,9 @@ const {
 const { sendEmail } = require("../utils/sendEmail");
 const crypto = require("crypto");
 const bcrypt = require("bcrypt");
+
+// A hash of nothing in particular, compared against when no account matches (same cost as real hashes)
+const NO_USER_HASH = bcrypt.hashSync(crypto.randomBytes(16).toString("hex"), User.PASSWORD_COST);
 const { triggerAsyncId } = require("async_hooks");
 const saltRounds = 10;
 
@@ -222,8 +227,10 @@ const resolvers = {
       return BubblyWater.find({ productName: productName }).limit("5");
     },
     searchVagueProductName: async (parent, { productName }) => {
+      // Escaped so the search is literal text, never a user-written pattern
+      const literal = String(productName || "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
       return BubblyWater.find({
-        productName: { $regex: productName, $options: "i" },
+        productName: { $regex: literal, $options: "i" },
       });
     },
     searchGeneralBubblyWater: async (_, { searchTerm }) => {
@@ -299,7 +306,7 @@ const resolvers = {
   },
 
   Mutation: {
-    addUser: async (parent, { username, email, password }) => {
+    addUser: async (parent, { username, email, password }, context) => {
       colors = [
         "user-teal",
         "user-cyan",
@@ -338,11 +345,13 @@ const resolvers = {
           subject: "Bubbles Account Email Verification",
           text: `Please verify your email by clicking the following link: ${verificationUrl}`,
         });
+        // The token is still returned for clients from before cookie sessions (until P1-6 part 2)
         const token = signToken({
           email: user.email,
           name: user.username,
           _id: user._id,
         });
+        await startSession(context, user);
 
         return { token, user };
       } catch (error) {
@@ -439,6 +448,8 @@ const resolvers = {
         user.passwordResetToken = null;
         user.passwordResetExpires = null;
         await user.save();
+        // A new password signs out every browser that was using the old one
+        await endAllSessions(user._id);
 
         return { user };
       } catch (error) {
@@ -658,21 +669,34 @@ const resolvers = {
       requireSelfOrAdmin(context, existingReview.user);
       return Review.findOneAndDelete({ _id: reviewId });
     },
-    login: async (parent, { email, password }) => {
+    // Repeated failures from an account + IP wait longer and longer, then lock (utils/loginThrottle.js)
+    login: async (parent, { email, password }, context) => {
+      const ip = context.ip;
+      loginThrottle.check(email, ip);
+
       const user = await User.findOne({ email });
-
-      if (!user) {
-        throw AuthenticationError;
+      let correctPw = false;
+      if (user) {
+        correctPw = await user.isCorrectPassword(password);
+      } else {
+        // Unknown emails still pay for a bcrypt check, so response times don't reveal which accounts exist
+        await bcrypt.compare(password, NO_USER_HASH);
       }
-
-      const correctPw = await user.isCorrectPassword(password);
 
       if (!correctPw) {
+        loginThrottle.fail(email, ip);
         throw AuthenticationError;
       }
 
+      loginThrottle.succeed(email, ip);
+      await user.upgradePasswordHash(password);
       const token = signToken(user);
+      await startSession(context, user);
       return { token, user };
+    },
+    logout: async (parent, args, context) => {
+      await endSession(context);
+      return true;
     },
     // The userId argument is ignored: likes always come from the logged in user
     addLikeToReview: async (parent, { reviewId }, context) => {

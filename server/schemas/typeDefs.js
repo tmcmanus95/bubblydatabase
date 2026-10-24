@@ -86,6 +86,7 @@ const typeDefs = `
     removeUser(userId: ID!): User
     editUserColor(userId: ID!, color: String): User
     login(email: String!, password: String!): Auth
+    logout: Boolean
     addRating(bubblyWaterId: ID!, userId: ID, rating: Float!): BubblyWater
     editRating(ratingId: ID!, rating: Float!, bubblyWaterId: ID): Rating
     removeRating(ratingId: ID!): Rating

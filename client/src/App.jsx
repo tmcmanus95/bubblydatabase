@@ -9,26 +9,23 @@ import { setContext } from "@apollo/client/link/context";
 import { Outlet } from "react-router-dom";
 import Footer from "./components/Footer";
 import NavBar from "./components/Navbar";
+import Auth from "../utils/auth";
+
+Auth.upgradeLegacyToken();
 
 const httpLink = createHttpLink({
   uri: "/graphql",
+  credentials: "same-origin",
 });
 
-// Construct request middleware that will attach the JWT token to every request as an `authorization` header
+// Sessions ride on httpOnly cookies, which the browser sends with every same-origin request. Only an old
+// stored token (from before cookie sessions) is still sent as a header, until it's been upgraded.
 const authLink = setContext((_, { headers }) => {
-  // get the authentication token from local storage if it exists
-  const token = localStorage.getItem("id_token");
-  // return the headers to the context so httpLink can read them
-  return {
-    headers: {
-      ...headers,
-      authorization: token ? `Bearer ${token}` : "",
-    },
-  };
+  const token = Auth.legacyToken();
+  return token ? { headers: { ...headers, authorization: `Bearer ${token}` } } : { headers };
 });
 
 const client = new ApolloClient({
-  // Set up our client to execute the `authLink` middleware prior to making the request to our GraphQL API
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });

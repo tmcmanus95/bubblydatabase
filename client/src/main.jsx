@@ -1,6 +1,9 @@
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
+import { loadBrandFonts } from "./theme/brandFonts.js";
+
+loadBrandFonts();
 import App from "./App.jsx";
 import Home from "./pages/Home.jsx";
 import Profile from "./pages/Profile.jsx";
@@ -26,6 +29,8 @@ import ResendVerificationLink from "./pages/ResendVerificationLink.jsx";
 import AllRatings from "./pages/AllRatings.jsx";
 import AllReviews from "./pages/AllReviews.jsx";
 import Recent from "./pages/Recent.jsx";
+import CardPreview from "./pages/New/CardPreview.jsx";
+import ColorLab from "./pages/New/ColorLab.jsx";
 
 const router = createBrowserRouter([
   {
@@ -121,6 +126,14 @@ const router = createBrowserRouter([
       {
         path: "/resendEmailVerification",
         element: <ResendVerificationLink />,
+      },
+      {
+        path: "/working/cards",
+        element: <CardPreview />,
+      },
+      {
+        path: "/working/colors",
+        element: <ColorLab />,
       },
       {
         path: "*",

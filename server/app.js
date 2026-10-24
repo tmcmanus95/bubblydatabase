@@ -6,10 +6,15 @@ const { ApolloServer } = require("@apollo/server");
 const path = require("path");
 const { authMiddleware } = require("./utils/auth");
 const typeDefs = require("./schemas/typeDefs");
+const { graphqlRateLimits } = require("./utils/rateLimits");
+const { withValidation } = require("./schemas/validation");
+const { rejectOperatorKeys } = require("./utils/rejectOperatorKeys");
+const cookieParser = require("cookie-parser");
+const { sessionMiddleware } = require("./utils/sessions");
 const resolvers = require("./schemas/resolvers");
 
-// What the built site is allowed to load. Images stay open to any https host until the typographic
-// cards replace third-party product images (P1-0c/d); then imgSrc tightens to 'self' and data:.
+// What the built site is allowed to load. Images: only our own files and data: URIs (generated cards);
+// no third-party images (CLAUDE.md rule 10). Amazon's "Where to buy" images get their own host later (P15-5).
 const contentSecurityPolicy = {
   directives: {
     defaultSrc: ["'self'"],
@@ -17,7 +22,7 @@ const contentSecurityPolicy = {
     // MUI/emotion injects <style> tags; Google Fonts serves the Lilita One stylesheet
     styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
     fontSrc: ["'self'", "https://fonts.gstatic.com", "data:"],
-    imgSrc: ["'self'", "data:", "https:"],
+    imgSrc: ["'self'", "data:"],
     // The contact form posts to Formspree
     connectSrc: ["'self'", "https://formspree.io"],
     formAction: ["'self'", "https://formspree.io"],
@@ -36,14 +41,27 @@ const isAllowedOrigin = (origin) =>
     .filter(Boolean)
     .includes(origin);
 
+// How many proxies sit in front of the app (TRUST_PROXY). On Render every request passes through three:
+// Cloudflare, Render's load balancer, and a proxy on the same machine (measured on staging, 2026-10-23:
+// X-Forwarded-For = "<visitor>, <Cloudflare>, <10.x Render>" from socket ::1). Trusting exactly three hops
+// makes req.ip the visitor, which rate limits key on; anything a visitor writes into X-Forwarded-For sits
+// further left and is ignored. Trusting more hops than exist would let visitors fake their IP.
+const trustProxy = (isProduction) => {
+  const value = process.env.TRUST_PROXY;
+  if (value === undefined || value === "") return isProduction ? 3 : false;
+  if (/^\d+$/.test(value)) return Number(value);
+  return value === "true" ? true : value === "false" ? false : value;
+};
+
 // Builds the Express app with GraphQL mounted. Doesn't connect to MongoDB or listen on a port, so
-// tests can use it with their own database.
-const createApp = async () => {
+// tests can use it with their own database. `rateLimits`: see utils/rateLimits.js (false = off).
+const createApp = async ({ rateLimits } = {}) => {
   const isProduction = process.env.NODE_ENV === "production";
   const app = express();
+  app.set("trust proxy", trustProxy(isProduction));
   const server = new ApolloServer({
     typeDefs,
-    resolvers,
+    resolvers: withValidation(resolvers),
   });
   await server.start();
 
@@ -54,6 +72,10 @@ const createApp = async () => {
     "/graphql",
     cors({ origin: (origin, callback) => callback(null, Boolean(origin) && isAllowedOrigin(origin)) }),
     express.json({ limit: "100kb" }),
+    rejectOperatorKeys,
+    ...graphqlRateLimits(rateLimits),
+    cookieParser(),
+    sessionMiddleware,
     expressMiddleware(server, {
       context: authMiddleware,
     })
