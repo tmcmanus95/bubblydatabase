@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { capitalizeFlavors } from "../../utils/capitalizeFlavors";
 import Auth from "../../utils/auth";
 import CustomColorRating from "./CustomColorRating";
@@ -22,17 +21,8 @@ export default function BubblyWaterListItem({
       </div>
       {Auth.loggedIn() && (
         <div className="flex flex-col items-center sm:items-start gap-1 sm:pt-6 sm:w-60">
-          {isVerified ? (
-            <span>Your rating:</span>
-          ) : (
-            <div>
-              Please{" "}
-              <Link className="text-blue-500" to={`/resendEmailVerification`}>
-                verify email
-              </Link>{" "}
-              to rate
-            </div>
-          )}
+          {/* Anyone logged in can rate; verifying email is only needed to write reviews (P1-17) */}
+          <span>Your rating:</span>
           <CustomColorRating
             flavor={capitalizedFlavors[0]}
             rating={bubblyWater.averageRating}
