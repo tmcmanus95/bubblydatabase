@@ -4,6 +4,7 @@ const assert = require("node:assert");
 const supertest = require("supertest");
 const { startTestServer } = require("./helpers");
 const { createApp } = require("../app");
+const { createLogger } = require("../utils/logging");
 const { mutationFieldCounts, DEFAULT_LIMITS } = require("../utils/rateLimits");
 
 const WINDOW = 60 * 1000;
@@ -69,7 +70,7 @@ const appWith = async (nodeEnv, trustProxy) => {
   if (trustProxy === undefined) delete process.env.TRUST_PROXY;
   else process.env.TRUST_PROXY = trustProxy;
   try {
-    return await createApp({ rateLimits: { global: small(1), mutations: {} } });
+    return await createApp({ rateLimits: { global: small(1), mutations: {} }, logger: createLogger({ level: "silent" }) });
   } finally {
     for (const [key, value] of Object.entries(saved)) {
       if (value === undefined) delete process.env[key];

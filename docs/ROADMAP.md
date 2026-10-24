@@ -306,11 +306,11 @@ Report: `docs/IMAGE_AUDIT.md`; script: `server/scripts/imageAudit.js` (read-only
 - [x] Honeypot field (silent reject: looks like success, creates nothing, sends no email)
 - [x] Cloudflare Turnstile widget + server verification (`TURNSTILE_SECRET` + `VITE_TURNSTILE_SITE_KEY` env; off until set; fails closed) — **Thomas:** create the Turnstile widget and add both env vars
 
-#### P1-9 🤖+🧑 Errors, logging, uptime — 45m
+#### P1-9 🤖+🧑 Errors, logging, uptime — 45m — in review
 
-- [ ] Apollo `formatError` masks internal errors in prod
-- [ ] `pino-http` request logging (no tokens/passwords logged)
-- [ ] 🧑 Uptime monitor (e.g. UptimeRobot/Better Stack) on prod + staging
+- [x] Apollo `formatError` masks internal errors in prod (crashes/database errors → "Something went wrong (ref …)", full error logged under the ref; our own messages and public codes pass)
+- [x] `pino-http` request logging (no tokens/passwords/cookies/bodies logged; request id in `X-Request-Id`) + `/healthz` for monitors
+- [ ] 🧑 Uptime monitor (e.g. UptimeRobot/Better Stack) on prod + staging, pointed at `/healthz`
 
 #### P1-10 🤖 Dependency cleanup — 45m
 

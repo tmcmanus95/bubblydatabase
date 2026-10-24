@@ -6,6 +6,7 @@ const { test, before, after } = require("node:test");
 const assert = require("node:assert");
 const supertest = require("supertest");
 const { createApp } = require("../app");
+const { createLogger } = require("../utils/logging");
 
 const QUERY = { query: "{ __typename }" };
 let dev, prod;
@@ -13,9 +14,9 @@ let dev, prod;
 before(async () => {
   const original = process.env.NODE_ENV;
   process.env.NODE_ENV = "development";
-  dev = await createApp();
+  dev = await createApp({ logger: createLogger({ level: "silent" }) });
   process.env.NODE_ENV = "production";
-  prod = await createApp();
+  prod = await createApp({ logger: createLogger({ level: "silent" }) });
   process.env.NODE_ENV = original;
 });
 
