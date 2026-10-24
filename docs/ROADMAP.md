@@ -467,8 +467,8 @@ From SPEC §5. Sized for 30–60 minute sessions. Thomas's answers (DECISIONS.md
 - [x] `adminedits` collection `{ admin, action, targetType, targetId, before, after, at }` (migration `202610240007`); every admin mutation writes one (offers now; products/brands/flavors as they land)
 - [x] Admin-only `adminEdits(targetId, limit)` query; tests
 
-#### P2-2 🤖 Product admin mutations — 60m
-- [ ] `createProduct` / `updateProduct` / `archiveProduct` / `restoreProduct` (archive = hidden everywhere public, ratings kept; never hard-delete, rule 3), admin-only, zod-validated, audit-logged
+#### P2-2 🤖 Product admin mutations — 60m — in review
+- [x] `createProduct` / `updateProduct` / `archiveProduct` / `restoreProduct` (archive = hidden everywhere public, ratings kept; never hard-delete, rule 3), admin-only, zod-validated, audit-logged; duplicate name+brand refused; migration `202610240008` indexes `archivedAt`
 - [ ] Brand/flavor values validated against the brands/flavors collections (P2-4b)
 
 #### P2-3 🤖 Admin products page — 60m

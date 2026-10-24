@@ -223,19 +223,6 @@ export const QUERY_MEID = gql`
   }
 `;
 
-export const QUERY_SEARCH_VAGUE_PRODUCT_NAME = gql`
-  query Query($productName: String) {
-    searchVagueProductName(productName: $productName) {
-      _id
-      productName
-      brandName
-      flavor
-      isCaffeinated
-      hasCBD
-      averageRating
-    }
-  }
-`;
 
 export const QUERY_SEARCH_USERS = gql`
   query Query($username: String) {
@@ -246,32 +233,7 @@ export const QUERY_SEARCH_USERS = gql`
   }
 `;
 
-export const QUERY_SEARCH_FLAVORS = gql`
-  query Query($flavor: [String]) {
-    searchFlavors(flavor: $flavor) {
-      _id
-      productName
-      brandName
-    }
-  }
-`;
 
-export const QUERY_ALL_DATABASE = gql`
-  query Query($searchTerm: String) {
-    searchGeneralBubblyWater(searchTerm: $searchTerm) {
-      _id
-      productName
-      brandName
-      flavor
-      isCaffeinated
-      hasCBD
-      averageRating
-      ratings {
-        _id
-      }
-    }
-  }
-`;
 
 export const QUERY_SPECIFIC_USER_RATINGS = gql`
   query ($userId: ID!, $rating: Float) {
@@ -291,14 +253,6 @@ export const QUERY_SPECIFIC_USER_RATINGS = gql`
   }
 `;
 
-export const QUERY_RATING_BY_USER = gql`
-  query Query($userId: ID!, $bubblyWaterId: ID!) {
-    findUsersRating(userId: $userId, bubblyWaterId: $bubblyWaterId) {
-      _id
-      rating
-    }
-  }
-`;
 
 export const QUERY_USERS_RATINGS_BY_RANGE = gql`
   query UsersRatings($userId: ID!, $numRange: String!) {

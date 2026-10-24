@@ -32,6 +32,8 @@ const typeDefs = `
     flavor: [String]
     isCaffeinated: Boolean
     hasCBD: Boolean
+    tags: [String]
+    archivedAt: String
     averageRating: Float
     avgRating: Float
     ratingCount: Int
@@ -111,6 +113,15 @@ const typeDefs = `
     at: String!
   }
 
+  input ProductInput {
+    productName: String!
+    brandName: String!
+    flavor: [String!]!
+    isCaffeinated: Boolean
+    hasCBD: Boolean
+    tags: [String!]
+  }
+
   input OfferInput {
     retailer: String!
     network: String!
@@ -144,16 +155,11 @@ const typeDefs = `
     rating(ratingId: ID): Rating
     flavors(flavor: [String]): [BubblyWater]
     brand(brandName: String): [BubblyWater]
-    searchFlavors(flavor: [String]): [BubblyWater]
-    searchExactProductName(productName: String): [BubblyWater]
-    searchVagueProductName(productName: String): [BubblyWater]
     searchUsers(username: String): User
     recentRatings: [Rating]
     recentReviews: [Review]
     searchTags(searchTerm: String): [BubblyWater]
-    searchGeneralBubblyWater(searchTerm: String): [BubblyWater]
     queryUserRatingsOfGivenNumber(userId: ID!, rating: Float): User
-    findUsersRating(userId: ID!, bubblyWaterId: ID!): Rating
     myRatings(bubblyWaterIds: [ID!]!): [Rating!]!
     adminOffers(bubblyWaterId: ID!): [AdminOffer!]!
     adminEdits(targetId: ID, limit: Int): [AdminEdit!]!
@@ -180,6 +186,10 @@ const typeDefs = `
     addOffer(bubblyWaterId: ID!, offer: OfferInput!): [AdminOffer!]!
     editOffer(bubblyWaterId: ID!, offerId: ID!, offer: OfferInput!): [AdminOffer!]!
     setOfferActive(bubblyWaterId: ID!, offerId: ID!, active: Boolean!): [AdminOffer!]!
+    createProduct(product: ProductInput!): BubblyWater!
+    updateProduct(bubblyWaterId: ID!, product: ProductInput!): BubblyWater!
+    archiveProduct(bubblyWaterId: ID!): BubblyWater!
+    restoreProduct(bubblyWaterId: ID!): BubblyWater!
   }
 `;
 
