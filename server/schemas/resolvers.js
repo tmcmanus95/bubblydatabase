@@ -2,6 +2,7 @@ const { GraphQLError } = require("graphql");
 const { loginThrottle } = require("../utils/loginThrottle");
 const { startSession, endSession, endAllSessions } = require("../utils/sessions");
 const { verifyTurnstile } = require("../utils/turnstile");
+const aggregates = require("../utils/aggregates");
 const { User, BubblyWater, Rating, Review } = require("../models");
 const {
   signToken,
@@ -495,69 +496,29 @@ const resolvers = {
       if (!isValidRating(rating)) {
         throw new Error("Rating must be between 0.5 and 5 in half steps");
       }
-      const alreadyRated = await Rating.exists({
-        user: userId,
-        bubblyWater: bubblyWaterId,
-      });
-      if (alreadyRated) {
-        throw new Error("You already rated this bubbly water");
+      if (!(await BubblyWater.exists({ _id: bubblyWaterId }))) {
+        throw new Error("Bubbly water not found");
       }
       try {
-        const newRating = await Rating.create({
-          rating: rating,
-          bubblyWater: bubblyWaterId,
-          user: userId,
-        });
-        const updatedBubblyWater = await BubblyWater.findOneAndUpdate(
-          { _id: bubblyWaterId },
-          {
-            $addToSet: { ratings: newRating._id },
-          },
-          {
-            new: true,
-            runValidators: false,
-          }
-        ).populate("ratings");
-
-        const existingReview = await Review.findOne({
-          user: userId,
-          bubblyWater: bubblyWaterId,
-        });
-
-        // If there's an existing review from this user for this bubbly water, link the new rating to it
-        if (existingReview) {
-          await Review.findByIdAndUpdate(existingReview._id, {
-            rating: newRating._id,
-          });
-          console.log(
-            `Linked new rating ${newRating._id} to existing review ${existingReview._id}`
-          );
-        }
-
-        //Save rating to User page
-        const user = await User.findById(userId);
-        user.ratings.push(newRating._id);
-        await user.save();
-
-        // Update the average rating for the Bubbly Water
-        const allRatings = await Rating.find({
-          _id: { $in: updatedBubblyWater.ratings },
-        });
-
-        const totalRatings = allRatings.reduce(
-          (acc, curr) => acc + curr.rating,
-          0
+        // One rating per user per product (unique index, P1-13): rating again updates it
+        const previous = await Rating.findOneAndUpdate(
+          { user: userId, bubblyWater: bubblyWaterId },
+          { $set: { rating }, $setOnInsert: { user: userId, bubblyWater: bubblyWaterId, createdAt: new Date() } },
+          { upsert: true, new: false }
         );
-        const averageRating = totalRatings / allRatings.length;
-
-        updatedBubblyWater.averageRating = averageRating;
-        await updatedBubblyWater.save();
-
-        return updatedBubblyWater;
+        if (previous) {
+          if (previous.rating !== rating) await aggregates.ratingEdited(bubblyWaterId, previous.rating, rating);
+        } else {
+          const newRating = await Rating.findOne({ user: userId, bubblyWater: bubblyWaterId });
+          await BubblyWater.updateOne({ _id: bubblyWaterId }, { $addToSet: { ratings: newRating._id } });
+          await User.updateOne({ _id: userId }, { $addToSet: { ratings: newRating._id } });
+          // Link it to this user's review of the product, if they wrote one first
+          await Review.updateMany({ user: userId, bubblyWater: bubblyWaterId, rating: null }, { $set: { rating: newRating._id } });
+          await aggregates.ratingAdded(bubblyWaterId, rating);
+        }
+        return BubblyWater.findById(bubblyWaterId).populate("ratings");
       } catch (error) {
-        console.error("=== ADD RATING ERROR ===");
-        console.error("Error details:", error);
-        console.error("Stack trace:", error.stack);
+        console.error("Error adding rating:", error);
         throw new Error("Failed to add rating to water");
       }
     },
@@ -576,24 +537,10 @@ const resolvers = {
           { $set: { rating } },
           { new: true }
         );
-        // Recalculate the average for the rating's own bubbly water, not a client-supplied id
-        const updatedBubblyWater = await BubblyWater.findOne({
-          _id: existingRating.bubblyWater,
-        }).populate("ratings");
-        // Update the average rating for the Bubbly Water
-        const allRatings = await Rating.find({
-          _id: { $in: updatedBubblyWater.ratings },
-        });
-
-        const totalRatings = allRatings.reduce(
-          (acc, curr) => acc + curr.rating,
-          0
-        );
-        const averageRating = totalRatings / allRatings.length;
-
-        updatedBubblyWater.averageRating = averageRating;
-        await updatedBubblyWater.save();
-
+        // Update the rating's own bubbly water, not a client-supplied id
+        if (existingRating.rating !== rating) {
+          await aggregates.ratingEdited(existingRating.bubblyWater, existingRating.rating, rating);
+        }
         return updatedRating;
       } catch (error) {
         console.error(error);
@@ -606,7 +553,14 @@ const resolvers = {
         return null;
       }
       await requireSelfOrAdmin(context, existingRating.user);
-      return Rating.findOneAndDelete({ _id: ratingId });
+      const removed = await Rating.findOneAndDelete({ _id: ratingId });
+      if (removed) {
+        await BubblyWater.updateOne({ _id: removed.bubblyWater }, { $pull: { ratings: removed._id } });
+        await User.updateOne({ _id: removed.user }, { $pull: { ratings: removed._id } });
+        await Review.updateMany({ rating: removed._id }, { $set: { rating: null } });
+        await aggregates.ratingRemoved(removed.bubblyWater, removed.rating);
+      }
+      return removed;
     },
     // The userId argument is ignored: reviews always belong to the logged in user
     addReview: async (parent, { bubblyWaterId, reviewText }, context) => {
@@ -633,22 +587,13 @@ const resolvers = {
           user: userId,
           rating,
         });
-        const updatedBubblyWater = await BubblyWater.findByIdAndUpdate(
-          { _id: bubblyWaterId },
-          {
-            $addToSet: { reviews: newReview._id },
-          },
-          {
-            new: true,
-            runValidators: true,
-          }
-        ).populate("reviews");
+        await BubblyWater.updateOne({ _id: bubblyWaterId }, { $addToSet: { reviews: newReview._id } });
 
         //Save review to User page
         reviewer.reviews.push(newReview._id);
         await reviewer.save();
-        await updatedBubblyWater.save();
-        return updatedBubblyWater;
+        await aggregates.reviewAdded(bubblyWaterId);
+        return BubblyWater.findById(bubblyWaterId).populate("reviews");
       } catch (error) {
         console.error(error);
         throw new Error("Failed to add review to bubbly water page");
@@ -679,7 +624,13 @@ const resolvers = {
         return null;
       }
       await requireSelfOrAdmin(context, existingReview.user);
-      return Review.findOneAndDelete({ _id: reviewId });
+      const removed = await Review.findOneAndDelete({ _id: reviewId });
+      if (removed) {
+        await BubblyWater.updateOne({ _id: removed.bubblyWater }, { $pull: { reviews: removed._id } });
+        await User.updateMany({ $or: [{ reviews: removed._id }, { likedReviews: removed._id }] }, { $pull: { reviews: removed._id, likedReviews: removed._id } });
+        await aggregates.reviewRemoved(removed.bubblyWater);
+      }
+      return removed;
     },
     // Repeated failures from an account + IP wait longer and longer, then lock (utils/loginThrottle.js)
     login: async (parent, { email, password }, context) => {
