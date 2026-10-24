@@ -182,3 +182,53 @@ export const REMOVE_RATING = gql`
     }
   }
 `;
+
+// Admin offer management (P15-2); each returns the product's full offer list
+export const ADD_OFFER = gql`
+  mutation AddOffer($bubblyWaterId: ID!, $offer: OfferInput!) {
+    addOffer(bubblyWaterId: $bubblyWaterId, offer: $offer) {
+      _id
+      retailer
+      network
+      asin
+      url
+      affiliateUrl
+      packSize
+      active
+      status
+      lastChecked
+    }
+  }
+`;
+export const EDIT_OFFER = gql`
+  mutation EditOffer($bubblyWaterId: ID!, $offerId: ID!, $offer: OfferInput!) {
+    editOffer(bubblyWaterId: $bubblyWaterId, offerId: $offerId, offer: $offer) {
+      _id
+      retailer
+      network
+      asin
+      url
+      affiliateUrl
+      packSize
+      active
+      status
+      lastChecked
+    }
+  }
+`;
+export const SET_OFFER_ACTIVE = gql`
+  mutation SetOfferActive($bubblyWaterId: ID!, $offerId: ID!, $active: Boolean!) {
+    setOfferActive(bubblyWaterId: $bubblyWaterId, offerId: $offerId, active: $active) {
+      _id
+      retailer
+      network
+      asin
+      url
+      affiliateUrl
+      packSize
+      active
+      status
+      lastChecked
+    }
+  }
+`;

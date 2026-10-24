@@ -11,6 +11,7 @@ const typeDefs = `
     ratingCount: Int
     reviewCount: Int
     ratingBreakdown: [RatingBucket!]!
+    isAdmin: Boolean
   }
 
   type RatingBucket {
@@ -35,6 +36,7 @@ const typeDefs = `
     avgRating: Float
     ratingCount: Int
     reviewCount: Int
+    offers: [Offer!]!
     ratings: [Rating]
     reviews: [Review]
   }
@@ -68,6 +70,40 @@ const typeDefs = `
     MOST_RATED
     NAME
     NEWEST
+  }
+
+  # Where to buy (P15). The public sees only active offers and never the raw links (they go through /go/...)
+  type Offer {
+    _id: ID!
+    retailer: String!
+    network: String!
+    packSize: String
+    active: Boolean!
+    status: String
+  }
+
+  # The full offer, for admins managing them
+  type AdminOffer {
+    _id: ID!
+    retailer: String!
+    network: String!
+    asin: String
+    url: String
+    affiliateUrl: String
+    packSize: String
+    active: Boolean!
+    status: String
+    lastChecked: String
+  }
+
+  input OfferInput {
+    retailer: String!
+    network: String!
+    asin: String
+    url: String
+    affiliateUrl: String
+    packSize: String
+    active: Boolean
   }
 
   type SearchResult {
@@ -104,6 +140,7 @@ const typeDefs = `
     queryUserRatingsOfGivenNumber(userId: ID!, rating: Float): User
     findUsersRating(userId: ID!, bubblyWaterId: ID!): Rating
     myRatings(bubblyWaterIds: [ID!]!): [Rating!]!
+    adminOffers(bubblyWaterId: ID!): [AdminOffer!]!
   }
 
   type Mutation {
@@ -124,6 +161,9 @@ const typeDefs = `
     resetPassword(token: String!, email: String!, newPassword: String!): AuthPayload
     addLikeToReview(userId: ID!, reviewId: ID!): User
     removeLikeFromReview(userId: ID!, reviewId: ID!): User
+    addOffer(bubblyWaterId: ID!, offer: OfferInput!): [AdminOffer!]!
+    editOffer(bubblyWaterId: ID!, offerId: ID!, offer: OfferInput!): [AdminOffer!]!
+    setOfferActive(bubblyWaterId: ID!, offerId: ID!, active: Boolean!): [AdminOffer!]!
   }
 `;
 

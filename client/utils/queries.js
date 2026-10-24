@@ -207,6 +207,7 @@ export const QUERY_MEID = gql`
       _id
       username
       isVerified
+      isAdmin
       likedReviews {
         _id
         reviewText
@@ -380,6 +381,24 @@ export const QUERY_MY_RATINGS = gql`
       _id
       rating
       bubblyWaterId
+    }
+  }
+`;
+
+// Admin offer management (P15-2)
+export const QUERY_ADMIN_OFFERS = gql`
+  query AdminOffers($bubblyWaterId: ID!) {
+    adminOffers(bubblyWaterId: $bubblyWaterId) {
+      _id
+      retailer
+      network
+      asin
+      url
+      affiliateUrl
+      packSize
+      active
+      status
+      lastChecked
     }
   }
 `;

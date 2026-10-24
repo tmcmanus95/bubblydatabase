@@ -1,5 +1,6 @@
 const { z } = require("zod");
 const { GraphQLError } = require("graphql");
+const { offerInput } = require("./offerSchema");
 
 // Argument rules for every resolver that takes input. Each resolver gets its arguments only after they
 // pass (trimmed where noted); otherwise the request fails with BAD_USER_INPUT and a readable message.
@@ -63,6 +64,7 @@ const RULES = {
     searchGeneralBubblyWater: args({ searchTerm: text("Search").nullish() }),
     queryUserRatingsOfGivenNumber: args({ userId: id("userId"), rating: rating.nullish() }),
     findUsersRating: args({ userId: id("userId"), bubblyWaterId: id("bubblyWaterId") }),
+    adminOffers: args({ bubblyWaterId: id("bubblyWaterId") }),
     myRatings: args({ bubblyWaterIds: z.array(id("bubblyWaterId")).max(100, "At most 100 products at a time") }),
   },
   Mutation: {
@@ -101,6 +103,9 @@ const RULES = {
     forgotPassword: args({ email: lookupEmail }),
     resendEmailVerification: args({ email: lookupEmail }),
     resetPassword: args({ token, email: lookupEmail, newPassword }),
+    addOffer: args({ bubblyWaterId: id("bubblyWaterId"), offer: offerInput }),
+    editOffer: args({ bubblyWaterId: id("bubblyWaterId"), offerId: id("offerId"), offer: offerInput }),
+    setOfferActive: args({ bubblyWaterId: id("bubblyWaterId"), offerId: id("offerId"), active: z.boolean() }),
     addLikeToReview: args({ userId: optionalId("userId"), reviewId: id("reviewId") }),
     removeLikeFromReview: args({ userId: optionalId("userId"), reviewId: id("reviewId") }),
   },

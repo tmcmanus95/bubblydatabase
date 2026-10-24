@@ -18,6 +18,7 @@ import { formatBrands } from "../../utils/formatBrands";
 import Loading from "../components/Loading";
 import CustomColorRating from "../components/CustomColorRating";
 import ProductCard from "../components/ProductCard";
+import AdminOffers from "../components/AdminOffers";
 import { AiOutlineLike, AiFillLike } from "react-icons/ai";
 import { searchUrl } from "../../utils/searchParams";
 
@@ -293,6 +294,7 @@ export default function BubblyWaterPage() {
                   </div>
                 </div>
               </section>
+              {meIdData?.meId?.isAdmin && <AdminOffers bubblyWaterId={bubblyWaterId} />}
               <section className="m-5 mx-20 mt-10 text-center">
                 <h2 className="text-2xl font-semibold mb-4">Write a Review</h2>
                 <section className="mx-auto max-w-md">
