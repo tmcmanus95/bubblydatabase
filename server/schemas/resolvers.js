@@ -57,8 +57,9 @@ const resolvers = {
 
   User: {
     // Totals and the 0.5–5 breakdown, counted in the database (a profile only loads its newest few)
-    ratingCount: (user) => Rating.countDocuments({ user: user._id }),
-    reviewCount: (user) => Review.countDocuments({ user: user._id }),
+    // .exec(): hand GraphQL a real promise, not a Mongoose query (which it could try to run twice)
+    ratingCount: (user) => Rating.countDocuments({ user: user._id }).exec(),
+    reviewCount: (user) => Review.countDocuments({ user: user._id }).exec(),
     ratingBreakdown: async (user) => {
       const groups = await Rating.aggregate([{ $match: { user: user._id } }, { $group: { _id: "$rating", count: { $sum: 1 } } }]);
       const counts = new Map(groups.map((g) => [g._id, g.count]));
