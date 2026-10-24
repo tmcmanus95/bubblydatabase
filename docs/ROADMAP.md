@@ -445,14 +445,14 @@ denormalized and indexed; `npm audit` high/critical = 0.
 
 - [x] Product page lists active offers through `/go/...` links (`rel="sponsored nofollow noopener"` on paid links, new tab); hidden when there are none
 
-#### P15-6 🤖 Weekly link health check — 45m
+#### P15-6 🤖 Weekly link health check — 45m — in review
 
-- [ ] Scheduled job checks each offer URL (HEAD, falling back to GET), updates `lastChecked`/`status`, reports broken links
-- [ ] Runs as a weekly Render Cron Job (it writes to prod, same reasoning as P1-16); never runs from a Claude session
+- [x] Scheduled job checks each offer URL (HEAD, falling back to GET), updates `lastChecked`/`status`, reports broken links (Amazon skipped: it blocks bots)
+- [x] Runs as a weekly Render Cron Job (`--render-cron`, honored only inside Render); never runs from a Claude session. **Thomas:** create it once there are offers (RUNBOOK)
 
-#### P15-7 🤖 Incentive guard — 15m
+#### P15-7 🤖 Incentive guard — 15m — in review (with P15-6)
 
-- [ ] Test/lint check that no badge/award code reads the `clicks` collection or offer data (SPEC: awards never reward clicking/buying)
+- [x] Test check that no badge/award code reads the `clicks` collection or offer data, and only the redirect touches clicks (`server/tests/incentiveGuard.test.js`)
 
 **Phase 1.5 exit criteria:** offers can be added by an admin, redirects log clicks, disclosure shows
 only when needed, and the link check runs weekly. Amazon tag stays empty until approved.
