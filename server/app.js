@@ -1,7 +1,7 @@
 const express = require("express");
 const helmet = require("helmet");
 const cors = require("cors");
-const { expressMiddleware } = require("@apollo/server/express4");
+const { expressMiddleware } = require("@as-integrations/express4");
 const { ApolloServer } = require("@apollo/server");
 const path = require("path");
 const { authMiddleware } = require("./utils/auth");
