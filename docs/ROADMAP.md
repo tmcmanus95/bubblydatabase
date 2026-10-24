@@ -419,10 +419,10 @@ denormalized and indexed; `npm audit` high/critical = 0.
 
 ## Phase 1.5 — Affiliate-ready
 
-#### P15-1 🤖 `offers` migration — 30m — DB: staging-write
+#### P15-1 🤖 `offers` migration — 30m — DB: staging-write — in review
 
-- [ ] `offers: [{ retailer, asin, url, affiliateUrl, network, packSize, active, lastChecked, status }]` in the schema, default `[]`
-- [ ] up/down migration; zod schema for an offer
+- [x] `offers: [{ retailer, asin, url, affiliateUrl, network, packSize, active, lastChecked, status }]` in the schema, default `[]`
+- [x] up/down migration (`202610240005`, rehearsed on a staging copy); zod schema for an offer (`server/schemas/offerSchema.js`)
 
 #### P15-2 🤖 Admin offer management — 60m
 

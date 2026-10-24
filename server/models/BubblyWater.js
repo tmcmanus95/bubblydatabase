@@ -1,5 +1,21 @@
 const { Schema, model } = require("mongoose");
 
+// Where to buy (P15): see schemas/offerSchema.js for the rules
+const offerSchema = new Schema(
+  {
+    retailer: { type: String, required: true },
+    network: { type: String, required: true },
+    asin: String,
+    url: String,
+    affiliateUrl: String,
+    packSize: String,
+    active: { type: Boolean, default: true },
+    lastChecked: Date,
+    status: { type: String, default: "unknown" },
+  },
+  { timestamps: true }
+);
+
 const bubblyWaterSchema = new Schema(
   {
     productName: {
@@ -33,6 +49,8 @@ const bubblyWaterSchema = new Schema(
     avgRating: { type: Number, default: 0 },
     ratingCount: { type: Number, default: 0 },
     reviewCount: { type: Number, default: 0 },
+    // Added by migration 202610240005 (P15-1)
+    offers: { type: [offerSchema], default: [] },
     tags: [
       {
         type: String,
