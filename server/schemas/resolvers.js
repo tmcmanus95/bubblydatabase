@@ -6,6 +6,8 @@ const aggregates = require("../utils/aggregates");
 const { ratingLimiter } = require("../utils/ratingRules");
 const { searchProducts } = require("../utils/search");
 const { isAdmin } = require("../utils/auth");
+const { recordAdminEdit } = require("../utils/audit");
+const { AdminEdit } = require("../models");
 
 // Product fields that cards and lists need: everything but the id arrays of ratings and reviews
 const PRODUCT_CARD_FIELDS = "-ratings -reviews -offers";
@@ -13,6 +15,43 @@ const PRODUCT_CARD_FIELDS = "-ratings -reviews -offers";
 const BEST_FIRST = { avgRating: -1, ratingCount: -1, _id: 1 };
 // A profile shows the newest 25 ratings and 10 reviews; "see all" pages are paginated (usersRatings/Reviews)
 const PROFILE_RATINGS = 25;
+// What an audit entry records about a product (its catalog fields, not ratings or offers)
+const productSnapshot = (p) => ({
+  productName: p.productName,
+  brandName: p.brandName,
+  flavor: [...(p.flavor || [])],
+  isCaffeinated: p.isCaffeinated,
+  hasCBD: p.hasCBD,
+  tags: [...(p.tags || [])],
+  archivedAt: p.archivedAt || null,
+});
+const escapeRegex = (text) => text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+// Two products with the same name from the same brand are almost certainly the same product
+const assertNotDuplicate = async ({ productName, brandName }, exceptId) => {
+  const clash = await BubblyWater.findOne({
+    brandName,
+    productName: { $regex: `^${escapeRegex(productName)}$`, $options: "i" },
+    ...(exceptId ? { _id: { $ne: exceptId } } : {}),
+  });
+  if (clash) throw new Error(`${productName} by ${brandName} already exists`);
+};
+const setArchived = async (context, bubblyWaterId, archive) => {
+  await requireAdmin(context);
+  const before = await BubblyWater.findById(bubblyWaterId);
+  if (!before) throw new Error("Bubbly water not found");
+  const updated = await BubblyWater.findByIdAndUpdate(bubblyWaterId, { $set: { archivedAt: archive ? new Date() : null } }, { new: true });
+  await recordAdminEdit(context, {
+    action: archive ? "product.archive" : "product.restore",
+    targetType: "product",
+    targetId: updated._id,
+    before: { archivedAt: before.archivedAt || null },
+    after: { archivedAt: updated.archivedAt || null },
+  });
+  return updated;
+};
+
+// Archived products (P2-2) are hidden from every public list and search; null also matches "never archived"
+const LIVE = { archivedAt: null };
 const PROFILE_REVIEWS = 10;
 const PROFILE_POPULATE = [
         {
@@ -52,6 +91,7 @@ const isValidRating = (rating) =>
 
 const resolvers = {
   BubblyWater: {
+    archivedAt: (product) => (product.archivedAt ? new Date(product.archivedAt).toISOString() : null),
     // Only active offers are public (P15)
     offers: (product) => (product.offers || []).filter((o) => o.active),
   },
@@ -59,6 +99,13 @@ const resolvers = {
   Offer: {
     sponsored: (offer) =>
       offer.network === "amazon" ? Boolean((process.env.AMAZON_ASSOCIATE_TAG || "").trim()) : Boolean(offer.affiliateUrl),
+  },
+
+  AdminEdit: {
+    admin: (edit) => User.findById(edit.admin).exec(),
+    before: (edit) => (edit.before == null ? null : JSON.stringify(edit.before)),
+    after: (edit) => (edit.after == null ? null : JSON.stringify(edit.after)),
+    at: (edit) => new Date(edit.at).toISOString(),
   },
 
   AdminOffer: {
@@ -94,7 +141,8 @@ const resolvers = {
 
   Query: {
     // One search with filters, sorting and pages (P1-19); the older search* queries remain for now
-    search: async (parent, args) => searchProducts(args),
+    search: async (parent, args, context) =>
+      searchProducts({ ...args, includeArchived: Boolean(args.includeArchived) && (await isAdmin(context)) }),
     users: async (parent, args, context) => {
       await requireAdmin(context);
       const users = await User.find();
@@ -164,10 +212,11 @@ const resolvers = {
     // Home top 50: products with more than 3 ratings, best average first, more ratings breaking ties.
     // Uses the stored aggregates (P1-14/15), so no ratings are loaded.
     bubblyWaters: async () => {
-      return BubblyWater.find({ ratingCount: { $gt: 3 } }, PRODUCT_CARD_FIELDS).sort(BEST_FIRST).limit(50);
+      return BubblyWater.find({ ...LIVE, ratingCount: { $gt: 3 } }, PRODUCT_CARD_FIELDS).sort(BEST_FIRST).limit(50);
     },
-    bubblyWater: async (parent, { bubblyWaterId }) => {
-      return BubblyWater.findOne({ _id: bubblyWaterId })
+    // An archived product's page is only visible to admins (so they can restore it)
+    bubblyWater: async (parent, { bubblyWaterId }, context) => {
+      const product = await BubblyWater.findOne({ _id: bubblyWaterId })
         .populate({
           path: "ratings",
           populate: {
@@ -182,48 +231,23 @@ const resolvers = {
             { path: "rating", model: "Rating" },
           ],
         });
+      if (product && product.archivedAt && !(await isAdmin(context))) return null;
+      return product;
     },
     caffeinatedBubblys: async () => {
-      return BubblyWater.find({ isCaffeinated: true }, PRODUCT_CARD_FIELDS).sort(BEST_FIRST);
+      return BubblyWater.find({ ...LIVE, isCaffeinated: true }, PRODUCT_CARD_FIELDS).sort(BEST_FIRST);
     },
     cbdBubblys: async () => {
-      return BubblyWater.find({ hasCBD: true }, PRODUCT_CARD_FIELDS).sort(BEST_FIRST);
+      return BubblyWater.find({ ...LIVE, hasCBD: true }, PRODUCT_CARD_FIELDS).sort(BEST_FIRST);
     },
     rating: async (parent, { ratingId }) => {
       return Rating.findOne({ _id: ratingId }).populate("bubblyWater");
     },
     flavors: async (parent, { flavor }) => {
-      return BubblyWater.find({ flavor: { $in: flavor } }, PRODUCT_CARD_FIELDS).sort(BEST_FIRST);
+      return BubblyWater.find({ ...LIVE, flavor: { $in: flavor } }, PRODUCT_CARD_FIELDS).sort(BEST_FIRST);
     },
     brand: async (parent, { brandName }) => {
-      return BubblyWater.find({ brandName: brandName }, PRODUCT_CARD_FIELDS).sort(BEST_FIRST);
-    },
-    searchFlavors: async (parent, { flavor }) => {
-      return BubblyWater.find({ flavor: { $in: flavor } })
-        .populate("ratings")
-        .sort({ averageRating: -1 })
-        .limit(5);
-    },
-    searchExactProductName: async (parent, { productName }) => {
-      return BubblyWater.find({ productName: productName }).limit("5");
-    },
-    searchVagueProductName: async (parent, { productName }) => {
-      // Escaped so the search is literal text, never a user-written pattern
-      const literal = String(productName || "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-      return BubblyWater.find({
-        productName: { $regex: literal, $options: "i" },
-      });
-    },
-    searchGeneralBubblyWater: async (_, { searchTerm }) => {
-      try {
-        const results = await BubblyWater.find({
-          $text: { $search: searchTerm },
-        }).limit(10);
-
-        return results;
-      } catch (error) {
-        throw new Error("Failed to search bubbly water.");
-      }
+      return BubblyWater.find({ ...LIVE, brandName: brandName }, PRODUCT_CARD_FIELDS).sort(BEST_FIRST);
     },
     searchUsers: async (parent, { username }) => {
       return User.findOne({ username: username });
@@ -259,6 +283,11 @@ const resolvers = {
         throw new Error("Error returning users ratings of a specific number");
       }
     },
+    // The admin audit log, newest first: everything, or one record's history (admins only; P2-1)
+    adminEdits: async (_, { targetId, limit }, context) => {
+      await requireAdmin(context);
+      return AdminEdit.find(targetId ? { targetId } : {}).sort({ at: -1 }).limit(limit || 50).exec();
+    },
     // Every offer on a product, links included (admins only; P15-2)
     adminOffers: async (_, { bubblyWaterId }, context) => {
       await requireAdmin(context);
@@ -270,27 +299,6 @@ const resolvers = {
     myRatings: async (_, { bubblyWaterIds }, context) => {
       if (!context.user) return [];
       return Rating.find({ user: context.user._id, bubblyWater: { $in: bubblyWaterIds } });
-    },
-    findUsersRating: async (_, { userId, bubblyWaterId }, context) => {
-      // Check if the user is authenticated
-
-      try {
-        const rating = await Rating.findOne({
-          user: userId,
-          bubblyWater: bubblyWaterId,
-        })
-          .populate("user")
-          .populate("bubblyWater");
-
-        if (!rating) {
-          return null;
-        }
-
-        return rating;
-      } catch (error) {
-        console.error(error);
-        throw new Error("Failed to fetch the rating");
-      }
     },
   },
 
@@ -629,6 +637,8 @@ const resolvers = {
         { new: true, projection: { offers: 1 } }
       );
       if (!product) throw new Error("Bubbly water not found");
+      const added = product.offers[product.offers.length - 1];
+      await recordAdminEdit(context, { action: "offer.add", targetType: "product", targetId: bubblyWaterId, after: added });
       return product.offers;
     },
     editOffer: async (_, { bubblyWaterId, offerId, offer }, context) => {
@@ -639,10 +649,18 @@ const resolvers = {
       const product = await BubblyWater.findOneAndUpdate(
         { _id: bubblyWaterId, "offers._id": offerId },
         { $set: set },
-        { new: true, projection: { offers: 1 } }
+        { new: false, projection: { offers: 1 } }
       );
       if (!product) throw new Error("Offer not found");
-      return product.offers;
+      const updated = await BubblyWater.findById(bubblyWaterId, { offers: 1 });
+      await recordAdminEdit(context, {
+        action: "offer.edit",
+        targetType: "product",
+        targetId: bubblyWaterId,
+        before: product.offers.id(offerId),
+        after: updated.offers.id(offerId),
+      });
+      return updated.offers;
     },
     setOfferActive: async (_, { bubblyWaterId, offerId, active }, context) => {
       await requireAdmin(context);
@@ -652,8 +670,55 @@ const resolvers = {
         { new: true, projection: { offers: 1 } }
       );
       if (!product) throw new Error("Offer not found");
+      await recordAdminEdit(context, {
+        action: active ? "offer.activate" : "offer.deactivate",
+        targetType: "product",
+        targetId: bubblyWaterId,
+        before: { offerId, active: !active },
+        after: { offerId, active },
+      });
       return product.offers;
     },
+    // Product admin (P2-2): admins only, validated, audit-logged. Products are archived, never deleted.
+    createProduct: async (_, { product }, context) => {
+      await requireAdmin(context);
+      await assertNotDuplicate(product);
+      const created = await BubblyWater.create({ ...product, ratings: [], reviews: [], offers: [] });
+      await recordAdminEdit(context, { action: "product.create", targetType: "product", targetId: created._id, after: productSnapshot(created) });
+      return created;
+    },
+    updateProduct: async (_, { bubblyWaterId, product }, context) => {
+      await requireAdmin(context);
+      const before = await BubblyWater.findById(bubblyWaterId);
+      if (!before) throw new Error("Bubbly water not found");
+      await assertNotDuplicate(product, bubblyWaterId);
+      const updated = await BubblyWater.findByIdAndUpdate(bubblyWaterId, { $set: product }, { new: true });
+      await recordAdminEdit(context, {
+        action: "product.update",
+        targetType: "product",
+        targetId: updated._id,
+        before: productSnapshot(before),
+        after: productSnapshot(updated),
+      });
+      return updated;
+    },
+    // Add/remove flavors and tags on many products at once (admin products page); one audit entry per product
+    bulkEditProducts: async (_, { bubblyWaterIds, addFlavors = [], removeFlavors = [], addTags = [], removeTags = [] }, context) => {
+      await requireAdmin(context);
+      const products = await BubblyWater.find({ _id: { $in: bubblyWaterIds } });
+      const results = [];
+      for (const before of products) {
+        const flavor = [...new Set([...before.flavor.filter((f) => !removeFlavors.includes(f)), ...addFlavors])];
+        const tags = [...new Set([...(before.tags || []).filter((x) => !removeTags.includes(x)), ...addTags])];
+        if (!flavor.length) throw new Error(`${before.productName} would be left with no flavors`);
+        const updated = await BubblyWater.findByIdAndUpdate(before._id, { $set: { flavor, tags } }, { new: true });
+        await recordAdminEdit(context, { action: "product.bulkEdit", targetType: "product", targetId: before._id, before: productSnapshot(before), after: productSnapshot(updated) });
+        results.push(updated);
+      }
+      return results;
+    },
+    archiveProduct: async (_, { bubblyWaterId }, context) => setArchived(context, bubblyWaterId, true),
+    restoreProduct: async (_, { bubblyWaterId }, context) => setArchived(context, bubblyWaterId, false),
     // Repeated failures from an account + IP wait longer and longer, then lock (utils/loginThrottle.js)
     login: async (parent, { email, password }, context) => {
       const ip = context.ip;

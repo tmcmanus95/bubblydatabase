@@ -38,6 +38,25 @@ const numRange = z
 
 const args = (shape) => z.looseObject(shape);
 
+// A product as admins enter it (P2-2). Brand and flavor values are slugs ("la-croix", "blood-orange"); they're
+// checked against the brands/flavors collections once those exist (P2-4b).
+const slug = (name) =>
+  z
+    .string()
+    .trim()
+    .toLowerCase()
+    .min(1, `${name} is required`)
+    .max(60)
+    .regex(/^[a-z0-9&'.]+(-[a-z0-9&'.]+)*$/, `${name} must be lowercase words joined by dashes`);
+const productInput = z.object({
+  productName: z.string().trim().min(1, "Name is required").max(100),
+  brandName: slug("Brand"),
+  flavor: z.array(slug("Flavor")).min(1, "Pick at least one flavor").max(10),
+  isCaffeinated: z.boolean().default(false),
+  hasCBD: z.boolean().default(false),
+  tags: z.array(z.string().trim().toLowerCase().min(1).max(40)).max(20).default([]),
+});
+
 const RULES = {
   Query: {
     search: args({
@@ -48,6 +67,7 @@ const RULES = {
       cbd: z.boolean().nullish(),
       page: z.number().int().min(1, "Pages start at 1").max(1000).nullish(),
       pageSize: z.number().int().min(1).max(50, "At most 50 results per page").nullish(),
+      includeArchived: z.boolean().nullish(),
     }),
     user: args({ userId: id("userId") }),
     usersRatings: args({ userId: id("userId"), numRange }),
@@ -57,14 +77,10 @@ const RULES = {
     rating: args({ ratingId: optionalId("ratingId") }),
     flavors: args({ flavor: flavors }),
     brand: args({ brandName: text("Brand").nullish() }),
-    searchFlavors: args({ flavor: flavors }),
-    searchExactProductName: args({ productName: text("Search").nullish() }),
-    searchVagueProductName: args({ productName: text("Search").nullish() }),
     searchUsers: args({ username: text("Username").nullish() }),
-    searchGeneralBubblyWater: args({ searchTerm: text("Search").nullish() }),
     queryUserRatingsOfGivenNumber: args({ userId: id("userId"), rating: rating.nullish() }),
-    findUsersRating: args({ userId: id("userId"), bubblyWaterId: id("bubblyWaterId") }),
     adminOffers: args({ bubblyWaterId: id("bubblyWaterId") }),
+    adminEdits: args({ targetId: optionalId("targetId"), limit: z.number().int().min(1).max(200).nullish() }),
     myRatings: args({ bubblyWaterIds: z.array(id("bubblyWaterId")).max(100, "At most 100 products at a time") }),
   },
   Mutation: {
@@ -106,6 +122,17 @@ const RULES = {
     addOffer: args({ bubblyWaterId: id("bubblyWaterId"), offer: offerInput }),
     editOffer: args({ bubblyWaterId: id("bubblyWaterId"), offerId: id("offerId"), offer: offerInput }),
     setOfferActive: args({ bubblyWaterId: id("bubblyWaterId"), offerId: id("offerId"), active: z.boolean() }),
+    createProduct: args({ product: productInput }),
+    updateProduct: args({ bubblyWaterId: id("bubblyWaterId"), product: productInput }),
+    bulkEditProducts: args({
+      bubblyWaterIds: z.array(id("bubblyWaterId")).min(1, "Select at least one product").max(100),
+      addFlavors: z.array(slug("Flavor")).max(10).nullish(),
+      removeFlavors: z.array(slug("Flavor")).max(10).nullish(),
+      addTags: z.array(z.string().trim().toLowerCase().min(1).max(40)).max(20).nullish(),
+      removeTags: z.array(z.string().trim().toLowerCase().min(1).max(40)).max(20).nullish(),
+    }),
+    archiveProduct: args({ bubblyWaterId: id("bubblyWaterId") }),
+    restoreProduct: args({ bubblyWaterId: id("bubblyWaterId") }),
     addLikeToReview: args({ userId: optionalId("userId"), reviewId: id("reviewId") }),
     removeLikeFromReview: args({ userId: optionalId("userId"), reviewId: id("reviewId") }),
   },

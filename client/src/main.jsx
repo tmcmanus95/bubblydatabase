@@ -17,6 +17,7 @@ import ErrorPage from "./pages/ErrorPage.jsx";
 import AllFlavors from "./pages/AllFlavors.jsx";
 import About from "./pages/About.jsx";
 import Search from "./pages/Search.jsx";
+import AdminProducts from "./pages/Admin/AdminProducts.jsx";
 import { searchUrl } from "../utils/searchParams";
 import SpecificUserRatings from "./pages/SpecificUserRatings.jsx";
 import AllCaffeinated from "./pages/AllCaffeinated.jsx";
@@ -106,6 +107,10 @@ const router = createBrowserRouter([
       {
         path: "/search",
         element: <Search />,
+      },
+      {
+        path: "/admin/products",
+        element: <AdminProducts />,
       },
       {
         path: "flavors/:flavor",

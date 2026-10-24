@@ -232,3 +232,50 @@ export const SET_OFFER_ACTIVE = gql`
     }
   }
 `;
+
+// Product admin (P2-2/P2-3)
+export const CREATE_PRODUCT = gql`
+  mutation CreateProduct($product: ProductInput!) {
+    createProduct(product: $product) {
+      _id
+    }
+  }
+`;
+export const UPDATE_PRODUCT = gql`
+  mutation UpdateProduct($bubblyWaterId: ID!, $product: ProductInput!) {
+    updateProduct(bubblyWaterId: $bubblyWaterId, product: $product) {
+      _id
+      productName
+      brandName
+      flavor
+      tags
+      isCaffeinated
+      hasCBD
+    }
+  }
+`;
+export const ARCHIVE_PRODUCT = gql`
+  mutation ArchiveProduct($bubblyWaterId: ID!) {
+    archiveProduct(bubblyWaterId: $bubblyWaterId) {
+      _id
+      archivedAt
+    }
+  }
+`;
+export const RESTORE_PRODUCT = gql`
+  mutation RestoreProduct($bubblyWaterId: ID!) {
+    restoreProduct(bubblyWaterId: $bubblyWaterId) {
+      _id
+      archivedAt
+    }
+  }
+`;
+export const BULK_EDIT_PRODUCTS = gql`
+  mutation BulkEditProducts($bubblyWaterIds: [ID!]!, $addFlavors: [String!], $removeFlavors: [String!], $addTags: [String!], $removeTags: [String!]) {
+    bulkEditProducts(bubblyWaterIds: $bubblyWaterIds, addFlavors: $addFlavors, removeFlavors: $removeFlavors, addTags: $addTags, removeTags: $removeTags) {
+      _id
+      flavor
+      tags
+    }
+  }
+`;

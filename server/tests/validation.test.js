@@ -22,7 +22,7 @@ const SIGNUP = `mutation($u: String!, $e: String!, $p: String!) { addUser(userna
 const LOGIN = `mutation($e: String!, $p: String!) { login(email: $e, password: $p) { token } }`;
 const ADD_RATING = `mutation($b: ID!, $r: Float!) { addRating(bubblyWaterId: $b, rating: $r) { averageRating } }`;
 const ADD_REVIEW = `mutation($b: ID!, $u: ID!, $t: String!) { addReview(bubblyWaterId: $b, userId: $u, reviewText: $t) { _id } }`;
-const SEARCH = `query($p: String) { searchVagueProductName(productName: $p) { productName } }`;
+const SEARCH = `query($p: String) { search(q: $p) { results { productName } } }`;
 
 test("signup enforces username, email and password rules", async () => {
   const cases = [
@@ -76,9 +76,9 @@ test("product search treats the input as plain text, not a pattern", async () =>
   await createBubbly({ productName: "Grapefruit" });
   const literal = await t.gql(SEARCH, { p: "(extra)" });
   assert.ifError(literal.errors);
-  assert.deepStrictEqual(literal.data.searchVagueProductName.map((b) => b.productName), ["Lime (Extra)"]);
+  assert.deepStrictEqual(literal.data.search.results.map((b) => b.productName), ["Lime (Extra)"]);
   const pattern = await t.gql(SEARCH, { p: ".*" });
-  assert.deepStrictEqual(pattern.data.searchVagueProductName, [], "regex syntax doesn't match everything");
+  assert.deepStrictEqual(pattern.data.search.results, [], "regex syntax doesn't match everything");
   const broken = await t.gql(SEARCH, { p: "((((" });
   assert.ifError(broken.errors);
 });

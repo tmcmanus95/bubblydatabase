@@ -3,7 +3,7 @@
 _Status: **Approved by Thomas (2026-10-21).** **Phase 0 complete** (released to `main` in #173). Phase 1 started._
 _Sources: `docs/SPEC.md`, `docs/AUDIT.md`. Last updated 2026-10-22._
 
-**Next up:** Thomas: merge #213–#227 in order, run the staging migrations, test (HANDOFF "Start here"), then release with the production migrations first. Claude: Phase 2 once Thomas approves the proposed tickets below. PRs go into `staging`; Thomas releases with a `staging` → `main` PR.
+**Next up:** Claude: Phase 2, starting with P2-1 (audit log), P2-2, P2-3, P2-4b. PRs go into `staging`; Thomas releases with a `staging` → `main` PR.
 
 ## How to read this
 
@@ -459,24 +459,28 @@ only when needed, and the link check runs weekly. Amazon tag stays empty until a
 
 ---
 
-## Phase 2 — Catalog tooling (PROPOSED by Claude 2026-10-24; not approved yet)
+## Phase 2 — Catalog tooling (approved by Thomas 2026-10-24 with the answers below)
 
-From SPEC §5. Sized for 30–60 minute sessions. Open questions for Thomas are at the end.
+From SPEC §5. Sized for 30–60 minute sessions. Thomas's answers (DECISIONS.md): archive, never delete; brands and flavors become data; no photo uploads; AI sweep later.
 
-#### P2-1 🤖 Admin audit log — 30m — DB: staging-write (migration)
-- [ ] `adminEdits` collection `{ admin, action, targetType, targetId, before, after, at }`; every admin mutation writes one (offers included)
-- [ ] Admin-only `adminEdits(targetId)` query; tests
+#### P2-1 🤖 Admin audit log — 30m — DB: staging-write (migration) — in review
+- [x] `adminedits` collection `{ admin, action, targetType, targetId, before, after, at }` (migration `202610240007`); every admin mutation writes one (offers now; products/brands/flavors as they land)
+- [x] Admin-only `adminEdits(targetId, limit)` query; tests
 
-#### P2-2 🤖 Product admin mutations — 60m
-- [ ] `createProduct` / `updateProduct` / `archiveProduct` (soft delete; never hard-delete user-linked data, rule 3), admin-only, zod-validated, audit-logged
-- [ ] Brand/flavor values validated against the known lists (or new ones flagged)
+#### P2-2 🤖 Product admin mutations — 60m — in review
+- [x] `createProduct` / `updateProduct` / `archiveProduct` / `restoreProduct` (archive = hidden everywhere public, ratings kept; never hard-delete, rule 3), admin-only, zod-validated, audit-logged; duplicate name+brand refused; migration `202610240008` indexes `archivedAt`
+- [ ] Brand/flavor values validated against the brands/flavors collections (P2-4b)
 
-#### P2-3 🤖 Admin products page — 60m
-- [ ] `/admin/products`: search (reuses P1-19), edit form, archive; admin-only route + server checks
-- [ ] Bulk edit for flavors/tags on selected products
+#### P2-3 🤖 Admin products page — 60m — in review
+- [x] `/admin/products`: search incl. archived (reuses P1-19; `includeArchived` honored for admins only), add/edit form, archive/restore; admin-only page + server checks; "Admin" nav link for admins
+- [x] Bulk edit for flavors/tags on selected products (`bulkEditProducts`, audit-logged per product)
 
 #### P2-4 🤖 Product attributes as data — 45m — DB: staging-write (migration)
 - [ ] `sweetened`, `size`, `upc` (optional) on products, so new filters don't need code (SPEC §6 filters)
+
+#### P2-4b 🤖 Brands and flavors as data — 2 × 60m — DB: staging-write (migration)
+- [ ] `brands` (`slug`, `name`, `site`, `font`, `color`) and `flavors` (`slug`, `label`, `color`) collections, seeded by a migration from today's client lists (`brandLogos.json`, `brandFonts.js`, `brandColors.js`, `flavors.js`, `flavorColors.js`)
+- [ ] `brands`/`flavors` queries; the client reads them (cached), falling back to defaults for unknown values; admin CRUD on an admin page
 
 #### P2-5 🤖 Submissions model — 45m — DB: staging-write (migration)
 - [ ] `submissions` `{ type: new|edit, productId?, fields, sourceUrl, submitter, source: user|ai-sweep, status: pending|approved|changes_requested|rejected, adminNote, createdAt }`
@@ -492,14 +496,11 @@ From SPEC §5. Sized for 30–60 minute sessions. Open questions for Thomas are 
 #### P2-8 🤖 Submitter notifications — 30m
 - [ ] Email on approve / changes requested / reject (`EMAIL_MODE=log` on staging), with a link to the product or submission
 
-#### P2-9 🤖+🧑 AI news sweep — 2 × 60m
+#### P2-9 🤖+🧑 AI news sweep — 2 × 60m — **later** (after P2-7; sources/model/budget to decide)
 - [ ] Bi-weekly Render Cron Job: checks the defined sources, compares with the catalog, creates **draft** submissions `source: ai-sweep` with source links; never publishes (rule 7); logs what it checked
 - [ ] Never sends Amazon data to an LLM (rule 11)
 
-#### P2-10 🤖+🧑 Owned product photos — 60m (optional)
+#### P2-10 ~~Owned product photos~~ — dropped for now (Thomas: cards stay typographic)
 - [ ] Only photos we own or user uploads with a license grant (rule 10): upload → R2 → a few fixed sizes; the typographic card stays the default
 
-**Open questions for Thomas:** (1) Archive (soft delete) products rather than ever deleting them? (2) Which
-sources should the AI sweep watch, and which model/budget? (3) Do you want user photo uploads at all, or keep
-cards typographic only? (4) Should brands/flavors become editable data (a collection) instead of the JSON
-lists in the client?
+**Later (Thomas):** tune the feel of tap-to-rate on mobile.

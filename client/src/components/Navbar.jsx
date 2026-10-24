@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useQuery } from "@apollo/client";
+import { QUERY_MEID } from "../../utils/queries";
 import Auth from "../../utils/auth";
 import GeneralSearchBar from "./GeneralSearchBar";
 import popIcon from "../../public/bubblesicon.png";
@@ -7,6 +9,9 @@ import { GiHamburgerMenu } from "react-icons/gi";
 
 export default function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  // Admins get an Admin link (the server checks the role on every admin call)
+  const { data: me } = useQuery(QUERY_MEID, { skip: !Auth.loggedIn() });
+  const isAdmin = Boolean(me?.meId?.isAdmin);
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
@@ -57,6 +62,11 @@ export default function NavBar() {
           >
             Recent
           </Link>
+          {isAdmin && (
+            <Link to="/admin/products" className="hover:bg-blue-300 dark:hover:bg-slate-600 lg:p-2 rounded-lg">
+              Admin
+            </Link>
+          )}
         </div>
         <div className="mx-5 flex justify-center align-center items-center">
           <GeneralSearchBar />

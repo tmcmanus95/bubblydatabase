@@ -32,6 +32,8 @@ const typeDefs = `
     flavor: [String]
     isCaffeinated: Boolean
     hasCBD: Boolean
+    tags: [String]
+    archivedAt: String
     averageRating: Float
     avgRating: Float
     ratingCount: Int
@@ -99,6 +101,27 @@ const typeDefs = `
     lastChecked: String
   }
 
+  # One admin change (P2-1). before/after are JSON snapshots of the changed record.
+  type AdminEdit {
+    _id: ID!
+    admin: User
+    action: String!
+    targetType: String!
+    targetId: ID!
+    before: String
+    after: String
+    at: String!
+  }
+
+  input ProductInput {
+    productName: String!
+    brandName: String!
+    flavor: [String!]!
+    isCaffeinated: Boolean
+    hasCBD: Boolean
+    tags: [String!]
+  }
+
   input OfferInput {
     retailer: String!
     network: String!
@@ -117,7 +140,7 @@ const typeDefs = `
   }
 
   type Query {
-    search(q: String, flavor: [String], brand: String, caffeine: Boolean, cbd: Boolean, sort: SearchSort, page: Int, pageSize: Int): SearchResult!
+    search(q: String, flavor: [String], brand: String, caffeine: Boolean, cbd: Boolean, sort: SearchSort, page: Int, pageSize: Int, includeArchived: Boolean): SearchResult!
     users: [User]
     user(userId: ID!): User
     usersRatings(userId: ID!, numRange: String!): User
@@ -132,18 +155,14 @@ const typeDefs = `
     rating(ratingId: ID): Rating
     flavors(flavor: [String]): [BubblyWater]
     brand(brandName: String): [BubblyWater]
-    searchFlavors(flavor: [String]): [BubblyWater]
-    searchExactProductName(productName: String): [BubblyWater]
-    searchVagueProductName(productName: String): [BubblyWater]
     searchUsers(username: String): User
     recentRatings: [Rating]
     recentReviews: [Review]
     searchTags(searchTerm: String): [BubblyWater]
-    searchGeneralBubblyWater(searchTerm: String): [BubblyWater]
     queryUserRatingsOfGivenNumber(userId: ID!, rating: Float): User
-    findUsersRating(userId: ID!, bubblyWaterId: ID!): Rating
     myRatings(bubblyWaterIds: [ID!]!): [Rating!]!
     adminOffers(bubblyWaterId: ID!): [AdminOffer!]!
+    adminEdits(targetId: ID, limit: Int): [AdminEdit!]!
   }
 
   type Mutation {
@@ -167,6 +186,11 @@ const typeDefs = `
     addOffer(bubblyWaterId: ID!, offer: OfferInput!): [AdminOffer!]!
     editOffer(bubblyWaterId: ID!, offerId: ID!, offer: OfferInput!): [AdminOffer!]!
     setOfferActive(bubblyWaterId: ID!, offerId: ID!, active: Boolean!): [AdminOffer!]!
+    createProduct(product: ProductInput!): BubblyWater!
+    updateProduct(bubblyWaterId: ID!, product: ProductInput!): BubblyWater!
+    archiveProduct(bubblyWaterId: ID!): BubblyWater!
+    restoreProduct(bubblyWaterId: ID!): BubblyWater!
+    bulkEditProducts(bubblyWaterIds: [ID!]!, addFlavors: [String!], removeFlavors: [String!], addTags: [String!], removeTags: [String!]): [BubblyWater!]!
   }
 `;
 
