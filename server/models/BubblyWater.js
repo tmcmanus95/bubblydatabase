@@ -54,6 +54,11 @@ const bubblyWaterSchema = new Schema(
   }
 );
 
+// Same names as migrations/202610240003-add-rating-review-product-indexes.js
+bubblyWaterSchema.index({ flavor: 1, averageRating: -1 }, { name: "flavor_1_averageRating_-1" });
+bubblyWaterSchema.index({ brandName: 1 }, { name: "brandName_1" });
+bubblyWaterSchema.index({ averageRating: -1 }, { name: "averageRating_-1" });
+
 bubblyWaterSchema.index({
   productName: "text",
   brandName: "text",

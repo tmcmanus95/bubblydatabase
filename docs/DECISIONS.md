@@ -154,3 +154,8 @@ Newest first. Format: date · decision · why · who decided.
   `navigate()` target starting with a backslash (ours are all app paths built from `/…` literals) and an
   SSR-hydration issue (we don't server-render). Vite went 5 → 6.4.5 (no config changes needed) to clear its
   dev-server advisories; Apollo Server went 4 (end of life) → 5 with `@as-integrations/express4`.
+- 2026-10-24 (Thomas, P1-13): ratings and reviews that can never be shown are **archived**, not deleted:
+  stranded ones (product and user both gone: 520 ratings, 61 reviews on staging, from an older copy of the
+  data), the 21 anonymous ratings from before rating required a login, and (Claude, same reasoning) ratings
+  whose product or user alone is gone. Duplicates keep the newest rating. They move to `ratings_archive` /
+  `reviews_archive` with `_archive.reason`; the migration's `down` restores them exactly.

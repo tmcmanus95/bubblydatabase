@@ -27,7 +27,7 @@ const rejects = async (promise, expected) => {
   }
 };
 
-test("the roles migration gives existing accounts role user, and down removes it again", async () => {
+test("the roles migration gives existing accounts role user, and down removes only what it added", async () => {
   const migration = require("../../migrations/202610240001-add-user-roles");
   const users = mongoose.connection.db.collection("users");
   await users.insertMany([{ username: "old1", email: "old1@example.test" }, { username: "old2", email: "old2@example.test", role: "admin" }]);
@@ -35,7 +35,8 @@ test("the roles migration gives existing accounts role user, and down removes it
   assert.strictEqual((await users.findOne({ username: "old1" })).role, "user");
   assert.strictEqual((await users.findOne({ username: "old2" })).role, "admin", "an existing role is kept");
   await migration.down(mongoose.connection.db);
-  assert.strictEqual(await users.countDocuments({ role: { $exists: true } }), 0);
+  assert.strictEqual(await users.countDocuments({ role: { $exists: false } }), 1, "only the account it changed loses the role");
+  assert.strictEqual((await users.findOne({ username: "old2" })).role, "admin", "a role it didn't add stays");
 });
 
 test("new accounts are users; only admins pass requireAdmin; owners and admins pass requireSelfOrAdmin", async () => {
