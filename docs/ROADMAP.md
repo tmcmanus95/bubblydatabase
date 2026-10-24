@@ -405,11 +405,11 @@ Report: `docs/IMAGE_AUDIT.md`; script: `server/scripts/imageAudit.js` (read-only
 - [x] `user`/`me` load the newest 25 ratings / 10 reviews, with `ratingCount`, `reviewCount` and a full `ratingBreakdown` counted in the database; unbounded root `ratings`/`reviews`/`allBubblies` removed (`users` stays admin-only)
 - [ ] `updateTopReviews` uses `bulkWrite` — only exists in the `new-aesthetic` WIP; do it when that merges
 
-#### P1-24 🤖 Client loop cleanup — 45m
+#### P1-24 🤖 Client loop cleanup — 45m — in review
 
 - [x] `Recent.jsx`, `RatingsBreakdown.jsx` use server data (done with P1-23); `Brand.jsx` already uses one `find` (P1-0d)
-- [~] `averageRatingWeighting` replaced by one comparator (done with P1-23); conditional hook in `BubblyWaterList` still to fix
-- [ ] No visible behavior change (manual check on staging)
+- [x] `averageRatingWeighting` replaced by one comparator (done with P1-23); conditional hook in `BubblyWaterList` fixed (both queries always declared, `skip` picks)
+- [x] No visible behavior change (home, caffeine and CBD lists checked locally); **Thomas:** glance on staging
 
 **Phase 1 exit criteria:** every SPEC §4 security item done or explicitly deferred in `DECISIONS.md`;
 rating works without verification and has abuse controls; one shareable search page; aggregates
