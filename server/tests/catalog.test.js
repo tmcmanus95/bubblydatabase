@@ -90,3 +90,17 @@ test("an unknown product id returns null instead of crashing", async () => {
   assert.ifError(res.errors);
   assert.strictEqual(res.data.bubblyWater, null);
 });
+
+test("a profile reports its rating and review totals and a full breakdown", async () => {
+  const { lime, pamp } = await seedCatalog();
+  const fan = await createUser();
+  await addRatingFor(fan, lime, 5);
+  await addRatingFor(fan, pamp, 3.5);
+  await Review.create({ reviewText: "Zingy", user: fan._id, bubblyWater: lime._id });
+  const res = await t.gql(`query($id: ID!) { user(userId: $id) { ratingCount reviewCount ratingBreakdown { rating count } } }`, { id: String(fan._id) });
+  assert.ifError(res.errors);
+  assert.strictEqual(res.data.user.ratingCount, 2);
+  assert.strictEqual(res.data.user.reviewCount, 1);
+  const breakdown = Object.fromEntries(res.data.user.ratingBreakdown.map((b) => [b.rating, b.count]));
+  assert.deepStrictEqual([breakdown[5], breakdown[3.5], breakdown[1]], [1, 1, 0]);
+});
