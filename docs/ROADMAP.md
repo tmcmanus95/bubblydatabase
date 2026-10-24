@@ -347,12 +347,12 @@ Report: `docs/IMAGE_AUDIT.md`; script: `server/scripts/imageAudit.js` (read-only
 - [x] `averageRating` kept (and kept equal) until the client switches over; `down` unsets the new fields and restores any changed `averageRating` exactly
 - [x] Totals-match check added to `npm run report:integrity` ("stored counts/avgRating off"); rehearsed on a staging copy: 0 off, down identical
 
-#### P1-15 🤖 Aggregates updated on write — 60m
+#### P1-15 🤖 Aggregates updated on write — 60m — in review
 
-- [ ] add/edit/remove rating and add/remove review update the aggregates atomically (update pipeline or `$inc`)
-- [ ] `addRating` becomes an upsert (one rating per user per product)
-- [ ] remove operations `$pull` refs from product and user
-- [ ] Tests cover each write path
+- [x] add/edit/remove rating and add/remove review update the aggregates atomically (single-document update pipelines, `server/utils/aggregates.js`)
+- [x] `addRating` becomes an upsert (one rating per user per product); rating a missing product is refused
+- [x] remove operations `$pull` refs from product and user (and likers; reviews lose a removed rating's link)
+- [x] Tests cover each write path, incl. 10 concurrent ratings (`server/tests/aggregatesOnWrite.test.js`)
 
 #### P1-16 🤖 Nightly recompute — 45m
 

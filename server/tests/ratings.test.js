@@ -26,7 +26,7 @@ const REMOVE_REVIEW = `mutation($id: ID!) { removeReview(reviewId: $id) { _id } 
 const LIKE = `mutation($u: ID!, $id: ID!) { addLikeToReview(userId: $u, reviewId: $id) { username } }`;
 const UNLIKE = `mutation($u: ID!, $id: ID!) { removeLikeFromReview(userId: $u, reviewId: $id) { username } }`;
 
-test("rating: logged-in users rate once, in half steps, and the average updates", async () => {
+test("rating: logged-in users rate once (again = update), in half steps, and the average updates", async () => {
   const [alice, bob] = await Promise.all([createUser(), createUser()]);
   const water = await createBubbly();
 
@@ -37,7 +37,10 @@ test("rating: logged-in users rate once, in half steps, and the average updates"
   res = await t.gql(ADD_RATING, { b: id(water), r: 3 }, bob);
   assert.strictEqual(res.data.addRating.averageRating, 3.5);
 
-  assert.match((await t.gql(ADD_RATING, { b: id(water), r: 5 }, alice)).errors[0].message, /already rated/);
+  // Rating again updates the same rating (one per user per product, P1-15)
+  res = await t.gql(ADD_RATING, { b: id(water), r: 5 }, alice);
+  assert.strictEqual(res.data.addRating.averageRating, 4);
+  assert.strictEqual(await Rating.countDocuments({ user: alice._id }), 1);
   for (const r of [0, 5.5, 3.3, -1]) {
     assert.match((await t.gql(ADD_RATING, { b: id(water), r }, bob)).errors[0].message, /between 0.5 and 5/, String(r));
   }
