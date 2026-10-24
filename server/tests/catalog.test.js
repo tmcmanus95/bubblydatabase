@@ -26,16 +26,17 @@ const seedCatalog = async () => {
 
 test("general search finds products by name, brand and tags", async () => {
   await seedCatalog();
-  const SEARCH = `query($s: String) { searchGeneralBubblyWater(searchTerm: $s) { productName } }`;
-  assert.deepStrictEqual(names((await t.gql(SEARCH, { s: "lime" })).data.searchGeneralBubblyWater), ["Key Lime", "Lime"]);
-  assert.deepStrictEqual(names((await t.gql(SEARCH, { s: "spindrift" })).data.searchGeneralBubblyWater), ["Key Lime"]);
-  assert.deepStrictEqual((await t.gql(SEARCH, { s: "nothingmatches" })).data.searchGeneralBubblyWater, []);
+  const SEARCH = `query($s: String) { search(q: $s) { results { productName } } }`;
+  const found = async (q) => (await t.gql(SEARCH, { s: q })).data.search.results;
+  assert.deepStrictEqual(names(await found("lime")), ["Key Lime", "Lime"]);
+  assert.deepStrictEqual(names(await found("spindrift")), ["Key Lime"]);
+  assert.deepStrictEqual(await found("nothingmatches"), []);
 });
 
 test("partial product-name search is case-insensitive", async () => {
   await seedCatalog();
-  const res = await t.gql(`{ searchVagueProductName(productName: "LIME") { productName } }`);
-  assert.deepStrictEqual(names(res.data.searchVagueProductName), ["Key Lime", "Lime"]);
+  const res = await t.gql(`{ search(q: "LIME") { results { productName } } }`);
+  assert.deepStrictEqual(names(res.data.search.results), ["Key Lime", "Lime"]);
 });
 
 test("flavor, brand, caffeine and CBD lists", async () => {

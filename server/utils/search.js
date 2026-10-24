@@ -15,7 +15,7 @@ const MAX_PAGE_SIZE = 50;
 const literal = (text) => text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
 const buildMatch = ({ q, flavor, brand, caffeine, cbd }) => {
-  const match = {};
+  const match = { archivedAt: null }; // archived products never show in search (P2-2)
   const text = (q || "").trim();
   if (text) {
     // Every word must appear somewhere in the name, brand or tags (partial words count: "lim" finds lime)

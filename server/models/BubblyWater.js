@@ -49,6 +49,8 @@ const bubblyWaterSchema = new Schema(
     avgRating: { type: Number, default: 0 },
     ratingCount: { type: Number, default: 0 },
     reviewCount: { type: Number, default: 0 },
+    // Set when an admin archives the product (P2-2): hidden from public lists and search, ratings kept
+    archivedAt: { type: Date, default: null },
     // Added by migration 202610240005 (P15-1)
     offers: { type: [offerSchema], default: [] },
     tags: [

@@ -168,3 +168,8 @@ Newest first. Format: date · decision · why · who decided.
 - 2026-10-24 (Phase 1 exit check, Claude): every SPEC §4 item is done except one, deferred to Thomas: rotating
   the R2 access key and the read-only `backup-ro` Atlas password, which were visible to Claude in an editor
   selection early in the project (staging/backup credentials, not production).
+- 2026-10-24 (Thomas, Phase 2): removed products are **archived** (hidden, restorable; ratings and reviews
+  kept), never deleted. **Brands and flavors become data** (an admin-managed collection) instead of code
+  lists; a new brand falls back to default font/color until set. **No user photo uploads** for now: cards stay
+  typographic (P2-10 dropped). **AI news sweep later**, after the submission and review tools work. Later,
+  Thomas may want to tune the "feel" of rating on mobile.
