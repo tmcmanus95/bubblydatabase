@@ -6,3 +6,6 @@ node_modules/
 
 # Local-only: lists security gaps that stay open until Phase 1 (decided 2026-10-21)
 docs/AUDIT.md
+
+# Data reports from staging (list user/product ids; the repo is public)
+reports/
