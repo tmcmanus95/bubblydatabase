@@ -341,18 +341,18 @@ Report: `docs/IMAGE_AUDIT.md`; script: `server/scripts/imageAudit.js` (read-only
 - [x] bubblywaters: `{flavor:1, averageRating:-1}`, `{brandName:1}`, `{averageRating:-1}`
 - [x] Indexes also declared in the Mongoose schemas; `down` drops them; `explain()` shows each key query using its index (staging copy)
 
-#### P1-14 🤖 Denormalized aggregates migration — 45m — DB: staging-write
+#### P1-14 🤖 Denormalized aggregates migration — 45m — DB: staging-write — in review
 
-- [ ] Adds `avgRating`, `ratingCount`, `reviewCount` to bubblywaters, backfilled with a `$group` pipeline
-- [ ] `averageRating` kept (and kept equal) until the client switches over; `down` unsets the new fields
-- [ ] verifyCounts-style check: totals match the raw collections
+- [x] Adds `avgRating`, `ratingCount`, `reviewCount` to bubblywaters, backfilled with a `$group` pipeline (`202610240004`; also exposed in GraphQL)
+- [x] `averageRating` kept (and kept equal) until the client switches over; `down` unsets the new fields and restores any changed `averageRating` exactly
+- [x] Totals-match check added to `npm run report:integrity` ("stored counts/avgRating off"); rehearsed on a staging copy: 0 off, down identical
 
 #### P1-15 🤖 Aggregates updated on write — 60m
 
 - [ ] add/edit/remove rating and add/remove review update the aggregates atomically (update pipeline or `$inc`)
 - [ ] `addRating` becomes an upsert (one rating per user per product)
 - [ ] remove operations `$pull` refs from product and user
-- [x] Tests (`server/tests/loginThrottle.test.js`, `client/utils/errorMessage.test.js`) cover each write path
+- [ ] Tests cover each write path
 
 #### P1-16 🤖 Nightly recompute — 45m
 
@@ -375,7 +375,7 @@ Report: `docs/IMAGE_AUDIT.md`; script: `server/scripts/imageAudit.js` (read-only
 #### P1-19 🤖 Unified search resolver — 60m
 
 - [ ] `search(q, flavor, caffeine, cbd, sort, page)` resolver using aggregation + indexes, paginated, returns counts not arrays
-- [x] Tests (`server/tests/loginThrottle.test.js`, `client/utils/errorMessage.test.js`) for each filter combination
+- [ ] Tests for each filter combination
 
 #### P1-20 🤖 One search page, URL state — 60m
 
