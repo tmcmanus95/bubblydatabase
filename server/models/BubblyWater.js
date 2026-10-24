@@ -28,6 +28,11 @@ const bubblyWaterSchema = new Schema(
       type: Number,
       default: 0,
     },
+    // Stored aggregates (P1-14, migration 202610240004), kept current on every rating/review write (P1-15).
+    // averageRating stays equal to avgRating until the client reads avgRating.
+    avgRating: { type: Number, default: 0 },
+    ratingCount: { type: Number, default: 0 },
+    reviewCount: { type: Number, default: 0 },
     tags: [
       {
         type: String,

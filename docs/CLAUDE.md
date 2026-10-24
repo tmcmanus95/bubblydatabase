@@ -55,7 +55,8 @@ Setup: copy `server/.env.example` to `server/.env` (staging values only).
 - `cd server && node seeders/<script>.js` — maintenance scripts; staging/local only (`seed.js` also needs `--yes-drop-staging`)
 - `scripts/backup.sh` / `scripts/restore.sh` — encrypted backups; see `docs/RUNBOOK.md`
 - `npm run staging:refresh` — reload staging from the latest backup and scrub emails (RUNBOOK)
-- Planned: `npm run migrate:up` / `migrate:down` (P1-11, staging only)
+- `npm run migrate:status` / `migrate:up` / `migrate:down` — schema migrations in `migrations/` (staging/local; production only by Thomas with `--i-am-thomas-on-prod`, see RUNBOOK)
+- `npm run report:integrity` — read-only data-integrity report (staging/local), saved to `reports/` (gitignored)
 
 ## Branches
 

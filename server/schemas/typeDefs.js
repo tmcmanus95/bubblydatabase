@@ -24,6 +24,9 @@ const typeDefs = `
     isCaffeinated: Boolean
     hasCBD: Boolean
     averageRating: Float
+    avgRating: Float
+    ratingCount: Int
+    reviewCount: Int
     ratings: [Rating]
     reviews: [Review]
   }

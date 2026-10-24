@@ -107,8 +107,48 @@ const integrityReport = async (db) => {
     ])
     .toArray();
 
+  // Stored aggregates (P1-14) vs the raw collections; only products that have the fields are checked
+  const aggregateDrift = await db
+    .collection("bubblywaters")
+    .aggregate([
+      { $match: { ratingCount: { $exists: true } } },
+      { $lookup: { from: "ratings", localField: "_id", foreignField: "bubblyWater", as: "r" } },
+      { $lookup: { from: "reviews", localField: "_id", foreignField: "bubblyWater", as: "v" } },
+      {
+        $project: {
+          productName: 1,
+          ratingCount: 1,
+          reviewCount: 1,
+          avgRating: 1,
+          averageRating: 1,
+          actualRatings: { $size: "$r" },
+          actualReviews: { $size: "$v" },
+          actualAvg: { $ifNull: [{ $avg: "$r.rating" }, 0] },
+        },
+      },
+      {
+        $match: {
+          $expr: {
+            $or: [
+              { $ne: ["$ratingCount", "$actualRatings"] },
+              { $ne: ["$reviewCount", "$actualReviews"] },
+              { $gt: [{ $abs: { $subtract: [{ $ifNull: ["$avgRating", 0] }, "$actualAvg"] } }, 0.001] },
+              { $gt: [{ $abs: { $subtract: [{ $ifNull: ["$avgRating", 0] }, { $ifNull: ["$averageRating", 0] }] } }, 0.001] },
+            ],
+          },
+        },
+      },
+    ])
+    .toArray();
+
   return {
     counts,
+    aggregateDrift: aggregateDrift.map((d) => ({
+      _id: String(d._id),
+      productName: d.productName,
+      stored: { ratingCount: d.ratingCount, reviewCount: d.reviewCount, avgRating: d.avgRating, averageRating: d.averageRating },
+      actual: { ratingCount: d.actualRatings, reviewCount: d.actualReviews, avgRating: Math.round(d.actualAvg * 1000) / 1000 },
+    })),
     anonymousRatings,
     strandedRatings: strandedRatings.length ? strandedRatings[0].n : 0,
     duplicates: {
@@ -175,6 +215,7 @@ const formatReport = (r, { dbName, when = new Date() } = {}) => {
     `| Ratings missing from their product's list | ${r.missingBackRefs.ratingsNotOnProduct.length} |`,
     `| Ratings missing from their user's list | ${r.missingBackRefs.ratingsNotOnUser.length} |`,
     `| Products whose stored average is off | ${r.averageDrift.length} |`,
+    `| Products whose stored counts/avgRating are off | ${r.aggregateDrift.length} |`,
     ``,
   ];
   if (r.duplicates.examples.length) {
@@ -185,6 +226,11 @@ const formatReport = (r, { dbName, when = new Date() } = {}) => {
   if (r.averageDrift.length) {
     lines.push(`## Average drift (up to 20)`, ``, `| product | stored | actual | ratings |`, `|---|---|---|---|`);
     for (const d of r.averageDrift.slice(0, 20)) lines.push(`| ${d.productName} (${d._id}) | ${d.stored} | ${d.actual} | ${d.ratings} |`);
+    lines.push(``);
+  }
+  if (r.aggregateDrift.length) {
+    lines.push(`## Stored counts/avgRating off (up to 20)`, ``, `| product | stored | actual |`, `|---|---|---|`);
+    for (const d of r.aggregateDrift.slice(0, 20)) lines.push(`| ${d.productName} (${d._id}) | ${JSON.stringify(d.stored)} | ${JSON.stringify(d.actual)} |`);
     lines.push(``);
   }
   if (r.invalidRatings.length) {
