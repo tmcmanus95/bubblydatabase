@@ -34,10 +34,13 @@ export default function BubblyWaterList({ searchTerm }) {
     skip: searchTerm !== "cbd",
   });
 
-  const { error, data } =
-    searchTerm && searchTerm !== "caffeine" && searchTerm !== "cbd"
-      ? useQuery(QUERY_SINGLE_FLAVOR, { variables: { flavor: searchTerm } })
-      : useQuery(QUERY_ALL_BUBBLYS);
+  // Both hooks always run (React's rules of hooks); `skip` decides which one fetches
+  const isFlavor = Boolean(searchTerm) && searchTerm !== "caffeine" && searchTerm !== "cbd";
+  const flavorQuery = useQuery(QUERY_SINGLE_FLAVOR, { variables: { flavor: searchTerm }, skip: !isFlavor });
+  const allQuery = useQuery(QUERY_ALL_BUBBLYS, { skip: Boolean(searchTerm) });
+  // The list this page shows (the loading state waits on it)
+  const active = isFlavor ? flavorQuery : searchTerm === "caffeine" ? caffeineQuery : searchTerm === "cbd" ? cbdQuery : allQuery;
+  const { error, data } = active;
 
   useEffect(() => {
     setUserId(meIdData?.meId?._id);
