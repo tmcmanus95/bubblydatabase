@@ -16,16 +16,28 @@ const ForbiddenError = new GraphQLError("Not allowed.", {
   },
 });
 
-// Admins are listed by user _id in the ADMIN_USER_IDS env var (comma separated)
-const isAdmin = (context) => {
+// Admins have role "admin" on their user document (set with scripts/setRole.js). The ADMIN_USER_IDS env var
+// (comma-separated _ids) still counts too, so nobody loses access while roles are rolled out; drop it once
+// every admin has the role in production. The role is read from the database (once per request), not
+// from the session token, so removing someone's admin role takes effect immediately.
+const isAdmin = async (context) => {
   if (!context.user) {
     return false;
   }
+  const userId = String(context.user._id);
   const adminIds = (process.env.ADMIN_USER_IDS || "")
     .split(",")
     .map((id) => id.trim())
     .filter(Boolean);
-  return adminIds.includes(String(context.user._id));
+  if (adminIds.includes(userId)) {
+    return true;
+  }
+  if (context.adminChecked === undefined) {
+    const { User } = require("../models");
+    const user = await User.findById(userId, { role: 1 }).lean();
+    context.adminChecked = Boolean(user && user.role === "admin");
+  }
+  return context.adminChecked;
 };
 
 // Throws unless a logged in user made the request; returns that user's _id
@@ -37,17 +49,19 @@ const requireUser = (context) => {
 };
 
 // Throws unless the logged in user is ownerId or an admin
-const requireSelfOrAdmin = (context, ownerId) => {
+const requireSelfOrAdmin = async (context, ownerId) => {
   const userId = requireUser(context);
-  if (String(ownerId) !== userId && !isAdmin(context)) {
+  if (String(ownerId) !== userId && !(await isAdmin(context))) {
     throw ForbiddenError;
   }
   return userId;
 };
 
-const requireAdmin = (context) => {
+// Throws unless the logged in user is an admin. Every admin/moderation resolver starts with this
+// (CLAUDE.md rule 5).
+const requireAdmin = async (context) => {
   requireUser(context);
-  if (!isAdmin(context)) {
+  if (!(await isAdmin(context))) {
     throw ForbiddenError;
   }
 };

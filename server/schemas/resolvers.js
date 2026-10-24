@@ -34,7 +34,7 @@ const resolvers = {
 
   Query: {
     users: async (parent, args, context) => {
-      requireAdmin(context);
+      await requireAdmin(context);
       const users = await User.find();
       console.log(users.length + " users");
       return users;
@@ -458,7 +458,7 @@ const resolvers = {
       }
     },
     editUserColor: async (parent, { userId, color }, context) => {
-      requireSelfOrAdmin(context, userId);
+      await requireSelfOrAdmin(context, userId);
       try {
         const updatedUser = await User.findOneAndUpdate(
           { _id: userId },
@@ -473,7 +473,7 @@ const resolvers = {
       }
     },
     removeUser: async (parent, { userId }, context) => {
-      requireAdmin(context);
+      await requireAdmin(context);
       return User.findOneAndDelete({ _id: userId });
     },
 
@@ -554,7 +554,7 @@ const resolvers = {
       if (!existingRating) {
         throw new Error("Rating not found");
       }
-      requireSelfOrAdmin(context, existingRating.user);
+      await requireSelfOrAdmin(context, existingRating.user);
       if (!isValidRating(rating)) {
         throw new Error("Rating must be between 0.5 and 5 in half steps");
       }
@@ -593,7 +593,7 @@ const resolvers = {
       if (!existingRating) {
         return null;
       }
-      requireSelfOrAdmin(context, existingRating.user);
+      await requireSelfOrAdmin(context, existingRating.user);
       return Rating.findOneAndDelete({ _id: ratingId });
     },
     // The userId argument is ignored: reviews always belong to the logged in user
@@ -647,7 +647,7 @@ const resolvers = {
       if (!existingReview) {
         throw new Error("Review not found");
       }
-      requireSelfOrAdmin(context, existingReview.user);
+      await requireSelfOrAdmin(context, existingReview.user);
       try {
         const updatedReview = await Review.findByIdAndUpdate(
           reviewId,
@@ -666,7 +666,7 @@ const resolvers = {
       if (!existingReview) {
         return null;
       }
-      requireSelfOrAdmin(context, existingReview.user);
+      await requireSelfOrAdmin(context, existingReview.user);
       return Review.findOneAndDelete({ _id: reviewId });
     },
     // Repeated failures from an account + IP wait longer and longer, then lock (utils/loginThrottle.js)

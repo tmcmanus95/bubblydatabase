@@ -152,3 +152,17 @@ MONGODB_URI="<production uri>" node server/scripts/migrate.js up --i-am-thomas-o
 ```
 
 If something goes wrong, `down` with the same flag reverts the last migration; the backup is the fallback.
+
+## Admin roles
+
+Accounts have `role: "user"` or `"admin"` (P1-7). Admin-only operations check the role in the database on
+every request, so changes take effect immediately. To make someone an admin (or take it away):
+
+```
+node server/scripts/setRole.js <email> admin      # staging (server/.env)
+node server/scripts/setRole.js <email> user
+MONGODB_URI='<production uri>' node server/scripts/setRole.js <email> admin --i-am-thomas-on-prod
+```
+
+The older `ADMIN_USER_IDS` env var still grants admin too. Once your production account has the role,
+remove `ADMIN_USER_IDS` from Render so there's one source of truth.
