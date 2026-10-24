@@ -424,10 +424,10 @@ denormalized and indexed; `npm audit` high/critical = 0.
 - [x] `offers: [{ retailer, asin, url, affiliateUrl, network, packSize, active, lastChecked, status }]` in the schema, default `[]`
 - [x] up/down migration (`202610240005`, rehearsed on a staging copy); zod schema for an offer (`server/schemas/offerSchema.js`)
 
-#### P15-2 🤖 Admin offer management — 60m
+#### P15-2 🤖 Admin offer management — 60m — in review
 
-- [ ] Admin-only mutations to add/edit/deactivate offers (`requireAdmin`, from P1-7)
-- [ ] Minimal admin form on the product page, visible only to admins
+- [x] Admin-only mutations to add/edit/deactivate offers (`requireAdmin`, from P1-7) + `adminOffers` query; the public sees only active offers, never the links
+- [x] Minimal admin form on the product page, visible only to admins (`me.isAdmin`, self-only)
 
 #### P15-3 🤖 `/go/:productId/:offerId` redirect — 45m
 

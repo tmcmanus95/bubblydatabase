@@ -5,9 +5,10 @@ const { verifyTurnstile } = require("../utils/turnstile");
 const aggregates = require("../utils/aggregates");
 const { ratingLimiter } = require("../utils/ratingRules");
 const { searchProducts } = require("../utils/search");
+const { isAdmin } = require("../utils/auth");
 
 // Product fields that cards and lists need: everything but the id arrays of ratings and reviews
-const PRODUCT_CARD_FIELDS = "-ratings -reviews";
+const PRODUCT_CARD_FIELDS = "-ratings -reviews -offers";
 // Best average first; more ratings break ties
 const BEST_FIRST = { avgRating: -1, ratingCount: -1, _id: 1 };
 // A profile shows the newest 25 ratings and 10 reviews; "see all" pages are paginated (usersRatings/Reviews)
@@ -50,12 +51,24 @@ const isValidRating = (rating) =>
   rating >= 0.5 && rating <= 5 && Number.isInteger(rating * 2);
 
 const resolvers = {
+  BubblyWater: {
+    // Only active offers are public (P15)
+    offers: (product) => (product.offers || []).filter((o) => o.active),
+  },
+
+  AdminOffer: {
+    lastChecked: (offer) => (offer.lastChecked ? new Date(offer.lastChecked).toISOString() : null),
+  },
+
   Rating: {
     // The product's id without loading the product
     bubblyWaterId: (rating) => (rating.bubblyWater ? String(rating.bubblyWater._id || rating.bubblyWater) : null),
   },
 
   User: {
+    // Only tells you about yourself (the UI uses it to show admin tools)
+    isAdmin: async (user, args, context) =>
+      context.user && String(context.user._id) === String(user._id) ? isAdmin(context) : null,
     // Totals and the 0.5–5 breakdown, counted in the database (a profile only loads its newest few)
     // .exec(): hand GraphQL a real promise, not a Mongoose query (which it could try to run twice)
     ratingCount: (user) => Rating.countDocuments({ user: user._id }).exec(),
@@ -240,6 +253,13 @@ const resolvers = {
       } catch (error) {
         throw new Error("Error returning users ratings of a specific number");
       }
+    },
+    // Every offer on a product, links included (admins only; P15-2)
+    adminOffers: async (_, { bubblyWaterId }, context) => {
+      await requireAdmin(context);
+      const product = await BubblyWater.findById(bubblyWaterId, { offers: 1 });
+      if (!product) throw new Error("Bubbly water not found");
+      return product.offers;
     },
     // The logged-in user's ratings for a page of products, in one request (P1-22); [] when logged out
     myRatings: async (_, { bubblyWaterIds }, context) => {
@@ -594,6 +614,40 @@ const resolvers = {
         await aggregates.reviewRemoved(removed.bubblyWater);
       }
       return removed;
+    },
+    // Offer management (admins only; P15-2). Each returns the product's full offer list.
+    addOffer: async (_, { bubblyWaterId, offer }, context) => {
+      await requireAdmin(context);
+      const product = await BubblyWater.findByIdAndUpdate(
+        bubblyWaterId,
+        { $push: { offers: { ...offer, status: "unknown" } } },
+        { new: true, projection: { offers: 1 } }
+      );
+      if (!product) throw new Error("Bubbly water not found");
+      return product.offers;
+    },
+    editOffer: async (_, { bubblyWaterId, offerId, offer }, context) => {
+      await requireAdmin(context);
+      const set = {};
+      for (const [k, v] of Object.entries(offer)) set[`offers.$.${k}`] = v ?? null;
+      set["offers.$.status"] = "unknown"; // links changed: the weekly check looks again
+      const product = await BubblyWater.findOneAndUpdate(
+        { _id: bubblyWaterId, "offers._id": offerId },
+        { $set: set },
+        { new: true, projection: { offers: 1 } }
+      );
+      if (!product) throw new Error("Offer not found");
+      return product.offers;
+    },
+    setOfferActive: async (_, { bubblyWaterId, offerId, active }, context) => {
+      await requireAdmin(context);
+      const product = await BubblyWater.findOneAndUpdate(
+        { _id: bubblyWaterId, "offers._id": offerId },
+        { $set: { "offers.$.active": active } },
+        { new: true, projection: { offers: 1 } }
+      );
+      if (!product) throw new Error("Offer not found");
+      return product.offers;
     },
     // Repeated failures from an account + IP wait longer and longer, then lock (utils/loginThrottle.js)
     login: async (parent, { email, password }, context) => {
