@@ -296,10 +296,10 @@ Report: `docs/IMAGE_AUDIT.md`; script: `server/scripts/imageAudit.js` (read-only
 - [x] CSRF protection on mutations (SameSite=Lax + Apollo's built-in CSRF prevention; tested)
 - [x] Existing users stay logged in or re-login normally (no password reset); checked in a real browser
 
-#### P1-7 🤖 Roles — 45m — DB: staging-write (migration)
+#### P1-7 🤖 Roles — 45m — DB: staging-write (migration) — in review
 
-- [ ] Migration adds `role: "user"` to all users (up/down); Thomas's account set to `admin` by hand
-- [ ] `requireAdmin(context)` helper + tests; no admin routes exist yet
+- [x] Migration adds `role: "user"` to all users (up/down); Thomas's account set to `admin` with `server/scripts/setRole.js` (**Thomas**: staging, then production)
+- [x] `requireAdmin(context)` helper + tests, now role-based (read from the database each request); `ADMIN_USER_IDS` still counts until production admins have the role
 
 #### P1-8 🤖 Bot friction on signup — 45m
 

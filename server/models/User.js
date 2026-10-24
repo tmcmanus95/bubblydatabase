@@ -48,6 +48,9 @@ const userSchema = new Schema({
   emailVerificationToken: String,
   passwordResetToken: String,
   passwordResetExpires: Date,
+  // "admin" can moderate; everyone else is "user". Added to existing accounts by
+  // migrations/202610240001-add-user-roles.js. Never exposed through GraphQL.
+  role: { type: String, enum: ["user", "admin"], default: "user" },
 });
 
 // bcrypt cost for new hashes. Older hashes (cost 10) stay valid and are upgraded on the next successful
