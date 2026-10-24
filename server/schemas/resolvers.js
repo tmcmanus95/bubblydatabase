@@ -5,6 +5,29 @@ const { verifyTurnstile } = require("../utils/turnstile");
 const aggregates = require("../utils/aggregates");
 const { ratingLimiter } = require("../utils/ratingRules");
 const { searchProducts } = require("../utils/search");
+
+// Product fields that cards and lists need: everything but the id arrays of ratings and reviews
+const PRODUCT_CARD_FIELDS = "-ratings -reviews";
+// Best average first; more ratings break ties
+const BEST_FIRST = { avgRating: -1, ratingCount: -1, _id: 1 };
+// A profile shows the newest 25 ratings and 10 reviews; "see all" pages are paginated (usersRatings/Reviews)
+const PROFILE_RATINGS = 25;
+const PROFILE_REVIEWS = 10;
+const PROFILE_POPULATE = [
+        {
+          path: "ratings",
+          options: { sort: { createdAt: -1 }, perDocumentLimit: PROFILE_RATINGS },
+          populate: { path: "bubblyWater", model: "BubblyWater", select: PRODUCT_CARD_FIELDS },
+        },
+        {
+          path: "reviews",
+          options: { sort: { createdAt: -1 }, perDocumentLimit: PROFILE_REVIEWS },
+          populate: [
+            { path: "bubblyWater", model: "BubblyWater", select: PRODUCT_CARD_FIELDS },
+            { path: "rating", model: "Rating" },
+          ],
+        },
+      ];
 const { User, BubblyWater, Rating, Review } = require("../models");
 const {
   signToken,
@@ -33,6 +56,15 @@ const resolvers = {
   },
 
   User: {
+    // Totals and the 0.5–5 breakdown, counted in the database (a profile only loads its newest few)
+    // .exec(): hand GraphQL a real promise, not a Mongoose query (which it could try to run twice)
+    ratingCount: (user) => Rating.countDocuments({ user: user._id }).exec(),
+    reviewCount: (user) => Review.countDocuments({ user: user._id }).exec(),
+    ratingBreakdown: async (user) => {
+      const groups = await Rating.aggregate([{ $match: { user: user._id } }, { $group: { _id: "$rating", count: { $sum: 1 } } }]);
+      const counts = new Map(groups.map((g) => [g._id, g.count]));
+      return [5, 4.5, 4, 3.5, 3, 2.5, 2, 1.5, 1, 0.5].map((rating) => ({ rating, count: counts.get(rating) || 0 }));
+    },
     // Email is private: only the user themself can read it
     email: (parent, args, context) => {
       if (context.user && String(context.user._id) === String(parent._id)) {
@@ -52,28 +84,9 @@ const resolvers = {
       return users;
     },
 
+    // A profile: the newest 25 ratings and 10 reviews (totals and the breakdown are User fields)
     user: async (parent, { userId }) => {
-      return User.findOne({ _id: userId }).populate([
-        {
-          path: "ratings",
-          options: { sort: { createdAt: -1 } },
-          populate: {
-            path: "bubblyWater",
-            model: "BubblyWater",
-          },
-        },
-        {
-          path: "reviews",
-          options: { sort: { createdAt: -1 } },
-          populate: [
-            {
-              path: "bubblyWater",
-              model: "BubblyWater",
-            },
-            { path: "rating", model: "Rating" },
-          ],
-        },
-      ]);
+      return User.findOne({ _id: userId }).populate(PROFILE_POPULATE);
     },
     usersRatings: async (parent, { userId, numRange }) => {
       const [start, end] = numRange.split("-").map(Number);
@@ -126,61 +139,14 @@ const resolvers = {
     },
     me: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate([
-          {
-            path: "ratings",
-            options: { sort: { createdAt: -1 } },
-            populate: {
-              path: "bubblyWater",
-              model: "BubblyWater",
-            },
-          },
-          {
-            path: "reviews",
-            options: { sort: { createdAt: -1 } },
-            populate: [
-              {
-                path: "bubblyWater",
-                model: "BubblyWater",
-              },
-              { path: "rating", model: "Rating" },
-            ],
-          },
-        ]);
+        return User.findOne({ _id: context.user._id }).populate(PROFILE_POPULATE);
       }
       throw AuthenticationError;
     },
+    // Home top 50: products with more than 3 ratings, best average first, more ratings breaking ties.
+    // Uses the stored aggregates (P1-14/15), so no ratings are loaded.
     bubblyWaters: async () => {
-      return BubblyWater.aggregate([
-        {
-          $match: {
-            $expr: { $gt: [{ $size: "$ratings" }, 3] },
-          },
-        },
-        {
-          $lookup: {
-            from: "ratings",
-            localField: "ratings",
-            foreignField: "_id",
-            as: "ratings",
-          },
-        },
-        {
-          $addFields: {
-            averageRating: { $avg: "$ratings.rating" },
-          },
-        },
-        {
-          $sort: { averageRating: -1 },
-        },
-        {
-          $limit: 50,
-        },
-      ]);
-    },
-    allBubblies: async () => {
-      const allBubblies = await BubblyWater.find();
-      return allBubblies;
+      return BubblyWater.find({ ratingCount: { $gt: 3 } }, PRODUCT_CARD_FIELDS).sort(BEST_FIRST).limit(50);
     },
     bubblyWater: async (parent, { bubblyWaterId }) => {
       return BubblyWater.findOne({ _id: bubblyWaterId })
@@ -200,34 +166,19 @@ const resolvers = {
         });
     },
     caffeinatedBubblys: async () => {
-      return BubblyWater.find({ isCaffeinated: true });
+      return BubblyWater.find({ isCaffeinated: true }, PRODUCT_CARD_FIELDS).sort(BEST_FIRST);
     },
     cbdBubblys: async () => {
-      return BubblyWater.find({ hasCBD: true });
+      return BubblyWater.find({ hasCBD: true }, PRODUCT_CARD_FIELDS).sort(BEST_FIRST);
     },
     rating: async (parent, { ratingId }) => {
       return Rating.findOne({ _id: ratingId }).populate("bubblyWater");
     },
-    ratings: async () => {
-      const ratings = await Rating.find()
-        .populate("bubblyWater")
-        .populate("user");
-      console.log(ratings.length + " ratings");
-      return ratings;
-    },
-    reviews: async () => {
-      const reviews = await Review.find()
-        .populate("bubblyWater")
-        .populate("user")
-        .populate("rating");
-      console.log(reviews.length + " reviews");
-      return reviews;
-    },
     flavors: async (parent, { flavor }) => {
-      return BubblyWater.find({ flavor: { $in: flavor } }).populate("ratings");
+      return BubblyWater.find({ flavor: { $in: flavor } }, PRODUCT_CARD_FIELDS).sort(BEST_FIRST);
     },
     brand: async (parent, { brandName }) => {
-      return BubblyWater.find({ brandName: brandName }).populate("ratings");
+      return BubblyWater.find({ brandName: brandName }, PRODUCT_CARD_FIELDS).sort(BEST_FIRST);
     },
     searchFlavors: async (parent, { flavor }) => {
       return BubblyWater.find({ flavor: { $in: flavor } })
@@ -266,16 +217,12 @@ const resolvers = {
         .sort({ createdAt: -1 })
         .limit(10);
     },
+    // Each review comes with the reviewer's own rating (linked on the review), not every rating of the product
     recentReviews: async () => {
       return Review.find()
         .populate("user")
-        .populate({
-          path: "bubblyWater",
-          populate: {
-            path: "ratings",
-            model: "Rating",
-          },
-        })
+        .populate("rating")
+        .populate({ path: "bubblyWater", select: PRODUCT_CARD_FIELDS })
         .sort({ createdAt: -1 })
         .limit(10);
     },

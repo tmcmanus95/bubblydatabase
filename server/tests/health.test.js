@@ -21,8 +21,8 @@ test("GraphQL endpoint answers", async () => {
 
 test("resolvers read from the test database", async () => {
   await BubblyWater.create({ productName: "Lime", brandName: "la-croix", flavor: ["lime"] });
-  const res = await t.gql("{ allBubblies { productName brandName } }");
-  assert.deepStrictEqual(res.data.allBubblies, [{ productName: "Lime", brandName: "la-croix" }]);
+  const res = await t.gql("{ search { results { productName brandName } } }");
+  assert.deepStrictEqual(res.data.search.results, [{ productName: "Lime", brandName: "la-croix" }]);
 });
 
 test("email is captured, not sent, in log mode", async () => {

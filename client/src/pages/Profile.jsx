@@ -42,15 +42,15 @@ export default function Profile() {
   useEffect(() => {
     console.log("data", data);
     if (userId) {
-      setTotalRatingsNumber(data?.user?.ratings?.length || 0);
-      setTotalReviewsNumber(data?.user?.reviews?.length || 0);
+      setTotalRatingsNumber(data?.user?.ratingCount || 0);
+      setTotalReviewsNumber(data?.user?.reviewCount || 0);
 
       setRatings(data?.user?.ratings?.slice(0, 25));
       setReviews(data?.user?.reviews?.slice(0, 10));
       setIsVerified(true);
     } else {
-      setTotalRatingsNumber(data?.me?.ratings?.length || 0);
-      setTotalReviewsNumber(data?.me?.reviews?.length || 0);
+      setTotalRatingsNumber(data?.me?.ratingCount || 0);
+      setTotalReviewsNumber(data?.me?.reviewCount || 0);
 
       setRatings(data?.me?.ratings?.slice(0, 25));
       setReviews(data?.me?.reviews?.slice(0, 10));
@@ -309,7 +309,7 @@ export default function Profile() {
                 <div className="flex flex-wrap justify-center mt-2">
                   <div className="flex justify-center">
                     <RatingsBreakdown
-                      ratings={ratings}
+                      breakdown={(data?.user || data?.me)?.ratingBreakdown || []}
                       userId={meId ? meId : userId}
                     />
                   </div>

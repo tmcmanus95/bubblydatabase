@@ -8,6 +8,14 @@ const typeDefs = `
     reviews: [Review]
     isVerified: Boolean
     likedReviews: [Review]
+    ratingCount: Int
+    reviewCount: Int
+    ratingBreakdown: [RatingBucket!]!
+  }
+
+  type RatingBucket {
+    rating: Float!
+    count: Int!
   }
   
   type AuthPayload {
@@ -79,13 +87,10 @@ const typeDefs = `
     meId: User
     me: User
     bubblyWaters: [BubblyWater]
-    allBubblies: [BubblyWater]
     bubblyWater(bubblyWaterId: ID): BubblyWater
     caffeinatedBubblys: [BubblyWater]
     cbdBubblys: [BubblyWater]
     rating(ratingId: ID): Rating
-    ratings: [Rating]
-    reviews: [Review]
     flavors(flavor: [String]): [BubblyWater]
     brand(brandName: String): [BubblyWater]
     searchFlavors(flavor: [String]): [BubblyWater]

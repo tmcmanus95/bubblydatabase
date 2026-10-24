@@ -398,17 +398,17 @@ Report: `docs/IMAGE_AUDIT.md`; script: `server/scripts/imageAudit.js` (read-only
 - [x] `myRatings(bubblyWaterIds: [ID!]!)` query; lists issue one request instead of one per item (`client/utils/myRatings.js`; home: 50 → 1)
 - [x] `findUsersRating` per-item calls removed
 
-#### P1-23 🤖 Server N+1 cleanup — 60m
+#### P1-23 🤖 Server N+1 cleanup — 60m — in review
 
-- [ ] `bubblyWaters`/`flavors`/`brand` return `ratingCount`/`reviewCount` and no longer populate arrays
-- [ ] `recentReviews` returns the reviewer's rating through `$lookup`
-- [ ] `user`/`me` paginated; unbounded `ratings`/`reviews`/`users`/`allBubblies` removed or paginated
-- [ ] `updateTopReviews` uses `bulkWrite`
+- [x] `bubblyWaters`/`flavors`/`brand`/caffeine/CBD lists use the stored aggregates (sorted best-first in the database) and no longer populate arrays
+- [x] `recentReviews` returns the reviewer's own rating (linked on the review) instead of every rating of the product; fixes a carry-over bug on /recent
+- [x] `user`/`me` load the newest 25 ratings / 10 reviews, with `ratingCount`, `reviewCount` and a full `ratingBreakdown` counted in the database; unbounded root `ratings`/`reviews`/`allBubblies` removed (`users` stays admin-only)
+- [ ] `updateTopReviews` uses `bulkWrite` — only exists in the `new-aesthetic` WIP; do it when that merges
 
 #### P1-24 🤖 Client loop cleanup — 45m
 
-- [ ] `Recent.jsx`, `Brand.jsx`, `RatingsBreakdown.jsx` use single-pass/Map logic or server data
-- [ ] `averageRatingWeighting` replaced by one comparator; conditional hook in `BubblyWaterList` fixed
+- [x] `Recent.jsx`, `RatingsBreakdown.jsx` use server data (done with P1-23); `Brand.jsx` already uses one `find` (P1-0d)
+- [~] `averageRatingWeighting` replaced by one comparator (done with P1-23); conditional hook in `BubblyWaterList` still to fix
 - [ ] No visible behavior change (manual check on staging)
 
 **Phase 1 exit criteria:** every SPEC §4 security item done or explicitly deferred in `DECISIONS.md`;

@@ -7,12 +7,14 @@ import {
   QUERY_MEID,
 } from "../../utils/queries";
 import BubblyWaterListItem from "./BubblyWaterListItem";
-import { averageRatingWeighting } from "../../utils/averageRatingWeighting";
 import { useState, useEffect } from "react";
 import { formatBrands } from "../../utils/formatBrands";
 import { Link } from "react-router-dom";
 import Loading from "./Loading";
 import { capitalizeSingleFlavor } from "../../utils/capitalizeSingleFlavor";
+// Best average first; more ratings break ties (replaces averageRatingWeighting's bubble sort)
+const bestFirst = (a, b) => b.averageRating - a.averageRating || (b.ratingCount || 0) - (a.ratingCount || 0);
+
 export default function BubblyWaterList({ searchTerm }) {
   const [userId, setUserId] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
@@ -55,7 +57,7 @@ export default function BubblyWaterList({ searchTerm }) {
     if (caffeineQuery.data && caffeineQuery.data.caffeinatedBubblys) {
       sortedBubblyWaters = caffeineQuery.data.caffeinatedBubblys
         .slice()
-        .sort((a, b) => b.averageRating - a.averageRating);
+        .sort(bestFirst);
     }
   }
 
@@ -64,7 +66,7 @@ export default function BubblyWaterList({ searchTerm }) {
     if (cbdQuery.data && cbdQuery.data.cbdBubblys) {
       sortedBubblyWaters = cbdQuery.data.cbdBubblys
         .slice()
-        .sort((a, b) => b.averageRating - a.averageRating);
+        .sort(bestFirst);
     }
   }
   const toggleCBDSearch = () => {
@@ -93,8 +95,7 @@ export default function BubblyWaterList({ searchTerm }) {
     if (data && data.flavors) {
       sortedBubblyWaters = data.flavors
         .slice()
-        .sort((a, b) => b.averageRating - a.averageRating);
-      averageRatingWeighting(sortedBubblyWaters);
+        .sort(bestFirst);
       cbdBubblies = data?.flavors.filter((bubbly) => bubbly?.hasCBD === true);
       caffeinatedBubblies = data?.flavors.filter(
         (bubbly) => bubbly?.isCaffeinated === true
@@ -104,7 +105,7 @@ export default function BubblyWaterList({ searchTerm }) {
     if (data && data.bubblyWaters) {
       generalWaters = data.bubblyWaters
         .slice()
-        .sort((a, b) => b.averageRating - a.averageRating);
+        .sort(bestFirst);
     }
     cbdBubblies = data?.bubblyWaters.filter(
       (bubbly) => bubbly?.hasCBD === true
@@ -112,7 +113,6 @@ export default function BubblyWaterList({ searchTerm }) {
     caffeinatedBubblies = data?.bubblyWaters.filter(
       (bubbly) => bubbly?.isCaffeinated === true
     );
-    averageRatingWeighting(generalWaters);
   }
 
   // Animation effect - runs after data processing
@@ -147,7 +147,7 @@ export default function BubblyWaterList({ searchTerm }) {
       if (searchTerm) {
         sortedBubblyWaters = data?.flavors
           .slice()
-          .sort((a, b) => b.averageRating - a.averageRating);
+          .sort(bestFirst);
         hasCBDBubbly = false;
       } else {
         sortedBubblyWaters = data.bubblyWaters
@@ -164,7 +164,7 @@ export default function BubblyWaterList({ searchTerm }) {
     } else {
       sortedBubblyWaters = data?.flavors
         .slice()
-        .sort((a, b) => b.averageRating - a.averageRating);
+        .sort(bestFirst);
       hasCaffeinatedBubbly = false;
     }
   }
