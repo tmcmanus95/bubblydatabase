@@ -16,6 +16,7 @@
     "apollo-server-express": "^3.13.0",
     "axios": "^1.6.5",
     "bcrypt": "^6.0.0",
+    "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
     "dotenv": "^16.4.5",
