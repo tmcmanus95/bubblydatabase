@@ -166,3 +166,13 @@ MONGODB_URI='<production uri>' node server/scripts/setRole.js <username> admin -
 
 The older `ADMIN_USER_IDS` env var still grants admin too. Once your production account has the role,
 remove `ADMIN_USER_IDS` from Render so there's one source of truth.
+
+## Logs, errors and uptime
+
+- **Logs:** Render → service → Logs. One JSON line per request with `req.id`, method, path, status, time and
+  the GraphQL `operation`. Passwords, tokens, cookies, request bodies and variables are never logged.
+- **"Something went wrong (ref abc12345)":** in production, crashes and database errors are hidden from
+  visitors. Search the logs for the ref (`"ref":"abc12345"`) to see the full error. Every response also
+  carries an `X-Request-Id` header that matches `req.id` in the logs.
+- **Health check:** `GET /healthz` returns `200 {"ok":true}` when the app and database are up, `503` when
+  the database isn't. Uptime monitors point here.

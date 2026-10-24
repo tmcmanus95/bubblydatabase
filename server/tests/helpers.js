@@ -15,6 +15,7 @@ const mongoose = require("mongoose");
 const supertest = require("supertest");
 const { MongoMemoryServer } = require("mongodb-memory-server-core");
 const { createApp } = require("../app");
+const { createLogger } = require("../utils/logging");
 const { signToken } = require("../utils/auth");
 const { outbox } = require("../utils/sendEmail");
 const { loginThrottle } = require("../utils/loginThrottle");
@@ -35,7 +36,7 @@ const startTestServer = async ({ rateLimits = false } = {}) => {
 
   // The same migrations as staging/production create collections and indexes (e.g. sessions)
   await migrations.up(mongoose.connection.db, undefined, () => {});
-  const { app, server } = await createApp({ rateLimits });
+  const { app, server } = await createApp({ rateLimits, logger: createLogger({ level: "silent" }) });
   const request = supertest(app);
 
   // Sends a GraphQL operation; pass a user document to send their JWT

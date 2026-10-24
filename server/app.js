@@ -11,6 +11,8 @@ const { withValidation } = require("./schemas/validation");
 const { rejectOperatorKeys } = require("./utils/rejectOperatorKeys");
 const cookieParser = require("cookie-parser");
 const { sessionMiddleware } = require("./utils/sessions");
+const mongoose = require("mongoose");
+const { createLogger, requestLogger, createFormatError } = require("./utils/logging");
 const resolvers = require("./schemas/resolvers");
 
 // What the built site is allowed to load. Images: only our own files and data: URIs (generated cards);
@@ -56,16 +58,26 @@ const trustProxy = (isProduction) => {
 };
 
 // Builds the Express app with GraphQL mounted. Doesn't connect to MongoDB or listen on a port, so
-// tests can use it with their own database. `rateLimits`: see utils/rateLimits.js (false = off).
-const createApp = async ({ rateLimits } = {}) => {
+// tests can use it with their own database. `rateLimits`: see utils/rateLimits.js (false = off);
+// `logger`: a pino logger (tests pass a silent one).
+const createApp = async ({ rateLimits, logger = createLogger() } = {}) => {
   const isProduction = process.env.NODE_ENV === "production";
   const app = express();
   app.set("trust proxy", trustProxy(isProduction));
   const server = new ApolloServer({
     typeDefs,
     resolvers: withValidation(resolvers),
+    formatError: createFormatError({ logger, mask: isProduction }),
   });
   await server.start();
+
+  app.use(requestLogger(logger));
+
+  // For uptime monitors: 200 when the app and its database are up, 503 when the database isn't
+  app.get("/healthz", (req, res) => {
+    const dbUp = mongoose.connection.readyState === 1;
+    res.status(dbUp ? 200 : 503).json({ ok: dbUp });
+  });
 
   // The CSP only applies to the built site; in development the client is served by Vite
   app.use(helmet({ contentSecurityPolicy: isProduction ? contentSecurityPolicy : false }));
