@@ -1,6 +1,60 @@
 # Handoff
 
-_Last session: 2026-10-21._
+_Last session: 2026-10-23/24 (overnight, Claude working alone while Thomas slept)._
+
+## Start here (morning of 2026-10-24)
+
+Overnight Claude opened **15 PRs (#213–#227)** covering the rest of Phase 1 and all of Phase 1.5. Each PR
+builds on the one before it, so **merge them in order** (GitHub shows each PR's diff against `staging`; after
+the previous one merges, the next one's diff shrinks to its own changes). CI is green on every one. Nothing
+was merged, and no staging or production data was written; migrations were rehearsed on throwaway local
+copies of staging.
+
+| PR | Ticket | What you'll see |
+|---|---|---|
+| #213 | P1-14 | Products store `avgRating`, `ratingCount`, `reviewCount` (migration) |
+| #214 | P1-15 | Those stay current on every write; rating again updates instead of erroring |
+| #215 | P1-16 | Nightly recompute script (needs a Render Cron Job) |
+| #216 | P1-17 | Unverified users can rate (reviews still need verification) |
+| #217 | P1-18 | Per-account rating limits, stricter for new accounts |
+| #218 | P1-19 | One `search` query on the server |
+| #219 | P1-20 | One `/search` page with filters in the URL; navbar Enter works; old flavor links redirect |
+| #220 | P1-21+22 | **Tap-to-rate stars on cards** (+ Undo toast); home page 50 requests → 1 |
+| #221 | P1-23 | Lists/profiles fetch counts not arrays; profile breakdown counts all ratings; /recent bug fixed |
+| #222 | P1-24 | Rules-of-hooks fix in the home list |
+| #223 | P15-1 | `offers` on products (migration) |
+| #224 | P15-2 | Admin "Where to buy" box on product pages |
+| #225 | P15-3 | `/go/...` redirect with anonymous click log (migration) |
+| #226 | P15-4+5 | "Where to buy" block + disclosure on product pages |
+| #227 | P15-6+7 | Weekly link check script; incentive guard test |
+
+### After merging all 15 (staging)
+1. From the repo root with your staging `.env`: `git pull`, `npm install`, `npm run migrate:status` →
+   three `[ ]` (aggregates, offers, clicks) → `npm run migrate:up` → `npm run report:integrity` (all 0).
+2. Click through staging, **on your phone too**: tap stars on cards (and Undo; scrolling over stars must not
+   rate), search from the navbar with Enter, add a flavor filter, back/refresh, open an old `/flavors/lime`
+   link, a profile (totals + breakdown), `/recent`, `/allCaffeinated`.
+3. Optional: make yourself admin on staging (`node server/scripts/setRole.js <username> admin`), add an
+   offer on a product, and see "Where to buy" appear.
+
+### Releasing to production (when staging looks good)
+1. Backup first: GitHub → Actions → backup workflow → Run workflow (wait for green).
+2. **Run the production migrations before merging `staging` → `main`.** The current production code works
+   fine with them, and the new code needs them (the home list reads `ratingCount`). From the repo root on
+   the latest `staging`:
+   `MONGODB_URI='<production uri>' node server/scripts/migrate.js status --i-am-thomas-on-prod`
+   → should list six `[ ]`: roles, archive, indexes, aggregates, offers, clicks → same with `up`.
+3. Merge the `staging` → `main` PR. Then `setRole.js <username> admin` with the production flag, and delete
+   `ADMIN_USER_IDS` from both Render services.
+4. Create the **nightly recompute** Render Cron Job (RUNBOOK). It also tidies any ratings made between the
+   migration and the deploy. The weekly link-check cron can wait until there are offers.
+
+### Still open from before
+- Rotate the R2 access key and the `backup-ro` Atlas password (they were visible in an editor selection
+  early on; low risk, but it's the one SPEC §4 item not done).
+- Replacement for `bubblesicon.png` and the bubble textures (provenance unknown; designer or your own).
+- Phase 2 needs your go-ahead: a **proposed** breakdown is at the end of ROADMAP.md.
+
 
 ## State
 - Docs are committed to `main` by P0-2 (except `docs/AUDIT.md`, which stays local and gitignored).
@@ -51,7 +105,7 @@ _Last session: 2026-10-21._
 
 ## Watch out
 - The repo is public. Never paste secrets; PR/commit text is visible to everyone.
-- Root `npm run dev` / `npm test` and `migrate:*` don't exist yet (P0-9, P1-11). `server/` has `npm test`.
+- Root `npm run dev`, `npm test`, `migrate:*`, `report:integrity`, `recompute`, `check:links` all exist (see CLAUDE.md).
 
 ## P0-3 (backup script): done (PR #164 → `main` @ `089e3f3`)
 - `scripts/backup.sh` (usage in its header) + `scripts/test/backup.test.js`.
