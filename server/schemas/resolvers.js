@@ -4,6 +4,7 @@ const { startSession, endSession, endAllSessions } = require("../utils/sessions"
 const { verifyTurnstile } = require("../utils/turnstile");
 const aggregates = require("../utils/aggregates");
 const { ratingLimiter } = require("../utils/ratingRules");
+const { searchProducts } = require("../utils/search");
 const { User, BubblyWater, Rating, Review } = require("../models");
 const {
   signToken,
@@ -37,6 +38,8 @@ const resolvers = {
   },
 
   Query: {
+    // One search with filters, sorting and pages (P1-19); the older search* queries remain for now
+    search: async (parent, args) => searchProducts(args),
     users: async (parent, args, context) => {
       await requireAdmin(context);
       const users = await User.find();

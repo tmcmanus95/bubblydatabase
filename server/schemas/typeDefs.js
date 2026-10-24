@@ -54,7 +54,22 @@ const typeDefs = `
     user: User
   }
 
+  enum SearchSort {
+    TOP_RATED
+    MOST_RATED
+    NAME
+    NEWEST
+  }
+
+  type SearchResult {
+    total: Int!
+    page: Int!
+    pageSize: Int!
+    results: [BubblyWater!]!
+  }
+
   type Query {
+    search(q: String, flavor: [String], brand: String, caffeine: Boolean, cbd: Boolean, sort: SearchSort, page: Int, pageSize: Int): SearchResult!
     users: [User]
     user(userId: ID!): User
     usersRatings(userId: ID!, numRange: String!): User
