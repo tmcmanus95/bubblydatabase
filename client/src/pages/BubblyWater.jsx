@@ -20,6 +20,7 @@ import Loading from "../components/Loading";
 import CustomColorRating from "../components/CustomColorRating";
 import ProductCard from "../components/ProductCard";
 import { AiOutlineLike, AiFillLike } from "react-icons/ai";
+import { searchUrl } from "../../utils/searchParams";
 
 export default function BubblyWaterPage() {
   const { bubblyWaterId } = useParams();
@@ -274,7 +275,7 @@ export default function BubblyWaterPage() {
                     <p className="flex flex-wrap justify-center gap-2">
                       <span>Flavors:</span>
                       {flavors.map((flavor) => (
-                        <Link key={flavor} to={`/flavors/${flavor.toLowerCase()}`} className="underline">
+                        <Link key={flavor} to={searchUrl({ flavor: [flavor.toLowerCase()] })} className="underline">
                           {flavor.replace(/-/g, " ")}
                         </Link>
                       ))}

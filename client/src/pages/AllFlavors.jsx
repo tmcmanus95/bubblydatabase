@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import flavors from "../assets/flavors";
 import { formatBrands } from "../../utils/formatBrands";
+import { searchUrl } from "../../utils/searchParams";
 export default function AllFlavors() {
   return (
     <div className="mt-20 mb-14 justify-center flex flex-wrap gap-4 md:gap-6 lg:gap-10">
       {flavors.map((flavor, index) => (
-        <Link key={index} to={`/flavors/${flavor.toLowerCase()}`}>
+        <Link key={index} to={searchUrl({ flavor: [flavor.toLowerCase()] })}>
           <div
             className={`${flavor} w-28 md:w-36 lg:w-48 h-20 md:h-24 lg:h-32 rounded-md text-center hover:bg-blue-300 hover:text-black`}
           >

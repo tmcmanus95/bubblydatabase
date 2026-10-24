@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { searchUrl } from "../../utils/searchParams";
 import BubblyWaterList from "./BubblyWaterList";
 import Logo from "./Logo";
 import flavors from "../assets/flavors";
@@ -6,15 +8,16 @@ import { formatBrands } from "../../utils/formatBrands";
 
 export default function FlavorSearchBar() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedFlavor, setSelectedFlavor] = useState("");
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     setSearchTerm(e.target.value);
   };
 
+  // Picking a flavor opens the search page for it, so the result has a shareable URL (P1-20)
   const handleSelectFlavor = (flavor) => {
-    setSelectedFlavor(flavor);
     setSearchTerm("");
+    navigate(searchUrl({ flavor: [flavor.toLowerCase()] }));
   };
 
   const handleFormSubmit = (e) => {
@@ -59,11 +62,7 @@ export default function FlavorSearchBar() {
             </div>
           </form>
         </section>
-        {selectedFlavor ? (
-          <BubblyWaterList searchTerm={selectedFlavor.toLowerCase()} />
-        ) : (
-          <BubblyWaterList />
-        )}
+        <BubblyWaterList />
       </div>
     </>
   );
