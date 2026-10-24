@@ -195,3 +195,17 @@ anything but staging or a local database. Each run logs one line: `checked`, `dr
 to 20 examples. A non-zero `drifted` after the first night means some write path skips the aggregates.
 
 Staging/local by hand: `npm run recompute -- --dry-run` (report only) or `npm run recompute`.
+
+## Weekly where-to-buy link check (Render Cron Job)
+
+`server/scripts/checkLinks.js` visits every offer's link (HEAD, falling back to GET when a shop refuses HEAD),
+marks each offer `ok` or `broken` with `lastChecked`, and logs the broken ones. Amazon links are skipped
+(Amazon turns away automated visitors, so a check would mark good links broken). The admin box on a product
+page shows each offer's link status.
+
+**Create it once (Thomas, production), like the nightly recompute:** Render → New → **Cron Job** → this repo,
+branch `main`; build `cd server && npm install`; command `node server/scripts/checkLinks.js --render-cron`;
+schedule `23 10 * * 1` (Mondays 10:23 UTC); the same `MONGODB_URI` as the web service; smallest plan.
+Only worth creating once there are offers.
+
+Staging/local by hand: `npm run check:links -- --dry-run` (report only) or `npm run check:links`.

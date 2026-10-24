@@ -15,7 +15,8 @@
     "migrate:up": "node server/scripts/migrate.js up",
     "migrate:down": "node server/scripts/migrate.js down",
     "report:integrity": "node server/scripts/integrityReport.js",
-    "recompute": "node server/scripts/recompute.js"
+    "recompute": "node server/scripts/recompute.js",
+    "check:links": "node server/scripts/checkLinks.js"
   },
   "keywords": [],
   "author": "",
