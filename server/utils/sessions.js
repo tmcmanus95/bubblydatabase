@@ -5,6 +5,7 @@ const { Session } = require("../models");
 // Cookie sessions (P1-6). Two httpOnly cookies, invisible to page scripts:
 //   bubbly_access   a 15-minute JWT naming the user
 //   bubbly_refresh  a random 30-day token; the server stores only its hash (models/Session.js)
+// plus bubbly_signed_in=1, which page scripts can read to show the signed-in UI (no secret in it).
 // When the access cookie is missing or expired, the refresh cookie silently gets a new pair (rotation).
 // A refresh token used twice means it was copied: every session of that user is revoked.
 //
@@ -14,6 +15,9 @@ const { Session } = require("../models");
 
 const ACCESS_COOKIE = "bubbly_access";
 const REFRESH_COOKIE = "bubbly_refresh";
+// Readable by page scripts on purpose: holds no secret ("1"), it only tells the client to show the
+// signed-in UI. Lives exactly as long as the refresh cookie.
+const SIGNED_IN_COOKIE = "bubbly_signed_in";
 const ACCESS_TTL_MS = 15 * 60 * 1000;
 const REFRESH_TTL_MS = 30 * 24 * 60 * 60 * 1000;
 // Concurrent requests from one page load may all present the same refresh token while it rotates
@@ -45,6 +49,7 @@ const createSession = async (res, user) => {
     expiresAt: new Date(Date.now() + REFRESH_TTL_MS),
   });
   res.cookie(REFRESH_COOKIE, token, cookieOptions(REFRESH_TTL_MS));
+  res.cookie(SIGNED_IN_COOKIE, "1", { ...cookieOptions(REFRESH_TTL_MS), httpOnly: false });
   setAccessCookie(res, user);
   return session;
 };
@@ -53,6 +58,7 @@ const clearCookies = (res) => {
   const { maxAge, ...options } = cookieOptions(0);
   res.clearCookie(ACCESS_COOKIE, options);
   res.clearCookie(REFRESH_COOKIE, options);
+  res.clearCookie(SIGNED_IN_COOKIE, { ...options, httpOnly: false });
 };
 
 const readAccess = (token) => {
@@ -135,6 +141,7 @@ const endAllSessions = (userId) => Session.updateMany({ user: userId, revokedAt:
 module.exports = {
   ACCESS_COOKIE,
   REFRESH_COOKIE,
+  SIGNED_IN_COOKIE,
   sessionMiddleware,
   startSession,
   endSession,

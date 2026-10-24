@@ -288,13 +288,13 @@ Report: `docs/IMAGE_AUDIT.md`; script: `server/scripts/imageAudit.js` (read-only
 - [x] On successful login, if the hash cost is below 12, rehash and save. No forced resets. New hashes use cost 12
 - [x] Test: a cost-10 hash logs in and is upgraded
 
-#### P1-6 🤖 Cookie sessions (split across 2 sessions) — 2 × 60m — part 1 (server) in review
+#### P1-6 🤖 Cookie sessions (split across 2 sessions) — 2 × 60m — part 1 done (#204), part 2 in review
 
 - [x] Access token (15m) + refresh token (30d, rotating, stored hashed server-side) in `httpOnly`, `Secure`, `SameSite=Lax` cookies; reuse of a rotated token revokes all the user's sessions; `sessions` collection via migration
 - [x] Grace period: existing localStorage Bearer tokens are still accepted until `BEARER_GRACE_UNTIL` (default 2027-01-31) and upgrade the browser to cookies; tokens no longer accepted from the query string/body
-- [ ] Client: Apollo `credentials: "include"`, no token in localStorage, logout clears cookies
+- [x] Client: cookies on every request (same-origin), no token in localStorage (old ones are upgraded to cookies once, then deleted), logout clears cookies; signed-in UI reads a secret-free `bubbly_signed_in` cookie
 - [x] CSRF protection on mutations (SameSite=Lax + Apollo's built-in CSRF prevention; tested)
-- [ ] Existing users stay logged in or re-login normally (no password reset)
+- [x] Existing users stay logged in or re-login normally (no password reset); checked in a real browser
 
 #### P1-7 🤖 Roles — 45m — DB: staging-write (migration)
 
@@ -322,11 +322,11 @@ Report: `docs/IMAGE_AUDIT.md`; script: `server/scripts/imageAudit.js` (read-only
 
 ## Phase 1 — Quick wins
 
-#### P1-11 🤖 Migration runner — 45m — in review (pulled ahead of P1-6, which needs a migration)
+#### P1-11 🤖 Migration runner — 45m — done (#203; pulled ahead of P1-6)
 
 - [x] A minimal runner (no new dependency): `migrations/`, up/down, `migrations_changelog` collection (`server/scripts/lib/migrations.js`)
 - [x] `npm run migrate:status` / `migrate:up` / `migrate:down` use `assertStaging()` unless `--i-am-thomas-on-prod` is passed
-- [ ] Example no-op migration runs up and down on staging (**Thomas**; verified by Claude on a local throwaway database)
+- [x] Example no-op migration runs on staging (Thomas, 2026-10-23: `migrate:up` applied the example and `create-sessions` to `bubblydatabase3_staging`)
 
 #### P1-12 🤖 Data-integrity report — 30m — DB: staging-read
 

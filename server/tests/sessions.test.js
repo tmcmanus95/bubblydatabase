@@ -8,7 +8,7 @@ const { startTestServer } = require("./helpers");
 const { createUser } = require("./fixtures");
 const { Session } = require("../models");
 const { signToken } = require("../utils/auth");
-const { ACCESS_COOKIE, REFRESH_COOKIE, hash } = require("../utils/sessions");
+const { ACCESS_COOKIE, REFRESH_COOKIE, SIGNED_IN_COOKIE, hash } = require("../utils/sessions");
 
 let t;
 before(async () => {
@@ -54,6 +54,8 @@ test("login sets httpOnly, SameSite=Lax session cookies, and they alone identify
     assert.ok(raw[name].attrs.includes("samesite=lax"), `${name} SameSite=Lax`);
   }
   assert.ok(raw[ACCESS_COOKIE].attrs.some((a) => a === "max-age=900"), "access lives 15 minutes");
+  assert.strictEqual(raw[SIGNED_IN_COOKIE].value, "1", "the client's signed-in hint holds no secret");
+  assert.ok(!raw[SIGNED_IN_COOKIE].attrs.includes("httponly"), "and page scripts can read it");
   assert.strictEqual((await me({ cookies: { [ACCESS_COOKIE]: access } })).username, "fizzfan");
   const stored = await Session.findOne();
   assert.strictEqual(stored.tokenHash, hash(refresh), "only the hash is stored");
@@ -91,6 +93,7 @@ test("logout revokes the session and clears both cookies", async () => {
   const cleared = cookiesFrom(res);
   assert.strictEqual(cleared[ACCESS_COOKIE].value, "");
   assert.strictEqual(cleared[REFRESH_COOKIE].value, "");
+  assert.strictEqual(cleared[SIGNED_IN_COOKIE].value, "");
   assert.strictEqual(await me({ cookies: { [REFRESH_COOKIE]: refresh } }), null);
 });
 
