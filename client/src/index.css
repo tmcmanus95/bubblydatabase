@@ -505,6 +505,54 @@ a.brand-tile:focus-visible {
   }
 }
 
+/* Where to buy (components/WhereToBuy.jsx) and the affiliate disclosure */
+.where-to-buy {
+  width: 100%;
+  max-width: 20rem;
+  margin-top: 0.5rem;
+  text-align: left;
+}
+.where-to-buy__title {
+  font-weight: 800;
+  font-size: 1.1rem;
+  margin-bottom: 0.35rem;
+}
+.where-to-buy__list {
+  display: grid;
+  gap: 0.4rem;
+}
+.where-to-buy__link {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding: 0.45rem 0.75rem;
+  border: 2px solid currentColor;
+  border-radius: 12px;
+  box-shadow: 3px 3px 0 currentColor;
+  font-weight: 700;
+}
+.where-to-buy__link:hover,
+.where-to-buy__link:focus-visible {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 currentColor;
+}
+.where-to-buy__pack {
+  margin-left: auto;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+.affiliate-disclosure {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  line-height: 1.35;
+}
+@media (prefers-reduced-motion: reduce) {
+  .where-to-buy__link:hover,
+  .where-to-buy__link:focus-visible {
+    transform: none;
+  }
+}
+
 /* Toast (components/Toast.jsx): one message at a time, bottom center */
 .toast-host {
   position: fixed;

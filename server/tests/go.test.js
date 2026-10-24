@@ -79,3 +79,22 @@ test("the clicks migration is reversible", async () => {
   await migration.up(db);
   assert.strictEqual(await db.listCollections({ name: "clicks" }).hasNext(), true);
 });
+
+test("offers say when they're sponsored: affiliate URLs always, Amazon only once the tag is set", async () => {
+  const p = await seed();
+  const Q = `query($b: ID) { bubblyWater(bubblyWaterId: $b) { offers { retailer sponsored } } }`;
+  delete process.env.AMAZON_ASSOCIATE_TAG;
+  let offers = (await t.gql(Q, { b: String(p._id) })).data.bubblyWater.offers;
+  assert.deepStrictEqual(offers, [
+    { retailer: "Amazon", sponsored: false },
+    { retailer: "Target", sponsored: true },
+    { retailer: "Plain", sponsored: false },
+  ]);
+  process.env.AMAZON_ASSOCIATE_TAG = "bubbles-20";
+  try {
+    offers = (await t.gql(Q, { b: String(p._id) })).data.bubblyWater.offers;
+    assert.strictEqual(offers[0].sponsored, true);
+  } finally {
+    delete process.env.AMAZON_ASSOCIATE_TAG;
+  }
+});

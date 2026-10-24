@@ -19,6 +19,7 @@ import Loading from "../components/Loading";
 import CustomColorRating from "../components/CustomColorRating";
 import ProductCard from "../components/ProductCard";
 import AdminOffers from "../components/AdminOffers";
+import WhereToBuy from "../components/WhereToBuy";
 import { AiOutlineLike, AiFillLike } from "react-icons/ai";
 import { searchUrl } from "../../utils/searchParams";
 
@@ -280,6 +281,7 @@ export default function BubblyWaterPage() {
                         </Link>
                       ))}
                     </p>
+                    <WhereToBuy productId={bubblyWaterId} offers={bubblyWater.offers} />
                     {/* Rating happens on the card's stars (P1-21) */}
                     {Auth.loggedIn() ? (
                       <p className="text-sm">Tap the stars on the card to rate it.</p>

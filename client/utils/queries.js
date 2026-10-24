@@ -70,6 +70,13 @@ export const QUERY_SINGLE_BUBBLYWATER = gql`
       isCaffeinated
       hasCBD
       averageRating
+      offers {
+        _id
+        retailer
+        network
+        packSize
+        sponsored
+      }
       ratings {
         _id
         rating
